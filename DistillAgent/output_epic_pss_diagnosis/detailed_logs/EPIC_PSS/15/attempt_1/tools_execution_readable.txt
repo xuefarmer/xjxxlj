@@ -1,0 +1,170 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-08 19:01:07
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-08 18:55:01 -> 2026-07-08 18:55:45
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 9.766666666666666,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: electric kettle, small saucepan | action: pouring liquid | state: kettle tilted, saucepan filled with white liquid (wet/filled), liquid transferring | window: Frames 4-9 | query_link: [4, 9] | conf: high | uncertainty: liquid identity (milk/water)
+objects: glass lid, small saucepan | action: covering pot | state: lid placed on saucepan (covered/present), saucepan contents hidden | window: Frame 10 | query_link: [10, 10] | conf: high | uncertainty: none
+objects: electric kettle, base | action: placing kettle | state: kettle upright on base (present/separate), operation complete | window: Frames 11-13 | query_link: [11, 13] | conf: high | uncertainty: none
+objects: large pan, black spatula, yellow mixture | action: stirring | state: mixture thick/wet/cooking (mixed/wet), spatula coated (residue/wet) | window: Frames 14-16 | query_link: [14, 16] | conf: high | uncertainty: mixture type (porridge/polenta)
+objects: white bowl, spoon, small box | action: resting on counter | state: bowl empty, spoon present, box present (separate/dry) | window: Frames 1, 12 | query_link: [1, 12] | conf: high | uncertainty: box content
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-08 18:55:01 -> 2026-07-08 18:55:56
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 12.166666666666657,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: Tap, White rectangular container, Sink
+action: Filling/Rinsing
+state: Container filled with water/white liquid (wet), Tap active
+window: 1-3
+query_link: N/A
+conf: 0.9
+uncertainty: Low
+
+objects: Saucepan, Black slotted spatula
+action: Stirring
+state: Yellow liquid mixture cooking (wet/hot), Spatula mixing
+window: 5-16
+query_link: N/A
+conf: 0.95
+uncertainty: Low
+
+objects: Pot, Glass lid, White bowl
+action: Resting
+state: Pot covered (lid on), Glass lid separate on counter, Bowl empty
+window: 5-16
+query_link: N/A
+conf: 0.9
+uncertainty: Low
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-08 18:55:01 -> 2026-07-08 18:55:46
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 35.099999999999994,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: saucepan, yellow mixture, spatula | action: stirring, heating | state: mixture is cooking/bubbling (wet, mixed), spatula is wet/in use | window: Frames 1-9 | query_link: - | conf: High | uncertainty: None
+objects: white bowl, spoon, orange packet | action: resting on counter, being held | state: bowl is empty, spoon is present (dry), packet is present (whole/wrapped) | window: Frames 1-14 | query_link: - | conf: High | uncertainty: Packet contents UNCERTAIN (likely cheese)
+objects: cupboard shelves, containers | action: reaching into shelf | state: shelves stocked with containers (filled/stacked) | window: Frame 16 | query_link: - | conf: High | uncertainty: Specific item being retrieved is UNCERTAIN
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_1) ###
+Time: 2026-07-08 18:58:46 -> 2026-07-08 19:00:21
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 9.766666666666666,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: [orange packet/small box/white container state], [glass lid state relative to saucepan], [saucepan mixture state]. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology from display order; preserve local time/window evidence. No final answer or prose."
+}
+
+[Output]:
+orange packet/white bowl | resting on counter / being reached for | orange packet visible on counter (frames 1, 12, 13, 16); white bowl on counter (frames 1, 12, 13, 15) | 1-16 | [orange packet/small box/white container state] | high | no
+glass lid | on counter / on saucepan | lid is on counter in most frames (1-10, 12-13), placed on small saucepan in frame 11, sits on small saucepan in frames 14-15 | 1-16 | [glass lid state relative to saucepan] | high | no
+saucepan mixture | being stirred / boiling / covered | yellow mixture in large pan being stirred (frames 1, 2, 14-16); white liquid in small saucepan boiling (frames 4-9) and covered with lid (frames 14-15) | 1-16 | [saucepan mixture state] | high | no
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_2) ###
+Time: 2026-07-08 18:58:46 -> 2026-07-08 19:00:03
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 12.166666666666657,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: [orange packet/small box/white container state], [glass lid state relative to saucepan], [saucepan mixture state]. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology from display order; preserve local time/window evidence. No final answer or prose."
+}
+
+[Output]:
+orange packet/small box/white container | resting/visible | White tub in sink (frames 1-3); White bowl empty on counter (frames 5-16); Orange box partially visible at bottom edge (frames 6-8) | 1-16 | local_state | high | UNCERTAIN
+glass lid | off/resting | Sitting on counter to the left of the saucepan (not on it) | 5-16 | local_state | high | no
+saucepan mixture | being stirred | Yellow/green liquid/porridge consistency | 5-16 | local_state | high | no
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_3) ###
+Time: 2026-07-08 18:58:46 -> 2026-07-08 18:59:38
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 35.099999999999994,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: [orange packet/small box/white container state], [glass lid state relative to saucepan], [saucepan mixture state]. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology from display order; preserve local time/window evidence. No final answer or prose."
+}
+
+[Output]:
+orange packet/box | sitting on counter (frames 1-11), held in hands (frames 12-14) | 1-16 | orange packet/small box/white container state | HIGH | -
+white bowl | empty, resting on counter | 1-13 | orange packet/small box/white container state | HIGH | -
+glass lid | resting on counter, separate from saucepan (saucepan is uncovered) | 1-13 | glass lid state relative to saucepan | HIGH | -
+saucepan mixture | yellow/creamy liquid, being stirred with spatula, cooking | 1-10, 13 | saucepan mixture state | HIGH | -
+
+------------------------------------------------------------
+

@@ -1,0 +1,152 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "metal tray identity and state continuity between V2 Chunk1 and V3"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"egg roll cooked & sliced; metal container with raw peppers/white chunks on table\", \"2\": \"noodles cooked in wok; shrimp/veggies added; plated. Chunk1 has raw veggies in metal tray\", \"3\": \"onions/peppers stir-fried in wok; transferred to metal tray\", \"4\": \"shrimp marinated & cooked; eggs in bowl; raw side ingredients on table\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "shrimp": {
+      "4": "raw->cooked, transferred to bowl",
+      "2": "added to noodle wok, cooked"
+    },
+    "noodles": {
+      "2": "raw->cooked in wok, plated"
+    },
+    "veggies_peppers_onions": {
+      "4": "raw on table",
+      "1": "raw in metal container",
+      "2_chunk1": "raw in metal tray",
+      "3": "cooked in wok->metal tray",
+      "2_chunk2": "added to noodles"
+    },
+    "eggs": {
+      "4": "raw in bowl",
+      "1": "cooked into rolled omelet, sliced"
+    },
+    "metal_tray_container": {
+      "1": "holds raw peppers/white chunks",
+      "2_chunk1": "holds raw veggies",
+      "3": "receives cooked veggies"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states: raw/cooked, whole/cut, separate/mixed",
+    "container states: empty/filled, residue/depletion",
+    "transfer events: source to destination",
+    "metal tray/container contents: EMPTY vs RAW vs COOKED",
+    "shrimp state progression",
+    "noodle state progression"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states: raw/cooked, whole/cut, separate/mixed",
+          "container states: empty/filled, residue/depletion",
+          "transfer events: source to destination"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "egg roll cooked & sliced; metal container with raw peppers/white chunks on table",
+          "2": "noodles cooked in wok; shrimp/veggies added; plated. Chunk1 has raw veggies in metal tray",
+          "3": "onions/peppers stir-fried in wok; transferred to metal tray",
+          "4": "shrimp marinated & cooked; eggs in bowl; raw side ingredients on table"
+        },
+        "object_memory": {
+          "shrimp": {
+            "4": "raw->cooked, transferred to bowl",
+            "2": "added to noodle wok, cooked"
+          },
+          "noodles": {
+            "2": "raw->cooked in wok, plated"
+          },
+          "veggies_peppers_onions": {
+            "4": "raw on table",
+            "1": "raw in metal container",
+            "2_chunk1": "raw in metal tray",
+            "3": "cooked in wok->metal tray",
+            "2_chunk2": "added to noodles"
+          },
+          "eggs": {
+            "4": "raw in bowl",
+            "1": "cooked into rolled omelet, sliced"
+          },
+          "metal_tray_container": {
+            "1": "holds raw peppers/white chunks",
+            "2_chunk1": "holds raw veggies",
+            "3": "receives cooked veggies"
+          }
+        },
+        "preliminary_order": "4->1->3->2",
+        "order_confidence": 6,
+        "confidence_basis": "V4 prep shrimp/eggs; V1 cooks eggs; V3 cooks veggies; V2 combines all. Contradiction: V2 Chunk1 shows raw veggies in metal tray, but V3 fills metal tray with cooked veggies.",
+        "blocking_uncertainties": [
+          "Are the veggies in V2 Chunk1 actually raw, or is it a different tray from V3?",
+          "Does V2 Chunk1 happen before V3, or is V3 before V2?"
+        ],
+        "candidate_targets": [
+          {
+            "id": "V2_chunk1",
+            "reason": "verify metal tray contents state"
+          },
+          {
+            "id": "V3",
+            "reason": "verify metal tray receiving cooked veggies"
+          },
+          {
+            "id": "V1",
+            "reason": "verify metal container state"
+          }
+        ],
+        "uncertain": [
+          "metal tray identity and state continuity between V2 Chunk1 and V3"
+        ],
+        "dimensions_to_compare": [
+          "metal tray/container contents: EMPTY vs RAW vs COOKED",
+          "shrimp state progression",
+          "noodle state progression"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "4->1->3->2"
+  ],
+  "order_confidence": [
+    "6"
+  ],
+  "confidence_basis": [
+    "V4 prep shrimp/eggs; V1 cooks eggs; V3 cooks veggies; V2 combines all. Contradiction: V2 Chunk1 shows raw veggies in metal tray, but V3 fills metal tray with cooked veggies."
+  ],
+  "blocking_uncertainties": [
+    "Are the veggies in V2 Chunk1 actually raw, or is it a different tray from V3?",
+    "Does V2 Chunk1 happen before V3, or is V3 before V2?"
+  ],
+  "candidate_targets": [
+    "{\"id\": \"V2_chunk1\", \"reason\": \"verify metal tray contents state\"}",
+    "{\"id\": \"V3\", \"reason\": \"verify metal tray receiving cooked veggies\"}",
+    "{\"id\": \"V1\", \"reason\": \"verify metal container state\"}"
+  ]
+}

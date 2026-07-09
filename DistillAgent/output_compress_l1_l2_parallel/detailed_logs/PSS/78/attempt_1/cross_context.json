@@ -1,0 +1,171 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "object states across segments",
+    "state transitions",
+    "segment order"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "rice": {
+      "2": "raw/dry -> washed/wet -> pot on stove",
+      "1": "boiling -> steaming/cooked",
+      "4": "cooked in glass bowl -> seasoned with vinegar/salt -> mixed",
+      "3": "sticky cooked rice scooped from glass bowl -> spread on nori"
+    },
+    "tuna": {
+      "1": "raw diced -> mixed with mayo in white bowl",
+      "3": "pink mixture (spicy tuna) placed on nori"
+    },
+    "meat": {
+      "1": "raw ground -> mixed with onions/sauce -> covered in bowl"
+    },
+    "glass_bowl": {
+      "4": "contains cooked rice, being seasoned",
+      "3": "contains sticky rice, being depleted"
+    },
+    "nori_mat": {
+      "4": "mat and nori packet present on table",
+      "3": "nori flat -> rolled -> sliced"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient state (raw/cooked)",
+    "container fill/empty",
+    "tool contact",
+    "residue/depletion"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "object states across segments",
+          "state transitions",
+          "segment order"
+        ],
+        "dimensions_to_compare": [
+          "ingredient state (raw/cooked)",
+          "container fill/empty",
+          "tool contact",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "rice": {
+            "2": "raw/dry -> washed/wet -> pot on stove",
+            "1": "boiling -> steaming/cooked",
+            "4": "cooked in glass bowl -> seasoned with vinegar/salt -> mixed",
+            "3": "sticky cooked rice scooped from glass bowl -> spread on nori"
+          },
+          "tuna": {
+            "1": "raw diced -> mixed with mayo in white bowl",
+            "3": "pink mixture (spicy tuna) placed on nori"
+          },
+          "meat": {
+            "1": "raw ground -> mixed with onions/sauce -> covered in bowl"
+          },
+          "glass_bowl": {
+            "4": "contains cooked rice, being seasoned",
+            "3": "contains sticky rice, being depleted"
+          },
+          "nori_mat": {
+            "4": "mat and nori packet present on table",
+            "3": "nori flat -> rolled -> sliced"
+          }
+        },
+        "preliminary_order": "2->1->4->3",
+        "order_confidence": 9,
+        "confidence_basis": [
+          "V2: raw rice to pot on stove",
+          "V1: rice cooking/steaming, tuna/meat prepared",
+          "V4: cooked rice seasoned in glass bowl, mat/nori set up",
+          "V3: rice scooped from glass bowl, rolled on nori"
+        ],
+        "blocking_uncertainties": [
+          "glass bowl continuity between V4 and V3",
+          "rice state transition from V1 to V4"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                193
+              ],
+              "event": "rice cooking, tuna/meat prep",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                94
+              ],
+              "event": "raw rice washing, pot on stove",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                141
+              ],
+              "event": "rice scooped from glass bowl, rolled on nori",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                71
+              ],
+              "event": "cooked rice seasoned in glass bowl, mat/nori setup",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "2->1->4->3"
+  ],
+  "order_confidence": [
+    "9"
+  ],
+  "confidence_basis": [
+    "V2: raw rice to pot on stove",
+    "V1: rice cooking/steaming, tuna/meat prepared",
+    "V4: cooked rice seasoned in glass bowl, mat/nori set up",
+    "V3: rice scooped from glass bowl, rolled on nori"
+  ],
+  "blocking_uncertainties": [
+    "glass bowl continuity between V4 and V3",
+    "rice state transition from V1 to V4"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 193], \"event\": \"rice cooking, tuna/meat prep\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 94], \"event\": \"raw rice washing, pot on stove\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 141], \"event\": \"rice scooped from glass bowl, rolled on nori\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 71], \"event\": \"cooked rice seasoned in glass bowl, mat/nori setup\", \"confidence\": \"high\"}]}"
+  ]
+}

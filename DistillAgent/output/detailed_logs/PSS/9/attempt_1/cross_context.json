@@ -1,0 +1,268 @@
+{
+  "confirmed": [
+    "V5->V1: garlic small bowl transfer",
+    "V1->V2: white bowl raw->blanched veggies",
+    "V2->V3: blanched veggies in bowl, plain noodles",
+    "V3->V4: plain->sauced noodles"
+  ],
+  "uncertain": [
+    "Layer2 verification of bridging object states pending"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Making sauce: dark liquid + water + aromatics from small glass bowl. Background: raw whole bok choy in white bowl, boiling water in stainless pot.\", \"2\": \"Blanching veggies: water boiled in black pan, raw veggies from white bowl added, then cooked veggies returned to white bowl.\", \"3\": \"Draining/lifting plain wet noodles. Background: white bowl with wet blanched veggies, steaming stainless pot.\", \"4\": \"Plating: noodles tossed in sauce/oil, arranged on plate with cooked veggies and char siu. Wonton soup served.\", \"5\": \"Sautéing garlic: oil poured into black pan, garlic sautéed, transferred to small glass bowl.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "small_glass_bowl": {
+      "5": "filled with sautéed garlic chunks at end",
+      "1": "aromatics/garlic poured from it into sauce"
+    },
+    "white_bowl": {
+      "1": "contains fresh, raw, whole green vegetables",
+      "2": "receives cooked, wet, blanched vegetables",
+      "3": "background: contains wet, blanched vegetables"
+    },
+    "noodles": {
+      "3": "plain, wet, glistening, yellowish-brown",
+      "4": "coated in brown sauce/oil"
+    },
+    "green_vegetables": {
+      "1": "raw, whole, fresh in white bowl",
+      "2": "blanched, returned to white bowl",
+      "3": "wet, blanched in white bowl (background)",
+      "4": "cooked, plated"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked, whole/cut, empty/filled)",
+    "tool contact",
+    "transfer traces",
+    "residue/depletion",
+    "small glass bowl contents (garlic vs empty vs sauce)",
+    "white bowl vegetable state (raw/whole vs cooked/wet/blanched)",
+    "noodle coating state (plain/wet vs sauced/oily)"
+  ],
+  "resolved_uncertain": [
+    "Layer2 verification of bridging object states completed"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All segment roles and object states pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked, whole/cut, empty/filled)",
+          "tool contact",
+          "transfer traces",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Making sauce: dark liquid + water + aromatics from small glass bowl. Background: raw whole bok choy in white bowl, boiling water in stainless pot.",
+          "2": "Blanching veggies: water boiled in black pan, raw veggies from white bowl added, then cooked veggies returned to white bowl.",
+          "3": "Draining/lifting plain wet noodles. Background: white bowl with wet blanched veggies, steaming stainless pot.",
+          "4": "Plating: noodles tossed in sauce/oil, arranged on plate with cooked veggies and char siu. Wonton soup served.",
+          "5": "Sautéing garlic: oil poured into black pan, garlic sautéed, transferred to small glass bowl."
+        },
+        "object_memory": {
+          "small_glass_bowl": {
+            "5": "filled with sautéed garlic chunks at end",
+            "1": "aromatics/garlic poured from it into sauce"
+          },
+          "white_bowl": {
+            "1": "contains fresh, raw, whole green vegetables",
+            "2": "receives cooked, wet, blanched vegetables",
+            "3": "background: contains wet, blanched vegetables"
+          },
+          "noodles": {
+            "3": "plain, wet, glistening, yellowish-brown",
+            "4": "coated in brown sauce/oil"
+          },
+          "green_vegetables": {
+            "1": "raw, whole, fresh in white bowl",
+            "2": "blanched, returned to white bowl",
+            "3": "wet, blanched in white bowl (background)",
+            "4": "cooked, plated"
+          }
+        },
+        "preliminary_order": [
+          5,
+          1,
+          2,
+          3,
+          4
+        ],
+        "order_confidence": 9,
+        "confidence_basis": "Direct object state chains: garlic small bowl (V5->V1), raw->blanched veggies in white bowl (V1->V2->V3), plain->sauced noodles (V3->V4). All transitions are visually explicit.",
+        "blocking_uncertainties": [
+          "Need Layer2 to explicitly confirm the small glass bowl contents in V5/V1, the white bowl veggie state in V1/V2/V3, and the noodle sauce coating in V3/V4."
+        ],
+        "temporal_index": {
+          "1": [
+            {
+              "window": [
+                28,
+                37
+              ],
+              "event": "garlic pour into sauce",
+              "key_objects": [
+                "small glass bowl",
+                "black pan"
+              ],
+              "visible_state": "aromatics poured from glass bowl into dark sauce",
+              "confidence": "high"
+            }
+          ],
+          "5": [
+            {
+              "window": [
+                8,
+                12
+              ],
+              "event": "garlic transfer",
+              "key_objects": [
+                "small glass bowl",
+                "black pan"
+              ],
+              "visible_state": "sautéed garlic transferred to glass bowl",
+              "confidence": "high"
+            }
+          ],
+          "2": [
+            {
+              "window": [
+                20,
+                31
+              ],
+              "event": "blanched veggies in bowl",
+              "key_objects": [
+                "white bowl"
+              ],
+              "visible_state": "cooked wet veggies in white bowl",
+              "confidence": "high"
+            }
+          ],
+          "3": [
+            {
+              "window": [
+                0,
+                2
+              ],
+              "event": "plain noodles and blanched veggies",
+              "key_objects": [
+                "noodles",
+                "white bowl"
+              ],
+              "visible_state": "plain wet noodles, wet blanched veggies in background bowl",
+              "confidence": "high"
+            }
+          ],
+          "4": [
+            {
+              "window": [
+                0,
+                12
+              ],
+              "event": "sauced noodles plating",
+              "key_objects": [
+                "noodles",
+                "white plate"
+              ],
+              "visible_state": "noodles coated in brown sauce/oil",
+              "confidence": "high"
+            }
+          ]
+        },
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "Layer2 verification of bridging object states pending"
+        ],
+        "dimensions_to_compare": [
+          "small glass bowl contents (garlic vs empty vs sauce)",
+          "white bowl vegetable state (raw/whole vs cooked/wet/blanched)",
+          "noodle coating state (plain/wet vs sauced/oily)"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "5": "small glass bowl ends with sautéed garlic + oil",
+          "1": "small glass bowl pours garlic into dark sauce; white bowl has raw whole veggies",
+          "2": "white bowl receives cooked/wet/blanched veggies; black pan has boiling water + veggies",
+          "3": "plain wet noodles handled; white bowl background has wet blanched veggies",
+          "4": "noodles coated in brown sauce/oil; plated with veggies"
+        },
+        "confirmed": [
+          "V5->V1: garlic small bowl transfer",
+          "V1->V2: white bowl raw->blanched veggies",
+          "V2->V3: blanched veggies in bowl, plain noodles",
+          "V3->V4: plain->sauced noodles"
+        ],
+        "resolved_uncertain": [
+          "Layer2 verification of bridging object states completed"
+        ],
+        "order_confidence": 10
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "5",
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "order_confidence": [
+    "9",
+    "10"
+  ],
+  "confidence_basis": [
+    "Direct object state chains: garlic small bowl (V5->V1), raw->blanched veggies in white bowl (V1->V2->V3), plain->sauced noodles (V3->V4). All transitions are visually explicit."
+  ],
+  "blocking_uncertainties": [
+    "Need Layer2 to explicitly confirm the small glass bowl contents in V5/V1, the white bowl veggie state in V1/V2/V3, and the noodle sauce coating in V3/V4."
+  ],
+  "temporal_index": [
+    "{\"1\": [{\"window\": [28, 37], \"event\": \"garlic pour into sauce\", \"key_objects\": [\"small glass bowl\", \"black pan\"], \"visible_state\": \"aromatics poured from glass bowl into dark sauce\", \"confidence\": \"high\"}], \"5\": [{\"window\": [8, 12], \"event\": \"garlic transfer\", \"key_objects\": [\"small glass bowl\", \"black pan\"], \"visible_state\": \"sautéed garlic transferred to glass bowl\", \"confidence\": \"high\"}], \"2\": [{\"window\": [20, 31], \"event\": \"blanched veggies in bowl\", \"key_objects\": [\"white bowl\"], \"visible_state\": \"cooked wet veggies in white bowl\", \"confidence\": \"high\"}], \"3\": [{\"window\": [0, 2], \"event\": \"plain noodles and blanched veggies\", \"key_objects\": [\"noodles\", \"white bowl\"], \"visible_state\": \"plain wet noodles, wet blanched veggies in background bowl\", \"confidence\": \"high\"}], \"4\": [{\"window\": [0, 12], \"event\": \"sauced noodles plating\", \"key_objects\": [\"noodles\", \"white plate\"], \"visible_state\": \"noodles coated in brown sauce/oil\", \"confidence\": \"high\"}]}"
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"5\": \"small glass bowl ends with sautéed garlic + oil\", \"1\": \"small glass bowl pours garlic into dark sauce; white bowl has raw whole veggies\", \"2\": \"white bowl receives cooked/wet/blanched veggies; black pan has boiling water + veggies\", \"3\": \"plain wet noodles handled; white bowl background has wet blanched veggies\", \"4\": \"noodles coated in brown sauce/oil; plated with veggies\"}"
+  ]
+}

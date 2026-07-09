@@ -1,0 +1,216 @@
+{
+  "confirmed": [
+    "3 before 1: nori dry->rice-covered",
+    "1 before 5: crab placed->sauce applied",
+    "5 before 4: crab on surface->enclosed in roll",
+    "4 before 2: rolled cylinder->sliced pieces"
+  ],
+  "uncertain": [
+    "all object states and event roles pending Layer1"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "rice": {
+      "3": "bowl->nori",
+      "1": "spread on nori",
+      "5": "under crab",
+      "4": "inside rolled nori",
+      "2": "inside sliced rolls"
+    },
+    "nori": {
+      "3": "dry receiving rice",
+      "1": "rice-covered",
+      "5": "rice+crab",
+      "4": "rolled cylinder",
+      "2": "sliced pieces"
+    },
+    "crab": {
+      "1": "sliced and placed",
+      "5": "sauce applied",
+      "4": "enclosed",
+      "2": "inside sliced roll"
+    },
+    "green_plate": {
+      "3": "6-7 rolls",
+      "1": "6-7 rolls",
+      "5": "6 rolls",
+      "4": "resting rolls",
+      "2": "fills 6->12"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient state progression",
+    "container fill/empty",
+    "tool contact",
+    "residue/depletion",
+    "background vessel state"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all object states and event roles pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "ingredient state progression",
+          "container fill/empty",
+          "tool contact",
+          "residue/depletion",
+          "background vessel state"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "3->1->5->4->2",
+        "order_confidence": 9,
+        "confidence_basis": [
+          "V3: rice spreading onto dry nori",
+          "V1: crab sliced and placed on already spread rice",
+          "V5: sauce spread on already placed crab",
+          "V4: nori rolled into cylinder enclosing ingredients",
+          "V2: rolled sushi sliced and plated, green plate fills from 6 to 12"
+        ],
+        "blocking_uncertainties": [],
+        "object_memory": {
+          "rice": {
+            "3": "bowl->nori",
+            "1": "spread on nori",
+            "5": "under crab",
+            "4": "inside rolled nori",
+            "2": "inside sliced rolls"
+          },
+          "nori": {
+            "3": "dry receiving rice",
+            "1": "rice-covered",
+            "5": "rice+crab",
+            "4": "rolled cylinder",
+            "2": "sliced pieces"
+          },
+          "crab": {
+            "1": "sliced and placed",
+            "5": "sauce applied",
+            "4": "enclosed",
+            "2": "inside sliced roll"
+          },
+          "green_plate": {
+            "3": "6-7 rolls",
+            "1": "6-7 rolls",
+            "5": "6 rolls",
+            "4": "resting rolls",
+            "2": "fills 6->12"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                36
+              ],
+              "event": "crab placement",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                73
+              ],
+              "event": "slicing and plating",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                59
+              ],
+              "event": "rice spreading",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                34
+              ],
+              "event": "rolling",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                21
+              ],
+              "event": "saucing",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "order_confidence": 9,
+        "layer2_done": true,
+        "comparison_table": {
+          "video3": "rice bowl depleting onto dry nori, green plate 6-7 rolls",
+          "video1": "crab sliced and placed on rice-covered nori, green plate 6-7 rolls",
+          "video5": "sauce applied to crab strip, green plate ~6 rolls",
+          "video4": "nori rolled into cylinder enclosing ingredients, green plate 6-7 rolls",
+          "video2": "rolled sushi sliced, green plate fills 6->12"
+        },
+        "confirmed": [
+          "3 before 1: nori dry->rice-covered",
+          "1 before 5: crab placed->sauce applied",
+          "5 before 4: crab on surface->enclosed in roll",
+          "4 before 2: rolled cylinder->sliced pieces"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3->1->5->4->2"
+  ],
+  "order_confidence": [
+    "9"
+  ],
+  "confidence_basis": [
+    "V3: rice spreading onto dry nori",
+    "V1: crab sliced and placed on already spread rice",
+    "V5: sauce spread on already placed crab",
+    "V4: nori rolled into cylinder enclosing ingredients",
+    "V2: rolled sushi sliced and plated, green plate fills from 6 to 12"
+  ],
+  "blocking_uncertainties": [],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 36], \"event\": \"crab placement\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 73], \"event\": \"slicing and plating\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 59], \"event\": \"rice spreading\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 34], \"event\": \"rolling\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 21], \"event\": \"saucing\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"video3\": \"rice bowl depleting onto dry nori, green plate 6-7 rolls\", \"video1\": \"crab sliced and placed on rice-covered nori, green plate 6-7 rolls\", \"video5\": \"sauce applied to crab strip, green plate ~6 rolls\", \"video4\": \"nori rolled into cylinder enclosing ingredients, green plate 6-7 rolls\", \"video2\": \"rolled sushi sliced, green plate fills 6->12\"}"
+  ]
+}

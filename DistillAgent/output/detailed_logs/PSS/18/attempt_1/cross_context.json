@@ -1,0 +1,212 @@
+{
+  "confirmed": [
+    "V5->V2: 2-pot continuity and noodle caption",
+    "V2->V3: pork removal and clean pot for shrimp",
+    "V3->V6: whole cooked proteins -> sliced/butterflied",
+    "V6->V1: prepped ingredients -> rice paper soak",
+    "V1->V4: soaked paper + ingredients -> assembly"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Soak rice paper, ingredients prepped on plates\", \"2\": \"Boil, drain, rinse noodles\", \"3\": \"Remove cooked pork, boil shrimp in clean pot\", \"4\": \"Assemble summer roll with sliced pork, butterflied shrimp, noodles\", \"5\": \"Boil raw pork with aromatics, show dry noodles\", \"6\": \"Slice cooked pork and butterflied cooked shrimp\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "pork": {
+      "5": "raw -> boiling",
+      "3": "cooked whole chunks -> removed",
+      "6": "cooked whole -> sliced thin",
+      "1": "sliced on plate",
+      "4": "sliced, added to roll"
+    },
+    "shrimp": {
+      "3": "raw -> boiled -> cooked whole",
+      "6": "cooked whole -> butterflied",
+      "1": "cooked on plate",
+      "4": "butterflied, added to roll"
+    },
+    "noodles": {
+      "5": "dry package",
+      "2": "dry -> boiled -> drained -> squeezed",
+      "1": "cooked in bowl",
+      "4": "cooked, added to roll"
+    },
+    "rice_paper": {
+      "1": "dry -> soaked in warm water",
+      "4": "wet/translucent, assembled"
+    },
+    "pots": {
+      "5": "boiling pork, 2 pots visible at end",
+      "3": "clean pot for shrimp",
+      "2": "pot for noodles"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states",
+    "container states",
+    "tool usage",
+    "transfer actions",
+    "object lifecycle",
+    "pot residue/cleanliness",
+    "ingredient slice state",
+    "noodle state"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "overall chronological order",
+          "object lifecycle across segments"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states",
+          "container states",
+          "tool usage",
+          "transfer actions",
+          "object lifecycle"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Soak rice paper, ingredients prepped on plates",
+          "2": "Boil, drain, rinse noodles",
+          "3": "Remove cooked pork, boil shrimp in clean pot",
+          "4": "Assemble summer roll with sliced pork, butterflied shrimp, noodles",
+          "5": "Boil raw pork with aromatics, show dry noodles",
+          "6": "Slice cooked pork and butterflied cooked shrimp"
+        },
+        "object_memory": {
+          "pork": {
+            "5": "raw -> boiling",
+            "3": "cooked whole chunks -> removed",
+            "6": "cooked whole -> sliced thin",
+            "1": "sliced on plate",
+            "4": "sliced, added to roll"
+          },
+          "shrimp": {
+            "3": "raw -> boiled -> cooked whole",
+            "6": "cooked whole -> butterflied",
+            "1": "cooked on plate",
+            "4": "butterflied, added to roll"
+          },
+          "noodles": {
+            "5": "dry package",
+            "2": "dry -> boiled -> drained -> squeezed",
+            "1": "cooked in bowl",
+            "4": "cooked, added to roll"
+          },
+          "rice_paper": {
+            "1": "dry -> soaked in warm water",
+            "4": "wet/translucent, assembled"
+          },
+          "pots": {
+            "5": "boiling pork, 2 pots visible at end",
+            "3": "clean pot for shrimp",
+            "2": "pot for noodles"
+          }
+        },
+        "preliminary_order": "5->2->3->6->1->4",
+        "order_confidence": 8,
+        "confidence_basis": "Strong state-transition graph: V5 (raw pork, dry noodles) -> V2 (noodles cooked) -> V3 (pork removed, shrimp cooked) -> V6 (pork/shrimp sliced) -> V1 (rice paper soaked, all ingredients prepped) -> V4 (assembly). Each step logically consumes the output of the previous.",
+        "blocking_uncertainties": [
+          "Exact order of V2 and V3 (pot usage continuity)",
+          "Visual confirmation that V6 output matches V1 input"
+        ],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "order of V2 and V3"
+        ],
+        "dimensions_to_compare": [
+          "pot residue/cleanliness",
+          "ingredient slice state",
+          "noodle state"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "5": "raw pork boiled, dry noodles shown, 2 pots at end, caption to boil noodles",
+          "2": "2 pots at start, dry noodles boiled/drained/squeezed in clean pot",
+          "3": "cooked pork chunks removed, clean pot used to boil shrimp, shrimp cooked whole",
+          "6": "cooked whole pork sliced thin, cooked whole shrimp butterflied, cutting board has residue",
+          "1": "rice paper soaked, sliced pork and butterflied shrimp and cooked noodles on plates",
+          "4": "wet rice paper assembled with sliced pork, butterflied shrimp, cooked noodles"
+        },
+        "confirmed": [
+          "V5->V2: 2-pot continuity and noodle caption",
+          "V2->V3: pork removal and clean pot for shrimp",
+          "V3->V6: whole cooked proteins -> sliced/butterflied",
+          "V6->V1: prepped ingredients -> rice paper soak",
+          "V1->V4: soaked paper + ingredients -> assembly"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "uncertain": [],
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "5->2->3->6->1->4"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "Strong state-transition graph: V5 (raw pork, dry noodles) -> V2 (noodles cooked) -> V3 (pork removed, shrimp cooked) -> V6 (pork/shrimp sliced) -> V1 (rice paper soaked, all ingredients prepped) -> V4 (assembly). Each step logically consumes the output of the previous."
+  ],
+  "blocking_uncertainties": [
+    "Exact order of V2 and V3 (pot usage continuity)",
+    "Visual confirmation that V6 output matches V1 input"
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"5\": \"raw pork boiled, dry noodles shown, 2 pots at end, caption to boil noodles\", \"2\": \"2 pots at start, dry noodles boiled/drained/squeezed in clean pot\", \"3\": \"cooked pork chunks removed, clean pot used to boil shrimp, shrimp cooked whole\", \"6\": \"cooked whole pork sliced thin, cooked whole shrimp butterflied, cutting board has residue\", \"1\": \"rice paper soaked, sliced pork and butterflied shrimp and cooked noodles on plates\", \"4\": \"wet rice paper assembled with sliced pork, butterflied shrimp, cooked noodles\"}"
+  ],
+  "pruned_targets": []
+}

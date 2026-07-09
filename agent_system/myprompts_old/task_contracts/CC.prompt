@@ -1,0 +1,39 @@
+## Task Contract: CC
+Task: fine-grained single-choice comparison across similar cooking videos.
+
+Input semantics:
+- `videos` are candidate cooking videos.
+- `options` describe candidate answers, often tied to a video or a specific ingredient/tool/process detail.
+- Return the one option best supported by visual evidence.
+
+Evidence dimensions:
+- ingredient identity and physical form: whole/cut/minced, fresh/dried, raw/cooked, wet/dry, smooth/lumpy;
+- tool/container identity and use;
+- transfer, mixing, heating, color/texture change, residue, depletion;
+- timing relative to recipe stage only when visible or caption-supported;
+- close distractors: similar tools/ingredients/actions that do not match the queried detail.
+
+Workflow notes:
+- Layer1 must use `batch_observe` over all videos with adaptive full-video frame counts so long cooking videos are chunked and the queried step is not missed. Do not use one sparse multi-video `observe` for CC Layer1.
+- Layer1 batch items should cover `[0, duration_seconds]` for every video and use `num_frames = max(16, round(duration_seconds / 5))`; the executor will split each long video into dense chunks of up to 16 frames.
+- Layer1 should inventory visible tools/ingredients/actions per video only. Do not ask a single-video VLM call to decide whether something is unique across other videos.
+- For option questions about "unique", "different", "not seen in the others", or "which video", first extract each option into `(letter, target video, claimed object/action/detail)`.
+- After Layer1, maintain an option evidence table: each option -> target video/detail, direct support, direct contradiction, missing evidence, best time/chunk, and confidence.
+- If the Layer1 option evidence table already gives one directly visible, high-confidence match and the close alternatives are explicitly contradicted or unsupported by their own videos, you may answer directly after Layer1. Cite the decisive option/window in `thought`.
+- Layer2 must build an option-by-video presence matrix for those exact claimed objects/details. A single-video `batch_observe` result may confirm presence or absence only inside that same video; absence in other videos must come from their own observations or from a later multi-video focus call.
+- In single-video Layer2 prompts, do not write "check whether this appears in other videos". Instead ask "for this video only, is the option-specific tool visible, absent, or not visible in these frames?" The controller fills the cross-video matrix after all returned rows are available.
+- Layer2 should supplement the Layer1 option table: confirm a decisive window, fill a missing cell, or resolve a close candidate. Do not replace a concrete Layer1 finding with a generic Layer2 absence unless Layer2 inspected the same video/time window with at least comparable coverage.
+- Layer2 prunes videos or chunks clearly missing the relevant object/tool/stage and re-checks only plausible candidates or uncertain negatives.
+- If Layer2 re-checks a long video/window independently, use `batch_observe` on the retained chunk/window rather than a sparse full-video `observe`.
+- Focus should inspect the exact step/chunk where the queried detail appears, with higher frame density. If two or more options appear unique after Layer2, run a conflict-resolution focus on those options before answering.
+- Captions may locate named ingredients or steps, but visual form/state decides the answer.
+
+Decision rules:
+- Prefer the option whose claimed object/detail is directly visible in its target video and is not supported in the other videos by the presence matrix.
+- In forced-choice benchmark questions, choose the best-supported option among the provided answers even if the wording is imperfect; explain why closer distractors are weaker instead of defaulting to an arbitrary unsupported option.
+- For moisture-removal questions, count explicit pre-cooking removal methods such as squeezing, pressing, straining/sieving, draining, wringing, towel/paper-towel absorption, or rinsing/draining. Do not treat ordinary cooking evaporation, flipping, scooping, shaping, or mixing as the distinguishing moisture-removal method unless the option explicitly refers to cooking.
+- If multiple options look "unique", do not choose arbitrarily. Compare object category and wording strictly: e.g. a hot plate/cooktop is not automatically a griddle, a spoon is not a potato masher, and a generic spatula is not necessarily the specific metal spatula in the option.
+- Do not use phrases like "other tools are also unique" in the final reasoning unless you have resolved why exactly one option is best.
+
+Final answer:
+- `final_answer` is one uppercase option letter, e.g. `"C"`.

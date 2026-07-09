@@ -1,0 +1,218 @@
+[
+  {
+    "turn": 1,
+    "call_id": "batch_1_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 16.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 10:47:22",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 16.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"Waiting for Layer1 results to identify shared objects and state transitions across segments.\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object state (raw/cooked/mixed)\",\n    \"container fill/empty state\",\n    \"residue/depletion\",\n    \"transfer actions\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: food strips (meat/fish), white powder (flour/crumbs), yellow liquid (egg wash), bowls/plates | action: handling, dipping, coating, breading | state: raw, separate strips, dry powder, wet liquid, filled containers | window: 1-16 | query_link: N/A | conf: high | uncertainty: low\nobjects: two men | action: collaborative food preparation, assembly line breading | state: active, standing | window: 1-16 | query_link: N/A | conf: high | uncertainty: low\nobjects: small bowl (far left) | action: holding processed food | state: filled with breaded food (by frame 16), residue present | window: 1-16 | query_link: N/A | conf: medium | uncertainty: exact content of final bowl is slightly dark\nobjects: transfer of food | action: passing between stations (flour to egg or vice versa) | state: food moves from hand to bowl, wet to dry or dry to wet | window: 1-16 | query_link: N/A | conf: high | uncertainty: exact sequence (flour-egg-crumb vs egg-flour) is slightly ambiguous due to lighting but standard breading is implied",
+    "timestamp_end": "2026-07-06 10:48:22"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 36.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 10:47:22",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 36.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"Waiting for Layer1 results to identify shared objects and state transitions across segments.\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object state (raw/cooked/mixed)\",\n    \"container fill/empty state\",\n    \"residue/depletion\",\n    \"transfer actions\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: Bowl, egg; action: Cracking/mixing; state: Bowl filled with yellow liquid (raw egg); window: Frames 1-3; query_link: N/A; conf: High; uncertainty: None\nobjects: Three bowls, meat chunks, white powder; action: Arrangement/Setup; state: Bowls filled with separate ingredients (dark meat chunks, white powder, yellow egg liquid); window: Frames 5-16; query_link: N/A; conf: High; uncertainty: Exact type of white powder (flour vs breadcrumbs)\nobjects: Meat strip/fillet; action: Dipping/Transferring; state: Object transferred from meat bowl to egg bowl (wet/coated) then to powder bowl (dry coated); window: Frames 6-16; query_link: N/A; conf: High; uncertainty: None",
+    "timestamp_end": "2026-07-06 10:48:21"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 30.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 10:47:22",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 30.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"Waiting for Layer1 results to identify shared objects and state transitions across segments.\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object state (raw/cooked/mixed)\",\n    \"container fill/empty state\",\n    \"residue/depletion\",\n    \"transfer actions\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: bowl, dark mixture, small containers/jars, action: pouring, stirring, transferring ingredients, state: filled, mixed, window: 1-8, query_link: N/A, conf: 0.9, uncertainty: low\nobjects: bowl, action: standing/idle, state: empty/depleted (or white residue), window: 9-12, query_link: N/A, conf: 0.7, uncertainty: medium (lighting makes fill level hard to distinguish)\nobjects: bowl, small round objects (likely eggs), action: cracking, adding, transferring, state: raw, being filled, separate becoming mixed, window: 13-16, query_link: N/A, conf: 0.8, uncertainty: medium (exact object identity unclear)",
+    "timestamp_end": "2026-07-06 10:48:42"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 55.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 10:47:22",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 55.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"Waiting for Layer1 results to identify shared objects and state transitions across segments.\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object state (raw/cooked/mixed)\",\n    \"container fill/empty state\",\n    \"residue/depletion\",\n    \"transfer actions\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: breaded food pieces, plate, frying pan | action: transferring raw food from plate to pan | state: raw/breaded (white coating), separate pieces | window: 1-6 | query_link: N/A | conf: high | uncertainty: none\nobjects: frying pan, oil, food pieces | action: frying | state: cooking, bubbling oil, food turning golden brown/crispy | window: 7-10 | query_link: N/A | conf: high | uncertainty: none\nobjects: fork, cooked food, plate with paper towel | action: removing cooked food from pan to plate | state: cooked (golden brown), transferred, placed on paper towel to drain | window: 11-16 | query_link: N/A | conf: high | uncertainty: none\nobjects: frying pan | action: post-frying | state: depleted of solid food, hot oil residue present | window: 15-16 | query_link: N/A | conf: high | uncertainty: none",
+    "timestamp_end": "2026-07-06 10:47:50"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 30.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the bowl with the dark mixture: is it EMPTY, PARTLY_FILLED, or FILLED? What are the small containers/jars? When eggs are cracked, where do they go? Report exactly what you see. Return compact rows: object/state/window/conf/uncertainty."
+    },
+    "timestamp_start": "2026-07-06 10:49:40",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 30.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the bowl with the dark mixture: is it EMPTY, PARTLY_FILLED, or FILLED? What are the small containers/jars? When eggs are cracked, where do they go? Report exactly what you see. Return compact rows: object/state/window/conf/uncertainty.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"egg_mixture\": {\n      \"3\": \"dark mixture mixed, eggs cracked into it\",\n      \"2\": \"yellow liquid in bowl\"\n    },\n    \"meat\": {\n      \"2\": \"raw chunks in bowl, dipped into egg then powder\",\n      \"1\": \"strips being breaded\"\n    },\n    \"breaded_food\": {\n      \"1\": \"accumulating in small bowl, white coated\",\n      \"4\": \"on plate before frying, white coated\"\n    },\n    \"frying_pan\": {\n      \"4\": \"empty -> filled with oil and food -> depleted of solids\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object state (raw/cooked/mixed)\",\n    \"container fill/empty state\",\n    \"residue/depletion\",\n    \"transfer actions\",\n    \"egg/mixture state (dark mixed vs yellow liquid)\",\n    \"breaded food appearance (white coating consistency)\",\n    \"container fill levels (bowl depletion/filling)\"\n  ],\n  \"uncertain\": [\n    \"Exact identity of V3's dark mixture and its relation to V2's bowls\",\n    \"Visual continuity of breaded food from V1 bowl to V4 plate\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "bowl_with_dark_mixture/PARTLY_FILLED/1-8/High/Low (visible dark mound/mixture in bowl)\nsmall_containers_jars/spice_shakers_or_ingredient_jars/1-6/Medium/Medium (men holding and shaking small jars over bowl)\neggs/cracked_into_white_bowl/13-16/High/Low (eggs cracked directly into the bowl on the counter)",
+    "timestamp_end": "2026-07-06 10:51:38"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 36.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the three bowls: what is in each (meat, powder, egg)? Is the egg bowl containing a mixed yellow liquid or just cracked eggs? Report exactly what you see. Return compact rows: object/state/window/conf/uncertainty."
+    },
+    "timestamp_start": "2026-07-06 10:49:40",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 36.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the three bowls: what is in each (meat, powder, egg)? Is the egg bowl containing a mixed yellow liquid or just cracked eggs? Report exactly what you see. Return compact rows: object/state/window/conf/uncertainty.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"egg_mixture\": {\n      \"3\": \"dark mixture mixed, eggs cracked into it\",\n      \"2\": \"yellow liquid in bowl\"\n    },\n    \"meat\": {\n      \"2\": \"raw chunks in bowl, dipped into egg then powder\",\n      \"1\": \"strips being breaded\"\n    },\n    \"breaded_food\": {\n      \"1\": \"accumulating in small bowl, white coated\",\n      \"4\": \"on plate before frying, white coated\"\n    },\n    \"frying_pan\": {\n      \"4\": \"empty -> filled with oil and food -> depleted of solids\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object state (raw/cooked/mixed)\",\n    \"container fill/empty state\",\n    \"residue/depletion\",\n    \"transfer actions\",\n    \"egg/mixture state (dark mixed vs yellow liquid)\",\n    \"breaded food appearance (white coating consistency)\",\n    \"container fill levels (bowl depletion/filling)\"\n  ],\n  \"uncertain\": [\n    \"Exact identity of V3's dark mixture and its relation to V2's bowls\",\n    \"Visual continuity of breaded food from V1 bowl to V4 plate\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "meat_bowl / raw chunks / 4-16 / high / low\npowder_bowl / white powder / 5-16 / high / low\negg_bowl / yellow liquid (mixed) / 1-16 / high / low",
+    "timestamp_end": "2026-07-06 10:51:32"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 16.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the small bowl on the far left: is it EMPTY, PARTLY_FILLED, or FILLED with breaded food? What does the breaded food look like (white coating, dark)? Report exactly what you see. Return compact rows: object/state/window/conf/uncertainty."
+    },
+    "timestamp_start": "2026-07-06 10:49:40",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 16.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the small bowl on the far left: is it EMPTY, PARTLY_FILLED, or FILLED with breaded food? What does the breaded food look like (white coating, dark)? Report exactly what you see. Return compact rows: object/state/window/conf/uncertainty.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"egg_mixture\": {\n      \"3\": \"dark mixture mixed, eggs cracked into it\",\n      \"2\": \"yellow liquid in bowl\"\n    },\n    \"meat\": {\n      \"2\": \"raw chunks in bowl, dipped into egg then powder\",\n      \"1\": \"strips being breaded\"\n    },\n    \"breaded_food\": {\n      \"1\": \"accumulating in small bowl, white coated\",\n      \"4\": \"on plate before frying, white coated\"\n    },\n    \"frying_pan\": {\n      \"4\": \"empty -> filled with oil and food -> depleted of solids\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object state (raw/cooked/mixed)\",\n    \"container fill/empty state\",\n    \"residue/depletion\",\n    \"transfer actions\",\n    \"egg/mixture state (dark mixed vs yellow liquid)\",\n    \"breaded food appearance (white coating consistency)\",\n    \"container fill levels (bowl depletion/filling)\"\n  ],\n  \"uncertain\": [\n    \"Exact identity of V3's dark mixture and its relation to V2's bowls\",\n    \"Visual continuity of breaded food from V1 bowl to V4 plate\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "small_bowl_far_left | PARTLY_FILLED (accumulating breaded food) | 1-16 | High | Dim lighting; food appears as strips/chunks with white coating (flour/breadcrumbs). The bowl starts empty and fills up over the sequence.",
+    "timestamp_end": "2026-07-06 10:50:51"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 55.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the plate before frying: is it EMPTY or FILLED with raw breaded food? What does the breaded food look like? Report exactly what you see. Return compact rows: object/state/window/conf/uncertainty."
+    },
+    "timestamp_start": "2026-07-06 10:49:40",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 55.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the plate before frying: is it EMPTY or FILLED with raw breaded food? What does the breaded food look like? Report exactly what you see. Return compact rows: object/state/window/conf/uncertainty.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"egg_mixture\": {\n      \"3\": \"dark mixture mixed, eggs cracked into it\",\n      \"2\": \"yellow liquid in bowl\"\n    },\n    \"meat\": {\n      \"2\": \"raw chunks in bowl, dipped into egg then powder\",\n      \"1\": \"strips being breaded\"\n    },\n    \"breaded_food\": {\n      \"1\": \"accumulating in small bowl, white coated\",\n      \"4\": \"on plate before frying, white coated\"\n    },\n    \"frying_pan\": {\n      \"4\": \"empty -> filled with oil and food -> depleted of solids\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object state (raw/cooked/mixed)\",\n    \"container fill/empty state\",\n    \"residue/depletion\",\n    \"transfer actions\",\n    \"egg/mixture state (dark mixed vs yellow liquid)\",\n    \"breaded food appearance (white coating consistency)\",\n    \"container fill levels (bowl depletion/filling)\"\n  ],\n  \"uncertain\": [\n    \"Exact identity of V3's dark mixture and its relation to V2's bowls\",\n    \"Visual continuity of breaded food from V1 bowl to V4 plate\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "plate/FILLED with raw breaded food (white coated chunks)/frames 1-3/high/low\nbreaded_food/white coated, lumpy, raw pieces/frames 1-3/high/low",
+    "timestamp_end": "2026-07-06 10:50:10"
+  },
+  {
+    "turn": 3,
+    "call_id": "obs_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 13,
+          "end_time": 30,
+          "num_frames": 16,
+          "focus_prompt": "MODE=focus. Inspect only the egg preparation and egg bowl states. In Video 3 (frames 13-16): what happens to the eggs after cracking - are they mixed into a yellow liquid or remain separate? In Video 2 (frames 1-16): is the egg bowl containing a mixed yellow liquid or just cracked eggs? Report per-target cells only: egg state (separate/mixed/liquid), container state, any visible transfer. Do not infer ordering."
+        },
+        {
+          "video_index": 2,
+          "start_time": 0,
+          "end_time": 16,
+          "num_frames": 16,
+          "focus_prompt": "MODE=focus. Inspect only the egg preparation and egg bowl states. In Video 3 (frames 13-16): what happens to the eggs after cracking - are they mixed into a yellow liquid or remain separate? In Video 2 (frames 1-16): is the egg bowl containing a mixed yellow liquid or just cracked eggs? Report per-target cells only: egg state (separate/mixed/liquid), container state, any visible transfer. Do not infer ordering."
+        }
+      ],
+      "focus_prompt": "MODE=focus. Inspect only the egg preparation and egg bowl states. In Video 3 (frames 13-16): what happens to the eggs after cracking - are they mixed into a yellow liquid or remain separate? In Video 2 (frames 1-16): is the egg bowl containing a mixed yellow liquid or just cracked eggs? Report per-target cells only: egg state (separate/mixed/liquid), container state, any visible transfer. Do not infer ordering."
+    },
+    "timestamp_start": "2026-07-06 10:52:04",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (13.0s to 30.0s)\nFrames 17-32 are from Video 2 (0.0s to 16.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=focus. Inspect only the egg preparation and egg bowl states. In Video 3 (frames 13-16): what happens to the eggs after cracking - are they mixed into a yellow liquid or remain separate? In Video 2 (frames 1-16): is the egg bowl containing a mixed yellow liquid or just cracked eggs? Report per-target cells only: egg state (separate/mixed/liquid), container state, any visible transfer. Do not infer ordering.\n\n[PSS Neutral Focus Notice]\nEven if the prompt or accumulated context mentions a leading edge/order, do not decide which segment is earlier and do not choose between hypotheses. Report only per-target visible object-state cells: object state, container fill/empty state, source/destination, residue/depletion, background object state, confidence, and uncertainty. The master will compare these cells after the tool returns.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"egg_mixture\": {\n      \"3\": \"dark mixture mixed, eggs cracked into it\",\n      \"2\": \"yellow liquid in bowl\"\n    },\n    \"meat\": {\n      \"2\": \"raw chunks in bowl, dipped into egg then powder\",\n      \"1\": \"strips being breaded\"\n    },\n    \"breaded_food\": {\n      \"1\": \"accumulating in small bowl, white coated\",\n      \"4\": \"on plate before frying, white coated\"\n    },\n    \"frying_pan\": {\n      \"4\": \"empty -> filled with oil and food -> depleted of solids\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object state (raw/cooked/mixed)\",\n    \"container fill/empty state\",\n    \"residue/depletion\",\n    \"transfer actions\",\n    \"egg/mixture state (dark mixed vs yellow liquid)\",\n    \"breaded food appearance (white coating consistency)\",\n    \"container fill levels (bowl depletion/filling)\"\n  ],\n  \"uncertain\": [\n    \"Does V3's egg cracking directly feed V2's mixed egg bowl?\",\n    \"Does V1's breaded bowl transfer to V4's plate?\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in the specified frames:\n\n**Video 3 (Frames 13-16):**\n*   **Egg State:** Separate. The eggs are being cracked into the bowl. Distinct yolks and whites are visible; they have not yet been whisked into a uniform liquid.\n*   **Container State:** The white bowl contains cracked eggs (visible yellow yolks and clear whites).\n*   **Visible Transfer:** The person on the right is actively cracking eggs into the bowl.\n\n**Video 2 (Frames 1-16 [Combined Frames 17-32]):**\n*   **Egg State:** Mixed liquid. The contents of the bowl are a uniform bright yellow color, indicating the eggs have been beaten/mixed.\n*   **Container State:** The bowl is filled with the yellow egg liquid.\n*   **Visible Transfer:** In the later frames of this segment (around frame 29-32), pieces of meat are being transferred/dipped into the yellow egg liquid bowl. In the earlier frames (17-22), the person on the left appears to be whisking or preparing the mixture.",
+    "timestamp_end": "2026-07-06 10:53:18"
+  },
+  {
+    "turn": 4,
+    "call_id": "obs_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 10,
+          "end_time": 16,
+          "num_frames": 16,
+          "focus_prompt": "MODE=focus. Inspect only the breaded food state and container. In Video 1 (frames 10-16): what is the state of the small bowl on the far left - is it FILLED with breaded food, and what does the food look like (white coating, shape)? In Video 4 (frames 0-10): what is the state of the plate before frying - is it FILLED with breaded food, and what does the food look like (white coating, shape)? Report per-target cells only: breaded food appearance (coating, shape, color), container state (fill level), any visible transfer action. Do not infer ordering."
+        },
+        {
+          "video_index": 4,
+          "start_time": 0,
+          "end_time": 10,
+          "num_frames": 16,
+          "focus_prompt": "MODE=focus. Inspect only the breaded food state and container. In Video 1 (frames 10-16): what is the state of the small bowl on the far left - is it FILLED with breaded food, and what does the food look like (white coating, shape)? In Video 4 (frames 0-10): what is the state of the plate before frying - is it FILLED with breaded food, and what does the food look like (white coating, shape)? Report per-target cells only: breaded food appearance (coating, shape, color), container state (fill level), any visible transfer action. Do not infer ordering."
+        }
+      ],
+      "focus_prompt": "MODE=focus. Inspect only the breaded food state and container. In Video 1 (frames 10-16): what is the state of the small bowl on the far left - is it FILLED with breaded food, and what does the food look like (white coating, shape)? In Video 4 (frames 0-10): what is the state of the plate before frying - is it FILLED with breaded food, and what does the food look like (white coating, shape)? Report per-target cells only: breaded food appearance (coating, shape, color), container state (fill level), any visible transfer action. Do not infer ordering."
+    },
+    "timestamp_start": "2026-07-06 10:53:32",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (10.0s to 16.0s)\nFrames 17-32 are from Video 4 (0.0s to 10.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=focus. Inspect only the breaded food state and container. In Video 1 (frames 10-16): what is the state of the small bowl on the far left - is it FILLED with breaded food, and what does the food look like (white coating, shape)? In Video 4 (frames 0-10): what is the state of the plate before frying - is it FILLED with breaded food, and what does the food look like (white coating, shape)? Report per-target cells only: breaded food appearance (coating, shape, color), container state (fill level), any visible transfer action. Do not infer ordering.\n\n[PSS Neutral Focus Notice]\nEven if the prompt or accumulated context mentions a leading edge/order, do not decide which segment is earlier and do not choose between hypotheses. Report only per-target visible object-state cells: object state, container fill/empty state, source/destination, residue/depletion, background object state, confidence, and uncertainty. The master will compare these cells after the tool returns.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"egg_mixture\": {\n      \"3\": \"dark mixture mixed, eggs cracked into it\",\n      \"2\": \"yellow liquid in bowl\"\n    },\n    \"meat\": {\n      \"2\": \"raw chunks in bowl, dipped into egg then powder\",\n      \"1\": \"strips being breaded\"\n    },\n    \"breaded_food\": {\n      \"1\": \"accumulating in small bowl, white coated\",\n      \"4\": \"on plate before frying, white coated\"\n    },\n    \"frying_pan\": {\n      \"4\": \"empty -> filled with oil and food -> depleted of solids\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object state (raw/cooked/mixed)\",\n    \"container fill/empty state\",\n    \"residue/depletion\",\n    \"transfer actions\",\n    \"egg/mixture state (dark mixed vs yellow liquid)\",\n    \"breaded food appearance (white coating consistency)\",\n    \"container fill levels (bowl depletion/filling)\"\n  ],\n  \"uncertain\": [\n    \"Does V1's breaded bowl transfer to V4's plate?\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in the provided frames:\n\n**Video 1 (Frames 10-16)**\n*   **Target Container:** Small bowl on the far left.\n*   **Container State:** Partially filled / accumulating. The bowl starts relatively empty and food is being added to it.\n*   **Breaded Food Appearance:** The food consists of chunks or strips. While the middle plate contains bright white powder (flour/breading), the food accumulating in the far-left bowl appears to have a coating that looks white to pale yellow/brown (likely a mix of flour and egg wash), appearing as breaded chunks.\n*   **Transfer Action:** The person on the left is handling the food and placing it into this small bowl.\n\n**Video 4 (Frames 17-32 / Local 0-10s)**\n*   **Target Container:** Large white plate (center/right).\n*   **Container State:** Filled. The plate holds a significant pile of food.\n*   **Breaded Food Appearance:** The food consists of irregular chunks or strips covered in a distinct white coating (flour/breading).\n*   **Transfer Action:** The person on the left is taking pieces of the white-coated food from this plate and transferring them into the frying pan on the stove.",
+    "timestamp_end": "2026-07-06 10:54:37"
+  }
+]

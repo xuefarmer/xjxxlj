@@ -1,0 +1,157 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "object states across segments",
+    "transfer chains",
+    "completion markers"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "green_pot": {
+      "3": "empty->water+stock+squash",
+      "5": "simmering liquid->add dry noodles+coconut+asparagus+lime",
+      "4": "boiling water+noodles->add sauce",
+      "2": "background on burner"
+    },
+    "chicken": {
+      "1": "raw chunks->flattened cutlet->to grill pan",
+      "2": "cooked glazed->topped+lemon"
+    },
+    "noodles": {
+      "5": "dry block added to pot",
+      "4": "already in pot when sauce added"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient state progression",
+    "container fill/empty",
+    "tool contact",
+    "residue/depletion",
+    "background vessel state",
+    "green pot contents progression",
+    "noodle state dry vs cooked",
+    "background vessel continuity"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "object states across segments",
+          "transfer chains",
+          "completion markers"
+        ],
+        "dimensions_to_compare": [
+          "ingredient state progression",
+          "container fill/empty",
+          "tool contact",
+          "residue/depletion",
+          "background vessel state"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "green_pot": {
+            "3": "empty->water+stock+squash",
+            "5": "simmering liquid->add dry noodles+coconut+asparagus+lime",
+            "4": "boiling water+noodles->add sauce",
+            "2": "background on burner"
+          },
+          "chicken": {
+            "1": "raw chunks->flattened cutlet->to grill pan",
+            "2": "cooked glazed->topped+lemon"
+          },
+          "noodles": {
+            "5": "dry block added to pot",
+            "4": "already in pot when sauce added"
+          }
+        },
+        "preliminary_order": "3->1->5->4->2",
+        "order_confidence": 7,
+        "confidence_basis": "V3 fills empty pot; V5 adds dry noodles; V4 has noodles already in pot; V1->V2 chicken chain; V2 is finishing",
+        "blocking_uncertainties": [
+          "exact order of V1 vs V3 prep",
+          "whether V4 sauce addition is before or after V5 coconut milk/asparagus"
+        ],
+        "dimensions_to_compare": [
+          "green pot contents progression",
+          "noodle state dry vs cooked",
+          "background vessel continuity"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "green_pot": {
+            "3": "empty->broth+squash",
+            "5": "broth->add dry noodles+coconut+asparagus+lime",
+            "4": "noodles cooked->add sauce",
+            "1": "visible in background, contents unclear",
+            "2": "simmering in background, contents unclear"
+          },
+          "chicken": {
+            "1": "raw->flattened->to grill pan",
+            "2": "cooked glazed->topped+lemon"
+          },
+          "noodles": {
+            "5": "dry block added",
+            "4": "already cooked/soft in pot"
+          }
+        },
+        "preliminary_order": "3->1->5->4->2",
+        "order_confidence": 7,
+        "confidence_basis": "V3 fills empty pot; V5 adds dry noodles; V4 has cooked noodles; V1->V2 chicken chain; V2 is finishing",
+        "blocking_uncertainties": [
+          "V1 green pot contents to place before/after V3",
+          "V2 green pot contents to confirm it is after V4"
+        ],
+        "focus_plan": [
+          "check V1 and V2 green pot contents"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3->1->5->4->2"
+  ],
+  "order_confidence": [
+    "7"
+  ],
+  "confidence_basis": [
+    "V3 fills empty pot; V5 adds dry noodles; V4 has noodles already in pot; V1->V2 chicken chain; V2 is finishing",
+    "V3 fills empty pot; V5 adds dry noodles; V4 has cooked noodles; V1->V2 chicken chain; V2 is finishing"
+  ],
+  "blocking_uncertainties": [
+    "exact order of V1 vs V3 prep",
+    "whether V4 sauce addition is before or after V5 coconut milk/asparagus",
+    "V1 green pot contents to place before/after V3",
+    "V2 green pot contents to confirm it is after V4"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"green_pot\": {\"3\": \"empty->broth+squash\", \"5\": \"broth->add dry noodles+coconut+asparagus+lime\", \"4\": \"noodles cooked->add sauce\", \"1\": \"visible in background, contents unclear\", \"2\": \"simmering in background, contents unclear\"}, \"chicken\": {\"1\": \"raw->flattened->to grill pan\", \"2\": \"cooked glazed->topped+lemon\"}, \"noodles\": {\"5\": \"dry block added\", \"4\": \"already cooked/soft in pot\"}}"
+  ],
+  "focus_plan": [
+    "check V1 and V2 green pot contents"
+  ]
+}

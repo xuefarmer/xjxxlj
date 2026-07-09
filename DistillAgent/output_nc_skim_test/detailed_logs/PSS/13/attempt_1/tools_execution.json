@@ -1,0 +1,170 @@
+[
+  {
+    "turn": 1,
+    "call_id": "batch_1_1_skim",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 15.0,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Layer1 skim chunking instruction]\nThis call contains representative frames from 1 chunks of Video 1. For each mapped chunk, output compact coarse evidence and whether it is likely relevant, uncertain, or low-value for the query/options. Do not claim a detail is absent unless it is visible enough in these skim frames. Recommend exact chunk windows for Layer2 detail when needed."
+    },
+    "timestamp_start": "2026-07-08 11:11:02",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-2 are Layer1 skim representatives from Video 1 (0.0s to 15.0s); original sampled positions=[1, 16], source_frame_ids=[4569, 4990], local_times=0.5s,14.5s\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Layer1 skim chunking instruction]\nThis call contains representative frames from 1 chunks of Video 1. For each mapped chunk, output compact coarse evidence and whether it is likely relevant, uncertain, or low-value for the query/options. Do not claim a detail is absent unless it is visible enough in these skim frames. Recommend exact chunk windows for Layer2 detail when needed.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"full state-transition graph\"\n  ],\n  \"event_memory\": [\n    \"{}\"\n  ],\n  \"dimensions_to_compare\": [\n    \"raw/cooked\",\n    \"empty/filled\",\n    \"separate/mixed\",\n    \"residue/depletion\"\n  ],\n  \"layer1_done\": [\n    \"True\"\n  ],\n  \"temporal_index\": [\n    \"{}\"\n  ],\n  \"preliminary_confidence\": [\n    \"0\"\n  ],\n  \"blocking_uncertainties\": [\n    \"all object states and transitions across 4 segments\"\n  ]\n}\n\n[Layer1 Skim Notice]\nThe frames are representative skim frames selected inside each chunk (centroid/anomaly style), not dense temporal coverage. Use them only for coarse scene/plot relevance, candidate chunk selection, and obvious visible clues. Mark details as UNCERTAIN rather than absent when not visible in the skim frames. Return compact rows per mapped chunk and suggest which chunk windows need Layer2 detail.\n\nPlease carefully observe the frames and answer the question.\n<frame><frame>",
+    "output_raw": "objects: rice paper wrapper, shredded carrots, cucumber strips, herbs, cooked shrimp, hands\naction: assembling filling on wet wrapper\nstate: wrapper wet/flat/translucent; veggies cut/fresh; shrimp cooked/pink; ingredients separate/piled in center\nwindow: 0.0s-15.0s (0.5s)\nquery_link: VISIBLE\nconf: high\nuncertainty: none\n\nobjects: rolled spring roll, hands (gold watch), white plate\naction: rolling the wrapper into a cylinder\nstate: roll cylindrical/filled; wrapper wet; ingredients enclosed/mixed inside\nwindow: 0.0s-15.0s (14.5s)\nquery_link: VISIBLE\nconf: high\nuncertainty: none\n\nLayer2 Recommendation: 0.0s-15.0s (Video 1) to confirm specific ingredient types (e.g., verify cucumber vs herbs) and exact rolling technique.",
+    "timestamp_end": "2026-07-08 11:11:36"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_2_skim",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 22.0,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Layer1 skim chunking instruction]\nThis call contains representative frames from 1 chunks of Video 2. For each mapped chunk, output compact coarse evidence and whether it is likely relevant, uncertain, or low-value for the query/options. Do not claim a detail is absent unless it is visible enough in these skim frames. Recommend exact chunk windows for Layer2 detail when needed."
+    },
+    "timestamp_start": "2026-07-08 11:11:02",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-2 are Layer1 skim representatives from Video 2 (0.0s to 22.0s); original sampled positions=[3, 12], source_frame_ids=[2890, 3261], local_times=3.4s,15.8s\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Layer1 skim chunking instruction]\nThis call contains representative frames from 1 chunks of Video 2. For each mapped chunk, output compact coarse evidence and whether it is likely relevant, uncertain, or low-value for the query/options. Do not claim a detail is absent unless it is visible enough in these skim frames. Recommend exact chunk windows for Layer2 detail when needed.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"full state-transition graph\"\n  ],\n  \"event_memory\": [\n    \"{}\"\n  ],\n  \"dimensions_to_compare\": [\n    \"raw/cooked\",\n    \"empty/filled\",\n    \"separate/mixed\",\n    \"residue/depletion\"\n  ],\n  \"layer1_done\": [\n    \"True\"\n  ],\n  \"temporal_index\": [\n    \"{}\"\n  ],\n  \"preliminary_confidence\": [\n    \"0\"\n  ],\n  \"blocking_uncertainties\": [\n    \"all object states and transitions across 4 segments\"\n  ]\n}\n\n[Layer1 Skim Notice]\nThe frames are representative skim frames selected inside each chunk (centroid/anomaly style), not dense temporal coverage. Use them only for coarse scene/plot relevance, candidate chunk selection, and obvious visible clues. Mark details as UNCERTAIN rather than absent when not visible in the skim frames. Return compact rows per mapped chunk and suggest which chunk windows need Layer2 detail.\n\nPlease carefully observe the frames and answer the question.\n<frame><frame>",
+    "output_raw": "objects: Woman, girl, rice paper package, kitchen counter; action: Standing, preparing food; state: Rice paper package VISIBLE (present, wrapped in plastic); window: 0.0s-10.0s (Frame ~3.4s); query_link: Video 2; conf: High; uncertainty: None\n\nobjects: Knife, square plate, white food block/cylinder; action: Woman cutting the food item; state: Food item VISIBLE (solid, transitioning from whole to cut), Plate VISIBLE (present, holding item); window: 12.0s-20.0s (Frame ~15.8s); query_link: Video 2; conf: High; uncertainty: Exact food identity (tofu vs. rice roll) UNCERTAIN\n\nobjects: Green sponge/tray; action: Sitting on counter; state: VISIBLE (present, separate); window: 0.0s-10.0s; query_link: Video 2; conf: High; uncertainty: Function UNCERTAIN",
+    "timestamp_end": "2026-07-08 11:11:48"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_3_skim",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 33.0,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Layer1 skim chunking instruction]\nThis call contains representative frames from 1 chunks of Video 3. For each mapped chunk, output compact coarse evidence and whether it is likely relevant, uncertain, or low-value for the query/options. Do not claim a detail is absent unless it is visible enough in these skim frames. Recommend exact chunk windows for Layer2 detail when needed."
+    },
+    "timestamp_start": "2026-07-08 11:11:02",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-2 are Layer1 skim representatives from Video 3 (0.0s to 33.0s); original sampled positions=[10, 14], source_frame_ids=[2175, 2422], local_times=19.6s,27.8s\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Layer1 skim chunking instruction]\nThis call contains representative frames from 1 chunks of Video 3. For each mapped chunk, output compact coarse evidence and whether it is likely relevant, uncertain, or low-value for the query/options. Do not claim a detail is absent unless it is visible enough in these skim frames. Recommend exact chunk windows for Layer2 detail when needed.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"full state-transition graph\"\n  ],\n  \"event_memory\": [\n    \"{}\"\n  ],\n  \"dimensions_to_compare\": [\n    \"raw/cooked\",\n    \"empty/filled\",\n    \"separate/mixed\",\n    \"residue/depletion\"\n  ],\n  \"layer1_done\": [\n    \"True\"\n  ],\n  \"temporal_index\": [\n    \"{}\"\n  ],\n  \"preliminary_confidence\": [\n    \"0\"\n  ],\n  \"blocking_uncertainties\": [\n    \"all object states and transitions across 4 segments\"\n  ]\n}\n\n[Layer1 Skim Notice]\nThe frames are representative skim frames selected inside each chunk (centroid/anomaly style), not dense temporal coverage. Use them only for coarse scene/plot relevance, candidate chunk selection, and obvious visible clues. Mark details as UNCERTAIN rather than absent when not visible in the skim frames. Return compact rows per mapped chunk and suggest which chunk windows need Layer2 detail.\n\nPlease carefully observe the frames and answer the question.\n<frame><frame>",
+    "output_raw": "objects: Woman, Girl, Bag of round flat food product (label \"Orah...\"), Red Pepper, Green Pepper; action: Standing at kitchen counter, holding vegetables; state: Bag present/filled/sealed; Peppers raw/fresh/whole/separate; window: 19.6s-27.8s; query_link: N/A; conf: High; uncertainty: Exact brand/contents of bag.\nobjects: Green object (held by girl); action: Holding; state: Present, whole, likely raw pepper; window: 19.6s; query_link: N/A; conf: Medium; uncertainty: Identity of green object (inferred as pepper from later frame).\nobjects: Red Pepper, Green Pepper; action: Woman holding/showing both; state: Raw, fresh, whole, separate; window: 27.8s; query_link: N/A; conf: High; uncertainty: None.\nobjects: Box (red/black label); action: Sitting on counter behind bag; state: Present, closed; window: 27.8s; query_link: N/A; conf: Medium; uncertainty: Specific product type.",
+    "timestamp_end": "2026-07-08 11:11:45"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_4_skim",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 27.0,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Layer1 skim chunking instruction]\nThis call contains representative frames from 1 chunks of Video 4. For each mapped chunk, output compact coarse evidence and whether it is likely relevant, uncertain, or low-value for the query/options. Do not claim a detail is absent unless it is visible enough in these skim frames. Recommend exact chunk windows for Layer2 detail when needed."
+    },
+    "timestamp_start": "2026-07-08 11:11:02",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-2 are Layer1 skim representatives from Video 4 (0.0s to 27.0s); original sampled positions=[1, 14], source_frame_ids=[3741, 4399], local_times=0.8s,22.8s\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Layer1 skim chunking instruction]\nThis call contains representative frames from 1 chunks of Video 4. For each mapped chunk, output compact coarse evidence and whether it is likely relevant, uncertain, or low-value for the query/options. Do not claim a detail is absent unless it is visible enough in these skim frames. Recommend exact chunk windows for Layer2 detail when needed.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"full state-transition graph\"\n  ],\n  \"event_memory\": [\n    \"{}\"\n  ],\n  \"dimensions_to_compare\": [\n    \"raw/cooked\",\n    \"empty/filled\",\n    \"separate/mixed\",\n    \"residue/depletion\"\n  ],\n  \"layer1_done\": [\n    \"True\"\n  ],\n  \"temporal_index\": [\n    \"{}\"\n  ],\n  \"preliminary_confidence\": [\n    \"0\"\n  ],\n  \"blocking_uncertainties\": [\n    \"all object states and transitions across 4 segments\"\n  ]\n}\n\n[Layer1 Skim Notice]\nThe frames are representative skim frames selected inside each chunk (centroid/anomaly style), not dense temporal coverage. Use them only for coarse scene/plot relevance, candidate chunk selection, and obvious visible clues. Mark details as UNCERTAIN rather than absent when not visible in the skim frames. Return compact rows per mapped chunk and suggest which chunk windows need Layer2 detail.\n\nPlease carefully observe the frames and answer the question.\n<frame><frame>",
+    "output_raw": "objects: Woman, girl, sushi rice package, counter | action: standing, holding bowl | state: package VISIBLE (labeled \"Sushi Rice\"), bowl VISIBLE | window: 0.8s | query_link: context | conf: 0.95 | uncertainty: None\nobjects: Small bowl, rice, green slices (avocado/cucumber) | action: sprinkling garnish | state: bowl FILLED, rice cooked/white, veg fresh/green, separate/mixed (veg on rice) | window: 22.8s | query_link: prep | conf: 0.9 | uncertainty: exact veg type UNCERTAIN\nobjects: Glass plate, sushi roll | action: plated | state: roll PRESENT, topped with green ingredients | window: 0.8s, 22.8s | query_link: product | conf: 0.9 | uncertainty: None\nobjects: Rectangular plate | action: empty on counter | state: empty/filled (empty) | window: 0.8s, 22.8s | query_link: tools | conf: 0.9 | uncertainty: None\n\nRecommend Layer2 for chunk 0.0-27.0s to clarify if the dish is a sushi roll or a rice bowl (poke style) given the bowl assembly vs plated roll.",
+    "timestamp_end": "2026-07-08 11:11:54"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 15.0,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: rice paper wrapper (wet/dry, flat/rolled, translucent?), ingredients (types, raw/cooked, separate/mixed), final roll (cylindrical, enclosed?). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose."
+    },
+    "timestamp_start": "2026-07-08 11:12:54",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 15.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of: rice paper wrapper (wet/dry, flat/rolled, translucent?), ingredients (types, raw/cooked, separate/mixed), final roll (cylindrical, enclosed?). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"dimensions_to_compare\": [\n    \"raw/cooked\",\n    \"empty/filled\",\n    \"separate/mixed\",\n    \"residue/depletion\",\n    \"package state (sealed/open)\",\n    \"ingredient state (whole/cut/mixed)\",\n    \"wrapper/rice state (dry/wet)\",\n    \"final product state (plated/rolled)\"\n  ],\n  \"uncertain\": [\n    \"identity of white block in V2\",\n    \"relation between V4 sushi/rice and V2 rice paper\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "rice paper wrapper | wet, translucent, flat initially then folded/rolled | Frames 1-16 | high | none\ningredients | shredded carrots (orange), green herbs, white chunks (likely shrimp) | separate, placed in center of wrapper | Frames 1-3 | high | uncertain: exact identity of white chunks (shrimp vs tofu), raw/cooked status\naction | folding left side of wrapper over ingredients | Frames 3-8 | high | none\naction | rolling and tucking the wrapper | Frames 9-15 | high | none\nfinal roll | enclosed, cylindrical/rectangular packet, translucent showing ingredients inside | Frames 12-16 | high | none",
+    "timestamp_end": "2026-07-08 11:13:38"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 22.0,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: rice paper package (sealed/open, label?), white food block/cylinder (identity: tofu/rice roll/cheese? whole/cut state), plate (empty/filled), green sponge/tray. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose."
+    },
+    "timestamp_start": "2026-07-08 11:12:54",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 22.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of: rice paper package (sealed/open, label?), white food block/cylinder (identity: tofu/rice roll/cheese? whole/cut state), plate (empty/filled), green sponge/tray. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"dimensions_to_compare\": [\n    \"raw/cooked\",\n    \"empty/filled\",\n    \"separate/mixed\",\n    \"residue/depletion\",\n    \"package state (sealed/open)\",\n    \"ingredient state (whole/cut/mixed)\",\n    \"wrapper/rice state (dry/wet)\",\n    \"final product state (plated/rolled)\"\n  ],\n  \"uncertain\": [\n    \"identity of white block in V2\",\n    \"relation between V4 sushi/rice and V2 rice paper\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "rice paper package | Sealed/Closed package, Label \"Banh Trang\" | 1-16 | query_link | High | No\nwhite food block/cylinder | Whole, Identity Uncertain (likely tofu or rice roll component) | 1-16 | query_link | Low | Yes (Identity)\nplate | Filled (with rice paper sheet being smoothed) | 1-16 | query_link | High | No\ngreen sponge/tray | Visible (Green sponge in black tray) | 1-16 | query_link | High | No",
+    "timestamp_end": "2026-07-08 11:13:52"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 19.0,
+          "end_time": 28.0,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: bag of round flat food (label text, sealed/open), red pepper (whole/cut), green pepper (whole/cut), box behind bag (label/state). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose."
+    },
+    "timestamp_start": "2026-07-08 11:12:54",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (19.0s to 28.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of: bag of round flat food (label text, sealed/open), red pepper (whole/cut), green pepper (whole/cut), box behind bag (label/state). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"dimensions_to_compare\": [\n    \"raw/cooked\",\n    \"empty/filled\",\n    \"separate/mixed\",\n    \"residue/depletion\",\n    \"package state (sealed/open)\",\n    \"ingredient state (whole/cut/mixed)\",\n    \"wrapper/rice state (dry/wet)\",\n    \"final product state (plated/rolled)\"\n  ],\n  \"uncertain\": [\n    \"identity of white block in V2\",\n    \"relation between V4 sushi/rice and V2 rice paper\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "bag of round flat food | label \"Banh Trang\", sealed | 1-16 | query_link | high | no\nred pepper | whole | 7-16 | query_link | high | no\ngreen pepper | whole | 1-16 | query_link | high | no\nbox behind bag | label unclear/blurry, sitting | 7-16 | query_link | low | yes (label text)",
+    "timestamp_end": "2026-07-08 11:14:30"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 27.0,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: sushi rice package (label text), small bowl (rice state, green slices state, mixed/separate), glass plate (roll state, toppings), rectangular plate (empty/filled). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose."
+    },
+    "timestamp_start": "2026-07-08 11:12:54",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 27.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of: sushi rice package (label text), small bowl (rice state, green slices state, mixed/separate), glass plate (roll state, toppings), rectangular plate (empty/filled). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"dimensions_to_compare\": [\n    \"raw/cooked\",\n    \"empty/filled\",\n    \"separate/mixed\",\n    \"residue/depletion\",\n    \"package state (sealed/open)\",\n    \"ingredient state (whole/cut/mixed)\",\n    \"wrapper/rice state (dry/wet)\",\n    \"final product state (plated/rolled)\"\n  ],\n  \"uncertain\": [\n    \"identity of white block in V2\",\n    \"relation between V4 sushi/rice and V2 rice paper\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "sushi rice package | label text \"Banh Trang\" visible | 1 | high |\nsmall bowl | filled; contains chunky beige mixture (frames 1-3) and green slices/avocado with cucumber stick (frames 12-16); ingredients separate/stacked in later frames | 1-16 | high |\nglass plate | flat rice paper wrapper; toppings added (chunky mixture, white noodles/rice vermicelli, green herbs); unrolled/assembling state | 1-16 | high |\nrectangular plate | empty | 1-16 | high |",
+    "timestamp_end": "2026-07-08 11:14:12"
+  }
+]

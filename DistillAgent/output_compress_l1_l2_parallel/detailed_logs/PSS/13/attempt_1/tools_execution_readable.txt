@@ -1,0 +1,303 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-06 12:13:09
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-06 12:06:51 -> 2026-07-06 12:07:44
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 15.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Note any background vessels, utensils, and their states. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+**Operation:** A person is assembling and rolling a fresh spring roll (summer roll) on a dark table. They fold a wet, translucent rice paper wrapper over a filling of shrimp, shredded carrots, noodles, and herbs, then roll it tightly. A second person holds an empty plate nearby.
+
+**Compact Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| rice paper wrapper, filling (shrimp, carrots, noodles, herbs) | folding side of wrapper over filling | wrapper wet/translucent/flexible; filling mixed/present (shrimp cooked, carrots raw/shredded, herbs fresh); table wet/residue | 1-5 | - | high | none |
+| rice paper wrapper (partially rolled) | rolling wrapper tightly from bottom up | roll forming/cylindrical; filling enclosed/visible through wrapper | 6-12 | - | high | none |
+| completed spring roll, white square plate, second person's hand | finishing roll; second person reaches in | roll complete/tight; plate empty/present; hand wearing gold watch | 13-16 | - | high | none |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-06 12:06:51 -> 2026-07-06 12:08:18
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 22.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Note any background vessels, utensils, and their states. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the description of the operation and object states.
+
+**Operation:** A young girl, supervised by a woman, is preparing a rice paper wrapper (likely for spring rolls/summer rolls). She places a translucent, pliable sheet of rice paper onto a square plate and smooths it out.
+
+**Visible Objects/Tools & States:**
+
+*   **Girl:** Wearing a blue patterned dress. Active participant.
+*   **Woman:** Wearing a light blue button-down shirt. Observing/supervising.
+*   **Rice Paper Package:** Labeled "Banh Trang" (Vietnamese rice paper). Sealed, sitting on the counter to the right. State: **Present**, **Full/Sealed**.
+*   **Rice Paper Sheet:** A single sheet being handled. In the close-up frames (11-16), it appears translucent and very flexible (drooping when held), indicating it has been wetted. State: **Wet**, **Pliable**, **Translucent**, **Separate** (single sheet).
+*   **Square Plate:** Beige/white square plate. State: **Present**, **Filled** (with the rice paper sheet by the end).
+*   **Green Tray/Container:** Visible in the bottom left foreground. State: **Present** (likely contains water for dipping, though contents aren't clearly seen).
+*   **Small White Object:** A small white cylindrical item at the bottom edge of the plate in the close-up views (frames 11-16). State: **Present** (possibly a food item or filling component).
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Girl, Woman | Standing, Observing | Present, Active/Passive | 1-16 | - | High | - |
+| Rice Paper Package ("Banh Trang") | Sitting on counter | Sealed, Present | 1-16 | - | High | - |
+| Rice Paper Sheet | Being placed/smoothed on plate | Wet (inferred from flexibility), Translucent, Pliable | 11-16 | - | High | Dry vs Wet (flexibility suggests wet) |
+| Square Plate | Receiving sheet | Empty -> Filled with sheet | 1-16 | - | High | - |
+| Girl's Hands | Placing and smoothing sheet | Manipulating flexible sheet | 11-16 | - | High | - |
+| Small white object (cylindrical) | Resting on plate edge | Present, Separate | 11-16 | - | Medium | Identity of object (food vs tool) |
+
+**Dimensions to Compare (for future layers):**
+*   **Ingredient states:** The rice paper transitions from a stack (in package) to a single wet sheet.
+*   **Container states:** The plate goes from empty (or holding the white object) to holding the flattened wrapper.
+*   **Transfer actions:** The girl transfers the sheet from her hands to the plate.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-06 12:06:51 -> 2026-07-06 12:07:45
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 33.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Note any background vessels, utensils, and their states. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the Layer 1 caption and analysis:
+
+**Operation:** A woman and a young girl are collaborating to make dumplings (likely using rice paper wrappers) using a manual press mold.
+
+**Visible Objects/Tools & States:**
+*   **Red Dumpling Press/Mold:** A red plastic kitchen tool with a green handle. It transitions from open (receiving ingredients) to closed (being pressed) to open (releasing the product).
+*   **Banh Trang Package:** A large package of round rice paper wrappers sits on the counter to the right. It is present, sealed in plastic, and full.
+*   **White Round Wrapper/Dough:** Initially held by the woman (Frames 1-4), appearing raw and whole. It is placed into the red mold.
+*   **Yellow/Green Round Object (Finished Dumpling):** Held by the girl in Frames 10-12 after pressing. It appears formed and solid.
+*   **Kitchen Counter/Background:** Standard kitchen setting with cabinets and a stove.
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Red dumpling press | Being manipulated (opened, filled, pressed) | Open/Closed, Active | 1-16 | [Link] | High | None |
+| Banh Trang package | Sitting on counter | Present, Sealed, Full | 1-16 | [Link] | High | None |
+| White wrapper/dough | Placed into mold by woman | Raw, Whole, Separate | 1-5 | [Link] | High | Exact ingredient type (rice paper vs dough) |
+| Girl/Woman | Pressing handle together | Collaborative action | 6-9 | [Link] | High | None |
+| Yellow round object | Held by girl after pressing | Formed, Cooked/Raw (unclear), Whole | 10-12 | [Link] | Medium | Whether it is fully cooked or just formed raw dough |
+| Red dumpling press | Being reset/opened by woman | Open, Empty/Residue | 13-16 | [Link] | High | None |
+
+**Cross-Video Context Update:**
+*   **Ingredient states:** Raw wrapper is placed, pressed into a formed shape (yellowish round object).
+*   **Container states:** The red mold cycles from empty -> filled (with wrapper) -> pressed -> empty (product removed).
+*   **Tool presence:** Red press is the central tool.
+*   **Transfer actions:** Woman places ingredient -> Girl presses -> Girl removes product.
+*   **Plating/finishing cues:** The product is held in hand, not yet plated. The package suggests more units to be made.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-06 12:06:51 -> 2026-07-06 12:07:30
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 27.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Note any background vessels, utensils, and their states. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+**Layer 1 Caption: Video 4 (Frames 1-16)**
+
+*   **Rice paper wrapper (Banh Trang)**: Present, round, translucent, wet/soft (soaked), lying flat on a dark surface. [Window 1-16] [Conf: High]
+*   **Glass bowl**: Present, filled with cooked, chopped shrimp/meat mixture (pink/white chunks). Held by the woman. [Window 1-6] [Conf: High]
+*   **Wooden stick/spatula**: Present, dry. Used by the girl to scoop and transfer the shrimp mixture. [Window 2-6] [Conf: High]
+*   **Shrimp/Meat mixture**: Cooked, chopped, moist. State changes from inside bowl to a pile on the rice paper. [Window 2-10] [Conf: High]
+*   **Square white plate**: Present, empty, rectangular. Sitting to the right. [Window 1-16] [Conf: High]
+*   **Vermicelli noodles**: Present, cooked, white strands. Added by the girl on top of the shrimp pile. [Window 8-11] [Conf: Medium - looks like noodles or shredded veg]
+*   **Green bowl**: Present, filled with cucumber slices and green herbs. Held by the woman. [Window 12-16] [Conf: High]
+*   **Cucumber/Herbs**: Fresh, green, sliced (cucumber sticks/slices). Being picked by the girl and placed on top of the filling pile. [Window 12-16] [Conf: High]
+*   **Operation**: Assembling fresh spring rolls (Goi Cuon). Ingredients are being layered (shrimp -> noodles -> herbs) onto a wet rice paper wrapper. [Window 1-16] [Conf: High]
+
+**Uncertainty:**
+*   The white strands added in frames 8-11 could be vermicelli noodles or shredded daikon; visual evidence leans towards noodles common in spring rolls.
+*   The exact nature of the "shrimp mixture" (pure shrimp vs. crab/meat mix) is slightly ambiguous but clearly cooked protein.
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-06 12:09:56 -> 2026-07-06 12:10:42
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 15.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the exact location (dark table vs counter), state of the white square plate (empty/filled/residue), state of the Banh Trang package (ABSENT/SEALED/OPEN), and any background objects. Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in frames 1-16 (Video 1):
+
+*   **Location**: The action takes place on a **dark table** (reflective black surface, likely glass).
+*   **White square plate**: Visible on the right edge of the frame, it appears **empty** (waiting to receive the roll).
+*   **Banh Trang package**: **ABSENT** (the rice paper sheet is already wet and laid out on the table).
+*   **Background objects**: A person wearing a blue floral shirt is performing the rolling. Another person's hands/arms are visible on the right (one wearing a gold watch in frame 16). A white square plate is on the right.
+
+**Compact Rows:**
+
+| object | state | window | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Location | Dark table | 1-16 | High | Low |
+| White square plate | Empty | 1-16 | High | Low |
+| Banh Trang package | ABSENT | 1-16 | High | Low |
+| Background objects | Person in blue shirt, white plate, arm with watch | 1-16 | High | Low |
+| Rice paper sheet | Wet, filled, being rolled | 1-16 | High | Low |
+| Filling | Shrimp, carrots, noodles, herbs (visible initially) | 1-3 | High | Low |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-06 12:09:56 -> 2026-07-06 12:11:36
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 22.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the exact location (dark table vs counter), state of the Banh Trang package (SEALED/OPEN/ABSENT), state of the square plate, and any background objects like the green tray. Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in frames 1-16 (Video 2):
+
+*   **Location**: The scene takes place in a kitchen at a **counter**. The specific working surface appears to be a **dark table** or black glass stovetop surface where the green tray and plate are situated.
+*   **Banh Trang Package**: A large, round package of rice paper is visible on the right side. It is wrapped in plastic and appears **SEALED** (specifically SEALED_FULL).
+*   **Square Plate**: A square, light-colored plate is in the center. In the close-up frames (12-16), a wet rice paper sheet is being placed and smoothed onto it. State: **SQUARE_FILLING_WITH_SHEET** (or containing a wet sheet).
+*   **Green Tray**: A green rectangular tray is visible in the bottom-left corner of the wide shots (frames 1-11), likely containing water for wetting the rice paper. State: **Present**.
+
+**Compact Rows:**
+
+| Object | State | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Location | Counter / Dark Table surface | 1-16 | High | Low |
+| Banh Trang Package | SEALED | 1-16 | High | Low |
+| Square Plate | SQUARE_FILLING_WITH_SHEET (being smoothed) | 1-16 | High | Low |
+| Green Tray | Present (bottom left) | 1-11 | High | Low |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-06 12:09:56 -> 2026-07-06 12:12:08
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 33.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the exact location (counter vs dark table), state of the Banh Trang package (SEALED/OPEN/ABSENT), state of the red mold, and what the yellow round object is made of. Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in frames 1-16 (Video 3):
+
+| object | state | window | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Location | Dark Table (foreground surface) | 1-16 | High | None |
+| Banh Trang Package | SEALED (in plastic wrapper) | 1-16 | High | None |
+| Red Mold | IN_USE (being pressed/handled) | 1-16 | High | None |
+| Yellow Round Object | Food (appears to be fruit/citrus or dough ball) | 10-13 | Medium | Material ambiguous (looks like lemon/lime or dough) |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_4) ###
+Time: 2026-07-06 12:09:56 -> 2026-07-06 12:11:30
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 27.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the exact location (dark table vs counter), state of the Banh Trang package (ABSENT/SEALED/OPEN), state of the glass bowl and square white plate, and any background objects. Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in Frames 1-16 (Video 4):
+
+*   **Location**: The primary action takes place on a **dark table** (likely a glass-topped table). A kitchen counter is visible in the background.
+*   **Banh Trang Package**: Visible in Frame 1 on the far right, appearing **SEALED** in plastic packaging. It is largely **ABSENT** (cropped out) in Frames 2-16.
+*   **Glass Bowl**: In Frames 1-3, a clear glass bowl is held by the woman, containing a filling mixture (shrimp/noodles). In Frames 12-16, a small light-green bowl (possibly ceramic or glass) is held, containing cucumber and herbs.
+*   **Square White Plate**: A square, off-white plate sits on the dark table to the right, remaining **EMPTY** throughout the sequence.
+*   **Background Objects**: Kitchen cabinets, a stove with a kettle, and a sink area are visible in the background (especially Frame 1).
+
+**Compact State Report:**
+
+| Object | State | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Location | Dark table (glass surface) | 1-16 | High | Low |
+| Banh Trang Package | SEALED (visible frame 1), ABSENT (frames 2-16) | 1-16 | High | Low |
+| Glass Bowl (Filling) | HELD, CONTAINS_SHRIMP_NOODLES | 1-3 | High | Low |
+| Small Bowl (Veggies) | HELD, CONTAINS_CUCUMBER_HERBS | 12-16 | High | Low |
+| Square White Plate | EMPTY, ON_TABLE | 1-16 | High | Low |
+| Rice Paper Sheet | WET, FLAT_ON_TABLE, BEING_FILLED | 1-16 | High | Low |
+| Background | Kitchen counter, stove, kettle | 1 | High | Low |
+
+------------------------------------------------------------
+

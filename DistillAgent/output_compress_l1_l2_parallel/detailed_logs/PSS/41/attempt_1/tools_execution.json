@@ -1,0 +1,202 @@
+[
+  {
+    "turn": 1,
+    "call_id": "batch_1_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 59.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report the event role (prep, transformation, transfer, cooking, finishing, inspection). Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-06 16:55:41",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 59.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report the event role (prep, transformation, transfer, cooking, finishing, inspection). Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"event roles (prep, cooking, finishing)\",\n    \"transfer traces and residue\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: chopped tomatoes, glass bowl, pan; action: transfer/pouring; state: tomatoes raw/chopped, bowl emptying, pan filling; window: 1-3; query_link: null; conf: high; uncertainty: low\nobjects: bay leaf, peppercorns, pan; action: addition/prep; state: spices whole/dry, present in pan with raw tomatoes; window: 4-7; query_link: null; conf: high; uncertainty: low (Frame 4 pouring source unclear, likely spices)\nobjects: ladle, tomato mixture; action: stirring/mixing; state: mixture mixed, heating, bay leaf visible; window: 8-11; query_link: null; conf: high; uncertainty: low\nobjects: tomato mixture, pan; action: cooking/boiling; state: mixture wet/boiling vigorously, steaming, reducing; window: 12-16; query_link: null; conf: high; uncertainty: low",
+    "timestamp_end": "2026-07-06 16:56:32"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 66.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report the event role (prep, transformation, transfer, cooking, finishing, inspection). Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-06 16:55:41",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 66.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report the event role (prep, transformation, transfer, cooking, finishing, inspection). Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"event roles (prep, cooking, finishing)\",\n    \"transfer traces and residue\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: butter/ghee, pan | action: adding, melting | state: wet, melting, present | window: 1-2 | query_link: null | conf: 0.95 | uncertainty: none\nobjects: plain flour | action: adding | state: dry, powder, present | window: 3 | query_link: null | conf: 0.95 | uncertainty: none\nobjects: flour, fat mixture, spoon | action: stirring | state: clumpy, mixed, cooking (roux formation) | window: 5-8 | query_link: null | conf: 0.95 | uncertainty: none\nobjects: tomato sauce/puree, spoon | action: stirring | state: liquid, red, mixed, filled | window: 9-13 | query_link: null | conf: 0.95 | uncertainty: none\nobjects: red spice powder, small bowl | action: holding, preparing | state: dry, powder, present | window: 16 | query_link: null | conf: 0.90 | uncertainty: specific spice identity unclear",
+    "timestamp_end": "2026-07-06 16:56:46"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 35.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report the event role (prep, transformation, transfer, cooking, finishing, inspection). Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-06 16:55:41",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 35.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report the event role (prep, transformation, transfer, cooking, finishing, inspection). Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"event roles (prep, cooking, finishing)\",\n    \"transfer traces and residue\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: tomato soup, black pan, white bowl, metal ladle | action: ladling, transferring | state: cooked, liquid, orange, hot; pan partially depleted, bowl filled | window: 1-4 | query_link: video_3 | conf: high | uncertainty: low | role: transfer\nobjects: fresh cream, white spoon, soup bowl | action: drizzling, garnishing | state: liquid, white, fresh; soup surface garnished | window: 9-10 | query_link: video_3 | conf: high | uncertainty: low | role: finishing\nobjects: bread croutons, small white bowl, soup bowl | action: pouring, adding | state: cooked, dry, brown cubes; soup topped | window: 13-16 | query_link: video_3 | conf: high | uncertainty: low | role: finishing",
+    "timestamp_end": "2026-07-06 16:56:28"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 56.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report the event role (prep, transformation, transfer, cooking, finishing, inspection). Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-06 16:55:41",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 56.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report the event role (prep, transformation, transfer, cooking, finishing, inspection). Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"event roles (prep, cooking, finishing)\",\n    \"transfer traces and residue\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "| objects | action | state | window | query_link | conf | uncertainty |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| sugar, sauce, pan | add | sugar (dry, granular), sauce (red, liquid, simmering) | 1-4 | | high | low |\n| pepper, sauce | add | pepper (powder), sauce (red, liquid) | 5-8 | | high | low |\n| fresh cream, sauce | pour | cream (white, liquid), sauce (mixing, turning orange) | 9-10 | | high | low |\n| sauce, spoon | stir | sauce (creamy, orange-pink, mixed, hot) | 11-16 | | high | low |",
+    "timestamp_end": "2026-07-06 16:56:28"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_5",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 5,
+          "start_time": 0.0,
+          "end_time": 50.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report the event role (prep, transformation, transfer, cooking, finishing, inspection). Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-06 16:55:41",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 5 (0.0s to 50.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report the event role (prep, transformation, transfer, cooking, finishing, inspection). Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"event roles (prep, cooking, finishing)\",\n    \"transfer traces and residue\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "| objects | action | state | window | query_link | conf | uncertainty |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| pan, chopped tomatoes, spoon | stirring, cooking | tomatoes cooked/wilted/red, pan filled then residue | 1-4 | Video 5 | high | none |\n| blender jar, blender base | blending (lid held) | jar filled (inferred), lid closed | 5-9 | Video 5 | high | contents obscured during blending |\n| blender jar, sieve, bowl, tomato puree | pouring, straining | puree wet/liquid, sieve has residue (seeds), bowl filled smooth liquid | 10-16 | Video 5 | high | none |\n\n**Event Role:**\n- **Window 1-4:** Cooking (simmering/stirring tomatoes).\n- **Window 5-9:** Transformation (blending cooked tomatoes).\n- **Window 10-16:** Finishing (straining puree to remove solids).",
+    "timestamp_end": "2026-07-06 16:56:40"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 40.0,
+          "end_time": 59.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Inspect the final state of the tomato mixture in the pan. Is it raw/chopped, or cooked/wilted/boiled down? Is it ready for blending? Report visible state: raw/cooked, wet/dry, chunky/smooth. Return compact rows."
+    },
+    "timestamp_start": "2026-07-06 16:58:30",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (40.0s to 59.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Inspect the final state of the tomato mixture in the pan. Is it raw/chopped, or cooked/wilted/boiled down? Is it ready for blending? Report visible state: raw/cooked, wet/dry, chunky/smooth. Return compact rows.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"tomatoes\": {\n      \"1\": \"raw/chopped boiling\",\n      \"5\": \"cooked/wilted then pureed\"\n    },\n    \"puree\": {\n      \"5\": \"smooth liquid in bowl\",\n      \"2\": \"added to roux\"\n    },\n    \"sauce\": {\n      \"2\": \"red sauce formed\",\n      \"4\": \"red sauce turned orange-pink with cream\"\n    },\n    \"soup\": {\n      \"4\": \"orange-pink creamy sauce\",\n      \"3\": \"orange soup plated\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"event roles (prep, cooking, finishing)\",\n    \"transfer traces and residue\",\n    \"tomato state (raw vs cooked)\",\n    \"sauce color (red vs orange)\",\n    \"puree presence\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in the frames:\n\n*   **State:** Cooked/wilted/boiled down (the tomatoes are simmering vigorously and breaking down).\n*   **Moisture:** Wet (active boiling liquid is visible).\n*   **Texture:** Chunky (distinct pieces of tomato are still visible, not yet smooth).\n*   **Readiness:** Yes, it appears ready for blending/pureeing as the tomatoes have softened significantly.",
+    "timestamp_end": "2026-07-06 17:01:07"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 25.0,
+          "end_time": 50.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Inspect the addition of the tomato ingredient to the pan. Is the ingredient being added a smooth liquid puree or chunky tomatoes? What is the state of the base in the pan (roux/fat)? Report visible state: puree/chunky, roux present, mixture color. Return compact rows."
+    },
+    "timestamp_start": "2026-07-06 16:58:30",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (25.0s to 50.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Inspect the addition of the tomato ingredient to the pan. Is the ingredient being added a smooth liquid puree or chunky tomatoes? What is the state of the base in the pan (roux/fat)? Report visible state: puree/chunky, roux present, mixture color. Return compact rows.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"tomatoes\": {\n      \"1\": \"raw/chopped boiling\",\n      \"5\": \"cooked/wilted then pureed\"\n    },\n    \"puree\": {\n      \"5\": \"smooth liquid in bowl\",\n      \"2\": \"added to roux\"\n    },\n    \"sauce\": {\n      \"2\": \"red sauce formed\",\n      \"4\": \"red sauce turned orange-pink with cream\"\n    },\n    \"soup\": {\n      \"4\": \"orange-pink creamy sauce\",\n      \"3\": \"orange soup plated\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"event roles (prep, cooking, finishing)\",\n    \"transfer traces and residue\",\n    \"tomato state (raw vs cooked)\",\n    \"sauce color (red vs orange)\",\n    \"puree presence\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in the frames (specifically frames 3, 4, 8, and 9):\n\n*   **Ingredient State:** The tomato ingredient being added (Frame 8) is a **smooth liquid puree**. It pours fluidly from the bowl and has a consistent texture, labeled \"Prepared tomato mixture\".\n*   **Base State:** The base in the pan (Frames 3-4) shows **roux/fat present**. There is oil/fat with yellowish sautéed paste (likely garlic/ginger) at the bottom before the tomato is added.\n*   **Mixture Color:** The resulting mixture in the pan is **red** (reddish-orange).\n\n**Compact Report:**\n*   **Tomato Form:** Smooth liquid puree\n*   **Base State:** Roux/fat present (sautéed paste in oil)\n*   **Mixture Color:** Red",
+    "timestamp_end": "2026-07-06 17:01:06"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 20.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Inspect the soup being ladled. What is the color and consistency of the soup (red, orange, creamy)? Is it being transferred from a pan to a serving bowl? Report visible state: color, consistency, transfer action. Return compact rows."
+    },
+    "timestamp_start": "2026-07-06 16:58:30",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 20.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Inspect the soup being ladled. What is the color and consistency of the soup (red, orange, creamy)? Is it being transferred from a pan to a serving bowl? Report visible state: color, consistency, transfer action. Return compact rows.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"tomatoes\": {\n      \"1\": \"raw/chopped boiling\",\n      \"5\": \"cooked/wilted then pureed\"\n    },\n    \"puree\": {\n      \"5\": \"smooth liquid in bowl\",\n      \"2\": \"added to roux\"\n    },\n    \"sauce\": {\n      \"2\": \"red sauce formed\",\n      \"4\": \"red sauce turned orange-pink with cream\"\n    },\n    \"soup\": {\n      \"4\": \"orange-pink creamy sauce\",\n      \"3\": \"orange soup plated\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"event roles (prep, cooking, finishing)\",\n    \"transfer traces and residue\",\n    \"tomato state (raw vs cooked)\",\n    \"sauce color (red vs orange)\",\n    \"puree presence\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in the frames:\n\n*   **Color:** Orange / Orange-pink\n*   **Consistency:** Creamy / Smooth liquid\n*   **Transfer Action:** Yes, the soup is being ladled from the black pan into a white serving bowl.",
+    "timestamp_end": "2026-07-06 17:01:16"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 20.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Inspect the sauce at the beginning of the clip. Is it a red simmering sauce? What is added to it (sugar, pepper)? Report visible state: sauce color (red/orange), additions. Return compact rows."
+    },
+    "timestamp_start": "2026-07-06 16:58:30",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 20.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Inspect the sauce at the beginning of the clip. Is it a red simmering sauce? What is added to it (sugar, pepper)? Report visible state: sauce color (red/orange), additions. Return compact rows.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"tomatoes\": {\n      \"1\": \"raw/chopped boiling\",\n      \"5\": \"cooked/wilted then pureed\"\n    },\n    \"puree\": {\n      \"5\": \"smooth liquid in bowl\",\n      \"2\": \"added to roux\"\n    },\n    \"sauce\": {\n      \"2\": \"red sauce formed\",\n      \"4\": \"red sauce turned orange-pink with cream\"\n    },\n    \"soup\": {\n      \"4\": \"orange-pink creamy sauce\",\n      \"3\": \"orange soup plated\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"event roles (prep, cooking, finishing)\",\n    \"transfer traces and residue\",\n    \"tomato state (raw vs cooked)\",\n    \"sauce color (red vs orange)\",\n    \"puree presence\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in the frames, specifically the close-up shots:\n\n*   **Sauce State:** Yes, it is a red/orange simmering sauce (visible in frames 4 and 11).\n*   **Additions:**\n    *   **Sugar:** In Frame 4, a hand adds a white granular substance, and the text overlay explicitly states \"2 tsp sugar\".\n    *   **Salt:** In Frame 11, a spoon adds a white substance, and the text overlay states \"Salt to taste\".\n\n**Compact Report:**\n*   **Sauce Color:** Red/Orange (simmering liquid).\n*   **Additions:** Sugar (2 tsp), Salt (to taste). (Note: Pepper is not explicitly visible or labeled in the clear close-ups, though salt and sugar are).",
+    "timestamp_end": "2026-07-06 17:01:24"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_5",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 5,
+          "start_time": 0.0,
+          "end_time": 20.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Inspect the tomatoes at the beginning of the clip. Are they raw/chopped or cooked/wilted? Then inspect the end of the clip (straining). Is the output a smooth puree? Report visible state: tomatoes raw/cooked, puree smooth/chunky. Return compact rows."
+    },
+    "timestamp_start": "2026-07-06 16:58:30",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 5 (0.0s to 20.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Inspect the tomatoes at the beginning of the clip. Are they raw/chopped or cooked/wilted? Then inspect the end of the clip (straining). Is the output a smooth puree? Report visible state: tomatoes raw/cooked, puree smooth/chunky. Return compact rows.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"tomatoes\": {\n      \"1\": \"raw/chopped boiling\",\n      \"5\": \"cooked/wilted then pureed\"\n    },\n    \"puree\": {\n      \"5\": \"smooth liquid in bowl\",\n      \"2\": \"added to roux\"\n    },\n    \"sauce\": {\n      \"2\": \"red sauce formed\",\n      \"4\": \"red sauce turned orange-pink with cream\"\n    },\n    \"soup\": {\n      \"4\": \"orange-pink creamy sauce\",\n      \"3\": \"orange soup plated\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"event roles (prep, cooking, finishing)\",\n    \"transfer traces and residue\",\n    \"tomato state (raw vs cooked)\",\n    \"sauce color (red vs orange)\",\n    \"puree presence\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in the frames (which correspond to Video 5):\n\n*   **Tomatoes state:** In the beginning frames (1-5), the tomatoes in the pan appear soft, broken down, and are being stirred over heat. They look like a cooked mixture rather than fresh, crisp raw chunks. The object memory for Video 5 describes them as \"cooked/wilted\".\n*   **Puree state:** In the later frames (11-16), the cooked tomatoes are transferred to a blender/food processor and blended. The object memory for Video 5 describes the resulting puree as a \"smooth liquid\". Blending cooked tomatoes typically produces a smooth consistency.\n\n**Visible State Report:**\n\n| Object | State |\n| :--- | :--- |\n| Tomatoes | cooked/wilted |\n| Puree | smooth |",
+    "timestamp_end": "2026-07-06 17:01:43"
+  }
+]

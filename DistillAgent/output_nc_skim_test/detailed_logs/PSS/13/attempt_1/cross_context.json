@@ -1,0 +1,198 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "identity of white block in V2",
+    "relation between V4 sushi/rice and V2 rice paper"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{}"
+  ],
+  "event_state_links": [],
+  "object_memory": {},
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "raw/cooked",
+    "empty/filled",
+    "separate/mixed",
+    "residue/depletion",
+    "package state (sealed/open)",
+    "ingredient state (whole/cut/mixed)",
+    "wrapper/rice state (dry/wet)",
+    "final product state (plated/rolled)"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {},
+        "object_memory": {},
+        "temporal_index": {},
+        "preliminary_order": null,
+        "preliminary_confidence": 0,
+        "confidence_basis": [],
+        "blocking_uncertainties": [
+          "all object states and transitions across 4 segments"
+        ],
+        "irrelevant_windows": [],
+        "candidate_targets": [],
+        "low_value_targets": [],
+        "uncertain": [
+          "full state-transition graph"
+        ],
+        "dimensions_to_compare": [
+          "raw/cooked",
+          "empty/filled",
+          "separate/mixed",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {},
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                15
+              ],
+              "event": "spring roll assembly",
+              "key_objects": [
+                "wrapper",
+                "shrimp",
+                "veggies"
+              ],
+              "visible_state": "wet wrapper, separate ingredients -> rolled cylinder",
+              "why_it_matters": "final assembly stage",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                22
+              ],
+              "event": "cutting white block",
+              "key_objects": [
+                "rice paper package",
+                "white block",
+                "knife"
+              ],
+              "visible_state": "package present, block being cut",
+              "why_it_matters": "prep/cutting stage",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                19,
+                28
+              ],
+              "event": "ingredient show",
+              "key_objects": [
+                "bag",
+                "peppers",
+                "box"
+              ],
+              "visible_state": "bag sealed, peppers whole/raw",
+              "why_it_matters": "initial ingredient presentation",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                27
+              ],
+              "event": "rice bowl/roll assembly",
+              "key_objects": [
+                "rice package",
+                "bowl",
+                "plate"
+              ],
+              "visible_state": "rice package, bowl with rice/veg, plated roll",
+              "why_it_matters": "mid-prep assembly",
+              "confidence": "high"
+            }
+          ]
+        },
+        "preliminary_order": "3->4->2->1",
+        "order_confidence": 6,
+        "confidence_basis": [
+          "V3 shows raw whole ingredients (peppers, sealed bag) -> intro",
+          "V4 shows rice package and bowl assembly -> early prep",
+          "V2 shows rice paper package and cutting a block -> mid prep",
+          "V1 shows wet wrapper and final rolling -> final assembly"
+        ],
+        "blocking_uncertainties": [
+          "exact identity of white block in V2",
+          "whether V4 and V2 are part of the same dish workflow or different dishes",
+          "exact sequence of V4 and V2"
+        ],
+        "irrelevant_windows": [],
+        "candidate_targets": [],
+        "low_value_targets": [],
+        "uncertain": [
+          "identity of white block in V2",
+          "relation between V4 sushi/rice and V2 rice paper"
+        ],
+        "dimensions_to_compare": [
+          "package state (sealed/open)",
+          "ingredient state (whole/cut/mixed)",
+          "wrapper/rice state (dry/wet)",
+          "final product state (plated/rolled)"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "temporal_index": [
+    "{}",
+    "{\"video1\": [{\"window\": [0, 15], \"event\": \"spring roll assembly\", \"key_objects\": [\"wrapper\", \"shrimp\", \"veggies\"], \"visible_state\": \"wet wrapper, separate ingredients -> rolled cylinder\", \"why_it_matters\": \"final assembly stage\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 22], \"event\": \"cutting white block\", \"key_objects\": [\"rice paper package\", \"white block\", \"knife\"], \"visible_state\": \"package present, block being cut\", \"why_it_matters\": \"prep/cutting stage\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [19, 28], \"event\": \"ingredient show\", \"key_objects\": [\"bag\", \"peppers\", \"box\"], \"visible_state\": \"bag sealed, peppers whole/raw\", \"why_it_matters\": \"initial ingredient presentation\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 27], \"event\": \"rice bowl/roll assembly\", \"key_objects\": [\"rice package\", \"bowl\", \"plate\"], \"visible_state\": \"rice package, bowl with rice/veg, plated roll\", \"why_it_matters\": \"mid-prep assembly\", \"confidence\": \"high\"}]}"
+  ],
+  "preliminary_order": [
+    "3->4->2->1"
+  ],
+  "preliminary_confidence": [
+    "0"
+  ],
+  "confidence_basis": [
+    "V3 shows raw whole ingredients (peppers, sealed bag) -> intro",
+    "V4 shows rice package and bowl assembly -> early prep",
+    "V2 shows rice paper package and cutting a block -> mid prep",
+    "V1 shows wet wrapper and final rolling -> final assembly"
+  ],
+  "blocking_uncertainties": [
+    "all object states and transitions across 4 segments",
+    "exact identity of white block in V2",
+    "whether V4 and V2 are part of the same dish workflow or different dishes",
+    "exact sequence of V4 and V2"
+  ],
+  "irrelevant_windows": [],
+  "candidate_targets": [],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{}"
+  ],
+  "order_confidence": [
+    "6"
+  ]
+}

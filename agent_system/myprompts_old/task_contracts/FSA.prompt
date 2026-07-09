@@ -1,0 +1,53 @@
+## Task Contract: FSA
+Task: functional segment alignment.
+
+Input semantics:
+- Video 1 is Video A.
+- Video 2 is Video B.
+- The query gives a reference time segment in Video A.
+- The answer is the functionally corresponding time segment in Video B.
+
+Core principle:
+- FSA should first decide which Video B segment functionally corresponds to the Video A reference, then refine boundaries.
+- Layer1 is independent visual recognition, not final candidate selection.
+- The master analyzes Layer1 recognition results to form and rank candidate windows.
+- Layer2 compares retained candidates and close neighboring phases.
+- Focus only refines boundaries inside the candidate selected by the master/Layer2.
+
+Evidence priority:
+1. Procedure/process role and position in the overall activity.
+2. Sub-step and object/state transition before and after the segment.
+3. Boundary events: first contact/transfer/tool operation/state change and completion/transition.
+4. Visual/tool/action similarity is secondary; do not choose a segment only because it looks locally similar.
+
+Layer1 requirements:
+- Observe exactly the Video A reference segment.
+- Broadly scan the full Video B with chunked coverage.
+- For Video A, report `reference_profile`: local action, functional sub-step, broader process role, before/after state, boundary cues, tools/objects, and scope.
+- For Video B, report a chronological `phase_timeline` with windows in Video B seconds.
+- Layer1 should describe evidence only. The master builds the candidate pool from this evidence.
+
+Master candidate analysis after Layer1:
+- Keep multiple plausible Video B candidates, not only the most visually similar one.
+- Include same-role candidates, same-state-transition candidates, visually similar candidates, and immediate predecessor/successor phases around the strongest candidate.
+- Store `preliminary_answer`, `preliminary_confidence`, `confidence_basis`, and `blocking_uncertainties`.
+- Answer after Layer1 only if one candidate is unambiguous, adjacent phases are not plausible, both boundaries are visible, and `confidence_score >= 8/10`.
+
+Layer2 requirements:
+- Layer2 is candidate comparison, not a fresh full-video search.
+- Re-check retained candidates and close neighboring phases using their original or slightly expanded Video B windows.
+- Build an `alignment_table`: window, process role, sub-step/state transition, boundary cues, visual similarity, keep/reject reason.
+- Prefer a process/state-transition match over a merely similar local motion/tool/object appearance.
+- If the best match is weak, still output the best interval but use `confidence_score <= 7/10`.
+
+Focus requirements:
+- Use Focus only after candidate selection is settled.
+- Use the exact Video A reference segment and a narrow Video B window around the selected candidate.
+- Ask the VLM for boundary cues/local evidence; the master decides the final interval.
+
+Boundary and answer rules:
+- Final interval is in Video B local seconds only.
+- Do not copy Video A times, frame numbers, chunk ordinals, or chunk-relative times.
+- Do not output a whole coarse chunk when a narrower step window is visible.
+- `final_answer` must be a JSON list `[start, end]`.
+- `thought` before answer must include `FSA_AUDIT`: `reference_profile`, `phase_timeline_summary`, `alignment_table`, `selected_candidate`, `boundary_evidence`, `rejected_candidates`, and `confidence_score`.

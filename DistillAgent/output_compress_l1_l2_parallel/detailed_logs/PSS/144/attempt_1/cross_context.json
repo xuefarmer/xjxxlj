@@ -1,0 +1,242 @@
+{
+  "confirmed": [
+    "5: cabbage only",
+    "3: grating carrots",
+    "6: carrots+white powder, no dressing",
+    "2: mixing carrots/cabbage, no dressing",
+    "1: dressed slaw, brown sugar",
+    "4: packed/fermenting"
+  ],
+  "uncertain": [
+    "all object states and transitions pending Layer1"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Add dressing, herbs, brown sugar to mixed slaw\", \"2\": \"Mix carrots into cabbage\", \"3\": \"Grate carrots\", \"4\": \"Pack wet mixture into glass bowl, weight, seal\", \"5\": \"Toss/separate shredded cabbage, whole carrots in background\", \"6\": \"Add carrots and white granular substance to cabbage\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "cabbage": {
+      "5": "shredded, loose, only ingredient in bowl",
+      "6": "shredded, base layer",
+      "2": "mixed with carrots",
+      "1": "mixed, dressed",
+      "4": "wet/shiny, packed"
+    },
+    "carrots": {
+      "5": "whole, in background",
+      "3": "raw, being grated",
+      "6": "shredded, piled on top",
+      "2": "mixed into cabbage",
+      "1": "mixed, dressed",
+      "4": "wet/shiny, packed"
+    },
+    "spoon": {
+      "6": "Mickey Mouse handle, white granular",
+      "1": "Mickey Mouse handle, brown granular"
+    },
+    "bowl": {
+      "5": "metal, contains cabbage",
+      "6": "metal, contains cabbage+carrots",
+      "2": "metal, contains mixed slaw",
+      "1": "metal, contains dressed slaw",
+      "4": "glass, contains packed slaw"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient state (raw→cooked)",
+    "container fill/empty",
+    "tool contact/residue",
+    "transfer traces",
+    "background vessel state",
+    "spoon granular color",
+    "mixture integration level",
+    "dressing presence",
+    "carrot form (whole/shredded)"
+  ],
+  "resolved_uncertain": [
+    "spoon white in V6, brown in V1",
+    "no dressing in V2, dressing in V1"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all object states and transitions pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "ingredient state (raw→cooked)",
+          "container fill/empty",
+          "tool contact/residue",
+          "transfer traces",
+          "background vessel state"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Add dressing, herbs, brown sugar to mixed slaw",
+          "2": "Mix carrots into cabbage",
+          "3": "Grate carrots",
+          "4": "Pack wet mixture into glass bowl, weight, seal",
+          "5": "Toss/separate shredded cabbage, whole carrots in background",
+          "6": "Add carrots and white granular substance to cabbage"
+        },
+        "object_memory": {
+          "cabbage": {
+            "5": "shredded, loose, only ingredient in bowl",
+            "6": "shredded, base layer",
+            "2": "mixed with carrots",
+            "1": "mixed, dressed",
+            "4": "wet/shiny, packed"
+          },
+          "carrots": {
+            "5": "whole, in background",
+            "3": "raw, being grated",
+            "6": "shredded, piled on top",
+            "2": "mixed into cabbage",
+            "1": "mixed, dressed",
+            "4": "wet/shiny, packed"
+          },
+          "spoon": {
+            "6": "Mickey Mouse handle, white granular",
+            "1": "Mickey Mouse handle, brown granular"
+          },
+          "bowl": {
+            "5": "metal, contains cabbage",
+            "6": "metal, contains cabbage+carrots",
+            "2": "metal, contains mixed slaw",
+            "1": "metal, contains dressed slaw",
+            "4": "glass, contains packed slaw"
+          }
+        },
+        "preliminary_order": "5->3->6->2->1->4",
+        "order_confidence": 9,
+        "confidence_basis": "Clear state progression: cabbage only (5) -> grate carrots (3) -> add carrots+white powder (6) -> mix carrots/cabbage (2) -> add dressing+herbs+brown sugar (1) -> pack/ferment (4). Same spoon used for white then brown granular.",
+        "blocking_uncertainties": [
+          "Verify spoon contents in V6 vs V1 to confirm white before brown",
+          "Verify no dressing in V2 to confirm it happens before V1"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                19
+              ],
+              "event": "dressing+sugar addition",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                20
+              ],
+              "event": "mixing carrots+cabbage",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                4
+              ],
+              "event": "grating carrots",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                88
+              ],
+              "event": "packing+sealing",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                10
+              ],
+              "event": "cabbage only",
+              "confidence": "high"
+            }
+          ],
+          "video6": [
+            {
+              "window": [
+                0,
+                26
+              ],
+              "event": "add carrots+white powder",
+              "confidence": "high"
+            }
+          ]
+        },
+        "dimensions_to_compare": [
+          "spoon granular color",
+          "mixture integration level",
+          "dressing presence",
+          "carrot form (whole/shredded)"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 10,
+        "confirmed": [
+          "5: cabbage only",
+          "3: grating carrots",
+          "6: carrots+white powder, no dressing",
+          "2: mixing carrots/cabbage, no dressing",
+          "1: dressed slaw, brown sugar",
+          "4: packed/fermenting"
+        ],
+        "resolved_uncertain": [
+          "spoon white in V6, brown in V1",
+          "no dressing in V2, dressing in V1"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "5->3->6->2->1->4"
+  ],
+  "order_confidence": [
+    "9",
+    "10"
+  ],
+  "confidence_basis": [
+    "Clear state progression: cabbage only (5) -> grate carrots (3) -> add carrots+white powder (6) -> mix carrots/cabbage (2) -> add dressing+herbs+brown sugar (1) -> pack/ferment (4). Same spoon used for white then brown granular."
+  ],
+  "blocking_uncertainties": [
+    "Verify spoon contents in V6 vs V1 to confirm white before brown",
+    "Verify no dressing in V2 to confirm it happens before V1"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 19], \"event\": \"dressing+sugar addition\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 20], \"event\": \"mixing carrots+cabbage\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 4], \"event\": \"grating carrots\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 88], \"event\": \"packing+sealing\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 10], \"event\": \"cabbage only\", \"confidence\": \"high\"}], \"video6\": [{\"window\": [0, 26], \"event\": \"add carrots+white powder\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ]
+}

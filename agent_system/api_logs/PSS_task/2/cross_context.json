@@ -1,0 +1,381 @@
+{
+  "confirmed": [
+    "Layer 2 confirmed: Video1 plated/garnished; Video5 raw chicken then residue; Video6 onions in residue pan; Video4 onions/mushrooms plus vegetables/cabbage; Video3 sprouts/noodles/sauce added; Video2 sauced noodle pan.",
+    "Focused Video3 vs Video2: Video3 is earlier/layered with newly added white udon and sauce just introduced; Video2 continues into active sauce mixing and more integrated sauced stir-fry.",
+    "Focused Video5 vs Video6: Video5 ends with chicken removed and oily browned residue/tiny fragments; Video6 begins with similar oily browned residue, no chicken, and onions added/seasoned. Visual evidence supports Video5 before Video6."
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [
+    "whether Video4 lacks chicken/sprouts/noodles/sauce",
+    "whether Video4 final vegetable pan is a visible predecessor to Video3 vegetable/chicken/sprout/noodle/sauce pan"
+  ],
+  "next_vlm_attention": [
+    "compare the same object keys across all videos",
+    "verify exact visible state values from the checklist",
+    "do not infer final order unless lifecycle direction is directly visible"
+  ],
+  "next_object_focus": [
+    "Video4 vs Video3 ingredient lifecycle and Video6-to-Video4 vegetable progression"
+  ],
+  "event_memory": [
+    "{\"video1\": \"finished plated noodle/chicken/vegetable dish garnished with white creamy sauce from squeeze bottle\", \"video2\": \"dark sauce poured into pan containing udon/chicken/vegetables, then stirred to glossy cooked stir-fry\", \"video3\": \"sprouts added to pan with vegetables/chicken, tossed; udon added from bowl; dark sauce poured onto noodles\", \"video4\": \"onions/mushrooms cooked; carrot/green strips and cabbage added and mixed\", \"video5\": \"raw chicken added to hot pan, seared; later pan appears empty with browned residue\", \"video6\": \"sliced onions cooked in residue pan, seasoning sprinkled\"}"
+  ],
+  "event_state_links": [
+    "Video5 changes chicken from raw pink to seared/removed and leaves browned pan residue",
+    "Video6 uses residue pan to soften seasoned onions",
+    "Video4 advances onion/mushroom pan by adding colored vegetables and cabbage",
+    "Video3 advances vegetable/chicken pan by adding sprouts, udon, and dark sauce",
+    "Video2 advances noodle pan by distributing dark sauce uniformly",
+    "Video1 advances cooked dish to plated/garnished serving state"
+  ],
+  "object_memory": {
+    "black frying pan/pan contents": {
+      "video1": "not visible; dish on plate",
+      "video2": "hot pan full of noodles+chicken+vegetables+sauce",
+      "video3": "hot pan receives sprouts, noodles, dark sauce over vegetables/chicken",
+      "video4": "hot pan with onions/mushrooms then added vegetable/cabbage mix",
+      "video5": "hot pan raw chicken then empty with browned residue",
+      "video6": "hot residue pan with sliced onions"
+    },
+    "chicken": {
+      "video1": "cooked tan pieces mixed on plate",
+      "video2": "cooked tan chunks mixed in pan",
+      "video3": "cooked tan chunks among vegetables before noodles",
+      "video4": "not mentioned/needs absence check",
+      "video5": "raw pink chunks seared then removed/absent",
+      "video6": "not visible/needs absence check"
+    },
+    "onions/mushrooms": {
+      "video1": "not distinct on plate",
+      "video2": "not central; possible mixed vegetables",
+      "video3": "not central; vegetables present",
+      "video4": "onions and mushrooms cooking, then combined with vegetables",
+      "video5": "absent except residue",
+      "video6": "onions only in pan, seasoning added"
+    },
+    "cabbage/carrot/green strips": {
+      "video1": "mixed cooked strips on plate",
+      "video2": "mixed in sauced pan",
+      "video3": "in pan before sprouts/noodles; partly cooked",
+      "video4": "added to onion/mushroom pan and mixed",
+      "video5": "absent",
+      "video6": "not yet in pan/possible board contents"
+    },
+    "bean sprouts": {
+      "video1": "not obvious/possibly mixed",
+      "video2": "present mixed in pan",
+      "video3": "added as pale pile then tossed",
+      "video4": "absent/needs confirm",
+      "video5": "absent",
+      "video6": "absent"
+    },
+    "udon noodles": {
+      "video1": "brown cooked noodles plated",
+      "video2": "in pan, sauce-coated/mixing",
+      "video3": "white mound added then sauce begins coating",
+      "video4": "absent",
+      "video5": "absent",
+      "video6": "absent"
+    },
+    "dark brown sauce": {
+      "video1": "already incorporated brown coating on noodles",
+      "video2": "poured and stirred into pan, more uniform by end",
+      "video3": "poured onto newly added white udon",
+      "video4": "absent",
+      "video5": "absent",
+      "video6": "absent"
+    },
+    "plated dish/white garnish sauce": {
+      "video1": "full plated dish; white sauce applied in zigzags",
+      "video2": "not plated; no white garnish",
+      "video3": "not plated; no white garnish",
+      "video4": "not plated",
+      "video5": "not plated",
+      "video6": "not plated"
+    }
+  },
+  "object_state_memory": [
+    "State chain candidates to verify visually: raw chicken in pan -> chicken absent with residue -> onions in same residue pan -> onions/mushrooms plus added vegetables/cabbage -> vegetables/chicken plus sprouts/noodles/dark sauce -> uniformly sauced pan dish -> plated dish with white garnish."
+  ],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "udon white vs brown coating",
+    "fresh sauce pooling vs uniform distribution",
+    "separated/layered vs integrated ingredients",
+    "chopstick mixing traces",
+    "final pan state",
+    "black pan identity/appearance",
+    "brown residue continuity",
+    "oil sheen and cooked fragments",
+    "chicken present/absent",
+    "onion present/absent",
+    "reset/cleaning signs",
+    "final/start pan contents",
+    "black pan/pan contents",
+    "onions and mushrooms presence",
+    "cabbage/carrot/green strips presence",
+    "bean sprouts present/absent",
+    "udon present/absent",
+    "dark sauce present/absent",
+    "separated vs combined vegetables",
+    "layered additions"
+  ],
+  "resolved_uncertain": [
+    "Video2 is visually later than Video3 by sauce distribution and noodle/ingredient incorporation, despite overlap at the fresh sauce-pour moment.",
+    "Video6 residue continuity from Video5 is visually strong: same pan/setup, chicken absent, oily browned residue and tiny fragments under onions."
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 2,
+      "update": {
+        "layer1_captions_done": true,
+        "key_entities": [
+          "black frying pan",
+          "raw/cooked chicken",
+          "onions",
+          "mushrooms",
+          "cabbage",
+          "carrot strips",
+          "green vegetable strips",
+          "bean sprouts",
+          "udon noodles",
+          "dark brown sauce",
+          "plated finished dish",
+          "white garnish sauce"
+        ],
+        "event_memory": {
+          "video1": "finished plated noodle/chicken/vegetable dish garnished with white creamy sauce from squeeze bottle",
+          "video2": "dark sauce poured into pan containing udon/chicken/vegetables, then stirred to glossy cooked stir-fry",
+          "video3": "sprouts added to pan with vegetables/chicken, tossed; udon added from bowl; dark sauce poured onto noodles",
+          "video4": "onions/mushrooms cooked; carrot/green strips and cabbage added and mixed",
+          "video5": "raw chicken added to hot pan, seared; later pan appears empty with browned residue",
+          "video6": "sliced onions cooked in residue pan, seasoning sprinkled"
+        },
+        "object_memory": {
+          "black frying pan/pan contents": {
+            "video1": "not visible; dish on plate",
+            "video2": "hot pan full of noodles+chicken+vegetables+sauce",
+            "video3": "hot pan receives sprouts, noodles, dark sauce over vegetables/chicken",
+            "video4": "hot pan with onions/mushrooms then added vegetable/cabbage mix",
+            "video5": "hot pan raw chicken then empty with browned residue",
+            "video6": "hot residue pan with sliced onions"
+          },
+          "chicken": {
+            "video1": "cooked tan pieces mixed on plate",
+            "video2": "cooked tan chunks mixed in pan",
+            "video3": "cooked tan chunks among vegetables before noodles",
+            "video4": "not mentioned/needs absence check",
+            "video5": "raw pink chunks seared then removed/absent",
+            "video6": "not visible/needs absence check"
+          },
+          "onions/mushrooms": {
+            "video1": "not distinct on plate",
+            "video2": "not central; possible mixed vegetables",
+            "video3": "not central; vegetables present",
+            "video4": "onions and mushrooms cooking, then combined with vegetables",
+            "video5": "absent except residue",
+            "video6": "onions only in pan, seasoning added"
+          },
+          "cabbage/carrot/green strips": {
+            "video1": "mixed cooked strips on plate",
+            "video2": "mixed in sauced pan",
+            "video3": "in pan before sprouts/noodles; partly cooked",
+            "video4": "added to onion/mushroom pan and mixed",
+            "video5": "absent",
+            "video6": "not yet in pan/possible board contents"
+          },
+          "bean sprouts": {
+            "video1": "not obvious/possibly mixed",
+            "video2": "present mixed in pan",
+            "video3": "added as pale pile then tossed",
+            "video4": "absent/needs confirm",
+            "video5": "absent",
+            "video6": "absent"
+          },
+          "udon noodles": {
+            "video1": "brown cooked noodles plated",
+            "video2": "in pan, sauce-coated/mixing",
+            "video3": "white mound added then sauce begins coating",
+            "video4": "absent",
+            "video5": "absent",
+            "video6": "absent"
+          },
+          "dark brown sauce": {
+            "video1": "already incorporated brown coating on noodles",
+            "video2": "poured and stirred into pan, more uniform by end",
+            "video3": "poured onto newly added white udon",
+            "video4": "absent",
+            "video5": "absent",
+            "video6": "absent"
+          },
+          "plated dish/white garnish sauce": {
+            "video1": "full plated dish; white sauce applied in zigzags",
+            "video2": "not plated; no white garnish",
+            "video3": "not plated; no white garnish",
+            "video4": "not plated",
+            "video5": "not plated",
+            "video6": "not plated"
+          }
+        },
+        "object_state_memory": "State chain candidates to verify visually: raw chicken in pan -> chicken absent with residue -> onions in same residue pan -> onions/mushrooms plus added vegetables/cabbage -> vegetables/chicken plus sprouts/noodles/dark sauce -> uniformly sauced pan dish -> plated dish with white garnish.",
+        "event_state_links": [
+          "Video5 changes chicken from raw pink to seared/removed and leaves browned pan residue",
+          "Video6 uses residue pan to soften seasoned onions",
+          "Video4 advances onion/mushroom pan by adding colored vegetables and cabbage",
+          "Video3 advances vegetable/chicken pan by adding sprouts, udon, and dark sauce",
+          "Video2 advances noodle pan by distributing dark sauce uniformly",
+          "Video1 advances cooked dish to plated/garnished serving state"
+        ],
+        "layer2_checklist": [
+          "Video5: final black pan chicken present or absent; exact browned/oily residue state",
+          "Video6: chicken absent; onions only main ingredient; browned/oily residue underneath",
+          "Video4: onions+mushrooms then carrot/green/cabbage added; chicken/sprouts/noodles/dark sauce absent",
+          "Video3: cooked chicken already present among vegetables before sprouts/noodles/sauce; noodles separate white mound before sauce coating",
+          "Video2: start and end sauce distribution; final more uniformly brown/glossy than just-added sauce state",
+          "Video1: pan absent; dish already plated; white sauce garnish newly on top and not mixed through"
+        ],
+        "state_dimensions_to_probe": [
+          "ingredient presence/absence",
+          "pan residue continuity",
+          "raw vs cooked chicken",
+          "separated vs combined vegetables",
+          "sprouts/noodles/sauce addition states",
+          "sauce distribution uniformity",
+          "pan-to-plate transfer and garnish surface state"
+        ],
+        "next_vlm_attention": [
+          "compare the same object keys across all videos",
+          "verify exact visible state values from the checklist",
+          "do not infer final order unless lifecycle direction is directly visible"
+        ],
+        "next_object_focus": [
+          "black frying pan/pan contents in Videos 5, 6, 4, 3, 2",
+          "chicken presence and raw/cooked/removed state",
+          "sauce distribution in Videos 3 and 2",
+          "plated dish and white garnish in Video1"
+        ],
+        "uncertain_visual_states": [
+          "whether Video6 pan visibly continues from Video5 residue",
+          "whether Video4 lacks chicken/sprouts/noodles/sauce",
+          "whether Video2 is later than Video3 by sauce distribution rather than another duplicated sauce pour"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "confirmed": [
+          "Layer 2 confirmed: Video1 plated/garnished; Video5 raw chicken then residue; Video6 onions in residue pan; Video4 onions/mushrooms plus vegetables/cabbage; Video3 sprouts/noodles/sauce added; Video2 sauced noodle pan."
+        ],
+        "dimensions_to_compare": [
+          "udon white vs brown coating",
+          "fresh sauce pooling vs uniform distribution",
+          "separated/layered vs integrated ingredients",
+          "chopstick mixing traces",
+          "final pan state"
+        ],
+        "next_object_focus": [
+          "Video3 vs Video2 dark sauce distribution and noodle incorporation"
+        ],
+        "uncertain_visual_states": [
+          "whether Video2 is visually later than Video3 by sauce distribution rather than another duplicated sauce pour",
+          "whether Video6 pan visibly continues from Video5 residue",
+          "whether Video4 lacks chicken/sprouts/noodles/sauce"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "confirmed": [
+          "Focused Video3 vs Video2: Video3 is earlier/layered with newly added white udon and sauce just introduced; Video2 continues into active sauce mixing and more integrated sauced stir-fry."
+        ],
+        "resolved_uncertain": [
+          "Video2 is visually later than Video3 by sauce distribution and noodle/ingredient incorporation, despite overlap at the fresh sauce-pour moment."
+        ],
+        "dimensions_to_compare": [
+          "black pan identity/appearance",
+          "brown residue continuity",
+          "oil sheen and cooked fragments",
+          "chicken present/absent",
+          "onion present/absent",
+          "reset/cleaning signs",
+          "final/start pan contents"
+        ],
+        "next_object_focus": [
+          "Video5 vs Video6 pan residue and chicken-to-onion transition"
+        ],
+        "uncertain_visual_states": [
+          "whether Video6 pan visibly continues from Video5 residue",
+          "whether Video4 lacks chicken/sprouts/noodles/sauce"
+        ]
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "confirmed": [
+          "Focused Video5 vs Video6: Video5 ends with chicken removed and oily browned residue/tiny fragments; Video6 begins with similar oily browned residue, no chicken, and onions added/seasoned. Visual evidence supports Video5 before Video6.",
+          "Focused Video3 vs Video2: Video3 is earlier/layered with newly added white udon and sauce just introduced; Video2 continues into active sauce mixing and more integrated sauced stir-fry."
+        ],
+        "resolved_uncertain": [
+          "Video6 residue continuity from Video5 is visually strong: same pan/setup, chicken absent, oily browned residue and tiny fragments under onions."
+        ],
+        "dimensions_to_compare": [
+          "black pan/pan contents",
+          "onions and mushrooms presence",
+          "cabbage/carrot/green strips presence",
+          "chicken present/absent",
+          "bean sprouts present/absent",
+          "udon present/absent",
+          "dark sauce present/absent",
+          "separated vs combined vegetables",
+          "layered additions",
+          "final/start pan contents"
+        ],
+        "next_object_focus": [
+          "Video4 vs Video3 ingredient lifecycle and Video6-to-Video4 vegetable progression"
+        ],
+        "uncertain_visual_states": [
+          "whether Video4 lacks chicken/sprouts/noodles/sauce",
+          "whether Video4 final vegetable pan is a visible predecessor to Video3 vegetable/chicken/sprout/noodle/sauce pan"
+        ]
+      }
+    }
+  ],
+  "layer1_captions_done": [
+    "True"
+  ],
+  "key_entities": [
+    "black frying pan",
+    "raw/cooked chicken",
+    "onions",
+    "mushrooms",
+    "cabbage",
+    "carrot strips",
+    "green vegetable strips",
+    "bean sprouts",
+    "udon noodles",
+    "dark brown sauce",
+    "plated finished dish",
+    "white garnish sauce"
+  ],
+  "layer2_checklist": [
+    "Video5: final black pan chicken present or absent; exact browned/oily residue state",
+    "Video6: chicken absent; onions only main ingredient; browned/oily residue underneath",
+    "Video4: onions+mushrooms then carrot/green/cabbage added; chicken/sprouts/noodles/dark sauce absent",
+    "Video3: cooked chicken already present among vegetables before sprouts/noodles/sauce; noodles separate white mound before sauce coating",
+    "Video2: start and end sauce distribution; final more uniformly brown/glossy than just-added sauce state",
+    "Video1: pan absent; dish already plated; white sauce garnish newly on top and not mixed through"
+  ],
+  "state_dimensions_to_probe": [
+    "ingredient presence/absence",
+    "pan residue continuity",
+    "raw vs cooked chicken",
+    "separated vs combined vegetables",
+    "sprouts/noodles/sauce addition states",
+    "sauce distribution uniformity",
+    "pan-to-plate transfer and garnish surface state"
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "confirmed": [
+    "V4 precedes V2 (shrimp prep introduces batter ingredients)",
+    "V2 precedes V5 (batter mixed then used for frying)",
+    "V1 precedes V3 (sauce blended then strained)",
+    "V3 precedes V5 (sauce strained before frying prawns)"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "sauce_cup": {
+      "1": "filled with blended brownish-green mixture at end",
+      "3": "filled, blended, then strained into bowl at end"
+    },
+    "batter_bowl": {
+      "2": "empty -> filled with white batter",
+      "5": "filled with white batter, used for dipping"
+    },
+    "shrimp": {
+      "4": "raw -> peeled/butterflied",
+      "5": "raw -> battered -> fried"
+    },
+    "mortar_pestle": {
+      "1": "in use by right man throughout",
+      "3": "in use by right man throughout"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient maturity (raw/cooked)",
+    "container fill/empty",
+    "tool residue",
+    "background vessel state",
+    "transfer completion"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "object states across segments",
+          "event roles",
+          "transfer chains",
+          "residue/depletion cues"
+        ],
+        "dimensions_to_compare": [
+          "ingredient maturity (raw/cooked)",
+          "container fill/empty",
+          "tool residue",
+          "background vessel state",
+          "transfer completion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "4 -> 2 -> 1 -> 3 -> 5",
+        "order_confidence": 6,
+        "confidence_basis": [
+          "V4: raw shrimp prep",
+          "V2: batter mixing",
+          "V1/V3: sauce making (V1 ends blended, V3 ends strained)",
+          "V5: frying battered prawns"
+        ],
+        "blocking_uncertainties": [
+          "relative order of V1 and V3 (sauce blending vs straining)",
+          "exact start/end states of sauce cup and mortar/pestle",
+          "batter bowl state continuity between V2 and V5"
+        ],
+        "object_memory": {
+          "sauce_cup": {
+            "1": "filled with blended brownish-green mixture at end",
+            "3": "filled, blended, then strained into bowl at end"
+          },
+          "batter_bowl": {
+            "2": "empty -> filled with white batter",
+            "5": "filled with white batter, used for dipping"
+          },
+          "shrimp": {
+            "4": "raw -> peeled/butterflied",
+            "5": "raw -> battered -> fried"
+          },
+          "mortar_pestle": {
+            "1": "in use by right man throughout",
+            "3": "in use by right man throughout"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                37
+              ],
+              "event": "sauce blending",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                20
+              ],
+              "event": "batter mixing",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                90
+              ],
+              "event": "chopping + sauce + straining",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                35
+              ],
+              "event": "shrimp prep",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                44
+              ],
+              "event": "frying prawns",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 8,
+        "comparison_table": {
+          "V4": "raw shrimp -> peeled/butterflied, board accumulates residue",
+          "V2": "metal bowl empty -> filled with white batter",
+          "V1": "sauce cup empty -> filled with blended mixture",
+          "V3": "sauce cup blended -> strained through sieve",
+          "V5": "batter bowl filled -> used for dipping, prawns fried, lemon zested"
+        },
+        "confirmed": [
+          "V4 precedes V2 (shrimp prep introduces batter ingredients)",
+          "V2 precedes V5 (batter mixed then used for frying)",
+          "V1 precedes V3 (sauce blended then strained)",
+          "V3 precedes V5 (sauce strained before frying prawns)"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "4 -> 2 -> 1 -> 3 -> 5"
+  ],
+  "order_confidence": [
+    "6",
+    "8"
+  ],
+  "confidence_basis": [
+    "V4: raw shrimp prep",
+    "V2: batter mixing",
+    "V1/V3: sauce making (V1 ends blended, V3 ends strained)",
+    "V5: frying battered prawns"
+  ],
+  "blocking_uncertainties": [
+    "relative order of V1 and V3 (sauce blending vs straining)",
+    "exact start/end states of sauce cup and mortar/pestle",
+    "batter bowl state continuity between V2 and V5"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 37], \"event\": \"sauce blending\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 20], \"event\": \"batter mixing\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 90], \"event\": \"chopping + sauce + straining\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 35], \"event\": \"shrimp prep\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 44], \"event\": \"frying prawns\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V4\": \"raw shrimp -> peeled/butterflied, board accumulates residue\", \"V2\": \"metal bowl empty -> filled with white batter\", \"V1\": \"sauce cup empty -> filled with blended mixture\", \"V3\": \"sauce cup blended -> strained through sieve\", \"V5\": \"batter bowl filled -> used for dipping, prawns fried, lemon zested\"}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": []
+}

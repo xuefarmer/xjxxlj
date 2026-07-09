@@ -1,0 +1,195 @@
+{
+  "confirmed": [
+    "V4->V3: prep to paste blooming",
+    "V3->V2: paste in oil to sauce base",
+    "V2->V1: sauce base to chicken/veggie cooking",
+    "V1->V6: cooked chicken/veggies to rice addition",
+    "V6->V5: rice/chicken/veggies to basil finishing"
+  ],
+  "uncertain": [
+    "Verify wok contents transition V3->V2->V1",
+    "Verify ingredient state continuity V1->V6->V5"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "chicken": {
+      "4": "raw/marinated",
+      "1": "raw->cooked in wok",
+      "6": "cooked chunks in wok",
+      "5": "cooked chunks in rice"
+    },
+    "rice": {
+      "6": "transferred to wok, mixed",
+      "5": "already mixed in wok"
+    },
+    "basil": {
+      "4": "fresh in orange cup (background)",
+      "5": "added from orange bowl, wilting"
+    },
+    "paste_sauce": {
+      "3": "paste bloomed in oil",
+      "2": "liquid added -> green/brown sauce",
+      "1": "sauce base in wok"
+    },
+    "veggies": {
+      "4": "prepped (background)",
+      "1": "added to wok, cooked",
+      "6": "cooked in wok",
+      "5": "cooked in wok"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states raw/cooked",
+    "container fill/empty",
+    "transfer traces",
+    "ingredient integration",
+    "residue/depletion",
+    "background vessel state",
+    "wok contents color/texture",
+    "chicken raw/cooked state",
+    "rice presence/mixture",
+    "basil fresh/wilted state",
+    "paste/sauce liquid/solid state"
+  ],
+  "resolved_uncertain": [
+    "wok contents transition V3->V2->V1 verified",
+    "ingredient state continuity V1->V6->V5 verified"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "Full inventory of all 6 segments pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states raw/cooked",
+          "container fill/empty",
+          "transfer traces",
+          "ingredient integration",
+          "residue/depletion",
+          "background vessel state"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "4->3->2->1->6->5",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V4: raw chicken marinated, prepped veggies/basil in background",
+          "V3: paste bloomed in oil",
+          "V2: white liquid added to paste/oil base -> green/brown sauce",
+          "V1: chicken added to sauce base, stir-fried, veggies added",
+          "V6: rice added to wok with cooked chicken/veggies",
+          "V5: basil added to finished rice/chicken/veg mixture"
+        ],
+        "blocking_uncertainties": [
+          "Verify wok contents transition V3->V2->V1",
+          "Verify ingredient state continuity V1->V6->V5"
+        ],
+        "object_memory": {
+          "chicken": {
+            "4": "raw/marinated",
+            "1": "raw->cooked in wok",
+            "6": "cooked chunks in wok",
+            "5": "cooked chunks in rice"
+          },
+          "rice": {
+            "6": "transferred to wok, mixed",
+            "5": "already mixed in wok"
+          },
+          "basil": {
+            "4": "fresh in orange cup (background)",
+            "5": "added from orange bowl, wilting"
+          },
+          "paste_sauce": {
+            "3": "paste bloomed in oil",
+            "2": "liquid added -> green/brown sauce",
+            "1": "sauce base in wok"
+          },
+          "veggies": {
+            "4": "prepped (background)",
+            "1": "added to wok, cooked",
+            "6": "cooked in wok",
+            "5": "cooked in wok"
+          }
+        },
+        "uncertain": [
+          "Verify wok contents transition V3->V2->V1",
+          "Verify ingredient state continuity V1->V6->V5"
+        ],
+        "dimensions_to_compare": [
+          "wok contents color/texture",
+          "chicken raw/cooked state",
+          "rice presence/mixture",
+          "basil fresh/wilted state",
+          "paste/sauce liquid/solid state"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 9,
+        "comparison_table": {
+          "V4": "prep/marination, raw chicken, prepped veggies/basil in background",
+          "V3": "paste bloomed in oil, wok empty->oil+paste",
+          "V2": "paste/oil->green/brown sauce, liquids/powders added",
+          "V1": "sauce base->chicken cooked->veggies added",
+          "V6": "cooked chicken/veggies->rice added & mixed",
+          "V5": "cooked rice/chicken/veggies->basil added & wilted"
+        },
+        "confirmed": [
+          "V4->V3: prep to paste blooming",
+          "V3->V2: paste in oil to sauce base",
+          "V2->V1: sauce base to chicken/veggie cooking",
+          "V1->V6: cooked chicken/veggies to rice addition",
+          "V6->V5: rice/chicken/veggies to basil finishing"
+        ],
+        "resolved_uncertain": [
+          "wok contents transition V3->V2->V1 verified",
+          "ingredient state continuity V1->V6->V5 verified"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "4->3->2->1->6->5"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "V4: raw chicken marinated, prepped veggies/basil in background",
+    "V3: paste bloomed in oil",
+    "V2: white liquid added to paste/oil base -> green/brown sauce",
+    "V1: chicken added to sauce base, stir-fried, veggies added",
+    "V6: rice added to wok with cooked chicken/veggies",
+    "V5: basil added to finished rice/chicken/veg mixture"
+  ],
+  "blocking_uncertainties": [
+    "Verify wok contents transition V3->V2->V1",
+    "Verify ingredient state continuity V1->V6->V5"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V4\": \"prep/marination, raw chicken, prepped veggies/basil in background\", \"V3\": \"paste bloomed in oil, wok empty->oil+paste\", \"V2\": \"paste/oil->green/brown sauce, liquids/powders added\", \"V1\": \"sauce base->chicken cooked->veggies added\", \"V6\": \"cooked chicken/veggies->rice added & mixed\", \"V5\": \"cooked rice/chicken/veggies->basil added & wilted\"}"
+  ]
+}

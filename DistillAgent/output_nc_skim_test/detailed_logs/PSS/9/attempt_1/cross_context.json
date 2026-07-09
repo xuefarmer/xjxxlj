@@ -1,0 +1,164 @@
+{
+  "confirmed": [
+    "V5->V1: garlic prep precedes sauce simmer",
+    "V1->V3: noodles boiling precedes noodles lifted from pot",
+    "V2->V3: greens raw/blanched precedes greens cooked in bowl",
+    "V3->V4: plain wet noodles precede sauced tossed noodles"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "garlic": {
+      "5": "raw sliced -> fried -> removed to glass bowl"
+    },
+    "bok_choy": {
+      "2": "raw fresh in white bowl over boiling water",
+      "3": "cooked wilted in white bowl",
+      "4": "cooked wilted on final plate"
+    },
+    "noodles": {
+      "3": "wet plain lifted from pot onto plate",
+      "4": "brownish coated tossed in pan then plated"
+    },
+    "sauce": {
+      "1": "dark simmering in black pan",
+      "4": "bubbling liquid in pan with noodles"
+    },
+    "final_plate": {
+      "3": "noodles only, cooked greens in separate bowl",
+      "4": "noodles, greens, meat, soup bowl"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states",
+    "event roles",
+    "transfer traces",
+    "container fill levels",
+    "noodle coating state",
+    "greens raw vs cooked",
+    "sauce presence in pan",
+    "final plate completeness"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states",
+          "event roles",
+          "transfer traces",
+          "container fill levels"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "garlic": {
+            "5": "raw sliced -> fried -> removed to glass bowl"
+          },
+          "bok_choy": {
+            "2": "raw fresh in white bowl over boiling water",
+            "3": "cooked wilted in white bowl",
+            "4": "cooked wilted on final plate"
+          },
+          "noodles": {
+            "3": "wet plain lifted from pot onto plate",
+            "4": "brownish coated tossed in pan then plated"
+          },
+          "sauce": {
+            "1": "dark simmering in black pan",
+            "4": "bubbling liquid in pan with noodles"
+          },
+          "final_plate": {
+            "3": "noodles only, cooked greens in separate bowl",
+            "4": "noodles, greens, meat, soup bowl"
+          }
+        },
+        "preliminary_order": "5->2->1->3->4",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V2 raw greens -> V3 cooked greens",
+          "V3 plain wet noodles -> V4 sauced tossed noodles",
+          "V1 dark sauce -> V4 pan with sauce",
+          "V3 partial plate -> V4 full final plate with meat"
+        ],
+        "blocking_uncertainties": [
+          "Verify V3 noodles are plain/wet not sauced",
+          "Verify V4 noodles enter pan with sauce",
+          "Confirm V2 greens are raw before V3 cooked"
+        ],
+        "dimensions_to_compare": [
+          "noodle coating state",
+          "greens raw vs cooked",
+          "sauce presence in pan",
+          "final plate completeness"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 8,
+        "comparison_table": {
+          "V5": "garlic fried then removed to glass bowl; pot steaming",
+          "V2": "greens raw then blanched in boiling water",
+          "V1": "dark sauce simmering in black pan; noodles boiling in background pot",
+          "V3": "plain wet noodles lifted from pot; cooked wilted greens in bowl; no meat",
+          "V4": "plain wet noodles tossed in dark sauce; final plate with noodles, greens, meat, soup"
+        },
+        "confirmed": [
+          "V5->V1: garlic prep precedes sauce simmer",
+          "V1->V3: noodles boiling precedes noodles lifted from pot",
+          "V2->V3: greens raw/blanched precedes greens cooked in bowl",
+          "V3->V4: plain wet noodles precede sauced tossed noodles"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "5->2->1->3->4"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "V2 raw greens -> V3 cooked greens",
+    "V3 plain wet noodles -> V4 sauced tossed noodles",
+    "V1 dark sauce -> V4 pan with sauce",
+    "V3 partial plate -> V4 full final plate with meat"
+  ],
+  "blocking_uncertainties": [
+    "Verify V3 noodles are plain/wet not sauced",
+    "Verify V4 noodles enter pan with sauce",
+    "Confirm V2 greens are raw before V3 cooked"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V5\": \"garlic fried then removed to glass bowl; pot steaming\", \"V2\": \"greens raw then blanched in boiling water\", \"V1\": \"dark sauce simmering in black pan; noodles boiling in background pot\", \"V3\": \"plain wet noodles lifted from pot; cooked wilted greens in bowl; no meat\", \"V4\": \"plain wet noodles tossed in dark sauce; final plate with noodles, greens, meat, soup\"}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": []
+}

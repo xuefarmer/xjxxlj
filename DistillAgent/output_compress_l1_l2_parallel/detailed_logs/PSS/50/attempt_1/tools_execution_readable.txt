@@ -1,0 +1,391 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-06 18:05:12
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-06 17:56:56 -> 2026-07-06 17:58:41
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 16.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| chef, pan, spoon, yellow mixture | stirring | cooking, yellow/orange thick mixture in pan, chef looking down | 1-6 | N/A | 0.9 | Mixture color (yellow) differs from later sauce (red), implies time jump or ingredient addition not shown. |
+| pan, sauce | simmering | bubbling vigorously, red/orange liquid, hot | 7-8 | N/A | 0.95 | Close-up view confirms sauce texture. |
+| chef, cream carton | holding/presenting | holding carton (likely heavy cream) and wooden spoon, talking | 9-10 | N/A | 0.9 | Carton label partially visible. |
+| pan, sauce, cream carton, wooden spatula | pouring, stirring | white cream being poured into red sauce, text "add cream at last", sauce turning creamy orange/pink as mixed | 11-16 | N/A | 0.95 | Clear action of finishing the dish. |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-06 17:56:56 -> 2026-07-06 17:58:33
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 26.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: Chef, wooden spatula, small bowl, pan, butter, flour, roux mixture
+action: Holding tools, melting butter, adding flour, stirring, cooking roux
+state: Butter is wet/melting/bubbling; Flour is dry powder then mixed; Roux is mixed/cooking/changing from white to light brown (blond); Pan is filled.
+window: Frames 1-16 (0.0s - 26.0s)
+query_link: [Video 2]
+conf: high
+uncertainty: low
+
+objects: Pan, butter, wooden spatula
+action: Melting, bubbling
+state: Butter is wet, melting, bubbling vigorously. Spatula is present.
+window: Frames 2-4 (~2.0s - 6.0s)
+query_link: [Video 2]
+conf: high
+uncertainty: low
+
+objects: Hand, flour, pan, butter
+action: Pouring/Adding flour
+state: Flour is dry white powder, being added to wet bubbling butter. Ingredients separate then becoming mixed.
+window: Frames 5-7 (~6.0s - 10.0s)
+query_link: [Video 2]
+conf: high
+uncertainty: low
+
+objects: Roux mixture (butter + flour), spatula
+action: Stirring, mixing
+state: Mixture is white, pasty, bubbling. Ingredients are mixed.
+window: Frames 8-12 (~10.0s - 18.0s)
+query_link: [Video 2]
+conf: high
+uncertainty: low
+
+objects: Roux mixture, pan
+action: Cooking
+state: Mixture is thickening, color shifting from white to light brown (blond). Text overlay confirms "blond is cooking roux to light brown".
+window: Frames 13-16 (~18.0s - 26.0s)
+query_link: [Video 2]
+conf: high
+uncertainty: low
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-06 17:56:56 -> 2026-07-06 17:59:10
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 24.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| pan, wooden spatula, roux mixture | cooking, stirring | bubbling, wet, light brown to reddish, cooked | 0.0s - 13.5s | | high | low |
+| pan, wooden spatula, red sauce | stirring | smooth, red, liquid, mixed, filled | 13.5s - 18.0s | | high | low |
+| chef, pan, strainer, bowl, chunky red puree | straining, pouring | chunky residue in strainer, wet, passing through into pan, orange liquid in pan | 18.0s - 24.0s | | high | low |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-06 17:56:56 -> 2026-07-06 17:58:53
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 53.5,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 1/2, time 0s–54s)"
+}
+
+[Output]:
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| pan, bubbling liquid (oil/butter), wooden spatula | heating, stirring | hot, wet, bubbling, liquid | 0-10s | - | high | liquid identity (oil vs butter) |
+| chopped white vegetables (onions), hand, glass bowl | adding to pan | raw, cut, white, separate -> mixed | 10-20s | - | high | exact vegetable type (onion vs garlic) |
+| chopped light green vegetables (celery/leeks), hand, glass bowl | adding to pan | raw, cut, light green, mixed | 25-30s | - | high | vegetable type (celery vs leek) |
+| chopped dark green vegetables (bell peppers) | present/added in pan | raw, cut, dark green, mixed | 40-45s | - | high | none |
+| mixed vegetables (onions, celery, peppers), wooden spatula | sautéing, stirring | wilted, cooked, translucent, mixed, oily residue | 30-54s | - | high | none |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_5) ###
+Time: 2026-07-06 17:58:53 -> 2026-07-06 17:59:42
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 53.5,
+      "end_time": 107.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 2/2, time 54s–107s)"
+}
+
+[Output]:
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| pan, chopped onions, large tomato chunks, wooden spatula | sautéing, stirring | tomatoes raw/fresh chunks, onions cooking, separate ingredients | 53.5s–60s | Frame 1 | 0.95 | None |
+| chef, basil plant (wall garden), fresh basil leaves | picking leaves | leaves fresh, green, attached to plant then detached | 65s–75s | Frames 6-8 | 0.95 | None |
+| chef hands, crushed basil leaves, tomato-onion sauce | crushing leaves, adding to pan | leaves crushed, sauce cooked down (tomatoes broken), wet, mixed | 75s–85s | Frames 9-11 | 0.95 | None |
+| pan, bubbling sauce, small bowl (seasoning/salt), wooden spatula | adding seasoning, stirring, boiling | sauce thick, cooked, mixed, wet, vigorous bubbles | 90s–107s | Frames 14-16 | 0.95 | Exact content of small bowl unclear (likely salt/spice) |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_6) ###
+Time: 2026-07-06 17:56:56 -> 2026-07-06 17:58:20
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 16.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| pan, blender jar, hot liquid (orange), green herbs | pouring transfer | pan (hot, wet, depleting), blender jar (wet, filling, contains green herbs), liquid (cooked, hot) | 1-8 | - | 0.95 | low |
+| blender jar, lid, hand, orange mixture | blending/mixing | jar (filled, wet), mixture (cooked, mixed, smooth orange), lid (present, held down) | 9-16 | - | 0.95 | low |
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_1) ###
+Time: 2026-07-06 18:01:41 -> 2026-07-06 18:04:05
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 16.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: pan, sauce/liquid, cream carton, wooden spatula. For each, report: EMPTY / PARTLY_FILLED / FILLED / NOT_VISIBLE. Also report residue/depletion, raw vs cooked state, and whether ingredients are separate or mixed. Return compact rows: object, state, fill_level, residue, conf, uncertainty. Do not infer order."
+}
+
+[Output]:
+Based on the visual evidence in the frames:
+
+*   **pan**: The pan (specifically the central one) is visible throughout. It contains a significant amount of sauce.
+*   **sauce/liquid**: The sauce is orange/red, bubbling (cooked), and in the final frames, cream is being added and stirred in (mixed).
+*   **cream carton**: Visible in the later frames (9-16), being poured into the pan. It is partly filled as it is being depleted.
+*   **wooden spatula**: Not visible in the first 8 frames. Visible in frames 9-16, used for stirring. Since the required state labels are for fill levels, I will mark it as NOT_VISIBLE for the fill state but note its presence.
+
+**Compact Rows:**
+
+| object | state | fill_level | residue | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| pan | FILLED | FILLED | sauce coating sides | high | contains simmering sauce |
+| sauce/liquid | FILLED | FILLED | bubbling surface | high | cooked, mixed with cream |
+| cream carton | PARTLY_FILLED | PARTLY_FILLED | depleting (pouring) | high | raw cream being added |
+| wooden spatula | NOT_VISIBLE | N/A | sauce coated (when visible) | high | visible in frames 9-16 stirring |
+
+**Detailed State Report:**
+*   **pan**: **FILLED**. Contains sauce. Residue of sauce on inner sides.
+*   **sauce/liquid**: **FILLED**. **Cooked** state (bubbling in frames 7-8). Ingredients are **mixed** (cream swirled into red sauce in frames 11-16).
+*   **cream carton**: **PARTLY_FILLED**. **Depletion** visible as it is poured. Content is raw cream.
+*   **wooden spatula**: **NOT_VISIBLE** (in early frames), but visible in later frames stirring the sauce. Residue of sauce on the spatula head.
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_2) ###
+Time: 2026-07-06 18:01:41 -> 2026-07-06 18:04:37
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 26.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: butter, flour, roux mixture, pan, wooden spatula. For each, report: EMPTY / PARTLY_FILLED / FILLED / NOT_VISIBLE. Also report residue/depletion, raw vs cooked state, and whether ingredients are separate or mixed. Return compact rows: object, state, fill_level, residue, conf, uncertainty. Do not infer order."
+}
+
+[Output]:
+Based on the visual evidence in the frames (Video 2), here is the state scan for the requested objects. The frames show the process of making a roux: melting butter, adding flour, and cooking the mixture from a blond paste to a light brown color.
+
+| object | state | fill_level | residue | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **butter** | PARTLY_FILLED | low_layer | bubbling_melted_liquid, cooking, mixed_with_flour | high | low_uncertainty |
+| **flour** | PARTLY_FILLED | low_bowl | white_powder, raw_state, being_mixed_into_butter | high | low_uncertainty |
+| **roux mixture** | PARTLY_FILLED | low_layer | paste_coating, cooked_blond_to_light_brown, mixed_ingredients | high | low_uncertainty |
+| **pan** | PARTLY_FILLED | low | roux_residue_coating_bottom | high | low_uncertainty |
+| **wooden spatula** | NOT_VISIBLE* | N/A | coated_with_roux, used_for_stirring | high | *Visible as tool in frames, not a container |
+
+**Detailed Observations:**
+*   **Butter:** Visible as a bubbling liquid layer in the pan (Frame 2), indicating it is melting/cooking. It becomes mixed with flour.
+*   **Flour:** Visible as a white powder in a small bowl (Frame 1, 7) and being poured into the pan (Frame 3-8). It starts raw and separate, then mixes.
+*   **Roux mixture:** The combination of butter and flour. It appears as a white/pale paste (blond roux) in Frames 12-15 and turns light brown in Frame 16. It is a mixed state.
+*   **Pan:** Contains the shallow layer of the roux mixture.
+*   **Wooden spatula:** Present in the chef's hand (Frame 1) and stirring the pan (Frames 2-16). It is coated with the mixture. (Note: "NOT_VISIBLE" is used here to align with the container-state schema requested, as a spatula does not have a fill level, but it is visually present).
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_3) ###
+Time: 2026-07-06 18:01:41 -> 2026-07-06 18:04:34
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 24.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: pan, sauce/roux, strainer, bowl, chunky puree. For each, report: EMPTY / PARTLY_FILLED / FILLED / NOT_VISIBLE. Also report residue/depletion, raw vs cooked state, and whether ingredients are separate or mixed. Return compact rows: object, state, fill_level, residue, conf, uncertainty. Do not infer order."
+}
+
+[Output]:
+Based on the visual evidence from the frames (Video 3, frames 1-16), here is the state scan:
+
+| Object | State | Fill Level | Residue/Depletion | Raw vs Cooked | Separate/Mixed | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Pan** | FILLED | High | Sauce coating sides/bottom | Cooked | Mixed (orange sauce) | High | None |
+| **Sauce/Roux** | FILLED | High | Thick orange liquid | Cooked | Mixed (roux + tomato liquid) | High | Color indicates mixing |
+| **Strainer** | FILLED | High | Wet pulp mound | Cooked | Separate (solids held back) | High | None |
+| **Bowl** | EMPTY | None | None visible | Raw (likely cream prep) | Separate | Medium | White bowl on counter appears empty; small pot held by chef is being emptied |
+| **Chunky Puree** | FILLED | High | Wet cooked solids | Cooked | Separate (in strainer) | High | Visible as mound in strainer |
+
+**Detailed Observations:**
+*   **Pan:** The main pan on the stove contains a significant amount of orange/red liquid sauce. In early frames (1-6), a beige "blond roux" is visible cooking in the background pan, while a red sauce is in the foreground pot. By frame 12 and 16, the pan contains a unified orange sauce.
+*   **Sauce/Roux:** The mixture has progressed from separate beige roux and red puree to a mixed orange sauce. The texture is liquid but thickening.
+*   **Strainer:** In frames 13-16, a mesh strainer is held over the pan. It is filled with a mound of chunky red puree (cooked tomatoes/veg).
+*   **Bowl:** A white bowl is visible on the counter in the background (frame 13), appearing empty or containing a small amount of white substance (possibly cream, per object memory). The chef holds a small pot/pan to pour puree into the strainer.
+*   **Chunky Puree:** A large mass of chunky, cooked red puree is visible inside the strainer (frame 16), acting as the residue being separated from the liquid sauce.
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_4) ###
+Time: 2026-07-06 18:01:41 -> 2026-07-06 18:02:55
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 53.5,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: pan, vegetables, tomatoes, basil, sauce/liquid. For each, report: EMPTY / PARTLY_FILLED / FILLED / NOT_VISIBLE. Also report residue/depletion, raw vs cooked state, and whether ingredients are separate or mixed. Return compact rows: object, state, fill_level, residue, conf, uncertainty. Do not infer order. (part 1/2, time 0s–54s)"
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (Video 4, 0s–54s):
+
+*   **pan**: Visible (black skillet), PARTLY_FILLED, dark oily residue/fond visible at bottom (especially frames 10, 12, 14), High conf, Low uncertainty.
+*   **vegetables**: Visible (chopped white onions, light green celery, dark green bell peppers), PARTLY_FILLED, sautéing in oil/fat, High conf, transitioning from raw (added frames 6, 9, 13) to cooked/translucent (frame 15), ingredients are mixed in the pan.
+*   **tomatoes**: Visible in background pot (red chunks in frame 8 wide shot), PARTLY_FILLED, chunky/cooked appearance, Medium conf, Separate from the main sauté pan. (Not visible in the main working pan yet).
+*   **basil**: NOT_VISIBLE, N/A, N/A, High conf, Uncertainty: Green chunks appear to be celery and bell peppers, not basil leaves.
+*   **sauce/liquid**: Visible (bubbling fat/oil/roux base in frames 1-3, cooking liquid in later frames), Low/Thin layer (coating pan bottom), oily/bubbling residue, High conf, Hot/cooking state, initially separate then mixed with vegetables.
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_5) ###
+Time: 2026-07-06 18:02:55 -> 2026-07-06 18:04:35
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 53.5,
+      "end_time": 107.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: pan, vegetables, tomatoes, basil, sauce/liquid. For each, report: EMPTY / PARTLY_FILLED / FILLED / NOT_VISIBLE. Also report residue/depletion, raw vs cooked state, and whether ingredients are separate or mixed. Return compact rows: object, state, fill_level, residue, conf, uncertainty. Do not infer order. (part 2/2, time 54s–107s)"
+}
+
+[Output]:
+Based on the visual evidence from the frames (Video 4, 53.5s–107.0s):
+
+*   **pan**: State: Hot/In use. Fill_level: FILLED (with cooking mixture). Residue: Sauce/food coating the inner sides. Conf: High. Uncertainty: Low.
+*   **vegetables** (onions/leeks/peppers): State: Cooked (sautéed then stewed). Fill_level: PARTLY_FILLED (as component of mix). Residue: Broken down/softened. Conf: High. Uncertainty: Low. (Mixed with sauce in later frames).
+*   **tomatoes**: State: Cooked (transitioning from large raw chunks in Frame 1 to broken down sauce in Frames 10-16). Fill_level: PARTLY_FILLED. Residue: Broken down/pulpy. Conf: High. Uncertainty: Low. (Mixed).
+*   **basil** (tulsi leaf): State: Raw/Fresh leaves. Fill_level: NOT_VISIBLE (as bulk ingredient, only small handfuls visible in hand/being added). Residue: None. Conf: High. Uncertainty: Low. (Separate, being crushed and added).
+*   **sauce/liquid**: State: Boiling/Simmering (thick, chunky, red/orange). Fill_level: FILLED. Residue: Bubbling/frothy surface. Conf: High. Uncertainty: Low. (Mixed).
+
+**Compact Rows:**
+
+| object | state | fill_level | residue | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **pan** | Hot, on stove | FILLED | Food coating sides | High | Low |
+| **vegetables** | Cooked, mixed | PARTLY_FILLED | Broken down/softened | High | Low |
+| **tomatoes** | Cooked (chunks to pulp), mixed | PARTLY_FILLED | Broken down | High | Low |
+| **basil** | Raw leaves, separate (being added) | NOT_VISIBLE (bulk) | None | High | Low |
+| **sauce/liquid** | Boiling, mixed | FILLED | Bubbling/frothy | High | Low |
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_6) ###
+Time: 2026-07-06 18:01:41 -> 2026-07-06 18:03:52
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 16.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: pan, blender jar, orange liquid, green herbs. For each, report: EMPTY / PARTLY_FILLED / FILLED / NOT_VISIBLE. Also report residue/depletion, raw vs cooked state, and whether ingredients are separate or mixed. Return compact rows: object, state, fill_level, residue, conf, uncertainty. Do not infer order."
+}
+
+[Output]:
+pan, PARTLY_FILLED (frames 1-3) -> EMPTY (frames 8-9) -> NOT_VISIBLE (frames 10-16), ~1/3 full decreasing to empty, coated with sauce residue / cooked / mixed sauce, 0.9, low
+blender jar, PARTLY_FILLED (frames 1-3) -> FILLED (frames 10-16), ~10% (herbs only) increasing to ~70% full, splashes on upper walls / contains cooked liquid / mixed ingredients, 0.95, low
+orange liquid, PARTLY_FILLED (in pan) -> FILLED (in blender), ~1/3 volume in pan increasing to ~2/3 volume in blender, none / cooked (hot) / mixed with herbs, 0.95, low
+green herbs, PARTLY_FILLED (visible at bottom in frame 3) -> NOT_VISIBLE (blended into specks in frames 10-16), small amount at bottom dispersing into suspension, suspended specks / likely raw or lightly cooked / mixed into liquid, 0.8, medium
+
+------------------------------------------------------------
+

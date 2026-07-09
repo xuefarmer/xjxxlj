@@ -1,0 +1,122 @@
+[
+  {
+    "turn": 1,
+    "call_id": "batch_1_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 27.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 16:41:17",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 27.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"Need to identify shared objects and their state progression across all 3 segments.\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"tool contact\",\n    \"transfer traces\",\n    \"residue/depletion\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: Raw fish block (tuna saku, red flesh, dark skin), long knife (yanagiba), white cutting board, blue gloves. action: Slicing the dark skin off the side of the red fish block. state: Fish is raw, whole block. Skin is partially attached and being cut. window: 1-6. query_link: null. conf: High. uncertainty: None.\nobjects: Removed skin strip (pink/white/dark), fish block. action: Skin strip lies separate on the board (top left). Person trims sinew/fat from the block. state: Skin strip is separate (residue). Fish block is raw, repositioned. window: 7-10. query_link: null. conf: High. uncertainty: None.\nobjects: Fish block, skin, knife, gloved hand. action: Hand pulls the skin back (peeling) while knife slices underneath to separate skin from flesh. state: Skin is being fully separated/peeled. Red flesh is exposed. window: 11-16. query_link: null. conf: High. uncertainty: None.",
+    "timestamp_end": "2026-07-06 16:41:58"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 50.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 16:41:17",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 50.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"Need to identify shared objects and their state progression across all 3 segments.\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"tool contact\",\n    \"transfer traces\",\n    \"residue/depletion\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: Tuna block (saku), action: Slicing/Trimming, state: Raw, cut, wet, red flesh, dark veins present then removed, window: Frames 1-16, query_link: Video 2, conf: High, uncertainty: None\nobjects: Knife, action: Cutting, state: Present, wet, metal blade contacting fish, window: Frames 1-16, query_link: Video 2, conf: High, uncertainty: None\nobjects: Blood line/vein trimmings, action: Being separated, state: Raw, cut, separate, dark red/black (L-shaped or strip), window: Frames 7-16, query_link: Video 2, conf: High, uncertainty: None\nobjects: Cutting board, action: Supporting surface, state: Present, wet, red residue/juice, trimmings scattered, window: Frames 1-16, query_link: Video 2, conf: High, uncertainty: None",
+    "timestamp_end": "2026-07-06 16:42:12"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 33.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 16:41:17",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 33.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"Need to identify shared objects and their state progression across all 3 segments.\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"tool contact\",\n    \"transfer traces\",\n    \"residue/depletion\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: Tuna block (saku), action: Cutting/Slicing, state: Raw, red, whole block cut into smaller blocks then thin slices, window: 1-16, query_link: N/A, conf: High, uncertainty: None\nobjects: Knife, action: Slicing (sogigiri), state: Sharp, metal blade, black handle, wet with residue, window: 1-16, query_link: N/A, conf: High, uncertainty: None\nobjects: Sliced Tuna (Sashimi), action: Being arranged, state: Raw, red, thin slices, separate but stacked/fanned, window: 6-16, query_link: N/A, conf: High, uncertainty: None\nobjects: Cutting Board, action: Supporting surface, state: White, wet, significant red residue/juices present, window: 1-16, query_link: N/A, conf: High, uncertainty: None\nobjects: Hands (Blue Gloves), action: Holding fish and knife, state: Present, blue nitrile gloves, window: 1-16, query_link: N/A, conf: High, uncertainty: None",
+    "timestamp_end": "2026-07-06 16:42:00"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 27.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the tuna block: is the dark skin fully removed, partially attached, or fully present? Are there any blood lines/veins visible on the red flesh? What is the state of the cutting board: clean, has skin strips, has red residue/juice, or has vein trimmings? Return compact rows: object/state/window/conf/uncertainty."
+    },
+    "timestamp_start": "2026-07-06 16:43:07",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 27.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the tuna block: is the dark skin fully removed, partially attached, or fully present? Are there any blood lines/veins visible on the red flesh? What is the state of the cutting board: clean, has skin strips, has red residue/juice, or has vein trimmings? Return compact rows: object/state/window/conf/uncertainty.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"tuna_block\": {\n      \"1\": \"raw, whole block, dark skin being peeled off\",\n      \"2\": \"raw, skinless block, dark veins being trimmed\",\n      \"3\": \"raw, cut into smaller blocks then thin slices, arranged/fanned\"\n    },\n    \"cutting_board\": {\n      \"1\": \"white, skin strip separate\",\n      \"2\": \"wet, red residue, vein trimmings scattered\",\n      \"3\": \"significant red residue/juices\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"tool contact\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"tuna block skin presence\",\n    \"tuna block vein presence\",\n    \"cutting board residue type\"\n  ],\n  \"uncertain\": [\n    \"Verify exact state of tuna block and board in each segment to confirm no overlaps.\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "tuna_block | partially attached (dark skin is being actively peeled/cut away), yes (white sinew/veins visible between skin and flesh) | 1-16 | high | low\ncutting_board | has skin strips (removed strip visible at top left), has red residue/juice | 1-16 | high | low",
+    "timestamp_end": "2026-07-06 16:45:57"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 50.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the tuna block: is the dark skin present or absent? Are blood lines/veins visible and being removed, or already removed? What is the state of the cutting board: has skin strips, has red residue/juice, or has vein trimmings? Return compact rows: object/state/window/conf/uncertainty."
+    },
+    "timestamp_start": "2026-07-06 16:43:07",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 50.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the tuna block: is the dark skin present or absent? Are blood lines/veins visible and being removed, or already removed? What is the state of the cutting board: has skin strips, has red residue/juice, or has vein trimmings? Return compact rows: object/state/window/conf/uncertainty.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"tuna_block\": {\n      \"1\": \"raw, whole block, dark skin being peeled off\",\n      \"2\": \"raw, skinless block, dark veins being trimmed\",\n      \"3\": \"raw, cut into smaller blocks then thin slices, arranged/fanned\"\n    },\n    \"cutting_board\": {\n      \"1\": \"white, skin strip separate\",\n      \"2\": \"wet, red residue, vein trimmings scattered\",\n      \"3\": \"significant red residue/juices\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"tool contact\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"tuna block skin presence\",\n    \"tuna block vein presence\",\n    \"cutting board residue type\"\n  ],\n  \"uncertain\": [\n    \"Verify exact state of tuna block and board in each segment to confirm no overlaps.\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in Frames 1-16 (Video 2):\n\n**Tuna Block State:**\n*   **Dark Skin:** Present and being removed in Frames 10-14 (large dark blue/black section being sliced away). Absent in Frames 4, 15, 16 (block appears red/pink).\n*   **Blood Lines/Veins:** Visible and actively being removed/trimmed in Frames 1-4, 7-9, and 11-13 (text overlays confirm cutting of \"blood lines\" and \"veins\").\n\n**Cutting Board State:**\n*   **Residue:** Has significant red residue/juice, especially visible in Frames 3, 4, 10-16.\n*   **Trimming:** Has skin strips and vein trimmings scattered (visible in Frames 1, 3, 4, 7, 14).\n\n**Compact Rows:**\n\n| Object | State | Window | Conf | Uncertainty |\n| :--- | :--- | :--- | :--- | :--- |\n| **Tuna Block** | Dark skin present and being removed (Frames 10-14); Blood lines/veins visible and being trimmed (Frames 1-4, 7-9, 11-13) | Video 2 (Frames 1-16) | High | Low |\n| **Cutting Board** | Has red residue/juice; Has skin strips and vein trimmings scattered | Video 2 (Frames 1-16) | High | Low |",
+    "timestamp_end": "2026-07-06 16:45:04"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 33.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the tuna block: is it a whole block, cut into smaller blocks, or fully sliced into thin sashimi? Are there any blood lines/veins visible? What is the state of the cutting board: has significant red residue/juice, has arranged sashimi slices, or has trimmings? Return compact rows: object/state/window/conf/uncertainty."
+    },
+    "timestamp_start": "2026-07-06 16:43:07",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 33.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the tuna block: is it a whole block, cut into smaller blocks, or fully sliced into thin sashimi? Are there any blood lines/veins visible? What is the state of the cutting board: has significant red residue/juice, has arranged sashimi slices, or has trimmings? Return compact rows: object/state/window/conf/uncertainty.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"tuna_block\": {\n      \"1\": \"raw, whole block, dark skin being peeled off\",\n      \"2\": \"raw, skinless block, dark veins being trimmed\",\n      \"3\": \"raw, cut into smaller blocks then thin slices, arranged/fanned\"\n    },\n    \"cutting_board\": {\n      \"1\": \"white, skin strip separate\",\n      \"2\": \"wet, red residue, vein trimmings scattered\",\n      \"3\": \"significant red residue/juices\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"tool contact\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"tuna block skin presence\",\n    \"tuna block vein presence\",\n    \"cutting board residue type\"\n  ],\n  \"uncertain\": [\n    \"Verify exact state of tuna block and board in each segment to confirm no overlaps.\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "tuna_block | cut into smaller blocks then thin slices | 1-16 | High | Low\ntuna_block_veins | faint grain/connective tissue visible | 1-16 | High | Low\ncutting_board | significant red residue/juice and arranged sashimi slices | 1-16 | High | Low",
+    "timestamp_end": "2026-07-06 16:44:40"
+  }
+]

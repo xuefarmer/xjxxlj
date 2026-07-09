@@ -1,0 +1,183 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "all object states and transitions pending Layer1"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "pork": {
+      "5": "raw chunks added to boiling water",
+      "3": "cooked, removed from pot",
+      "6": "cooked, sliced thinly",
+      "4": "cooked, sliced, added to roll"
+    },
+    "shrimp": {
+      "3": "raw grey -> boiled pink -> drained",
+      "6": "cooked, butterflied/sliced",
+      "4": "cooked, butterflied, placed on rice paper"
+    },
+    "noodles": {
+      "5": "dry block, instruction to boil",
+      "2": "dry -> boiled soft -> drained -> squeezed",
+      "4": "cooked soft, added to roll"
+    },
+    "rice_paper": {
+      "1": "dry -> submerged in warm water",
+      "4": "wet/translucent on board, being assembled"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states (raw/cooked/cut)",
+    "container fill/empty",
+    "tool contact/residue",
+    "background vessel states",
+    "transfer traces"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all object states and transitions pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cooked/cut)",
+          "container fill/empty",
+          "tool contact/residue",
+          "background vessel states",
+          "transfer traces"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "5->2->3->6->1->4",
+        "order_confidence": 9,
+        "confidence_basis": [
+          "V5 text cues boiling noodles",
+          "V2 boils noodles then drains",
+          "V3 removes cooked pork then boils shrimp",
+          "V6 slices cooked pork and shrimp",
+          "V1 sets up prepped ingredients and hydrates rice paper",
+          "V4 assembles rolls with wet rice paper"
+        ],
+        "blocking_uncertainties": [],
+        "object_memory": {
+          "pork": {
+            "5": "raw chunks added to boiling water",
+            "3": "cooked, removed from pot",
+            "6": "cooked, sliced thinly",
+            "4": "cooked, sliced, added to roll"
+          },
+          "shrimp": {
+            "3": "raw grey -> boiled pink -> drained",
+            "6": "cooked, butterflied/sliced",
+            "4": "cooked, butterflied, placed on rice paper"
+          },
+          "noodles": {
+            "5": "dry block, instruction to boil",
+            "2": "dry -> boiled soft -> drained -> squeezed",
+            "4": "cooked soft, added to roll"
+          },
+          "rice_paper": {
+            "1": "dry -> submerged in warm water",
+            "4": "wet/translucent on board, being assembled"
+          }
+        },
+        "temporal_index": {
+          "video5": [
+            {
+              "window": [
+                18,
+                23
+              ],
+              "event": "noodle instruction",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                6
+              ],
+              "event": "noodle boiling start",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                8
+              ],
+              "event": "pork removal",
+              "confidence": "high"
+            }
+          ],
+          "video6": [
+            {
+              "window": [
+                0,
+                10
+              ],
+              "event": "meat slicing start",
+              "confidence": "high"
+            }
+          ],
+          "video1": [
+            {
+              "window": [
+                14,
+                21
+              ],
+              "event": "rice paper hydration",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                10
+              ],
+              "event": "assembly start",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "5->2->3->6->1->4"
+  ],
+  "order_confidence": [
+    "9"
+  ],
+  "confidence_basis": [
+    "V5 text cues boiling noodles",
+    "V2 boils noodles then drains",
+    "V3 removes cooked pork then boils shrimp",
+    "V6 slices cooked pork and shrimp",
+    "V1 sets up prepped ingredients and hydrates rice paper",
+    "V4 assembles rolls with wet rice paper"
+  ],
+  "blocking_uncertainties": [],
+  "temporal_index": [
+    "{\"video5\": [{\"window\": [18, 23], \"event\": \"noodle instruction\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 6], \"event\": \"noodle boiling start\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 8], \"event\": \"pork removal\", \"confidence\": \"high\"}], \"video6\": [{\"window\": [0, 10], \"event\": \"meat slicing start\", \"confidence\": \"high\"}], \"video1\": [{\"window\": [14, 21], \"event\": \"rice paper hydration\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 10], \"event\": \"assembly start\", \"confidence\": \"high\"}]}"
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "confirmed": [
+    "Location shift: counter (V3, V2) -> dark table (V4, V1)",
+    "Package lifecycle: SEALED (V3, V2) -> SEALED/ABSENT (V4) -> ABSENT (V1)",
+    "Assembly chain: wetting (V2) -> filling (V4) -> rolling (V1)"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "banh_trang_package": {
+      "1": "ABSENT/NOT_MENTIONED",
+      "2": "SEALED_FULL",
+      "3": "SEALED_FULL",
+      "4": "ABSENT/NOT_MENTIONED"
+    },
+    "rice_paper_sheet": {
+      "1": "WET_FILLED_ROLLING",
+      "2": "WET_EMPTY_PLATE",
+      "3": "NOT_VISIBLE",
+      "4": "WET_DARK_TABLE"
+    },
+    "plate": {
+      "1": "WHITE_SQUARE_EMPTY",
+      "2": "SQUARE_FILLING_WITH_SHEET",
+      "3": "NOT_VISIBLE",
+      "4": "WHITE_SQUARE_EMPTY"
+    },
+    "filling": {
+      "1": "SHRIMP_CARROTS_NOODLES_HERBS",
+      "2": "NOT_VISIBLE",
+      "3": "YELLOW_ROUND_OBJECT",
+      "4": "SHRIMP_NOODLES_HERBS_PILE"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states (raw/cooked/mixed)",
+    "container states (empty/filled/residue)",
+    "tool presence",
+    "transfer actions",
+    "plating/finishing cues",
+    "location (counter vs dark table)",
+    "Banh Trang package state",
+    "plate state",
+    "filling state"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all segment roles and object states pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cooked/mixed)",
+          "container states (empty/filled/residue)",
+          "tool presence",
+          "transfer actions",
+          "plating/finishing cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "banh_trang_package": {
+            "1": "ABSENT/NOT_MENTIONED",
+            "2": "SEALED_FULL",
+            "3": "SEALED_FULL",
+            "4": "ABSENT/NOT_MENTIONED"
+          },
+          "rice_paper_sheet": {
+            "1": "WET_FILLED_ROLLING",
+            "2": "WET_EMPTY_PLATE",
+            "3": "NOT_VISIBLE",
+            "4": "WET_DARK_TABLE"
+          },
+          "plate": {
+            "1": "WHITE_SQUARE_EMPTY",
+            "2": "SQUARE_FILLING_WITH_SHEET",
+            "3": "NOT_VISIBLE",
+            "4": "WHITE_SQUARE_EMPTY"
+          },
+          "filling": {
+            "1": "SHRIMP_CARROTS_NOODLES_HERBS",
+            "2": "NOT_VISIBLE",
+            "3": "YELLOW_ROUND_OBJECT",
+            "4": "SHRIMP_NOODLES_HERBS_PILE"
+          }
+        },
+        "preliminary_order": "3->2->4->1",
+        "order_confidence": 7,
+        "confidence_basis": "Spring roll assembly chain: wet paper (2) -> add filling (4) -> roll (1). V3 is a separate counter activity with sealed package, likely before the spring roll sequence.",
+        "blocking_uncertainties": [
+          "Exact order of V3 and V2 at the counter",
+          "Whether V3 is before or after the spring roll sequence"
+        ],
+        "dimensions_to_compare": [
+          "location (counter vs dark table)",
+          "Banh Trang package state",
+          "plate state",
+          "filling state"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 8,
+        "comparison_table": {
+          "3": "counter, package SEALED, red press, yellow object",
+          "2": "counter, package SEALED, green tray, wetting paper",
+          "4": "dark table, package SEALED then ABSENT, filling paper",
+          "1": "dark table, package ABSENT, rolling paper"
+        },
+        "confirmed": [
+          "Location shift: counter (V3, V2) -> dark table (V4, V1)",
+          "Package lifecycle: SEALED (V3, V2) -> SEALED/ABSENT (V4) -> ABSENT (V1)",
+          "Assembly chain: wetting (V2) -> filling (V4) -> rolling (V1)"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3->2->4->1"
+  ],
+  "order_confidence": [
+    "7",
+    "8"
+  ],
+  "confidence_basis": [
+    "Spring roll assembly chain: wet paper (2) -> add filling (4) -> roll (1). V3 is a separate counter activity with sealed package, likely before the spring roll sequence."
+  ],
+  "blocking_uncertainties": [
+    "Exact order of V3 and V2 at the counter",
+    "Whether V3 is before or after the spring roll sequence"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"3\": \"counter, package SEALED, red press, yellow object\", \"2\": \"counter, package SEALED, green tray, wetting paper\", \"4\": \"dark table, package SEALED then ABSENT, filling paper\", \"1\": \"dark table, package ABSENT, rolling paper\"}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": []
+}

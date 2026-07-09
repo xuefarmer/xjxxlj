@@ -1,0 +1,204 @@
+{
+  "confirmed": [
+    "V3 sealed meat + early onions",
+    "V1 opened meat + adding to onions",
+    "V2 pre-existing meat mixture + more meat added"
+  ],
+  "uncertain": [
+    "verify V2 pre-existing meat mixture",
+    "verify V3 sealed meat package"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"meat crumbled onto sautéed onions\", \"2\": \"more meat crumbled into pan already containing meat+onion mixture\", \"3\": \"cupboard search then early onion sauté, meat sealed\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "meat_package": {
+      "3": "sealed/unopened on counter",
+      "1": "opened, being depleted",
+      "2": "reserve container, being depleted"
+    },
+    "onions_in_pan": {
+      "3": "early stage, white/translucent",
+      "1": "sautéed, translucent/wet",
+      "2": "mixed with cooking meat"
+    },
+    "meat_in_pan": {
+      "3": "ABSENT",
+      "1": "raw, added on top of onions",
+      "2": "already present as cooking mixture before more added"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object state progression (raw->cooked)",
+    "container fill/empty transitions",
+    "transfer traces between vessels",
+    "residue/depletion cues",
+    "background surface state",
+    "meat package seal/depletion",
+    "pan mixture maturity",
+    "onion browning stage"
+  ],
+  "resolved_uncertain": [
+    "V2 pan already has meat mixture",
+    "V3 meat package sealed"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "full inventory of objects and states across all 3 segments pending"
+        ],
+        "dimensions_to_compare": [
+          "object state progression (raw->cooked)",
+          "container fill/empty transitions",
+          "transfer traces between vessels",
+          "residue/depletion cues",
+          "background surface state"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "meat crumbled onto sautéed onions",
+          "2": "more meat crumbled into pan already containing meat+onion mixture",
+          "3": "cupboard search then early onion sauté, meat sealed"
+        },
+        "object_memory": {
+          "meat_package": {
+            "3": "sealed/unopened on counter",
+            "1": "opened, being depleted",
+            "2": "reserve container, being depleted"
+          },
+          "onions_in_pan": {
+            "3": "early stage, white/translucent",
+            "1": "sautéed, translucent/wet",
+            "2": "mixed with cooking meat"
+          },
+          "meat_in_pan": {
+            "3": "ABSENT",
+            "1": "raw, added on top of onions",
+            "2": "already present as cooking mixture before more added"
+          }
+        },
+        "preliminary_order": "3->1->2",
+        "order_confidence": 8,
+        "confidence_basis": "meat package sealed->opened->depleted; onions early->sautéed->mixed with meat; meat absent->added->already cooking",
+        "blocking_uncertainties": [
+          "confirm V2 pan already has meat mixture before new meat is added",
+          "confirm V3 meat package is truly sealed"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                47.2
+              ],
+              "event": "meat addition",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                22.97
+              ],
+              "event": "additional meat to mixture",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                47.97
+              ],
+              "event": "early onion sauté",
+              "confidence": "high"
+            }
+          ]
+        },
+        "uncertain": [
+          "verify V2 pre-existing meat mixture",
+          "verify V3 sealed meat package"
+        ],
+        "dimensions_to_compare": [
+          "meat package seal/depletion",
+          "pan mixture maturity",
+          "onion browning stage"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "meat_package": {
+            "3": "sealed/unopened",
+            "1": "opened/depleted",
+            "2": "reserve container depleted"
+          },
+          "meat_in_pan": {
+            "3": "ABSENT",
+            "1": "raw added on onions",
+            "2": "already cooking before more added"
+          },
+          "onions_in_pan": {
+            "3": "early translucent",
+            "1": "sautéed translucent",
+            "2": "mixed with meat"
+          }
+        },
+        "confirmed": [
+          "V3 sealed meat + early onions",
+          "V1 opened meat + adding to onions",
+          "V2 pre-existing meat mixture + more meat added"
+        ],
+        "resolved_uncertain": [
+          "V2 pan already has meat mixture",
+          "V3 meat package sealed"
+        ],
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3->1->2"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "meat package sealed->opened->depleted; onions early->sautéed->mixed with meat; meat absent->added->already cooking"
+  ],
+  "blocking_uncertainties": [
+    "confirm V2 pan already has meat mixture before new meat is added",
+    "confirm V3 meat package is truly sealed"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 47.2], \"event\": \"meat addition\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 22.97], \"event\": \"additional meat to mixture\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 47.97], \"event\": \"early onion sauté\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"meat_package\": {\"3\": \"sealed/unopened\", \"1\": \"opened/depleted\", \"2\": \"reserve container depleted\"}, \"meat_in_pan\": {\"3\": \"ABSENT\", \"1\": \"raw added on onions\", \"2\": \"already cooking before more added\"}, \"onions_in_pan\": {\"3\": \"early translucent\", \"1\": \"sautéed translucent\", \"2\": \"mixed with meat\"}}"
+  ]
+}

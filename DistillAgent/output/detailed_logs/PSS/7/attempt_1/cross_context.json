@@ -1,0 +1,340 @@
+{
+  "confirmed": [
+    "6->4: whole roast sliced -> thick pieces pounded",
+    "4->1: pounding residue -> seasoned flattened meat",
+    "1->5: seasoned meat -> breading station",
+    "5->3: breaded cutlets -> preheating pan",
+    "3->2: melted butter -> frying breaded cutlet"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"6\": \"Slicing whole raw meat roast into thick cutlets/steaks.\", \"4\": \"Tenderizing and flattening raw meat cutlets on white board using mallet and plastic wrap.\", \"1\": \"Seasoning and massaging flattened raw meat with salt and pepper on white board.\", \"5\": \"Preparing egg wash and breadcrumb station, then dipping and coating meat cutlets.\", \"3\": \"Melting butter in empty frying pan on stove.\", \"2\": \"Pan-frying breaded cutlet in oil and butter until golden-brown.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "meat": {
+      "6": "whole roast -> sliced into thick pieces",
+      "4": "thick/rolled piece -> flattened thin strip",
+      "1": "thin irregular cut, seasoned and rubbed",
+      "5": "raw cutlets -> wet in egg wash -> coated in dry crumbs",
+      "2": "breaded cutlet -> cooked golden-brown crispy crust"
+    },
+    "cutting_board": {
+      "6": "white plastic board, holds whole roast then sliced pieces",
+      "4": "white plastic board, holds meat being pounded",
+      "1": "white plastic board, shows red residue/juices from prior pounding"
+    },
+    "meat_tenderizer": {
+      "4": "actively used to pound meat",
+      "1": "resting on board, not used"
+    },
+    "frying_pan": {
+      "3": "initially empty and dry, butter added and melts",
+      "2": "contains dark oil and melting butter, breaded cutlet added and fried"
+    },
+    "butter": {
+      "3": "solid chunk -> melted liquid pool in empty pan",
+      "2": "knob added to hot oil, melts, then cutlet is fried"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states (raw/cooked/cut/mixed)",
+    "container states (empty/filled/residue)",
+    "tool usage",
+    "transfer events",
+    "background vessel states",
+    "caption/narration cues",
+    "cutting board residue",
+    "meat thickness/state",
+    "pan contents",
+    "butter state"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All object states and ordering pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cooked/cut/mixed)",
+          "container states (empty/filled/residue)",
+          "tool usage",
+          "transfer events",
+          "background vessel states",
+          "caption/narration cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "6": "Slicing whole raw meat roast into thick cutlets/steaks.",
+          "4": "Tenderizing and flattening raw meat cutlets on white board using mallet and plastic wrap.",
+          "1": "Seasoning and massaging flattened raw meat with salt and pepper on white board.",
+          "5": "Preparing egg wash and breadcrumb station, then dipping and coating meat cutlets.",
+          "3": "Melting butter in empty frying pan on stove.",
+          "2": "Pan-frying breaded cutlet in oil and butter until golden-brown."
+        },
+        "object_memory": {
+          "meat": {
+            "6": "whole roast -> sliced into thick pieces",
+            "4": "thick/rolled piece -> flattened thin strip",
+            "1": "thin irregular cut, seasoned and rubbed",
+            "5": "raw cutlets -> wet in egg wash -> coated in dry crumbs",
+            "2": "breaded cutlet -> cooked golden-brown crispy crust"
+          },
+          "cutting_board": {
+            "6": "white plastic board, holds whole roast then sliced pieces",
+            "4": "white plastic board, holds meat being pounded",
+            "1": "white plastic board, shows red residue/juices from prior pounding"
+          },
+          "meat_tenderizer": {
+            "4": "actively used to pound meat",
+            "1": "resting on board, not used"
+          },
+          "frying_pan": {
+            "3": "initially empty and dry, butter added and melts",
+            "2": "contains dark oil and melting butter, breaded cutlet added and fried"
+          },
+          "butter": {
+            "3": "solid chunk -> melted liquid pool in empty pan",
+            "2": "knob added to hot oil, melts, then cutlet is fried"
+          }
+        },
+        "temporal_index": {
+          "video6": [
+            {
+              "window": [
+                0,
+                21
+              ],
+              "event": "slicing whole meat",
+              "key_objects": [
+                "whole roast",
+                "knife",
+                "white board"
+              ],
+              "visible_state": "whole -> sliced",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                32
+              ],
+              "event": "tenderizing meat",
+              "key_objects": [
+                "thick meat",
+                "mallet",
+                "plastic wrap"
+              ],
+              "visible_state": "thick -> flattened",
+              "confidence": "high"
+            }
+          ],
+          "video1": [
+            {
+              "window": [
+                0,
+                16
+              ],
+              "event": "seasoning meat",
+              "key_objects": [
+                "flattened meat",
+                "pepper grinder",
+                "salt"
+              ],
+              "visible_state": "seasoned, board has red residue",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                100
+              ],
+              "event": "breading station and coating",
+              "key_objects": [
+                "egg wash",
+                "breadcrumbs",
+                "raw cutlets"
+              ],
+              "visible_state": "raw -> breaded",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                18
+              ],
+              "event": "melting butter",
+              "key_objects": [
+                "empty pan",
+                "butter chunk"
+              ],
+              "visible_state": "pan empty -> butter melted",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                52
+              ],
+              "event": "frying cutlet",
+              "key_objects": [
+                "pan with oil",
+                "butter",
+                "breaded cutlet"
+              ],
+              "visible_state": "raw breaded -> cooked golden",
+              "confidence": "high"
+            }
+          ]
+        },
+        "preliminary_order": [
+          6,
+          4,
+          1,
+          5,
+          3,
+          2
+        ],
+        "order_confidence": 9,
+        "confidence_basis": "Clear state-transition graph for meat (whole->sliced->flattened->seasoned->breaded->fried) and pan (empty->with oil/butter and meat). Cutting board residue in V1 directly links to pounding in V4. Pan state in V3 (empty) directly precedes V2 (with oil and meat).",
+        "blocking_uncertainties": [
+          "Verify V4->V1 cutting board residue link",
+          "Verify V3->V2 pan state transition"
+        ],
+        "candidate_targets": [
+          6,
+          4,
+          1,
+          5,
+          3,
+          2
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "Confirming bridge transitions via Layer2"
+        ],
+        "dimensions_to_compare": [
+          "cutting board residue",
+          "meat thickness/state",
+          "pan contents",
+          "butter state"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "order_confidence": 10
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "6": "Pending V6 Layer2",
+          "5": "Pending V5 Layer2"
+        },
+        "uncertain": [
+          "Confirming bridge transitions via Layer2",
+          "Pending Layer2 for V5 and V6"
+        ]
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "6": "Whole roast sliced into thick pieces. Board accumulates residue. Dry ingredients bowl visible.",
+          "4": "Thick meat pounded flat. Board has red residue. Tenderizer used then rests.",
+          "1": "Flattened meat seasoned. Board has red residue. Tenderizer resting.",
+          "5": "Raw cutlets dipped in egg wash, coated in dry crumbs. Breading station active.",
+          "3": "Empty pan, butter added and melts.",
+          "2": "Pan with oil and butter, raw breaded cutlet added and fried golden-brown."
+        },
+        "confirmed": [
+          "6->4: whole roast sliced -> thick pieces pounded",
+          "4->1: pounding residue -> seasoned flattened meat",
+          "1->5: seasoned meat -> breading station",
+          "5->3: breaded cutlets -> preheating pan",
+          "3->2: melted butter -> frying breaded cutlet"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          6,
+          4,
+          1,
+          5,
+          3,
+          2
+        ],
+        "uncertain": [],
+        "order_confidence": 10
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "temporal_index": [
+    "{\"video6\": [{\"window\": [0, 21], \"event\": \"slicing whole meat\", \"key_objects\": [\"whole roast\", \"knife\", \"white board\"], \"visible_state\": \"whole -> sliced\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 32], \"event\": \"tenderizing meat\", \"key_objects\": [\"thick meat\", \"mallet\", \"plastic wrap\"], \"visible_state\": \"thick -> flattened\", \"confidence\": \"high\"}], \"video1\": [{\"window\": [0, 16], \"event\": \"seasoning meat\", \"key_objects\": [\"flattened meat\", \"pepper grinder\", \"salt\"], \"visible_state\": \"seasoned, board has red residue\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 100], \"event\": \"breading station and coating\", \"key_objects\": [\"egg wash\", \"breadcrumbs\", \"raw cutlets\"], \"visible_state\": \"raw -> breaded\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 18], \"event\": \"melting butter\", \"key_objects\": [\"empty pan\", \"butter chunk\"], \"visible_state\": \"pan empty -> butter melted\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 52], \"event\": \"frying cutlet\", \"key_objects\": [\"pan with oil\", \"butter\", \"breaded cutlet\"], \"visible_state\": \"raw breaded -> cooked golden\", \"confidence\": \"high\"}]}"
+  ],
+  "preliminary_order": [
+    "6",
+    "4",
+    "1",
+    "5",
+    "3",
+    "2"
+  ],
+  "order_confidence": [
+    "9",
+    "10"
+  ],
+  "confidence_basis": [
+    "Clear state-transition graph for meat (whole->sliced->flattened->seasoned->breaded->fried) and pan (empty->with oil/butter and meat). Cutting board residue in V1 directly links to pounding in V4. Pan state in V3 (empty) directly precedes V2 (with oil and meat)."
+  ],
+  "blocking_uncertainties": [
+    "Verify V4->V1 cutting board residue link",
+    "Verify V3->V2 pan state transition"
+  ],
+  "candidate_targets": [
+    "6",
+    "4",
+    "1",
+    "5",
+    "3",
+    "2"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"6\": \"Pending V6 Layer2\", \"5\": \"Pending V5 Layer2\"}",
+    "{\"6\": \"Whole roast sliced into thick pieces. Board accumulates residue. Dry ingredients bowl visible.\", \"4\": \"Thick meat pounded flat. Board has red residue. Tenderizer used then rests.\", \"1\": \"Flattened meat seasoned. Board has red residue. Tenderizer resting.\", \"5\": \"Raw cutlets dipped in egg wash, coated in dry crumbs. Breading station active.\", \"3\": \"Empty pan, butter added and melts.\", \"2\": \"Pan with oil and butter, raw breaded cutlet added and fried golden-brown.\"}"
+  ],
+  "pruned_targets": []
+}

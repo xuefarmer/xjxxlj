@@ -1,0 +1,147 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "all object states and transitions pending Layer1"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"chopping meat/white ingredient, adding to bowl with red substance, squeezing sauce\", \"2\": \"spreading rice on nori, spooning fish mixture onto rice, rolling sushi\", \"3\": \"mixing pink meat/tuna, mayo, red bits in bowl into wet paste\", \"4\": \"cutting sushi roll into segments, plating\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "fish_mixture_bowl": {
+      "1": "ingredients added, sauce dispensed, mixed ingredients",
+      "3": "separate ingredients transitioning to mixed wet pink paste via spoon",
+      "2": "uniform paste, bowl partially depleted as mixture is spooned onto rice"
+    },
+    "sushi_roll": {
+      "2": "formed into cylinder on mat",
+      "4": "whole cylinder at start, sliced into ~6 pieces and plated at end"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object state progression",
+    "container fill/empty",
+    "residue/depletion",
+    "transfer traces"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all object states and transitions pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "object state progression",
+          "container fill/empty",
+          "residue/depletion",
+          "transfer traces"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "chopping meat/white ingredient, adding to bowl with red substance, squeezing sauce",
+          "2": "spreading rice on nori, spooning fish mixture onto rice, rolling sushi",
+          "3": "mixing pink meat/tuna, mayo, red bits in bowl into wet paste",
+          "4": "cutting sushi roll into segments, plating"
+        },
+        "object_memory": {
+          "fish_mixture_bowl": {
+            "1": "ingredients added, sauce dispensed, mixed ingredients",
+            "3": "separate ingredients transitioning to mixed wet pink paste via spoon",
+            "2": "uniform paste, bowl partially depleted as mixture is spooned onto rice"
+          },
+          "sushi_roll": {
+            "2": "formed into cylinder on mat",
+            "4": "whole cylinder at start, sliced into ~6 pieces and plated at end"
+          }
+        },
+        "preliminary_order": [
+          1,
+          3,
+          2,
+          4
+        ],
+        "order_confidence": 8,
+        "confidence_basis": "V1 adds ingredients to bowl, V3 mixes them into paste, V2 uses paste on nori, V4 cuts and plates roll",
+        "blocking_uncertainties": [
+          "exact bowl fill state transitions between V1 and V3"
+        ],
+        "temporal_index": {
+          "1": [
+            {
+              "window": [
+                0,
+                49
+              ],
+              "event": "bowl filling and sauce adding",
+              "confidence": "high"
+            }
+          ],
+          "2": [
+            {
+              "window": [
+                0,
+                38
+              ],
+              "event": "spooning mixture onto rice",
+              "confidence": "high"
+            }
+          ],
+          "3": [
+            {
+              "window": [
+                0,
+                18
+              ],
+              "event": "mixing bowl contents",
+              "confidence": "high"
+            }
+          ],
+          "4": [
+            {
+              "window": [
+                0,
+                39
+              ],
+              "event": "cutting and plating sushi",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1",
+    "3",
+    "2",
+    "4"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "V1 adds ingredients to bowl, V3 mixes them into paste, V2 uses paste on nori, V4 cuts and plates roll"
+  ],
+  "blocking_uncertainties": [
+    "exact bowl fill state transitions between V1 and V3"
+  ],
+  "temporal_index": [
+    "{\"1\": [{\"window\": [0, 49], \"event\": \"bowl filling and sauce adding\", \"confidence\": \"high\"}], \"2\": [{\"window\": [0, 38], \"event\": \"spooning mixture onto rice\", \"confidence\": \"high\"}], \"3\": [{\"window\": [0, 18], \"event\": \"mixing bowl contents\", \"confidence\": \"high\"}], \"4\": [{\"window\": [0, 39], \"event\": \"cutting and plating sushi\", \"confidence\": \"high\"}]}"
+  ]
+}

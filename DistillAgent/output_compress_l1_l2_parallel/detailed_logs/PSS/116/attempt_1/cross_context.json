@@ -1,0 +1,167 @@
+{
+  "confirmed": [
+    "V4->V5: paste prep to cooking",
+    "V2->V1: raw shrimp mix to baking",
+    "V1->V3: cooking to plating",
+    "V5->V1: sauce base to mussel dish"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "black_square_vessel": {
+      "2": "bowl with raw shrimp",
+      "1": "tray with seafood mixture -> oven",
+      "3": "pan in background, partially filled/used"
+    },
+    "paste_sauce": {
+      "4": "raw aromatics in food processor",
+      "5": "paste from processor to wok, coconut milk added",
+      "1": "creamy sauce in mussel pan"
+    },
+    "shrimp": {
+      "2": "raw, mixed with paste",
+      "3": "cooked, orange/pink in white bowl"
+    },
+    "mussels": {
+      "1": "raw in glass bowl -> pan with sauce",
+      "3": "cooked in white bowl"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object_state_chain",
+    "container_fill_level",
+    "transfer_traces",
+    "residue_depletion",
+    "background_vessel_state",
+    "vessel_shape_and_color",
+    "sauce_color_and_consistency",
+    "ingredient_state_progression"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all object states and transitions across 5 segments"
+        ],
+        "dimensions_to_compare": [
+          "object_state_chain",
+          "container_fill_level",
+          "transfer_traces",
+          "residue_depletion",
+          "background_vessel_state"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "4->5->2->1->3",
+        "order_confidence": 7,
+        "confidence_basis": [
+          "V4->V5: food processor paste to wok sauce",
+          "V2->V1: black square bowl raw shrimp to black square tray baking",
+          "V1->V3: black square tray in oven to black square pan in background",
+          "V5->V1: wok sauce to mussel pan sauce"
+        ],
+        "blocking_uncertainties": [
+          "Is V2's black square bowl the same vessel as V1's black square tray?",
+          "Is V5's wok sauce the same as V1's mussel pan sauce?",
+          "Exact state of V3's background black square pan"
+        ],
+        "object_memory": {
+          "black_square_vessel": {
+            "2": "bowl with raw shrimp",
+            "1": "tray with seafood mixture -> oven",
+            "3": "pan in background, partially filled/used"
+          },
+          "paste_sauce": {
+            "4": "raw aromatics in food processor",
+            "5": "paste from processor to wok, coconut milk added",
+            "1": "creamy sauce in mussel pan"
+          },
+          "shrimp": {
+            "2": "raw, mixed with paste",
+            "3": "cooked, orange/pink in white bowl"
+          },
+          "mussels": {
+            "1": "raw in glass bowl -> pan with sauce",
+            "3": "cooked in white bowl"
+          }
+        },
+        "uncertain": [
+          "vessel_identity_continuity",
+          "sauce_continuity"
+        ],
+        "dimensions_to_compare": [
+          "vessel_shape_and_color",
+          "sauce_color_and_consistency",
+          "ingredient_state_progression"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 9,
+        "comparison_table": {
+          "V4": "raw aromatics chopped, food processor filled",
+          "V5": "food processor emptied into wok, paste cooked into sauce",
+          "V2": "raw shrimp mixed with paste in black square bowl",
+          "V1": "shrimp mixture baked in black square tray, mussels cooked in sauce",
+          "V3": "final dish plated in white bowl, cooked shrimp mixture in background pan"
+        },
+        "confirmed": [
+          "V4->V5: paste prep to cooking",
+          "V2->V1: raw shrimp mix to baking",
+          "V1->V3: cooking to plating",
+          "V5->V1: sauce base to mussel dish"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": [],
+        "focus_plan": null
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "4->5->2->1->3"
+  ],
+  "order_confidence": [
+    "7",
+    "9"
+  ],
+  "confidence_basis": [
+    "V4->V5: food processor paste to wok sauce",
+    "V2->V1: black square bowl raw shrimp to black square tray baking",
+    "V1->V3: black square tray in oven to black square pan in background",
+    "V5->V1: wok sauce to mussel pan sauce"
+  ],
+  "blocking_uncertainties": [
+    "Is V2's black square bowl the same vessel as V1's black square tray?",
+    "Is V5's wok sauce the same as V1's mussel pan sauce?",
+    "Exact state of V3's background black square pan"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V4\": \"raw aromatics chopped, food processor filled\", \"V5\": \"food processor emptied into wok, paste cooked into sauce\", \"V2\": \"raw shrimp mixed with paste in black square bowl\", \"V1\": \"shrimp mixture baked in black square tray, mussels cooked in sauce\", \"V3\": \"final dish plated in white bowl, cooked shrimp mixture in background pan\"}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": [],
+  "focus_plan": []
+}

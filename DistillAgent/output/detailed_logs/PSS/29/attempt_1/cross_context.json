@@ -1,0 +1,188 @@
+{
+  "confirmed": [
+    "4 -> 2: base to veg curry",
+    "3 -> 5: rice prep to layering",
+    "5 -> 6: layered bowl to final garnish",
+    "1 -> 4: prep station to main cooking station",
+    "2 -> 3: curry transfer to portable stove, rice prep"
+  ],
+  "uncertain": [
+    "pending Layer2 results to verify object state transitions across segments"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "curry_base": {
+      "4": "made on main stove (clear oil -> green paste -> dark liquid -> tomatoes)",
+      "2": "dark liquid base receiving chunky veg"
+    },
+    "vegetable_curry": {
+      "2": "chunky veg added to dark liquid base on main stove",
+      "5": "used as dark chunky layer",
+      "3": "transferred to portable stove in background"
+    },
+    "tempering_garnish": {
+      "1": "made on portable stove (clear oil -> dark caramelized onions/cashews/raisins) at prep station"
+    },
+    "rice": {
+      "3": "white rice coated with yellow liquid",
+      "5": "used as white/yellow layers",
+      "6": "top white layer in finished bowl"
+    },
+    "layered_bowl": {
+      "5": "built up with rice and dark mixture layers, liquid poured on top",
+      "6": "same bowl receiving dark shredded and white sliced toppings"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states across segments",
+    "transfer traces",
+    "container fill/empty states",
+    "residue/depletion",
+    "raw-to-cooked progression",
+    "pan contents progression",
+    "large glass bowl contents progression",
+    "small bowl contents and depletion",
+    "background cue presence/absence"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": true,
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states across segments",
+          "transfer traces",
+          "container fill/empty states",
+          "residue/depletion",
+          "raw-to-cooked progression"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "order_confidence": 8,
+        "layer2_done": true,
+        "object_memory": {
+          "curry_base": {
+            "4": "green paste + tomatoes cooked to dark green/red mixture",
+            "2": "dark liquid base receiving chunky veg"
+          },
+          "vegetable_curry": {
+            "2": "chunky mixed veg curry finished",
+            "5": "used as dark brown/green chunky filling layer"
+          },
+          "tempering_garnish": {
+            "1": "dark caramelized onions + cashews + raisins"
+          },
+          "rice": {
+            "3": "white rice coated with egg yolk",
+            "5": "used as white/pale yellow layers",
+            "6": "top white layer in finished bowl"
+          },
+          "layered_bowl": {
+            "5": "built up with rice and dark mixture layers, liquid poured on top",
+            "6": "same bowl receiving dark shredded and white sliced toppings"
+          }
+        },
+        "comparison_table": {
+          "video4": "base preparation (green paste + tomatoes)",
+          "video2": "main curry cooking (add veg to base)",
+          "video1": "tempering/garnish prep (onions + cashews)",
+          "video3": "rice prep (egg yolk mixing)",
+          "video5": "assembly (layering rice and curry)",
+          "video6": "final garnish (toppings on layered bowl)"
+        },
+        "confirmed": [
+          "4 -> 2: base to veg curry",
+          "3 -> 5: rice prep to layering",
+          "5 -> 6: layered bowl to final garnish"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "uncertain": [
+          "pending Layer2 results to verify object state transitions across segments"
+        ],
+        "dimensions_to_compare": [
+          "pan contents progression",
+          "large glass bowl contents progression",
+          "small bowl contents and depletion",
+          "background cue presence/absence"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "order_confidence": 9,
+        "layer2_done": true,
+        "object_memory": {
+          "tempering_garnish": {
+            "1": "made on portable stove (clear oil -> dark caramelized onions/cashews/raisins) at prep station"
+          },
+          "curry_base": {
+            "4": "made on main stove (clear oil -> green paste -> dark liquid -> tomatoes)"
+          },
+          "vegetable_curry": {
+            "2": "chunky veg added to dark liquid base on main stove",
+            "3": "transferred to portable stove in background",
+            "5": "used as dark chunky layer"
+          },
+          "rice": {
+            "3": "white rice coated with yellow liquid",
+            "5": "used as white/yellow layers",
+            "6": "top white layer in finished bowl"
+          },
+          "layered_bowl": {
+            "5": "built up with rice and dark mixture layers, liquid poured on top",
+            "6": "same bowl receiving dark shredded and white sliced toppings"
+          }
+        },
+        "comparison_table": {
+          "video1": "tempering prep at initial station (blender/corn/orange visible)",
+          "video4": "curry base preparation on main stove",
+          "video2": "main curry cooking (add chunky veg to base)",
+          "video3": "rice prep (egg yolk mixing), curry on portable stove in background",
+          "video5": "assembly (layering rice and curry), curry on portable stove in background",
+          "video6": "final garnish (toppings on layered bowl)"
+        },
+        "confirmed": [
+          "1 -> 4: prep station to main cooking station",
+          "4 -> 2: base to veg curry",
+          "2 -> 3: curry transfer to portable stove, rice prep",
+          "3 -> 5: rice prep to layering",
+          "5 -> 6: layered bowl to final garnish"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"video4\": \"base preparation (green paste + tomatoes)\", \"video2\": \"main curry cooking (add veg to base)\", \"video1\": \"tempering/garnish prep (onions + cashews)\", \"video3\": \"rice prep (egg yolk mixing)\", \"video5\": \"assembly (layering rice and curry)\", \"video6\": \"final garnish (toppings on layered bowl)\"}",
+    "{\"video1\": \"tempering prep at initial station (blender/corn/orange visible)\", \"video4\": \"curry base preparation on main stove\", \"video2\": \"main curry cooking (add chunky veg to base)\", \"video3\": \"rice prep (egg yolk mixing), curry on portable stove in background\", \"video5\": \"assembly (layering rice and curry), curry on portable stove in background\", \"video6\": \"final garnish (toppings on layered bowl)\"}"
+  ]
+}

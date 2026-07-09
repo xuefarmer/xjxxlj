@@ -1,0 +1,198 @@
+{
+  "confirmed": [],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{}",
+    "{\"1\": \"cooking flatbreads (pale), simmering red & green curries\", \"2\": \"rolling raw dough, fresh spinach/carrots in bowl, empty pan\", \"3\": \"garnishing curry with cilantro, flatbreads (one browned), simmering second curry\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "flatbreads": {
+      "1": "two in pan, pale/white dough",
+      "2": "absent from pan, raw dough on board",
+      "3": "two in pan, one raw pale, one cooked with brown spots"
+    },
+    "curry_pans": {
+      "1": "two pans simmering (red top-right, green top-center)",
+      "2": "absent",
+      "3": "one being garnished with cilantro, one simmering (right side)"
+    },
+    "dough_board": {
+      "1": "rolling pin and dough present",
+      "2": "rolling dough, flour residue",
+      "3": "board has flour residue, rolling pin present"
+    },
+    "veg_bowl": {
+      "1": "not mentioned / wilted in pan",
+      "2": "fresh spinach and carrots",
+      "3": "not mentioned"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states",
+    "container fill levels",
+    "residue/depletion",
+    "transfer actions",
+    "flatbread color/state",
+    "curry pan garnish presence",
+    "dough/veg raw vs cooked state"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "event_memory": {},
+        "object_memory": {},
+        "temporal_index": {},
+        "preliminary_order": null,
+        "order_confidence": 0,
+        "confidence_basis": [],
+        "blocking_uncertainties": [
+          "Need Layer1 evidence to build state-transition graph"
+        ],
+        "uncertain": [],
+        "dimensions_to_compare": [
+          "object states",
+          "container fill levels",
+          "residue/depletion",
+          "transfer actions"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "cooking flatbreads (pale), simmering red & green curries",
+          "2": "rolling raw dough, fresh spinach/carrots in bowl, empty pan",
+          "3": "garnishing curry with cilantro, flatbreads (one browned), simmering second curry"
+        },
+        "object_memory": {
+          "flatbreads": {
+            "1": "two in pan, pale/white dough",
+            "2": "absent from pan, raw dough on board",
+            "3": "two in pan, one raw pale, one cooked with brown spots"
+          },
+          "curry_pans": {
+            "1": "two pans simmering (red top-right, green top-center)",
+            "2": "absent",
+            "3": "one being garnished with cilantro, one simmering (right side)"
+          },
+          "dough_board": {
+            "1": "rolling pin and dough present",
+            "2": "rolling dough, flour residue",
+            "3": "board has flour residue, rolling pin present"
+          },
+          "veg_bowl": {
+            "1": "not mentioned / wilted in pan",
+            "2": "fresh spinach and carrots",
+            "3": "not mentioned"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                26.9
+              ],
+              "event": "cooking flatbreads and curries",
+              "key_objects": [
+                "flatbreads",
+                "curry pans"
+              ],
+              "visible_state": "pale dough, simmering sauces",
+              "why_it_matters": "middle stage",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                49.9
+              ],
+              "event": "prep and rolling dough",
+              "key_objects": [
+                "dough",
+                "veg bowl",
+                "empty pan"
+              ],
+              "visible_state": "raw dough, fresh veg, dry pan",
+              "why_it_matters": "early stage",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                10.8
+              ],
+              "event": "garnishing and finishing",
+              "key_objects": [
+                "cilantro",
+                "browned flatbread",
+                "curry pans"
+              ],
+              "visible_state": "garnished curry, browned bread",
+              "why_it_matters": "late stage",
+              "confidence": "high"
+            }
+          ]
+        },
+        "preliminary_order": "2->1->3",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V2: raw dough, fresh veg, empty pan (prep)",
+          "V1: pale flatbreads cooking, curries simmering (cooking)",
+          "V3: browned flatbread, curry garnished with cilantro (finishing)"
+        ],
+        "blocking_uncertainties": [
+          "Verify flatbread browning progression between V1 and V3",
+          "Verify curry garnishing happens only in V3"
+        ],
+        "uncertain": [],
+        "dimensions_to_compare": [
+          "flatbread color/state",
+          "curry pan garnish presence",
+          "dough/veg raw vs cooked state"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "temporal_index": [
+    "{}",
+    "{\"video1\": [{\"window\": [0, 26.9], \"event\": \"cooking flatbreads and curries\", \"key_objects\": [\"flatbreads\", \"curry pans\"], \"visible_state\": \"pale dough, simmering sauces\", \"why_it_matters\": \"middle stage\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 49.9], \"event\": \"prep and rolling dough\", \"key_objects\": [\"dough\", \"veg bowl\", \"empty pan\"], \"visible_state\": \"raw dough, fresh veg, dry pan\", \"why_it_matters\": \"early stage\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 10.8], \"event\": \"garnishing and finishing\", \"key_objects\": [\"cilantro\", \"browned flatbread\", \"curry pans\"], \"visible_state\": \"garnished curry, browned bread\", \"why_it_matters\": \"late stage\", \"confidence\": \"high\"}]}"
+  ],
+  "preliminary_order": [
+    "2->1->3"
+  ],
+  "order_confidence": [
+    "0",
+    "8"
+  ],
+  "confidence_basis": [
+    "V2: raw dough, fresh veg, empty pan (prep)",
+    "V1: pale flatbreads cooking, curries simmering (cooking)",
+    "V3: browned flatbread, curry garnished with cilantro (finishing)"
+  ],
+  "blocking_uncertainties": [
+    "Need Layer1 evidence to build state-transition graph",
+    "Verify flatbread browning progression between V1 and V3",
+    "Verify curry garnishing happens only in V3"
+  ]
+}

@@ -1,4 +1,4 @@
-import requests
+
 import json
 import random
 import re
@@ -16,11 +16,7 @@ except ImportError:
     pass
 
 # ================= 1. Global Configuration =================
-API_KEY = os.environ.get("GEMINI_API_KEY", "")
-if not API_KEY:
-    raise ValueError("Please set GEMINI_API_KEY in environment or .env before running.")
-MODEL_NAME = "gemini-3-flash-preview"
-ENDPOINT = os.environ.get("GEMINI_ENDPOINT", "https://example.googleapis.com/v1:generateContent")
+from llm_client import request_llm
 
 # Output directory
 OUTPUT_DIR = "cooking_synthesis"
@@ -100,28 +96,6 @@ def extract_json(text):
             try: return json.loads(text[start:end+1])
             except: pass
     return None
-
-def request_gemini_pro(prompt: str) -> Optional[str]:
-    headers = {
-        "api-key": API_KEY,
-        "Content-Type": "application/json",
-    }
-    payload = {
-        "contents": [{"role": "user", "parts": [{"text": prompt}]}],
-        "generationConfig": {
-            "temperature": 0.85,
-            "maxOutputTokens": 65535,
-            "topP": 0.95,
-        },
-    }
-    try:
-        response = requests.post(ENDPOINT, headers=headers, json=payload, timeout=180)
-        if response.status_code == 200:
-            return response.json()["candidates"][0]["content"]["parts"][0]["text"]
-        else:
-            return None
-    except Exception:
-        return None
 
 # ================= 4. Prompt Constructor =================
 
@@ -209,7 +183,7 @@ def process_and_save_task(task_params: Dict) -> Dict:
     
     for attempt in range(1, MAX_RETRIES + 1):
         try:
-            raw_text = request_gemini_pro(prompt)
+            raw_text = request_llm(prompt, temperature=0.85, top_p=0.95)
             if raw_text:
                 data = extract_json(raw_text)
                 if data and 'videos' in data and len(data['videos']) == 4:

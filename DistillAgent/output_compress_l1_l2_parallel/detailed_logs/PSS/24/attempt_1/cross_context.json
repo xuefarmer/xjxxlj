@@ -1,0 +1,193 @@
+{
+  "confirmed": [
+    "1->2->4 is a tight chain (base -> temper -> combine)",
+    "3 is isolated raw prep step"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Open biryani mix, pour spice packet into rice cooker pot with water/rice\", \"2\": \"Heat oil in wok, add brown/dark seeds for tempering\", \"3\": \"Prep chopped veggies in blue bowl, add white powder from spice box and ingredient from red jar\", \"4\": \"Scrape tempered oil/seeds from small pan into rice cooker pot, close lid\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "rice_cooker_pot": {
+      "1": "water+rice+brown spice powder",
+      "4": "receives tempered oil+seeds, lid closed"
+    },
+    "spice_box": {
+      "1": "full, used for white powder",
+      "3": "full, used for white powder onto veggies"
+    },
+    "wok_small_pan": {
+      "2": "hot oil + brown/dark seeds",
+      "4": "scraped clean, dark cooked bits residue"
+    },
+    "veggie_bowl": {
+      "3": "raw chopped veggies, seasoned"
+    },
+    "biryani_packet": {
+      "1": "opened, depleted into rice pot"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states across segments",
+    "tool/container states",
+    "transfer traces",
+    "residue/depletion"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states across segments",
+          "tool/container states",
+          "transfer traces",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Open biryani mix, pour spice packet into rice cooker pot with water/rice",
+          "2": "Heat oil in wok, add brown/dark seeds for tempering",
+          "3": "Prep chopped veggies in blue bowl, add white powder from spice box and ingredient from red jar",
+          "4": "Scrape tempered oil/seeds from small pan into rice cooker pot, close lid"
+        },
+        "object_memory": {
+          "rice_cooker_pot": {
+            "1": "water+rice+brown spice powder",
+            "4": "receives tempered oil+seeds, lid closed"
+          },
+          "spice_box": {
+            "1": "full, used for white powder",
+            "3": "full, used for white powder onto veggies"
+          },
+          "wok_small_pan": {
+            "2": "hot oil + brown/dark seeds",
+            "4": "scraped clean, dark cooked bits residue"
+          },
+          "veggie_bowl": {
+            "3": "raw chopped veggies, seasoned"
+          },
+          "biryani_packet": {
+            "1": "opened, depleted into rice pot"
+          }
+        },
+        "preliminary_order": "3->1->2->4 or 1->3->2->4",
+        "order_confidence": 6,
+        "confidence_basis": "1->2->4 is solid (rice base -> tempering -> combine). 3 is veggie prep, position relative to 1 uncertain.",
+        "blocking_uncertainties": [
+          "Are veggies from 3 added in 4?",
+          "Is the small pan in 4 the same wok from 2?",
+          "Does 3 happen before or after 1?"
+        ],
+        "temporal_index": {
+          "1": [
+            {
+              "window": [
+                0,
+                25
+              ],
+              "event": "rice base prep",
+              "confidence": "high"
+            }
+          ],
+          "2": [
+            {
+              "window": [
+                0,
+                36
+              ],
+              "event": "tempering",
+              "confidence": "high"
+            }
+          ],
+          "3": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "veggie prep",
+              "confidence": "high"
+            }
+          ],
+          "4": [
+            {
+              "window": [
+                0,
+                22
+              ],
+              "event": "combine and close",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "1": "rice pot filled with water/rice/Shan mix",
+          "2": "wok heated, oil + seeds added",
+          "3": "raw veggies prepped, rice pot in background",
+          "4": "tempering scraped into rice pot, lid closed"
+        },
+        "confirmed": [
+          "1->2->4 is a tight chain (base -> temper -> combine)",
+          "3 is isolated raw prep step"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": [],
+        "order_confidence": 8
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "3->1->2->4 or 1->3->2->4"
+  ],
+  "order_confidence": [
+    "6",
+    "8"
+  ],
+  "confidence_basis": [
+    "1->2->4 is solid (rice base -> tempering -> combine). 3 is veggie prep, position relative to 1 uncertain."
+  ],
+  "blocking_uncertainties": [
+    "Are veggies from 3 added in 4?",
+    "Is the small pan in 4 the same wok from 2?",
+    "Does 3 happen before or after 1?"
+  ],
+  "temporal_index": [
+    "{\"1\": [{\"window\": [0, 25], \"event\": \"rice base prep\", \"confidence\": \"high\"}], \"2\": [{\"window\": [0, 36], \"event\": \"tempering\", \"confidence\": \"high\"}], \"3\": [{\"window\": [0, 11], \"event\": \"veggie prep\", \"confidence\": \"high\"}], \"4\": [{\"window\": [0, 22], \"event\": \"combine and close\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"rice pot filled with water/rice/Shan mix\", \"2\": \"wok heated, oil + seeds added\", \"3\": \"raw veggies prepped, rice pot in background\", \"4\": \"tempering scraped into rice pot, lid closed\"}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": []
+}

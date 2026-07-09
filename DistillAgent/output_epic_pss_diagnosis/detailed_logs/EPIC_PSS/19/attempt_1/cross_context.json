@@ -1,0 +1,174 @@
+{
+  "confirmed": [
+    "flatbread_dough: V3 raw rolled -> V2 1 cooked + 1 raw pressed -> V1 2 flatbreads flipped",
+    "plate: V3/V2 absent -> V1 appears empty at end"
+  ],
+  "uncertain": [
+    "Need to determine the chronological order of the 3 segments based on object state transitions."
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "flatbread_dough": {
+      "3": "raw, being rolled on board, pan empty",
+      "2": "raw dough pressed in pan, 1 flatbread cooked",
+      "1": "2 flatbreads in pan, being flipped/cooked"
+    },
+    "curry_salad": {
+      "3": "bowl of fresh greens with orange spoon",
+      "2": "curry pan, fresh greens being added",
+      "1": "salad pan with spinach/tomatoes/cheese stirred, curry pan simmering"
+    },
+    "plate": {
+      "3": "ABSENT",
+      "2": "ABSENT",
+      "1": "empty, appears at end"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked, whole/cut, separate/mixed)",
+    "container states (empty/filled)",
+    "operation role (prep, cooking, plating)"
+  ],
+  "resolved_uncertain": [
+    "flatbread count and state verified in each pan"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "Need to determine the chronological order of the 3 segments based on object state transitions."
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked, whole/cut, separate/mixed)",
+          "container states (empty/filled)",
+          "operation role (prep, cooking, plating)"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "3->2->1",
+        "order_confidence": 8,
+        "confidence_basis": "Flatbread state progression: V3 (rolling raw dough, pan empty) -> V2 (pressing dough in pan, 1 flatbread cooked) -> V1 (flipping 2 flatbreads in pan). Plate appears empty at end of V1.",
+        "blocking_uncertainties": [
+          "Verify exact flatbread count and state in each pan to confirm no contradictions."
+        ],
+        "object_memory": {
+          "flatbread_dough": {
+            "3": "raw, being rolled on board, pan empty",
+            "2": "raw dough pressed in pan, 1 flatbread cooked",
+            "1": "2 flatbreads in pan, being flipped/cooked"
+          },
+          "curry_salad": {
+            "3": "bowl of fresh greens with orange spoon",
+            "2": "curry pan, fresh greens being added",
+            "1": "salad pan with spinach/tomatoes/cheese stirred, curry pan simmering"
+          },
+          "plate": {
+            "3": "ABSENT",
+            "2": "ABSENT",
+            "1": "empty, appears at end"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                27.8
+              ],
+              "event": "cooking flatbreads and stirring salad",
+              "key_objects": [
+                "flatbread pan",
+                "salad pan",
+                "plate"
+              ],
+              "visible_state": "2 flatbreads flipping, plate appears empty",
+              "why_it_matters": "final cooking/plating stage",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                10.8
+              ],
+              "event": "garnishing curry and cooking flatbread",
+              "key_objects": [
+                "flatbread pan",
+                "curry pan"
+              ],
+              "visible_state": "1 flatbread cooked, 1 raw dough pressed",
+              "why_it_matters": "intermediate cooking stage",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                49.9
+              ],
+              "event": "rolling dough and prep",
+              "key_objects": [
+                "cutting board",
+                "black pan",
+                "greens bowl"
+              ],
+              "visible_state": "raw dough rolled, black pan empty",
+              "why_it_matters": "initial prep stage",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 9,
+        "confirmed": [
+          "flatbread_dough: V3 raw rolled -> V2 1 cooked + 1 raw pressed -> V1 2 flatbreads flipped",
+          "plate: V3/V2 absent -> V1 appears empty at end"
+        ],
+        "resolved_uncertain": [
+          "flatbread count and state verified in each pan"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3->2->1"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "Flatbread state progression: V3 (rolling raw dough, pan empty) -> V2 (pressing dough in pan, 1 flatbread cooked) -> V1 (flipping 2 flatbreads in pan). Plate appears empty at end of V1."
+  ],
+  "blocking_uncertainties": [
+    "Verify exact flatbread count and state in each pan to confirm no contradictions."
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 27.8], \"event\": \"cooking flatbreads and stirring salad\", \"key_objects\": [\"flatbread pan\", \"salad pan\", \"plate\"], \"visible_state\": \"2 flatbreads flipping, plate appears empty\", \"why_it_matters\": \"final cooking/plating stage\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 10.8], \"event\": \"garnishing curry and cooking flatbread\", \"key_objects\": [\"flatbread pan\", \"curry pan\"], \"visible_state\": \"1 flatbread cooked, 1 raw dough pressed\", \"why_it_matters\": \"intermediate cooking stage\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 49.9], \"event\": \"rolling dough and prep\", \"key_objects\": [\"cutting board\", \"black pan\", \"greens bowl\"], \"visible_state\": \"raw dough rolled, black pan empty\", \"why_it_matters\": \"initial prep stage\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ]
+}

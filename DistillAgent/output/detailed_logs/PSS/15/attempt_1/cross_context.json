@@ -1,0 +1,245 @@
+{
+  "confirmed": [
+    "4 before 5: hydrated wrapper used flat",
+    "5 before 3: ingredients placed on flat wrapper before edge is folded",
+    "3 before 6: bottom edge folded before sides are folded and rolled",
+    "6 before 2: cylinder formed before one is complete and another is started",
+    "2 before 1: complete roll exists before it is sliced"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Slicing finished spring roll into segments.\", \"2\": \"Assembling rolls; one complete on right, another being assembled flat.\", \"3\": \"Folding edge of wrapper over noodles/veg, starting to roll.\", \"4\": \"Hydrating dry rice paper wrapper in water pan.\", \"5\": \"Placing noodles from large bowl and veg onto wet wrapper.\", \"6\": \"Folding sides of wrapper and rolling tightly to enclose.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "rice_paper": {
+      "4": "dry -> wet/translucent",
+      "5": "wet/translucent, flat",
+      "3": "wet/translucent, edge folded over ingredients",
+      "6": "wet/translucent, sides folded, rolling tightly",
+      "2": "wet/translucent, one complete cylinder, one flat",
+      "1": "complete cylinder, being sliced"
+    },
+    "noodles": {
+      "5": "in large glass bowl, being placed on wrapper",
+      "3": "on wrapper, being enclosed",
+      "6": "enclosed in wrapper",
+      "2": "visible in complete roll",
+      "1": "inside sliced roll"
+    },
+    "shrimp": {
+      "4": "in glass bowl",
+      "5": "in small glass bowl",
+      "3": "in glass bowl top left, some cut halves on board",
+      "6": "in glass bowl top left, cut halves on board",
+      "2": "in glass bowl, cut halves on board",
+      "1": "in clear glass bowl, some loose on board"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states (raw/cooked/cut/mixed)",
+    "container states (empty/filled/residue)",
+    "tool usage",
+    "completion marks",
+    "wrapper fold state",
+    "ingredient enclosure",
+    "shrimp bowl state",
+    "wrapper state (dry/wet/translucent/flat/cut)",
+    "noodle state (in bowl/on wrapper/inside roll)",
+    "shrimp state (in bowl/on board/inside roll)",
+    "container states"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All object states and segment roles are currently unknown."
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cooked/cut/mixed)",
+          "container states (empty/filled/residue)",
+          "tool usage",
+          "completion marks"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Slicing finished spring roll into segments.",
+          "2": "Assembling rolls; one complete on right, another being assembled flat.",
+          "3": "Folding edge of wrapper over noodles/veg, starting to roll.",
+          "4": "Hydrating dry rice paper wrapper in water pan.",
+          "5": "Placing noodles from large bowl and veg onto wet wrapper.",
+          "6": "Folding sides of wrapper and rolling tightly to enclose."
+        },
+        "object_memory": {
+          "rice_paper": {
+            "4": "dry -> wet/translucent",
+            "5": "wet/translucent, flat",
+            "3": "wet/translucent, edge folded over ingredients",
+            "6": "wet/translucent, sides folded, rolling tightly",
+            "2": "wet/translucent, one complete cylinder, one flat",
+            "1": "complete cylinder, being sliced"
+          },
+          "noodles": {
+            "5": "in large glass bowl, being placed on wrapper",
+            "3": "on wrapper, being enclosed",
+            "6": "enclosed in wrapper",
+            "2": "visible in complete roll",
+            "1": "inside sliced roll"
+          },
+          "shrimp": {
+            "4": "in glass bowl",
+            "5": "in small glass bowl",
+            "3": "in glass bowl top left, some cut halves on board",
+            "6": "in glass bowl top left, cut halves on board",
+            "2": "in glass bowl, cut halves on board",
+            "1": "in clear glass bowl, some loose on board"
+          }
+        },
+        "preliminary_order": [
+          4,
+          5,
+          3,
+          6,
+          2,
+          1
+        ],
+        "order_confidence": 8,
+        "confidence_basis": "Clear state-transition graph for rice paper (dry->wet->folded->rolled->sliced) and noodles (in bowl->on wrapper->enclosed->sliced). Rolling sequence in 3, 6, 2 shows progressive enclosure.",
+        "blocking_uncertainties": [
+          "Verify exact wrapper state in 3, 6, 2 to confirm rolling progression."
+        ],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "Exact rolling progression between 3, 6, and 2."
+        ],
+        "dimensions_to_compare": [
+          "wrapper fold state",
+          "ingredient enclosure",
+          "shrimp bowl state"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 9,
+        "comparison_table": {
+          "4": "dry wrapper hydrated in water",
+          "5": "wet wrapper flat on board, ingredients placed on it",
+          "3": "wet wrapper, bottom edge folded over ingredients",
+          "6": "wet wrapper, sides folded in, rolling tightly into cylinder",
+          "2": "one complete cylinder, one new flat wrapper being assembled",
+          "1": "complete cylinder being sliced into segments"
+        },
+        "confirmed": [
+          "4 before 5: hydrated wrapper used flat",
+          "5 before 3: ingredients placed on flat wrapper before edge is folded",
+          "3 before 6: bottom edge folded before sides are folded and rolled",
+          "6 before 2: cylinder formed before one is complete and another is started",
+          "2 before 1: complete roll exists before it is sliced"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "uncertain": [],
+        "focus_plan": []
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "uncertain": [
+          "Need explicit Layer2 state reports for segments 1, 4, and 5 to satisfy coverage requirements."
+        ],
+        "dimensions_to_compare": [
+          "wrapper state (dry/wet/translucent/flat/cut)",
+          "noodle state (in bowl/on wrapper/inside roll)",
+          "shrimp state (in bowl/on board/inside roll)",
+          "container states"
+        ]
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "order_confidence": 9,
+        "layer2_done": true,
+        "confirmed": [
+          "4 before 5: hydrated wrapper used flat",
+          "5 before 3: ingredients placed on flat wrapper before edge is folded",
+          "3 before 6: bottom edge folded before sides are folded and rolled",
+          "6 before 2: cylinder formed before one is complete and another is started",
+          "2 before 1: complete roll exists before it is sliced"
+        ],
+        "uncertain": [],
+        "focus_plan": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "4",
+    "5",
+    "3",
+    "6",
+    "2",
+    "1"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "Clear state-transition graph for rice paper (dry->wet->folded->rolled->sliced) and noodles (in bowl->on wrapper->enclosed->sliced). Rolling sequence in 3, 6, 2 shows progressive enclosure."
+  ],
+  "blocking_uncertainties": [
+    "Verify exact wrapper state in 3, 6, 2 to confirm rolling progression."
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"4\": \"dry wrapper hydrated in water\", \"5\": \"wet wrapper flat on board, ingredients placed on it\", \"3\": \"wet wrapper, bottom edge folded over ingredients\", \"6\": \"wet wrapper, sides folded in, rolling tightly into cylinder\", \"2\": \"one complete cylinder, one new flat wrapper being assembled\", \"1\": \"complete cylinder being sliced into segments\"}"
+  ],
+  "pruned_targets": [],
+  "focus_plan": []
+}

@@ -1,0 +1,338 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-06 21:03:01
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-06 20:37:08 -> 2026-07-06 20:42:27
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 19.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the frames, here is the description of the operation, objects, and states:
+
+**Operation:** Preparing a salad (likely Tabbouleh or a grain-based vegetable salad) by adding olive oil dressing and mixing the ingredients.
+
+**Compact Evidence Rows:**
+
+*   **Row 1: Salad Mixture**
+    *   **objects:** Large glass bowl, chopped vegetables (tomatoes, cucumbers, carrots, herbs/parsley), grains (couscous or bulgur).
+    *   **action:** Receiving oil, being stirred/mixed.
+    *   **state:** Cut, fresh, mixed (ingredients combined), wet (coated in oil), filled.
+    *   **window:** 1-16
+    *   **query_link:** N/A
+    *   **conf:** 0.95
+    *   **uncertainty:** Specific grain type (cooked vs. raw soak) is hard to distinguish visually, but appears prepared.
+
+*   **Row 2: Dressing Container**
+    *   **objects:** Small glass bowl, olive oil (yellow liquid).
+    *   **action:** Being poured into the large bowl.
+    *   **state:** Liquid, filled (initially) -> depleting/emptying.
+    *   **window:** 1-11 (close-up pouring), 12 (held by person).
+    *   **query_link:** N/A
+    *   **conf:** 0.95
+    *   **uncertainty:** None.
+
+*   **Row 3: Mixing Tool**
+    *   **objects:** Wooden spoon/spatula.
+    *   **action:** Stirring the salad ingredients.
+    *   **state:** Present, residue (coated with salad bits/oil).
+    *   **window:** 1-16
+    *   **query_link:** N/A
+    *   **conf:** 0.95
+    *   **uncertainty:** None.
+
+*   **Row 4: Person/Chef**
+    *   **objects:** Woman, striped apron.
+    *   **action:** Mixing the salad vigorously.
+    *   **state:** Present.
+    *   **window:** 12-16
+    *   **query_link:** N/A
+    *   **conf:** 0.95
+    *   **uncertainty:** None.
+
+**Cross-Video Context Observations:**
+*   **State Transitions:** The small bowl transitions from **filled** (Frames 1-3) to **depleting** (Frames 9-11) as oil is poured. The salad transitions from **separate** layers of ingredients to thoroughly **mixed** (Frames 7-8, 13-16).
+*   **Residue/Depletion:** The wooden spoon shows **residue** of the salad mixture. The small oil bowl shows **depletion** of its contents.
+*   **Segment Order:** The close-ups (1-11) show the detailed action of pouring and initial mixing. The wide shots (12-16) show the person performing the mixing action, with the small bowl eventually placed on the counter (visible in bottom right of 13-16), implying the pouring is finished.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-06 20:37:08 -> 2026-07-06 20:42:27
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 16.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the provided frames (all from Video 2), here is the description of the operation and object states.
+
+**Operation Description:**
+A woman is preparing a chopped salad (likely Tabbouleh or a similar vegetable salad). She begins by pouring a liquid dressing from a small glass container into a large glass bowl filled with diced vegetables. She then uses a wooden spoon to thoroughly mix the ingredients together.
+
+**Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| large glass bowl, chopped vegetables (tomatoes, cucumbers, herbs), small glass cup, wooden spoon | pouring liquid dressing into bowl | vegetables: raw, fresh, cut; large bowl: filled; small cup: depleting/emptying; salad: becoming wet | 1-5 | video_2 | 0.95 | low |
+| large glass bowl, salad mixture, wooden spoon | mixing/stirring salad | ingredients: mixed; spoon: present with residue; bowl: filled; salad: wet, fresh | 6-16 | video_2 | 0.95 | low |
+
+**Detailed State Analysis:**
+*   **Ingredients:** The vegetables (tomatoes, cucumbers, parsley/herbs) are **raw**, **fresh**, and **cut** (diced/chopped).
+*   **Containers:** The large glass bowl is **filled** with the salad mixture. The small glass cup is initially present and **filled** with liquid, then becomes **empty/depleted** after pouring (visible in frames 3-5).
+*   **Tools:** A wooden spoon is **present** throughout. It starts resting on the side or held, then is used for mixing, acquiring **residue** of the salad.
+*   **Mixture State:** The ingredients transition from being **separate** (layered or just combined) to **mixed** as the woman stirs them in frames 7-16. The salad transitions from relatively dry (chopped veggies) to **wet** as the dressing is added.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-06 20:37:08 -> 2026-07-06 20:43:27
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 59.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from Video 3 (Frames 1-16), here is the description of the operation:
+
+**Operation:** Assembling and mixing a grain-based salad (likely couscous or quinoa salad/Tabbouleh).
+
+**Evidence Rows:**
+
+*   **Row 1:**
+    *   **objects:** cooked grain (couscous/quinoa), small glass bowl, large glass bowl, wooden spoon
+    *   **action:** scraping/pouring grain from small bowl into large bowl
+    *   **state:** grain is cooked/moist and clumped; small bowl is becoming empty; large bowl is partially filled.
+    *   **window:** 1-2
+    *   **conf:** 0.9
+    *   **uncertainty:** exact grain type (couscous vs. quinoa)
+
+*   **Row 2:**
+    *   **objects:** chopped light green vegetable (celery or cucumber), small glass bowl
+    *   **action:** pouring chopped vegetable into large bowl
+    *   **state:** vegetable is fresh, cut, and wet; small bowl is emptying.
+    *   **window:** 3-4
+    *   **conf:** 0.85
+    *   **uncertainty:** vegetable identity (celery vs. cucumber)
+
+*   **Row 3:**
+    *   **objects:** chopped tomatoes, shredded carrots, chopped parsley (herbs)
+    *   **action:** adding remaining ingredients sequentially into the large bowl
+    *   **state:** ingredients are fresh, cut, and distinct (red tomatoes, orange carrots, green parsley); large bowl is filling up with layered ingredients.
+    *   **window:** 6-11
+    *   **conf:** 0.95
+    *   **uncertainty:** none
+
+*   **Row 4:**
+    *   **objects:** salad mixture, wooden spoon, hand
+    *   **action:** mixing/tossing the salad ingredients together
+    *   **state:** ingredients are now mixed/combined; large bowl is filled with a colorful mixture; small bowls are empty/absent from immediate use.
+    *   **window:** 13-16
+    *   **conf:** 0.95
+    *   **uncertainty:** none (hand mixing seen in frame 14, spoon mixing in others)
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-06 20:37:08 -> 2026-07-06 20:41:35
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 10.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from Video 4 (Frames 1-16), here is the description of the operation and object states:
+
+**Operation:** A woman is preparing and mixing a chopped vegetable salad (resembling Tabbouleh or a similar fresh salad) in a large glass bowl. She uses a wooden spoon to stir the ingredients and adds seasoning from a small bowl.
+
+**Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| large glass bowl, chopped vegetables (cucumber, tomato, onion, herbs) | mixed, stirred | raw, cut, fresh, mixed, filled, wet | 1-16 | Video 4 | high | none |
+| wooden spoon | stirring, resting | present, wet (coated with salad residue) | 1-16 | Video 4 | high | none |
+| small glass bowl, seasoning (likely salt or herbs) | sprinkling, adding | depleted (contents removed), separate (before adding) -> mixed (after adding) | 1-2, 10-14 | Video 4 | medium | exact identity of seasoning (salt vs dried herbs) |
+| woman | mixing, seasoning | active | 3-16 | Video 4 | high | none |
+
+**Detailed State Analysis:**
+*   **Ingredients:** The vegetables are **raw**, **cut** (finely diced/chopped), and **fresh**. They appear **wet**, indicating they have been tossed or have released juices. They are thoroughly **mixed** in the bowl.
+*   **Containers:** The large glass bowl is **filled** with the salad mixture. The small glass bowl held seasoning which is being **depleted** as the woman pinches it into the main bowl.
+*   **Tools:** The wooden spoon is **present** and shows **residue** of the wet salad mixture.
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-06 20:44:28 -> 2026-07-06 20:50:52
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 19.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: presence of grains (couscous/bulgur) in the large glass bowl, identity of the liquid in the small glass bowl (olive oil, vinegar, lemon juice, etc.), and exact ingredients visible in the large bowl. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose."
+}
+
+[Output]:
+large_bowl / grain_presence / present (couscous/bulgur visible as base) / 1-16 / grain_check / HIGH / NONE
+small_bowl / liquid_identity / yellow liquid (likely olive oil) / 1-12 / liquid_check / MEDIUM / UNCERTAIN
+large_bowl / ingredients / chopped tomatoes, cucumbers, carrots, parsley/herbs, grains / 1-16 / ingredient_check / HIGH / NONE
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-06 20:44:28 -> 2026-07-06 20:50:48
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 16.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: presence of grains (couscous/bulgur) in the large glass bowl, identity of the liquid in the small glass cup (olive oil, vinegar, lemon juice, etc.), and exact ingredients visible in the large bowl. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose."
+}
+
+[Output]:
+large_bowl/grains_present/PRESENT (bulgur/couscous)/1-16/small beige/white granules mixed with vegetables throughout/HIGH/-
+small_cup/liquid_identity/liquid dressing (likely olive oil or lemon juice)/5/clear yellowish liquid pouring from small glass cup/MEDIUM/UNCERTAIN (visuals indistinguishable between oil and lemon juice)
+large_bowl/ingredients/chopped tomatoes, cucumbers, parsley, grains/3-5/red diced tomatoes, green/white cucumber chunks, green herbs (parsley), beige grains/HIGH/-
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-06 20:44:28 -> 2026-07-06 20:54:41
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 59.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: presence of grains (couscous/bulgur) in the large glass bowl, identity of the contents of the small glass bowls (grain, celery, etc.), and exact ingredients visible in the large bowl. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose."
+}
+
+[Output]:
+large_bowl / contains / grains (couscous/bulgur) visible at start and mixed in later / Video 3 (Frames 1-16) / presence of grains / HIGH / NONE
+small_bowls / contain / grains, celery, tomatoes, carrots, parsley (sequential emptying) / Video 3 (Frames 1-16) / identity of contents / HIGH / NONE
+large_bowl / filled with / grains, celery, tomatoes, carrots, parsley / Video 3 (Frames 1-16) / exact ingredients / HIGH / NONE
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_4) ###
+Time: 2026-07-06 20:44:28 -> 2026-07-06 20:50:48
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 10.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: presence of grains (couscous/bulgur) in the large glass bowl, identity of the seasoning in the small glass bowl (salt, dried herbs, etc.), and exact ingredients visible in the large bowl. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose."
+}
+
+[Output]:
+large_bowl | grain presence | PRESENT | 1-16 | presence_of_grains | HIGH | specific_grain_type_couscous_bulgur
+small_bowl | seasoning identity | salt or dried herbs | 10-13 | identity_of_seasoning | UNCERTAIN | exact_substance_salt_vs_herbs
+large_bowl | exact ingredients | diced cucumber, red pepper, tomato, herbs, grains | 1-16 | exact_ingredients | HIGH | specific_vegetable_types
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: obs_3) ###
+Time: 2026-07-06 20:55:20 -> 2026-07-06 21:02:22
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0,
+      "end_time": 19.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=focus. Inspect the large glass bowl and the small bowl/cup being added from in each of the 4 segments. For each segment, report: 1) Exact ingredients visible in the large bowl (e.g., grains, tomato, cucumber, carrot, red pepper, parsley, celery, onion). 2) Exact contents of the small bowl/cup being poured/added (e.g., dry grain, dry seasoning, yellow oil, clear liquid). 3) Is the large bowl mostly empty, partially filled, or completely filled at the start/end of the clip? Return compact rows: segment/ingredients_in_large_bowl/contents_of_small_bowl/fill_level/conf/uncertainty. Do not infer cross-target chronology from display order; preserve local evidence."
+    },
+    {
+      "video_index": 2,
+      "start_time": 0,
+      "end_time": 16.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=focus. Inspect the large glass bowl and the small bowl/cup being added from in each of the 4 segments. For each segment, report: 1) Exact ingredients visible in the large bowl (e.g., grains, tomato, cucumber, carrot, red pepper, parsley, celery, onion). 2) Exact contents of the small bowl/cup being poured/added (e.g., dry grain, dry seasoning, yellow oil, clear liquid). 3) Is the large bowl mostly empty, partially filled, or completely filled at the start/end of the clip? Return compact rows: segment/ingredients_in_large_bowl/contents_of_small_bowl/fill_level/conf/uncertainty. Do not infer cross-target chronology from display order; preserve local evidence."
+    },
+    {
+      "video_index": 3,
+      "start_time": 0,
+      "end_time": 59.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=focus. Inspect the large glass bowl and the small bowl/cup being added from in each of the 4 segments. For each segment, report: 1) Exact ingredients visible in the large bowl (e.g., grains, tomato, cucumber, carrot, red pepper, parsley, celery, onion). 2) Exact contents of the small bowl/cup being poured/added (e.g., dry grain, dry seasoning, yellow oil, clear liquid). 3) Is the large bowl mostly empty, partially filled, or completely filled at the start/end of the clip? Return compact rows: segment/ingredients_in_large_bowl/contents_of_small_bowl/fill_level/conf/uncertainty. Do not infer cross-target chronology from display order; preserve local evidence."
+    },
+    {
+      "video_index": 4,
+      "start_time": 0,
+      "end_time": 10.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=focus. Inspect the large glass bowl and the small bowl/cup being added from in each of the 4 segments. For each segment, report: 1) Exact ingredients visible in the large bowl (e.g., grains, tomato, cucumber, carrot, red pepper, parsley, celery, onion). 2) Exact contents of the small bowl/cup being poured/added (e.g., dry grain, dry seasoning, yellow oil, clear liquid). 3) Is the large bowl mostly empty, partially filled, or completely filled at the start/end of the clip? Return compact rows: segment/ingredients_in_large_bowl/contents_of_small_bowl/fill_level/conf/uncertainty. Do not infer cross-target chronology from display order; preserve local evidence."
+    }
+  ],
+  "focus_prompt": "MODE=focus. Inspect the large glass bowl and the small bowl/cup being added from in each of the 4 segments. For each segment, report: 1) Exact ingredients visible in the large bowl (e.g., grains, tomato, cucumber, carrot, red pepper, parsley, celery, onion). 2) Exact contents of the small bowl/cup being poured/added (e.g., dry grain, dry seasoning, yellow oil, clear liquid). 3) Is the large bowl mostly empty, partially filled, or completely filled at the start/end of the clip? Return compact rows: segment/ingredients_in_large_bowl/contents_of_small_bowl/fill_level/conf/uncertainty. Do not infer cross-target chronology from display order; preserve local evidence."
+}
+
+[Output]:
+1/grains, tomato, cucumber, carrot, parsley/yellow oil (olive oil)/completely filled at start and end/0.95/low
+2/grains, tomato, cucumber, carrot, parsley/clear liquid dressing/completely filled at start and end/0.9/liquid identity (oil vs lemon juice)
+3/grains, celery, tomato, carrot, parsley/dry grain, then chopped celery, tomato, parsley/mostly empty at start, completely filled at end/0.95/low
+4/grains, tomato, cucumber, carrot, parsley/white seasoning (salt)/completely filled at start and end/0.95/low
+
+------------------------------------------------------------
+

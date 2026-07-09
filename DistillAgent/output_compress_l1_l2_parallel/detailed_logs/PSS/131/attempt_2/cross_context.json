@@ -1,0 +1,150 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "exact position of 4 relative to 2",
+    "whether 6 happens before or after the pasta baking"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"pasta mix -> yellow bowl + ricotta + grated cheese -> oven\", \"2\": \"raw veg -> wok sauté + garlic; raw ground meat untouched\", \"3\": \"cooked meat + pasta + peas + liquid added to onion base\", \"4\": \"raw sliced meat -> wok browning; herbs on board\", \"5\": \"intro shot; salt into simmering pot; prepped ingredients on counter\", \"6\": \"baked potatoes -> scooped -> mashed with butter/milk\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "pasta": {
+      "3": "cooked wet mixed in pan",
+      "1": "cooked mixed with sauce in bowl"
+    },
+    "meat": {
+      "4": "raw sliced browning in wok",
+      "3": "cooked chopped bacon added to pan",
+      "2": "raw ground untouched"
+    },
+    "wok/pan": {
+      "2": "empty->veg",
+      "4": "empty->meat",
+      "3": "onions->full mix",
+      "1": "depleted to bowl"
+    },
+    "potatoes": {
+      "6": "baked whole->mashed"
+    },
+    "small_pot": {
+      "5": "simmering liquid receives salt",
+      "3": "saucepan pours liquid into pan"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states raw->cooked",
+    "container fill/empty transitions",
+    "object presence/absence across segments",
+    "transfer traces",
+    "residue/depletion",
+    "meat state raw->cooked",
+    "pan contents progression",
+    "potato state maturity",
+    "intro shot cues"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "pending Layer1 results for all 6 segments"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states raw->cooked",
+          "container fill/empty transitions",
+          "object presence/absence across segments",
+          "transfer traces",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "pasta mix -> yellow bowl + ricotta + grated cheese -> oven",
+          "2": "raw veg -> wok sauté + garlic; raw ground meat untouched",
+          "3": "cooked meat + pasta + peas + liquid added to onion base",
+          "4": "raw sliced meat -> wok browning; herbs on board",
+          "5": "intro shot; salt into simmering pot; prepped ingredients on counter",
+          "6": "baked potatoes -> scooped -> mashed with butter/milk"
+        },
+        "object_memory": {
+          "pasta": {
+            "3": "cooked wet mixed in pan",
+            "1": "cooked mixed with sauce in bowl"
+          },
+          "meat": {
+            "4": "raw sliced browning in wok",
+            "3": "cooked chopped bacon added to pan",
+            "2": "raw ground untouched"
+          },
+          "wok/pan": {
+            "2": "empty->veg",
+            "4": "empty->meat",
+            "3": "onions->full mix",
+            "1": "depleted to bowl"
+          },
+          "potatoes": {
+            "6": "baked whole->mashed"
+          },
+          "small_pot": {
+            "5": "simmering liquid receives salt",
+            "3": "saucepan pours liquid into pan"
+          }
+        },
+        "preliminary_order": "5->4->2->3->1->6",
+        "order_confidence": 7,
+        "confidence_basis": "5 is intro; 2->3->1 is strong pasta chain; 4 cooks meat before 3 uses cooked meat; 6 is side dish likely after main",
+        "blocking_uncertainties": [
+          "exact position of 4 relative to 2",
+          "whether 6 happens before or after the pasta baking",
+          "if 4's meat is the same as 3's meat"
+        ],
+        "uncertain": [
+          "exact position of 4 relative to 2",
+          "whether 6 happens before or after the pasta baking"
+        ],
+        "dimensions_to_compare": [
+          "meat state raw->cooked",
+          "pan contents progression",
+          "potato state maturity",
+          "intro shot cues"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "5->4->2->3->1->6"
+  ],
+  "order_confidence": [
+    "7",
+    "9"
+  ],
+  "confidence_basis": [
+    "5 is intro; 2->3->1 is strong pasta chain; 4 cooks meat before 3 uses cooked meat; 6 is side dish likely after main"
+  ],
+  "blocking_uncertainties": [
+    "exact position of 4 relative to 2",
+    "whether 6 happens before or after the pasta baking",
+    "if 4's meat is the same as 3's meat"
+  ]
+}

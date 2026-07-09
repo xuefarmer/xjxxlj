@@ -1,0 +1,193 @@
+{
+  "confirmed": [
+    "V2 before V1: clean counter vs powder residue, filling already present in V1 background",
+    "V1 and V2 before V4: paste and filling used in V4",
+    "V4 before V3: raw folded samosas fried in V3"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "white_paste": {
+      "1": "made from powder+water in small glass bowl",
+      "4": "used as sealant, residue on wooden board"
+    },
+    "green_filling": {
+      "2": "blended peas + rice/paneer + spices in large glass bowl",
+      "4": "placed onto dough strip"
+    },
+    "raw_samosa": {
+      "4": "folded triangular shape, raw dough",
+      "3": "fried in wok until golden brown"
+    },
+    "black_wok": {
+      "1": "empty",
+      "2": "empty",
+      "4": "empty/dark",
+      "3": "filled with hot oil, frying"
+    },
+    "counter_state": {
+      "1": "scattered white powder residue",
+      "2": "pending",
+      "4": "white paste residue"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient state progression",
+    "vessel fill/empty",
+    "transfer traces",
+    "residue/depletion",
+    "background object presence"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "object states across all 4 segments pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "ingredient state progression",
+          "vessel fill/empty",
+          "transfer traces",
+          "residue/depletion",
+          "background object presence"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "white_paste": {
+            "1": "made from powder+water in small glass bowl",
+            "4": "used as sealant, residue on wooden board"
+          },
+          "green_filling": {
+            "2": "blended peas + rice/paneer + spices in large glass bowl",
+            "4": "placed onto dough strip"
+          },
+          "raw_samosa": {
+            "4": "folded triangular shape, raw dough",
+            "3": "fried in wok until golden brown"
+          },
+          "black_wok": {
+            "1": "empty",
+            "2": "empty",
+            "4": "empty/dark",
+            "3": "filled with hot oil, frying"
+          },
+          "counter_state": {
+            "1": "scattered white powder residue",
+            "2": "pending",
+            "4": "white paste residue"
+          }
+        },
+        "preliminary_order": "1->2->4->3 or 2->1->4->3",
+        "order_confidence": 7,
+        "confidence_basis": "V1=paste, V2=filling, V4=folding(uses paste+filling), V3=frying. V4 before V3 is certain. V1 and V2 before V4 is certain. Order of V1 vs V2 needs verification.",
+        "blocking_uncertainties": [
+          "Whether V1 or V2 happens first based on counter state or tool placement"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                21
+              ],
+              "event": "making white paste",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                55
+              ],
+              "event": "making green filling",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                33
+              ],
+              "event": "frying samosas",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                39
+              ],
+              "event": "folding samosas",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 8,
+        "comparison_table": {
+          "V1": "makes white paste, counter gets powder residue, filling already in background",
+          "V2": "makes green filling, counter is clean",
+          "V3": "fries samosas in oil-filled wok",
+          "V4": "folds samosas using paste and filling, wok empty"
+        },
+        "confirmed": [
+          "V2 before V1: clean counter vs powder residue, filling already present in V1 background",
+          "V1 and V2 before V4: paste and filling used in V4",
+          "V4 before V3: raw folded samosas fried in V3"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1->2->4->3 or 2->1->4->3"
+  ],
+  "order_confidence": [
+    "7",
+    "8"
+  ],
+  "confidence_basis": [
+    "V1=paste, V2=filling, V4=folding(uses paste+filling), V3=frying. V4 before V3 is certain. V1 and V2 before V4 is certain. Order of V1 vs V2 needs verification."
+  ],
+  "blocking_uncertainties": [
+    "Whether V1 or V2 happens first based on counter state or tool placement"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 21], \"event\": \"making white paste\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 55], \"event\": \"making green filling\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 33], \"event\": \"frying samosas\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 39], \"event\": \"folding samosas\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V1\": \"makes white paste, counter gets powder residue, filling already in background\", \"V2\": \"makes green filling, counter is clean\", \"V3\": \"fries samosas in oil-filled wok\", \"V4\": \"folds samosas using paste and filling, wok empty\"}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": []
+}

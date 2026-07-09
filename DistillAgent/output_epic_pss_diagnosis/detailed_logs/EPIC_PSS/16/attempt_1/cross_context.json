@@ -1,0 +1,145 @@
+{
+  "confirmed": [
+    "4->3->2->1"
+  ],
+  "uncertain": [
+    "pending Layer1 results"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "small_pot_saucepan": {
+      "4": "clear liquid",
+      "3": "boiling water",
+      "2": "boiling cloudy liquid",
+      "1": "poured out/empty"
+    },
+    "frying_pan": {
+      "4": "yellow/green/orange veg",
+      "3": "green/yellow/brown veg",
+      "2": "green/yellow/brown veg",
+      "1": "brown/yellow mixture + rice added"
+    },
+    "brown_cubes": {
+      "4": "opened from container",
+      "3": "likely cooked brown in pan",
+      "2": "cooked brown in pan",
+      "1": "integrated in mixture"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states",
+    "container fill levels",
+    "cooking progression",
+    "tool usage",
+    "small pot liquid state",
+    "frying pan vegetable colors",
+    "rice presence"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states",
+          "container fill levels",
+          "cooking progression",
+          "tool usage"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "small_pot_saucepan": {
+            "4": "clear liquid",
+            "3": "boiling water",
+            "2": "boiling cloudy liquid",
+            "1": "poured out/empty"
+          },
+          "frying_pan": {
+            "4": "yellow/green/orange veg",
+            "3": "green/yellow/brown veg",
+            "2": "green/yellow/brown veg",
+            "1": "brown/yellow mixture + rice added"
+          },
+          "brown_cubes": {
+            "4": "opened from container",
+            "3": "likely cooked brown in pan",
+            "2": "cooked brown in pan",
+            "1": "integrated in mixture"
+          }
+        },
+        "preliminary_order": "4->3->2->1",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "small pot state progression: clear->boiling->cloudy->empty",
+          "frying pan veg color progression: orange->brown->rice added",
+          "utensil usage: knife->tongs->drawer->empty board"
+        ],
+        "blocking_uncertainties": [
+          "verify exact liquid state in small pot for each segment",
+          "verify presence of rice grains in frying pan for each segment"
+        ],
+        "dimensions_to_compare": [
+          "small pot liquid state",
+          "frying pan vegetable colors",
+          "rice presence"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "video4": "clear pot, opening brown cubes, yellow/green/orange veg",
+          "video3": "cloudy boiling pot, tongs put away, brown cubes in pan",
+          "video2": "cloudy pot, checking temp, brown cubes in pan",
+          "video1": "clear pot poured out, rice added to pan"
+        },
+        "confirmed": [
+          "4->3->2->1"
+        ],
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "4->3->2->1"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "small pot state progression: clear->boiling->cloudy->empty",
+    "frying pan veg color progression: orange->brown->rice added",
+    "utensil usage: knife->tongs->drawer->empty board"
+  ],
+  "blocking_uncertainties": [
+    "verify exact liquid state in small pot for each segment",
+    "verify presence of rice grains in frying pan for each segment"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"video4\": \"clear pot, opening brown cubes, yellow/green/orange veg\", \"video3\": \"cloudy boiling pot, tongs put away, brown cubes in pan\", \"video2\": \"cloudy pot, checking temp, brown cubes in pan\", \"video1\": \"clear pot poured out, rice added to pan\"}"
+  ]
+}

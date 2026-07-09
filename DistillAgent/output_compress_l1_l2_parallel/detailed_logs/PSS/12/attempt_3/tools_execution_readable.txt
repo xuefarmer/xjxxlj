@@ -1,0 +1,475 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-06 12:06:34
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-06 11:39:59 -> 2026-07-06 11:42:01
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 59.0,
+      "num_frames": 12
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 12 frames, here is the description of the operation and the state of objects.
+
+**Operation Description:**
+The video depicts the assembly of a salad, likely a warm or roasted grape salad, prepared outdoors near a brick oven. The chef combines fresh greens and cooked grains in a large bowl. He adds fresh tarragon and pours a creamy dressing. He then picks fresh grapes (appearing white/green) from a stem into the bowl. Finally, he adds roasted red grapes and toasted walnuts from a baking tray. The sequence concludes with a close-up of the finished salad and the chef presenting the dish.
+
+**Compact Evidence Rows:**
+
+*   **Tarragon**: Added/Chopped into bowl. State: Fresh, green, whole sprigs/leaves. Window: Frame 1 (~0-5s). Conf: High. Uncertainty: Exact chopping action obscured, but text overlay confirms "6 sprigs".
+*   **Dressing**: Poured from small bowl onto salad. State: Liquid, creamy, wet. Window: Frame 2 (~5-10s). Conf: High. Uncertainty: None.
+*   **Grapes (White/Green)**: Picked from stem into bowl. State: Fresh, raw, whole. Window: Frames 5-10 (~20-45s). Conf: Medium-High. Uncertainty: Color varies slightly, but appear fresh/light compared to red grapes.
+*   **Grapes (Red) & Walnuts**: Poured from baking tray into bowl. State: Roasted/cooked (darkened/shriveled grapes, browned nuts), whole. Window: Frame 12 (~50-55s). Conf: High. Uncertainty: None.
+*   **Baking Tray**: Used for roasting/holding ingredients. State: Filled (Frame 1) -> Depleted/Pouring (Frame 12) -> Residue/Scattered bits (Frame 3). Window: Frames 1, 12, 3. Conf: High. Uncertainty: None.
+*   **Salad Bowl**: Main vessel. State: Filled, mixed (greens, grains, grapes, nuts, dressing). Window: Frames 11, 4 (~50-59s). Conf: High. Uncertainty: None.
+*   **Chef/Presenter**: Gesturing/Presenting. State: Active. Window: Frame 4 (~15-20s). Conf: High. Uncertainty: Likely an intro or outro explaining the oven usage.
+
+**Dimensions to Compare (from context):**
+*   **Ingredient state**: Fresh (greens, white grapes, tarragon) vs. Cooked/Roasted (red grapes, walnuts, grains).
+*   **Container fill/empty**: Tray goes from full (Frame 1) to residue (Frame 3). Bowl goes from base ingredients to filled (Frame 11).
+*   **Tool contact**: Knife present on board (Frame 2, 3) but not actively used in most frames; hands used for picking grapes and pouring.
+*   **Completion marks**: Final plating in Frame 11 and presentation in Frame 4.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-06 11:39:59 -> 2026-07-06 11:42:19
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 11.0,
+      "num_frames": 8
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 8 frames (0.0s to 11.0s), here is the description of the operation and object states:
+
+**Operation Summary:**
+The video shows the preparation of 150g of grapes (red and green) on a grey rectangular tray. The process involves placing the grapes, dressing them with oil, squeezing lemon juice over them, and sprinkling seasoning (likely salt or sugar).
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Grapes** (Red/Green) | Placed on tray | Raw, fresh, whole, separate bunches | 0.0s - 3.0s (Frames 1-3) | [Link] | High | None |
+| **Oil** (in bottle) | Poured over grapes | Liquid, wetting grapes, yellow/gold | 1.0s - 3.0s (Frames 2-3) | [Link] | High | None |
+| **Lemon** (Yellow) | Cut and squeezed | Fresh, whole $\rightarrow$ cut half, juice extracted | 4.0s - 7.0s (Frames 4-6) | [Link] | High | Exact cut time inferred between frames 4-5 |
+| **Seasoning** (White granules) | Sprinkled by hand | Dry, granular, scattered residue | 10.0s - 11.0s (Frame 8) | [Link] | High | Granules visible on tray as early as Frame 2, suggesting prior addition or non-linear editing; decisive sprinkling action at end. |
+| **Tray** (Grey) | Holding ingredients | Empty $\rightarrow$ filled, dry $\rightarrow$ wet/oily, residue present | 0.0s - 11.0s (Frames 1-8) | [Link] | High | None |
+| **Knife** | Resting on board | Metal, sharp, present | 4.0s - 6.0s (Frames 4-6) | [Link] | High | None |
+
+**Detailed Observations:**
+*   **0.0s - 3.0s**: A hand places bunches of red and green grapes onto a clean grey tray. Text overlay "150G GRAPES" appears. Oil is poured from a bottle (Frame 2), wetting the grapes. White granules (salt/sugar) are already visible on the tray in Frame 2, implying they were added very quickly or the video edit is non-linear.
+*   **4.0s - 7.0s**: A whole yellow lemon is introduced (Frame 4). A knife is visible on the wooden board. The lemon is cut and squeezed over the grapes (Frame 6), adding juice.
+*   **10.0s - 11.0s**: A hand is shown pinching and sprinkling white granules (seasoning) over the grapes (Frame 8). This confirms the addition of dry seasoning, though residue was visible earlier.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-06 11:39:59 -> 2026-07-06 11:40:35
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 8.0,
+      "num_frames": 8
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 8 frames (0.0s to 8.0s), here is the layer 1 caption describing the operation, objects, and states.
+
+**Operation Description:**
+The video shows a chef preparing an apple for a salad. Initially, a large chunk of a red apple is sliced into thin rounds on a wooden board. These rounds are then stacked and cut into thin strips (julienne style). Finally, the apple strips are lifted and added to a bowl containing a mixed salad.
+
+**Visible Objects/Tools & States:**
+*   **Apple:** Raw, fresh, red skin with yellow flesh. Transitions from a large chunk (half) to slices, then to thin strips.
+*   **Knife:** Large chef's knife, metal blade. Used for slicing. Becomes wet with apple juice.
+*   **Cutting Board:** Wooden surface. Becomes wet with apple juice/residue as cutting progresses.
+*   **Grapes:** Red/purple, whole, raw. Present on the board near the cutting area.
+*   **Bowl:** White with blue rim. Filled with salad ingredients (grains/nuts, green peas/beans).
+*   **Salad:** Mixed ingredients in the bowl. Apple strips are added to it.
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Apple (chunk), Knife | Slicing rounds | Raw, fresh, cut into slices | 0.0s - 3.0s | [Frames 1-3] | High | None |
+| Apple (slices), Knife | Julienne cutting | Raw, cut into thin strips | 4.0s - 6.0s | [Frames 5-6] | High | None |
+| Grapes | Present | Whole, raw, separate | 0.0s - 7.0s | [Frames 1-7] | High | None |
+| Board | Residue accumulation | Wet, juice residue | 0.0s - 7.0s | [Frames 1-7] | High | None |
+| Apple strips, Bowl | Transferring/Plating | Raw strips added to filled bowl | 7.0s - 8.0s | [Frames 7-8] | High | None |
+| Salad (in bowl) | Receiving ingredient | Mixed, filled | 7.0s - 8.0s | [Frames 4, 8] | High | None |
+
+**Decisive Events Time Locations:**
+*   **~0.0s - 3.0s:** Slicing the main apple chunk into rounds.
+*   **~4.0s - 6.0s:** Cutting the stacked apple slices into thin strips.
+*   **~7.0s - 8.0s:** Lifting the apple strips and dropping them into the salad bowl.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-06 11:39:59 -> 2026-07-06 11:41:09
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 6.0,
+      "num_frames": 8
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 8 frames (Video 4, 0.0s - 6.0s), here is the description and evidence rows.
+
+**Description:**
+The video sequence illustrates the preparation step for roasting grapes in a wood-fired oven.
+*   **Operation:** A tray of grapes is being placed into or held near a hot oven. An instructional overlay specifies the cooking parameters.
+*   **Visible Objects/Tools:** Red and green grapes, a light blue/grey rectangular tray, a wood-fired oven (brick/stone structure with visible fire and embers), a person's hand/arm (wearing a white sleeve/cloth), and a large yellow graphic overlay.
+*   **States:**
+    *   **Grapes:** Raw, fresh, whole, and separated into red and green clusters on the tray. They appear plump and uncooked.
+    *   **Tray:** Filled with the grapes.
+    *   **Oven:** Hot, with active fire and glowing embers visible in the background.
+    *   **Graphic:** Displays text "5-10 MINUTES", "180°C / 350°F", and "IN THE OVEN", indicating the upcoming cooking process. A pie-chart-like animation on the yellow circle suggests a timer or progress indicator.
+
+**Compact Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Grapes (Red & Green)** | Resting on tray, held near oven | Raw, fresh, whole, separate clusters (red vs green) | Frames 7-8 (clear view); Frames 1-6 (obscured) | N/A | High | Low. Grapes appear raw and fresh. |
+| **Rectangular Tray** | Held by hand, positioned at oven mouth | Filled with grapes, light blue/grey color | Frames 1-8 | N/A | High | Low. Clearly holding the fruit. |
+| **Wood-fired Oven** | Burning/Heating | Hot, fire and embers visible, brick/stone structure | Frames 1-8 | N/A | High | Low. Fire is clearly visible. |
+| **Text Overlay (Graphic)** | Displaying instructions | "5-10 MINUTES", "180°C / 350°F", "IN THE OVEN" | Frames 2-6 | N/A | High | Low. Text is legible. |
+| **Hand/Arm** | Holding tray | Wearing white sleeve/cloth, gripping tray edge | Frames 1, 3, 7, 8 | N/A | High | Low. Visible holding the tray. |
+
+**Resolved Context:**
+*   **Ingredient state:** Raw, whole grapes (red and green).
+*   **Container fill:** Tray is filled with grapes.
+*   **Tool contact:** Hand is holding the tray to place it in the oven.
+*   **Completion marks:** None yet; this is the pre-cooking/instruction phase. The text indicates the cooking duration is 5-10 minutes.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_5) ###
+Time: 2026-07-06 11:39:59 -> 2026-07-06 11:40:24
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 18.0,
+      "num_frames": 8
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+**Layer 1 Caption:**
+The video shows the preparation of a dressing or sauce in a white bowl. First, oil is poured from a bottle. Next, natural yoghurt is added from a container. Then, a dollop of yellow mustard is added from a small jar. Seasonings (pepper and salt) are sprinkled in. Finally, the ingredients are stirred together with a spoon to create a mixed emulsion.
+
+**Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Oil, Bottle | Pouring | Liquid, wet, present | 1-2 | [Link] | High | None |
+| Yoghurt, Container | Pouring | White, thick, present | 3 | [Link] | High | None |
+| Mustard, Jar | Adding | Yellow paste, present | 4-5 | [Link] | High | None |
+| Pepper (implied) | Sprinkling | Dark granules, dry, present | 6 | [Link] | High | None |
+| Salt (implied) | Sprinkling | White granules, dry, present | 7 | [Link] | High | None |
+| Mixture (Oil, Yoghurt, Mustard, Seasoning) | Stirring | Mixed, emulsified, wet | 8 | [Link] | High | None |
+| Knife | Resting | Metal, sharp, separate | 1-2 | [Link] | High | None |
+| Bowl | Receiving | White, filled progressively | 1-8 | [Link] | High | None |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_6) ###
+Time: 2026-07-06 11:39:59 -> 2026-07-06 11:41:14
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 6,
+      "start_time": 0.0,
+      "end_time": 52.0,
+      "num_frames": 12
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from Video 6 (Frames 1-12), here is the description of the operations, objects, and states.
+
+**Video 6 Analysis (0.0s - 52.0s)**
+
+*   **Frames 1-3 (approx. 0s-10s):** The subject (Jamie Oliver) is holding a long, pale green vegetable (likely a leek or large celery stalk) and peeling the outer layer with a vegetable peeler. He also holds two small, white/yellow heads of endive (chicory).
+    *   **Objects:** Leek/Celery stalk, Endives, Peeler.
+    *   **State:** Raw, whole, being peeled.
+*   **Frames 4-5 (approx. 10s-20s):** The subject is chopping the pale green vegetable (leek/celery) on a wooden cutting board with a large knife. The vegetable is being sliced into thin pieces/shreds.
+    *   **Objects:** Leek/Celery, Knife, Wooden Board.
+    *   **State:** Raw, cut, chopped/shredded pile.
+*   **Frames 6-7 (approx. 20s-30s):** The subject holds two halves of an endive (chicory) that has been cut lengthwise. He displays the cross-section.
+    *   **Objects:** Endives (halved), Knife (on board).
+    *   **State:** Raw, cut in half, fresh.
+*   **Frames 8-9 (approx. 30s-40s):** The subject is placing long, thin slices of the endive into a decorative bowl. He arranges them with some green lettuce leaves already in the bowl.
+    *   **Objects:** Sliced Endive, Lettuce leaves, Bowl, Knife.
+    *   **State:** Raw, sliced, mixed/arranged in bowl (filled).
+*   **Frames 10-12 (approx. 40s-52s):** The subject is chopping a head of green lettuce (looks like a gem lettuce or similar) on the wooden board. The brick oven in the background has a fire burning.
+    *   **Objects:** Lettuce head, Knife, Wooden Board.
+    *   **State:** Raw, being shredded/chopped.
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Leek/Celery stalk, Peeler | Peeling | Raw, whole -> peeled surface | 1-3 | Video 6 | High | Exact vegetable ID (leek vs celery) |
+| Leek/Celery, Knife, Board | Chopping/Slicing | Raw, cut, shredded pile | 4-5 | Video 6 | High | - |
+| Endives (Chicory) | Holding/Displaying | Raw, halved lengthwise | 6-7 | Video 6 | High | - |
+| Sliced Endive, Bowl, Lettuce | Arranging/Plating | Raw, sliced, mixed in bowl | 8-9 | Video 6 | High | - |
+| Lettuce head, Knife, Board | Chopping/Shredding | Raw, cut, shredded | 10-12 | Video 6 | High | - |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-06 11:43:52 -> 2026-07-06 11:44:30
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 59.0,
+      "num_frames": 12
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: 1) The baking tray used for grapes: is it the same grey/light blue rectangular tray? What is its state (full of raw grapes, depleted, residue)? 2) The dressing poured: is it a creamy white/yellow emulsion (yoghurt+mustard+oil)? 3) The main salad bowl: what is its color/rim, and what ingredients are visible being added (greens, grains, tarragon, fresh grapes, roasted grapes, walnuts)? Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (Video 1, frames 1-12):
+
+| Object | State | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| **Baking Tray** | Grey/light blue rectangular metal tray; state is depleted/residue containing scattered roasted grapes and walnuts (being tipped to empty in frame 12). | Frames 1, 3, 12 | High | None. |
+| **Dressing** | Creamy white/yellow emulsion (consistent with yoghurt/mustard/oil mix); being poured from a small white bowl onto the salad. | Frame 2 | High | Exact chemical composition inferred from texture. |
+| **Main Salad Bowl** | White bowl with a blue patterned rim. Visible ingredients: chopped greens, grains (brown/beige), fresh green grapes, roasted red grapes, walnuts, and tarragon. | Frames 1, 2, 4, 5, 11, 12 | High | Distinguishing specific grain type (e.g., farro vs wheat) is difficult visually. |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-06 11:43:52 -> 2026-07-06 11:44:28
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 8.0,
+      "num_frames": 8
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: 1) The bowl receiving the apple strips: what is its color/rim? What ingredients are already inside (grains, nuts, peas, grapes)? 2) The apple state: raw strips? Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (specifically frames 5-8 which show the cutting and transfer process):
+
+*   **Bowl receiving apple strips**: In Frame 8, the bowl is white with a distinct blue rim. Inside, there is a mixture of ingredients including bright green peas, brown grains/nuts, and dark reddish/purple items (consistent with the grapes seen on the cutting board in frames 5-7).
+*   **Apple state**: The apple is being sliced into rounds (Frames 1-3) and then cut into thin strips/julienne (Frames 5-6). In Frame 7 and 8, these raw strips are being transferred into the bowl.
+
+**Compact Rows:**
+
+| object | state | window | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Bowl receiving apple strips | White with blue rim; contains grains, nuts, peas, and grapes (dark red items) | 8 | High | Low (contents clearly visible) |
+| Apple | Raw strips (julienned) | 1-8 | High | Low |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-06 11:43:52 -> 2026-07-06 11:44:17
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 6.0,
+      "num_frames": 8
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: 1) The tray being held near the oven: color, shape, contents (raw grapes?). 2) The oven: visible fire/embers? Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+object, state, window, conf, uncertainty
+tray, light grey/blue rectangular baking sheet holding clusters of raw red and green grapes, Video 4 (Frames 1-8), 0.95, slight occlusion by graphics in frames 1-6; contents clearly visible as raw fruit in frames 7-8
+oven, dark masonry opening with active orange flames and glowing red embers/ash visible inside, Video 4 (Frames 1-8), 0.95, none
+
+------------------------------------------------------------
+
+### [Turn 4] Tool: active_perception (ID: batch_4_1) ###
+Time: 2026-07-06 11:45:41 -> 2026-07-06 11:46:46
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 11.0,
+      "num_frames": 8
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report actual visible states: 1) The tray: color, shape, what is on it (grapes? how many? raw/cooked? oiled? seasoned?). 2) The grapes: color (red/green/both), state (whole/cut, fresh/wilted), any visible oil or seasoning. 3) Any other objects present (lemon, knife, oil bottle, seasoning containers). Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in frames 1-8 (Video 2):
+
+**1) The Tray**
+*   **Color/Shape:** Grey (or blue-grey), rectangular baking tray.
+*   **Contents:** Holds bunches of grapes.
+*   **State:** Contains raw grapes. Visible white specks (seasoning/salt) scattered on the surface.
+
+**2) The Grapes**
+*   **Color:** Both red (dark purple) and green.
+*   **State:** Whole bunches, raw/fresh.
+*   **Oil/Seasoning:** Oil is visible being poured from a bottle (Frame 2). White seasoning specks (likely salt) are visible on the grapes and tray (Frames 2, 4, 5, 8). Text overlay indicates "150G".
+
+**3) Other Objects**
+*   **Lemon:** Yellow, whole lemon held by a hand over the tray (Frames 4, 5).
+*   **Knife:** Large chef's knife resting on a wooden cutting board (Frames 1, 4, 6).
+*   **Oil Bottle:** Glass bottle being used to pour oil onto the grapes (Frames 2, 3).
+*   **Seasoning Containers:** Small bowls containing powders (white and brown) visible at the bottom edge (Frame 6).
+
+**Compact Rows:**
+
+| object | state | window | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Tray | Grey, rectangular, holds grape bunches, scattered white specks | 1-6, 8 | High | Low |
+| Grapes | Red & green, whole bunches, raw/fresh, oiled, seasoned (white specks) | 1-6, 8 | High | Low |
+| Lemon | Yellow, whole, held by hand | 4-5 | High | Low |
+| Knife | Large blade, resting on wooden board | 1, 4, 6 | High | Low |
+| Oil bottle | Glass bottle, pouring liquid | 2-3 | High | Low |
+| Seasoning bowls | Small bowls with white/brown powder | 6 | Medium | Medium (exact contents) |
+
+------------------------------------------------------------
+
+### [Turn 4] Tool: active_perception (ID: batch_4_2) ###
+Time: 2026-07-06 11:45:41 -> 2026-07-06 11:46:59
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 18.0,
+      "num_frames": 8
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report actual visible states: 1) The bowl: color, size, what is in it at the start vs end (separate ingredients or mixed emulsion?). 2) Ingredients being added: oil, yoghurt, mustard, pepper, salt - report each one's state when added. 3) Final mixture state: is it stirred/mixed into an emulsion? Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the frames from Video 5:
+
+| Object | State | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| **Bowl** | White, medium-sized ceramic bowl. Starts empty/receiving oil; ends containing mixed dressing. | 1-8 | High | Low |
+| **Oil** | Yellow/gold liquid. Being poured from a bottle into the bowl. | 1 | High | Low |
+| **Yoghurt** | White, thick/creamy substance. Being poured from a green/white tub ("250ml Natural Yoghurt"). | 3 | High | Low |
+| **Mustard** | Yellow thick paste/dollop. Visible in jar and as a dollop added to the bowl (on top of yoghurt/oil). | 4, 5 | High | Low |
+| **Pepper** | Black specks/grains. Being sprinkled onto the mixture. | 6 | High | Low |
+| **Salt** | White granules/crystals. Being sprinkled onto the mixture. | 7 | High | Low |
+| **Final Mixture** | Creamy, pale yellow/white emulsion. Ingredients (oil, yoghurt, mustard, seasoning) are being stirred/mixed together. | 8 | High | Low |
+
+**Summary of States:**
+1.  **The bowl:** White, medium size. At the start (Frame 1), it is empty and receiving oil. At the end (Frame 8), it contains a mixed emulsion.
+2.  **Ingredients added:**
+    *   **Oil:** Liquid, yellow, poured first.
+    *   **Yoghurt:** White, thick cream, poured into the oil.
+    *   **Mustard:** Yellow paste, added as a dollop (visible on top of the white yoghurt in Frame 5).
+    *   **Pepper:** Black seasoning, sprinkled on top.
+    *   **Salt:** White seasoning, sprinkled on top.
+3.  **Final mixture state:** The ingredients are stirred (Frame 8) into a creamy, pale emulsion. They transition from separate layers (oil ring, white yoghurt base, yellow mustard dollop, dark pepper, white salt) to a unified mixture.
+
+------------------------------------------------------------
+
+### [Turn 4] Tool: active_perception (ID: batch_4_3) ###
+Time: 2026-07-06 11:45:41 -> 2026-07-06 11:46:49
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 6,
+      "start_time": 0.0,
+      "end_time": 52.0,
+      "num_frames": 12
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report actual visible states: 1) The bowl: color, shape, what is in it (lettuce, endive, other greens?). 2) Vegetables being prepared: leek/celery, endive, lettuce - report each one's state (whole, peeled, chopped, sliced). 3) Any transfer actions: are vegetables being moved into the bowl? Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in Video 6 (Frames 1-12):
+
+**1) The Bowl:**
+*   **Color/Shape:** Decorative white/cream ceramic bowl with a blue patterned rim and floral interior design.
+*   **Contents:** Sliced white/yellow endive strips and green leaves (lettuce).
+
+**2) Vegetables being prepared:**
+*   **Leek/Celery (pale stalk):** Initially whole and being peeled (Frames 1-3), then chopped/sliced on a wooden board (Frames 4-5).
+*   **Endive:** Held as halved heads (Frames 6-7), then sliced into strips (Frame 8).
+*   **Lettuce:** Green leaves are handled and added to the bowl (Frame 9), and a head is chopped/shredded on the board (Frames 10-12).
+
+**3) Transfer actions:**
+*   Yes, sliced endive strips are placed into the bowl (Frame 8), followed by green leaves (Frame 9).
+
+**Compact Rows:**
+
+| Object | State | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| **Bowl** | Decorative white/cream with blue rim; contains sliced endive and green leaves | 8-12 | High | Low |
+| **Leek/Celery** | Peeled (whole stalk) then chopped/sliced | 1-5 | High | Low (visual ID of leek vs celery) |
+| **Endive** | Halved then sliced into strips | 6-8 | High | Low |
+| **Lettuce** | Leaves added to bowl; head chopped/shredded | 9-12 | High | Medium (specific green type) |
+| **Transfer** | Sliced endive and leaves moved into bowl | 8-9 | High | Low |
+
+------------------------------------------------------------
+

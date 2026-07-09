@@ -1,0 +1,120 @@
+{
+  "confirmed": [
+    "Salmon sequence: 4 -> 2",
+    "Tuna sequence: 3 -> 6 -> 1 -> 5",
+    "Monotonic board residue increase",
+    "Plate progression: empty -> absent -> filled"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {},
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states raw->cooked",
+    "container fill/empty",
+    "transfer traces",
+    "ingredient integration",
+    "residue/depletion",
+    "board residue",
+    "plate fill level",
+    "ingredient maturity",
+    "background objects"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": true,
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states raw->cooked",
+          "container fill/empty",
+          "transfer traces",
+          "ingredient integration",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "4->2->3->6->1->5",
+        "order_confidence": 7,
+        "confidence_basis": "Salmon: 4(trim)->2(slice). Tuna: 3(blocks on salt)->6(shape cylinder)->1(make rose)->5(garnish).",
+        "blocking_uncertainties": [
+          "Interleaving between salmon and tuna blocks",
+          "Exact position of Video 3 relative to Video 4/2"
+        ],
+        "uncertain": [
+          "Interleaving between salmon and tuna blocks",
+          "Exact position of Video 3 relative to Video 4/2"
+        ],
+        "dimensions_to_compare": [
+          "board residue",
+          "plate fill level",
+          "ingredient maturity",
+          "background objects"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 9,
+        "comparison_table": {
+          "4": "Salmon trimmed, board clean, plate empty",
+          "2": "Salmon sliced, board moisture, plate empty",
+          "3": "Tuna blocks on salt, board juices, plate empty",
+          "6": "Tuna chunks to cylinder, board residue, plate absent",
+          "1": "Tuna rose shaping, board residue, plate absent->filled",
+          "5": "Tuna rose garnished, board residue, plate filled, salt present"
+        },
+        "confirmed": [
+          "Salmon sequence: 4 -> 2",
+          "Tuna sequence: 3 -> 6 -> 1 -> 5",
+          "Monotonic board residue increase",
+          "Plate progression: empty -> absent -> filled"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "4->2->3->6->1->5"
+  ],
+  "order_confidence": [
+    "7",
+    "9"
+  ],
+  "confidence_basis": [
+    "Salmon: 4(trim)->2(slice). Tuna: 3(blocks on salt)->6(shape cylinder)->1(make rose)->5(garnish)."
+  ],
+  "blocking_uncertainties": [
+    "Interleaving between salmon and tuna blocks",
+    "Exact position of Video 3 relative to Video 4/2"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"4\": \"Salmon trimmed, board clean, plate empty\", \"2\": \"Salmon sliced, board moisture, plate empty\", \"3\": \"Tuna blocks on salt, board juices, plate empty\", \"6\": \"Tuna chunks to cylinder, board residue, plate absent\", \"1\": \"Tuna rose shaping, board residue, plate absent->filled\", \"5\": \"Tuna rose garnished, board residue, plate filled, salt present\"}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": []
+}

@@ -1,0 +1,170 @@
+[
+  {
+    "turn": 1,
+    "call_id": "batch_1_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 22.233333333333334,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows."
+    },
+    "timestamp_start": "2026-07-08 19:02:44",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 22.2s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill levels\",\n    \"cooking progression\",\n    \"tool usage\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "**Operation:** Transferring rinsed rice and measured water into a frying pan containing sautéed ingredients to begin cooking a mixed rice dish.\n\n**Visible Objects/Tools & States:**\n\n*   **Saucepan (Metal, small):**\n    *   State: **Filled** with clear water (Frames 1-9) $\\rightarrow$ **Empty/Depletion** as water is poured out (Frames 10-16).\n*   **Sieve/Strainer (Metal mesh):**\n    *   State: **Filled** with wet white rice (Frames 1-7) $\\rightarrow$ **Empty/Wet** residue, placed on cutting board (Frames 8-9).\n*   **Rice (White grains):**\n    *   State: **Wet/Rinsed**, **Whole**. Initially **Separate** in sieve $\\rightarrow$ **Mixed** into the frying pan (Frame 7).\n*   **Frying Pan (Black, on stove):**\n    *   State: **Filled** with cooked brown/yellow mixture (likely sautéed vegetables/meat). Rice is added (Frame 7), then water is poured in (Frame 10). Contents become **Mixed** and **Wet**.\n*   **Sink (Stainless steel):**\n    *   State: Contains cloudy/starchy water (**Residue** from rinsing rice).\n*   **Spatula (Black):**\n    *   State: **Present**. Used to scrape remaining water/rice from the saucepan into the pan (Frames 10-16).\n*   **Cutting Board (Green):**\n    *   State: **Present**. Supports the empty sieve.",
+    "timestamp_end": "2026-07-08 19:03:51"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 21.866666666666667,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows."
+    },
+    "timestamp_start": "2026-07-08 19:02:44",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 21.9s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill levels\",\n    \"cooking progression\",\n    \"tool usage\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "**Video 2 (Frames 1-16)**\n\n**Operation:** Simultaneous cooking of a vegetable stir-fry and a boiling starch (likely rice) on an electric stovetop.\n\n**Visible Objects/Tools & States:**\n*   **Large Frying Pan:** Filled with cut, cooked vegetables (green, yellow, brown mix). State: Cooked, mixed, hot (steam visible), wet/oily.\n*   **Small Saucepan:** Filled with boiling white/cloudy liquid. State: Boiling, filled, wet, hot (steam visible).\n*   **Black Spatula:** Present. Used for stirring the vegetable mix.\n*   **Metal Spoon:** Present. Used for stirring the liquid and scooping.\n*   **Blue Plate:** Empty, present on the left counter.\n*   **Green Cutting Board:** Empty, present on the right counter.\n*   **Sauce Bottles:** Present in background cluster.\n\n**Compact Evidence Rows:**\n*   **Frames 1-8:** Person uses a black spatula to stir the cooked vegetable mixture in the large frying pan. The small saucepan boils simultaneously on the left burner.\n*   **Frames 9-12:** Person puts down spatula (implied), picks up a metal spoon from the counter, and stirs the boiling liquid in the small saucepan.\n*   **Frames 13-15:** Person scoops a spoonful of the hot white liquid from the small saucepan and holds it over their open left palm, likely checking temperature or consistency.\n*   **Frame 16:** General view of both pans continuing to cook; steam rising from both.",
+    "timestamp_end": "2026-07-08 19:03:31"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 37.36666666666666,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows."
+    },
+    "timestamp_start": "2026-07-08 19:02:44",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 37.4s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill levels\",\n    \"cooking progression\",\n    \"tool usage\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "**Video 3 (Frames 1-16)**\n\n*   **Frames 1-5:**\n    *   **Operation:** The person inspects and returns utensils to a drawer.\n    *   **Objects/Tools:** Open wooden drawer, metal tongs, small metal tool, cutlery (knives, forks, spoons).\n    *   **States:** Drawer is open and filled with organized cutlery. Tongs and small tool are held (dry/separate) then placed back into the drawer (mixed/organized).\n\n*   **Frames 6-12:**\n    *   **Operation:** Cooking/Stir-frying vegetables and boiling water.\n    *   **Objects/Tools:** Large black frying pan, small saucepan, black spatula, stovetop, chopped vegetables, water, spice tray, green cutting board.\n    *   **States:** Vegetables are cooked, chopped, and mixed (green/yellow/brown) inside the filled frying pan. Water is boiling, wet, and hot (steam visible) inside the filled saucepan. Spatula is in use.\n\n*   **Frames 13-16:**\n    *   **Operation:** Stirring boiling water.\n    *   **Objects/Tools:** Small saucepan, metal spoon, large frying pan.\n    *   **States:** Water is boiling/wet. Spoon is wet (submerged/stirring). Large pan remains filled with cooked vegetables.",
+    "timestamp_end": "2026-07-08 19:03:35"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 43.30000000000007,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows."
+    },
+    "timestamp_start": "2026-07-08 19:02:44",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 43.3s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill levels\",\n    \"cooking progression\",\n    \"tool usage\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "**Operation:** Stir-frying vegetables in a pan; opening a container of cubed food ingredients.\n\n**Visible Objects/Tools:** Large black frying pan, small silver pot, black spatula, rectangular plastic container, knife, green cutting board, spice rack, brown cubes (food).\n\n**Object States & Evidence Rows:**\n\n*   **Frames 1-8 (Stovetop):**\n    *   **Vegetables:** Chopped, mixed (yellow, green, orange pieces), cooked/sautéed (wilted appearance), present in the frying pan.\n    *   **Frying Pan:** On the stove burner, contains the mixed vegetables.\n    *   **Spatula:** Black, held by hand, used to stir the vegetables.\n    *   **Small Pot:** Filled with clear liquid (water), sitting on the adjacent burner.\n    *   **Spice Rack:** Present on the right, filled with various jars.\n\n*   **Frames 10-16 (Counter/Prep):**\n    *   **Plastic Container:** Filled with small brown cubes (raw/ready-to-cook state).\n    *   **Packaging (Plastic Film):** Initially covering the container; cut with a knife (Frame 11-12), then peeled off by hand (Frame 13-14), resulting in removal/depletion of the seal.\n    *   **Knife:** Silver blade, black handle, used to slice the plastic seal, then placed on the counter.\n    *   **Cutting Board:** Green, present on the counter.\n    *   **Brown Cubes:** Solid, separate pieces inside the filled container; person reaches in to grab them (Frame 16).",
+    "timestamp_end": "2026-07-08 19:03:28"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 22.233333333333334,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the small saucepan: is it FILLED_WITH_CLEAR_LIQUID, FILLED_WITH_CLOUDY_LIQUID, BOILING, or EMPTY? Report the frying pan contents: are there visible rice grains, or only vegetables? Report compact rows."
+    },
+    "timestamp_start": "2026-07-08 19:05:34",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 22.2s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the small saucepan: is it FILLED_WITH_CLEAR_LIQUID, FILLED_WITH_CLOUDY_LIQUID, BOILING, or EMPTY? Report the frying pan contents: are there visible rice grains, or only vegetables? Report compact rows.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"small_pot_saucepan\": {\n      \"4\": \"clear liquid\",\n      \"3\": \"boiling water\",\n      \"2\": \"boiling cloudy liquid\",\n      \"1\": \"poured out/empty\"\n    },\n    \"frying_pan\": {\n      \"4\": \"yellow/green/orange veg\",\n      \"3\": \"green/yellow/brown veg\",\n      \"2\": \"green/yellow/brown veg\",\n      \"1\": \"brown/yellow mixture + rice added\"\n    },\n    \"brown_cubes\": {\n      \"4\": \"opened from container\",\n      \"3\": \"likely cooked brown in pan\",\n      \"2\": \"cooked brown in pan\",\n      \"1\": \"integrated in mixture\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill levels\",\n    \"cooking progression\",\n    \"tool usage\",\n    \"small pot liquid state\",\n    \"frying pan vegetable colors\",\n    \"rice presence\"\n  ],\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Small saucepan: FILLED_WITH_CLEAR_LIQUID\nFrying pan: visible rice grains",
+    "timestamp_end": "2026-07-08 19:06:28"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 21.866666666666667,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the small saucepan: is it FILLED_WITH_CLEAR_LIQUID, FILLED_WITH_CLOUDY_LIQUID, BOILING, or EMPTY? Report the frying pan contents: what colors are the vegetables (green, yellow, orange, brown)? Report compact rows."
+    },
+    "timestamp_start": "2026-07-08 19:05:34",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 21.9s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the small saucepan: is it FILLED_WITH_CLEAR_LIQUID, FILLED_WITH_CLOUDY_LIQUID, BOILING, or EMPTY? Report the frying pan contents: what colors are the vegetables (green, yellow, orange, brown)? Report compact rows.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"small_pot_saucepan\": {\n      \"4\": \"clear liquid\",\n      \"3\": \"boiling water\",\n      \"2\": \"boiling cloudy liquid\",\n      \"1\": \"poured out/empty\"\n    },\n    \"frying_pan\": {\n      \"4\": \"yellow/green/orange veg\",\n      \"3\": \"green/yellow/brown veg\",\n      \"2\": \"green/yellow/brown veg\",\n      \"1\": \"brown/yellow mixture + rice added\"\n    },\n    \"brown_cubes\": {\n      \"4\": \"opened from container\",\n      \"3\": \"likely cooked brown in pan\",\n      \"2\": \"cooked brown in pan\",\n      \"1\": \"integrated in mixture\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill levels\",\n    \"cooking progression\",\n    \"tool usage\",\n    \"small pot liquid state\",\n    \"frying pan vegetable colors\",\n    \"rice presence\"\n  ],\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in the frames:\n\n**Small Saucepan State:**\nThe small saucepan on the left burner contains a liquid that appears white and opaque, indicating it is not clear. There is visible steam and bubbling (especially in frames 1, 9, 10), suggesting it is hot/boiling, but the distinct white/cloudy appearance of the liquid (likely starchy water with rice or similar) fits the description of a cloudy liquid best among the content options.\n*   **State:** FILLED_WITH_CLOUDY_LIQUID\n\n**Frying Pan Contents:**\nThe frying pan contains a mixture of chopped vegetables and cooked ingredients. Visible colors include:\n*   **Green:** (likely peas, green beans, or green peppers)\n*   **Yellow:** (likely corn or yellow peppers)\n*   **Orange:** (likely carrots)\n*   **Brown:** (cooked onions, meat cubes, or browned vegetables)\n\n**Compact Report:**\n*   **Small Saucepan:** FILLED_WITH_CLOUDY_LIQUID\n*   **Frying Pan Vegetables:** green, yellow, orange, brown",
+    "timestamp_end": "2026-07-08 19:07:08"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 37.36666666666666,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the small saucepan: is it FILLED_WITH_CLEAR_LIQUID, FILLED_WITH_CLOUDY_LIQUID, BOILING, or EMPTY? Report the frying pan contents: what colors are the vegetables (green, yellow, orange, brown)? Report compact rows."
+    },
+    "timestamp_start": "2026-07-08 19:05:34",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 37.4s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the small saucepan: is it FILLED_WITH_CLEAR_LIQUID, FILLED_WITH_CLOUDY_LIQUID, BOILING, or EMPTY? Report the frying pan contents: what colors are the vegetables (green, yellow, orange, brown)? Report compact rows.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"small_pot_saucepan\": {\n      \"4\": \"clear liquid\",\n      \"3\": \"boiling water\",\n      \"2\": \"boiling cloudy liquid\",\n      \"1\": \"poured out/empty\"\n    },\n    \"frying_pan\": {\n      \"4\": \"yellow/green/orange veg\",\n      \"3\": \"green/yellow/brown veg\",\n      \"2\": \"green/yellow/brown veg\",\n      \"1\": \"brown/yellow mixture + rice added\"\n    },\n    \"brown_cubes\": {\n      \"4\": \"opened from container\",\n      \"3\": \"likely cooked brown in pan\",\n      \"2\": \"cooked brown in pan\",\n      \"1\": \"integrated in mixture\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill levels\",\n    \"cooking progression\",\n    \"tool usage\",\n    \"small pot liquid state\",\n    \"frying pan vegetable colors\",\n    \"rice presence\"\n  ],\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in the frames:\n\n**Small Saucepan State:**\n- **BOILING**: Steam is clearly visible rising from the pot (e.g., frames 9, 12, 13), and the liquid surface shows agitation/bubbles consistent with boiling.\n- **FILLED_WITH_CLOUDY_LIQUID**: The liquid appears white/cloudy, especially in frames 13-16 where it is being stirred, resembling starchy water (like rice water). In earlier frames (6-12), it appears as boiling water which can look white due to bubbles, but transitions to a distinct cloudy white.\n\n**Frying Pan Contents:**\n- **Vegetable Colors**: The mixture contains **green** (e.g., peppers/zucchini), **yellow** (e.g., corn/peppers), **orange** (e.g., carrots/peppers), and **brown** (cooked bits/onions) vegetables.\n\n**Compact Report:**\n- **Small Saucepan**: BOILING, FILLED_WITH_CLOUDY_LIQUID\n- **Frying Pan**: Green, yellow, orange, brown vegetables",
+    "timestamp_end": "2026-07-08 19:07:00"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 43.30000000000007,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the small pot/saucepan: is it FILLED_WITH_CLEAR_LIQUID, FILLED_WITH_CLOUDY_LIQUID, BOILING, or EMPTY? Report the frying pan contents: what colors are the vegetables (green, yellow, orange, brown)? Report compact rows."
+    },
+    "timestamp_start": "2026-07-08 19:05:34",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 43.3s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the small pot/saucepan: is it FILLED_WITH_CLEAR_LIQUID, FILLED_WITH_CLOUDY_LIQUID, BOILING, or EMPTY? Report the frying pan contents: what colors are the vegetables (green, yellow, orange, brown)? Report compact rows.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"small_pot_saucepan\": {\n      \"4\": \"clear liquid\",\n      \"3\": \"boiling water\",\n      \"2\": \"boiling cloudy liquid\",\n      \"1\": \"poured out/empty\"\n    },\n    \"frying_pan\": {\n      \"4\": \"yellow/green/orange veg\",\n      \"3\": \"green/yellow/brown veg\",\n      \"2\": \"green/yellow/brown veg\",\n      \"1\": \"brown/yellow mixture + rice added\"\n    },\n    \"brown_cubes\": {\n      \"4\": \"opened from container\",\n      \"3\": \"likely cooked brown in pan\",\n      \"2\": \"cooked brown in pan\",\n      \"1\": \"integrated in mixture\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill levels\",\n    \"cooking progression\",\n    \"tool usage\",\n    \"small pot liquid state\",\n    \"frying pan vegetable colors\",\n    \"rice presence\"\n  ],\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Small pot/saucepan state: FILLED_WITH_CLEAR_LIQUID\nFrying pan vegetable colors: Green, yellow, orange, brown",
+    "timestamp_end": "2026-07-08 19:06:06"
+  }
+]

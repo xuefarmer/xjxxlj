@@ -1,0 +1,143 @@
+{
+  "confirmed": [
+    "V4->V3: meat progression",
+    "V4->V1: potato progression",
+    "V3->V5: base completion",
+    "V1->V5: mash transfer",
+    "V5->V2: baking progression"
+  ],
+  "uncertain": [
+    "all object states and transitions across 5 segments"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "glass_baking_dish": {
+      "3": "meat+veggie base",
+      "5": "base+mash topping",
+      "2": "baked golden brown"
+    },
+    "metal_saucepan": {
+      "1": "filled with mashed potatoes",
+      "5": "depleted/empty after scooping"
+    },
+    "skillet": {
+      "4": "raw->browned meat sauce",
+      "3": "cooked meat sauce"
+    },
+    "potatoes": {
+      "4": "yellow chunks in pot",
+      "1": "drained and mashed",
+      "5": "spread as topping"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient state (raw/cooked/cut)",
+    "container fill/empty",
+    "transfer traces",
+    "residue/depletion",
+    "mixture integration",
+    "plating"
+  ],
+  "resolved_uncertain": [
+    "exact state of saucepan in V1 vs V5",
+    "exact layers in glass dish across V3, V5, V2"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all object states and transitions across 5 segments"
+        ],
+        "dimensions_to_compare": [
+          "ingredient state (raw/cooked/cut)",
+          "container fill/empty",
+          "transfer traces",
+          "residue/depletion",
+          "mixture integration",
+          "plating"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "preliminary_order": "4->3->1->5->2",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V4: raw->cooked meat sauce",
+          "V3: meat+veggies base in glass dish",
+          "V1: potatoes mashed in saucepan",
+          "V5: mash spread over base",
+          "V2: assembled dish baked"
+        ],
+        "blocking_uncertainties": [
+          "exact state of saucepan in V1 vs V5",
+          "exact layers in glass dish across V3, V5, V2"
+        ],
+        "object_memory": {
+          "glass_baking_dish": {
+            "3": "meat+veggie base",
+            "5": "base+mash topping",
+            "2": "baked golden brown"
+          },
+          "metal_saucepan": {
+            "1": "filled with mashed potatoes",
+            "5": "depleted/empty after scooping"
+          },
+          "skillet": {
+            "4": "raw->browned meat sauce",
+            "3": "cooked meat sauce"
+          },
+          "potatoes": {
+            "4": "yellow chunks in pot",
+            "1": "drained and mashed",
+            "5": "spread as topping"
+          }
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "order_confidence": 9,
+        "confirmed": [
+          "V4->V3: meat progression",
+          "V4->V1: potato progression",
+          "V3->V5: base completion",
+          "V1->V5: mash transfer",
+          "V5->V2: baking progression"
+        ],
+        "resolved_uncertain": [
+          "exact state of saucepan in V1 vs V5",
+          "exact layers in glass dish across V3, V5, V2"
+        ]
+      }
+    }
+  ],
+  "preliminary_order": [
+    "4->3->1->5->2"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "V4: raw->cooked meat sauce",
+    "V3: meat+veggies base in glass dish",
+    "V1: potatoes mashed in saucepan",
+    "V5: mash spread over base",
+    "V2: assembled dish baked"
+  ],
+  "blocking_uncertainties": [
+    "exact state of saucepan in V1 vs V5",
+    "exact layers in glass dish across V3, V5, V2"
+  ]
+}

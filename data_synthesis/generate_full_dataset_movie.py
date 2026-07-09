@@ -1,4 +1,4 @@
-import requests
+
 import json
 import random
 import re
@@ -15,11 +15,7 @@ except ImportError:
     pass
 
 # ================= 1. Global Configuration (Gemini 3 Flash Preview) =================
-API_KEY = os.environ.get("GEMINI_API_KEY", "")
-if not API_KEY:
-    raise ValueError("Please set GEMINI_API_KEY in environment or .env before running.")
-MODEL_NAME = "gemini-3-flash-preview"
-ENDPOINT = os.environ.get("GEMINI_ENDPOINT", "https://example.googleapis.com/v1:generateContent")
+from llm_client import request_llm
 
 # Output directory
 OUTPUT_DIR = "movie_synthesis"
@@ -219,21 +215,6 @@ You are generating 4 different video clips (A, B, C, D), but **ONLY ONE** is the
 
 # ================= 5. API Request and Handling =================
 
-def request_gemini(prompt):
-    headers = {"api-key": API_KEY, "Content-Type": "application/json"}
-    payload = {
-        "contents": [{"role": "user", "parts": [{"text": prompt}]}],
-        "generationConfig": {"temperature": 0.85, "maxOutputTokens": 65535}
-    }
-    try:
-        # Flash is fast but long output may need longer timeout
-        resp = requests.post(ENDPOINT, headers=headers, json=payload, timeout=300)
-        if resp.status_code == 200:
-            return resp.json()["candidates"][0]["content"]["parts"][0]["text"]
-    except Exception:
-        pass
-    return None
-
 def extract_json(text):
     if not text: return None
     try: return json.loads(text)
@@ -262,7 +243,7 @@ def process_and_save_task(task_params):
     
     for attempt in range(1, MAX_RETRIES + 1):
         try:
-            raw_text = request_gemini(prompt)
+            raw_text = request_llm(prompt, temperature=0.85)
             data = extract_json(raw_text)
             
             if data and "videos" in data:

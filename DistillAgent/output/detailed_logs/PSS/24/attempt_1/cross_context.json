@@ -1,0 +1,246 @@
+{
+  "confirmed": [
+    "V3 is early prep (raw veggies)",
+    "V1 adds spice mix to water in pot",
+    "V2 makes tadka in frying pan",
+    "V4 transfers tadka from pan to pot",
+    "V1 end state matches V4 pot start state",
+    "V2 end state matches V4 pan start state"
+  ],
+  "uncertain": [
+    "Exact color of pot liquid in V4 start vs V1 end"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Adding Shan Biryani spice mix to clear water in large white pot.\", \"2\": \"Heating oil and tempering seeds (cumin/mustard) in metal frying pan.\", \"3\": \"Seasoning raw chopped vegetables in blue bowl with salt/white powder.\", \"4\": \"Transferring fried tempering from frying pan into large white pot and stirring.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "large_white_pot": {
+      "1": "clear water -> water with orange/brown powder",
+      "4": "pale yellow/clear liquid -> murky orange-brown with dark specks"
+    },
+    "frying_pan": {
+      "2": "empty -> oil -> hot oil with sizzling seeds",
+      "4": "dark cooked bits/residue -> scraped clean/depleted"
+    },
+    "blue_bowl_veggies": {
+      "3": "raw chopped veggies -> seasoned raw veggies"
+    },
+    "shan_biryani_box": {
+      "1": "closed -> opened -> silver packet emptied"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states across segments",
+    "container fill/empty transitions",
+    "raw-to-cooked progression",
+    "transfer traces",
+    "residue/depletion cues",
+    "pot liquid color progression",
+    "pan residue continuity",
+    "veggie raw state"
+  ],
+  "resolved_uncertain": [
+    "Exact color of pot liquid in V4 start vs V1 end - confirmed as matching progression"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All object states and segment roles are unknown before Layer1"
+        ],
+        "dimensions_to_compare": [
+          "object states across segments",
+          "container fill/empty transitions",
+          "raw-to-cooked progression",
+          "transfer traces",
+          "residue/depletion cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Adding Shan Biryani spice mix to clear water in large white pot.",
+          "2": "Heating oil and tempering seeds (cumin/mustard) in metal frying pan.",
+          "3": "Seasoning raw chopped vegetables in blue bowl with salt/white powder.",
+          "4": "Transferring fried tempering from frying pan into large white pot and stirring."
+        },
+        "object_memory": {
+          "large_white_pot": {
+            "1": "clear water -> water with orange/brown powder",
+            "4": "pale yellow/clear liquid -> murky orange-brown with dark specks"
+          },
+          "frying_pan": {
+            "2": "empty -> oil -> hot oil with sizzling seeds",
+            "4": "dark cooked bits/residue -> scraped clean/depleted"
+          },
+          "blue_bowl_veggies": {
+            "3": "raw chopped veggies -> seasoned raw veggies"
+          },
+          "shan_biryani_box": {
+            "1": "closed -> opened -> silver packet emptied"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                15,
+                25
+              ],
+              "event": "end state of pot after adding mix",
+              "key_objects": [
+                "large white pot",
+                "shan box"
+              ],
+              "visible_state": "liquid has orange/brown powder",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                25,
+                36
+              ],
+              "event": "end state of pan after tempering",
+              "key_objects": [
+                "frying pan",
+                "seeds",
+                "oil"
+              ],
+              "visible_state": "hot oil with sizzling/fried seeds",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "seasoning raw veggies",
+              "key_objects": [
+                "blue bowl",
+                "veggies",
+                "spice box"
+              ],
+              "visible_state": "raw veggies being seasoned",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                10
+              ],
+              "event": "start of transfer from pan to pot",
+              "key_objects": [
+                "frying pan",
+                "large white pot"
+              ],
+              "visible_state": "pan has dark bits, pot has pale/yellow liquid",
+              "confidence": "high"
+            }
+          ]
+        },
+        "preliminary_order": [
+          3,
+          1,
+          2,
+          4
+        ],
+        "order_confidence": 8,
+        "confidence_basis": "V3 is clearly prep (raw veggies). V1 adds biryani mix to water. V2 makes tadka. V4 transfers tadka to pot. V2->V4 is linked by pan state (fried seeds/residue transferred). V1->V4 is linked by pot (spiced water receives tadka). V3 is early prep.",
+        "blocking_uncertainties": [
+          "Verify V4 pot start state to ensure it matches V1 end state (spiced water) and doesn't contradict V1->V4 order."
+        ],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "Exact color of pot liquid in V4 start vs V1 end"
+        ],
+        "dimensions_to_compare": [
+          "pot liquid color progression",
+          "pan residue continuity",
+          "veggie raw state"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "3": "raw chopped veggies seasoned with white powder",
+          "1": "clear water -> pale yellow/orange spiced water in large white pot",
+          "2": "empty pan -> hot oil with sizzling seeds/fried residue",
+          "4": "pan with dark residue scraped into pot with pale yellow liquid -> murky orange-brown broth"
+        },
+        "confirmed": [
+          "V3 is early prep (raw veggies)",
+          "V1 adds spice mix to water in pot",
+          "V2 makes tadka in frying pan",
+          "V4 transfers tadka from pan to pot",
+          "V1 end state matches V4 pot start state",
+          "V2 end state matches V4 pan start state"
+        ],
+        "resolved_uncertain": [
+          "Exact color of pot liquid in V4 start vs V1 end - confirmed as matching progression"
+        ],
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [15, 25], \"event\": \"end state of pot after adding mix\", \"key_objects\": [\"large white pot\", \"shan box\"], \"visible_state\": \"liquid has orange/brown powder\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [25, 36], \"event\": \"end state of pan after tempering\", \"key_objects\": [\"frying pan\", \"seeds\", \"oil\"], \"visible_state\": \"hot oil with sizzling/fried seeds\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 11], \"event\": \"seasoning raw veggies\", \"key_objects\": [\"blue bowl\", \"veggies\", \"spice box\"], \"visible_state\": \"raw veggies being seasoned\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 10], \"event\": \"start of transfer from pan to pot\", \"key_objects\": [\"frying pan\", \"large white pot\"], \"visible_state\": \"pan has dark bits, pot has pale/yellow liquid\", \"confidence\": \"high\"}]}"
+  ],
+  "preliminary_order": [
+    "3",
+    "1",
+    "2",
+    "4"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "V3 is clearly prep (raw veggies). V1 adds biryani mix to water. V2 makes tadka. V4 transfers tadka to pot. V2->V4 is linked by pan state (fried seeds/residue transferred). V1->V4 is linked by pot (spiced water receives tadka). V3 is early prep."
+  ],
+  "blocking_uncertainties": [
+    "Verify V4 pot start state to ensure it matches V1 end state (spiced water) and doesn't contradict V1->V4 order."
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"3\": \"raw chopped veggies seasoned with white powder\", \"1\": \"clear water -> pale yellow/orange spiced water in large white pot\", \"2\": \"empty pan -> hot oil with sizzling seeds/fried residue\", \"4\": \"pan with dark residue scraped into pot with pale yellow liquid -> murky orange-brown broth\"}"
+  ]
+}

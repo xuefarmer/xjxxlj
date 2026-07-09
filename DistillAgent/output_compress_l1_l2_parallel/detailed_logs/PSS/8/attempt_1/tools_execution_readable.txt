@@ -1,0 +1,454 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-06 11:09:29
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-06 11:02:20 -> 2026-07-06 11:03:19
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 38.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+[Layer 1 Caption]
+**Operation:** Boiling and blanching noodles. The process involves cooking noodles in a wok of boiling water, transferring them to a bowl (likely for rinsing/cooling), and then briefly dipping them back into the boiling water using a strainer before serving.
+
+**Visible Objects/Tools:**
+*   **Wok:** Large, black, metal. State: Filled with boiling water.
+*   **Water:** State: Boiling, bubbling vigorously, becoming cloudy/starchy.
+*   **Noodles:** Yellow, thin strands. State: Raw (stiff) $\rightarrow$ Cooked (soft/wet) $\rightarrow$ Rinsed $\rightarrow$ Heated.
+*   **Ladle:** Metal, long handle. State: Present in wok, used for stirring.
+*   **Wire Strainer (Spider):** Metal mesh with wooden handle. State: Used to lift and drain noodles.
+*   **Metal Bowl:** Silver, large. State: Filled with water and noodles (rinsing step).
+
+**Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Wok, Water | Boiling | Hot, bubbling, wet | 0.0s - 3.0s | [Frame 1-2] | High | None |
+| Noodles | Added to wok | Raw, yellow, separate strands | 3.0s - 5.0s | [Frame 2] | High | None |
+| Noodles, Water | Boiling together | Cooking, wet, integrating | 5.0s - 15.0s | [Frame 3-6] | High | None |
+| Strainer, Noodles | Lifting out of wok | Cooked, wet, drained | 15.0s - 20.0s | [Frame 8-9] | High | None |
+| Strainer, Bowl, Noodles | Transferring to bowl | Wet, cooked, mixed with water | 20.0s - 28.0s | [Frame 11-13] | High | Likely rinsing/cooling |
+| Strainer, Noodles, Wok | Dipping back in (blanching) | Heated, wet, cooked | 30.0s - 35.0s | [Frame 14-15] | High | Quick heating step |
+| Strainer, Noodles | Lifting out final | Cooked, ready, wet | 35.0s - 38.0s | [Frame 16] | High | None |
+
+**Summary of States:**
+*   **Noodles:** Transition from raw/fresh (yellow strands falling in) to cooked/soft (boiling) to wet/drained (in strainer) to rinsed (in bowl) to final heated state.
+*   **Water:** Boiling and cloudy (starchy residue) in the wok. Present in the bowl for rinsing.
+*   **Containers:** Wok remains filled with boiling water throughout. Bowl is filled temporarily with noodles and water. Strainer cycles between empty and filled with noodles.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-06 11:02:20 -> 2026-07-06 11:03:34
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 21.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames (Video 2, 0.0s - 21.0s), here is the layer 1 caption and analysis:
+
+**Operation Description:**
+The video depicts the final assembly of a wonton noodle dish, specifically the addition of broth. Initially, a white bowl is presented containing cooked wontons, egg noodles, and chopped green onions, appearing as a "dry" or lightly sauced mixture (wonton mein style). Around the 13-second mark, a metal ladle pours a clear, hot broth into the bowl, transforming the dish into a wonton soup. The final state shows the ingredients submerged in the soup.
+
+**Visible Objects/Tools & States:**
+*   **Bowl**: White ceramic bowl. State: Filled with food.
+*   **Wontons**: Yellow/golden dumplings. State: Cooked, whole, glossy/wet (coated in sauce/oil initially), present.
+*   **Noodles**: Thin yellow/brown egg noodles. State: Cooked, mixed with wontons.
+*   **Green Onions (Scallions)**: Chopped green pieces. State: Fresh, cut, present as garnish.
+*   **Fried Shallots/Garlic**: Small brown crispy bits (visible clearly from ~8s). State: Cooked, dry, present as garnish.
+*   **Ladle**: Metal utensil. State: Present, active (pouring).
+*   **Broth/Soup**: Clear yellowish liquid. State: Liquid, hot (implied), filling the bowl.
+
+**Decisive Events & Time Locations:**
+*   **0.0s - 12.0s**: Static presentation of the "dry" assembled bowl (wontons, noodles, garnish). The noodles appear coated in a light sauce.
+*   **13.0s - 14.0s**: **Decisive Event**: A ladle pours broth into the bowl. The liquid level rises rapidly.
+*   **15.0s - 21.0s**: The bowl is now filled with soup; ingredients are floating/submerged.
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Wontons, Noodles, Green Onions | Presented/Static | Cooked, mixed, glossy, garnished | 0.0s - 12.0s | Video 2 | High | Low |
+| Fried Shallots (garnish) | Added/Visible | Cooked, dry, brown bits | 8.0s - 12.0s | Video 2 | High | Low |
+| Ladle, Broth | Pouring | Liquid flowing, filling bowl | 13.0s - 14.0s | Video 2 | High | Low |
+| Wonton Soup (Final) | Submerged | Filled with broth, wet, mixed | 15.0s - 21.0s | Video 2 | High | Low |
+
+**Cross-Video Context Update:**
+*   **Object states raw->cooked**: Wontons and noodles are fully cooked.
+*   **Container fill/empty**: Bowl transitions from filled with solids (dry mix) to filled with liquid (soup).
+*   **Transfer traces**: Broth transfer from ladle to bowl is clearly visible.
+*   **Residue/depletion**: N/A (filling up, not depleting).
+*   **Ingredient integration**: Solids are integrated into the liquid broth.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-06 11:02:20 -> 2026-07-06 11:03:01
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 44.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames (Video 3, 0.0s - 44.0s), here is the layer 1 caption and analysis:
+
+**Operation Description:**
+The video depicts the process of boiling wontons (dumplings) and serving them. Initially, yellow wontons are seen boiling vigorously in a large black wok filled with water. A metal ladle is used to stir the water and dumplings. Subsequently, a wire mesh strainer is used to scoop the cooked wontons out of the boiling water. Finally, the cooked wontons are transferred into a white bowl containing noodles, presenting a finished dish of wonton noodles.
+
+**Visible Objects/Tools & States:**
+*   **Wok/Pan:** Black, large, filled with boiling water.
+*   **Water:** Boiling, bubbling, hot, wet.
+*   **Wontons (Dumplings):** Yellow, plump. State transitions from cooking (submerged in boiling water) to cooked (wet, glistening) to served.
+*   **Ladle:** Metal, used for stirring and assisting in scooping.
+*   **Wire Strainer (Spider):** Metal mesh, used for lifting dumplings.
+*   **Bowl:** White, round. State: Empty (implied before filling) -> Filled with noodles and wontons.
+*   **Noodles:** Yellow, thin. State: Cooked, present in the final bowl (Frame 16).
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window (Frames) | Time Approx. | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Wontons, Water, Wok | Boiling | Water: Boiling/Wet; Wontons: Cooking/Yellow/Plump | 1-10 | 0.0s - 27.5s | High | None |
+| Ladle, Wontons | Stirring | Ladle: Active; Wontons: Agitated in water | 11-12 | 27.5s - 33.0s | High | None |
+| Strainer, Ladle, Wontons | Scooping/Transferring | Wontons: Cooked/Wet; Strainer: Full | 13-14 | 33.0s - 38.5s | High | None |
+| Bowl, Wontons, Noodles | Plating/Serving | Bowl: Filled; Wontons: Cooked; Noodles: Cooked/Mixed | 15-16 | 38.5s - 44.0s | High | Noodles appearance sudden (likely pre-plated or cooked off-screen) |
+
+**Cross-Video Context Updates:**
+*   **object states raw->cooked:** Wontons observed boiling -> cooked (plump, yellow skin).
+*   **container fill/empty:** Wok filled with water; Bowl filled with noodles and wontons.
+*   **transfer traces:** Strainer clearly lifts wontons from wok to bowl.
+*   **ingredient integration:** Final frame shows wontons mixed/placed on top of noodles.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-06 11:02:20 -> 2026-07-06 11:03:18
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 55.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from Video 4 (Frames 1-16), here is the layer 1 caption describing the operation and object states.
+
+**Operation:** Preparation of a raw meat and shrimp filling (likely for dumplings or wontons) by combining ingredients in a bowl and mixing them with a stand mixer.
+
+**Evidence Rows:**
+
+| Objects | Action | State | Window (Frames) | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Shrimp** | Transferred/Poured | Raw, peeled, whole, wet | 1-3 | High | Low |
+| **Ground Meat** | Transferred/Poured | Raw, minced, pink/red | 2-3 | High | Low |
+| **Egg** | Added/Cracked | Raw, yolk visible, intact | 4-5 | High | Low |
+| **White Powder** (Salt/Starch) | Poured | Dry, granular, white | 6-8 | High | Medium (specific identity unknown) |
+| **Seasoning** (Shaker) | Shaken | Dry, granular | 9 | High | Medium (specific spice unknown) |
+| **Mixing Bowl** | Filled/Attached | Metal, filled with separate raw ingredients | 1-10 | High | Low |
+| **Stand Mixer** | Operating | Paddle attachment rotating, white body | 10-16 | High | Low |
+| **Mixture** | Mixed/Integrated | Raw, transitioning from separate components (shrimp/meat distinct) to homogenous reddish paste | 11-16 | High | Low |
+
+**Decisive Events & Time Locations (approximate based on 16 frames over 55s):**
+*   **~0s - 10s (Frames 1-3):** Raw shrimp and ground meat are added to the large metal bowl. They are separate and distinct.
+*   **~10s - 15s (Frame 4):** A raw egg is added.
+*   **~15s - 25s (Frames 6-9):** Seasonings (white powder and shaker contents) are added on top of the meat and shrimp.
+*   **~30s (Frame 10):** The bowl is secured to the stand mixer.
+*   **~35s - 55s (Frames 11-16):** The mixer is turned on. The paddle beats the ingredients. Initially, whole shrimp and ground meat are visible (Frames 11-13), but by the end (Frames 15-16), they are being pulverized and integrated into a sticky, homogenous raw paste.
+
+**Cross-Video Context Update:**
+*   **object states raw->cooked:** Ingredients remain raw throughout this clip.
+*   **container fill/empty:** The mixing bowl goes from empty to filled. Source containers (bag of shrimp, bowl of meat) are depleted/emptied into the main bowl.
+*   **transfer traces:** Visible pouring of shrimp and meat.
+*   **ingredient integration:** High integration occurring in the final frames (11-16) as the mixer breaks down the whole shrimp and blends them with the ground meat.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_5) ###
+Time: 2026-07-06 11:02:20 -> 2026-07-06 11:02:56
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 11.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+**Layer 1 Caption: Dumpling/Wonton Assembly**
+
+**Observation Summary:**
+The video shows a close-up of a person assembling a dumpling or wonton. A stack of square yellow wrappers and a plate of raw ground meat filling are on a metal table. The person holds a single wrapper, scoops a small amount of meat filling using a knife/spatula, places it on the wrapper, and then folds and shapes the wrapper around the meat to form a small, compact dumpling.
+
+**Evidence Rows:**
+
+| Objects | Action | State | Window (Frames) | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Wrapper (square, yellow)** | Held, then folded | Raw, dry, separate -> folded/mixed | 1-16 | [Video 5] | High | None |
+| **Meat (ground, red/pink)** | Scooped, placed on wrapper | Raw, wet/moist, pile -> depleted slightly | 1-16 | [Video 5] | High | None |
+| **Knife/Tool (metal)** | Scooping meat, shaping wrapper | Present, used for transfer and shaping | 1-14 | [Video 5] | High | None |
+| **Plate (white)** | Holding meat | Filled (raw meat), static | 1-16 | [Video 5] | High | None |
+| **Dough ball (background)** | Stationary | Raw, wrapped in plastic, present | 1-16 | [Video 5] | High | None |
+| **Finished Dumpling** | Formed in hand | Raw, folded, small bundle shape | 13-16 | [Video 5] | High | None |
+
+**Detailed Event Timeline:**
+*   **0.0s - 3.0s (Frames 1-4):** The person holds a square yellow wrapper in their left hand. With their right hand, they use a knife to scoop a portion of raw ground meat from the white plate.
+*   **3.0s - 5.0s (Frames 5-6):** The meat is placed onto the center of the wrapper held in the hand.
+*   **5.0s - 9.0s (Frames 7-12):** The person begins to fold the wrapper. They bunch the edges up around the meat filling. The knife is used to press and shape the filling inside the wrapper, helping to seal or compact it.
+*   **9.0s - 11.0s (Frames 13-16):** The wrapping is complete. The person holds a small, shaped dumpling (resembling a wonton or tortellini shape) in their palm. The knife is moved away. The meat pile on the plate shows slight depletion.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_6) ###
+Time: 2026-07-06 11:02:20 -> 2026-07-06 11:03:30
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 6,
+      "start_time": 0.0,
+      "end_time": 58.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames (Video 6, 0.0s - 58.0s), here is the description of the operation and object states.
+
+**Operation Description:**
+The video depicts the preparation of a soup base or broth, likely for the noodles seen at the start. A chef combines solid fats (scooped white lard/fat and a slice from a green block) in a metal pot. The fats melt, and a dark seasoning liquid is added. Finally, a large volume of clear liquid (water or stock) is poured in to create a yellowish broth.
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window (approx time) | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Noodles** | Present in bowl | Cooked, yellow, separate, filled bowl | Frames 1-2 (~0-5s) | Video 6 | High | None |
+| **White Solid (Fat/Lard)** | Scooped from bucket into pot | Solid chunks, white | Frame 4 (~12s) | Video 6 | Med | Exact identity (lard vs shortening) |
+| **Green Block** | Cut with knife | Solid block, light green/yellow | Frame 6 (~20s) | Video 6 | Med | Exact identity (butter vs fat block) |
+| **Pot Bottom (Fat)** | Melting | Wet, oily, residue, melting solids | Frames 7-9 (~25-30s) | Video 6 | High | None |
+| **Dark Liquid** | Poured into hot oil | Mixed, amber/brown pool | Frame 10 (~33s) | Video 6 | High | Exact identity (soy sauce vs vinegar) |
+| **Pot** | Placed on stove | Empty/filled with small amount of brown liquid | Frame 12 (~40s) | Video 6 | High | None |
+| **Clear Liquid (Water/Stock)** | Poured into pot | Flowing, fills pot | Frame 13 (~43s) | Video 6 | High | Exact identity (water vs stock) |
+| **Broth** | Simmering/Resting | Filled, yellow/cloudy liquid | Frames 14-16 (~48-58s) | Video 6 | High | None |
+
+**Key Dimensions Compared:**
+*   **Object states raw->cooked:** The fats transition from solid chunks/blocks to melted oil, then integrate into the liquid broth.
+*   **Container fill/empty:** The metal pot goes from empty -> containing melting fat -> containing small amount of sauce -> filled with broth.
+*   **Transfer traces:** White fat transferred from bucket; green block sliced; dark liquid poured; clear liquid poured.
+*   **Ingredient integration:** Fat and dark sauce mix at the bottom before being diluted by the clear liquid to form the final yellow broth.
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-06 11:05:18 -> 2026-07-06 11:05:55
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 6,
+      "start_time": 0.0,
+      "end_time": 10.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Look at the background and foreground. Is there a bowl with cooked yellow noodles visible in the background or foreground? Report the exact state of the noodles (raw/cooked, dry/wet) and the container they are in. Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+noodles, cooked (yellow, drained/moist), white bowl, 1-13, high, low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-06 11:05:18 -> 2026-07-06 11:06:47
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 30.0,
+      "end_time": 44.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Look at the white bowl at the end of the clip. What exactly is inside it? Are there noodles? Are there wontons? Are there green onions or fried shallots? Report the exact contents and their states. Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the final frames (13-16) of the provided clip (Video 3):
+
+*   **Noodles**: Yes, there are thin, yellow cooked noodles (likely egg noodles) at the bottom of the bowl.
+*   **Wontons**: Yes, there are multiple (approx. 7-8) cooked wontons with yellow/greenish wrappers placed on top of the noodles.
+*   **Broth**: No, the bowl appears to be dry; the broth has not been poured yet (consistent with the sequence where wontons are added before broth).
+*   **Green onions / Fried shallots**: While the PSS context mentions garnishes are added before broth, they are not clearly distinct in the final frames. There may be small bits mixed with the noodles (possibly fried shallots), but no distinct green onions are visible. The bowl primarily shows noodles and wontons.
+
+**Compact Rows:**
+
+| object | state | window | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| noodles | cooked, yellow, thin, bottom layer | 13-16 | 0.95 | low |
+| wontons | cooked, plump, yellow wrappers, top layer | 13-16 | 0.95 | low |
+| broth | absent, not yet poured | 13-16 | 0.90 | low |
+| garnishes (green onions/fried shallots) | likely present/mixed (per context), visually obscured | 13-16 | 0.50 | high (visually ambiguous) |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-06 11:05:18 -> 2026-07-06 11:06:05
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 15.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Look at the white bowl before the broth is poured. What exactly is inside it? Are there noodles? Wontons? Green onions? Fried shallots? Is there any broth/liquid yet? Report the exact contents and their states. Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+noodles, cooked yellow thin strands visible at bottom and between wontons, 1-16, high, low
+wontons, cooked boiled dumplings with yellow skins piled on top, 1-16, high, low
+green onions, chopped green and white pieces scattered as garnish, 1-16, high, low
+fried shallots, small brown crispy bits scattered on top (clearly visible in frames 13-16), 1-16, high, low
+broth, absent (bowl contains solid assembly, ingredients appear moist/glistening but no liquid pool), 1-16, high, low
+
+------------------------------------------------------------
+
+### [Turn 4] Tool: active_perception (ID: batch_4_1) ###
+Time: 2026-07-06 11:07:36 -> 2026-07-06 11:08:39
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 38.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Look at this segment. Report the actual visible state of the noodles: are they raw/dry, cooked/soft, rinsed/wet, or reheated? Report the state of the containers: is the wok filled with boiling water? Is there a metal bowl used for rinsing? Is a wire strainer used to lift noodles? Report exactly what you see for each object. Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the frames:
+
+*   **Noodles**: The noodles undergo a full preparation cycle. They appear **raw/fresh** as they are dropped into the water (Frame 2), become **cooked/soft** while boiling (Frames 3-6), are transferred to a bowl where they appear **rinsed/wet** (Frames 11-13), and are finally **reheated** by being dipped back into the boiling water (Frames 14-16).
+*   **Wok**: The wok is clearly **filled with boiling water** throughout the cooking and reheating phases (Frames 1-6, 8-9, 14-16).
+*   **Metal Bowl**: A large metal bowl is visible and **used for rinsing** or cooling the noodles after the initial boil (Frames 11-13).
+*   **Wire Strainer**: A wire mesh strainer (spider strainer) is **used to lift the noodles** out of the wok and transfer them (Frames 8-9, 11-12, 15-16).
+
+**Compact Rows:**
+
+| object | state | window | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| noodles | raw (falling) -> cooked (boiling) -> rinsed (in bowl) -> reheated (in wok) | 1-16 | 0.95 | low |
+| wok | filled with boiling water | 1-6, 8-9, 14-16 | 0.95 | low |
+| metal bowl | used for rinsing (contains water and noodles) | 11-13 | 0.90 | low |
+| wire strainer | used to lift noodles | 8-9, 11-12, 15-16 | 0.95 | low |
+
+------------------------------------------------------------
+
+### [Turn 4] Tool: active_perception (ID: batch_4_2) ###
+Time: 2026-07-06 11:07:36 -> 2026-07-06 11:08:23
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 55.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Look at this segment. Report the actual visible state of the ingredients: are there raw shrimp, raw ground meat, raw egg, white powder? Report the state of the mixing bowl and the stand mixer. Is the mixture separate or integrated into a paste? Report exactly what you see for each object. Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (Video 4, frames 1-16):
+
+*   **Raw shrimp**, **whole/translucent pieces**, **frames 1-14**, **high conf**, **low uncertainty** (Visible being poured and sitting in the bowl before being broken down).
+*   **Raw ground meat**, **pink/red raw chunks**, **frames 2-16**, **high conf**, **low uncertainty** (Visible being poured and mixed).
+*   **Raw egg**, **cracked with yellow yolk visible**, **frames 4, 5, 7, 8**, **high conf**, **low uncertainty** (Added to the bowl).
+*   **White powder**, **granular pile on top of ingredients**, **frames 7-8**, **high conf**, **low uncertainty** (Poured into the bowl).
+*   **Mixing bowl**, **stainless steel container holding ingredients**, **frames 1-16**, **high conf**, **low uncertainty** (Initially separate on counter, then attached to mixer).
+*   **Stand mixer**, **white machine with paddle attachment active**, **frames 10-16**, **high conf**, **low uncertainty** (Mixing the ingredients).
+*   **Mixture**, **separate ingredients (shrimp, meat, egg, powder) in frames 1-9; integrated into a dark red paste in frames 15-16**, **frames 1-16**, **high conf**, **low uncertainty** (Starts as distinct components, ends as a cohesive filling paste).
+
+------------------------------------------------------------
+
+### [Turn 4] Tool: active_perception (ID: batch_4_3) ###
+Time: 2026-07-06 11:07:36 -> 2026-07-06 11:08:15
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 11.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Look at this segment. Report the actual visible state of the wrappers: are they square, yellow, raw/dry? Report the state of the meat: is it raw ground meat on a plate? Is a finished dumpling/wonton formed in hand? Report exactly what you see for each object. Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+object, state, window, conf, uncertainty
+Wrappers (stack & held), Square, yellow, raw/dry sheets, 1-4, High, Low
+Meat, Raw ground meat (pink/white mix) on white square plate, 1-16, High, Low
+Wonton/Dumpling (in hand), Formed/folded small ball shape (finished), 13-16, High, Low
+
+------------------------------------------------------------
+

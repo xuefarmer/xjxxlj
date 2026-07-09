@@ -1,0 +1,431 @@
+{
+  "confirmed": [
+    "V3 before V4: leek water progression",
+    "V4 before V1: mushrooms carried over"
+  ],
+  "uncertain": [
+    "V1-V2 relation: identity of white chunks in V2 vs white objects in V1",
+    "tomato state progression: halved in V1 vs wedges in V2"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"simmering broth with tomatoes/mushrooms/bay leaf, then adds raw meat/seafood\", \"2\": \"simmering liquid with potatoes, adds seasoning, then adds red chunks (tomatoes)\", \"3\": \"pot covered with lid, then uncovered to reveal boiling water with leek\", \"4\": \"boiling water with leek, adds solid ingredients (mushrooms/clams), adds dark liquid\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "leek": {
+      "3": "whole/submerged, lid removed",
+      "4": "whole/submerged, mushrooms added"
+    },
+    "mushrooms": {
+      "4": "added to pot",
+      "1": "in pot"
+    },
+    "tomatoes": {
+      "1": "halved in pot frames 3-16, red chunks frames 1-2",
+      "2": "wedges added from bowl frames 9-10"
+    },
+    "potatoes": {
+      "2": "present ~3-4 light chunks",
+      "1": "ABSENT",
+      "3": "ABSENT",
+      "4": "ABSENT"
+    },
+    "meat_seafood": {
+      "1": "raw added frames 14-16",
+      "2": "UNCERTAIN dark chunk frame 10"
+    },
+    "bay_leaf": {
+      "1": "in pot"
+    },
+    "dark_liquid": {
+      "4": "poured into pot"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states: raw/cooked, whole/cut, separate/mixed",
+    "container states: empty/filled, residue/depletion",
+    "event roles: prep, cooking, transfer, finishing",
+    "tomato state: halved in pot vs chopped being added",
+    "potato presence: visible in V2, absent in V1",
+    "meat/seafood: added in V1, absent in V2"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all segment states pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "object states: raw/cooked, whole/cut, separate/mixed",
+          "container states: empty/filled, residue/depletion",
+          "event roles: prep, cooking, transfer, finishing"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "leek": {
+            "3": "whole/raw/submerged",
+            "4": "whole/raw/submerged"
+          },
+          "mushrooms": {
+            "4": "added as solid ingredients",
+            "1": "already in pot with broth"
+          },
+          "tomatoes": {
+            "1": "halved, in pot at start",
+            "2": "red chunks added from bowl"
+          },
+          "potatoes": {
+            "2": "light chunks in pot"
+          },
+          "meat_seafood": {
+            "1": "raw, added to pot"
+          },
+          "bay_leaf": {
+            "1": "in pot"
+          },
+          "dark_liquid": {
+            "4": "poured into pot"
+          }
+        },
+        "event_memory": {
+          "1": "simmering broth with tomatoes/mushrooms/bay leaf, then adds raw meat/seafood",
+          "2": "simmering liquid with potatoes, adds seasoning, then adds red chunks (tomatoes)",
+          "3": "pot covered with lid, then uncovered to reveal boiling water with leek",
+          "4": "boiling water with leek, adds solid ingredients (mushrooms/clams), adds dark liquid"
+        },
+        "preliminary_order": "3->4->1->2",
+        "order_confidence": 5,
+        "confidence_basis": [
+          "V3->V4: leek water progression",
+          "V4->V1: mushrooms carried over",
+          "V1->V2: unclear connection"
+        ],
+        "blocking_uncertainties": [
+          "V1 starts with tomatoes in pot, V2 adds tomatoes - contradiction",
+          "V2 has potatoes but V1 doesn't show potatoes",
+          "V1 has meat/seafood but V2 doesn't show meat/seafood"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                15
+              ],
+              "event": "full clip",
+              "key_objects": [
+                "pot",
+                "broth",
+                "tomatoes",
+                "mushrooms",
+                "bay leaf",
+                "meat/seafood"
+              ],
+              "visible_state": "simmering then adds meat",
+              "why_it_matters": "main cooking stage",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                9
+              ],
+              "event": "full clip",
+              "key_objects": [
+                "pot",
+                "liquid",
+                "potatoes",
+                "seasoning",
+                "red chunks"
+              ],
+              "visible_state": "simmering then adds red chunks",
+              "why_it_matters": "adds tomatoes to potatoes",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                17
+              ],
+              "event": "full clip",
+              "key_objects": [
+                "pot",
+                "lid",
+                "water",
+                "leek"
+              ],
+              "visible_state": "covered then uncovered with leek",
+              "why_it_matters": "earliest stage",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "full clip",
+              "key_objects": [
+                "pot",
+                "water",
+                "leek",
+                "solid ingredients",
+                "dark liquid"
+              ],
+              "visible_state": "adds mushrooms/clams and dark liquid",
+              "why_it_matters": "builds broth",
+              "confidence": "high"
+            }
+          ]
+        },
+        "candidate_targets": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "tomato state contradiction between V1 and V2",
+          "potato presence in V1",
+          "meat/seafood presence in V2"
+        ],
+        "dimensions_to_compare": [
+          "tomato state: halved in pot vs chopped being added",
+          "potato presence: visible in V2, absent in V1",
+          "meat/seafood: added in V1, absent in V2"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "object_memory": {
+          "leek": {
+            "3": "whole/submerged, lid removed",
+            "4": "whole/submerged, mushrooms added"
+          },
+          "mushrooms": {
+            "4": "added to pot",
+            "1": "in pot"
+          },
+          "tomatoes": {
+            "1": "halved in pot frames 3-16, red chunks frames 1-2",
+            "2": "wedges added from bowl frames 9-10"
+          },
+          "potatoes": {
+            "2": "present ~3-4 light chunks",
+            "1": "ABSENT",
+            "3": "ABSENT",
+            "4": "ABSENT"
+          },
+          "meat_seafood": {
+            "1": "raw added frames 14-16",
+            "2": "UNCERTAIN dark chunk frame 10"
+          },
+          "bay_leaf": {
+            "1": "in pot"
+          },
+          "dark_liquid": {
+            "4": "poured into pot"
+          }
+        },
+        "comparison_table": {
+          "V3": "water+leek, lid removed, no other ingredients",
+          "V4": "water+leek+mushrooms+dark liquid",
+          "V1": "broth+tomatoes(halved)+mushrooms+bay leaf, adds meat/seafood, NO potatoes",
+          "V2": "liquid+potatoes, adds tomatoes(wedges), uncertain meat/seafood"
+        },
+        "preliminary_order": "3->4->2->1",
+        "order_confidence": 6,
+        "confidence_basis": [
+          "V3->V4: leek water progression",
+          "V4->V1: mushrooms carried over",
+          "V2->V1: tomatoes added then in pot"
+        ],
+        "blocking_uncertainties": [
+          "V1 has no potatoes but V2 has potatoes - where do they go?",
+          "V1 has halved tomatoes, V2 adds wedges - are these same tomatoes?",
+          "V2 uncertain meat/seafood vs V1 adds meat/seafood"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                15
+              ],
+              "event": "full clip",
+              "key_objects": [
+                "tomatoes",
+                "mushrooms",
+                "bay leaf",
+                "meat/seafood"
+              ],
+              "visible_state": "halved tomatoes in pot, adds meat/seafood, NO potatoes",
+              "why_it_matters": "main cooking stage",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                9
+              ],
+              "event": "full clip",
+              "key_objects": [
+                "potatoes",
+                "tomatoes"
+              ],
+              "visible_state": "potatoes in pot, adds tomato wedges",
+              "why_it_matters": "adds potatoes and tomatoes",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                17
+              ],
+              "event": "full clip",
+              "key_objects": [
+                "leek",
+                "water"
+              ],
+              "visible_state": "water+leek, lid removed",
+              "why_it_matters": "earliest stage",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "full clip",
+              "key_objects": [
+                "leek",
+                "mushrooms",
+                "dark liquid"
+              ],
+              "visible_state": "adds mushrooms and dark liquid",
+              "why_it_matters": "builds broth",
+              "confidence": "high"
+            }
+          ]
+        },
+        "confirmed": [
+          "V3 before V4: leek water progression",
+          "V4 before V1: mushrooms carried over"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          "1",
+          "2"
+        ],
+        "uncertain": [
+          "V1-V2 relation: potato presence contradiction, tomato state progression",
+          "V2 meat/seafood identity"
+        ],
+        "focus_plan": [
+          "compare V1 and V2 for tomato/potato states"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "order_confidence": 7
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "uncertain": [
+          "V1-V2 relation: identity of white chunks in V2 vs white objects in V1",
+          "tomato state progression: halved in V1 vs wedges in V2"
+        ],
+        "focus_plan": [
+          "compare V1 and V2 for white chunk identity and tomato state"
+        ]
+      }
+    },
+    {
+      "turn": 6,
+      "update": {
+        "order_confidence": 8
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3->4->1->2",
+    "3->4->2->1"
+  ],
+  "order_confidence": [
+    "5",
+    "6",
+    "7",
+    "8"
+  ],
+  "confidence_basis": [
+    "V3->V4: leek water progression",
+    "V4->V1: mushrooms carried over",
+    "V1->V2: unclear connection",
+    "V2->V1: tomatoes added then in pot"
+  ],
+  "blocking_uncertainties": [
+    "V1 starts with tomatoes in pot, V2 adds tomatoes - contradiction",
+    "V2 has potatoes but V1 doesn't show potatoes",
+    "V1 has meat/seafood but V2 doesn't show meat/seafood",
+    "V1 has no potatoes but V2 has potatoes - where do they go?",
+    "V1 has halved tomatoes, V2 adds wedges - are these same tomatoes?",
+    "V2 uncertain meat/seafood vs V1 adds meat/seafood"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 15], \"event\": \"full clip\", \"key_objects\": [\"pot\", \"broth\", \"tomatoes\", \"mushrooms\", \"bay leaf\", \"meat/seafood\"], \"visible_state\": \"simmering then adds meat\", \"why_it_matters\": \"main cooking stage\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 9], \"event\": \"full clip\", \"key_objects\": [\"pot\", \"liquid\", \"potatoes\", \"seasoning\", \"red chunks\"], \"visible_state\": \"simmering then adds red chunks\", \"why_it_matters\": \"adds tomatoes to potatoes\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 17], \"event\": \"full clip\", \"key_objects\": [\"pot\", \"lid\", \"water\", \"leek\"], \"visible_state\": \"covered then uncovered with leek\", \"why_it_matters\": \"earliest stage\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 11], \"event\": \"full clip\", \"key_objects\": [\"pot\", \"water\", \"leek\", \"solid ingredients\", \"dark liquid\"], \"visible_state\": \"adds mushrooms/clams and dark liquid\", \"why_it_matters\": \"builds broth\", \"confidence\": \"high\"}]}",
+    "{\"video1\": [{\"window\": [0, 15], \"event\": \"full clip\", \"key_objects\": [\"tomatoes\", \"mushrooms\", \"bay leaf\", \"meat/seafood\"], \"visible_state\": \"halved tomatoes in pot, adds meat/seafood, NO potatoes\", \"why_it_matters\": \"main cooking stage\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 9], \"event\": \"full clip\", \"key_objects\": [\"potatoes\", \"tomatoes\"], \"visible_state\": \"potatoes in pot, adds tomato wedges\", \"why_it_matters\": \"adds potatoes and tomatoes\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 17], \"event\": \"full clip\", \"key_objects\": [\"leek\", \"water\"], \"visible_state\": \"water+leek, lid removed\", \"why_it_matters\": \"earliest stage\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 11], \"event\": \"full clip\", \"key_objects\": [\"leek\", \"mushrooms\", \"dark liquid\"], \"visible_state\": \"adds mushrooms and dark liquid\", \"why_it_matters\": \"builds broth\", \"confidence\": \"high\"}]}"
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V3\": \"water+leek, lid removed, no other ingredients\", \"V4\": \"water+leek+mushrooms+dark liquid\", \"V1\": \"broth+tomatoes(halved)+mushrooms+bay leaf, adds meat/seafood, NO potatoes\", \"V2\": \"liquid+potatoes, adds tomatoes(wedges), uncertain meat/seafood\"}"
+  ],
+  "pruned_targets": [],
+  "focus_plan": [
+    "compare V1 and V2 for tomato/potato states",
+    "compare V1 and V2 for white chunk identity and tomato state"
+  ]
+}

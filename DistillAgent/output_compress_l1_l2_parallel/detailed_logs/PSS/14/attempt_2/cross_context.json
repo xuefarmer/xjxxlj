@@ -1,0 +1,125 @@
+{
+  "confirmed": [
+    "1->5: white bowl aromatics poured into meat",
+    "2->3: fish bowls soaking -> draining",
+    "3->5: drained noodles -> mixed in meat",
+    "5->4: mixed filling -> rolled in wrapper",
+    "2->3",
+    "3->5",
+    "5->4",
+    "1->5",
+    "1->5: white bowl aromatics -> meat",
+    "2->1"
+  ],
+  "uncertain": [
+    "1 vs 2 order (checking fade-in vs hard cut)"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {},
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "1_vs_2": "checking visual temporal cues (background, transitions, object overlap)"
+        },
+        "confirmed": [
+          "1->5: white bowl aromatics poured into meat",
+          "2->3: fish bowls soaking -> draining",
+          "3->5: drained noodles -> mixed in meat",
+          "5->4: mixed filling -> rolled in wrapper"
+        ],
+        "uncertain": [
+          "1 vs 2 order (no visual temporal cue found yet)"
+        ],
+        "focus_plan": [
+          "compare background/transition markers in 1 and 2"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "order_confidence": 7,
+        "confirmed": [
+          "2->3",
+          "3->5",
+          "5->4",
+          "1->5"
+        ],
+        "unresolved_relations": [
+          "1 vs 2 order"
+        ],
+        "confidence_score": 7
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "1_vs_2": "checking visual editing markers (fade-in vs hard cut) at segment start"
+        },
+        "confirmed": [
+          "2->3: fish bowls soaking -> draining",
+          "3->5: drained noodles -> mixed in meat",
+          "5->4: mixed filling -> rolled in wrapper",
+          "1->5: white bowl aromatics -> meat"
+        ],
+        "uncertain": [
+          "1 vs 2 order (checking fade-in vs hard cut)"
+        ],
+        "focus_plan": [
+          "compare start transition markers in 1 and 2"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "order_confidence": 8,
+        "confirmed": [
+          "2->1",
+          "2->3",
+          "3->5",
+          "5->4",
+          "1->5"
+        ],
+        "unresolved_relations": [],
+        "confidence_score": 8
+      }
+    }
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1_vs_2\": \"checking visual temporal cues (background, transitions, object overlap)\"}",
+    "{\"1_vs_2\": \"checking visual editing markers (fade-in vs hard cut) at segment start\"}"
+  ],
+  "focus_plan": [
+    "compare background/transition markers in 1 and 2",
+    "compare start transition markers in 1 and 2"
+  ],
+  "order_confidence": [
+    "7",
+    "8"
+  ],
+  "unresolved_relations": [
+    "1 vs 2 order"
+  ],
+  "confidence_score": [
+    "7",
+    "8"
+  ]
+}

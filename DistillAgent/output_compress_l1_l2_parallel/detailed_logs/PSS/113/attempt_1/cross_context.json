@@ -1,0 +1,171 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "pending Layer1 results"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "blender_jar": {
+      "3": "filled with raw chunks -> blended orange paste",
+      "5": "contains orange paste, scooped out"
+    },
+    "wok": {
+      "1": "contains cooking food, receives white liquid",
+      "4": "background, filled with broth",
+      "5": "heated oil, receives paste, fried"
+    },
+    "serving_bowl": {
+      "2": "receives noodles, herbs, combined",
+      "4": "receives broth over noodles/tofu/sprouts"
+    },
+    "noodles": {
+      "2": "wet/cooked, combined in bowl",
+      "4": "in bowl with broth"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states",
+    "container fill/empty",
+    "raw/cooked progression",
+    "residue/depletion"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states",
+          "container fill/empty",
+          "raw/cooked progression",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "3->5->1->2->4",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V3: raw ingredients -> blended orange paste",
+          "V5: scoops orange paste from blender, fries in wok",
+          "V1: adds liquid to wok with fried paste to make broth",
+          "V2: assembles noodles/herbs in bowl",
+          "V4: pours broth from wok into assembled bowl, then eating"
+        ],
+        "blocking_uncertainties": [
+          "Verify V3 end state matches V5 start state (blender paste)",
+          "Verify V5 end state matches V1 start state (wok with fried paste)",
+          "Verify V2 end state matches V4 start state (bowl assembly before broth poured)"
+        ],
+        "object_memory": {
+          "blender_jar": {
+            "3": "filled with raw chunks -> blended orange paste",
+            "5": "contains orange paste, scooped out"
+          },
+          "wok": {
+            "1": "contains cooking food, receives white liquid",
+            "4": "background, filled with broth",
+            "5": "heated oil, receives paste, fried"
+          },
+          "serving_bowl": {
+            "2": "receives noodles, herbs, combined",
+            "4": "receives broth over noodles/tofu/sprouts"
+          },
+          "noodles": {
+            "2": "wet/cooked, combined in bowl",
+            "4": "in bowl with broth"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                4
+              ],
+              "event": "adding liquid to wok",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                8
+              ],
+              "event": "assembling noodle bowl",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                24
+              ],
+              "event": "blending paste ingredients",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                2
+              ],
+              "event": "pouring broth, eating",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                36
+              ],
+              "event": "frying paste in wok",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3->5->1->2->4"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "V3: raw ingredients -> blended orange paste",
+    "V5: scoops orange paste from blender, fries in wok",
+    "V1: adds liquid to wok with fried paste to make broth",
+    "V2: assembles noodles/herbs in bowl",
+    "V4: pours broth from wok into assembled bowl, then eating"
+  ],
+  "blocking_uncertainties": [
+    "Verify V3 end state matches V5 start state (blender paste)",
+    "Verify V5 end state matches V1 start state (wok with fried paste)",
+    "Verify V2 end state matches V4 start state (bowl assembly before broth poured)"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 4], \"event\": \"adding liquid to wok\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 8], \"event\": \"assembling noodle bowl\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 24], \"event\": \"blending paste ingredients\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 2], \"event\": \"pouring broth, eating\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 36], \"event\": \"frying paste in wok\", \"confidence\": \"high\"}]}"
+  ]
+}

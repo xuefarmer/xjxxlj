@@ -1,0 +1,255 @@
+{
+  "confirmed": [
+    "V2 end: white rice layer, no orange topping",
+    "V4: white rice -> orange topping added",
+    "V1: flip from rice-up to nori-up",
+    "V3: rolling initiated, fillings already placed",
+    "V6: cylinder tightened with mat",
+    "V5: slicing of whole cylinder"
+  ],
+  "uncertain": [
+    "full object-state inventory across all 6 segments"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "nori": {
+      "2": "dry, flat",
+      "4": "under rice block",
+      "1": "flipped to nori-side up",
+      "3": "flat with fillings, then rolled"
+    },
+    "rice": {
+      "2": "ball -> spread white layer",
+      "4": "white block -> orange-topped",
+      "1": "orange-topped, flipped",
+      "3": "inside rolled cylinder"
+    },
+    "orange_topping": {
+      "4": "sprinkled onto rice",
+      "1": "already on rice at start",
+      "3": "on outside of roll",
+      "6": "on outside of roll",
+      "5": "on outside of roll"
+    },
+    "fillings_cucumber_fish": {
+      "1": "placed on nori",
+      "3": "already on nori, rolled inside"
+    },
+    "roll_form": {
+      "3": "initial cylinder",
+      "6": "tightened cylinder",
+      "5": "sliced cylinder"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states (raw/cooked/mixed)",
+    "container fill/empty",
+    "tool contact",
+    "transfer traces",
+    "residue/depletion",
+    "background vessel state"
+  ],
+  "resolved_uncertain": [
+    "rice state at end of V2 and start of V4",
+    "nori flip in V1",
+    "rolling in V3 and tightening in V6"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "full object-state inventory across all 6 segments"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cooked/mixed)",
+          "container fill/empty",
+          "tool contact",
+          "transfer traces",
+          "residue/depletion",
+          "background vessel state"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "2->4->1->3->6->5",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V2: dry nori -> white rice spread",
+          "V4: white rice -> orange topping added",
+          "V1: orange-topped rice flipped, fillings added",
+          "V3: fillings on nori -> rolled into cylinder",
+          "V6: cylinder tightened with bamboo mat",
+          "V5: cylinder sliced into pieces"
+        ],
+        "blocking_uncertainties": [
+          "Verify rice state at end of V2 and start of V4",
+          "Verify nori flip in V1",
+          "Verify rolling in V3 and tightening in V6"
+        ],
+        "object_memory": {
+          "nori": {
+            "2": "dry, flat",
+            "4": "under rice block",
+            "1": "flipped to nori-side up",
+            "3": "flat with fillings, then rolled"
+          },
+          "rice": {
+            "2": "ball -> spread white layer",
+            "4": "white block -> orange-topped",
+            "1": "orange-topped, flipped",
+            "3": "inside rolled cylinder"
+          },
+          "orange_topping": {
+            "4": "sprinkled onto rice",
+            "1": "already on rice at start",
+            "3": "on outside of roll",
+            "6": "on outside of roll",
+            "5": "on outside of roll"
+          },
+          "fillings_cucumber_fish": {
+            "1": "placed on nori",
+            "3": "already on nori, rolled inside"
+          },
+          "roll_form": {
+            "3": "initial cylinder",
+            "6": "tightened cylinder",
+            "5": "sliced cylinder"
+          }
+        },
+        "temporal_index": {
+          "video2": [
+            {
+              "window": [
+                35,
+                50
+              ],
+              "event": "end state rice spread",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                13
+              ],
+              "event": "topping application",
+              "confidence": "high"
+            }
+          ],
+          "video1": [
+            {
+              "window": [
+                0,
+                15
+              ],
+              "event": "flip and filling placement",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                20
+              ],
+              "event": "rolling action",
+              "confidence": "high"
+            }
+          ],
+          "video6": [
+            {
+              "window": [
+                0,
+                20
+              ],
+              "event": "mat tightening",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                20
+              ],
+              "event": "slicing action",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 9,
+        "comparison_table": {
+          "V2": "dry nori -> white rice spread, no topping",
+          "V4": "white rice -> orange topping sprinkled",
+          "V1": "orange-topped rice flipped to nori-up, fillings placed",
+          "V3": "fillings on nori, rolling initiated with mat",
+          "V6": "formed cylinder tightened with bamboo mat",
+          "V5": "whole cylinder sliced into segments"
+        },
+        "confirmed": [
+          "V2 end: white rice layer, no orange topping",
+          "V4: white rice -> orange topping added",
+          "V1: flip from rice-up to nori-up",
+          "V3: rolling initiated, fillings already placed",
+          "V6: cylinder tightened with mat",
+          "V5: slicing of whole cylinder"
+        ],
+        "resolved_uncertain": [
+          "rice state at end of V2 and start of V4",
+          "nori flip in V1",
+          "rolling in V3 and tightening in V6"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "2->4->1->3->6->5"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "V2: dry nori -> white rice spread",
+    "V4: white rice -> orange topping added",
+    "V1: orange-topped rice flipped, fillings added",
+    "V3: fillings on nori -> rolled into cylinder",
+    "V6: cylinder tightened with bamboo mat",
+    "V5: cylinder sliced into pieces"
+  ],
+  "blocking_uncertainties": [
+    "Verify rice state at end of V2 and start of V4",
+    "Verify nori flip in V1",
+    "Verify rolling in V3 and tightening in V6"
+  ],
+  "temporal_index": [
+    "{\"video2\": [{\"window\": [35, 50], \"event\": \"end state rice spread\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 13], \"event\": \"topping application\", \"confidence\": \"high\"}], \"video1\": [{\"window\": [0, 15], \"event\": \"flip and filling placement\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 20], \"event\": \"rolling action\", \"confidence\": \"high\"}], \"video6\": [{\"window\": [0, 20], \"event\": \"mat tightening\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 20], \"event\": \"slicing action\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V2\": \"dry nori -> white rice spread, no topping\", \"V4\": \"white rice -> orange topping sprinkled\", \"V1\": \"orange-topped rice flipped to nori-up, fillings placed\", \"V3\": \"fillings on nori, rolling initiated with mat\", \"V6\": \"formed cylinder tightened with bamboo mat\", \"V5\": \"whole cylinder sliced into segments\"}"
+  ]
+}

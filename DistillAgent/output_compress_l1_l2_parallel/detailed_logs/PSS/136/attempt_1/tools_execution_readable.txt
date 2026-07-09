@@ -1,0 +1,549 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-07 06:33:09
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-07 06:14:35 -> 2026-07-07 06:17:53
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 48.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report: identity, state (raw/cooked, whole/cut, dry/wet, empty/filled, separate/mixed), position, and any action performed. Note residue/depletion on containers. Report approximate time locations for key state changes. Return compact evidence rows only. Labels: VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from Frames 1-16 (0.0s - 48.0s), here is the description of the cooking segment:
+
+**Row 1: Transfer of Potatoes**
+*   **Objects:** Cooked potato chunks (cut, white/yellowish), white plastic strainer (filled then emptying), metal saucepan (empty then filling).
+*   **Action:** Person lifts strainer and dumps potato chunks into the saucepan.
+*   **State:** Potatoes are cooked and cut into chunks. Strainer is depleted of contents by Frame 3. Pot is positioned on a yellow cutting board on the stovetop.
+*   **Window:** 0.0s - 9.0s (Frames 1-3)
+*   **Conf:** High
+*   **Uncertainty:** Exact identity of chunks (likely potatoes given context).
+
+**Row 2: Addition of Liquid**
+*   **Objects:** Yellow plastic jug (filled with white liquid, likely milk/cream), metal saucepan.
+*   **Action:** Person pours white liquid from the yellow jug into the pot over the potatoes.
+*   **State:** Liquid is white and opaque. Jug is held above pot.
+*   **Window:** 9.0s - 12.0s (Frame 4)
+*   **Conf:** High
+*   **Uncertainty:** Liquid identity (milk vs cream).
+
+**Row 3: Addition of Salt**
+*   **Objects:** White cylindrical container (likely salt), metal saucepan.
+*   **Action:** Person shakes/pours contents from the white container into the pot.
+*   **State:** Container is white with a blue/green label.
+*   **Window:** 12.0s - 21.0s (Frames 5-7)
+*   **Conf:** Medium-High
+*   **Uncertainty:** Specific spice identity (assumed salt).
+
+**Row 4: Addition of Spices/Pepper**
+*   **Objects:** Small jar with green lid, pepper grinder (black top), metal saucepan.
+*   **Action:** Person handles small jar (Frame 8-9) then uses a grinder to grind spice into the pot (Frame 10-11).
+*   **State:** Jars are small condiment containers.
+*   **Window:** 21.0s - 33.0s (Frames 8-11)
+*   **Conf:** Medium
+*   **Uncertainty:** Specific spice type (pepper vs other).
+
+**Row 5: Addition of Butter**
+*   **Objects:** Block of butter (solid, white, wrapped in paper), metal saucepan.
+*   **Action:** Person unwraps the butter block and places it into the pot.
+*   **State:** Butter is a solid rectangular block. Wrapper is removed (residue of paper visible in hand). Butter sits on top of potatoes in Frame 14.
+*   **Window:** 33.0s - 42.0s (Frames 12-14)
+*   **Conf:** High
+*   **Uncertainty:** None.
+
+**Row 6: Mashing**
+*   **Objects:** Metal potato masher (zigzag head), pot contents (potatoes, liquid, butter, spices).
+*   **Action:** Person uses the masher to press down and mix the ingredients in the pot.
+*   **State:** Ingredients are separate initially (butter block visible) then becoming mixed/mashed.
+*   **Window:** 42.0s - 48.0s (Frames 15-16)
+*   **Conf:** High
+*   **Uncertainty:** None.
+
+**Summary of State Changes:**
+*   **0-9s:** Potatoes move from strainer to pot.
+*   **9-12s:** Liquid added.
+*   **12-33s:** Seasonings (salt, pepper/spice) added.
+*   **33-42s:** Butter block added.
+*   **42-48s:** Mashing begins, integrating mixture.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-07 06:14:35 -> 2026-07-07 06:16:49
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 15.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report: identity, state (raw/cooked, whole/cut, dry/wet, empty/filled, separate/mixed), position, and any action performed. Note residue/depletion on containers. Report approximate time locations for key state changes. Return compact evidence rows only. Labels: VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Baking Dish (Casserole)** | Placed into oven; Removed from oven | **Identity:** Rectangular glass/ceramic dish. **State:** Filled with layered food. **Transition:** Top layer is white/pale (raw/unbaked cheese/batter) in frames 1-6; Top layer is golden brown (cooked/baked) in frames 11-16. **Position:** Held by person -> Middle oven rack -> Held by person. | 0.0s - 15.0s | Visual evidence of browning | HIGH | None |
+| **Oven** | Door opened; Door closed; Door opened | **Identity:** Stainless steel gas range. **State:** Door Open (frames 1-6, 11-16); Door Closed (frames 7-10). Interior racks visible. **Residue:** None visible on door glass. | 0.0s - 15.0s | Visual evidence of door movement | HIGH | None |
+| **Stainless Steel Pot** | Sitting on stovetop (static) | **Identity:** Metal pot with handles. **State:** Filled (liquid/food visible inside). **Position:** Back-left burner on stovetop. | 0.0s - 15.0s | Visual evidence | HIGH | Content type uncertain (water vs sauce) |
+| **Person** | Placing dish; Closing door; Removing dish | **Identity:** Woman in yellow shirt. **State:** Active. **Action:** Uses hands to place dish; uses cloth to remove hot dish. | 0.0s - 15.0s | Visual evidence | HIGH | None |
+| **Cloth / Towel** | Gripping hot dish | **Identity:** Folded patterned cloth/towel. **State:** Used as oven mitt. **Position:** In person's hands (frames 11-16). | 10.0s - 15.0s | Visual evidence | HIGH | None |
+
+**Key State Changes:**
+*   **~5.0s - 7.5s:** Oven door closes (end of loading phase).
+*   **~10.0s:** Oven door opens (start of unloading phase).
+*   **~10.0s - 15.0s:** Food state changes from unbaked (white top) to baked (golden brown top), indicating a time lapse occurred between the loading and unloading sequences.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-07 06:14:35 -> 2026-07-07 06:18:43
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 70.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report: identity, state (raw/cooked, whole/cut, dry/wet, empty/filled, separate/mixed), position, and any action performed. Note residue/depletion on containers. Report approximate time locations for key state changes. Return compact evidence rows only. Labels: VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames (Video 3), here is the description of the cooking segment.
+
+**Observation Summary:**
+The video shows a woman cooking in a kitchen. Initially, she is stirring a meat sauce in a skillet on the stove while a glass dish with raw meat sits nearby. Later (likely after a cut or time jump), the cooked meat is in the glass baking dish, and she adds chopped vegetables on top.
+
+**Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Woman (Cook)** | Stirring pan; Sprinkling ingredients | Active, wearing yellow shirt/apron | 1-16 | - | High | - |
+| **Skillet/Pan** | Being stirred | Filled with cooked meat sauce (brown/red), simmering | 1-12 | - | High | - |
+| **Glass Baking Dish** | Sitting on stove; Receiving ingredients | Frames 1-12: Contains raw meat block (pinkish). Frames 13-16: Filled with cooked meat mixture. | 1-16 | - | Medium | Exact state in frames 1-5 is slightly blurry but appears to be raw meat block. |
+| **Chopped Vegetables (Green peppers, mixed)** | Being poured/sprinkled from bag | Raw/Frozen, chopped (green and orange bits visible) | 13-16 | - | High | Specific vegetable mix uncertain (looks like peppers/carrots/corn). |
+| **Microwave** | Static | Closed, white | 1-16 | - | High | - |
+| **Coffee Maker** | Static | White, on counter | 1-16 | - | High | - |
+| **Bottles/Containers** | Static | Various (oil, spices, white container) on counter | 1-16 | - | High | - |
+
+**Key State Changes & Time Locations:**
+*   **~0.0s - 45.0s (Frames 1-12):** The woman stirs a skillet containing a cooked meat sauce. A glass dish with what appears to be raw ground meat sits on the back of the stovetop.
+*   **~45.0s - 70.0s (Frames 13-16):** The scene cuts to a closer angle. The glass baking dish now contains the cooked meat mixture (transfer implied). The woman sprinkles chopped vegetables (green peppers, etc.) from a bag/container over the meat in the dish.
+
+**Residue/Depletion:**
+*   **Skillet:** Remains filled with sauce in frames 1-12.
+*   **Vegetable Bag/Container:** Being depleted as she sprinkles contents in frames 13-16.
+*   **Glass Dish:** Transitions from raw meat (Frames 1-12) to cooked meat + vegetables (Frames 13-16).
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-07 06:14:35 -> 2026-07-07 06:18:02
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 69.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report: identity, state (raw/cooked, whole/cut, dry/wet, empty/filled, separate/mixed), position, and any action performed. Note residue/depletion on containers. Report approximate time locations for key state changes. Return compact evidence rows only. Labels: VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 1/3, time 0s–69s)"
+}
+
+[Output]:
+**Video 4 (0.0s – 69.0s) Observation:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Meat chunks** (pink/red) | Transferred from hand/plate into skillet | Raw, cut, separate | 0s–20s | [Frame 1-5] | High | None |
+| **Skillet/Frying Pan** | Receiving meat, sitting on burner | Hot (blue flame visible), partially filled | 0s–25s | [Frame 1-7] | High | None |
+| **Lid** (glass/metal) | Placed onto skillet | Separate -> Covering | 20s–30s | [Frame 5-8] | High | None |
+| **Pot** (back burner) | Sitting on stove | Covered, contents unknown | 0s–30s | [Frame 1-7] | Medium | Contents obscured |
+| **Small black pot** | Sitting on right burner | Empty or dark liquid | 0s–10s | [Frame 1-4] | Medium | Contents unclear |
+| **Cutting board** (yellow) | Stationary on counter | Wet/residue, knife and tongs on top | 0s–30s | [Frame 1-7] | High | None |
+| **Green herbs** | On cutting board | Cut, fresh | 0s–30s | [Frame 1-7] | High | None |
+| **Pot** (foreground, stainless) | Stationary on counter | Filled with yellow chunks (potatoes) | 5s–69s | [Frame 5-16] | High | None |
+| **Woman** (yellow shirt/apron) | Cooking, moving between stove and counter | Active | 0s–69s | [Frame 5-16] | High | None |
+| **Red box** (stock/bouillon) | Held, opened | Small, rectangular | 40s–60s | [Frame 10-14] | High | Brand unclear |
+| **Packet** (from red box) | Removed from box, held | Small, foil/paper | 45s–60s | [Frame 11-14] | High | Contents unknown |
+| **Measuring cup** (white plastic) | Held | Contains dark liquid (bottom) | 40s–60s | [Frame 10-14] | High | Liquid identity uncertain |
+| **Lid** (skillet) | Lifted/Checked | Glass/Metal | 60s–69s | [Frame 16] | High | None |
+
+**Summary of Segment:**
+The segment begins with a close-up of raw, cut meat chunks being added to a hot skillet on a gas stove (blue flame visible). The camera pulls back to show a woman in a yellow shirt and apron finishing adding the meat and placing a lid on the skillet. She then moves to a counter area where she handles a small red box (likely stock cubes) and a measuring cup containing a dark liquid. She opens a packet from the box. In the foreground, a large pot filled with yellow chunks (likely potatoes) is visible. The segment ends with her returning to the stove to check the skillet.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_5) ###
+Time: 2026-07-07 06:18:02 -> 2026-07-07 06:20:29
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 69.0,
+      "end_time": 138.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report: identity, state (raw/cooked, whole/cut, dry/wet, empty/filled, separate/mixed), position, and any action performed. Note residue/depletion on containers. Report approximate time locations for key state changes. Return compact evidence rows only. Labels: VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 2/3, time 69s–138s)"
+}
+
+[Output]:
+Based on the visual evidence from frames 1-16 (Video 4, 69.0s–138.0s), here is the description of the cooking segment:
+
+**Cooking Segment Description:**
+The segment shows a woman cooking meat in a frying pan on a gas stove and subsequently preparing a liquid mixture. Initially, she tends to a pan containing raw/pink meat pieces, lifting the lid and stirring. Over the course of the clip, the meat browns and cooks down into a saucy mixture. Finally, she uses an electric kettle to pour hot water into a measuring cup containing a pink liquid.
+
+**Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Frying Pan & Meat** | Stirring, checking | **State Change:** Raw/pink chunks (Frame 2) $\rightarrow$ Browned/cooked in sauce (Frames 8-13). Pan is on active blue flame (Frame 2). | Frames 1-13 | [Link] | High | Uncertainty on exact meat type (pork/chicken). |
+| **Glass Lid** | Lifting, holding | Separate from pan (held by woman), then placed/removed. Residue/steam likely inside. | Frames 1-4 | [Link] | High | None. |
+| **Pot (Foreground)** | Static | Filled with yellow chunks (likely potatoes/vegetables). Visible at bottom of frame. | Frames 6, 15 | [Link] | Medium | Uncertain if boiling or just sitting. |
+| **Electric Kettle** | Pouring | Filled with hot water. Silver/black exterior. | Frames 14-16 | [Link] | High | None. |
+| **Measuring Cup** | Receiving liquid | Contains pinkish liquid initially; being filled with hot water from kettle (Frame 16). | Frame 16 | [Link] | High | Uncertain nature of pink liquid (wine? broth?). |
+| **Cutting Board & Bowls** | Static | Yellow board with green herbs/vegetables. White bowls empty or with ingredients. Dark bottle (soy sauce?) nearby. | Frames 1-16 | [Link] | High | None. |
+
+**Key State Changes & Time Locations:**
+*   **~69s-80s (Frames 1-4):** Meat is raw/pink in the pan; lid is being manipulated.
+*   **~90s-120s (Frames 8-13):** Meat is visibly browned and cooking in sauce; woman stirs continuously.
+*   **~130s-138s (Frames 14-16):** Action shifts from stove to counter; hot water is poured from kettle into measuring cup with pink liquid.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_6) ###
+Time: 2026-07-07 06:20:29 -> 2026-07-07 06:22:08
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 138.0,
+      "end_time": 207.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report: identity, state (raw/cooked, whole/cut, dry/wet, empty/filled, separate/mixed), position, and any action performed. Note residue/depletion on containers. Report approximate time locations for key state changes. Return compact evidence rows only. Labels: VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 3/3, time 138s–207s)"
+}
+
+[Output]:
+[
+  {
+    "objects": "pink measuring cup",
+    "action": "holding, pouring, scraping with spoon",
+    "state": "filled with reddish liquid/paste -> depleted/empty",
+    "window": "138s-160s (Frames 2-6)",
+    "query_link": "transfer of red substance to pan",
+    "conf": "HIGH",
+    "uncertainty": "exact identity of red substance (likely tomato sauce/puree)"
+  },
+  {
+    "objects": "skillet/pan on stove",
+    "action": "receiving ingredients, being stirred",
+    "state": "contains cooked browned ground meat -> mixed with red liquid (sauce)",
+    "window": "138s-207s (Frames 2-16)",
+    "query_link": "cooking vessel",
+    "conf": "HIGH",
+    "uncertainty": "none"
+  },
+  {
+    "objects": "wooden spoon",
+    "action": "scraping cup, stirring pan contents",
+    "state": "separate -> mixed in pan",
+    "window": "150s-180s (Frames 5-11)",
+    "query_link": "mixing action",
+    "conf": "HIGH",
+    "uncertainty": "none"
+  },
+  {
+    "objects": "white seasoning containers (small jar, larger shaker)",
+    "action": "shaking into pan",
+    "state": "filled -> dispensing",
+    "window": "186s-207s (Frames 13-16)",
+    "query_link": "seasoning addition",
+    "conf": "HIGH",
+    "uncertainty": "exact spice identity (likely salt or garlic powder)"
+  },
+  {
+    "objects": "three white bowls on yellow mat",
+    "action": "stationary",
+    "state": "filled (one with green herbs, others with white powder/empty)",
+    "window": "138s-207s (Frames 2-16)",
+    "query_link": "mise en place",
+    "conf": "HIGH",
+    "uncertainty": "contents of bowls"
+  },
+  {
+    "objects": "large metal pitcher/kettle",
+    "action": "holding/moving",
+    "state": "present",
+    "window": "138s (Frame 1)",
+    "query_link": "initial object",
+    "conf": "MEDIUM",
+    "uncertainty": "blurry, exact purpose unclear, quickly replaced by pink cup"
+  }
+]
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_7) ###
+Time: 2026-07-07 06:14:35 -> 2026-07-07 06:18:24
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 80.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report: identity, state (raw/cooked, whole/cut, dry/wet, empty/filled, separate/mixed), position, and any action performed. Note residue/depletion on containers. Report approximate time locations for key state changes. Return compact evidence rows only. Labels: VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+[
+  {
+    "objects": "Glass baking dish",
+    "action": "Holding ingredient layers",
+    "state": "Rectangular dish on stovetop; bottom layer filled with cooked mixed vegetables (green peas, yellow corn, orange carrots); top layer being filled with white mashed potatoes.",
+    "window": "1-16",
+    "query_link": null,
+    "conf": "HIGH",
+    "uncertainty": "Exact vegetable mix composition (likely peas/corn/carrots)."
+  },
+  {
+    "objects": "Metal pot/saucepan",
+    "action": "Source container for topping",
+    "state": "Initially filled with cooked white mashed potatoes; becomes depleted/empty by end of sequence; residue visible as contents are scraped out.",
+    "window": "1-16",
+    "query_link": null,
+    "conf": "HIGH",
+    "uncertainty": "None."
+  },
+  {
+    "objects": "Mashed potatoes",
+    "action": "Transferred and spread",
+    "state": "Cooked, white, fluffy texture. Initially in pot (filled), then scooped in large dollops onto vegetables (mounds), finally spread to cover the surface (mixed/integrated as top layer).",
+    "window": "1-16",
+    "query_link": null,
+    "conf": "HIGH",
+    "uncertainty": "Could be cauliflower mash, but likely potato (Shepherd's/Cottage pie context)."
+  },
+  {
+    "objects": "Metal spoon/ladle",
+    "action": "Scooping, transferring, spreading",
+    "state": "Used to move mash from pot to dish. Visible in hand throughout.",
+    "window": "1-16",
+    "query_link": null,
+    "conf": "HIGH",
+    "uncertainty": "None."
+  },
+  {
+    "objects": "Person (cook)",
+    "action": "Assembling dish",
+    "state": "Wearing yellow shirt and apron. Actively scooping mash (frames 1-10), scraping pot (frames 11-14), and smoothing top layer (frames 15-16).",
+    "window": "1-16",
+    "query_link": null,
+    "conf": "HIGH",
+    "uncertainty": "None."
+  },
+  {
+    "objects": "Mixed vegetables (peas, corn, carrots)",
+    "action": "Base layer",
+    "state": "Cooked, wet/mixed, separate layer at bottom of dish. Visible beneath the white topping in early frames.",
+    "window": "1-8",
+    "query_link": null,
+    "conf": "HIGH",
+    "uncertainty": "None."
+  }
+]
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-07 06:24:51 -> 2026-07-07 06:28:24
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 48.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the metal saucepan (contents, texture, fill level) and the strainer (empty/filled, residue) at the end of the segment. Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+metal_saucepan, contains potato chunks, butter, and liquid being mashed; chunky texture; ~60% full, 1, high, low
+strainer, empty of bulk contents with visible white residue; sitting in background, 1, high, low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-07 06:24:51 -> 2026-07-07 06:26:34
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 15.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the glass baking dish (top layer color/texture, baked/unbaked) at the beginning and end of the segment. Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+glass_baking_dish, unbaked with white mashed potato topping (base+mash), beginning (frames 1-6), high, low
+glass_baking_dish, baked golden brown top layer, end (frames 11-16), high, low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-07 06:24:51 -> 2026-07-07 06:30:04
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 70.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the glass baking dish (contents, layers) and the skillet (contents, sauce consistency) at the end of the segment. Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the final frames (13-16) and the preceding sequence (1-12):
+
+*   **Glass baking dish**: In the final frames (13-16), the dish contains a base layer of browned meat sauce topped with a layer of mixed vegetables (green peas and orange carrots) being sprinkled from a bag. This matches the "meat+veggie base" description.
+*   **Skillet**: In the earlier frames (1-12), the large skillet on the stove contains a thick, brown cooked meat sauce. Although the meat appears transferred to the dish by frame 13, the PSS context identifies the skillet state in this video as "cooked meat sauce". In the final frames, a black pot/skillet is visible to the left, appearing to have residue or dark liquid, but the primary state associated with the skillet in this segment is the cooked sauce.
+
+| object | state | window | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| glass_baking_dish | meat sauce base layer topped with mixed vegetables (peas and carrots) | 13-16 | high | low |
+| skillet | cooked brown meat sauce (thick, chunky consistency); appears depleted/residue in final frames after transfer | 1-12 (sauce), 13-16 (residue) | high | medium |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_4) ###
+Time: 2026-07-07 06:24:51 -> 2026-07-07 06:28:50
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 69.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the skillet (meat raw/browned/sauced) and the foreground pot (contents, potato state) at the end of the segment. Return compact rows: object, state, window, conf, uncertainty. (part 1/3, time 0s–69s)"
+}
+
+[Output]:
+skillet, meat browning/cooking (transitioning from raw chunks), 1-16, 0.9, transition ongoing (raw->browned)
+foreground pot, filled with yellow potato chunks (boiled/drained), 9-16, 0.95, none
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_5) ###
+Time: 2026-07-07 06:28:50 -> 2026-07-07 06:29:46
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 69.0,
+      "end_time": 138.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the skillet (meat raw/browned/sauced) and the foreground pot (contents, potato state) at the end of the segment. Return compact rows: object, state, window, conf, uncertainty. (part 2/3, time 69s–138s)"
+}
+
+[Output]:
+skillet, browned meat sauce (cooked), 69-138s, high, low
+foreground pot, yellow potato chunks (boiled), 69-138s, high, low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_6) ###
+Time: 2026-07-07 06:29:46 -> 2026-07-07 06:31:41
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 138.0,
+      "end_time": 207.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the skillet (meat raw/browned/sauced) and the foreground pot (contents, potato state) at the end of the segment. Return compact rows: object, state, window, conf, uncertainty. (part 3/3, time 138s–207s)"
+}
+
+[Output]:
+skillet, sauced meat (browned meat with liquid/seasoning added), 1-16, high, low
+foreground pot, yellow potato chunks, 1-6, high, low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_7) ###
+Time: 2026-07-07 06:24:51 -> 2026-07-07 06:28:07
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 80.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the glass baking dish (layers, topping coverage) and the metal saucepan (mash fill level, residue/depletion) at the end of the segment. Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+glass_baking_dish, meat/vegetable base layer topped with white mashed potatoes (topping coverage near complete/uniform), 1-16, high, low
+metal_saucepan, depleted/empty (mash transferred out), residue visible on interior walls, 1-16, high, low
+
+------------------------------------------------------------
+

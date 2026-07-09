@@ -1,0 +1,195 @@
+{
+  "confirmed": [
+    "{\"V1\": \"final assembly: depleted grey tray, white bowl with blue rim, creamy dressing poured, combined ingredients\", \"V3\": \"intermediate: white bowl with blue rim, grains/nuts/peas/raw grapes, apple strips added\", \"V4\": \"pre-roast: grey tray with raw grapes at oven\"}"
+  ],
+  "uncertain": [
+    "V2 tray/grapes state",
+    "V5 bowl/dressing state",
+    "V6 bowl/greens state",
+    "exact order of V5 and V6 relative to each other"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "grapes": {
+      "2": "raw, oiled, seasoned on grey tray",
+      "4": "raw on grey tray going into oven",
+      "1": "roasted red & fresh white added to salad from tray"
+    },
+    "dressing": {
+      "5": "creamy emulsion (oil, yoghurt, mustard, seasoning) in white bowl",
+      "1": "creamy dressing poured onto salad"
+    },
+    "greens": {
+      "6": "lettuce, endive, leek chopped, in decorative bowl",
+      "1": "fresh greens combined in large bowl"
+    },
+    "apple": {
+      "3": "raw strips added to bowl with grains/peas"
+    },
+    "tray": {
+      "2": "grey rectangular, filled with raw grapes",
+      "4": "grey rectangular, filled with raw grapes at oven",
+      "1": "baking tray, depleted/residue after roasting"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient state (raw/cooked/cut/mixed)",
+    "container fill/empty/residue",
+    "tool contact and transfer",
+    "completion marks (plating, garnish)",
+    "tray state (full raw vs depleted roasted)",
+    "bowl contents (intermediate grains/peas vs final mixed salad)",
+    "dressing state (emulsion in white bowl vs poured on salad)"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all object states and transitions pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "ingredient state (raw/cooked/cut/mixed)",
+          "container fill/empty/residue",
+          "tool contact and transfer",
+          "completion marks (plating, garnish)"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "grapes": {
+            "2": "raw, oiled, seasoned on grey tray",
+            "4": "raw on grey tray going into oven",
+            "1": "roasted red & fresh white added to salad from tray"
+          },
+          "dressing": {
+            "5": "creamy emulsion (oil, yoghurt, mustard, seasoning) in white bowl",
+            "1": "creamy dressing poured onto salad"
+          },
+          "greens": {
+            "6": "lettuce, endive, leek chopped, in decorative bowl",
+            "1": "fresh greens combined in large bowl"
+          },
+          "apple": {
+            "3": "raw strips added to bowl with grains/peas"
+          },
+          "tray": {
+            "2": "grey rectangular, filled with raw grapes",
+            "4": "grey rectangular, filled with raw grapes at oven",
+            "1": "baking tray, depleted/residue after roasting"
+          }
+        },
+        "preliminary_order": "6->5->2->4->3->1",
+        "order_confidence": 8,
+        "confidence_basis": "Clear state transitions: grapes raw->roasted (2->4->1), dressing made->poured (5->1), greens prepped->combined (6->1), apple prepped->added (3). V1 is final assembly/presentation.",
+        "blocking_uncertainties": [
+          "Verify tray in V1 is the depleted grey tray from V2/V4",
+          "Verify bowl in V3 is an intermediate step before V1 final assembly"
+        ],
+        "candidate_targets": [
+          {
+            "id": 1,
+            "reason": "final assembly, must show depleted tray and combined ingredients"
+          },
+          {
+            "id": 3,
+            "reason": "intermediate assembly, bowl has grains/peas"
+          },
+          {
+            "id": 4,
+            "reason": "pre-roast, tray has raw grapes"
+          }
+        ],
+        "low_value_targets": [
+          {
+            "id": 5,
+            "reason": "dressing prep, clearly before V1"
+          },
+          {
+            "id": 6,
+            "reason": "greens prep, clearly before V1"
+          },
+          {
+            "id": 2,
+            "reason": "grape prep, clearly before V4"
+          }
+        ],
+        "uncertain": [
+          "exact order of V5 and V6 relative to each other",
+          "whether V3 bowl is same as V1 bowl"
+        ],
+        "dimensions_to_compare": [
+          "tray state (full raw vs depleted roasted)",
+          "bowl contents (intermediate grains/peas vs final mixed salad)",
+          "dressing state (emulsion in white bowl vs poured on salad)"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "V2": "pending - checking tray/grapes/oil/seasoning states",
+          "V5": "pending - checking bowl/dressing ingredients/emulsion states",
+          "V6": "pending - checking bowl/greens/preparation states"
+        },
+        "confirmed": {
+          "V1": "final assembly: depleted grey tray, white bowl with blue rim, creamy dressing poured, combined ingredients",
+          "V3": "intermediate: white bowl with blue rim, grains/nuts/peas/raw grapes, apple strips added",
+          "V4": "pre-roast: grey tray with raw grapes at oven"
+        },
+        "uncertain": [
+          "V2 tray/grapes state",
+          "V5 bowl/dressing state",
+          "V6 bowl/greens state",
+          "exact order of V5 and V6 relative to each other"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "6->5->2->4->3->1"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "Clear state transitions: grapes raw->roasted (2->4->1), dressing made->poured (5->1), greens prepped->combined (6->1), apple prepped->added (3). V1 is final assembly/presentation."
+  ],
+  "blocking_uncertainties": [
+    "Verify tray in V1 is the depleted grey tray from V2/V4",
+    "Verify bowl in V3 is an intermediate step before V1 final assembly"
+  ],
+  "candidate_targets": [
+    "{\"id\": 1, \"reason\": \"final assembly, must show depleted tray and combined ingredients\"}",
+    "{\"id\": 3, \"reason\": \"intermediate assembly, bowl has grains/peas\"}",
+    "{\"id\": 4, \"reason\": \"pre-roast, tray has raw grapes\"}"
+  ],
+  "low_value_targets": [
+    "{\"id\": 5, \"reason\": \"dressing prep, clearly before V1\"}",
+    "{\"id\": 6, \"reason\": \"greens prep, clearly before V1\"}",
+    "{\"id\": 2, \"reason\": \"grape prep, clearly before V4\"}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V2\": \"pending - checking tray/grapes/oil/seasoning states\", \"V5\": \"pending - checking bowl/dressing ingredients/emulsion states\", \"V6\": \"pending - checking bowl/greens/preparation states\"}"
+  ]
+}

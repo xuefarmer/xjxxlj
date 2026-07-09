@@ -1,0 +1,230 @@
+{
+  "confirmed": [
+    "V3 before V2: clean->residue board",
+    "V2 before V1: veggies on board->threading",
+    "V1 before V4: veggies-only->fully assembled",
+    "V4 before V5: raw/basted->cooked/charred"
+  ],
+  "uncertain": [
+    "verify V3 vs V2 board state",
+    "verify V1 vs V4 skewer assembly"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "cutting_board": {
+      "3": "clean, veggies separate",
+      "2": "wet/residue from mixing",
+      "1": "veggies piled for threading"
+    },
+    "seafood_bowl": {
+      "3": "unseasoned -> black pepper",
+      "2": "red specks, mixed by hand",
+      "4": "not visible, seafood on skewer"
+    },
+    "skewer": {
+      "1": "empty -> filled with veggies only",
+      "4": "assembled with seafood+veggies, dry -> wet/glossy",
+      "5": "raw -> cooked/charred on grill"
+    },
+    "grill_stove": {
+      "1": "indoor stove off",
+      "2": "indoor stove off",
+      "3": "indoor wok present",
+      "4": "indoor stove off",
+      "5": "outdoor grill on with flames"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states raw->cooked",
+    "container fill/empty transitions",
+    "tool contact and residue",
+    "transfer traces between vessels",
+    "background cues stove/pan condition",
+    "cutting board residue",
+    "skewer assembly completeness",
+    "seafood seasoning color",
+    "cooking state raw vs charred"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "pending Layer1 results for all 5 segments"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states raw->cooked",
+          "container fill/empty transitions",
+          "tool contact and residue",
+          "transfer traces between vessels",
+          "background cues stove/pan condition"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "cutting_board": {
+            "3": "clean, veggies separate",
+            "2": "wet/residue from mixing",
+            "1": "veggies piled for threading"
+          },
+          "seafood_bowl": {
+            "3": "unseasoned -> black pepper",
+            "2": "red specks, mixed by hand",
+            "4": "not visible, seafood on skewer"
+          },
+          "skewer": {
+            "1": "empty -> filled with veggies only",
+            "4": "assembled with seafood+veggies, dry -> wet/glossy",
+            "5": "raw -> cooked/charred on grill"
+          },
+          "grill_stove": {
+            "1": "indoor stove off",
+            "2": "indoor stove off",
+            "3": "indoor wok present",
+            "4": "indoor stove off",
+            "5": "outdoor grill on with flames"
+          }
+        },
+        "preliminary_order": "3->2->1->4->5",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V3 board clean vs V2 board residue",
+          "V2 veggies on board vs V1 veggies on skewer",
+          "V1 veggies only vs V4 fully assembled",
+          "V4 raw/basted vs V5 cooked/charred",
+          "V1-V4 indoor vs V5 outdoor"
+        ],
+        "blocking_uncertainties": [
+          "confirm V3 vs V2 cutting board residue state",
+          "confirm V1 skewer has no seafood vs V4 skewer has seafood"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                50
+              ],
+              "event": "threading veggies",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                25
+              ],
+              "event": "seasoning and mixing",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                10
+              ],
+              "event": "grinding pepper",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                30
+              ],
+              "event": "basting skewer",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                51
+              ],
+              "event": "grilling skewers",
+              "confidence": "high"
+            }
+          ]
+        },
+        "uncertain": [
+          "verify V3 vs V2 board state",
+          "verify V1 vs V4 skewer assembly"
+        ],
+        "dimensions_to_compare": [
+          "cutting board residue",
+          "skewer assembly completeness",
+          "seafood seasoning color",
+          "cooking state raw vs charred"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "V3": "clean board, black pepper on seafood",
+          "V2": "wet/residue board, red specks on seafood",
+          "V1": "residue board, veggies-only skewer",
+          "V4": "fully assembled skewer, wet/glossy",
+          "V5": "outdoor grilling, raw->charred"
+        },
+        "confirmed": [
+          "V3 before V2: clean->residue board",
+          "V2 before V1: veggies on board->threading",
+          "V1 before V4: veggies-only->fully assembled",
+          "V4 before V5: raw/basted->cooked/charred"
+        ],
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "3->2->1->4->5"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "V3 board clean vs V2 board residue",
+    "V2 veggies on board vs V1 veggies on skewer",
+    "V1 veggies only vs V4 fully assembled",
+    "V4 raw/basted vs V5 cooked/charred",
+    "V1-V4 indoor vs V5 outdoor"
+  ],
+  "blocking_uncertainties": [
+    "confirm V3 vs V2 cutting board residue state",
+    "confirm V1 skewer has no seafood vs V4 skewer has seafood"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 50], \"event\": \"threading veggies\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 25], \"event\": \"seasoning and mixing\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 10], \"event\": \"grinding pepper\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 30], \"event\": \"basting skewer\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 51], \"event\": \"grilling skewers\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V3\": \"clean board, black pepper on seafood\", \"V2\": \"wet/residue board, red specks on seafood\", \"V1\": \"residue board, veggies-only skewer\", \"V4\": \"fully assembled skewer, wet/glossy\", \"V5\": \"outdoor grilling, raw->charred\"}"
+  ]
+}

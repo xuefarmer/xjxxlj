@@ -1,0 +1,167 @@
+{
+  "confirmed": [
+    "packet torn then poured",
+    "milk pot lidded then poured",
+    "sauce thickens to viscous",
+    "sink used last"
+  ],
+  "uncertain": [
+    "object states across segments",
+    "transfer chains",
+    "state progression"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "orange_packet": {
+      "3": "torn open",
+      "2": "poured into pot"
+    },
+    "white_liquid_pot": {
+      "2": "poured into main pot"
+    },
+    "main_pot_mixture": {
+      "3": "boiling pasta/water",
+      "2": "bubbling yellow thickening",
+      "1": "viscous cheese sauce"
+    },
+    "sink": {
+      "1": "water running/cleaning"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient state (raw/cooked)",
+    "container fill/empty",
+    "mixture integration",
+    "residue/depletion",
+    "tool contact"
+  ],
+  "resolved_uncertain": [
+    "exact packet state transition",
+    "white liquid pot pour confirmation"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "object states across segments",
+          "transfer chains",
+          "state progression"
+        ],
+        "dimensions_to_compare": [
+          "ingredient state (raw/cooked)",
+          "container fill/empty",
+          "mixture integration",
+          "residue/depletion",
+          "tool contact"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "3->2->1",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V3: packet torn open, pasta boiling",
+          "V2: packet poured, milk poured",
+          "V1: viscous sauce, sink cleaning"
+        ],
+        "blocking_uncertainties": [
+          "exact packet state transition",
+          "white liquid pot pour confirmation"
+        ],
+        "object_memory": {
+          "orange_packet": {
+            "3": "torn open",
+            "2": "poured into pot"
+          },
+          "white_liquid_pot": {
+            "2": "poured into main pot"
+          },
+          "main_pot_mixture": {
+            "3": "boiling pasta/water",
+            "2": "bubbling yellow thickening",
+            "1": "viscous cheese sauce"
+          },
+          "sink": {
+            "1": "water running/cleaning"
+          }
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 8,
+        "comparison_table": {
+          "orange_packet": {
+            "3": "BEING_TORN",
+            "2": "BEING_POURED",
+            "1": "ABSENT/EMPTY"
+          },
+          "white_liquid_pot": {
+            "3": "LID_ON",
+            "2": "BEING_POURED",
+            "1": "DEPLETED"
+          },
+          "main_pot_mixture": {
+            "3": "BOILING_WATER",
+            "2": "THICK_SAUCE",
+            "1": "VISCOUS_CHEESE_SAUCE"
+          },
+          "sink": {
+            "3": "INACTIVE",
+            "2": "INACTIVE",
+            "1": "ACTIVE_CLEANING"
+          }
+        },
+        "confirmed": [
+          "packet torn then poured",
+          "milk pot lidded then poured",
+          "sauce thickens to viscous",
+          "sink used last"
+        ],
+        "resolved_uncertain": [
+          "exact packet state transition",
+          "white liquid pot pour confirmation"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "3->2->1"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "V3: packet torn open, pasta boiling",
+    "V2: packet poured, milk poured",
+    "V1: viscous sauce, sink cleaning"
+  ],
+  "blocking_uncertainties": [
+    "exact packet state transition",
+    "white liquid pot pour confirmation"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"orange_packet\": {\"3\": \"BEING_TORN\", \"2\": \"BEING_POURED\", \"1\": \"ABSENT/EMPTY\"}, \"white_liquid_pot\": {\"3\": \"LID_ON\", \"2\": \"BEING_POURED\", \"1\": \"DEPLETED\"}, \"main_pot_mixture\": {\"3\": \"BOILING_WATER\", \"2\": \"THICK_SAUCE\", \"1\": \"VISCOUS_CHEESE_SAUCE\"}, \"sink\": {\"3\": \"INACTIVE\", \"2\": \"INACTIVE\", \"1\": \"ACTIVE_CLEANING\"}}"
+  ]
+}

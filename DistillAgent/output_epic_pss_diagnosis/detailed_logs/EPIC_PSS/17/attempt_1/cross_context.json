@@ -1,0 +1,259 @@
+{
+  "confirmed": [
+    "V2: bowl empty, tomatoes packaged then washed",
+    "V3: bowl fills from empty to ~1/2 with red+green",
+    "V1: bowl filled, board scraped, green onions retrieved",
+    "V3->V1: direct continuation, bowl goes from 1/2 to 2/3 full",
+    "V2->V3: direct continuation, same sink, sequential washing",
+    "V3->V1: direct continuation, bowl 1/2 to 2/3 full",
+    "Complete order: 2->3->1"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "white_bowl": {
+      "2": "empty, retrieved from cupboard",
+      "3": "contains chopped green (cucumber), then fills with red+green mixture",
+      "1": "filled with chopped red/green produce, last bits scraped in"
+    },
+    "tomatoes": {
+      "2": "in plastic package, then washed wet",
+      "3": "whole cherry tomatoes on board, then sliced and added to bowl",
+      "1": "chopped red pieces in bowl (likely same tomatoes)"
+    },
+    "blue_cutting_board": {
+      "2": "has avocado and knife, then tomatoes in package",
+      "3": "has cherry tomatoes being sliced",
+      "1": "has residue, being scraped clean"
+    },
+    "green_vegetables": {
+      "3": "cucumber washed and chopped into bowl",
+      "1": "green onions retrieved from fridge"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "bowl fill level and contents",
+    "tomato state (package/wet/whole/sliced/chopped)",
+    "cutting board state (items/residue/clean)",
+    "green vegetable identity and state"
+  ],
+  "resolved_uncertain": [
+    "V3->V1 continuity verified: bowl goes from 1/2 to 2/3 full",
+    "V2->V3 continuity verified: same sink, sequential washing, same tomatoes"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [],
+        "dimensions_to_compare": []
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "white_bowl": {
+            "2": "empty, retrieved from cupboard",
+            "3": "contains chopped green (cucumber), then fills with red+green mixture",
+            "1": "filled with chopped red/green produce, last bits scraped in"
+          },
+          "tomatoes": {
+            "2": "in plastic package, then washed wet",
+            "3": "whole cherry tomatoes on board, then sliced and added to bowl",
+            "1": "chopped red pieces in bowl (likely same tomatoes)"
+          },
+          "blue_cutting_board": {
+            "2": "has avocado and knife, then tomatoes in package",
+            "3": "has cherry tomatoes being sliced",
+            "1": "has residue, being scraped clean"
+          },
+          "green_vegetables": {
+            "3": "cucumber washed and chopped into bowl",
+            "1": "green onions retrieved from fridge"
+          }
+        },
+        "preliminary_order": "2->3->1",
+        "order_confidence": 7,
+        "confidence_basis": "Bowl state progression: empty(V2)->has green(V3)->filled red+green(V3 end)->filled with last bits scraped(V1). Tomato chain: packaged(V2)->washed(V2)->whole on board(V3)->sliced(V3)->chopped in bowl(V1). Board state: has items(V2,V3)->residue being scraped(V1).",
+        "blocking_uncertainties": [
+          "Verify V3 end state vs V1 start state - does V1 bowl show continuation from V3?",
+          "Confirm V2 tomatoes are the same as V3 cherry tomatoes",
+          "Check if V1 green onions retrieval is final step or separate"
+        ],
+        "temporal_index": {
+          "video2": [
+            {
+              "window": [
+                0,
+                31.1
+              ],
+              "event": "bowl retrieval, tomato package opening, tomato washing",
+              "key_objects": [
+                "white bowl",
+                "tomatoes",
+                "blue cutting board",
+                "sink"
+              ],
+              "visible_state": "bowl empty->tomatoes in package->tomatoes washed wet",
+              "why_it_matters": "establishes starting state",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                39.63
+              ],
+              "event": "cucumber washing, chopping, tomato slicing, mixing",
+              "key_objects": [
+                "white bowl",
+                "cucumber",
+                "cherry tomatoes",
+                "blue cutting board"
+              ],
+              "visible_state": "bowl has green->fills with red+green mixture",
+              "why_it_matters": "middle state progression",
+              "confidence": "high"
+            }
+          ],
+          "video1": [
+            {
+              "window": [
+                0,
+                32.6
+              ],
+              "event": "finishing chopping, scraping board, fridge retrieval",
+              "key_objects": [
+                "white bowl",
+                "blue cutting board",
+                "green onions",
+                "refrigerator"
+              ],
+              "visible_state": "bowl filled, board scraped clean, green onions retrieved",
+              "why_it_matters": "final state and next ingredient",
+              "confidence": "high"
+            }
+          ]
+        },
+        "uncertain": [
+          "Whether V1 bowl contents match V3 end state",
+          "Whether V2 washed tomatoes are used in V3"
+        ],
+        "dimensions_to_compare": [
+          "bowl fill level and contents",
+          "tomato state (package/wet/whole/sliced/chopped)",
+          "cutting board state (items/residue/clean)",
+          "green vegetable identity and state"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "white_bowl": {
+            "V2": "EMPTY, retrieved from cupboard",
+            "V3": "EMPTY->CONTAINS_GREEN->RED+GREEN (~1/2 full)",
+            "V1": "FILLED with mixed produce"
+          },
+          "tomatoes": {
+            "V2": "IN_PACKAGE->WASHED_WET",
+            "V3": "WHOLE->SLICED->IN_BOWL",
+            "V1": "chopped pieces in bowl"
+          },
+          "blue_board": {
+            "V2": "HAS_WHOLE_ITEMS (avocado)",
+            "V3": "HAS_TOMATOES->HAS_RESIDUE",
+            "V1": "HAS_RESIDUE, being scraped"
+          }
+        },
+        "confirmed": [
+          "V2: bowl empty, tomatoes packaged then washed",
+          "V3: bowl fills from empty to ~1/2 with red+green",
+          "V1: bowl filled, board scraped, green onions retrieved"
+        ],
+        "uncertain": [
+          "V3->V1 continuity: does V1 bowl show direct continuation from V3 end state?"
+        ],
+        "focus_plan": [
+          "Compare V3 end (30-39.63s) vs V1 start (0-10s) bowl states"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "confirmed": [
+          "V2: bowl empty, tomatoes packaged then washed",
+          "V3: bowl fills from empty to ~1/2 with red+green",
+          "V1: bowl filled, board scraped, green onions retrieved",
+          "V3->V1: direct continuation, bowl goes from 1/2 to 2/3 full"
+        ],
+        "uncertain": [
+          "V2->V3 continuity: are washed tomatoes in V2 the same as cherry tomatoes in V3?"
+        ],
+        "focus_plan": [
+          "Compare V2 end (20-31.1s) vs V3 start (0-10s) sink and tomato states"
+        ]
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "order_confidence": 9,
+        "resolved_uncertain": [
+          "V3->V1 continuity verified: bowl goes from 1/2 to 2/3 full",
+          "V2->V3 continuity verified: same sink, sequential washing, same tomatoes"
+        ],
+        "uncertain": [],
+        "confirmed": [
+          "V2->V3: direct continuation, same sink, sequential washing",
+          "V3->V1: direct continuation, bowl 1/2 to 2/3 full",
+          "Complete order: 2->3->1"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "2->3->1"
+  ],
+  "order_confidence": [
+    "7",
+    "9"
+  ],
+  "confidence_basis": [
+    "Bowl state progression: empty(V2)->has green(V3)->filled red+green(V3 end)->filled with last bits scraped(V1). Tomato chain: packaged(V2)->washed(V2)->whole on board(V3)->sliced(V3)->chopped in bowl(V1). Board state: has items(V2,V3)->residue being scraped(V1)."
+  ],
+  "blocking_uncertainties": [
+    "Verify V3 end state vs V1 start state - does V1 bowl show continuation from V3?",
+    "Confirm V2 tomatoes are the same as V3 cherry tomatoes",
+    "Check if V1 green onions retrieval is final step or separate"
+  ],
+  "temporal_index": [
+    "{\"video2\": [{\"window\": [0, 31.1], \"event\": \"bowl retrieval, tomato package opening, tomato washing\", \"key_objects\": [\"white bowl\", \"tomatoes\", \"blue cutting board\", \"sink\"], \"visible_state\": \"bowl empty->tomatoes in package->tomatoes washed wet\", \"why_it_matters\": \"establishes starting state\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 39.63], \"event\": \"cucumber washing, chopping, tomato slicing, mixing\", \"key_objects\": [\"white bowl\", \"cucumber\", \"cherry tomatoes\", \"blue cutting board\"], \"visible_state\": \"bowl has green->fills with red+green mixture\", \"why_it_matters\": \"middle state progression\", \"confidence\": \"high\"}], \"video1\": [{\"window\": [0, 32.6], \"event\": \"finishing chopping, scraping board, fridge retrieval\", \"key_objects\": [\"white bowl\", \"blue cutting board\", \"green onions\", \"refrigerator\"], \"visible_state\": \"bowl filled, board scraped clean, green onions retrieved\", \"why_it_matters\": \"final state and next ingredient\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"white_bowl\": {\"V2\": \"EMPTY, retrieved from cupboard\", \"V3\": \"EMPTY->CONTAINS_GREEN->RED+GREEN (~1/2 full)\", \"V1\": \"FILLED with mixed produce\"}, \"tomatoes\": {\"V2\": \"IN_PACKAGE->WASHED_WET\", \"V3\": \"WHOLE->SLICED->IN_BOWL\", \"V1\": \"chopped pieces in bowl\"}, \"blue_board\": {\"V2\": \"HAS_WHOLE_ITEMS (avocado)\", \"V3\": \"HAS_TOMATOES->HAS_RESIDUE\", \"V1\": \"HAS_RESIDUE, being scraped\"}}"
+  ],
+  "focus_plan": [
+    "Compare V3 end (30-39.63s) vs V1 start (0-10s) bowl states",
+    "Compare V2 end (20-31.1s) vs V3 start (0-10s) sink and tomato states"
+  ]
+}

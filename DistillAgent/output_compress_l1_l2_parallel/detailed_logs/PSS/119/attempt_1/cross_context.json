@@ -1,0 +1,250 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "V3->V2 oil bridge",
+    "V2->V1 broth bridge"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Simmering broth, adding lime/sauce, adding tofu chunks\", \"2\": \"Sauteing yellow paste, adding coconut milk/liquid -> creamy soup\", \"3\": \"Frying prawn heads in butter, removing heads -> leaves oil\", \"4\": \"Assembling paste ingredients in food processor, pot empty\", \"5\": \"Plating curry, tofu puffs, shrimp, garnish into bowl\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "pot": {
+      "4": "empty/clean",
+      "3": "butter+heads -> oil residue",
+      "2": "oil -> paste -> creamy soup",
+      "1": "creamy broth + tofu chunks",
+      "5": "finished curry, level decreasing"
+    },
+    "prawns": {
+      "3": "whole raw, heads removed",
+      "2": "peeled bodies in background",
+      "5": "cooked in bowl"
+    },
+    "tofu": {
+      "1": "chunks added to simmer",
+      "5": "fried puffs in bowl"
+    },
+    "paste": {
+      "4": "assembled in processor",
+      "2": "sauteed in pot"
+    },
+    "food_processor": {
+      "4": "used for prep",
+      "others": "absent"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states raw->cooked",
+    "container fill/empty",
+    "transfer traces",
+    "residue/depletion",
+    "ingredient integration level",
+    "pot residue/oil state",
+    "broth color/consistency",
+    "ingredient integration",
+    "container depletion"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "all segment contents pending"
+        ],
+        "dimensions_to_compare": [
+          "object states raw->cooked",
+          "container fill/empty",
+          "transfer traces",
+          "residue/depletion",
+          "ingredient integration level"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Simmering broth, adding lime/sauce, adding tofu chunks",
+          "2": "Sauteing yellow paste, adding coconut milk/liquid -> creamy soup",
+          "3": "Frying prawn heads in butter, removing heads -> leaves oil",
+          "4": "Assembling paste ingredients in food processor, pot empty",
+          "5": "Plating curry, tofu puffs, shrimp, garnish into bowl"
+        },
+        "object_memory": {
+          "pot": {
+            "4": "empty/clean",
+            "3": "butter+heads -> oil residue",
+            "2": "oil -> paste -> creamy soup",
+            "1": "creamy broth + tofu chunks",
+            "5": "finished curry, level decreasing"
+          },
+          "prawns": {
+            "3": "whole raw, heads removed",
+            "2": "peeled bodies in background",
+            "5": "cooked in bowl"
+          },
+          "tofu": {
+            "1": "chunks added to simmer",
+            "5": "fried puffs in bowl"
+          },
+          "paste": {
+            "4": "assembled in processor",
+            "2": "sauteed in pot"
+          },
+          "food_processor": {
+            "4": "used for prep",
+            "others": "absent"
+          }
+        },
+        "preliminary_order": "4->3->2->1->5",
+        "order_confidence": 8,
+        "confidence_basis": "V4 pot empty (prep). V3 makes prawn oil. V2 starts with oil/residue, uses paste from V4, makes creamy soup. V1 simmers soup, adds tofu. V5 plates finished dish.",
+        "blocking_uncertainties": [
+          "verify V3 end state matches V2 start state",
+          "verify V2 end state matches V1 start state"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                43
+              ],
+              "event": "simmering and seasoning",
+              "key_objects": [
+                "pot",
+                "lime",
+                "chunks"
+              ],
+              "visible_state": "broth simmering, chunks added",
+              "why_it_matters": "mid-cooking stage",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                82
+              ],
+              "event": "paste saute and coconut milk",
+              "key_objects": [
+                "pot",
+                "paste",
+                "coconut milk"
+              ],
+              "visible_state": "oil -> paste -> creamy soup",
+              "why_it_matters": "base creation",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                32
+              ],
+              "event": "prawn head frying",
+              "key_objects": [
+                "pot",
+                "butter",
+                "prawn heads"
+              ],
+              "visible_state": "butter melts, heads fried and removed",
+              "why_it_matters": "flavored oil base",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                110
+              ],
+              "event": "paste assembly",
+              "key_objects": [
+                "food processor",
+                "pot"
+              ],
+              "visible_state": "processor fills, pot empty",
+              "why_it_matters": "initial prep",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                33
+              ],
+              "event": "plating",
+              "key_objects": [
+                "pot",
+                "bowl"
+              ],
+              "visible_state": "curry ladled, garnished",
+              "why_it_matters": "final step",
+              "confidence": "high"
+            }
+          ]
+        },
+        "candidate_targets": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "V3->V2 oil bridge",
+          "V2->V1 broth bridge"
+        ],
+        "dimensions_to_compare": [
+          "pot residue/oil state",
+          "broth color/consistency",
+          "ingredient integration",
+          "container depletion"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "4->3->2->1->5"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "V4 pot empty (prep). V3 makes prawn oil. V2 starts with oil/residue, uses paste from V4, makes creamy soup. V1 simmers soup, adds tofu. V5 plates finished dish."
+  ],
+  "blocking_uncertainties": [
+    "verify V3 end state matches V2 start state",
+    "verify V2 end state matches V1 start state"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 43], \"event\": \"simmering and seasoning\", \"key_objects\": [\"pot\", \"lime\", \"chunks\"], \"visible_state\": \"broth simmering, chunks added\", \"why_it_matters\": \"mid-cooking stage\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 82], \"event\": \"paste saute and coconut milk\", \"key_objects\": [\"pot\", \"paste\", \"coconut milk\"], \"visible_state\": \"oil -> paste -> creamy soup\", \"why_it_matters\": \"base creation\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 32], \"event\": \"prawn head frying\", \"key_objects\": [\"pot\", \"butter\", \"prawn heads\"], \"visible_state\": \"butter melts, heads fried and removed\", \"why_it_matters\": \"flavored oil base\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 110], \"event\": \"paste assembly\", \"key_objects\": [\"food processor\", \"pot\"], \"visible_state\": \"processor fills, pot empty\", \"why_it_matters\": \"initial prep\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 33], \"event\": \"plating\", \"key_objects\": [\"pot\", \"bowl\"], \"visible_state\": \"curry ladled, garnished\", \"why_it_matters\": \"final step\", \"confidence\": \"high\"}]}"
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "low_value_targets": []
+}

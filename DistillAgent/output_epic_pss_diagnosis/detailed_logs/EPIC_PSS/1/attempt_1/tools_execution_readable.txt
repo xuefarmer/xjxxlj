@@ -1,0 +1,384 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-08 16:53:33
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-08 16:41:18 -> 2026-07-08 16:42:53
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 33.43333333333334,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. Report: (1) main operation/event role (prep, transformation, transfer, cooking, finishing, inspection); (2) all visible objects/tools with their states: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) source and destination containers; (4) any transfer traces or tool contact; (5) background cues showing before/after state. Return compact evidence rows with labels VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the description of the cooking segment:
+
+**Description:**
+The video depicts a food preparation scene, primarily focused on working with a large sheet of dough. The scene is split between a stovetop area (left) and a countertop workspace (right). On the counter, a large, thin, round sheet of raw dough has been rolled out on a floured surface. A person is seen handling the dough, folding it, and then using a long knife to cut it into long strips or shapes (resembling noodle preparation). Simultaneously, in the background on the stovetop, a flatbread is cooking on a flat pan (tawa), and a large pot with a glass lid is boiling (likely water or soup). A bowl of sliced red onions and a bag of flour are also visible.
+
+**Report:**
+
+1.  **Main operation/event role:** **Prep** (specifically dough shaping/cutting) and **Cooking** (background activity).
+2.  **Visible objects/tools and states:**
+    *   **Dough sheet:** Raw, rolled out flat, large round shape. State changes from whole sheet to being cut into strips.
+    *   **Knife:** Long, metal blade. State: Active, cutting dough.
+    *   **Rolling pin:** Wooden. State: Present, idle on counter.
+    *   **Flour bag:** Orange and white packaging. State: Open, present.
+    *   **Pot:** Stainless steel with glass lid. State: Filled (contents boiling), lid on.
+    *   **Flat pan (Tawa):** Black. State: Hot, holding flatbread.
+    *   **Flatbread:** Round, pale. State: Cooking/Cooked on pan.
+    *   **Bowl:** White with purple pattern. State: Filled with sliced red onions.
+    *   **Countertop:** Speckled surface. State: Dusty with flour (residue).
+    *   **Round woven mat/tray:** Visible in Frames 2-3. State: Present, possibly used for dusting or holding dough (uncertain usage).
+3.  **Source and destination containers:**
+    *   **Source:** Flour bag (source of flour residue on counter).
+    *   **Destination:** Countertop (surface for rolling and cutting dough).
+4.  **Transfer traces or tool contact:**
+    *   **Flour residue:** White dust scattered on the counter indicates rolling has occurred.
+    *   **Tool contact:** Hands are seen folding and pressing the dough (Frames 4-8). The knife is seen slicing through the dough (Frames 10-16), creating separated strips.
+5.  **Background cues showing before/after state:**
+    *   **Before:** Dough is a large whole sheet (Frame 1).
+    *   **After/During:** Dough is being cut into strips (Frames 13-16 show a strip being separated).
+    *   **Parallel state:** The flatbread on the stove appears to be in the process of cooking (browning slightly), and the pot is actively boiling (bubbles visible under lid in Frame 1).
+
+**Compact Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Dough sheet, Knife | Cutting/Slicing | Raw dough being cut into long strips | Frames 10-16 | N/A | High | Exact final shape of cut dough (noodles vs strips) |
+| Dough sheet, Hands | Folding/Manipulating | Raw dough being folded and adjusted | Frames 4-8 | N/A | High | Purpose of folding (layering vs shaping) |
+| Pot, Flat pan, Flatbread | Boiling, Cooking | Pot boiling (lid on), Flatbread cooking on pan | Frames 1-2, 9 | N/A | High | Contents of pot (water vs soup) |
+| Flour bag, Rolling pin, Counter | Rolling (implied), Dusting | Flour residue on counter, tools idle | Frames 1-16 | N/A | High | None |
+| Bowl (onions) | Storage | Sliced red onions present | Frames 1-2, 9 | N/A | High | None |
+| Round woven mat | Holding/Supporting | Present near dough area | Frames 2-3 | N/A | Medium | Specific function of the mat |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-08 16:41:18 -> 2026-07-08 16:42:44
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 28.1,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. Report: (1) main operation/event role (prep, transformation, transfer, cooking, finishing, inspection); (2) all visible objects/tools with their states: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) source and destination containers; (4) any transfer traces or tool contact; (5) background cues showing before/after state. Return compact evidence rows with labels VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the 16 frames, here is the description of the cooking segment:
+
+**Main Operation/Event Role**: **Prep** (specifically dough shaping/trimming and topping preparation).
+
+**Compact Evidence Rows**:
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Dough, Hands, Rolling Pin, Flour Bag** | Flattening by hand; Trimming edges with knife to form a circle. | **Dough**: Raw, flattened, large, irregular $\rightarrow$ circular. **Rolling Pin**: Present, dry, unused. **Flour Bag**: Open, present. **Counter**: Dusty with flour residue. | 1-3, 7-16 | - | 0.95 | Low |
+| **Knife, Cutting Board, Red Strips (Toppings), Cooked Pizza** | Cutting red strips (likely pepperoni or tomatoes). | **Red Strips**: Cut into small pieces. **Cooked Pizza**: Present on right (background cue for finished product). **Board**: White, with residue. | 4-6 | - | 0.90 | Low (identity of red strips) |
+| **Pot (on stove), Bowl (onions), Sink** | Stationary / Background. | **Pot**: Filled with yellowish/white sauce (likely cheese or garlic sauce). **Bowl**: Filled with sliced red onions. **Sink**: Empty/wet, sponge present. | 1-16 | - | 0.90 | Low (sauce type) |
+
+**Detailed Observations**:
+1.  **Dough Preparation**: The segment primarily features a large piece of raw dough on a floured countertop. Initially (Frames 1-3), hands are pressing and flattening it. Later (Frames 8-16), a knife is used to trim the irregular edges, creating a distinct circular pizza base. The excess dough remains around the cut circle.
+2.  **Topping Prep Interlude**: Frames 4-6 show a brief cut to a cutting board where red strips are being sliced. A fully cooked pizza is visible in the background (Frame 6), suggesting this is part of a larger cooking session or a reference for the final product.
+3.  **Ingredients**: A pot containing a sauce (looks like a white/cream sauce) sits on the stovetop, and a bowl of sliced red onions is nearby, indicating upcoming assembly steps.
+4.  **Transfer Traces**: Flour residue is visible on the countertop. The knife leaves a clear cut line separating the circular dough base from the scrap dough.
+5.  **Background Cues**: The presence of the cooked pizza in Frame 6 and the prepared sauce/onions suggests the "after" state involves a fully assembled and baked pizza. The rolling pin is present but not actively used in these specific frames, implying the dough was rolled out prior to this clip or just before Frame 1.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-08 16:41:18 -> 2026-07-08 16:43:58
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 27.766666666666765,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. Report: (1) main operation/event role (prep, transformation, transfer, cooking, finishing, inspection); (2) all visible objects/tools with their states: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) source and destination containers; (4) any transfer traces or tool contact; (5) background cues showing before/after state. Return compact evidence rows with labels VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the 16 frames, here is the description of the cooking segment:
+
+**1. Main Operation/Event Role:**
+*   **Prep (Assembly):** The segment shows the assembly of toppings on raw pizza bases. Specifically, adding a green topping (likely pickled vegetable slices like jalapeños/zucchini or a green sauce/pesto) from a jar.
+
+**2. Visible Objects/Tools and States:**
+*   **Pizza Bases (2):** **Raw** dough. State: Topped with red tomato sauce and cheese. The right pizza also has red onion slices and some green chunks already. The left pizza is receiving the green topping. **Separate** on the stovetop.
+*   **Jar (Green Contents):** **Present**. State: **Filled** with green slices/paste in liquid. **Open** (lid removed/twisted in frames 8-9). Being **depleted** as contents are scooped out.
+*   **Spoon:** **Present**. State: **Wet** with brine/sauce from the jar. Used for transfer.
+*   **Bowl (Red Onions):** **Present**. State: **Filled** with sliced red onions. **Fresh**. Some onions appear to be transferred to the right pizza.
+*   **Pot:** **Present**. State: **Filled** with boiling liquid and white solids (pasta/rice). **Cooking** (bubbling visible).
+*   **Rolling Pin:** **Present**. State: **Idle** on the counter.
+*   **Knife:** **Present**. State: **Idle** on the counter.
+*   **Flour Bag (Orange):** **Present**. State: **Open/Used** (residue likely, though bag looks upright).
+*   **Green Slice (on counter):** **Present** next to the knife. State: **Fresh** slice (cucumber/zucchini).
+
+**3. Source and Destination Containers:**
+*   **Source:** Glass jar containing green topping (slices/paste).
+*   **Destination:** The two raw pizza bases (first the right one, then the left one).
+
+**4. Transfer Traces or Tool Contact:**
+*   **Tool Contact:** The spoon is seen scooping from the jar (Frame 10) and placing/spreading the green topping onto the pizzas (Frames 1-7 on the right pizza, Frames 11-16 on the left pizza).
+*   **Transfer Traces:** Green dollops/slices are visible distributed on the surface of both pizzas. The right pizza has more established toppings (onions + green chunks) compared to the left pizza which is actively being topped.
+
+**5. Background Cues:**
+*   **Before/After State:** The pot is boiling throughout, indicating a parallel cooking process. The pizzas progress from having just sauce/cheese (left pizza initially) to having green toppings added. The jar goes from being handled/opened to being scooped from.
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Pizza bases (2) | Receiving topping | Raw, topped with sauce/cheese | 1-16 | VISIBLE | High | None |
+| Jar (green topping) | Source of topping | Open, filled with green slices/paste | 8-10 | VISIBLE | High | Exact content (pesto vs pickles) slightly uncertain |
+| Spoon | Transferring topping | Wet, active | 1-16 | VISIBLE | High | None |
+| Bowl (red onions) | Topping source | Sliced, fresh | 1-16 | VISIBLE | High | None |
+| Pot | Boiling | Cooking, bubbling | 1-16 | VISIBLE | High | Contents (pasta/rice) uncertain |
+| Rolling pin, Knife | Idle | Present | 1-16 | VISIBLE | High | None |
+| Green slice (counter) | Idle | Fresh slice | 1-16 | VISIBLE | High | None |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-08 16:41:18 -> 2026-07-08 16:42:44
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 42.1,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. Report: (1) main operation/event role (prep, transformation, transfer, cooking, finishing, inspection); (2) all visible objects/tools with their states: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) source and destination containers; (4) any transfer traces or tool contact; (5) background cues showing before/after state. Return compact evidence rows with labels VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in Frames 1-16 (Video 4), here is the description and analysis of the cooking segment.
+
+**Description:**
+This segment shows the **transformation/prep** phase of making flatbreads (likely tortillas, rotis, or similar). A person takes a small ball of raw dough and uses a wooden rolling pin on a flour-dusted countertop to roll it out into a large, thin, circular sheet. To the left, a stainless steel pot boils on the stove (contents appear to be a liquid with onions/vegetables), and a bowl of sliced red onions sits nearby. An open bag of flour is present. In the final frame, a round woven mat is handled, likely for transferring the rolled dough. Other rolled dough sheets are visible on the left, indicating a batch process.
+
+**Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Dough** | Rolling, Flattening, Lifting | **Raw**: Starts as small ball/lump (Frame 1), transforms into large thin sheet (Frame 10-15). Lifted in Frame 11. | 1-16 | dough_prep | High | None |
+| **Rolling Pin** | Rolling | **Present**: Wooden tool used repeatedly to flatten dough. | 1-16 | tool_use | High | None |
+| **Flour (Bag & Dust)** | Dusting | **Present**: Bag is open (orange/white). White powder dusted on counter to prevent sticking. | 1-16 | ingredient | High | None |
+| **Pot (Stainless Steel)** | Boiling (Background) | **Filled/Hot**: Lid is on (glass), condensation/steam visible inside, suggesting boiling liquid/food. | 1-16 | background_cooking | High | Contents uncertain (looks like onions/soup). |
+| **Bowl (White)** | Holding | **Filled**: Contains sliced/cut red onions. **Raw**. | 1-16 | ingredient_prep | High | None |
+| **Woven Mat** | Holding/Placing | **Present**: Round, brown. Seen on left in Frame 1 (with dough). Held by hands in Frame 16. | 1, 16 | transfer_tool | High | None |
+| **Sink** | Absent (Action) | **Present**: Stainless steel sink on right with sponge. | 1-16 | background | High | None |
+| **Countertop** | Surface | **Dusted**: Covered in flour residue. | 1-16 | surface | High | None |
+
+**Summary of Findings:**
+*   **Main Operation:** Transformation (Rolling dough).
+*   **Source/Destination:** Small dough ball $\rightarrow$ Floured Countertop $\rightarrow$ Large Flat Sheet.
+*   **Transfer Traces:** Flour residue on counter and dough surface; rolling pin pressure marks.
+*   **Background Cues:** Pot is actively boiling (condensation on lid), indicating concurrent cooking. Bowl of onions is static, prepped ingredient.
+*   **Progression:** Dough clearly progresses from a small lump to a very large, thin sheet ready for cooking or filling.
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-08 16:45:52 -> 2026-07-08 16:47:02
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 33.43333333333334,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the exact visible state of the dough: is it a whole sheet, being cut into strips, or already cut? What shape is the sheet before cutting (round, irregular, rectangular)? Report the background pot: what is visibly inside (liquid, pasta, sauce, onions)? Report any cooked items visible (flatbread, pizza) and their state. Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (Video 1):
+
+*   **Dough**: The dough appears as a large, whole sheet initially (roughly circular but irregular in shape) which is then being cut into long strips using a knife.
+*   **Pot**: The pot is on the stove with a glass lid on. Inside, there is visibly boiling liquid with white solids (likely onions or pasta/rice).
+*   **Cooked Items**: A round flatbread (dough sheet) is visible cooking on the flat pan (tawa) on the stovetop.
+
+**Compact Rows:**
+
+| object | state | window | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| dough | large irregular/round sheet being cut into long strips | 1-16 | high | shape transitions from irregular blob to cut strips |
+| pot | boiling liquid with white solids (onions/pasta), lid on | 1-16 | high | exact contents obscured by lid |
+| flatbread | round sheet cooking on tawa | 1, 2, 9 | high | none |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-08 16:45:52 -> 2026-07-08 16:46:40
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 28.1,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the exact visible state of the dough: is it irregular, being trimmed to a circle, or already a circle? Report the background pot: what is visibly inside? Report any cooked items visible in the background (pizza, flatbread) and their state. Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+dough, irregular sheet being trimmed to a circle, 1-16, high, low
+pot, yellowish/white sauce/liquid, 1-16, high, medium
+cooked pizza, cooked/finished, 5-6, high, low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-08 16:45:52 -> 2026-07-08 16:46:27
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 27.766666666666765,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the exact visible state of the pizza bases: are they bare dough, have sauce/cheese, or have full toppings? Report the background pot: what is visibly inside (liquid, pasta, sauce)? Report any other cooked items visible. Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Pizza bases, have full toppings (sauce, cheese, onions, green toppings being added), 1-16, high, low
+Pot, boiling liquid with white solids (pasta/rice), 1-16, high, medium
+Cooked items, none (pizzas are raw), 1-16, high, low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_4) ###
+Time: 2026-07-08 16:45:52 -> 2026-07-08 16:46:40
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 42.1,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the exact visible state of the dough: is it a ball, being rolled, or a finished sheet? What shape is the sheet (round, irregular)? Report the background pot: what is visibly inside? Report any other items visible (woven mat, cooked items). Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+dough, being rolled (transitions from small ball/lump to large thin sheet), large round/irregular shape, 1-16, high, low
+pot, boiling liquid with white solids (lid on), 1-16, high, low
+woven mat, dark circular mat visible on left (and held in frame 16), 1-16, high, low
+flour bag, open orange/white bag, 1-16, high, low
+rolling pin, wooden pin being used to roll dough, 1-16, high, low
+flat dough sheet (left), large round sheet resting on mat, 1-15, high, low
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_1) ###
+Time: 2026-07-08 16:49:49 -> 2026-07-08 16:51:15
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 28.1,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=focus. Inspect the pizza and pot states. 1) Is there a cooked pizza visible in this segment? If yes, is it fully cooked/browned? 2) What is the exact visible state of the dough being trimmed (irregular, circle)? 3) What is the exact visible content of the pot (liquid, sauce, pasta, onions)? Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (Video 2):
+
+*   **Cooked Pizza:** Yes, a cooked pizza is visible in frames 5 and 6 (and partially frame 4) on the right side of the counter. It appears fully cooked with a browned crust and toppings.
+*   **Dough State:** The dough starts as a large, irregular sheet (frames 1-3, 7). In frames 8-16, it is being trimmed with a knife. The visible state is an **irregular sheet being trimmed into a circle**. The inner part becomes a circular base, while the outer edges are the irregular excess being cut away.
+*   **Pot Content:** The pot (visible in frames 1-3, 7, 9-11) contains a bubbling **yellowish/white liquid or sauce**. There is a separate bowl of red onions next to the stove, but the pot itself contains the yellowish mixture (likely a sauce or boiling pasta water with starch/solids).
+
+**Compact Rows:**
+
+| Object | State | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Cooked Pizza | Visible, fully cooked/browned | Frames 5-6 | High | Low |
+| Dough | Irregular sheet being trimmed into a circle | Frames 8-16 | High | Low |
+| Pot | Yellowish/white sauce/liquid (boiling) | Frames 1-3, 7, 9-11 | Medium | Medium (sauce vs. pasta water) |
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_2) ###
+Time: 2026-07-08 16:49:49 -> 2026-07-08 16:50:34
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 27.766666666666765,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=focus. Inspect the pizza and pot states. 1) Are there any cooked pizzas visible in this segment? 2) What is the exact visible state of the pizza bases (bare dough, have sauce/cheese, have full toppings)? 3) What is the exact visible content of the pot (liquid, sauce, pasta, onions)? Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (Video 3):
+
+1.  **Cooked pizzas:** No cooked pizzas are visible. The pizzas on the stovetop appear to be in the assembly phase (raw dough).
+2.  **Pizza bases state:** The bases are circular dough sheets. They are topped with red sauce, white cheese shreds, red chunks (likely tomatoes or peppers), and purple onion slices. Throughout the clip, green toppings (likely jalapeños or pickles) are being spooned onto them. State: **have sauce/cheese/toppings** (specifically sauce, cheese, onions, red pieces, and green toppings being added).
+3.  **Pot content:** The pot has a glass lid and contains boiling liquid with white solids visible inside, resembling pasta or rice. State: **liquid with boiling white solids (pasta/rice)**.
+
+**Compact Rows:**
+
+| object | state | window | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| cooked_pizza | none visible (pizzas are raw/being assembled) | 1-16 | high | low |
+| pizza_bases | dough with sauce, cheese, onions, red pieces, and green toppings being added | 1-16 | high | low |
+| pot | boiling liquid with white solids (pasta/rice) | 1-16 | high | low |
+
+------------------------------------------------------------
+

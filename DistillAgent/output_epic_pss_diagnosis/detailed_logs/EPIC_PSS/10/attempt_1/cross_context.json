@@ -1,0 +1,349 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "V4 vs V5 order",
+    "chickpea presence in V4"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "frying_pan": {
+      "1": "veggies + chickpeas mixed",
+      "2": "veggies + onion mixed",
+      "3": "rice + sauce",
+      "4": "mixed veggies, chickpeas uncertain",
+      "5": "veggies + chickpeas"
+    },
+    "small_pot": {
+      "1": "clear, not boiling",
+      "2": "clear, not boiling",
+      "3": "clear early, then not visible",
+      "4": "white, boiling, rice visible",
+      "5": "white, boiling, rice visible"
+    },
+    "drawer": {
+      "1": "opens end",
+      "2": "opens end",
+      "3": "not visible",
+      "4": "not visible",
+      "5": "opens start, closes"
+    },
+    "cutting_board": {
+      "1": "has residue",
+      "2": "has residue",
+      "3": "clean",
+      "4": "clean",
+      "5": "clean"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states (raw/cooked/mixed)",
+    "container states (empty/filled/residue)",
+    "tool contact and transfers",
+    "background vessel states",
+    "completion/plating cues",
+    "frying pan ingredient composition",
+    "small pot liquid state",
+    "drawer open/closed state",
+    "rice presence/absence",
+    "chickpea presence/absence"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "pending Layer1 results for all 5 segments"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cooked/mixed)",
+          "container states (empty/filled/residue)",
+          "tool contact and transfers",
+          "background vessel states",
+          "completion/plating cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "2->5->1->4->3",
+        "order_confidence": 6,
+        "confidence_basis": [
+          "V2 opens drawer, V5 closes drawer (strong link)",
+          "onion added V2, chickpeas added V1, rice added V3",
+          "small pot: clear V1/V2, boiling V5, white/rice V4",
+          "rice cooked in pot V4, transferred to pan V3"
+        ],
+        "blocking_uncertainties": [
+          "small pot state progression needs verification",
+          "chickpea presence in V4/V5 needs confirmation",
+          "rice presence in V1/V2/V5 needs confirmation",
+          "drawer transition V2->V5 needs verification"
+        ],
+        "object_memory": {
+          "frying_pan": {
+            "1": "sautéed veggies + chickpeas mixed",
+            "2": "veggies sautéing + raw onion added",
+            "3": "rice pile + cooked base + dark sauce",
+            "4": "cooked veggie mix stirred",
+            "5": "cooked veggie mix stirred"
+          },
+          "small_pot": {
+            "1": "clear liquid water",
+            "2": "clear liquid",
+            "3": "not mentioned",
+            "4": "white liquid rice/water boiling",
+            "5": "boiling liquid water"
+          },
+          "drawer": {
+            "1": "not mentioned",
+            "2": "opened at end",
+            "3": "not mentioned",
+            "4": "not mentioned",
+            "5": "opened start, closed early"
+          },
+          "cutting_board": {
+            "1": "green, present",
+            "2": "green, present",
+            "3": "green, present",
+            "4": "present background",
+            "5": "present background"
+          }
+        },
+        "temporal_index": {
+          "video2": [
+            {
+              "window": [
+                30,
+                37.7
+              ],
+              "event": "drawer opened",
+              "key_objects": [
+                "drawer",
+                "cutlery"
+              ],
+              "visible_state": "drawer open revealing cutlery",
+              "why_it_matters": "links to V5 drawer close",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                12
+              ],
+              "event": "drawer closed",
+              "key_objects": [
+                "drawer",
+                "tool"
+              ],
+              "visible_state": "tool placed in drawer, drawer closed",
+              "why_it_matters": "links from V2 drawer open",
+              "confidence": "high"
+            }
+          ]
+        },
+        "candidate_targets": [
+          {
+            "id": "2->5",
+            "reason": "drawer transition link"
+          },
+          {
+            "id": "1->4",
+            "reason": "small pot clear->white progression"
+          },
+          {
+            "id": "4->3",
+            "reason": "rice pot->pan transfer"
+          }
+        ],
+        "uncertain": [
+          "small pot state in each segment",
+          "chickpea presence in V4/V5",
+          "rice presence in V1/V2/V5",
+          "exact drawer transition"
+        ],
+        "dimensions_to_compare": [
+          "frying pan ingredient composition",
+          "small pot liquid state",
+          "drawer open/closed state",
+          "rice presence/absence",
+          "chickpea presence/absence"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "preliminary_order": "2->1->5->4->3",
+        "order_confidence": 7,
+        "confidence_basis": [
+          "V2 opens drawer, V1 opens drawer, V5 closes drawer (V2->V1->V5 link)",
+          "small pot: clear V1/V2, white/boiling/rice V4/V5",
+          "frying pan: onion V2, chickpeas V1, rice+sauce V3",
+          "cutting board: residue V1/V2, clean V3/V4/V5"
+        ],
+        "blocking_uncertainties": [
+          "V4 vs V5 order: chickpea presence differs",
+          "exact drawer sequence: opened multiple times?"
+        ],
+        "comparison_table": {
+          "video1": "chickpeas added, clear pot, drawer opens end, board has residue",
+          "video2": "onion added, clear pot, drawer opens end, board has residue",
+          "video3": "rice in pan with sauce, clean board, final stage",
+          "video4": "mixed veggies, rice in pot boiling, clean board, chickpeas uncertain",
+          "video5": "chickpeas present, rice in pot boiling, clean board, drawer closes"
+        },
+        "object_memory": {
+          "frying_pan": {
+            "1": "veggies + chickpeas mixed",
+            "2": "veggies + onion mixed",
+            "3": "rice + sauce",
+            "4": "mixed veggies, chickpeas uncertain",
+            "5": "veggies + chickpeas"
+          },
+          "small_pot": {
+            "1": "clear, not boiling",
+            "2": "clear, not boiling",
+            "3": "clear early, then not visible",
+            "4": "white, boiling, rice visible",
+            "5": "white, boiling, rice visible"
+          },
+          "drawer": {
+            "1": "opens end",
+            "2": "opens end",
+            "3": "not visible",
+            "4": "not visible",
+            "5": "opens start, closes"
+          },
+          "cutting_board": {
+            "1": "has residue",
+            "2": "has residue",
+            "3": "clean",
+            "4": "clean",
+            "5": "clean"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                35,
+                44
+              ],
+              "event": "drawer opens",
+              "key_objects": [
+                "drawer"
+              ],
+              "visible_state": "drawer open",
+              "why_it_matters": "links to V5 drawer close",
+              "confidence": "medium"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                30,
+                37.7
+              ],
+              "event": "drawer opens",
+              "key_objects": [
+                "drawer"
+              ],
+              "visible_state": "drawer open",
+              "why_it_matters": "links to V5 drawer close",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                12
+              ],
+              "event": "drawer closes",
+              "key_objects": [
+                "drawer"
+              ],
+              "visible_state": "drawer closed",
+              "why_it_matters": "links from V1/V2 drawer open",
+              "confidence": "high"
+            }
+          ]
+        },
+        "candidate_targets": [
+          {
+            "id": "4 vs 5",
+            "reason": "chickpea presence differs, need to verify order"
+          }
+        ],
+        "uncertain": [
+          "V4 vs V5 order",
+          "chickpea presence in V4"
+        ],
+        "focus_plan": [
+          "compare V4 and V5 chickpea presence and small pot state"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "2->5->1->4->3",
+    "2->1->5->4->3"
+  ],
+  "order_confidence": [
+    "6",
+    "7"
+  ],
+  "confidence_basis": [
+    "V2 opens drawer, V5 closes drawer (strong link)",
+    "onion added V2, chickpeas added V1, rice added V3",
+    "small pot: clear V1/V2, boiling V5, white/rice V4",
+    "rice cooked in pot V4, transferred to pan V3",
+    "V2 opens drawer, V1 opens drawer, V5 closes drawer (V2->V1->V5 link)",
+    "small pot: clear V1/V2, white/boiling/rice V4/V5",
+    "frying pan: onion V2, chickpeas V1, rice+sauce V3",
+    "cutting board: residue V1/V2, clean V3/V4/V5"
+  ],
+  "blocking_uncertainties": [
+    "small pot state progression needs verification",
+    "chickpea presence in V4/V5 needs confirmation",
+    "rice presence in V1/V2/V5 needs confirmation",
+    "drawer transition V2->V5 needs verification",
+    "V4 vs V5 order: chickpea presence differs",
+    "exact drawer sequence: opened multiple times?"
+  ],
+  "temporal_index": [
+    "{\"video2\": [{\"window\": [30, 37.7], \"event\": \"drawer opened\", \"key_objects\": [\"drawer\", \"cutlery\"], \"visible_state\": \"drawer open revealing cutlery\", \"why_it_matters\": \"links to V5 drawer close\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 12], \"event\": \"drawer closed\", \"key_objects\": [\"drawer\", \"tool\"], \"visible_state\": \"tool placed in drawer, drawer closed\", \"why_it_matters\": \"links from V2 drawer open\", \"confidence\": \"high\"}]}",
+    "{\"video1\": [{\"window\": [35, 44], \"event\": \"drawer opens\", \"key_objects\": [\"drawer\"], \"visible_state\": \"drawer open\", \"why_it_matters\": \"links to V5 drawer close\", \"confidence\": \"medium\"}], \"video2\": [{\"window\": [30, 37.7], \"event\": \"drawer opens\", \"key_objects\": [\"drawer\"], \"visible_state\": \"drawer open\", \"why_it_matters\": \"links to V5 drawer close\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 12], \"event\": \"drawer closes\", \"key_objects\": [\"drawer\"], \"visible_state\": \"drawer closed\", \"why_it_matters\": \"links from V1/V2 drawer open\", \"confidence\": \"high\"}]}"
+  ],
+  "candidate_targets": [
+    "{\"id\": \"2->5\", \"reason\": \"drawer transition link\"}",
+    "{\"id\": \"1->4\", \"reason\": \"small pot clear->white progression\"}",
+    "{\"id\": \"4->3\", \"reason\": \"rice pot->pan transfer\"}",
+    "{\"id\": \"4 vs 5\", \"reason\": \"chickpea presence differs, need to verify order\"}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"video1\": \"chickpeas added, clear pot, drawer opens end, board has residue\", \"video2\": \"onion added, clear pot, drawer opens end, board has residue\", \"video3\": \"rice in pan with sauce, clean board, final stage\", \"video4\": \"mixed veggies, rice in pot boiling, clean board, chickpeas uncertain\", \"video5\": \"chickpeas present, rice in pot boiling, clean board, drawer closes\"}"
+  ],
+  "focus_plan": [
+    "compare V4 and V5 chickpea presence and small pot state"
+  ]
+}

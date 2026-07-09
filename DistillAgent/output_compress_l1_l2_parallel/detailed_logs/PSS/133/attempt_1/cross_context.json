@@ -1,0 +1,226 @@
+{
+  "confirmed": [
+    "pan state progression: raw->browning->sauce->empty",
+    "dish state progression: empty->meat->meat+mash->baked",
+    "mash bowl: full->depleted"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{}",
+    "{\"1\": \"raw onions/carrots/mince added to pan, cooking starts\", \"2\": \"browned mince/carrots, adds puree/jar/liquid/salt -> wet sauce\", \"3\": \"baked pie removed from oven\", \"4\": \"mash transferred from bowl to dish with meat base\", \"5\": \"sauce seasoned, transferred from pan to dish, pan depleted\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "pan": {
+      "1": "raw meat/veg",
+      "2": "browning -> wet sauce",
+      "4": "background, residue",
+      "5": "cooked sauce -> empty+residue"
+    },
+    "white_dish": {
+      "4": "meat base + raw mash added",
+      "5": "empty -> meat base"
+    },
+    "mash_bowl": {
+      "4": "full -> depleted",
+      "5": "background, full"
+    },
+    "oven": {
+      "3": "contains baked pie"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object state progression",
+    "source/destination containers",
+    "transfer traces",
+    "residue/depletion",
+    "background vessel state"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {},
+        "object_memory": {},
+        "temporal_index": {},
+        "preliminary_order": null,
+        "preliminary_confidence": 0,
+        "confidence_basis": [],
+        "blocking_uncertainties": [
+          "all object states and operations across 5 segments pending Layer1 results"
+        ],
+        "irrelevant_windows": [],
+        "candidate_targets": [],
+        "low_value_targets": [],
+        "uncertain": [
+          "full inventory of objects, states, operations in each segment"
+        ],
+        "dimensions_to_compare": [
+          "object state progression",
+          "source/destination containers",
+          "transfer traces",
+          "residue/depletion",
+          "background vessel state"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "layer2_done": true,
+        "event_memory": {
+          "1": "raw onions/carrots/mince added to pan, cooking starts",
+          "2": "browned mince/carrots, adds puree/jar/liquid/salt -> wet sauce",
+          "3": "baked pie removed from oven",
+          "4": "mash transferred from bowl to dish with meat base",
+          "5": "sauce seasoned, transferred from pan to dish, pan depleted"
+        },
+        "object_memory": {
+          "pan": {
+            "1": "raw meat/veg",
+            "2": "browning -> wet sauce",
+            "4": "background, residue",
+            "5": "cooked sauce -> empty+residue"
+          },
+          "white_dish": {
+            "4": "meat base + raw mash added",
+            "5": "empty -> meat base"
+          },
+          "mash_bowl": {
+            "4": "full -> depleted",
+            "5": "background, full"
+          },
+          "oven": {
+            "3": "contains baked pie"
+          }
+        },
+        "temporal_index": {
+          "1": [
+            {
+              "window": [
+                0,
+                73
+              ],
+              "event": "raw prep to initial cook",
+              "confidence": "high"
+            }
+          ],
+          "2": [
+            {
+              "window": [
+                0,
+                60
+              ],
+              "event": "sauce building",
+              "confidence": "high"
+            }
+          ],
+          "3": [
+            {
+              "window": [
+                0,
+                5
+              ],
+              "event": "oven removal",
+              "confidence": "high"
+            }
+          ],
+          "4": [
+            {
+              "window": [
+                0,
+                21
+              ],
+              "event": "mash assembly",
+              "confidence": "high"
+            }
+          ],
+          "5": [
+            {
+              "window": [
+                0,
+                30
+              ],
+              "event": "seasoning and transfer to dish",
+              "confidence": "high"
+            }
+          ]
+        },
+        "preliminary_order": "1->2->5->4->3",
+        "preliminary_confidence": 9,
+        "confidence_basis": [
+          "V1: raw in pan",
+          "V2: browning->sauce in pan",
+          "V5: sauce->transfer to dish",
+          "V4: mash->dish",
+          "V3: baked pie out of oven"
+        ],
+        "blocking_uncertainties": [],
+        "comparison_table": {
+          "1": "raw ingredients in pan",
+          "2": "browning ingredients, liquids added, wet sauce forms",
+          "5": "finished sauce seasoned and transferred to dish, pan empty",
+          "4": "mash added to dish containing meat base",
+          "3": "assembled pie baked and removed from oven"
+        },
+        "confirmed": [
+          "pan state progression: raw->browning->sauce->empty",
+          "dish state progression: empty->meat->meat+mash->baked",
+          "mash bowl: full->depleted"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": [],
+        "focus_plan": [],
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "temporal_index": [
+    "{}",
+    "{\"1\": [{\"window\": [0, 73], \"event\": \"raw prep to initial cook\", \"confidence\": \"high\"}], \"2\": [{\"window\": [0, 60], \"event\": \"sauce building\", \"confidence\": \"high\"}], \"3\": [{\"window\": [0, 5], \"event\": \"oven removal\", \"confidence\": \"high\"}], \"4\": [{\"window\": [0, 21], \"event\": \"mash assembly\", \"confidence\": \"high\"}], \"5\": [{\"window\": [0, 30], \"event\": \"seasoning and transfer to dish\", \"confidence\": \"high\"}]}"
+  ],
+  "preliminary_order": [
+    "1->2->5->4->3"
+  ],
+  "preliminary_confidence": [
+    "0",
+    "9"
+  ],
+  "confidence_basis": [
+    "V1: raw in pan",
+    "V2: browning->sauce in pan",
+    "V5: sauce->transfer to dish",
+    "V4: mash->dish",
+    "V3: baked pie out of oven"
+  ],
+  "blocking_uncertainties": [
+    "all object states and operations across 5 segments pending Layer1 results"
+  ],
+  "irrelevant_windows": [],
+  "candidate_targets": [],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"raw ingredients in pan\", \"2\": \"browning ingredients, liquids added, wet sauce forms\", \"5\": \"finished sauce seasoned and transferred to dish, pan empty\", \"4\": \"mash added to dish containing meat base\", \"3\": \"assembled pie baked and removed from oven\"}"
+  ],
+  "pruned_targets": [],
+  "focus_plan": [],
+  "order_confidence": [
+    "9"
+  ]
+}

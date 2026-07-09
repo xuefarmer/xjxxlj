@@ -15,6 +15,7 @@ from typing import List, Dict, Any, Optional
 
 from qwen_agent import QwenModel
 from agent_executor import AgentExecutor
+from runtime_options import apply_runtime_overrides, parse_runtime_args, resolve_prompt_config, runtime_summary
 from utils import video_processor
 from utils.config import get_local_video_root, get_remote_video_base_url
 from utils.log_utils import setup_logger
@@ -26,9 +27,14 @@ MAX_TURNS = 20
 START_FROM_QUESTION_NUM = 1
 END_AT_QUESTION_NUM = None
 TASK_NAME = "NC_task"
-PROMPT_CONFIG = {"master": os.path.join(_ROOT, "prompts", "master_NC.prompt")}
+DEFAULT_PROMPT_CONFIG = {"master": os.path.join(_ROOT, "prompts", "master_NC.prompt")}
 
 if __name__ == "__main__":
+    runtime_args = parse_runtime_args("Run NC agent with selectable master/tool backends.")
+    apply_runtime_overrides(runtime_args)
+    PROMPT_CONFIG = resolve_prompt_config(_ROOT, "NC", DEFAULT_PROMPT_CONFIG, runtime_args)
+    max_turns = runtime_args.max_turns or MAX_TURNS
+
     if not os.path.exists(QUESTION_FILE):
         print(f"FATAL: Question file not found: {QUESTION_FILE}")
         raise SystemExit(1)
@@ -36,9 +42,13 @@ if __name__ == "__main__":
         all_questions = json.load(f)
 
     start_question_num = START_FROM_QUESTION_NUM
+    if runtime_args.start is not None:
+        start_question_num = runtime_args.start
     if start_question_num < 1: start_question_num = 1
     start_index = start_question_num - 1
     end_question_num = END_AT_QUESTION_NUM
+    if runtime_args.end is not None:
+        end_question_num = runtime_args.end
     original_total_questions = len(all_questions)
     if end_question_num is None: end_index = original_total_questions
     else: end_index = min(end_question_num, original_total_questions)
@@ -47,6 +57,7 @@ if __name__ == "__main__":
 
     logger = setup_logger(TASK_NAME.replace("_task", ""), start_question_num, end_index)
     logger.info(f"▶️  Run Config: Task={TASK_NAME}, Q{start_question_num}-Q{end_index}")
+    logger.info("⚙️  Runtime: %s", runtime_summary(PROMPT_CONFIG))
 
     qwen_agent_instance = QwenModel(prompt_config=PROMPT_CONFIG)
     executor = AgentExecutor(agent_instance=qwen_agent_instance, prompt_config=PROMPT_CONFIG)
@@ -55,7 +66,8 @@ if __name__ == "__main__":
     for i, question_data in enumerate(questions_to_run):
         current_question_abs_num = i + start_question_num
         question_id = question_data.get('id', str(current_question_abs_num))
-        log_dir = os.path.join(_ROOT, "logs", TASK_NAME, str(question_id))
+        log_suffix = os.environ.get("NC_LOG_SUFFIX", "").strip()
+        log_dir = os.path.join(_ROOT, "logs", TASK_NAME, str(question_id) + log_suffix)
         os.makedirs(log_dir, exist_ok=True)
 
         logger.info("==================================")
@@ -73,8 +85,8 @@ if __name__ == "__main__":
         for idx, v_name in enumerate(videos):
             begin_sec = begins[idx]
             end_sec = ends[idx]
-            local_path = os.path.join(get_local_video_root(), "NC", f"{v_name}.mp4")
-            remote_url = f"{get_remote_video_base_url().rstrip('/')}/NC/{v_name}.mp4"
+            local_path = os.path.join(get_local_video_root(), v_name)
+            remote_url = f"{get_remote_video_base_url().rstrip('/')}/{v_name}"
             video_path = local_path if os.path.exists(local_path) else remote_url
             try:
                 _, _, _, original_fps, total_f, total_d = video_processor.process_video(
@@ -98,7 +110,7 @@ if __name__ == "__main__":
 
         try:
             executor.init_agent_state(query=query, possible_answers=possible_answers, video_contexts=video_contexts)
-            final_answer_text, final_history = executor.run_agent_loop(max_turns=MAX_TURNS)
+            final_answer_text, final_history = executor.run_agent_loop(max_turns=max_turns)
             logger.info("📊 Evaluating result...")
             predicted_list = parse_agent_output_multi(final_answer_text, len(possible_answers))
             correct_list = extract_correct_list(question_data.get('answer'), len(possible_answers))

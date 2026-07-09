@@ -1,0 +1,793 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-08 06:29:39
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-08 06:15:03 -> 2026-07-08 06:16:35
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 90.00800000000001,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 1/5, time 0s–90s)"
+}
+
+[Output]:
+Based on the visual evidence in frames 1-16 (0s–90s):
+
+No definitive home invasion (forced entry, active attack, weapons drawn on residents) is visible in this segment. However, there is a scene inside a residence showing characters in a tense state, which aligns with the "residents threatened" dimension to monitor.
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Liam Neeson, two women | huddled, looking intently/worried | inside residence (dim lighting), tense atmosphere | 0s–10s (Frames 1, 4, 7) | home_invasion_check | 0.2 | High uncertainty; no intruders, forced entry, or weapons visible. Residents appear concerned but not actively attacked. |
+| Man in blue shirt | sitting, speaking/looking down | dark room (likely studio or interrogation), alone | 0s–10s (Frames 2, 3, 5, 6) | home_invasion_check | 0.0 | Not a home setting; no invasion evidence. |
+| Liam Neeson | driving car rapidly | inside vehicle, intense expression | 80s–90s (Frames 14-16) | home_invasion_check | 0.0 | Action scene in car, not home invasion. |
+
+**Summary for Part 1:** No clear home invasion observed. The scene with Liam Neeson and the two women (Frames 1, 4, 7) shows residents in a home looking tense/worried, which is a potential precursor or related state, but lacks the specific elements of invasion (intruders, breaking in) in this window.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-08 06:16:35 -> 2026-07-08 06:17:25
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 90.00800000000001,
+      "end_time": 180.01600000000002,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 2/5, time 90s–180s)"
+}
+
+[Output]:
+Based on the visual evidence in frames 1-15 (Video 1, 90s–180s):
+
+The scene depicts a violent confrontation between two men (Liam Neeson and an older man, likely Anthony Hopkins) inside and beside a vehicle on a city street. Liam Neeson is seen driving, then aggressively grabbing the passenger, yelling, and finally pointing a gun at the man's neck/chest area (Frame 15). The setting is clearly a car and a public street (traffic lights and buildings visible in background), not a residence. Therefore, no home invasion occurs in this segment.
+
+No home invasion | Confrontation in car, gun drawn at neck, street setting | 90s-180s | N/A | 0.95 | Low
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-08 06:17:25 -> 2026-07-08 06:20:48
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 180.01600000000002,
+      "end_time": 270.024,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 3/5, time 180s–270s)"
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (180s–270s):
+
+**Analysis:**
+*   **Frames 1-5 (approx. 180s–210s):** A tense confrontation is visible. A man (resembling Liam Neeson) is holding a handgun to the chest/neck of an older man (resembling Anthony Hopkins). The older man appears threatened. The background is dark and somewhat ambiguous, showing a curved metal structure that resembles a car door frame, but could be a garage or dark interior. This fits the criteria of "weapons drawn" and "residents threatened" (if the location is a residence/garage). If the protagonist is breaking into the antagonist's location, this constitutes a home invasion element.
+*   **Frames 6-16 (approx. 210s–270s):** The scene shifts to a bright, peaceful suburban setting. The man from the first scene arrives at a house in a black muscle car. He is greeted warmly by a young girl and a woman (presumably his family). There is no forced entry or threat here; it is a reunion.
+
+**Conclusion:**
+There is visible evidence of a violent confrontation with a weapon drawn (Frames 1-5) which could be part of a home invasion plot (intruder threatening a resident), although the setting looks like it might be a vehicle or garage. The subsequent scene shows a peaceful return to a home, suggesting the first scene might be a separate event (e.g., the protagonist threatening a villain at their location, or a flashback).
+
+**Compact Rows:**
+
+| objects/action/state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Gun drawn on older man by younger man; threat/confrontation | 180s-210s (Frames 1-5) | weapons drawn inside a residence; residents threatened at home | 0.7 | Location ambiguous (looks like car door/garage); unclear if this is the "home" being invaded or a separate confrontation. |
+| Man arrives at suburban house; family reunion (hugging, smiling) | 210s-270s (Frames 6-16) | (Negative evidence for invasion in this segment) | 0.9 | No invasion visible here; peaceful arrival. |
+
+**Summary for Cross-Video Context:**
+*   **Video contains home invasion elements?** Yes, potentially in the first segment (180s-210s) where a weapon is drawn and a man is threatened, fitting "weapons drawn" and "residents threatened". However, the location looks like a car/garage. The second segment is a peaceful home arrival.
+*   **Dimensions:** "Weapons drawn" is visible. "Forced entry" is not clearly visible. "Intruders inside residence" is possible if Frame 1 is inside a home/garage.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-08 06:20:48 -> 2026-07-08 06:23:43
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 270.024,
+      "end_time": 360.03200000000004,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 4/5, time 270s–360s)"
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (Video 1, 270s–360s), there is **no visible evidence of a home invasion** occurring in this specific segment.
+
+The scenes depict:
+1.  **House Exterior (Frame 1):** Two men are walking on the lawn away from a white house. The interaction appears calm or supportive (walking side-by-side), not aggressive. There is no forced entry, broken windows, or weapons drawn in a threatening manner visible.
+2.  **Office Setting (Frames 2-5, 8, 10, 13):** A corporate office environment with people working/meeting. This is not a residence.
+3.  **Outdoor/Phone Scenes (Frames 6-7, 9, 11-12):** A man (resembling Liam Neeson) is on a phone call outdoors, looking concerned. While the conversation might be about a threat, the invasion itself is not visible.
+4.  **Park/Picnic (Frames 14-16):** A peaceful scene with a man, a woman, and a young girl flying a kite and having a picnic. This depicts a leisure activity, not an invasion.
+
+**Conclusion:** No home invasion (forced entry, intruders inside, residents threatened at home) is visible in this time window.
+
+| objects/action/state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| No home invasion detected. Scenes show house exterior (peaceful), office meeting, phone calls, and park picnic. | 270s-360s | N/A | High | Low (No invasion visible) |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_5) ###
+Time: 2026-07-08 06:23:43 -> 2026-07-08 06:24:12
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 360.03200000000004,
+      "end_time": 450.0400000000001,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 5/5, time 360s–450s)"
+}
+
+[Output]:
+Based on the visual evidence in frames 1-15 (Video 1, 360s–450s):
+
+| objects/action/state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Man, Woman / Talking, smiling / Outdoors (park/garden), peaceful interaction, no weapons, no residence visible | 360-410s | - | High | Low (No home invasion evidence; scene is a calm outdoor conversation) |
+| Credits text / Rolling credits / Black screen | 410-450s | - | High | Low (No narrative content) |
+
+**Conclusion:** No home invasion occurs in this video segment. The scene depicts a peaceful conversation outdoors between a man and a woman, followed by production credits. There is no forced entry, intruders, or threat inside a residence.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_6) ###
+Time: 2026-07-08 06:15:03 -> 2026-07-08 06:17:53
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 90.01599999999999,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 1/5, time 0s–90s)"
+}
+
+[Output]:
+Based on the visual evidence in Video 2 (Frames 1-16, 0s–90s), there are strong indicators of a home invasion or a violent takeover of a residence/compound, leading to a hostage situation.
+
+**Analysis:**
+*   **Forced Entry/Weapons Drawn:** In Frames 1 and 3, a man (Gerard Butler) is seen outside a barred gate holding a knife, while a woman inside looks fearful and interacts with a padlock. This suggests a tense confrontation involving a weapon and a locked entry point. In Frame 5, the gate is open and the man is entering/confronting the people inside.
+*   **Residents Threatened/Captured:** Frame 4 shows a group of people sitting on the floor in a dim room, appearing distressed and captive (hands clasped, huddled). This is a classic visual trope for hostages taken during a home invasion or raid.
+*   **Intruders Inside:** Frames 7 and 15 show other men (including Mike Colter) who appear to be the aggressors or captors, watching over the area.
+*   **Kidnapping:** Frame 14 shows people inside a vehicle looking fearful, suggesting they have been taken from the residence.
+
+**Conclusion:** Yes, a home invasion (or compound invasion) appears to occur, resulting in the residents/survivors being held captive and transported.
+
+**Compact Rows:**
+
+| objects/action/state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Man with knife at locked gate; woman inside fearful | 0s–10s | weapons drawn in home, forced entry | 0.9 | Unclear if man is intruder breaking in or defender; knife is visible at lock. |
+| Man entering through open gate; confronting group | 10s–20s | intruders inside residence | 0.85 | Man enters aggressively, but context (movie *Plane*) suggests he may be a survivor; however, visually it fits intrusion. |
+| Group of people sitting on floor, looking captive | 15s–25s | residents threatened at home | 0.95 | None. Clear hostage situation. |
+| People inside vehicle looking scared | 75s–90s | kidnapping from a home | 0.9 | None. Suggests removal from the location. |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_7) ###
+Time: 2026-07-08 06:17:53 -> 2026-07-08 06:19:30
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 90.01599999999999,
+      "end_time": 180.03199999999998,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 2/5, time 90s–180s)"
+}
+
+[Output]:
+Based on the visual evidence in frames 1-16 (Video 2, 90s–180s), there are strong indicators of a confrontation at a residence that aligns with home invasion tropes (residents threatened, potential weapons), though explicit forced entry is ambiguous.
+
+**Visible Evidence:**
+*   **Characters:** A man with a bloody face (Gerard Butler character) and another man (Mike Colter character) are engaged in an intense, close-quarters confrontation at a window/door frame. A woman is visible in the background in Frame 5, appearing terrified/hiding.
+*   **Action/State:** The interaction is highly tense. The bloody-faced man appears aggressive (baring teeth in Frame 11). The other man is distressed (head in hands in Frame 5).
+*   **Weapons:** In Frame 8, the man (Mike Colter) has a black strap over his shoulder, likely a weapon sling (gun).
+*   **Setting:** The scene takes place at the threshold of a building (window/door). Later frames (15-16) show the bloody-faced man walking away from a dilapidated house in a muddy yard, suggesting the confrontation happened at this location.
+
+**Conclusion:**
+This scene depicts a **threat at a residence**. While it may not be a classic "burglary" home invasion, it fits the criteria of "residents being threatened" and "weapons drawn" (strap visible) in a home setting. The woman's fear and the man's distress suggest they are under threat.
+
+**Compact Rows:**
+*   **objects/action/state:** Men arguing at window/door, woman hiding in fear, bloody face, weapon strap visible / Tense confrontation, distress, potential threat / **window:** 90s-140s / **query_link:** residents threatened at home / **conf:** High / **uncertainty:** Unclear if forced entry occurred or if the bloody man is the intruder vs. resident.
+*   **objects/action/state:** Man walking away from house in muddy yard / Post-confrontation, outdoor setting / **window:** 170s-180s / **query_link:** intruders inside residence (contextual) / **conf:** Medium / **uncertainty:** Relationship between characters unclear without audio.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_8) ###
+Time: 2026-07-08 06:19:30 -> 2026-07-08 06:21:28
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 180.03199999999998,
+      "end_time": 270.048,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 3/5, time 180s–270s)"
+}
+
+[Output]:
+Based on the visual evidence in frames 1-16 (Video 2, 180s–270s):
+
+**Analysis:**
+The frames depict an intense outdoor confrontation in a village or slum setting. A man in a grey t-shirt (resembling Gerard Butler) is surrounded by armed militia members.
+-   **Frame 1:** Shows a physical struggle/grab outdoors.
+-   **Frame 2:** Shows a man aiming a weapon in a dark, confined space (possibly a vehicle or dark room), but it does not clearly depict a home invasion sequence (breaking in, threatening residents in a home).
+-   **Frames 3-16:** Show the man in the grey shirt walking through a street, talking to militia leaders (long-haired man, woman in bandana), and being surrounded by armed men. The setting is clearly outdoors (street, fences, dilapidated buildings in background).
+-   **Conclusion:** There is no evidence of forced entry into a residence, intruders threatening residents inside a home, or weapons drawn inside a private residence as a primary action. The scene is a standoff/capture in a public/semi-public outdoor area.
+
+**Result:** No home invasion observed.
+
+**Compact Rows:**
+objects/action/state/window/query_link/conf/uncertainty
+Militia, Man(grey shirt), Weapons / Outdoor confrontation, Standoff, Capture / Village street, weapons drawn outdoors / 180-270s / home_invasion / 0.1 / Low (Scene is clearly outdoors, no forced entry into home visible)
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_9) ###
+Time: 2026-07-08 06:21:28 -> 2026-07-08 06:23:16
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 270.048,
+      "end_time": 360.06399999999996,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 4/5, time 270s–360s)"
+}
+
+[Output]:
+Based on the visual evidence in Video 2 (frames 1-16, 270s–360s), here is the analysis regarding a home invasion:
+
+The scene depicts a violent confrontation in what appears to be a residential compound or street in a tropical setting. A man in a grey t-shirt (likely a resident or occupant) is surrounded and captured by a group of armed intruders (militia/mercenaries) led by a man with long curly hair and a bandana. The intruders have weapons drawn (rifles and pistols). The resident is forced to his knees and later lies on the ground with a pistol held to his head in an execution-style threat. Towards the end of the clip (frames 14-16), a truck crashes into the scene (possibly a rescue or further attack), and the resident is seen fleeing/being helped away by allies, suggesting an escape from the invasion/capture. This fits the criteria of residents being threatened/attacked in their home/compound and kidnapping/capture by intruders.
+
+| objects/action/state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Armed intruders (militia) capturing resident; gun to head threat; outdoor compound setting | 270-360s | home invasion | 0.85 | Setting is outdoors/compound, not strictly inside a house, but fits "threatened at home/property" and "kidnapping" criteria. |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_10) ###
+Time: 2026-07-08 06:23:16 -> 2026-07-08 06:24:39
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 360.06399999999996,
+      "end_time": 450.0799999999999,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 5/5, time 360s–450s)"
+}
+
+[Output]:
+Based on the visual evidence in frames 1-16 (Video 2, 360.1s to 450.1s):
+
+*   **Scene Content:** The frames depict a tense action sequence involving armed men (likely mercenaries or soldiers) and civilians.
+    *   **Frames 1-2:** Two men, one with tactical gear and a rifle, are walking outdoors in what looks like a village or compound setting. One man raises his weapon.
+    *   **Frames 3-5, 10-16:** The scene shifts to the interior of a bus. Armed men (holding rifles) are present alongside civilians who appear distressed or tense.
+    *   **Frames 6-7:** A body is lying on the ground, seemingly dead or unconscious, with a baton nearby.
+    *   **Frame 8:** A fight is occurring outdoors near a white truck.
+    *   **Frame 9:** A bus is driving down a jungle road.
+*   **Home Invasion Analysis:**
+    *   **Forced Entry/Breaking In:** There is no clear visual of intruders breaking into a house. Frame 1 shows an outdoor area, but no forced entry into a specific residence is depicted.
+    *   **Weapons Drawn Inside Residence:** Weapons are drawn inside a **bus** (Frames 2, 4, 5), not a residence.
+    *   **Residents Threatened at Home:** The civilians are on a bus, not in a home.
+    *   **Conclusion:** This appears to be a military/tactical extraction or ambush scene (likely from an action movie like *Kandahar*), not a home invasion.
+
+| objects/action/state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Armed men, rifles, bus, civilians, truck, body; Tactical movement and combat on bus/outdoors; no forced entry or weapons drawn inside a residence observed | 360-450s | - | 0.9 | Low |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_11) ###
+Time: 2026-07-08 06:15:03 -> 2026-07-08 06:16:22
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 90.01599999999999,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 1/5, time 0s–90s)"
+}
+
+[Output]:
+Based on the visual evidence in frames 1-16 (0.0s–90.0s), there is **no visible evidence of a home invasion** in this segment. The scenes depict financial distress, tense conversations, and domestic settings, but no forced entry, intruders, or weapons drawn in a residence.
+
+**Visual Analysis:**
+*   **Financial Distress:** Frame 6 clearly shows a bank statement for "AMANDA BLOCK" with the text "ACCOUNT HAS BEEN CLOSED". Frame 14 shows a tablet with similar documents.
+*   **Character States:**
+    *   A woman with curly hair (Frames 1, 3, 5, 15, 16) appears in a modern office and later a kitchen. She looks tense/serious but is not under attack. In the kitchen, she is holding a kettle.
+    *   A woman in a blazer (Frames 2, 4) is crying/distressed at a conference table.
+    *   A man (Frames 7-13) is in a dimly lit home/room, looking very stressed while on the phone and reviewing documents. He is alone.
+*   **Missing Invasion Indicators:** There are no broken doors/windows, no masked intruders, no weapons pointed at residents, and no physical struggle.
+
+**Compact Rows:**
+
+| objects/action/state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Women (office), Man (house), Woman (kitchen) / Talking, Crying, Phone call, Standing / Tense, Distressed, Worried | 0-16s | N/A | High | Low (No invasion visible) |
+| Bank Statement ("Account Closed"), Tablet documents / Static display / Financial ruin, Identity issue | 6s, 14s | N/A | High | Low |
+| Home Invasion Indicators (Forced entry, Weapons, Intruders) / Absent / None | 0-90s | N/A | High | Low |
+
+**Conclusion:** No home invasion occurs in this time window. The plot points revolve around financial closure ("Account has been closed") and high stress/tension among characters.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_12) ###
+Time: 2026-07-08 06:16:22 -> 2026-07-08 06:18:00
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 90.01599999999999,
+      "end_time": 180.03199999999998,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 2/5, time 90s–180s)"
+}
+
+[Output]:
+Based on the visual evidence in frames 1-14 (Video 3, 90.0s–180.0s):
+
+| objects/action/state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Man, Woman, Dog, Couch, Glass / Sitting, Standing, Talking, Arguing / Tense interaction; Man appears agitated/aggressive (Frame 6, 12), Woman appears concerned/fearful (Frame 5, 8); Dog is sleeping calmly next to Man (Frame 1) | 90-180s | Home Invasion Check | Low (for invasion) | High uncertainty regarding relationship; Dog's calmness suggests familiarity, arguing against "intruder" status; No forced entry or weapons visible (only a drink glass). Scene depicts domestic tension rather than active invasion. |
+
+**Detailed Observation:**
+- **Forced Entry:** None visible. The scene takes place entirely inside a living room and kitchen with no signs of break-in.
+- **Intruders inside residence:** A man and a woman are present. The man is sitting on the couch with a sleeping dog (Frame 1), which strongly suggests he is a resident or familiar person, not a hostile intruder (dogs typically react to strangers).
+- **Residents threatened:** The atmosphere is tense. The man appears distressed and aggressive (shouting in Frame 6), and the woman looks concerned. However, this resembles a domestic dispute or serious conversation rather than a threat from an invader.
+- **Weapons drawn:** The man holds a glass (likely a drink) in Frame 6. No firearms or knives are visible.
+
+**Conclusion:** No visible evidence of a home invasion (breaking in, weapons, kidnapping) in this specific time window. The scene shows a tense interpersonal conflict inside a home.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_13) ###
+Time: 2026-07-08 06:18:00 -> 2026-07-08 06:19:15
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 180.03199999999998,
+      "end_time": 270.048,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 3/5, time 180s–270s)"
+}
+
+[Output]:
+Based on the visual evidence in frames 10-16, a home invasion is clearly depicted as a key plot point in this segment.
+
+**Visual Evidence:**
+*   **Intruders/Forced Entry:** Frames 10, 11, 14, and 15 show multiple men moving tactically through a dark residence using flashlights. This "clearing" behavior is characteristic of a raid or home invasion.
+*   **Weapons Drawn:** Frames 11, 12, 13, 14, 15, and 16 show these men holding and aiming firearms inside the home. Frame 12 specifically shows a gun aimed in a room with domestic decor (a squirrel picture), indicating a threat to residents.
+*   **Preparation:** Frames 7 and 8 show tactical gear (vest) and a rack of rifles in a safe, suggesting the intruders are a professional or organized team gearing up for the attack.
+*   **Characters:** A team of armed men (at least two visible in frames 14-15, one close-up in frame 16). Liam Neeson's character is seen earlier (frames 2, 4, 6), possibly the target or the protagonist arriving at the scene.
+
+**Compact Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| armed men, flashlights, guns | entering rooms, aiming weapons, searching | active home invasion/raid | ~225s–270s (Frames 10-16) | [Link] | High | Low |
+| tactical vest, gun safe/rack | equipping gear, viewing weapons | pre-invasion preparation | ~200s–215s (Frames 7-8) | [Link] | High | Low |
+| Liam Neeson character | driving car, walking in dark hall | approaching/arriving | ~180s–210s (Frames 4-6) | [Link] | High | Medium (role unclear) |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_14) ###
+Time: 2026-07-08 06:19:15 -> 2026-07-08 06:21:06
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 270.048,
+      "end_time": 360.06399999999996,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 4/5, time 270s–360s)"
+}
+
+[Output]:
+Based on the visual evidence in the frames from Video 3 (270.0s to 360.1s), a home invasion scenario is strongly depicted. Armed intruders are seen inside a residence, and a resident appears threatened and anxious.
+
+**Visible Evidence & Characters:**
+*   **Intruders:** Two men are seen inside a residence (Frames 2-3). One is a bearded man holding a handgun, and another is in the background aiming a rifle with a tactical flashlight. They appear to be moving tactically, suggesting a forced entry or raid.
+*   **Resident:** An older man with grey hair is seen in a modern kitchen (Frames 8-10) talking on the phone. He later moves to a hallway/window (Frames 11-13), looking anxious and checking the exterior, indicating he feels threatened.
+*   **Protagonist/Visitor:** A man (resembling Liam Neeson) is seen outside (Frames 5-6, 14) and eventually at the front door (Frame 16) facing the resident.
+*   **Technology:** A smartphone screen displays "Apartment Conect" (likely "Connect"), suggesting a smart home system or a call related to the security of the apartment/house (Frame 1).
+
+**Compact Rows:**
+
+| objects/action/state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Armed intruders (bearded man, tactical shooter) inside residence with weapons drawn (rifles/handguns) | 270-280s (Frames 2-3) | home_invasion | 0.95 | low |
+| Resident (older man) in home on phone, looking worried/checking window | 300-330s (Frames 8-13) | home_invasion | 0.90 | low |
+| Smartphone displaying "Apartment Conect" security/call interface | 270s (Frame 1) | home_invasion | 0.80 | medium |
+| Protagonist (man in jacket) arriving at front door, confronting resident | 340-360s (Frames 14-16) | home_invasion | 0.85 | low |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_15) ###
+Time: 2026-07-08 06:21:06 -> 2026-07-08 06:22:36
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 360.06399999999996,
+      "end_time": 450.0799999999999,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 5/5, time 360s–450s)"
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (360s–450s), there are strong indicators of a home invasion or a violent confrontation inside a residence involving weapons and threats.
+
+**Visible Evidence:**
+*   **Weapons drawn inside a residence:** In Frames 3 and 4, a man (resembling Liam Neeson) is pointing a handgun at an older man inside a house. The older man is standing next to a wall safe, suggesting a robbery or forced interrogation scenario.
+*   **Residents threatened:** The older man in Frames 3-6 appears compliant and distressed while being held at gunpoint.
+*   **Intruders/Armed group outside:** Frame 10 shows a group of armed men with tactical gear and rifles outside a house at night, suggesting an approaching invasion or a standoff.
+*   **Defensive/Hiding behavior:** In Frames 11 and 12, a man is seen pressing his hand against a glass door/window and looking out nervously, consistent with someone hiding from or monitoring intruders.
+*   **Forced entry/Intrusion context:** The laptop screen in Frames 7-8 shows a list of names, implying the intruders (or the man with the gun) are looking for specific information, a common trope in home invasion thrillers.
+
+**Conclusion:**
+Yes, a home invasion (or a violent break-in/confrontation inside a home) occurs as a key plot point. The scenes depict a man holding a resident at gunpoint inside a house and armed men gathering outside.
+
+**Compact Rows:**
+
+| objects/action/state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Man pointing gun at older man inside house / Threatening / Weapon drawn | Frames 3-4 (approx 375s) | N/A | High | Low (Clear threat visible) |
+| Armed men with rifles outside house / Intruders approaching / Tactical gear | Frame 10 (approx 420s) | N/A | High | Low (Armed group visible) |
+| Man pressing hand to glass door / Hiding or checking for intruders / Tense | Frames 11-12 (approx 430s) | N/A | High | Low |
+| Laptop showing list of names / Data theft or interrogation target / Open | Frames 7-8 (approx 400s) | N/A | High | Low |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_16) ###
+Time: 2026-07-08 06:15:03 -> 2026-07-08 06:16:22
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 90.01599999999999,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 1/5, time 0s–90s)"
+}
+
+[Output]:
+Based on the visual evidence in frames 1-16 (0s–90s):
+
+*   **Frames 1-10:** Show Dom Toretto and Magdalene Shaw having a conversation outdoors on a high vantage point (rooftop/balcony) overlooking a city with smoke in the background. There is no forced entry, no residence interior, and no home invasion context.
+*   **Frames 11-16:** Show a character (Aimes) walking inside a large cargo aircraft. This is a transport/military setting, not a residence.
+
+**Conclusion:** No home invasion occurs in this video segment.
+
+none/none/no_home_invasion_detected/0-90s/none/high/low
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_17) ###
+Time: 2026-07-08 06:16:22 -> 2026-07-08 06:17:23
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 90.01599999999999,
+      "end_time": 180.03199999999998,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 2/5, time 90s–180s)"
+}
+
+[Output]:
+Based on the visual evidence in frames 11-16, a home invasion clearly occurs. Masked intruders in tactical gear break into the residence, attack the female resident, draw weapons (a rifle), and hold her hostage while the young boy attempts to flee.
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Masked intruders (tactical gear) | break in through entryway and physically attack woman | forced entry/assault | Frames 11-12 (~150s-155s) | home_invasion | High | Low |
+| Intruder with rifle | moves through hallway/room | weapons drawn inside residence | Frame 14 (~165s) | home_invasion | High | Low |
+| Intruder | holds woman in chokehold from behind | kidnapping/threatened resident | Frame 15 (~170s) | home_invasion | High | Low |
+| Woman (holding pan), Boy (running) | residents defending/fleeing | residents threatened at home | Frames 10, 13, 16 (~145s-180s) | home_invasion | High | Low |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_18) ###
+Time: 2026-07-08 06:17:23 -> 2026-07-08 06:18:28
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 180.03199999999998,
+      "end_time": 270.048,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 3/5, time 180s–270s)"
+}
+
+[Output]:
+Based on the visual evidence in frames 1-16 (Video 4, 180s–270s), a home invasion or tactical raid on a residence is clearly occurring.
+
+**Visible Evidence:**
+*   **Intruders inside residence:** Multiple individuals dressed in tactical gear/masks are seen moving through hallways and rooms (Frames 3, 4, 7, 15, 16).
+*   **Weapons drawn in home:** Several characters are holding rifles and aiming them inside the house (Frames 4, 7, 8, 15, 16).
+*   **Forced entry/Shootout residue:** A white door is riddled with bullet holes, indicating a breach or active firefight (Frame 5).
+*   **Residents threatened at home:** A young boy looks terrified (Frame 2) and a woman appears distressed and involved in the chaos (Frames 11, 14).
+*   **Physical combat:** There is intense hand-to-hand combat inside the home, with people being thrown and grappling (Frames 6, 12, 13).
+
+**Compact Rows:**
+
+| objects/action/state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Tactical team with rifles moving through hallway | 180-270s | intruders inside residence | High | Low |
+| Bullet holes in interior door | 180-270s | forced entry | High | Low |
+| Scared boy and distressed woman | 180-270s | residents threatened at home | High | Low |
+| Man (John Cena) and others aiming rifles | 180-270s | weapons drawn in home | High | Low |
+| Tactical figures fighting/throwing people | 180-270s | attack inside home | High | Low |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_19) ###
+Time: 2026-07-08 06:18:28 -> 2026-07-08 06:20:57
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 270.048,
+      "end_time": 360.06399999999996,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 4/5, time 270s–360s)"
+}
+
+[Output]:
+Based on the visual evidence in frames 1-16 (Video 4, 270.0s–360.1s):
+
+**Observation:**
+The scene depicts a man in tactical gear (resembling a soldier or SWAT officer, likely John Cena) inside a residence.
+- **Frames 1-3:** The man is inside, looking out a window/door with a weapon slung/visible. A woman (Jordana Brewster) appears distressed/scared (Frame 2), looking at him or the situation. This initial setup visually resembles a home invasion or confrontation.
+- **Frames 4-9:** The scene moves outside. The woman looks worried but then engages in a hug with the man/boy (Frame 9 shows hugging a figure in a tactical vest). This indicates they are allies or he is protecting them.
+- **Frames 10-16:** The group (Man, Woman, Boy) leaves the property in vehicles (Jeep, RAM truck). The man smiles (Frame 13), further confirming a cooperative/protective relationship.
+
+**Conclusion:**
+There is **no visible evidence of a hostile home invasion** (criminals breaking in, attacking residents). Instead, the scene shows a **tactical entry/rescue/extraction**. The "intruder" (man in tactical gear) appears to be a protector extracting the residents (woman and child) from a threat. The initial distress of the woman likely stems from the urgency of the situation or surprise at his entry, but they leave together cooperatively.
+
+**Compact Row:**
+Man(tactical vest, weapon), Woman(plaid shirt), Boy, Jeep, RAM Truck | Man inside house looking out window, Woman distressed, Group exits and hugs, Driving away | Tactical presence, Distressed then Cooperative, Extraction | 270-360s | N/A | 0.9 (Confidence it is a rescue, not invasion) | Low uncertainty on rescue nature; No hostile home invasion visible (armed man inside resembles invasion initially but context proves otherwise).
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_20) ###
+Time: 2026-07-08 06:20:57 -> 2026-07-08 06:22:39
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 360.06399999999996,
+      "end_time": 450.0799999999999,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1. Identify if a home invasion occurs as a key plot point. Look for: intruders breaking into a house, residents being threatened/attacked in their home, forced entry, weapons drawn inside a residence, kidnapping from a home. Report visible evidence of home invasion, characters involved, and approximate time windows. Return compact rows: objects/action/state/window/query_link/conf/uncertainty. (part 5/5, time 360s–450s)"
+}
+
+[Output]:
+Based on the visual evidence in frames 1-16 (Video 4, 360.1s to 450.1s):
+
+**Analysis:**
+- **Setting:** The scene transitions from an exterior night shot of a building/street (Frames 1-2) to a dimly lit interior (Frames 3-16). The interior features a bar counter with bottles (Frame 12), neon lighting (Frame 4), and industrial elements (barrels in Frame 3), suggesting a hideout, club, or criminal base rather than a typical private residence.
+- **Action:** A woman with blonde hair in a leather jacket enters the room (Frames 3, 6). She is handed a shotgun by someone off-screen (Frame 8) and holds it (Frame 9). However, the tone shifts as she is later seen carrying two beers (Frames 12-13) and approaching a bald man seated at a table (Frames 13, 16).
+- **Home Invasion Criteria:**
+    - **Forced entry:** No forced entry is visible. The woman walks in or is already present.
+    - **Intruders/Threat:** While a weapon (shotgun) is present, the subsequent action of bringing beers and the calm demeanor of the seated man (Dom) suggest a negotiation, truce, or meeting rather than a hostile invasion or attack on residents.
+    - **Weapons drawn:** A shotgun is drawn/handed over, but it appears to be arming the woman for a mutual cause or a test, not a threat against the "residents" of the home.
+
+**Conclusion:** No home invasion occurs. The scene depicts a tense meeting or parley in a hideout/bar setting.
+
+| objects/action/state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| No home invasion; Meeting in hideout/bar; Woman handed shotgun then brings beers; Negotiation | 360-450s | - | High | Low |
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_1) ###
+Time: 2026-07-08 06:25:50 -> 2026-07-08 06:28:00
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 270.0,
+      "end_time": 360.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2. Re-check only these cells: [forced entry, intruders inside private residence, residents threatened at home]. Determine if the militia capture in this segment is a residential home invasion or an outdoor village/compound raid. Look for: private home interior vs outdoor compound, forced entry into a house, residents threatened inside a home. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose."
+}
+
+[Output]:
+Outdoor compound raid, truck crashes fence (Frame 15), militia capture on street | 1-16 | forced entry | 9 | No | ABSENT (Compound breach, not home entry)
+Armed men in street/yard, exterior buildings only, no interior shots | 1-16 | intruders inside private residence | 9 | No | ABSENT
+Man held at gunpoint on ground outdoors (Frame 12), threat occurs on street | 1-16 | residents threatened at home | 9 | No | ABSENT (Outdoor threat, not inside home)
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_2) ###
+Time: 2026-07-08 06:25:50 -> 2026-07-08 06:27:07
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 180.0,
+      "end_time": 270.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2. Re-check only these cells: [forced entry, intruders inside private residence, residents threatened at home, weapons drawn in home]. Confirm the setting is a private residence and the invasion is explicit. Look for: domestic interior decor, forced entry, armed intruders clearing rooms, resident threatened inside. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose. (part 1/2, time 180s–270s)"
+}
+
+[Output]:
+forced entry / armed men moving tactically with flashlights and weapons through interior stairwell and rooms / PRESENT / 180-270s / home_invasion / 8 / UNCERTAIN (specific moment of door breach not clearly shown, but tactical intrusion is active)
+intruders inside private residence / multiple armed men clearing rooms with domestic decor (squirrel art, mountain painting, lamps) / PRESENT / 180-270s / home_invasion / 10 / None
+residents threatened at home / residents (woman, man) shown in dim domestic setting while armed intruders clear the house / PRESENT / 180-270s / home_invasion / 9 / None
+weapons drawn in home / rifles and handguns held with flashlights by men inside the residence / PRESENT / 180-270s / home_invasion / 10 / None
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_3) ###
+Time: 2026-07-08 06:27:07 -> 2026-07-08 06:29:27
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 270.0,
+      "end_time": 360.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2. Re-check only these cells: [forced entry, intruders inside private residence, residents threatened at home, weapons drawn in home]. Confirm the setting is a private residence and the invasion is explicit. Look for: domestic interior decor, forced entry, armed intruders clearing rooms, resident threatened inside. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose. (part 2/2, time 270s–360s)"
+}
+
+[Output]:
+forced entry | Smart home app "Apartment Control" (Frame 1) / Armed intruders already inside (Frame 2) | PRESENT | Video 3, Frames 1-3 | N/A | 8 | Physical breach (kicking door) not explicitly shown, but digital bypass/tactical entry implied.
+intruders inside private residence | Armed tactical men clearing room (Frame 2, 3) / Domestic kitchen setting (Frame 8) | PRESENT | Video 3, Frames 2-3, 8-10 | N/A | 9 | None.
+residents threatened at home | Older resident distressed/hiding (Frame 5, 12) while armed men clear house | PRESENT | Video 3, Frames 2, 5, 8-13 | N/A | 9 | None.
+weapons drawn in home | Assault rifles with tactical flashlights held by intruders (Frame 2, 3) | PRESENT | Video 3, Frames 2-3 | N/A | 9 | None.
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_4) ###
+Time: 2026-07-08 06:25:50 -> 2026-07-08 06:27:01
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 90.0,
+      "end_time": 180.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2. Re-check only these cells: [forced entry, intruders inside private residence, residents threatened at home, weapons drawn in home]. Confirm the setting is a private residence and the invasion is explicit. Look for: domestic interior, masked intruders breaking in, weapons drawn inside, residents attacked/threatened. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose. (part 1/2, time 90s–180s)"
+}
+
+[Output]:
+forced entry | Masked intruder bursts through window/door (Frame 11), door lock tampering (Frame 9) | PRESENT | 90-180s | Video 4 | 10 | None
+intruders inside private residence | Masked tactical men inside living room and kitchen (Frames 11, 12, 14, 15); suburban house exterior (Frame 4), living room interior (Frames 5-8) | PRESENT | 90-180s | Video 4 | 10 | None
+residents threatened at home | Woman physically grabbed and held by intruder (Frames 12, 15); boy flees and hides (Frames 13, 16) | PRESENT | 90-180s | Video 4 | 10 | None
+weapons drawn in home | Intruder holding assault rifle in kitchen/dining area (Frame 14); tactical gear visible (Frames 11, 12, 14, 15) | PRESENT | 90-180s | Video 4 | 10 | None
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_5) ###
+Time: 2026-07-08 06:27:01 -> 2026-07-08 06:27:53
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 180.0,
+      "end_time": 270.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2. Re-check only these cells: [forced entry, intruders inside private residence, residents threatened at home, weapons drawn in home]. Confirm the setting is a private residence and the invasion is explicit. Look for: domestic interior, masked intruders breaking in, weapons drawn inside, residents attacked/threatened. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose. (part 2/2, time 180s–270s)"
+}
+
+[Output]:
+forced entry | Door with bullet holes, tactical breaching, physical combat destroying furniture | 180-270s | forced entry | high | none
+intruders inside private residence | Masked men in tactical gear moving through hallway, stairs, and living room | 180-270s | intruders inside private residence | high | none
+residents threatened at home | Scared boy, distressed woman, physical fights between residents and intruders | 180-270s | residents threatened at home | high | none
+weapons drawn in home | Rifles/guns held and aimed by masked intruders in hallway and room | 180-270s | weapons drawn in home | high | none
+
+------------------------------------------------------------
+

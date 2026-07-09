@@ -1,0 +1,220 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-08 11:15:07
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1_skim) ###
+Time: 2026-07-08 11:11:02 -> 2026-07-08 11:11:36
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 15.0,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Layer1 skim chunking instruction]\nThis call contains representative frames from 1 chunks of Video 1. For each mapped chunk, output compact coarse evidence and whether it is likely relevant, uncertain, or low-value for the query/options. Do not claim a detail is absent unless it is visible enough in these skim frames. Recommend exact chunk windows for Layer2 detail when needed."
+}
+
+[Output]:
+objects: rice paper wrapper, shredded carrots, cucumber strips, herbs, cooked shrimp, hands
+action: assembling filling on wet wrapper
+state: wrapper wet/flat/translucent; veggies cut/fresh; shrimp cooked/pink; ingredients separate/piled in center
+window: 0.0s-15.0s (0.5s)
+query_link: VISIBLE
+conf: high
+uncertainty: none
+
+objects: rolled spring roll, hands (gold watch), white plate
+action: rolling the wrapper into a cylinder
+state: roll cylindrical/filled; wrapper wet; ingredients enclosed/mixed inside
+window: 0.0s-15.0s (14.5s)
+query_link: VISIBLE
+conf: high
+uncertainty: none
+
+Layer2 Recommendation: 0.0s-15.0s (Video 1) to confirm specific ingredient types (e.g., verify cucumber vs herbs) and exact rolling technique.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2_skim) ###
+Time: 2026-07-08 11:11:02 -> 2026-07-08 11:11:48
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 22.0,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Layer1 skim chunking instruction]\nThis call contains representative frames from 1 chunks of Video 2. For each mapped chunk, output compact coarse evidence and whether it is likely relevant, uncertain, or low-value for the query/options. Do not claim a detail is absent unless it is visible enough in these skim frames. Recommend exact chunk windows for Layer2 detail when needed."
+}
+
+[Output]:
+objects: Woman, girl, rice paper package, kitchen counter; action: Standing, preparing food; state: Rice paper package VISIBLE (present, wrapped in plastic); window: 0.0s-10.0s (Frame ~3.4s); query_link: Video 2; conf: High; uncertainty: None
+
+objects: Knife, square plate, white food block/cylinder; action: Woman cutting the food item; state: Food item VISIBLE (solid, transitioning from whole to cut), Plate VISIBLE (present, holding item); window: 12.0s-20.0s (Frame ~15.8s); query_link: Video 2; conf: High; uncertainty: Exact food identity (tofu vs. rice roll) UNCERTAIN
+
+objects: Green sponge/tray; action: Sitting on counter; state: VISIBLE (present, separate); window: 0.0s-10.0s; query_link: Video 2; conf: High; uncertainty: Function UNCERTAIN
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3_skim) ###
+Time: 2026-07-08 11:11:02 -> 2026-07-08 11:11:45
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 33.0,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Layer1 skim chunking instruction]\nThis call contains representative frames from 1 chunks of Video 3. For each mapped chunk, output compact coarse evidence and whether it is likely relevant, uncertain, or low-value for the query/options. Do not claim a detail is absent unless it is visible enough in these skim frames. Recommend exact chunk windows for Layer2 detail when needed."
+}
+
+[Output]:
+objects: Woman, Girl, Bag of round flat food product (label "Orah..."), Red Pepper, Green Pepper; action: Standing at kitchen counter, holding vegetables; state: Bag present/filled/sealed; Peppers raw/fresh/whole/separate; window: 19.6s-27.8s; query_link: N/A; conf: High; uncertainty: Exact brand/contents of bag.
+objects: Green object (held by girl); action: Holding; state: Present, whole, likely raw pepper; window: 19.6s; query_link: N/A; conf: Medium; uncertainty: Identity of green object (inferred as pepper from later frame).
+objects: Red Pepper, Green Pepper; action: Woman holding/showing both; state: Raw, fresh, whole, separate; window: 27.8s; query_link: N/A; conf: High; uncertainty: None.
+objects: Box (red/black label); action: Sitting on counter behind bag; state: Present, closed; window: 27.8s; query_link: N/A; conf: Medium; uncertainty: Specific product type.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4_skim) ###
+Time: 2026-07-08 11:11:02 -> 2026-07-08 11:11:54
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 27.0,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Layer1 skim chunking instruction]\nThis call contains representative frames from 1 chunks of Video 4. For each mapped chunk, output compact coarse evidence and whether it is likely relevant, uncertain, or low-value for the query/options. Do not claim a detail is absent unless it is visible enough in these skim frames. Recommend exact chunk windows for Layer2 detail when needed."
+}
+
+[Output]:
+objects: Woman, girl, sushi rice package, counter | action: standing, holding bowl | state: package VISIBLE (labeled "Sushi Rice"), bowl VISIBLE | window: 0.8s | query_link: context | conf: 0.95 | uncertainty: None
+objects: Small bowl, rice, green slices (avocado/cucumber) | action: sprinkling garnish | state: bowl FILLED, rice cooked/white, veg fresh/green, separate/mixed (veg on rice) | window: 22.8s | query_link: prep | conf: 0.9 | uncertainty: exact veg type UNCERTAIN
+objects: Glass plate, sushi roll | action: plated | state: roll PRESENT, topped with green ingredients | window: 0.8s, 22.8s | query_link: product | conf: 0.9 | uncertainty: None
+objects: Rectangular plate | action: empty on counter | state: empty/filled (empty) | window: 0.8s, 22.8s | query_link: tools | conf: 0.9 | uncertainty: None
+
+Recommend Layer2 for chunk 0.0-27.0s to clarify if the dish is a sushi roll or a rice bowl (poke style) given the bowl assembly vs plated roll.
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-08 11:12:54 -> 2026-07-08 11:13:38
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 15.0,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: rice paper wrapper (wet/dry, flat/rolled, translucent?), ingredients (types, raw/cooked, separate/mixed), final roll (cylindrical, enclosed?). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose."
+}
+
+[Output]:
+rice paper wrapper | wet, translucent, flat initially then folded/rolled | Frames 1-16 | high | none
+ingredients | shredded carrots (orange), green herbs, white chunks (likely shrimp) | separate, placed in center of wrapper | Frames 1-3 | high | uncertain: exact identity of white chunks (shrimp vs tofu), raw/cooked status
+action | folding left side of wrapper over ingredients | Frames 3-8 | high | none
+action | rolling and tucking the wrapper | Frames 9-15 | high | none
+final roll | enclosed, cylindrical/rectangular packet, translucent showing ingredients inside | Frames 12-16 | high | none
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-08 11:12:54 -> 2026-07-08 11:13:52
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 22.0,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: rice paper package (sealed/open, label?), white food block/cylinder (identity: tofu/rice roll/cheese? whole/cut state), plate (empty/filled), green sponge/tray. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose."
+}
+
+[Output]:
+rice paper package | Sealed/Closed package, Label "Banh Trang" | 1-16 | query_link | High | No
+white food block/cylinder | Whole, Identity Uncertain (likely tofu or rice roll component) | 1-16 | query_link | Low | Yes (Identity)
+plate | Filled (with rice paper sheet being smoothed) | 1-16 | query_link | High | No
+green sponge/tray | Visible (Green sponge in black tray) | 1-16 | query_link | High | No
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-08 11:12:54 -> 2026-07-08 11:14:30
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 19.0,
+      "end_time": 28.0,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: bag of round flat food (label text, sealed/open), red pepper (whole/cut), green pepper (whole/cut), box behind bag (label/state). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose."
+}
+
+[Output]:
+bag of round flat food | label "Banh Trang", sealed | 1-16 | query_link | high | no
+red pepper | whole | 7-16 | query_link | high | no
+green pepper | whole | 1-16 | query_link | high | no
+box behind bag | label unclear/blurry, sitting | 7-16 | query_link | low | yes (label text)
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_4) ###
+Time: 2026-07-08 11:12:54 -> 2026-07-08 11:14:12
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 27.0,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: sushi rice package (label text), small bowl (rice state, green slices state, mixed/separate), glass plate (roll state, toppings), rectangular plate (empty/filled). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose."
+}
+
+[Output]:
+sushi rice package | label text "Banh Trang" visible | 1 | high |
+small bowl | filled; contains chunky beige mixture (frames 1-3) and green slices/avocado with cucumber stick (frames 12-16); ingredients separate/stacked in later frames | 1-16 | high |
+glass plate | flat rice paper wrapper; toppings added (chunky mixture, white noodles/rice vermicelli, green herbs); unrolled/assembling state | 1-16 | high |
+rectangular plate | empty | 1-16 | high |
+
+------------------------------------------------------------
+

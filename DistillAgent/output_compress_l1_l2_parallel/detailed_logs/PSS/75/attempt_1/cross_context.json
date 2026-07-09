@@ -1,0 +1,268 @@
+{
+  "confirmed": [
+    "V1->V5 glass bowl progression",
+    "V5->V4 pink mixture transfer",
+    "V2->V4 base completion",
+    "V4->V3 roll assembly"
+  ],
+  "uncertain": [
+    "V4->V3 continuity",
+    "V1 final plating"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "pink_mixture": {
+      "5": "chopped tuna mixed with spicy mayo",
+      "4": "spooned onto nori",
+      "3": "placed on nori as filling"
+    },
+    "rice_nori_base": {
+      "2": "rice spread on nori, sesame added, flipped onto mat",
+      "4": "rice on plastic, nori on top",
+      "3": "rice on outside, nori inside"
+    },
+    "avocado": {
+      "1": "sliced and placed on side plate",
+      "4": "slices placed on nori"
+    },
+    "side_plate": {
+      "1": "cucumber sticks, avocado slices, shredded red veg, mayo"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient state (raw/cooked/cut)",
+    "container fill/empty",
+    "pan residue/depletion",
+    "transfer traces",
+    "background cues",
+    "pink mixture state",
+    "rice/nori base state",
+    "roll completion state",
+    "side plate contents"
+  ],
+  "resolved_uncertain": [
+    "V1 final plating is actually initial mise en place anchoring V1 before V5",
+    "V4->V3 continuity confirmed via filling placement to rolling"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": true,
+        "uncertain": [
+          "object states across segments",
+          "state-transition graph",
+          "segment ordering"
+        ],
+        "dimensions_to_compare": [
+          "ingredient state (raw/cooked/cut)",
+          "container fill/empty",
+          "pan residue/depletion",
+          "transfer traces",
+          "background cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "5->2->4->3->1",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V5 makes spicy tuna (pink mixture)",
+          "V2 preps rice/nori base and flips",
+          "V4 adds pink mixture and avocado to base",
+          "V3 adds cucumber, rolls and cuts",
+          "V1 plates side dish"
+        ],
+        "blocking_uncertainties": [
+          "Verify V4->V3 continuity (fillings on nori)",
+          "Verify V1 is final plating not prep"
+        ],
+        "object_memory": {
+          "pink_mixture": {
+            "5": "chopped tuna mixed with spicy mayo",
+            "4": "spooned onto nori",
+            "3": "placed on nori as filling"
+          },
+          "rice_nori_base": {
+            "2": "rice spread on nori, sesame added, flipped onto mat",
+            "4": "rice on plastic, nori on top",
+            "3": "rice on outside, nori inside"
+          },
+          "avocado": {
+            "1": "sliced and placed on side plate",
+            "4": "slices placed on nori"
+          },
+          "side_plate": {
+            "1": "cucumber sticks, avocado slices, shredded red veg, mayo"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                18
+              ],
+              "event": "side plate assembly",
+              "key_objects": [
+                "plate",
+                "avocado",
+                "cucumber",
+                "red veg"
+              ],
+              "visible_state": "items placed on plate",
+              "why_it_matters": "final plating step",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                34
+              ],
+              "event": "rice/nori prep",
+              "key_objects": [
+                "rice",
+                "nori",
+                "sesame",
+                "mat"
+              ],
+              "visible_state": "rice spread, sesame added, flipped onto mat",
+              "why_it_matters": "creates base for V4",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                39
+              ],
+              "event": "rolling and cutting",
+              "key_objects": [
+                "nori",
+                "fillings",
+                "roll",
+                "knife"
+              ],
+              "visible_state": "fillings placed, rolled, cut",
+              "why_it_matters": "follows V4 assembly",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                10
+              ],
+              "event": "filling assembly",
+              "key_objects": [
+                "pink mixture",
+                "avocado",
+                "nori base"
+              ],
+              "visible_state": "pink mixture and avocado placed on nori",
+              "why_it_matters": "uses base from V2, filling from V5",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                17
+              ],
+              "event": "spicy tuna prep",
+              "key_objects": [
+                "spicy mayo",
+                "chopped tuna",
+                "white bowl"
+              ],
+              "visible_state": "sauce mixed into tuna",
+              "why_it_matters": "creates pink mixture for V4",
+              "confidence": "high"
+            }
+          ]
+        },
+        "candidate_targets": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "V4->V3 continuity",
+          "V1 final plating"
+        ],
+        "dimensions_to_compare": [
+          "pink mixture state",
+          "rice/nori base state",
+          "roll completion state",
+          "side plate contents"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "order_confidence": 9,
+        "confirmed": [
+          "V1->V5 glass bowl progression",
+          "V5->V4 pink mixture transfer",
+          "V2->V4 base completion",
+          "V4->V3 roll assembly"
+        ],
+        "resolved_uncertain": [
+          "V1 final plating is actually initial mise en place anchoring V1 before V5",
+          "V4->V3 continuity confirmed via filling placement to rolling"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "5->2->4->3->1"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "V5 makes spicy tuna (pink mixture)",
+    "V2 preps rice/nori base and flips",
+    "V4 adds pink mixture and avocado to base",
+    "V3 adds cucumber, rolls and cuts",
+    "V1 plates side dish"
+  ],
+  "blocking_uncertainties": [
+    "Verify V4->V3 continuity (fillings on nori)",
+    "Verify V1 is final plating not prep"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 18], \"event\": \"side plate assembly\", \"key_objects\": [\"plate\", \"avocado\", \"cucumber\", \"red veg\"], \"visible_state\": \"items placed on plate\", \"why_it_matters\": \"final plating step\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 34], \"event\": \"rice/nori prep\", \"key_objects\": [\"rice\", \"nori\", \"sesame\", \"mat\"], \"visible_state\": \"rice spread, sesame added, flipped onto mat\", \"why_it_matters\": \"creates base for V4\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 39], \"event\": \"rolling and cutting\", \"key_objects\": [\"nori\", \"fillings\", \"roll\", \"knife\"], \"visible_state\": \"fillings placed, rolled, cut\", \"why_it_matters\": \"follows V4 assembly\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 10], \"event\": \"filling assembly\", \"key_objects\": [\"pink mixture\", \"avocado\", \"nori base\"], \"visible_state\": \"pink mixture and avocado placed on nori\", \"why_it_matters\": \"uses base from V2, filling from V5\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 17], \"event\": \"spicy tuna prep\", \"key_objects\": [\"spicy mayo\", \"chopped tuna\", \"white bowl\"], \"visible_state\": \"sauce mixed into tuna\", \"why_it_matters\": \"creates pink mixture for V4\", \"confidence\": \"high\"}]}"
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "low_value_targets": []
+}

@@ -1,0 +1,35 @@
+## Task Contract: MOC
+Task: multi-object counting from synchronized UAV/image-folder views.
+
+Input semantics:
+- Views are synchronized image-folder sequences.
+- Use frame indices, not seconds.
+- Object placeholders in the question refer to tracked IDs or bbox hints from the payload.
+- Bboxes mark referenced/tracked objects from the question, not a closed set of countable targets.
+- Count unique physical targets matching the query; the same target appearing in both views counts once.
+
+Evidence dimensions:
+- target class/color/appearance;
+- landmark-relative position, road/lane/sidewalk relation;
+- movement direction and continuity;
+- occlusion entry/exit timing;
+- cross-view same-object vs different-object evidence;
+- double-count risks across frames or views.
+
+Workflow notes:
+- Layer1 observes each view independently over the full frame range using synchronized frame indices.
+- For image-folder Layer1, use `start_frame=0`, `end_frame=total_frames-1`, and sample sparsely across the folder; for a few hundred frames, about one image every 20-30 frames is enough.
+- If sparse sampling is too coarse for a long or dense sequence, split that view into frame chunks and describe each chunk separately.
+- Layer1 output should be concrete evidence, not only a conclusion: frame ranges, visible landmarks, subject trajectory, target appearances, roadside/lane relation, movement direction, and occlusion/exit cues.
+- Treat Layer1 counts as local candidate evidence, not final arithmetic.
+- Maintain a count ledger: each counted event/target needs appearance, frame window, landmark/lane relation, and why it is distinct from nearby chunk/view candidates.
+- Never add counts across chunks or views before cross-view and chunk-boundary de-duplication; an object already passed at a window start should be linked to the previous window, not counted again.
+- Use chunk boundary states to stitch identities across adjacent chunks before deciding whether a candidate is new.
+- Do not treat `0-10` as a full scan unless the folder has only 11 frames.
+- Layer2 compares the two Layer1 view summaries, reasons about cross-view overlap/Re-ID, and decides which view/chunk needs a local re-check.
+- Layer2 should re-observe only selected uncertain chunks or candidate windows, not repeatedly rescan the whole folder after a candidate count is available.
+- Focus uses narrower synchronized frame windows with higher frame density to resolve same-vs-different, pass-count, occlusion, or borderline target-class/color uncertainties.
+- Captions are unavailable.
+
+Final answer:
+- `final_answer` is one uppercase option letter, e.g. `"B"`.

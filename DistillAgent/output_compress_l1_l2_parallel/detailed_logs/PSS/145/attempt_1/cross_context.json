@@ -1,0 +1,174 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "All object states and ordering pending Layer1 results"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "cabbage": {
+      "4": "whole->shredded",
+      "5": "shredded, salted, massaged",
+      "6": "mixed with beet/blueberries",
+      "3": "packed in jar",
+      "1": "fermenting in jar"
+    },
+    "beet": {
+      "2": "whole->grated",
+      "6": "mixed in bowl"
+    },
+    "blueberries": {
+      "6": "added from jar to bowl"
+    },
+    "bowl": {
+      "4": "empty",
+      "5": "contains massaged cabbage",
+      "2": "contains grated beet",
+      "6": "contains cabbage+beet+blueberries",
+      "3": "depleted"
+    },
+    "jar": {
+      "3": "being filled",
+      "1": "full, covered with cloth"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object_state_chain",
+    "container_fill_level",
+    "residue_depletion",
+    "transfer_traces",
+    "background_cues",
+    "bowl_contents",
+    "board_stain_color",
+    "ingredient_state",
+    "jar_fill_level",
+    "lid_state"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All object states and ordering pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object_state_chain",
+          "container_fill_level",
+          "residue_depletion",
+          "transfer_traces",
+          "background_cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "cabbage": {
+            "4": "whole->shredded",
+            "5": "shredded, salted, massaged",
+            "6": "mixed with beet/blueberries",
+            "3": "packed in jar",
+            "1": "fermenting in jar"
+          },
+          "beet": {
+            "2": "whole->grated",
+            "6": "mixed in bowl"
+          },
+          "blueberries": {
+            "6": "added from jar to bowl"
+          },
+          "bowl": {
+            "4": "empty",
+            "5": "contains massaged cabbage",
+            "2": "contains grated beet",
+            "6": "contains cabbage+beet+blueberries",
+            "3": "depleted"
+          },
+          "jar": {
+            "3": "being filled",
+            "1": "full, covered with cloth"
+          }
+        },
+        "preliminary_order": "4->5->2->6->3->1",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "cabbage_state_progression",
+          "beet_state_progression",
+          "bowl_accumulation",
+          "jar_fill_then_cover"
+        ],
+        "blocking_uncertainties": [
+          "exact bowl contents in V2 vs V5 to confirm which prep happens first"
+        ],
+        "dimensions_to_compare": [
+          "bowl_contents",
+          "board_stain_color",
+          "ingredient_state"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "preliminary_order": "4->5->2->6->3->1",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "cabbage_state_progression",
+          "beet_state_progression",
+          "bowl_accumulation",
+          "jar_fill_then_cover"
+        ],
+        "blocking_uncertainties": [
+          "exact bowl contents in V2 vs V5 to confirm which prep happens first",
+          "V1 and V3 jar/bowl end states to confirm finality"
+        ],
+        "dimensions_to_compare": [
+          "bowl_contents",
+          "board_stain_color",
+          "ingredient_state",
+          "jar_fill_level",
+          "lid_state"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "4->5->2->6->3->1"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "cabbage_state_progression",
+    "beet_state_progression",
+    "bowl_accumulation",
+    "jar_fill_then_cover"
+  ],
+  "blocking_uncertainties": [
+    "exact bowl contents in V2 vs V5 to confirm which prep happens first",
+    "V1 and V3 jar/bowl end states to confirm finality"
+  ],
+  "layer2_done": [
+    "True"
+  ]
+}

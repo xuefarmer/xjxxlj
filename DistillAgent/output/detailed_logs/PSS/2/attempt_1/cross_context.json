@@ -1,0 +1,216 @@
+{
+  "confirmed": [
+    "V5->V6: pan oily residue -> oil/onions",
+    "V6->V4: onions/mushrooms prepped -> in pan",
+    "V4->V3: cabbage/carrots/green beans -> +bean sprouts",
+    "V3->V2: white noodles + sauce pour -> white noodles + sauce mix + meat",
+    "V2->V1: brown noodles + meat -> plated + mayo"
+  ],
+  "uncertain": [
+    "Meat addition timing",
+    "Sauce pour continuity"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"5\": \"Cook raw chicken chunks in pan, remove. Pan left with oily residue.\", \"6\": \"Sauté sliced onions in oil, season. Prep bean sprouts on cutting board.\", \"4\": \"Add mushrooms, liquid, carrots, green beans, cabbage to onions. Simmer and mix.\", \"3\": \"Add bean sprouts to veg mix. Add white udon noodles from bowl. Pour dark sauce.\", \"2\": \"Pour dark sauce over white noodles, mix until brown. Meat is present in pan.\", \"1\": \"Plate brown noodles, chicken, peppers. Drizzle white mayo sauce.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "pan": {
+      "5": "empty with oily residue at end",
+      "6": "oil, then onions",
+      "4": "onions, mushrooms, liquid, carrots, green beans, cabbage",
+      "3": "+ bean sprouts, + white noodles, + sauce pour",
+      "2": "sauce mixed, brown noodles, meat present",
+      "1": "not shown (food plated)"
+    },
+    "noodles": {
+      "3": "white, wet, clumped in bowl -> transferred to pan",
+      "2": "white -> streaky brown -> uniform brown",
+      "1": "brown, coated, on plate"
+    },
+    "meat": {
+      "5": "raw pink chunks -> cooked -> removed",
+      "4": "ABSENT",
+      "3": "ABSENT",
+      "2": "cooked chunks present in pan",
+      "1": "cooked pieces on plate"
+    },
+    "bean_sprouts": {
+      "6": "raw on cutting board at end",
+      "3": "added to pan at start",
+      "others": "NOT_VISIBLE_IN_THESE_FRAMES"
+    },
+    "onions": {
+      "6": "raw -> partially cooked/wilted",
+      "4": "translucent/softened at start",
+      "others": "mixed in final dish"
+    },
+    "sauce": {
+      "3": "dark sauce poured at end",
+      "2": "dark sauce poured and mixed at start -> noodles brown",
+      "1": "white mayo drizzled on plate"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states (raw/cooked/cut/mixed)",
+    "container states (empty/filled/residue)",
+    "tool usage",
+    "transfer events",
+    "background vessel states",
+    "pan contents at transitions",
+    "noodle color progression",
+    "meat presence/absence",
+    "sauce state"
+  ],
+  "resolved_uncertain": [
+    "Meat addition timing: absent in V3/V4, present in V2",
+    "Sauce pour continuity: poured in V3 end, mixed in V2 start"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All segment roles and object states pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cooked/cut/mixed)",
+          "container states (empty/filled/residue)",
+          "tool usage",
+          "transfer events",
+          "background vessel states"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "5": "Cook raw chicken chunks in pan, remove. Pan left with oily residue.",
+          "6": "Sauté sliced onions in oil, season. Prep bean sprouts on cutting board.",
+          "4": "Add mushrooms, liquid, carrots, green beans, cabbage to onions. Simmer and mix.",
+          "3": "Add bean sprouts to veg mix. Add white udon noodles from bowl. Pour dark sauce.",
+          "2": "Pour dark sauce over white noodles, mix until brown. Meat is present in pan.",
+          "1": "Plate brown noodles, chicken, peppers. Drizzle white mayo sauce."
+        },
+        "object_memory": {
+          "pan": {
+            "5": "empty with oily residue at end",
+            "6": "oil, then onions",
+            "4": "onions, mushrooms, liquid, carrots, green beans, cabbage",
+            "3": "+ bean sprouts, + white noodles, + sauce pour",
+            "2": "sauce mixed, brown noodles, meat present",
+            "1": "not shown (food plated)"
+          },
+          "noodles": {
+            "3": "white, wet, clumped in bowl -> transferred to pan",
+            "2": "white -> streaky brown -> uniform brown",
+            "1": "brown, coated, on plate"
+          },
+          "meat": {
+            "5": "raw pink chunks -> cooked -> removed",
+            "4": "ABSENT",
+            "3": "ABSENT",
+            "2": "cooked chunks present in pan",
+            "1": "cooked pieces on plate"
+          },
+          "bean_sprouts": {
+            "6": "raw on cutting board at end",
+            "3": "added to pan at start",
+            "others": "NOT_VISIBLE_IN_THESE_FRAMES"
+          },
+          "onions": {
+            "6": "raw -> partially cooked/wilted",
+            "4": "translucent/softened at start",
+            "others": "mixed in final dish"
+          },
+          "sauce": {
+            "3": "dark sauce poured at end",
+            "2": "dark sauce poured and mixed at start -> noodles brown",
+            "1": "white mayo drizzled on plate"
+          }
+        },
+        "preliminary_order": "5->6->4->3->2->1",
+        "order_confidence": 9,
+        "confidence_basis": "Strong continuous state transitions for pan contents (onions -> mushrooms/veggies -> bean sprouts/noodles -> sauce mix), noodle color (white -> brown), meat (raw/cooked/removed -> present in final mix), and bean sprouts (prepped -> added).",
+        "blocking_uncertainties": [
+          "Verify meat presence in V2 and absence in V3/V4 to confirm it was added back after V5.",
+          "Verify exact sauce pour continuity between V3 end and V2 start."
+        ],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "Meat addition timing",
+          "Sauce pour continuity"
+        ],
+        "dimensions_to_compare": [
+          "pan contents at transitions",
+          "noodle color progression",
+          "meat presence/absence",
+          "sauce state"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 10,
+        "confirmed": [
+          "V5->V6: pan oily residue -> oil/onions",
+          "V6->V4: onions/mushrooms prepped -> in pan",
+          "V4->V3: cabbage/carrots/green beans -> +bean sprouts",
+          "V3->V2: white noodles + sauce pour -> white noodles + sauce mix + meat",
+          "V2->V1: brown noodles + meat -> plated + mayo"
+        ],
+        "resolved_uncertain": [
+          "Meat addition timing: absent in V3/V4, present in V2",
+          "Sauce pour continuity: poured in V3 end, mixed in V2 start"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "5->6->4->3->2->1"
+  ],
+  "order_confidence": [
+    "9",
+    "10"
+  ],
+  "confidence_basis": [
+    "Strong continuous state transitions for pan contents (onions -> mushrooms/veggies -> bean sprouts/noodles -> sauce mix), noodle color (white -> brown), meat (raw/cooked/removed -> present in final mix), and bean sprouts (prepped -> added)."
+  ],
+  "blocking_uncertainties": [
+    "Verify meat presence in V2 and absence in V3/V4 to confirm it was added back after V5.",
+    "Verify exact sauce pour continuity between V3 end and V2 start."
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ]
+}

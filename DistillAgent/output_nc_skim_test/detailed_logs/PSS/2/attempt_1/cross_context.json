@@ -1,0 +1,330 @@
+{
+  "confirmed": [
+    "Video 5: meat cooked alone, then removed",
+    "Video 6: onions cooked alone",
+    "Video 4: mushrooms + wilted onions + other veggies, no meat",
+    "Order so far: 5->6->4",
+    "Video 2: meat present from start of final stir-fry",
+    "Order so far: 5->6->4->3->2->1"
+  ],
+  "uncertain": [
+    "is meat added during Video 3?",
+    "pending Layer2 for 1, 2, 3"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"plating, drizzling white sauce\", \"2\": \"final stir-fry, noodles+veggies mixed, steaming\", \"3\": \"adding udon noodles to pan with stir-fried veggies\", \"4\": \"sautéing mushrooms+onions, adding cabbage+carrots\", \"5\": \"transferring raw meat chunks into pan\", \"6\": \"adding raw sliced onions to pan, seasoning text\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "noodles": {
+      "3": "white udon in bowl -> added to pan",
+      "2": "thick noodles mixed with veggies in pan",
+      "1": "cooked on plate"
+    },
+    "onions": {
+      "6": "raw white slices added to pan",
+      "4": "wilted/translucent in pan with mushrooms"
+    },
+    "cabbage_carrots": {
+      "4": "raw fresh added to pan",
+      "3": "stir-fried in pan with noodles",
+      "2": "mixed in pan"
+    },
+    "meat": {
+      "5": "raw pink chunks added to pan",
+      "1": "cooked chunks on plate"
+    },
+    "mushrooms": {
+      "4": "sliced wet cooking in pan"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked, whole/cut, empty/filled)",
+    "transfer traces",
+    "residue/depletion",
+    "event role",
+    "pan contents at start/middle/end",
+    "presence of meat with onions",
+    "presence of onions with meat",
+    "onion state (raw vs wilted)"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": true,
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked, whole/cut, empty/filled)",
+          "transfer traces",
+          "residue/depletion",
+          "event role"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "plating, drizzling white sauce",
+          "2": "final stir-fry, noodles+veggies mixed, steaming",
+          "3": "adding udon noodles to pan with stir-fried veggies",
+          "4": "sautéing mushrooms+onions, adding cabbage+carrots",
+          "5": "transferring raw meat chunks into pan",
+          "6": "adding raw sliced onions to pan, seasoning text"
+        },
+        "object_memory": {
+          "noodles": {
+            "3": "white udon in bowl -> added to pan",
+            "2": "thick noodles mixed with veggies in pan",
+            "1": "cooked on plate"
+          },
+          "onions": {
+            "6": "raw white slices added to pan",
+            "4": "wilted/translucent in pan with mushrooms"
+          },
+          "cabbage_carrots": {
+            "4": "raw fresh added to pan",
+            "3": "stir-fried in pan with noodles",
+            "2": "mixed in pan"
+          },
+          "meat": {
+            "5": "raw pink chunks added to pan",
+            "1": "cooked chunks on plate"
+          },
+          "mushrooms": {
+            "4": "sliced wet cooking in pan"
+          }
+        },
+        "preliminary_order": "5->6->4->3->2->1 OR 6->5->4->3->2->1",
+        "order_confidence": 7,
+        "confidence_basis": "Clear state progression for veggies (6->4) and noodles (3->2) and plating (1). Uncertainty: position of meat (5) relative to onions (6) and mushrooms (4).",
+        "blocking_uncertainties": [
+          "Is meat present in Video 6 pan with onions?",
+          "Are onions present in Video 5 pan with meat?",
+          "Is meat present in Video 4 pan with mushrooms/veggies?"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                10
+              ],
+              "event": "garnishing",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                15
+              ],
+              "event": "final stir-fry",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                23,
+                26
+              ],
+              "event": "adding noodles",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                33
+              ],
+              "event": "mushroom/onion base + adding cabbage/carrots",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                30
+              ],
+              "event": "meat transfer",
+              "confidence": "high"
+            }
+          ],
+          "video6": [
+            {
+              "window": [
+                0,
+                20
+              ],
+              "event": "onion transfer",
+              "confidence": "high"
+            }
+          ]
+        },
+        "candidate_targets": [
+          "5",
+          "6",
+          "4"
+        ],
+        "low_value_targets": [
+          "1",
+          "2",
+          "3"
+        ],
+        "uncertain": [
+          "meat position relative to onions and mushrooms"
+        ],
+        "dimensions_to_compare": [
+          "pan contents at start/middle/end",
+          "presence of meat with onions",
+          "presence of onions with meat",
+          "onion state (raw vs wilted)"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "5": "MEAT_ONLY, no veggies/onions, pan has oil residue before meat",
+          "6": "ONIONS_ONLY, no meat, raw onions -> wilted",
+          "4": "VEGGIES_ONLY (mushrooms + wilted onions + carrots/cabbage), no meat"
+        },
+        "confirmed": [
+          "Video 5: meat cooked alone, then removed",
+          "Video 6: onions cooked alone",
+          "Video 4: mushrooms + wilted onions + other veggies, no meat",
+          "Order so far: 5->6->4"
+        ],
+        "pruned_targets": [
+          "1",
+          "2",
+          "3"
+        ],
+        "candidate_targets": [
+          "2"
+        ],
+        "uncertain": [
+          "when is cooked meat added back to the dish?"
+        ],
+        "focus_plan": [
+          "verify meat presence in Video 2"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "confirmed": [
+          "Video 5: meat cooked alone, then removed",
+          "Video 6: onions cooked alone",
+          "Video 4: mushrooms + wilted onions + other veggies, no meat",
+          "Video 2: meat present from start of final stir-fry",
+          "Order so far: 5->6->4->3->2->1"
+        ],
+        "uncertain": [
+          "is meat added during Video 3?"
+        ],
+        "focus_plan": [
+          "verify meat presence in Video 3"
+        ]
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "order_confidence": 9
+      }
+    },
+    {
+      "turn": 6,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "5": "MEAT_ONLY, no veggies/onions, pan has oil residue before meat",
+          "6": "ONIONS_ONLY, no meat, raw onions -> wilted",
+          "4": "VEGGIES_ONLY (mushrooms + wilted onions + carrots/cabbage), no meat"
+        },
+        "uncertain": [
+          "is meat added during Video 3?",
+          "pending Layer2 for 1, 2, 3"
+        ],
+        "focus_plan": [
+          "verify meat presence in Video 2",
+          "verify meat presence in Video 3",
+          "verify states in 1, 2, 3 for Layer2 coverage"
+        ]
+      }
+    },
+    {
+      "turn": 7,
+      "update": {
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "5->6->4->3->2->1 OR 6->5->4->3->2->1"
+  ],
+  "order_confidence": [
+    "7",
+    "9"
+  ],
+  "confidence_basis": [
+    "Clear state progression for veggies (6->4) and noodles (3->2) and plating (1). Uncertainty: position of meat (5) relative to onions (6) and mushrooms (4)."
+  ],
+  "blocking_uncertainties": [
+    "Is meat present in Video 6 pan with onions?",
+    "Are onions present in Video 5 pan with meat?",
+    "Is meat present in Video 4 pan with mushrooms/veggies?"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 10], \"event\": \"garnishing\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 15], \"event\": \"final stir-fry\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [23, 26], \"event\": \"adding noodles\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 33], \"event\": \"mushroom/onion base + adding cabbage/carrots\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 30], \"event\": \"meat transfer\", \"confidence\": \"high\"}], \"video6\": [{\"window\": [0, 20], \"event\": \"onion transfer\", \"confidence\": \"high\"}]}"
+  ],
+  "candidate_targets": [
+    "5",
+    "6",
+    "4",
+    "2"
+  ],
+  "low_value_targets": [
+    "1",
+    "2",
+    "3"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"5\": \"MEAT_ONLY, no veggies/onions, pan has oil residue before meat\", \"6\": \"ONIONS_ONLY, no meat, raw onions -> wilted\", \"4\": \"VEGGIES_ONLY (mushrooms + wilted onions + carrots/cabbage), no meat\"}"
+  ],
+  "pruned_targets": [
+    "1",
+    "2",
+    "3"
+  ],
+  "focus_plan": [
+    "verify meat presence in Video 2",
+    "verify meat presence in Video 3",
+    "verify states in 1, 2, 3 for Layer2 coverage"
+  ]
+}

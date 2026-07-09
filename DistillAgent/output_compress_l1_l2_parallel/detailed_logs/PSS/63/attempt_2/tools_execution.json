@@ -1,0 +1,239 @@
+[
+  {
+    "turn": 1,
+    "call_id": "batch_1_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 19.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 20:37:08",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 19.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"object states across segments\",\n    \"state transitions\",\n    \"segment order\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient states\",\n    \"container fill levels\",\n    \"tool usage\",\n    \"residue/depletion\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence from the frames, here is the description of the operation, objects, and states:\n\n**Operation:** Preparing a salad (likely Tabbouleh or a grain-based vegetable salad) by adding olive oil dressing and mixing the ingredients.\n\n**Compact Evidence Rows:**\n\n*   **Row 1: Salad Mixture**\n    *   **objects:** Large glass bowl, chopped vegetables (tomatoes, cucumbers, carrots, herbs/parsley), grains (couscous or bulgur).\n    *   **action:** Receiving oil, being stirred/mixed.\n    *   **state:** Cut, fresh, mixed (ingredients combined), wet (coated in oil), filled.\n    *   **window:** 1-16\n    *   **query_link:** N/A\n    *   **conf:** 0.95\n    *   **uncertainty:** Specific grain type (cooked vs. raw soak) is hard to distinguish visually, but appears prepared.\n\n*   **Row 2: Dressing Container**\n    *   **objects:** Small glass bowl, olive oil (yellow liquid).\n    *   **action:** Being poured into the large bowl.\n    *   **state:** Liquid, filled (initially) -> depleting/emptying.\n    *   **window:** 1-11 (close-up pouring), 12 (held by person).\n    *   **query_link:** N/A\n    *   **conf:** 0.95\n    *   **uncertainty:** None.\n\n*   **Row 3: Mixing Tool**\n    *   **objects:** Wooden spoon/spatula.\n    *   **action:** Stirring the salad ingredients.\n    *   **state:** Present, residue (coated with salad bits/oil).\n    *   **window:** 1-16\n    *   **query_link:** N/A\n    *   **conf:** 0.95\n    *   **uncertainty:** None.\n\n*   **Row 4: Person/Chef**\n    *   **objects:** Woman, striped apron.\n    *   **action:** Mixing the salad vigorously.\n    *   **state:** Present.\n    *   **window:** 12-16\n    *   **query_link:** N/A\n    *   **conf:** 0.95\n    *   **uncertainty:** None.\n\n**Cross-Video Context Observations:**\n*   **State Transitions:** The small bowl transitions from **filled** (Frames 1-3) to **depleting** (Frames 9-11) as oil is poured. The salad transitions from **separate** layers of ingredients to thoroughly **mixed** (Frames 7-8, 13-16).\n*   **Residue/Depletion:** The wooden spoon shows **residue** of the salad mixture. The small oil bowl shows **depletion** of its contents.\n*   **Segment Order:** The close-ups (1-11) show the detailed action of pouring and initial mixing. The wide shots (12-16) show the person performing the mixing action, with the small bowl eventually placed on the counter (visible in bottom right of 13-16), implying the pouring is finished.",
+    "timestamp_end": "2026-07-06 20:42:27"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 16.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 20:37:08",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 16.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"object states across segments\",\n    \"state transitions\",\n    \"segment order\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient states\",\n    \"container fill levels\",\n    \"tool usage\",\n    \"residue/depletion\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence from the provided frames (all from Video 2), here is the description of the operation and object states.\n\n**Operation Description:**\nA woman is preparing a chopped salad (likely Tabbouleh or a similar vegetable salad). She begins by pouring a liquid dressing from a small glass container into a large glass bowl filled with diced vegetables. She then uses a wooden spoon to thoroughly mix the ingredients together.\n\n**Evidence Rows:**\n\n| objects | action | state | window | query_link | conf | uncertainty |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| large glass bowl, chopped vegetables (tomatoes, cucumbers, herbs), small glass cup, wooden spoon | pouring liquid dressing into bowl | vegetables: raw, fresh, cut; large bowl: filled; small cup: depleting/emptying; salad: becoming wet | 1-5 | video_2 | 0.95 | low |\n| large glass bowl, salad mixture, wooden spoon | mixing/stirring salad | ingredients: mixed; spoon: present with residue; bowl: filled; salad: wet, fresh | 6-16 | video_2 | 0.95 | low |\n\n**Detailed State Analysis:**\n*   **Ingredients:** The vegetables (tomatoes, cucumbers, parsley/herbs) are **raw**, **fresh**, and **cut** (diced/chopped).\n*   **Containers:** The large glass bowl is **filled** with the salad mixture. The small glass cup is initially present and **filled** with liquid, then becomes **empty/depleted** after pouring (visible in frames 3-5).\n*   **Tools:** A wooden spoon is **present** throughout. It starts resting on the side or held, then is used for mixing, acquiring **residue** of the salad.\n*   **Mixture State:** The ingredients transition from being **separate** (layered or just combined) to **mixed** as the woman stirs them in frames 7-16. The salad transitions from relatively dry (chopped veggies) to **wet** as the dressing is added.",
+    "timestamp_end": "2026-07-06 20:42:27"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 59.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 20:37:08",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 59.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"object states across segments\",\n    \"state transitions\",\n    \"segment order\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient states\",\n    \"container fill levels\",\n    \"tool usage\",\n    \"residue/depletion\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence from Video 3 (Frames 1-16), here is the description of the operation:\n\n**Operation:** Assembling and mixing a grain-based salad (likely couscous or quinoa salad/Tabbouleh).\n\n**Evidence Rows:**\n\n*   **Row 1:**\n    *   **objects:** cooked grain (couscous/quinoa), small glass bowl, large glass bowl, wooden spoon\n    *   **action:** scraping/pouring grain from small bowl into large bowl\n    *   **state:** grain is cooked/moist and clumped; small bowl is becoming empty; large bowl is partially filled.\n    *   **window:** 1-2\n    *   **conf:** 0.9\n    *   **uncertainty:** exact grain type (couscous vs. quinoa)\n\n*   **Row 2:**\n    *   **objects:** chopped light green vegetable (celery or cucumber), small glass bowl\n    *   **action:** pouring chopped vegetable into large bowl\n    *   **state:** vegetable is fresh, cut, and wet; small bowl is emptying.\n    *   **window:** 3-4\n    *   **conf:** 0.85\n    *   **uncertainty:** vegetable identity (celery vs. cucumber)\n\n*   **Row 3:**\n    *   **objects:** chopped tomatoes, shredded carrots, chopped parsley (herbs)\n    *   **action:** adding remaining ingredients sequentially into the large bowl\n    *   **state:** ingredients are fresh, cut, and distinct (red tomatoes, orange carrots, green parsley); large bowl is filling up with layered ingredients.\n    *   **window:** 6-11\n    *   **conf:** 0.95\n    *   **uncertainty:** none\n\n*   **Row 4:**\n    *   **objects:** salad mixture, wooden spoon, hand\n    *   **action:** mixing/tossing the salad ingredients together\n    *   **state:** ingredients are now mixed/combined; large bowl is filled with a colorful mixture; small bowls are empty/absent from immediate use.\n    *   **window:** 13-16\n    *   **conf:** 0.95\n    *   **uncertainty:** none (hand mixing seen in frame 14, spoon mixing in others)",
+    "timestamp_end": "2026-07-06 20:43:27"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 10.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 20:37:08",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 10.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"object states across segments\",\n    \"state transitions\",\n    \"segment order\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient states\",\n    \"container fill levels\",\n    \"tool usage\",\n    \"residue/depletion\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence from Video 4 (Frames 1-16), here is the description of the operation and object states:\n\n**Operation:** A woman is preparing and mixing a chopped vegetable salad (resembling Tabbouleh or a similar fresh salad) in a large glass bowl. She uses a wooden spoon to stir the ingredients and adds seasoning from a small bowl.\n\n**Evidence Rows:**\n\n| objects | action | state | window | query_link | conf | uncertainty |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| large glass bowl, chopped vegetables (cucumber, tomato, onion, herbs) | mixed, stirred | raw, cut, fresh, mixed, filled, wet | 1-16 | Video 4 | high | none |\n| wooden spoon | stirring, resting | present, wet (coated with salad residue) | 1-16 | Video 4 | high | none |\n| small glass bowl, seasoning (likely salt or herbs) | sprinkling, adding | depleted (contents removed), separate (before adding) -> mixed (after adding) | 1-2, 10-14 | Video 4 | medium | exact identity of seasoning (salt vs dried herbs) |\n| woman | mixing, seasoning | active | 3-16 | Video 4 | high | none |\n\n**Detailed State Analysis:**\n*   **Ingredients:** The vegetables are **raw**, **cut** (finely diced/chopped), and **fresh**. They appear **wet**, indicating they have been tossed or have released juices. They are thoroughly **mixed** in the bowl.\n*   **Containers:** The large glass bowl is **filled** with the salad mixture. The small glass bowl held seasoning which is being **depleted** as the woman pinches it into the main bowl.\n*   **Tools:** The wooden spoon is **present** and shows **residue** of the wet salad mixture.",
+    "timestamp_end": "2026-07-06 20:41:35"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 19.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: presence of grains (couscous/bulgur) in the large glass bowl, identity of the liquid in the small glass bowl (olive oil, vinegar, lemon juice, etc.), and exact ingredients visible in the large bowl. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose."
+    },
+    "timestamp_start": "2026-07-06 20:44:28",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 19.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: presence of grains (couscous/bulgur) in the large glass bowl, identity of the liquid in the small glass bowl (olive oil, vinegar, lemon juice, etc.), and exact ingredients visible in the large bowl. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"large_bowl\": {\n      \"1\": \"filled with veggies+grains, receiving oil\",\n      \"2\": \"filled with veggies, receiving liquid dressing\",\n      \"3\": \"receiving grain then veggies\",\n      \"4\": \"filled with veggies, receiving seasoning\"\n    },\n    \"small_bowl_liquid\": {\n      \"1\": \"olive oil (yellow)\",\n      \"2\": \"liquid dressing\",\n      \"3\": \"grain, then celery\",\n      \"4\": \"seasoning (salt/herbs)\"\n    },\n    \"wooden_spoon\": {\n      \"1\": \"present, residue\",\n      \"2\": \"present, residue\",\n      \"3\": \"present\",\n      \"4\": \"present, residue\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"ingredient states\",\n    \"container fill levels\",\n    \"tool usage\",\n    \"residue/depletion\",\n    \"grain presence\",\n    \"liquid/seasoning identity\",\n    \"ingredient accumulation\"\n  ],\n  \"uncertain\": [\n    \"grain presence in Vid2/Vid4\",\n    \"liquid identity in Vid1/Vid2\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "large_bowl / grain_presence / present (couscous/bulgur visible as base) / 1-16 / grain_check / HIGH / NONE\nsmall_bowl / liquid_identity / yellow liquid (likely olive oil) / 1-12 / liquid_check / MEDIUM / UNCERTAIN\nlarge_bowl / ingredients / chopped tomatoes, cucumbers, carrots, parsley/herbs, grains / 1-16 / ingredient_check / HIGH / NONE",
+    "timestamp_end": "2026-07-06 20:50:52"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 16.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: presence of grains (couscous/bulgur) in the large glass bowl, identity of the liquid in the small glass cup (olive oil, vinegar, lemon juice, etc.), and exact ingredients visible in the large bowl. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose."
+    },
+    "timestamp_start": "2026-07-06 20:44:28",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 16.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: presence of grains (couscous/bulgur) in the large glass bowl, identity of the liquid in the small glass cup (olive oil, vinegar, lemon juice, etc.), and exact ingredients visible in the large bowl. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"large_bowl\": {\n      \"1\": \"filled with veggies+grains, receiving oil\",\n      \"2\": \"filled with veggies, receiving liquid dressing\",\n      \"3\": \"receiving grain then veggies\",\n      \"4\": \"filled with veggies, receiving seasoning\"\n    },\n    \"small_bowl_liquid\": {\n      \"1\": \"olive oil (yellow)\",\n      \"2\": \"liquid dressing\",\n      \"3\": \"grain, then celery\",\n      \"4\": \"seasoning (salt/herbs)\"\n    },\n    \"wooden_spoon\": {\n      \"1\": \"present, residue\",\n      \"2\": \"present, residue\",\n      \"3\": \"present\",\n      \"4\": \"present, residue\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"ingredient states\",\n    \"container fill levels\",\n    \"tool usage\",\n    \"residue/depletion\",\n    \"grain presence\",\n    \"liquid/seasoning identity\",\n    \"ingredient accumulation\"\n  ],\n  \"uncertain\": [\n    \"grain presence in Vid2/Vid4\",\n    \"liquid identity in Vid1/Vid2\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "large_bowl/grains_present/PRESENT (bulgur/couscous)/1-16/small beige/white granules mixed with vegetables throughout/HIGH/-\nsmall_cup/liquid_identity/liquid dressing (likely olive oil or lemon juice)/5/clear yellowish liquid pouring from small glass cup/MEDIUM/UNCERTAIN (visuals indistinguishable between oil and lemon juice)\nlarge_bowl/ingredients/chopped tomatoes, cucumbers, parsley, grains/3-5/red diced tomatoes, green/white cucumber chunks, green herbs (parsley), beige grains/HIGH/-",
+    "timestamp_end": "2026-07-06 20:50:48"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 59.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: presence of grains (couscous/bulgur) in the large glass bowl, identity of the contents of the small glass bowls (grain, celery, etc.), and exact ingredients visible in the large bowl. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose."
+    },
+    "timestamp_start": "2026-07-06 20:44:28",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 59.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: presence of grains (couscous/bulgur) in the large glass bowl, identity of the contents of the small glass bowls (grain, celery, etc.), and exact ingredients visible in the large bowl. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"large_bowl\": {\n      \"1\": \"filled with veggies+grains, receiving oil\",\n      \"2\": \"filled with veggies, receiving liquid dressing\",\n      \"3\": \"receiving grain then veggies\",\n      \"4\": \"filled with veggies, receiving seasoning\"\n    },\n    \"small_bowl_liquid\": {\n      \"1\": \"olive oil (yellow)\",\n      \"2\": \"liquid dressing\",\n      \"3\": \"grain, then celery\",\n      \"4\": \"seasoning (salt/herbs)\"\n    },\n    \"wooden_spoon\": {\n      \"1\": \"present, residue\",\n      \"2\": \"present, residue\",\n      \"3\": \"present\",\n      \"4\": \"present, residue\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"ingredient states\",\n    \"container fill levels\",\n    \"tool usage\",\n    \"residue/depletion\",\n    \"grain presence\",\n    \"liquid/seasoning identity\",\n    \"ingredient accumulation\"\n  ],\n  \"uncertain\": [\n    \"grain presence in Vid2/Vid4\",\n    \"liquid identity in Vid1/Vid2\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "large_bowl / contains / grains (couscous/bulgur) visible at start and mixed in later / Video 3 (Frames 1-16) / presence of grains / HIGH / NONE\nsmall_bowls / contain / grains, celery, tomatoes, carrots, parsley (sequential emptying) / Video 3 (Frames 1-16) / identity of contents / HIGH / NONE\nlarge_bowl / filled with / grains, celery, tomatoes, carrots, parsley / Video 3 (Frames 1-16) / exact ingredients / HIGH / NONE",
+    "timestamp_end": "2026-07-06 20:54:41"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 10.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: presence of grains (couscous/bulgur) in the large glass bowl, identity of the seasoning in the small glass bowl (salt, dried herbs, etc.), and exact ingredients visible in the large bowl. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose."
+    },
+    "timestamp_start": "2026-07-06 20:44:28",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 10.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: presence of grains (couscous/bulgur) in the large glass bowl, identity of the seasoning in the small glass bowl (salt, dried herbs, etc.), and exact ingredients visible in the large bowl. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"large_bowl\": {\n      \"1\": \"filled with veggies+grains, receiving oil\",\n      \"2\": \"filled with veggies, receiving liquid dressing\",\n      \"3\": \"receiving grain then veggies\",\n      \"4\": \"filled with veggies, receiving seasoning\"\n    },\n    \"small_bowl_liquid\": {\n      \"1\": \"olive oil (yellow)\",\n      \"2\": \"liquid dressing\",\n      \"3\": \"grain, then celery\",\n      \"4\": \"seasoning (salt/herbs)\"\n    },\n    \"wooden_spoon\": {\n      \"1\": \"present, residue\",\n      \"2\": \"present, residue\",\n      \"3\": \"present\",\n      \"4\": \"present, residue\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"ingredient states\",\n    \"container fill levels\",\n    \"tool usage\",\n    \"residue/depletion\",\n    \"grain presence\",\n    \"liquid/seasoning identity\",\n    \"ingredient accumulation\"\n  ],\n  \"uncertain\": [\n    \"grain presence in Vid2/Vid4\",\n    \"liquid identity in Vid1/Vid2\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "large_bowl | grain presence | PRESENT | 1-16 | presence_of_grains | HIGH | specific_grain_type_couscous_bulgur\nsmall_bowl | seasoning identity | salt or dried herbs | 10-13 | identity_of_seasoning | UNCERTAIN | exact_substance_salt_vs_herbs\nlarge_bowl | exact ingredients | diced cucumber, red pepper, tomato, herbs, grains | 1-16 | exact_ingredients | HIGH | specific_vegetable_types",
+    "timestamp_end": "2026-07-06 20:50:48"
+  },
+  {
+    "turn": 3,
+    "call_id": "obs_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0,
+          "end_time": 19.0,
+          "num_frames": 16,
+          "focus_prompt": "MODE=focus. Inspect the large glass bowl and the small bowl/cup being added from in each of the 4 segments. For each segment, report: 1) Exact ingredients visible in the large bowl (e.g., grains, tomato, cucumber, carrot, red pepper, parsley, celery, onion). 2) Exact contents of the small bowl/cup being poured/added (e.g., dry grain, dry seasoning, yellow oil, clear liquid). 3) Is the large bowl mostly empty, partially filled, or completely filled at the start/end of the clip? Return compact rows: segment/ingredients_in_large_bowl/contents_of_small_bowl/fill_level/conf/uncertainty. Do not infer cross-target chronology from display order; preserve local evidence."
+        },
+        {
+          "video_index": 2,
+          "start_time": 0,
+          "end_time": 16.0,
+          "num_frames": 16,
+          "focus_prompt": "MODE=focus. Inspect the large glass bowl and the small bowl/cup being added from in each of the 4 segments. For each segment, report: 1) Exact ingredients visible in the large bowl (e.g., grains, tomato, cucumber, carrot, red pepper, parsley, celery, onion). 2) Exact contents of the small bowl/cup being poured/added (e.g., dry grain, dry seasoning, yellow oil, clear liquid). 3) Is the large bowl mostly empty, partially filled, or completely filled at the start/end of the clip? Return compact rows: segment/ingredients_in_large_bowl/contents_of_small_bowl/fill_level/conf/uncertainty. Do not infer cross-target chronology from display order; preserve local evidence."
+        },
+        {
+          "video_index": 3,
+          "start_time": 0,
+          "end_time": 59.0,
+          "num_frames": 16,
+          "focus_prompt": "MODE=focus. Inspect the large glass bowl and the small bowl/cup being added from in each of the 4 segments. For each segment, report: 1) Exact ingredients visible in the large bowl (e.g., grains, tomato, cucumber, carrot, red pepper, parsley, celery, onion). 2) Exact contents of the small bowl/cup being poured/added (e.g., dry grain, dry seasoning, yellow oil, clear liquid). 3) Is the large bowl mostly empty, partially filled, or completely filled at the start/end of the clip? Return compact rows: segment/ingredients_in_large_bowl/contents_of_small_bowl/fill_level/conf/uncertainty. Do not infer cross-target chronology from display order; preserve local evidence."
+        },
+        {
+          "video_index": 4,
+          "start_time": 0,
+          "end_time": 10.0,
+          "num_frames": 16,
+          "focus_prompt": "MODE=focus. Inspect the large glass bowl and the small bowl/cup being added from in each of the 4 segments. For each segment, report: 1) Exact ingredients visible in the large bowl (e.g., grains, tomato, cucumber, carrot, red pepper, parsley, celery, onion). 2) Exact contents of the small bowl/cup being poured/added (e.g., dry grain, dry seasoning, yellow oil, clear liquid). 3) Is the large bowl mostly empty, partially filled, or completely filled at the start/end of the clip? Return compact rows: segment/ingredients_in_large_bowl/contents_of_small_bowl/fill_level/conf/uncertainty. Do not infer cross-target chronology from display order; preserve local evidence."
+        }
+      ],
+      "focus_prompt": "MODE=focus. Inspect the large glass bowl and the small bowl/cup being added from in each of the 4 segments. For each segment, report: 1) Exact ingredients visible in the large bowl (e.g., grains, tomato, cucumber, carrot, red pepper, parsley, celery, onion). 2) Exact contents of the small bowl/cup being poured/added (e.g., dry grain, dry seasoning, yellow oil, clear liquid). 3) Is the large bowl mostly empty, partially filled, or completely filled at the start/end of the clip? Return compact rows: segment/ingredients_in_large_bowl/contents_of_small_bowl/fill_level/conf/uncertainty. Do not infer cross-target chronology from display order; preserve local evidence."
+    },
+    "timestamp_start": "2026-07-06 20:55:20",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 19.0s)\nFrames 17-32 are from Video 2 (0.0s to 16.0s)\nFrames 33-48 are from Video 3 (0.0s to 59.0s)\nFrames 49-64 are from Video 4 (0.0s to 10.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=focus. Inspect the large glass bowl and the small bowl/cup being added from in each of the 4 segments. For each segment, report: 1) Exact ingredients visible in the large bowl (e.g., grains, tomato, cucumber, carrot, red pepper, parsley, celery, onion). 2) Exact contents of the small bowl/cup being poured/added (e.g., dry grain, dry seasoning, yellow oil, clear liquid). 3) Is the large bowl mostly empty, partially filled, or completely filled at the start/end of the clip? Return compact rows: segment/ingredients_in_large_bowl/contents_of_small_bowl/fill_level/conf/uncertainty. Do not infer cross-target chronology from display order; preserve local evidence.\n\n[PSS Neutral Focus Notice]\nEven if the prompt or accumulated context mentions a leading edge/order, do not decide which segment is earlier and do not choose between hypotheses. Report only per-target visible object-state cells: object state, container fill/empty state, source/destination, residue/depletion, background object state, confidence, and uncertainty. The master will compare these cells after the tool returns.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"large_bowl\": {\n      \"1\": \"filled with veggies+grains, receiving oil\",\n      \"2\": \"filled with veggies, receiving liquid dressing\",\n      \"3\": \"receiving grain then veggies\",\n      \"4\": \"filled with veggies, receiving seasoning\"\n    },\n    \"small_bowl_liquid\": {\n      \"1\": \"olive oil (yellow)\",\n      \"2\": \"liquid dressing\",\n      \"3\": \"grain, then celery\",\n      \"4\": \"seasoning (salt/herbs)\"\n    },\n    \"wooden_spoon\": {\n      \"1\": \"present, residue\",\n      \"2\": \"present, residue\",\n      \"3\": \"present\",\n      \"4\": \"present, residue\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"ingredient states\",\n    \"container fill levels\",\n    \"tool usage\",\n    \"residue/depletion\",\n    \"grain presence\",\n    \"liquid/seasoning identity\",\n    \"ingredient accumulation\"\n  ],\n  \"uncertain\": [\n    \"exact ingredient overlap between vids\",\n    \"whether vid1 and vid2 are adding the same liquid\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "1/grains, tomato, cucumber, carrot, parsley/yellow oil (olive oil)/completely filled at start and end/0.95/low\n2/grains, tomato, cucumber, carrot, parsley/clear liquid dressing/completely filled at start and end/0.9/liquid identity (oil vs lemon juice)\n3/grains, celery, tomato, carrot, parsley/dry grain, then chopped celery, tomato, parsley/mostly empty at start, completely filled at end/0.95/low\n4/grains, tomato, cucumber, carrot, parsley/white seasoning (salt)/completely filled at start and end/0.95/low",
+    "timestamp_end": "2026-07-06 21:02:22"
+  },
+  {
+    "turn": 1,
+    "call_id": "obs_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0,
+          "end_time": 19.0,
+          "num_frames": 32,
+          "focus_prompt": "MODE=focus. For each of the 3 segments (1, 2, 4), report ONLY visible visual evidence: 1) At the START of the clip: describe the exact appearance of ingredients in the large bowl - are they dry, wet, coated in oil, glistening? How full is the bowl? 2) The small bowl/cup: describe its fill level BEFORE the addition and AFTER the addition. Is there residue left? 3) The wooden spoon: does it have oil residue, dry residue, or no residue at the start? Does it gain residue during the clip? 4) Any other visual cues showing state progression. Return compact rows: segment/large_bowl_start_state/small_bowl_before/small_bowl_after/spoon_start/spoon_during/conf/uncertainty. Do NOT infer order. Report only what is visible."
+        },
+        {
+          "video_index": 2,
+          "start_time": 0,
+          "end_time": 16.0,
+          "num_frames": 32,
+          "focus_prompt": "MODE=focus. For each of the 3 segments (1, 2, 4), report ONLY visible visual evidence: 1) At the START of the clip: describe the exact appearance of ingredients in the large bowl - are they dry, wet, coated in oil, glistening? How full is the bowl? 2) The small bowl/cup: describe its fill level BEFORE the addition and AFTER the addition. Is there residue left? 3) The wooden spoon: does it have oil residue, dry residue, or no residue at the start? Does it gain residue during the clip? 4) Any other visual cues showing state progression. Return compact rows: segment/large_bowl_start_state/small_bowl_before/small_bowl_after/spoon_start/spoon_during/conf/uncertainty. Do NOT infer order. Report only what is visible."
+        },
+        {
+          "video_index": 4,
+          "start_time": 0,
+          "end_time": 10.0,
+          "num_frames": 32,
+          "focus_prompt": "MODE=focus. For each of the 3 segments (1, 2, 4), report ONLY visible visual evidence: 1) At the START of the clip: describe the exact appearance of ingredients in the large bowl - are they dry, wet, coated in oil, glistening? How full is the bowl? 2) The small bowl/cup: describe its fill level BEFORE the addition and AFTER the addition. Is there residue left? 3) The wooden spoon: does it have oil residue, dry residue, or no residue at the start? Does it gain residue during the clip? 4) Any other visual cues showing state progression. Return compact rows: segment/large_bowl_start_state/small_bowl_before/small_bowl_after/spoon_start/spoon_during/conf/uncertainty. Do NOT infer order. Report only what is visible."
+        }
+      ],
+      "focus_prompt": "MODE=focus. For each of the 3 segments (1, 2, 4), report ONLY visible visual evidence: 1) At the START of the clip: describe the exact appearance of ingredients in the large bowl - are they dry, wet, coated in oil, glistening? How full is the bowl? 2) The small bowl/cup: describe its fill level BEFORE the addition and AFTER the addition. Is there residue left? 3) The wooden spoon: does it have oil residue, dry residue, or no residue at the start? Does it gain residue during the clip? 4) Any other visual cues showing state progression. Return compact rows: segment/large_bowl_start_state/small_bowl_before/small_bowl_after/spoon_start/spoon_during/conf/uncertainty. Do NOT infer order. Report only what is visible."
+    },
+    "timestamp_start": "2026-07-06 21:03:53",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-32 are from Video 1 (0.0s to 19.0s)\nFrames 33-64 are from Video 2 (0.0s to 16.0s)\nFrames 65-96 are from Video 4 (0.0s to 10.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=focus. For each of the 3 segments (1, 2, 4), report ONLY visible visual evidence: 1) At the START of the clip: describe the exact appearance of ingredients in the large bowl - are they dry, wet, coated in oil, glistening? How full is the bowl? 2) The small bowl/cup: describe its fill level BEFORE the addition and AFTER the addition. Is there residue left? 3) The wooden spoon: does it have oil residue, dry residue, or no residue at the start? Does it gain residue during the clip? 4) Any other visual cues showing state progression. Return compact rows: segment/large_bowl_start_state/small_bowl_before/small_bowl_after/spoon_start/spoon_during/conf/uncertainty. Do NOT infer order. Report only what is visible.\n\n[PSS Neutral Focus Notice]\nEven if the prompt or accumulated context mentions a leading edge/order, do not decide which segment is earlier and do not choose between hypotheses. Report only per-target visible object-state cells: object state, container fill/empty state, source/destination, residue/depletion, background object state, confidence, and uncertainty. The master will compare these cells after the tool returns.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"uncertain\": [\n    \"visual order of Vids 1, 2, 4 based on state progression\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "1/Chopped veggies and grains, distinct pieces, relatively dry/fresh appearance, ~2/3 full/Full of yellow oil/Empty with oil residue/Light orange/red speckle residue/Gains oil and wet coating/0.9/Low\n2/Ingredients appear glistening and wet (oil-coated), distinct pieces still visible/Full of cloudy white liquid/Empty/Wet and oily residue/Mixing, fully coated/0.9/Low\n4/Very wet, well-mixed, glistening cohesive mass/Tiny bowl with white granules (salt)/Empty/Heavy wet residue/Vigorous mixing/0.9/Low",
+    "timestamp_end": "2026-07-06 21:14:57"
+  }
+]

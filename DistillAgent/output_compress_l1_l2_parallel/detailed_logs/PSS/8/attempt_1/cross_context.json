@@ -1,0 +1,227 @@
+{
+  "confirmed": [
+    "V4->V5: raw filling paste used to wrap wontons",
+    "V5->V1: raw wontons wrapped then noodles cooked",
+    "V1->V6: cooked noodles visible in background at V6 start",
+    "V6->V3: broth ready then wontons boiled and added to noodle bowl",
+    "V3->V2: wontons in bowl then garnishes and broth poured"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "noodles": {
+      "1": "raw->cooked->rinsed->heated",
+      "6": "cooked in background bowl at 0-5s",
+      "3": "in white bowl, wontons added on top",
+      "2": "in white bowl with wontons and garnishes"
+    },
+    "wontons": {
+      "4": "raw filling paste",
+      "5": "raw folded wrappers",
+      "3": "boiled in wok, scooped into bowl",
+      "2": "in bowl before broth poured"
+    },
+    "broth": {
+      "6": "fats melted, dark liquid, clear liquid added -> yellow broth",
+      "2": "poured from ladle into bowl"
+    },
+    "garnishes": {
+      "2": "green onions and fried shallots added before broth"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states raw->cooked",
+    "container fill/empty",
+    "transfer traces",
+    "residue/depletion",
+    "ingredient integration"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "all segments pending"
+        ],
+        "dimensions_to_compare": [
+          "object states raw->cooked",
+          "container fill/empty",
+          "transfer traces",
+          "residue/depletion",
+          "ingredient integration"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "4->5->1->6->3->2",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V4->V5: raw filling made then used to wrap wontons",
+          "V1->V6: cooked noodles visible in background at 0-5s of V6",
+          "V3->V2: V3 adds wontons to noodle bowl, V2 pours broth into same bowl",
+          "V5->1/3: raw wontons wrapped then boiled"
+        ],
+        "blocking_uncertainties": [
+          "Confirm V6 background noodles to lock V1->V6",
+          "Confirm V3 bowl contents to lock V3->V2"
+        ],
+        "object_memory": {
+          "noodles": {
+            "1": "raw->cooked->rinsed->heated",
+            "6": "cooked in background bowl at 0-5s",
+            "3": "in white bowl, wontons added on top",
+            "2": "in white bowl with wontons and garnishes"
+          },
+          "wontons": {
+            "4": "raw filling paste",
+            "5": "raw folded wrappers",
+            "3": "boiled in wok, scooped into bowl",
+            "2": "in bowl before broth poured"
+          },
+          "broth": {
+            "6": "fats melted, dark liquid, clear liquid added -> yellow broth",
+            "2": "poured from ladle into bowl"
+          },
+          "garnishes": {
+            "2": "green onions and fried shallots added before broth"
+          }
+        },
+        "temporal_index": {
+          "video6": [
+            {
+              "window": [
+                0,
+                10
+              ],
+              "event": "background check",
+              "key_objects": [
+                "noodles",
+                "bowl"
+              ],
+              "visible_state": "cooked noodles in bowl",
+              "why_it_matters": "proves V1 before V6",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                30,
+                44
+              ],
+              "event": "final bowl state",
+              "key_objects": [
+                "bowl",
+                "noodles",
+                "wontons"
+              ],
+              "visible_state": "wontons added to noodles",
+              "why_it_matters": "proves V3 before V2",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                15
+              ],
+              "event": "pre-broth bowl state",
+              "key_objects": [
+                "bowl",
+                "noodles",
+                "wontons",
+                "garnishes"
+              ],
+              "visible_state": "solids only, no broth",
+              "why_it_matters": "proves V2 is final assembly",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "order_confidence": 9
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "V1": "noodles raw->cooked->rinsed->heated; wok boiling; bowl rinsing; strainer lifting",
+          "V4": "raw shrimp, meat, egg, powder; separate->integrated paste in mixer",
+          "V5": "square yellow wrappers; raw ground meat on plate; dumpling formed in hand",
+          "V6": "fats melted, dark liquid, clear liquid -> yellow broth; cooked noodles in background",
+          "V3": "wontons boiled in wok, scooped into bowl with noodles; no broth yet",
+          "V2": "bowl with noodles, wontons, green onions, fried shallots; broth poured in"
+        },
+        "confirmed": [
+          "V4->V5: raw filling paste used to wrap wontons",
+          "V5->V1: raw wontons wrapped then noodles cooked",
+          "V1->V6: cooked noodles visible in background at V6 start",
+          "V6->V3: broth ready then wontons boiled and added to noodle bowl",
+          "V3->V2: wontons in bowl then garnishes and broth poured"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": [],
+        "focus_plan": []
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "order_confidence": 8
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "4->5->1->6->3->2"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "V4->V5: raw filling made then used to wrap wontons",
+    "V1->V6: cooked noodles visible in background at 0-5s of V6",
+    "V3->V2: V3 adds wontons to noodle bowl, V2 pours broth into same bowl",
+    "V5->1/3: raw wontons wrapped then boiled"
+  ],
+  "blocking_uncertainties": [
+    "Confirm V6 background noodles to lock V1->V6",
+    "Confirm V3 bowl contents to lock V3->V2"
+  ],
+  "temporal_index": [
+    "{\"video6\": [{\"window\": [0, 10], \"event\": \"background check\", \"key_objects\": [\"noodles\", \"bowl\"], \"visible_state\": \"cooked noodles in bowl\", \"why_it_matters\": \"proves V1 before V6\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [30, 44], \"event\": \"final bowl state\", \"key_objects\": [\"bowl\", \"noodles\", \"wontons\"], \"visible_state\": \"wontons added to noodles\", \"why_it_matters\": \"proves V3 before V2\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 15], \"event\": \"pre-broth bowl state\", \"key_objects\": [\"bowl\", \"noodles\", \"wontons\", \"garnishes\"], \"visible_state\": \"solids only, no broth\", \"why_it_matters\": \"proves V2 is final assembly\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V1\": \"noodles raw->cooked->rinsed->heated; wok boiling; bowl rinsing; strainer lifting\", \"V4\": \"raw shrimp, meat, egg, powder; separate->integrated paste in mixer\", \"V5\": \"square yellow wrappers; raw ground meat on plate; dumpling formed in hand\", \"V6\": \"fats melted, dark liquid, clear liquid -> yellow broth; cooked noodles in background\", \"V3\": \"wontons boiled in wok, scooped into bowl with noodles; no broth yet\", \"V2\": \"bowl with noodles, wontons, green onions, fried shallots; broth poured in\"}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": [],
+  "focus_plan": []
+}

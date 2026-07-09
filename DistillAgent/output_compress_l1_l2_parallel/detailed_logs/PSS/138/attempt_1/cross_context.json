@@ -1,0 +1,188 @@
+{
+  "confirmed": [
+    "1->4->2->3 fully supported by object state transitions"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Crack eggs, add water, whisk to homogenous liquid\", \"2\": \"Pour beaten eggs into pan with melted butter, scramble to curds\", \"3\": \"Scrape scrambled eggs onto plate, garnish with shredded cheese\", \"4\": \"Scoop solid butter into hot pan, melt to bubbling liquid\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "eggs": {
+      "1": "raw whole -> beaten liquid",
+      "2": "liquid -> scrambled curds",
+      "3": "scrambled curds on plate"
+    },
+    "butter": {
+      "4": "solid chunks in bowl -> bubbling liquid in pan",
+      "2": "white foamy residue in pan before eggs poured"
+    },
+    "pan": {
+      "4": "empty -> coated with melted butter",
+      "2": "contains melted butter -> contains scrambled eggs",
+      "3": "contains eggs -> empty/scraped"
+    },
+    "plate": {
+      "3": "empty -> filled with eggs -> garnished with cheese"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states (raw/cooked/cut)",
+    "container fill levels",
+    "tool contact/residue",
+    "transfer events",
+    "completion marks",
+    "egg state progression",
+    "butter/pan state continuity",
+    "plating completion"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "All object states and transitions pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cooked/cut)",
+          "container fill levels",
+          "tool contact/residue",
+          "transfer events",
+          "completion marks"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Crack eggs, add water, whisk to homogenous liquid",
+          "2": "Pour beaten eggs into pan with melted butter, scramble to curds",
+          "3": "Scrape scrambled eggs onto plate, garnish with shredded cheese",
+          "4": "Scoop solid butter into hot pan, melt to bubbling liquid"
+        },
+        "object_memory": {
+          "eggs": {
+            "1": "raw whole -> beaten liquid",
+            "2": "liquid -> scrambled curds",
+            "3": "scrambled curds on plate"
+          },
+          "butter": {
+            "4": "solid chunks in bowl -> bubbling liquid in pan",
+            "2": "white foamy residue in pan before eggs poured"
+          },
+          "pan": {
+            "4": "empty -> coated with melted butter",
+            "2": "contains melted butter -> contains scrambled eggs",
+            "3": "contains eggs -> empty/scraped"
+          },
+          "plate": {
+            "3": "empty -> filled with eggs -> garnished with cheese"
+          }
+        },
+        "preliminary_order": "1->4->2->3",
+        "order_confidence": 8,
+        "confidence_basis": "1 produces beaten eggs poured in 2; 4 produces melted butter present in pan at start of 2; 3 plates the cooked eggs from 2",
+        "blocking_uncertainties": [
+          "Verify 1 vs 4 order: does 1 precede 4 or vice versa? Standard prep before heating, but need to confirm no visual contradiction"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                21
+              ],
+              "event": "beating eggs",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                75
+              ],
+              "event": "scrambling eggs",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                19
+              ],
+              "event": "plating and garnishing",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                10
+              ],
+              "event": "melting butter",
+              "confidence": "high"
+            }
+          ]
+        },
+        "dimensions_to_compare": [
+          "egg state progression",
+          "butter/pan state continuity",
+          "plating completion"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 8,
+        "comparison_table": {
+          "1": "beaten eggs produced",
+          "4": "butter melted in pan",
+          "2": "beaten eggs poured into pan with melted butter, scrambled",
+          "3": "scrambled eggs plated and garnished"
+        },
+        "confirmed": "1->4->2->3 fully supported by object state transitions",
+        "uncertain": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "1->4->2->3"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "1 produces beaten eggs poured in 2; 4 produces melted butter present in pan at start of 2; 3 plates the cooked eggs from 2"
+  ],
+  "blocking_uncertainties": [
+    "Verify 1 vs 4 order: does 1 precede 4 or vice versa? Standard prep before heating, but need to confirm no visual contradiction"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 21], \"event\": \"beating eggs\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 75], \"event\": \"scrambling eggs\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 19], \"event\": \"plating and garnishing\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 10], \"event\": \"melting butter\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"beaten eggs produced\", \"4\": \"butter melted in pan\", \"2\": \"beaten eggs poured into pan with melted butter, scrambled\", \"3\": \"scrambled eggs plated and garnished\"}"
+  ]
+}

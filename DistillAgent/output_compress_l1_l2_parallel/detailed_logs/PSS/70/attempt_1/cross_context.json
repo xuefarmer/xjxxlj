@@ -1,0 +1,135 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "All segment states pending Layer1"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Season rice in hangiri, spread on nori sheet.\", \"2\": \"Slice whole sushi roll into pieces.\", \"3\": \"Mix diced tuna with herbs and sauce.\", \"4\": \"Dice raw tuna block into cubes.\", \"5\": \"Add spicy tuna to rice-nori, roll into cylinder.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "rice_nori_sheet": {
+      "1": "created/rice spread",
+      "5": "used/filling added"
+    },
+    "tuna_block": {
+      "1": "whole foreground",
+      "2": "whole foreground",
+      "4": "diced on board",
+      "5": "whole foreground"
+    },
+    "green_herbs_bowl": {
+      "4": "present/full",
+      "3": "depleted/used"
+    },
+    "spicy_tuna_mixture": {
+      "3": "created/mixed",
+      "5": "used/transferred"
+    },
+    "sushi_roll": {
+      "5": "formed cylinder",
+      "2": "sliced pieces"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked/mixed)",
+    "container fill/empty",
+    "tool contact",
+    "residue/depletion",
+    "event role",
+    "rice-nori sheet state",
+    "tuna state (whole/diced/mixed)",
+    "herbs bowl depletion",
+    "roll formation/cutting"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All segment states pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked/mixed)",
+          "container fill/empty",
+          "tool contact",
+          "residue/depletion",
+          "event role"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Season rice in hangiri, spread on nori sheet.",
+          "2": "Slice whole sushi roll into pieces.",
+          "3": "Mix diced tuna with herbs and sauce.",
+          "4": "Dice raw tuna block into cubes.",
+          "5": "Add spicy tuna to rice-nori, roll into cylinder."
+        },
+        "object_memory": {
+          "rice_nori_sheet": {
+            "1": "created/rice spread",
+            "5": "used/filling added"
+          },
+          "tuna_block": {
+            "1": "whole foreground",
+            "2": "whole foreground",
+            "4": "diced on board",
+            "5": "whole foreground"
+          },
+          "green_herbs_bowl": {
+            "4": "present/full",
+            "3": "depleted/used"
+          },
+          "spicy_tuna_mixture": {
+            "3": "created/mixed",
+            "5": "used/transferred"
+          },
+          "sushi_roll": {
+            "5": "formed cylinder",
+            "2": "sliced pieces"
+          }
+        },
+        "preliminary_order": "1->4->3->5->2",
+        "order_confidence": 8,
+        "confidence_basis": "Clear state transitions: V1 creates rice-nori base used in V5; V4 dices tuna used in V3; V3 creates mixture used in V5; V5 forms roll cut in V2.",
+        "blocking_uncertainties": [
+          "Verify exact bowl material transition V3->V5",
+          "Confirm V4 precedes V1 based on rice seasoning timing"
+        ],
+        "dimensions_to_compare": [
+          "rice-nori sheet state",
+          "tuna state (whole/diced/mixed)",
+          "herbs bowl depletion",
+          "roll formation/cutting"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1->4->3->5->2"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "Clear state transitions: V1 creates rice-nori base used in V5; V4 dices tuna used in V3; V3 creates mixture used in V5; V5 forms roll cut in V2."
+  ],
+  "blocking_uncertainties": [
+    "Verify exact bowl material transition V3->V5",
+    "Confirm V4 precedes V1 based on rice seasoning timing"
+  ]
+}

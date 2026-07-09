@@ -1,0 +1,421 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-07 02:01:49
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-07 01:53:56 -> 2026-07-07 01:54:56
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 14.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool, report its state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report the operation (prep, transformation, transfer, cooking, finishing, inspection), containers used, and any visible state transitions during the clip. Return compact evidence rows with fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the description of the cooking segment:
+
+**Cooking Segment Description:**
+The segment shows a cook preparing a stir-fry dish. It begins with a display of prepped ingredients on a red rectangular plate, including sliced mushrooms (white and brown varieties visible later), bean sprouts, chopped red chilies, and green vegetables. The cooking process starts in a black wok with oil and a mound of minced yellow aromatics (likely garlic or ginger) frying. Chopped red chilies are added, followed by sliced mushrooms. The cook stirs the mixture with a wooden spatula. Finally, a red spice powder is sprinkled over the cooking vegetables. A small glass bowl containing raw meat strips is visible on the counter, waiting to be added.
+
+**Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| red plate, sliced mushrooms (white), bean sprouts, chopped chilies, green veg | prep/display | raw, cut, separate, fresh | 1-4 | [Frame 3] | High | Identification of white slices (mushroom vs chicken) slightly ambiguous but likely mushroom given later frames. |
+| black wok, oil, minced yellow aromatics (garlic/ginger) | cooking (frying) | hot, frying, wet (oil) | 5 | [Frame 5] | High | None. |
+| chopped red chilies | transfer/add | raw -> cooking, mixed with aromatics | 6 | [Frame 6] | High | None. |
+| wooden spatula, wok contents | stirring | active cooking, mixing | 8, 10, 15 | [Frame 8] | High | None. |
+| sliced mushrooms (brown/white caps) | transfer/add/stir | raw -> cooking, mixed | 9-10 | [Frame 9] | High | None. |
+| glass bowl, raw meat strips (pink/white) | waiting/prep | raw, separate, cut | 8, 12 | [Frame 8] | Medium | Exact meat type unclear (pork/chicken). |
+| spice jar/shaker, red powder (paprika/chili) | seasoning | added, residue visible on food | 12-14 | [Frame 13] | High | Specific spice identity uncertain. |
+| bean sprouts | waiting | raw, separate (still on plate/not in wok yet) | 3-4 | [Frame 3] | High | None. |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-07 01:53:56 -> 2026-07-07 01:54:46
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 11.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool, report its state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report the operation (prep, transformation, transfer, cooking, finishing, inspection), containers used, and any visible state transitions during the clip. Return compact evidence rows with fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the description of the cooking segment followed by the compact evidence rows.
+
+**Description:**
+The segment depicts the assembly of a noodle stir-fry dish. Initially, a pile of white, cooked noodles (likely rice vermicelli) is shown resting in a metal sieve, appearing wet and drained. The scene transitions to a wok containing a base of stir-fried ingredients, specifically julienned orange carrots and yellow pieces (likely scrambled egg or meat). The noodles are then transferred from the sieve into the wok and vigorously tossed/mixed with the vegetables and protein, transitioning from a separate state to a mixed dish.
+
+**Compact Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| white noodles, metal sieve | draining/holding | wet, cooked, piled (filled sieve), separate | 1-5 | - | high | noodle type (rice vs wheat) |
+| carrots (julienned), egg/meat, wok | cooking (base) | cooked, cut, separate from noodles | 6-7 | - | medium | identity of yellow ingredient (egg vs meat) |
+| noodles, carrots, egg/meat, wok | transfer/mixing | mixed, wet noodles integrating with cooked veg, sieve depleted | 8-16 | - | high | none |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-07 01:53:56 -> 2026-07-07 01:54:38
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 15.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool, report its state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report the operation (prep, transformation, transfer, cooking, finishing, inspection), containers used, and any visible state transitions during the clip. Return compact evidence rows with fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence, here is the description and the compact evidence rows for the cooking segment.
+
+**Description:**
+The video segment depicts food preparation in a kitchen. A woman stands at a counter slicing a raw carrot into batons (strips) on a wooden cutting board. Close-up shots detail the knife work, showing the carrot being cut into uniform pieces. Other ingredients like red peppers and mushrooms, along with sauce bottles, are visible on the counter. The scene then transitions to a close-up of white noodles (likely rice vermicelli) in a metal sieve. Hands are seen lifting and tossing the wet, cooked noodles, likely draining or rinsing them over a glass bowl.
+
+**Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| carrot, knife, wooden board | prep (slicing/cutting) | raw, cut (batons), separate | 1-13 | - | 0.95 | low |
+| woman, counter, condiments, vegetables | inspection/presence | raw, whole/separate, present | 3-13 | - | 0.9 | low (specific veggie ID) |
+| white noodles, metal sieve, glass bowl | prep (draining/lifting) | cooked, wet, separate strands | 14-16 | - | 0.95 | low (noodle type) |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-07 01:53:56 -> 2026-07-07 01:54:55
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 67.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool, report its state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report the operation (prep, transformation, transfer, cooking, finishing, inspection), containers used, and any visible state transitions during the clip. Return compact evidence rows with fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the description of the cooking segment:
+
+**Segment Description:**
+The video shows a woman preparing a stir-fry dish, likely Pad Thai, in a wok. The sequence involves adding fresh vegetables, seasoning with various sauces, stir-frying the mixture, and prepping fresh herbs.
+
+**Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Bean sprouts** | transfer (adding to wok) | fresh/raw $\rightarrow$ mixed | 3 | - | high | - |
+| **Red peppers/carrots** | cooking (stir-frying) | cut/cooked/wilted/mixed | 4, 7, 10 | - | high | exact vegetable type (carrot vs pepper) |
+| **Dark sauce** (bottle/spoon) | transfer (seasoning) | liquid/wet | 6, 13 | - | med | exact type (soy, oyster, or tamarind) |
+| **Fish sauce** (yellow bottle labeled "Thai Fish Sauce") | transfer (pouring) | liquid/wet | 9, 12 | - | high | - |
+| **Wok mixture** (noodles, sprouts, veg) | cooking (stirring/tossing) | mixed/wet/hot/cooked | 7, 10, 11, 15 | - | high | - |
+| **Yellow sauce/liquid** | transfer (pouring over mix) | liquid/wet/filled | 14 | - | med | exact composition (sauce vs egg) |
+| **Green herbs** (cilantro/basil) | prep (chopping/pressing) | fresh/cut/separate | 16 | - | high | exact herb type |
+
+**Key Observations & State Transitions:**
+*   **Raw to Mixed:** Bean sprouts are seen fresh and whole in Frame 3 before being added to the hot wok, where they become mixed with red vegetable strips (Frame 4, 10).
+*   **Seasoning:** Multiple liquids are added. A dark liquid is carefully measured on a spoon (Frame 6) and poured from a small jar (Frame 13). A yellow liquid (identified as fish sauce in Frame 12) is poured directly from the bottle (Frame 9).
+*   **Container State:** The wok transitions from containing separate ingredients to a fully mixed, wet stir-fry (Frame 10, 11).
+*   **Finishing/Prep:** The segment ends with hands pressing/chopping fresh green herbs on a board (Frame 16), suggesting a garnish or final ingredient prep.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_5) ###
+Time: 2026-07-07 01:53:56 -> 2026-07-07 01:54:32
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 2.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool, report its state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report the operation (prep, transformation, transfer, cooking, finishing, inspection), containers used, and any visible state transitions during the clip. Return compact evidence rows with fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the description of the cooking segment:
+
+**Description:**
+The segment begins with a close-up of a gas stove burner. Initially, the metal grate and burner ring are visible. Quickly, blue and purple flames ignite and flicker intensely underneath a dark, heavy pan (likely a wok), indicating the pan is being heated. The scene then cuts to a hand holding a clear plastic bottle filled with yellow cooking oil. The person pours a thin stream of oil into the dark pan/wok.
+
+**Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| gas burner, metal grate, pan base (dark silhouette) | cooking (heating/ignition) | Burner transitions from unlit to lit with blue/purple flames; Pan is present above burner. | 1-12 | [Video 5] | 0.9 | Low uncertainty on flame presence; pan is dark but implied by position. |
+| oil bottle (plastic, clear), cooking oil (yellow liquid), hand, pan surface | transfer (pouring) | Bottle is filled with yellow oil; Oil is liquid and flowing in a thin stream; Pan surface is present below. | 13-16 | [Video 5] | 0.95 | Low uncertainty. |
+
+**State Summary:**
+*   **Gas Burner:** Unlit $\rightarrow$ Lit (blue/purple flames visible).
+*   **Pan/Wok:** Present (dark silhouette), being heated, then receiving oil.
+*   **Oil Bottle:** Filled (yellow liquid), wet (interior), being tilted/emptied.
+*   **Oil:** Liquid, yellow, separate (in bottle) $\rightarrow$ transferring (stream).
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_6) ###
+Time: 2026-07-07 01:53:56 -> 2026-07-07 01:55:03
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 6,
+      "start_time": 0.0,
+      "end_time": 34.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool, report its state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report the operation (prep, transformation, transfer, cooking, finishing, inspection), containers used, and any visible state transitions during the clip. Return compact evidence rows with fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the description of the cooking segment:
+
+**Description:**
+The segment depicts a stir-fry cooking process. It begins with ingredients being added from a small glass bowl into a hot wok. The wok already contains a mixture of scrambled eggs, sliced mushrooms, chopped bacon/ham, and red chili flakes. A chef uses a wooden spatula to stir-fry these ingredients. Subsequently, fresh vegetable strips—specifically red bell peppers and carrots—are added to the mix and stirred in. Finally, the chef reaches for a glass jug filled with clear liquid (likely water or stock), suggesting a deglazing or steaming step, resulting in a glossy, mixed vegetable and protein dish.
+
+**Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| small glass bowl, hand | transfer (pouring) | emptying, contents appear pinkish/raw (meat?) | 1 | [Frame 1] | 0.8 | Exact ingredient in bowl unclear (raw meat vs bacon) |
+| wok, mushrooms, bacon, egg, chili | cooking, stirring | mixed, cooked (egg, mushroom), cooking (bacon), cut | 2-3, 6 | [Frame 2-3] | 0.9 | - |
+| chef, wooden spatula, wok | stirring (frying) | active cooking, separate ingredients becoming mixed | 4-5 | [Frame 4-5] | 0.95 | - |
+| white meat chunks (chicken/pork) | mixing | cooked, cut, present | 9-10 | [Frame 9-10] | 0.7 | Could be large egg chunks or white meat |
+| red pepper strips, carrot strips | added, mixing | fresh, cut (julienne/strips), raw->cooking, separate->mixed | 12-13, 15-16 | [Frame 12-13] | 0.9 | - |
+| glass jug (water/stock), hand | reaching/transfer prep | filled, clear liquid | 14 | [Frame 14] | 0.9 | Liquid identity inferred as water/stock |
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_1) ###
+Time: 2026-07-07 01:59:28 -> 2026-07-07 02:00:54
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 14.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of these items in this segment: 1) meat: is it in a glass bowl or in the wok? raw or cooked? 2) wok contents: what specific ingredients are visible in the wok? 3) carrots/peppers: are they present? if yes, where and in what state? 4) noodles: are they visible? 5) sprouts: are they visible? Return compact rows: object, presence, state, location, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in frames 1-16:
+
+1.  **Meat**: Visible in a **glass bowl** (bottom right of frames 8 and 12) appearing **raw** (pink/red chunks). There are also white sliced strips (likely chicken) on the red plate in frames 3-4. It is not yet clearly mixed into the wok in these frames (the wok contains mushrooms/aromatics).
+2.  **Wok contents**: Visible ingredients include **minced garlic/ginger** (yellow mound in frames 5-6), **chopped red peppers/chilies** (frames 6, 9, 13), and **sliced mushrooms** (shiitake, visible in frames 9, 10, 13, 14).
+3.  **Carrots/Peppers**: **Red peppers** (chopped) are present in the wok and on the red plate. **Carrots** (or pale julienned vegetables) are visible as pale strips on the red plate (frame 3), though distinct orange carrots are not clearly resolved (may be the pale yellow strips or spice powder in frame 13).
+4.  **Noodles**: **Not visible** in these specific frames.
+5.  **Sprouts**: **Visible** as a large pile of raw bean sprouts on the red plate (frames 3-4).
+
+**Compact State Report:**
+
+| Object | Presence | State | Location | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Meat** | Yes | Raw (pink chunks); Sliced white strips | Glass bowl (frames 8, 12); Red plate (frame 3) | High | Exact meat type (pork vs chicken) unclear; white strips could be blanched. |
+| **Wok Contents** | Yes | Minced garlic/ginger, chopped red chili, sliced shiitake mushrooms, oil | Wok (frames 5, 6, 9, 10, 13-15) | High | Spice powder in frame 13 is ambiguous. |
+| **Carrots/Peppers** | Yes | Red peppers (chopped/cooking); Pale strips (raw/sliced) | Wok (peppers); Red plate (peppers & pale strips) | Medium | Pale strips identified as carrots/veg based on shape; distinct orange carrots not clearly seen. |
+| **Noodles** | No | N/A | N/A | High | Not visible in this segment. |
+| **Sprouts** | Yes | Raw, fresh, piled | Red plate (frames 3, 4) | High | None. |
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_2) ###
+Time: 2026-07-07 01:59:28 -> 2026-07-07 02:00:57
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 11.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of these items in this segment: 1) noodles: are they in a sieve or in the wok? separate or mixed? 2) wok contents: what specific ingredients are visible in the wok before and after noodles are added? 3) carrots/peppers: are they present? if yes, where and in what state? 4) meat: is it visible? 5) sprouts: are they visible? Return compact rows: object, presence, state, location, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (1-16):
+
+| Object | Presence | State | Location | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Noodles** | Yes | Initially draining/steaming in a metal sieve (Frames 1-5); then transferred and mixed with other ingredients (Frames 8-16). | Sieve $\rightarrow$ Wok | High | None. Clearly white vermicelli/rice noodles. |
+| **Wok Contents** | Yes | **Before noodles:** Stir-fry base of red/orange strips and brownish/yellowish chunks (Frames 6-7). **After noodles:** Noodles added and tossed with the base ingredients (Frames 8-16). | Wok | High | None. |
+| **Carrots/Peppers** | Yes | Julienned/sliced red and orange strips; appear cooked/stir-fried. | Mixed in wok | High | Visual similarity between carrots and red peppers makes specific ID slightly uncertain, but presence is clear. |
+| **Meat** | Yes | Cooked brownish/yellowish strips or chunks (visible in Frames 6, 7, 10, 13). | Mixed in wok | Medium | Visual ambiguity: chunks resemble scrambled egg or cooked meat strips; PSS context confirms meat. |
+| **Sprouts** | Likely Yes | Pale yellowish/greenish strips or chunks mixed in (visible in Frames 10, 13). | Mixed in wok | Low/Medium | Hard to distinguish distinct sprouts from noodles or meat strips visually; PSS context suggests they are added at this stage. |
+
+**Detailed Answers:**
+1.  **Noodles:** They start **separate** in a metal sieve (draining/steaming, Frames 1-5) and are then transferred to the wok where they become **mixed** with the other ingredients (Frames 8-16).
+2.  **Wok contents:** **Before** noodles are added (Frames 6-7), the wok contains red/orange strips (carrots/peppers) and brownish/yellowish cooked chunks (meat/egg). **After** noodles are added (Frame 8 onwards), the wok contains the white noodles mixed thoroughly with the red strips and brownish chunks.
+3.  **Carrots/Peppers:** **Yes**, they are present. They appear as red/orange julienned strips, located in the wok, in a cooked/stir-fried state.
+4.  **Meat:** **Yes**, it is visible as brownish/yellowish cooked strips or chunks mixed in the wok (though visually similar to scrambled egg, context confirms meat).
+5.  **Sprouts:** **Likely visible** as pale yellowish/greenish strips mixed in the wok (e.g., Frame 13), though difficult to distinguish clearly from the noodles and meat without higher resolution.
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_3) ###
+Time: 2026-07-07 01:59:28 -> 2026-07-07 02:00:51
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 15.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of these items in this segment: 1) carrots: are they whole, being sliced, or already sliced? 2) noodles: are they visible? if yes, where and in what state? 3) wok: is it visible? if yes, what is in it? 4) meat: is it visible? 5) sprouts: are they visible? Return compact rows: object, presence, state, location, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (Video 3):
+
+1.  **carrots**: **Present**. State: **Being sliced** (action) and **raw sliced** (state, cut into batons/strips). Location: **Wooden cutting board** (close-ups in frames 1, 2, 7 and wide shots 3-6, 8-13). Conf: **High**. Uncertainty: None.
+2.  **noodles**: **Present**. State: **Cooked, white strands, being lifted/drained**. Location: **Metal sieve/colander** (close-ups frames 14-16) sitting inside a glass bowl (visible in wide shots). Conf: **High**. Uncertainty: None.
+3.  **wok**: **Present**. State: **Empty black pan** (sitting on the counter, not actively cooking in these frames). Location: **Right side of the counter** (visible in wide shots 3-6, 8-13). Conf: **Medium**. Uncertainty: Interior is dark, but appears empty.
+4.  **meat**: **Not clearly visible**. State: N/A. Location: N/A. Conf: **Low**. Uncertainty: There are prep bowls on the counter, but no distinct pile of meat is clearly identifiable; bowls appear to contain vegetables (peppers, mushrooms/sprouts).
+5.  **sprouts**: **Present** (likely). State: **Raw, white/pale shredded pile**. Location: **Bowl/plate on the counter** in front of the chef (visible in wide shots, mixed with red peppers). Conf: **Medium**. Uncertainty: Could be bean sprouts or other shredded vegetables (like daikon or mushrooms); visual distinction is difficult at this resolution.
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_4) ###
+Time: 2026-07-07 01:59:28 -> 2026-07-07 02:00:28
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 67.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of these items in this segment: 1) wok contents: what specific ingredients are visible in the wok? 2) sprouts: are they added? in what state? 3) noodles: are they visible? if yes, in what state? 4) carrots/peppers: are they present? 5) meat: is it visible? 6) sauces/liquids: are any added? Return compact rows: object, presence, state, location, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (Video 4), here is the state scan:
+
+| object | presence | state | location | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **wok contents** | present | mixed stir-fry (noodles, sprouts, red veg, sauce) | in wok | high | low |
+| **sprouts** | present | added on top (Frame 3) then mixed in (Frame 10, 14) | in wok | high | low |
+| **noodles** | present | white strands, cooked and mixed | in wok | high | low |
+| **carrots/peppers** | present | red strips/julienned, cooking | in wok | high | low |
+| **meat** | present (likely) | brown chunks/cubes mixed in (visible in Frame 4, 14) | in wok | medium | medium (could be tofu/peanuts) |
+| **sauces/liquids** | present | dark liquid (Frame 6, 13) and light liquid (Frame 9) being poured | into wok | high | low |
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_5) ###
+Time: 2026-07-07 01:59:28 -> 2026-07-07 02:00:28
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 2.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of these items in this segment: 1) burner: is it lit or unlit? 2) wok/pan: is it visible? what is its state? 3) oil: is it being poured? 4) noodles, meat, carrots, sprouts: are any of these visible? Return compact rows: object, presence, state, location, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (Video 5, frames 1-16):
+
+| Object | Presence | State | Location | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Burner** | Present | Lit (blue/purple flames visible in frames 3-12) | Underneath wok/pan | High | Low |
+| **Wok/Pan** | Present | Visible (dark mass on burner in 1-12; receiving oil in 13-16) | On burner / Center frame | High | Low |
+| **Oil** | Present | Being poured (stream visible from bottle in frames 13-16) | Into wok/pan | High | Low |
+| **Noodles** | Absent | Not visible | - | Low | High (pan interior dark) |
+| **Meat** | Absent | Not visible | - | Low | High (pan interior dark) |
+| **Carrots** | Absent | Not visible | - | Low | High (pan interior dark) |
+| **Sprouts** | Absent | Not visible | - | Low | High (pan interior dark) |
+
+**Notes:**
+- **Burner:** Frames 1-2 appear unlit or just igniting, but frames 3-12 clearly show blue and purple flames, indicating the burner is lit.
+- **Wok/Pan:** A dark, curved object (likely the wok) sits on the burner in the first half. In the second half (13-16), oil is poured onto a dark surface, presumably the wok.
+- **Food Items:** No noodles, meat, carrots, or sprouts are visible in this segment; it appears to be the initial heating/oiling stage.
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_6) ###
+Time: 2026-07-07 01:59:28 -> 2026-07-07 02:00:50
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 6,
+      "start_time": 0.0,
+      "end_time": 34.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of these items in this segment: 1) meat: is it in a glass bowl or being added to the wok? raw or cooked? 2) wok contents: what specific ingredients are visible in the wok? 3) carrots/peppers: are they added? in what state? 4) noodles: are they visible? 5) sprouts: are they visible? Return compact rows: object, presence, state, location, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (Video 6):
+
+*   **meat**: Present. State: Raw (pinkish/white chunks) being poured from a glass bowl into the wok; later seen cooking (turning white) in the wok. Location: Glass bowl -> Wok. Conf: 0.9. Uncertainty: Exact type of meat (chicken, pork, or bacon strips seen in close-ups) is slightly ambiguous due to blur, but clearly raw protein being added.
+*   **wok contents**: Present. State: Contains scrambled eggs (yellow), sliced mushrooms (brown), red chili flakes, and strips of meat (bacon/ham-like). Later frames show red peppers and carrots. Location: Wok. Conf: 0.9. Uncertainty: Some ingredients are blurry in motion.
+*   **carrots/peppers**: Present. State: Sliced/julienned. Red peppers (red strips) are visible in the wok (Frame 12). Carrots (orange strips) are added and mixed in (Frames 13, 15, 16). Location: Wok. Conf: 0.9. Uncertainty: None.
+*   **noodles**: Absent. State: Not visible. Location: N/A. Conf: 0.9. Uncertainty: None.
+*   **sprouts**: Absent. State: Not visible. Location: N/A. Conf: 0.9. Uncertainty: None.
+
+**Compact Rows:**
+
+| object | presence | state | location | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| meat | present | raw, being added from glass bowl to wok | glass bowl / wok | 0.9 | specific meat type (chicken vs bacon strips) |
+| wok contents | present | mushrooms, egg, chili, meat strips, later peppers/carrots | wok | 0.9 | blur in motion shots |
+| carrots/peppers | present | sliced/julienned, added to wok | wok | 0.9 | none |
+| noodles | absent | not visible | n/a | 0.9 | none |
+| sprouts | absent | not visible | n/a | 0.9 | none |
+
+------------------------------------------------------------
+

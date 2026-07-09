@@ -1,0 +1,334 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-06 14:04:45
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-06 13:55:11 -> 2026-07-06 13:56:18
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 18.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the provided frames, here is the description of the operation and object states.
+
+**Operation Description:**
+The video shows a cooking process where ingredients are added to a large blue pot on a stove. First, chopped carrots are poured from a red bowl into the pot. After a period of stirring (implied by the residue in later frames), raw cauliflower florets are poured from a glass bowl into the pot, mixing with the cooked base. Finally, the pot is covered with a blue lid to cook.
+
+**Visible Objects/Tools & States:**
+*   **Blue Pot:** Present on the stove. Initially receives carrots, then contains cooked residue (brown/reddish bits), then is filled with cauliflower, and finally covered.
+*   **Red Bowl:** Initially filled with carrots, then emptied.
+*   **Glass Bowl:** Initially filled with cauliflower florets, then emptied.
+*   **Carrots:** Cut/chopped. State transitions from raw (being poured) to cooked/residue (visible at the bottom of the pot before cauliflower is added).
+*   **Cauliflower:** Cut into florets. State is raw, fresh, white.
+*   **Wooden Spoon:** Present, used for stirring.
+*   **Blue Lid:** Absent initially, then present covering the pot.
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window (Frames) | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Red bowl, Carrots, Blue pot | Pouring/Adding | Carrots: cut, raw. Bowl: emptying. Pot: filling. | 1-2 (0-2s) | High | Low |
+| Wooden spoon, Blue pot | Stirring | Pot: contains cooked residue (carrots/spices). | 3-4 (3-4s) | High | Low |
+| Glass bowl, Cauliflower, Blue pot | Pouring/Adding | Cauliflower: cut, raw, fresh. Bowl: emptying. Pot: has residue, then fills. | 5-7 (5-7s) | High | Low |
+| Blue lid, Blue pot | Covering | Pot: filled with cauliflower. Lid: present/covering. | 11-12 (11-12s) | High | Low |
+| Two women, Ingredients | Standing/Talking | Ingredients on counter (bowls of spices/peas visible). | 3-4, 8-16 | High | Low |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-06 13:55:11 -> 2026-07-06 13:55:44
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 22.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| pan, chopped onions, wooden spoon | sautéing/stirring | onions: chopped, white/translucent (cooking), pan: filled | 0.0s - 7.0s | [Frame 1-6] | high | none |
+| small bowl, minced garlic/ginger | adding to pan | garlic/ginger: minced, yellow, raw | 8.0s - 13.0s | [Frame 9-13] | high | none |
+| pan, onion/garlic/ginger mixture | stirring/mixing | mixture: combined, cooking | 13.0s - 22.0s | [Frame 14-16] | high | none |
+| bowls on counter (cauliflower, peas, tomatoes) | present (static) | cauliflower: raw florets; peas: green/fresh; tomatoes: chopped/red | 0.0s - 22.0s | [Frame 1-16] | high | none |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-06 13:55:11 -> 2026-07-06 13:56:13
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 25.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames (Video 3, 0.0s - 25.0s), here is the description of the operation and the compact evidence rows.
+
+**Operation Description:**
+Two women are preparing a meal in a kitchen. The woman on the left (yellow shirt) is mixing ingredients in a glass bowl, likely a marinade or salad base. The woman on the right (red shirt) is cooking at the stove. She transfers cut fingerling potatoes from a metal pot into a frying pan that already contains sautéed onions or mushrooms. She then uses a wooden spatula to stir and mix the potatoes with the existing contents of the pan. Several bowls of prepped ingredients (cauliflower florets, green peas, and chopped red tomatoes/peppers) sit on the counter, remaining separate and raw.
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window (approx time) | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Fingerling potatoes, metal pot, frying pan | Pouring/Transferring | Potatoes: raw, cut into quarters. Pan: contains sautéed/brown onions. | Frames 4-7 (~5s-10s) | 0.95 | None. Text overlay confirms "10 fingerling potatoes cut into quarters". |
+| Frying pan contents (potatoes + onions), wooden spatula | Stirring/Mixing | Mixed, cooking. Potatoes are now combined with onions. | Frames 13-15 (~20s-23s) | 0.95 | None. |
+| Woman (yellow shirt), glass bowl, hand/spoon | Mixing | Mixture: wet/moist, combined. | Frames 1-3, 7-12 (~0s-18s) | 0.90 | Exact ingredients in the mixing bowl are unclear (looks like a spice paste or chopped mix). |
+| Large bowl (cauliflower), small bowls (peas, red chunks) | Present (static) | Raw, cut, separate. Cauliflower is white chunks; red bowl contains red chunks (tomato/pepper). | Frames 1-16 (0s-25s) | 0.90 | Red bowl contents could be tomatoes or red peppers. |
+| Woman (red shirt), stove, frying pan | Cooking/Stirring | Active cooking. Pan is filled. | Frames 1-16 (0s-25s) | 0.95 | None. |
+
+**Cross-Video Context Update:**
+- **Ingredient states:** Fingerling potatoes are raw/cut and added to cooked onions. Cauliflower, peas, and red chunks are raw/cut and separate.
+- **Container states:** Mixing bowl is filled/mixed. Frying pan is filled/mixed. Prep bowls are filled/separate.
+- **Tool usage:** Wooden spatula used for stirring. Metal pot used for holding/transferring potatoes.
+- **Transfer events:** Potatoes transferred from pot to frying pan (Frames 4-7).
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-06 13:55:11 -> 2026-07-06 13:56:29
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 63.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+**Layer 1 Caption:**
+
+The video depicts a cooking scene in a kitchen involving two women. The primary operation is sautéing chopped onions in a black frying pan and incorporating a brown spice mixture.
+*   **Operation:** Sautéing and mixing spices. The woman in the red sari stirs the pan while the woman in the yellow sari holds a bowl of cauliflower.
+*   **Visible Objects/Tools:** Black frying pan, wooden spatula/spoon, large glass bowl (cauliflower), small ceramic bowls (spices/ingredients), bowls of green peas and red tomatoes on the counter.
+*   **Object States:**
+    *   **Onions:** Initially translucent/white (cooking), becoming mixed with brown powder.
+    *   **Spice Mixture:** Dry brown powder added to the pan, becoming a wet/mixed paste.
+    *   **Cauliflower:** Raw, white, cut into florets, held in a bowl.
+    *   **Pan Mixture (later):** Dark brown, cooked/caramelized residue (Frame 12).
+    *   **Counter Ingredients (peas, tomatoes):** Raw, fresh, cut, separate in bowls.
+*   **Decisive Events:**
+    *   **~0-5s (Frames 1, 4):** Close-up showing brown spice powder added to sautéing onions and being mixed.
+    *   **~5-10s (Frames 2, 3):** Woman in red adds contents from a small white bowl into the pan.
+    *   **~40s (Frame 12):** Close-up shows the onion-spice mixture has cooked down to a dark brown consistency.
+
+**Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Pan, onions, spice powder | Sautéing, adding spice | Onions translucent/cooking; spice dry brown powder | Frames 1, 4 | Video 4 | 0.95 | Exact spice composition unknown |
+| Pan, mixture | Stirring/Mixing | Mixture becomes dark brown, wet/paste-like | Frames 4, 12 | Video 4 | 0.90 | Degree of doneness (caramelized vs burnt) |
+| Glass bowl, cauliflower | Holding | Raw, white, cut florets, separate | Frames 2, 5, 9, 14 | Video 4 | 0.99 | None |
+| Small white bowl, pan | Pouring/Adding | Emptying small bowl (white contents) into pan | Frames 2, 3 | Video 4 | 0.85 | Content of small bowl (likely salt/spice) |
+| Counter bowls (peas, tomatoes) | Present/Stationary | Raw, fresh, cut, separate | Frames 2, 9, 14 | Video 4 | 0.95 | None |
+| Wooden spatula | Stirring | In use, coated with food residue | Frames 1, 4, 12, 15 | Video 4 | 0.95 | None |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_5) ###
+Time: 2026-07-06 13:55:11 -> 2026-07-06 13:55:55
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 16.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from Video 5 (Frames 1-16), here is the layer 1 caption describing the operation:
+
+**Operation Description:**
+A woman in a red sari adds green beans to a pot of cooking food (likely a meat stew or curry) and stirs the mixture. Another woman in a yellow sari observes. The scene takes place in a kitchen.
+
+**Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Green beans (in blue bowl) | Present on table | Fresh, whole, wet, separate, filled bowl | 1-3 | [Link] | High | None |
+| Blue bowl (holding beans) | Picked up, poured | Filled -> Empty (depleted) | 3-6 | [Link] | High | None |
+| Green beans | Poured into pot | Transferred, separate -> mixed with pot contents | 3-6 | [Link] | High | Raw vs blanched (likely fresh/blanched) |
+| Blue pot (on stove) | Receiving ingredients | Filled with cooked meat/sauce mixture | 1-6 | [Link] | High | Exact meat type unclear |
+| Wooden spoon | Stirring | In use, mixing ingredients | 9-16 | [Link] | High | None |
+| Pot contents (meat + beans) | Stirred/Mixed | Cooked, mixed, wet | 9-16 | [Link] | High | None |
+| Glass bowl (chickpeas/lentils) | Stationary on table | Filled, separate, untouched | 1-16 | [Link] | High | Contents look like chickpeas in sauce |
+| Small yellow bowl | Stationary on table | Filled (yellow substance), separate | 1-16 | [Link] | High | Contents unclear (spice/oil?) |
+
+**Key Events & Time Locations:**
+*   **~3.0s - 6.0s:** The woman in red picks up the blue bowl containing "1 cup green beans" (per text overlay) and pours them into the blue pot on the stove. The beans appear fresh and whole.
+*   **~9.0s - 16.0s:** The woman uses a wooden spoon to vigorously stir the green beans into the existing brown meat/sauce mixture in the pot. The ingredients become mixed. The blue bowl is now empty and placed back on the table.
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-06 14:00:20 -> 2026-07-06 14:02:02
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 18.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: blue pot contents (carrots, cauliflower, meat/sauce, oil), cauliflower bowl location (counter/held/empty/pouring), red bowl state. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology from display order; preserve local time/window evidence. No final answer or prose."
+}
+
+[Output]:
+blue_pot | contains carrots, oil | frames 1-2 | layer2_state_scan | high | -
+blue_pot | contains meat/sauce (dark paste) | frames 3-5 | layer2_state_scan | high | -
+blue_pot | contains cauliflower, meat/sauce | frames 5-11 | layer2_state_scan | high | -
+blue_pot | contains cauliflower (covered) | frames 12-16 | layer2_state_scan | high | -
+cauliflower_bowl | held (full) | frames 3-4 | layer2_state_scan | high | -
+cauliflower_bowl | pouring | frames 5-7 | layer2_state_scan | high | -
+cauliflower_bowl | held (empty) | frames 8-10 | layer2_state_scan | high | -
+cauliflower_bowl | NOT_VISIBLE_IN_THESE_FRAMES | frames 11-16 | layer2_state_scan | medium | uncertain location (likely counter/put away)
+red_bowl | pouring carrots (becoming empty) | frames 1-2 | layer2_state_scan | high | -
+red_bowl | ABSENT | frames 3-16 | layer2_state_scan | high | -
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-06 14:00:20 -> 2026-07-06 14:01:43
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 22.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: pan contents (onions, garlic/ginger, spices, potatoes), cauliflower bowl location (counter/held/empty), small bowl with garlic/ginger state. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology from display order; preserve local time/window evidence. No final answer or prose."
+}
+
+[Output]:
+pan_contents/onions/sautéing/1-16/visible/high/none
+pan_contents/garlic_ginger/added_mixing/9-16/visible/high/none
+pan_contents/spices/ABSENT/1-16/visible/high/none
+pan_contents/potatoes/ABSENT/1-16/visible/high/none
+cauliflower_bowl/location/held_by_woman/1-16/visible/high/none
+small_bowl_garlic_ginger/state/poured_into_pan/12-13/visible/high/none
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-06 14:00:20 -> 2026-07-06 14:01:39
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 25.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: frying pan contents (onions, spices, potatoes, mushrooms, dark paste), cauliflower bowl location (counter/held/empty), metal pot with potatoes state. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology from display order; preserve local time/window evidence. No final answer or prose."
+}
+
+[Output]:
+frying pan contents | sautéed onions/dark paste | 1-3 | visible | high | -
+frying pan contents | adding fingerling potatoes to onions | 4-10 | visible | high | -
+frying pan contents | mixed potatoes and onions | 11-16 | visible | high | -
+cauliflower bowl | on counter (filled) | 1-3, 7-13, 16 | visible | high | -
+cauliflower bowl | NOT_VISIBLE_IN_THESE_FRAMES | 4-6, 14-15 | not visible | high | -
+metal pot with potatoes | pouring fingerling potatoes into pan | 4-10 | visible | high | -
+metal pot with potatoes | potatoes transferred to pan (lid visible on stove) | 11-16 | visible (lid) | medium | uncertain exact location of pot body, contents clearly in pan
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_4) ###
+Time: 2026-07-06 14:00:20 -> 2026-07-06 14:01:38
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 63.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: black frying pan contents (onions, spice powder, dark brown paste, potatoes), cauliflower bowl location (counter/held/empty), small white bowl state. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology from display order; preserve local time/window evidence. No final answer or prose."
+}
+
+[Output]:
+black frying pan contents | onions + spice powder (brown mound) | Frame 1 | visible | high | -
+black frying pan contents | onions mixed with dark brown spice | Frame 4 | visible | high | -
+black frying pan contents | dark brown paste/mixture (cooked onions/spices) | Frame 12 | visible | high | potatoes not clearly distinct (UNCERTAIN if present in mix)
+cauliflower bowl | held by woman in yellow sari (filled with cauliflower) | Frames 2, 3, 5, 6, 7, 9, 10, 11, 14, 15, 16 | visible | high | -
+small white bowl | held by woman in red, pouring contents into pan | Frame 2 | visible | high | -
+small white bowl | held by woman in red (appears empty/finished) | Frame 3 | visible | medium | -
+potatoes | ABSENT / NOT_VISIBLE_IN_THESE_FRAMES (distinct potato chunks not clearly identified in pan yet) | All | visible | high | -
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_5) ###
+Time: 2026-07-06 14:00:20 -> 2026-07-06 14:01:31
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 16.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: blue pot contents (meat/sauce, carrots, cauliflower, green beans), blue bowl with green beans state, glass bowl with chickpeas state. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology from display order; preserve local time/window evidence. No final answer or prose."
+}
+
+[Output]:
+blue_pot_contents/meat_sauce_base/brown_paste_visible/1-16/local_scan/HIGH/none
+blue_pot_contents/carrots_cauliflower/chunks_visible_in_mix/10-16/local_scan/HIGH/none
+blue_pot_contents/green_beans/added_on_top_then_mixed/4-16/local_scan/HIGH/none
+blue_bowl_green_beans/empty/resting_on_table/7-9/local_scan/HIGH/none
+glass_bowl_chickpeas/full/chickpeas_visible_in_bowl/1-9/local_scan/HIGH/none
+
+------------------------------------------------------------
+

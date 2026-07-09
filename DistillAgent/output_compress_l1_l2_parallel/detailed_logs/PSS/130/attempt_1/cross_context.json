@@ -1,0 +1,156 @@
+{
+  "confirmed": [
+    "4 before 1: meat browned in 4, background in 1",
+    "1 before 3: background MEAT_ONLY in 1 matches start of 3",
+    "3 before 2: veg added in 3, sauce in 2",
+    "2 before 6: sauce transferred to dish",
+    "6 before 5: mash layer finished in 6, cheese added in 5"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "meat": {
+      "4": "raw->browned",
+      "3": "browned+veg",
+      "2": "in_sauce",
+      "6": "transferred_to_dish"
+    },
+    "mash": {
+      "1": "chunks->finished",
+      "6": "scooped_from_bowl",
+      "5": "topped_with_cheese"
+    },
+    "baking_dish": {
+      "6": "empty->layered",
+      "5": "layered->cheese_topped"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states across segments",
+    "raw-to-cooked progression",
+    "container fill/empty transitions",
+    "tool/residue continuity",
+    "background pan contents",
+    "main pan contents",
+    "baking dish layers",
+    "mash maturity"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all segment contents unknown"
+        ],
+        "dimensions_to_compare": [
+          "object states across segments",
+          "raw-to-cooked progression",
+          "container fill/empty transitions",
+          "tool/residue continuity"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "meat": {
+            "4": "raw->browned",
+            "3": "browned+veg",
+            "2": "in_sauce",
+            "6": "transferred_to_dish"
+          },
+          "mash": {
+            "1": "chunks->finished",
+            "6": "scooped_from_bowl",
+            "5": "topped_with_cheese"
+          },
+          "baking_dish": {
+            "6": "empty->layered",
+            "5": "layered->cheese_topped"
+          }
+        },
+        "preliminary_order": [
+          4,
+          3,
+          2,
+          1,
+          6,
+          5
+        ],
+        "order_confidence": 8,
+        "confidence_basis": "clear state progression: raw meat(4)->meat+veg(3)->sauce(2)->assemble(6)->cheese(5); mash made(1) before assembly(6)",
+        "blocking_uncertainties": [
+          "background pan state in V1 to confirm it fits after V4/V3",
+          "exact transition between V2 and V1"
+        ],
+        "dimensions_to_compare": [
+          "background pan contents",
+          "main pan contents",
+          "baking dish layers",
+          "mash maturity"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 9,
+        "comparison_table": {
+          "4": "raw meat -> browning",
+          "1": "mash made, background MEAT_ONLY",
+          "3": "MEAT_ONLY -> +veg",
+          "2": "+veg -> +sauce",
+          "6": "sauce -> dish + peas + mash",
+          "5": "bare mash -> +cheese"
+        },
+        "confirmed": [
+          "4 before 1: meat browned in 4, background in 1",
+          "1 before 3: background MEAT_ONLY in 1 matches start of 3",
+          "3 before 2: veg added in 3, sauce in 2",
+          "2 before 6: sauce transferred to dish",
+          "6 before 5: mash layer finished in 6, cheese added in 5"
+        ],
+        "uncertain": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "4",
+    "3",
+    "2",
+    "1",
+    "6",
+    "5"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "clear state progression: raw meat(4)->meat+veg(3)->sauce(2)->assemble(6)->cheese(5); mash made(1) before assembly(6)"
+  ],
+  "blocking_uncertainties": [
+    "background pan state in V1 to confirm it fits after V4/V3",
+    "exact transition between V2 and V1"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"4\": \"raw meat -> browning\", \"1\": \"mash made, background MEAT_ONLY\", \"3\": \"MEAT_ONLY -> +veg\", \"2\": \"+veg -> +sauce\", \"6\": \"sauce -> dish + peas + mash\", \"5\": \"bare mash -> +cheese\"}"
+  ]
+}

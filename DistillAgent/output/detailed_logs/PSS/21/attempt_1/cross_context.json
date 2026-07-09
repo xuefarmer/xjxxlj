@@ -1,0 +1,515 @@
+{
+  "confirmed": [
+    "Bread chain: 1->5->2",
+    "Veg chain: 4->3->2",
+    "V2 is last",
+    "V1/V3 use plain cutting board, V5 uses different board",
+    "V5 and V2 share same background setup (cutting board with handle cutout, Vegenaise jar, black knife, spoon)",
+    "V1 and V3 use plain cutting board (no handle cutout)",
+    "V4 has no cutting board visible",
+    "V3 has shredded veg on plain cutting board from V4"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"split bread lengthwise on clean white cutting board\", \"2\": \"final sandwich assembly: add cucumber, pickled veg, cilantro to bread with spread+meat\", \"3\": \"pickle spiralized veg: add liquid and powder to glass bowl\", \"4\": \"spiralize whole daikon and carrot into strands using green spiralizer\", \"5\": \"spread Vegenaise on split bread, add deli meat slices\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "bread": {
+      "1": "whole -> split lengthwise",
+      "5": "split -> spread with Vegenaise + meat added",
+      "2": "spread+meat -> +cucumber, pickled veg, cilantro"
+    },
+    "carrot_daikon": {
+      "4": "whole raw -> spiralized strands",
+      "3": "spiralized strands -> pickled in liquid/powder",
+      "2": "pickled wet strands -> added to sandwich"
+    },
+    "cutting_board": {
+      "1": "white rectangular, clean",
+      "5": "white rectangular with curved handle cutout",
+      "3": "white cutting board in background with shredded veg"
+    },
+    "knife": {
+      "1": "large silver blade",
+      "5": "large black handle on far left counter, small spreading knife used"
+    },
+    "mayo_jar": {
+      "5": "VEGENAISE purple label, lid on counter",
+      "2": "Mighty Mayonnaise purple lid on counter"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object state chains across segments",
+    "source/destination containers",
+    "residue/depletion cues",
+    "raw vs cooked vs plated states",
+    "transfer actions",
+    "background cutting board state",
+    "knife position/type",
+    "jar/lid presence",
+    "countertop continuity",
+    "bread fill state",
+    "cutting board type",
+    "knife position",
+    "utensil use"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All segment roles and object states pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object state chains across segments",
+          "source/destination containers",
+          "residue/depletion cues",
+          "raw vs cooked vs plated states",
+          "transfer actions"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "split bread lengthwise on clean white cutting board",
+          "2": "final sandwich assembly: add cucumber, pickled veg, cilantro to bread with spread+meat",
+          "3": "pickle spiralized veg: add liquid and powder to glass bowl",
+          "4": "spiralize whole daikon and carrot into strands using green spiralizer",
+          "5": "spread Vegenaise on split bread, add deli meat slices"
+        },
+        "object_memory": {
+          "bread": {
+            "1": "whole -> split lengthwise",
+            "5": "split -> spread with Vegenaise + meat added",
+            "2": "spread+meat -> +cucumber, pickled veg, cilantro"
+          },
+          "carrot_daikon": {
+            "4": "whole raw -> spiralized strands",
+            "3": "spiralized strands -> pickled in liquid/powder",
+            "2": "pickled wet strands -> added to sandwich"
+          },
+          "cutting_board": {
+            "1": "white rectangular, clean",
+            "5": "white rectangular with curved handle cutout",
+            "3": "white cutting board in background with shredded veg"
+          },
+          "knife": {
+            "1": "large silver blade",
+            "5": "large black handle on far left counter, small spreading knife used"
+          },
+          "mayo_jar": {
+            "5": "VEGENAISE purple label, lid on counter",
+            "2": "Mighty Mayonnaise purple lid on counter"
+          }
+        },
+        "temporal_index": {
+          "1": [
+            {
+              "window": [
+                0,
+                3
+              ],
+              "event": "bread splitting",
+              "key_objects": [
+                "bread",
+                "knife",
+                "cutting board"
+              ],
+              "visible_state": "bread goes from whole to split",
+              "confidence": "high"
+            }
+          ],
+          "2": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "sandwich finishing",
+              "key_objects": [
+                "bread",
+                "cucumber",
+                "pickled veg",
+                "cilantro",
+                "tongs"
+              ],
+              "visible_state": "bread already has spread+meat, veg/herbs added",
+              "confidence": "high"
+            }
+          ],
+          "3": [
+            {
+              "window": [
+                0,
+                5
+              ],
+              "event": "pickling veg",
+              "key_objects": [
+                "glass bowl",
+                "spiralized veg",
+                "yellow bottle",
+                "spoon"
+              ],
+              "visible_state": "liquid and powder added to raw spiralized veg",
+              "confidence": "high"
+            }
+          ],
+          "4": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "spiralizing veg",
+              "key_objects": [
+                "green spiralizer",
+                "daikon",
+                "carrot"
+              ],
+              "visible_state": "whole veg reduced to strands, depleted cores remain",
+              "confidence": "high"
+            }
+          ],
+          "5": [
+            {
+              "window": [
+                0,
+                9
+              ],
+              "event": "bread assembly phase 1",
+              "key_objects": [
+                "bread",
+                "Vegenaise jar",
+                "deli meat",
+                "cutting board"
+              ],
+              "visible_state": "split bread spread with mayo, meat added",
+              "confidence": "high"
+            }
+          ]
+        },
+        "preliminary_order": "1->4->3->5->2",
+        "order_confidence": 8,
+        "confidence_basis": "Clear object state chains: Bread (1->5->2) and Veg (4->3->2). V2 is definitively last as it consumes both prepared bread and pickled veg. V5 follows V1 (split bread). V3 follows V4 (spiralized veg). The only ambiguity is the relative order of the two independent prep steps V1 and V4, and whether V3 or V5 comes first.",
+        "blocking_uncertainties": [
+          "Relative order of V1 (bread prep) and V4 (veg prep)",
+          "Relative order of V3 (pickling) and V5 (bread assembly)"
+        ],
+        "candidate_targets": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "V1 vs V4 order",
+          "V3 vs V5 order"
+        ],
+        "dimensions_to_compare": [
+          "background cutting board state",
+          "knife position/type",
+          "jar/lid presence",
+          "countertop continuity"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "1": "bread split on plain white cutting board, no jars/lids",
+          "2": "sandwich finishing: cucumber, pickled veg, cilantro added to bread with spread+meat",
+          "3": "pickling: liquid/powder added to spiralized veg in glass bowl, plain white cutting board in background with shredded veg",
+          "4": "spiralizing: whole daikon/carrot reduced to strands, no cutting board visible",
+          "5": "bread assembly: Vegenaise spread on split bread, meat added, cutting board with handle cutout, Vegenaise jar with purple lid on counter"
+        },
+        "temporal_index": {
+          "1": [
+            {
+              "window": [
+                0,
+                3
+              ],
+              "event": "bread splitting",
+              "key_objects": [
+                "bread",
+                "knife",
+                "plain white cutting board"
+              ],
+              "visible_state": "bread whole->split",
+              "confidence": "high"
+            }
+          ],
+          "2": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "sandwich finishing",
+              "key_objects": [
+                "bread",
+                "cucumber",
+                "pickled veg",
+                "cilantro"
+              ],
+              "visible_state": "spread+meat bread + veg/herbs",
+              "confidence": "high"
+            }
+          ],
+          "3": [
+            {
+              "window": [
+                0,
+                5
+              ],
+              "event": "pickling veg",
+              "key_objects": [
+                "glass bowl",
+                "spiralized veg",
+                "plain white cutting board in background"
+              ],
+              "visible_state": "spiralized veg pickled",
+              "confidence": "high"
+            }
+          ],
+          "4": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "spiralizing veg",
+              "key_objects": [
+                "green spiralizer",
+                "daikon",
+                "carrot"
+              ],
+              "visible_state": "whole veg->strands",
+              "confidence": "high"
+            }
+          ],
+          "5": [
+            {
+              "window": [
+                0,
+                9
+              ],
+              "event": "bread assembly",
+              "key_objects": [
+                "bread",
+                "Vegenaise jar",
+                "cutting board with handle cutout"
+              ],
+              "visible_state": "split bread spread+meat",
+              "confidence": "high"
+            }
+          ]
+        },
+        "confirmed": [
+          "Bread chain: 1->5->2",
+          "Veg chain: 4->3->2",
+          "V2 is last",
+          "V1/V3 use plain cutting board, V5 uses different board"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "uncertain": [],
+        "focus_plan": [],
+        "order_confidence": 8
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "uncertain": [
+          "V2 background objects and exact visible states pending Layer2 re-observation"
+        ],
+        "dimensions_to_compare": [
+          "bread fill state",
+          "cutting board type",
+          "knife position",
+          "jar/lid presence",
+          "utensil use"
+        ]
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "1": "bread split on plain white cutting board, no jars/lids",
+          "2": "sandwich finishing: cucumber, pickled veg, cilantro added to bread with spread+meat; cutting board with handle cutout, Vegenaise jar with purple lid, black-handled knife, metal spoon",
+          "3": "pickling: liquid/powder added to spiralized veg in glass bowl, plain white cutting board in background with shredded veg",
+          "4": "spiralizing: whole daikon/carrot reduced to strands, no cutting board visible",
+          "5": "bread assembly: Vegenaise spread on split bread, meat added, cutting board with handle cutout, Vegenaise jar with purple lid on counter, black-handled knife, metal spoon"
+        },
+        "temporal_index": {
+          "1": [
+            {
+              "window": [
+                0,
+                3
+              ],
+              "event": "bread splitting",
+              "key_objects": [
+                "bread",
+                "knife",
+                "plain white cutting board"
+              ],
+              "visible_state": "bread whole->split",
+              "confidence": "high"
+            }
+          ],
+          "2": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "sandwich finishing",
+              "key_objects": [
+                "bread",
+                "cucumber",
+                "pickled veg",
+                "cilantro",
+                "cutting board with handle cutout",
+                "Vegenaise jar"
+              ],
+              "visible_state": "spread+meat bread + veg/herbs",
+              "confidence": "high"
+            }
+          ],
+          "3": [
+            {
+              "window": [
+                0,
+                5
+              ],
+              "event": "pickling veg",
+              "key_objects": [
+                "glass bowl",
+                "spiralized veg",
+                "plain white cutting board in background"
+              ],
+              "visible_state": "spiralized veg pickled",
+              "confidence": "high"
+            }
+          ],
+          "4": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "spiralizing veg",
+              "key_objects": [
+                "green spiralizer",
+                "daikon",
+                "carrot"
+              ],
+              "visible_state": "whole veg->strands",
+              "confidence": "high"
+            }
+          ],
+          "5": [
+            {
+              "window": [
+                0,
+                9
+              ],
+              "event": "bread assembly",
+              "key_objects": [
+                "bread",
+                "Vegenaise jar",
+                "cutting board with handle cutout",
+                "black-handled knife"
+              ],
+              "visible_state": "split bread spread+meat",
+              "confidence": "high"
+            }
+          ]
+        },
+        "confirmed": [
+          "Bread chain: 1->5->2",
+          "Veg chain: 4->3->2",
+          "V2 is last",
+          "V5 and V2 share same background setup (cutting board with handle cutout, Vegenaise jar, black knife, spoon)",
+          "V1 and V3 use plain cutting board (no handle cutout)",
+          "V4 has no cutting board visible",
+          "V3 has shredded veg on plain cutting board from V4"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "uncertain": [],
+        "focus_plan": [],
+        "order_confidence": 8
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "temporal_index": [
+    "{\"1\": [{\"window\": [0, 3], \"event\": \"bread splitting\", \"key_objects\": [\"bread\", \"knife\", \"cutting board\"], \"visible_state\": \"bread goes from whole to split\", \"confidence\": \"high\"}], \"2\": [{\"window\": [0, 11], \"event\": \"sandwich finishing\", \"key_objects\": [\"bread\", \"cucumber\", \"pickled veg\", \"cilantro\", \"tongs\"], \"visible_state\": \"bread already has spread+meat, veg/herbs added\", \"confidence\": \"high\"}], \"3\": [{\"window\": [0, 5], \"event\": \"pickling veg\", \"key_objects\": [\"glass bowl\", \"spiralized veg\", \"yellow bottle\", \"spoon\"], \"visible_state\": \"liquid and powder added to raw spiralized veg\", \"confidence\": \"high\"}], \"4\": [{\"window\": [0, 11], \"event\": \"spiralizing veg\", \"key_objects\": [\"green spiralizer\", \"daikon\", \"carrot\"], \"visible_state\": \"whole veg reduced to strands, depleted cores remain\", \"confidence\": \"high\"}], \"5\": [{\"window\": [0, 9], \"event\": \"bread assembly phase 1\", \"key_objects\": [\"bread\", \"Vegenaise jar\", \"deli meat\", \"cutting board\"], \"visible_state\": \"split bread spread with mayo, meat added\", \"confidence\": \"high\"}]}",
+    "{\"1\": [{\"window\": [0, 3], \"event\": \"bread splitting\", \"key_objects\": [\"bread\", \"knife\", \"plain white cutting board\"], \"visible_state\": \"bread whole->split\", \"confidence\": \"high\"}], \"2\": [{\"window\": [0, 11], \"event\": \"sandwich finishing\", \"key_objects\": [\"bread\", \"cucumber\", \"pickled veg\", \"cilantro\"], \"visible_state\": \"spread+meat bread + veg/herbs\", \"confidence\": \"high\"}], \"3\": [{\"window\": [0, 5], \"event\": \"pickling veg\", \"key_objects\": [\"glass bowl\", \"spiralized veg\", \"plain white cutting board in background\"], \"visible_state\": \"spiralized veg pickled\", \"confidence\": \"high\"}], \"4\": [{\"window\": [0, 11], \"event\": \"spiralizing veg\", \"key_objects\": [\"green spiralizer\", \"daikon\", \"carrot\"], \"visible_state\": \"whole veg->strands\", \"confidence\": \"high\"}], \"5\": [{\"window\": [0, 9], \"event\": \"bread assembly\", \"key_objects\": [\"bread\", \"Vegenaise jar\", \"cutting board with handle cutout\"], \"visible_state\": \"split bread spread+meat\", \"confidence\": \"high\"}]}",
+    "{\"1\": [{\"window\": [0, 3], \"event\": \"bread splitting\", \"key_objects\": [\"bread\", \"knife\", \"plain white cutting board\"], \"visible_state\": \"bread whole->split\", \"confidence\": \"high\"}], \"2\": [{\"window\": [0, 11], \"event\": \"sandwich finishing\", \"key_objects\": [\"bread\", \"cucumber\", \"pickled veg\", \"cilantro\", \"cutting board with handle cutout\", \"Vegenaise jar\"], \"visible_state\": \"spread+meat bread + veg/herbs\", \"confidence\": \"high\"}], \"3\": [{\"window\": [0, 5], \"event\": \"pickling veg\", \"key_objects\": [\"glass bowl\", \"spiralized veg\", \"plain white cutting board in background\"], \"visible_state\": \"spiralized veg pickled\", \"confidence\": \"high\"}], \"4\": [{\"window\": [0, 11], \"event\": \"spiralizing veg\", \"key_objects\": [\"green spiralizer\", \"daikon\", \"carrot\"], \"visible_state\": \"whole veg->strands\", \"confidence\": \"high\"}], \"5\": [{\"window\": [0, 9], \"event\": \"bread assembly\", \"key_objects\": [\"bread\", \"Vegenaise jar\", \"cutting board with handle cutout\", \"black-handled knife\"], \"visible_state\": \"split bread spread+meat\", \"confidence\": \"high\"}]}"
+  ],
+  "preliminary_order": [
+    "1->4->3->5->2"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "Clear object state chains: Bread (1->5->2) and Veg (4->3->2). V2 is definitively last as it consumes both prepared bread and pickled veg. V5 follows V1 (split bread). V3 follows V4 (spiralized veg). The only ambiguity is the relative order of the two independent prep steps V1 and V4, and whether V3 or V5 comes first."
+  ],
+  "blocking_uncertainties": [
+    "Relative order of V1 (bread prep) and V4 (veg prep)",
+    "Relative order of V3 (pickling) and V5 (bread assembly)"
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"bread split on plain white cutting board, no jars/lids\", \"2\": \"sandwich finishing: cucumber, pickled veg, cilantro added to bread with spread+meat\", \"3\": \"pickling: liquid/powder added to spiralized veg in glass bowl, plain white cutting board in background with shredded veg\", \"4\": \"spiralizing: whole daikon/carrot reduced to strands, no cutting board visible\", \"5\": \"bread assembly: Vegenaise spread on split bread, meat added, cutting board with handle cutout, Vegenaise jar with purple lid on counter\"}",
+    "{\"1\": \"bread split on plain white cutting board, no jars/lids\", \"2\": \"sandwich finishing: cucumber, pickled veg, cilantro added to bread with spread+meat; cutting board with handle cutout, Vegenaise jar with purple lid, black-handled knife, metal spoon\", \"3\": \"pickling: liquid/powder added to spiralized veg in glass bowl, plain white cutting board in background with shredded veg\", \"4\": \"spiralizing: whole daikon/carrot reduced to strands, no cutting board visible\", \"5\": \"bread assembly: Vegenaise spread on split bread, meat added, cutting board with handle cutout, Vegenaise jar with purple lid on counter, black-handled knife, metal spoon\"}"
+  ],
+  "pruned_targets": [],
+  "focus_plan": []
+}

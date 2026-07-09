@@ -1,0 +1,175 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "relative order of V2 and V3",
+    "V1 background depletion state to confirm finality"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"assembly: split baguette filled with cooked meat, shredded carrots, cucumber, chili\", \"2\": \"meat prep: slice raw meat, marinate, skewer, place in oiled pan\", \"3\": \"veggie prep: grate carrots, chop chili, squeeze lime into bowl\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "carrots": {
+      "3": "raw, being grated into green bowl",
+      "1": "shredded, added as topping"
+    },
+    "chili": {
+      "3": "raw, chopped and mixed with lime",
+      "1": "sliced, added as topping"
+    },
+    "meat": {
+      "2": "raw, sliced, marinated, skewered, placed in pan",
+      "1": "cooked, browned chunks in bread"
+    },
+    "bread": {
+      "1": "baguette split and filled"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient state (raw/cooked)",
+    "container fill/empty",
+    "mixture integration",
+    "residue/depletion",
+    "counter cleanliness/residue",
+    "background objects (meat vs veggie tools)"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "object states across segments",
+          "state transitions"
+        ],
+        "dimensions_to_compare": [
+          "ingredient state (raw/cooked)",
+          "container fill/empty",
+          "mixture integration",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "assembly: split baguette filled with cooked meat, shredded carrots, cucumber, chili",
+          "2": "meat prep: slice raw meat, marinate, skewer, place in oiled pan",
+          "3": "veggie prep: grate carrots, chop chili, squeeze lime into bowl"
+        },
+        "object_memory": {
+          "carrots": {
+            "3": "raw, being grated into green bowl",
+            "1": "shredded, added as topping"
+          },
+          "chili": {
+            "3": "raw, chopped and mixed with lime",
+            "1": "sliced, added as topping"
+          },
+          "meat": {
+            "2": "raw, sliced, marinated, skewered, placed in pan",
+            "1": "cooked, browned chunks in bread"
+          },
+          "bread": {
+            "1": "baguette split and filled"
+          }
+        },
+        "preliminary_order": "2->3->1 or 3->2->1",
+        "order_confidence": 6,
+        "confidence_basis": "V1 is clearly last (assembly of cooked/prepped items). V2 and V3 are parallel prep steps; order between them is uncertain.",
+        "blocking_uncertainties": [
+          "order between V2 and V3"
+        ],
+        "candidate_targets": [
+          {
+            "id": "2",
+            "reason": "meat prep, need to check if it happens before or after veggie prep"
+          },
+          {
+            "id": "3",
+            "reason": "veggie prep, need to check background for meat residue or tools"
+          }
+        ],
+        "low_value_targets": [
+          {
+            "id": "1",
+            "reason": "clearly final assembly"
+          }
+        ],
+        "uncertain": [
+          "relative order of V2 and V3"
+        ],
+        "dimensions_to_compare": [
+          "counter cleanliness/residue",
+          "background objects (meat vs veggie tools)"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "1": "pending Layer2 re-observation for background depletion and assembly state",
+          "2": "counter wet with meat/marinade, no veggie residue, tight framing",
+          "3": "counter has veggie residue, no meat juice, no skewers/pan"
+        },
+        "uncertain": [
+          "relative order of V2 and V3",
+          "V1 background depletion state to confirm finality"
+        ]
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "order_confidence": 8,
+        "comparison_table": {
+          "1": "baguette FILLED, meat COOKED_IN_BREAD, carrots/chili ON_BREAD, pan CONTAINS_MEAT, bowls FILLED",
+          "2": "counter wet with meat/marinade, no veggie residue, tight framing",
+          "3": "counter has veggie residue, no meat juice, no skewers/pan"
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "2->3->1 or 3->2->1"
+  ],
+  "order_confidence": [
+    "6",
+    "8"
+  ],
+  "confidence_basis": [
+    "V1 is clearly last (assembly of cooked/prepped items). V2 and V3 are parallel prep steps; order between them is uncertain."
+  ],
+  "blocking_uncertainties": [
+    "order between V2 and V3"
+  ],
+  "candidate_targets": [
+    "{\"id\": \"2\", \"reason\": \"meat prep, need to check if it happens before or after veggie prep\"}",
+    "{\"id\": \"3\", \"reason\": \"veggie prep, need to check background for meat residue or tools\"}"
+  ],
+  "low_value_targets": [
+    "{\"id\": \"1\", \"reason\": \"clearly final assembly\"}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"pending Layer2 re-observation for background depletion and assembly state\", \"2\": \"counter wet with meat/marinade, no veggie residue, tight framing\", \"3\": \"counter has veggie residue, no meat juice, no skewers/pan\"}",
+    "{\"1\": \"baguette FILLED, meat COOKED_IN_BREAD, carrots/chili ON_BREAD, pan CONTAINS_MEAT, bowls FILLED\", \"2\": \"counter wet with meat/marinade, no veggie residue, tight framing\", \"3\": \"counter has veggie residue, no meat juice, no skewers/pan\"}"
+  ]
+}

@@ -1,0 +1,361 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-06 22:55:50
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-06 22:50:05 -> 2026-07-06 22:51:37
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 36.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report: identity, state (raw/cooked, fresh/wilted, whole/cut, dry/wet, empty/filled, separate/mixed), position, and any action occurring. Note background vessels, residue, and completion marks. Return compact evidence rows: object/action/state/window/query_link/conf/uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the description of the cooking segment:
+
+**Segment Description:**
+A person is preparing sushi. They begin by slicing a pink cylindrical ingredient (likely imitation crab stick or surimi) lengthwise into strips on a wooden cutting board. After cutting, they take one of the long pink strips and place it horizontally across the white rice that has been spread onto a sheet of nori (seaweed) resting on a bamboo rolling mat. In the background, a green plate holds several finished sushi rolls, indicating the stage of the process.
+
+**Compact Evidence Rows:**
+
+| Object/Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Pink ingredient (crab stick)** | Whole -> Sliced into strips -> Placed on rice | 1-16 | N/A | High | Low (likely imitation crab) |
+| **Knife** | Metal blade, cutting action | 1-11 | N/A | High | Low |
+| **Wooden Cutting Board** | Wet/stained residue, support surface | 1-16 | N/A | High | Low |
+| **Nori sheet** | Black, rectangular, flat | 1-16 | N/A | High | Low |
+| **White Rice** | Cooked, sticky, spread on half of nori | 1-16 | N/A | High | Low |
+| **Bamboo Mat** | Flat, supporting nori | 1-16 | N/A | High | Low |
+| **Green Plate** | Filled with cut sushi rolls (maki) | 1-16 | N/A | High | Low |
+| **Small Container** | Open, orange paste (spicy mix?) inside | 1-16 | N/A | Medium | High (contents unclear) |
+| **Green Bottle** | Closed, squeeze bottle | 1-16 | N/A | High | Low |
+
+**Detailed Observations:**
+*   **Frames 1-11:** The person uses a knife to slice a pink stick lengthwise on the wooden board. The board shows moisture/residue from previous preparation.
+*   **Frames 12-16:** The person picks up a sliced strip of the pink ingredient and places it onto the bed of white rice on the nori sheet. The rice covers approximately half of the nori sheet.
+*   **Background:** A green rectangular plate to the left contains about 6-7 finished sushi rolls, suggesting this is part of a batch preparation. A small container with orange contents and a knife resting in it sits nearby, along with a green squeeze bottle.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-06 22:50:05 -> 2026-07-06 22:51:55
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 73.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report: identity, state (raw/cooked, fresh/wilted, whole/cut, dry/wet, empty/filled, separate/mixed), position, and any action occurring. Note background vessels, residue, and completion marks. Return compact evidence rows: object/action/state/window/query_link/conf/uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from Frames 1-16 (Video 2), here is the description of the cooking segment:
+
+**Layer 1 Caption: Sushi Cutting and Sauce Preparation**
+
+*   **Sushi Rolls (Maki):**
+    *   **Identity:** Sushi rolls (rice, seaweed, filling).
+    *   **State:** Cut into bite-sized pieces; arranged neatly.
+    *   **Position:** Initially on the wooden cutting board, then transferred to the green rectangular plate. By Frame 9, the plate is nearly full (approx. 12 pieces).
+    *   **Action:** Being sliced with a knife (Frames 1-9) and placed onto the green plate (Frame 3). One roll is held up for inspection (Frame 10).
+    *   **Confidence:** High.
+
+*   **Tuna Block:**
+    *   **Identity:** Raw tuna (sashimi grade).
+    *   **State:** Raw, pink, solid block.
+    *   **Position:** Top edge of the wooden cutting board.
+    *   **Action:** Static (waiting to be used or already used for the rolls).
+    *   **Confidence:** High.
+
+*   **Knife:**
+    *   **Identity:** Chef's knife / Sushi knife.
+    *   **State:** Sharp, metallic blade.
+    *   **Position:** In hand, over the cutting board.
+    *   **Action:** Slicing the sushi roll into pieces (Frames 1-9).
+    *   **Confidence:** High.
+
+*   **Green Plate:**
+    *   **Identity:** Rectangular serving plate.
+    *   **State:** Filling up with sushi rolls.
+    *   **Position:** Left side of the counter.
+    *   **Action:** Receiving cut sushi pieces.
+    *   **Confidence:** High.
+
+*   **Small Bowl & Sauce:**
+    *   **Identity:** Small plastic/glass bowl with orange sauce (likely spicy mayo).
+    *   **State:** Filled with creamy orange mixture; spoon inside.
+    *   **Position:** Bottom center/left initially, then held in hand.
+    *   **Action:** Picked up (Frame 12) and stirred/mixed with a spoon (Frames 13-16).
+    *   **Confidence:** High.
+
+*   **Bamboo Mat (Makisu):**
+    *   **Identity:** Sushi rolling mat.
+    *   **State:** Empty, flat, dry.
+    *   **Position:** Center of the counter.
+    *   **Action:** Static/Unused in this segment.
+    *   **Confidence:** High.
+
+*   **Condiments (Background):**
+    *   **Identity:** Sriracha bottle (red), Spice Classics container (green lid).
+    *   **State:** Closed/standing.
+    *   **Position:** Bottom left corner.
+    *   **Action:** Static.
+    *   **Confidence:** High.
+
+*   **Cutting Board:**
+    *   **Identity:** Wooden board.
+    *   **State:** Wet/stained with rice residue and fish juices.
+    *   **Position:** Right side of the counter.
+    *   **Action:** Surface for cutting.
+    *   **Confidence:** High.
+
+**Summary of Event:**
+The segment shows the final stages of sushi preparation. A person slices a sushi roll on a wooden board and arranges the pieces on a green plate. After filling the plate, the person picks up a small bowl of orange sauce (likely spicy mayo made from the visible Sriracha) and stirs it, presumably to drizzle over the sushi.
+
+**Compact Evidence Rows:**
+
+| Object | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Sushi Rolls | Cutting, Plating | Cut, arranged | 1-11 | Video 2 | High | None |
+| Tuna Block | Static | Raw, pink block | 1-16 | Video 2 | High | None |
+| Knife | Slicing | Sharp, metal | 1-9 | Video 2 | High | None |
+| Green Plate | Receiving food | Filling up (6->12 rolls) | 1-16 | Video 2 | High | Exact count varies |
+| Sauce Bowl | Stirring | Filled, orange sauce | 12-16 | Video 2 | High | Exact ingredients unknown |
+| Bamboo Mat | Static | Empty, flat | 1-16 | Video 2 | High | None |
+| Cutting Board | Surface | Residue/stained | 1-16 | Video 2 | High | None |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-06 22:50:05 -> 2026-07-06 22:51:41
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 59.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report: identity, state (raw/cooked, fresh/wilted, whole/cut, dry/wet, empty/filled, separate/mixed), position, and any action occurring. Note background vessels, residue, and completion marks. Return compact evidence rows: object/action/state/window/query_link/conf/uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the description of the cooking segment:
+
+**Scene Overview:** A person is in the process of making sushi rolls (maki). They are transferring cooked white rice from a bowl onto a sheet of nori (seaweed) placed on a bamboo rolling mat. In the background, finished sushi rolls and raw fish ingredients are visible.
+
+**Compact Evidence Rows:**
+
+*   **Rice Bowl** / held, being scooped / filled with cooked white sticky rice, white bowl with red pattern / Frames 1-5, 10 / [Link] / High / None
+*   **Rice Paddle (Shamoji)** / scooping, spreading / white plastic, wet with rice residue / Frames 1-5, 7-9, 11-13, 16 / [Link] / High / None
+*   **Nori Sheet** / receiving rice, being covered / dark green/black, rectangular, dry surface initially, becoming wet/sticky with rice / Frames 1-16 / [Link] / High / None
+*   **Bamboo Mat (Makisu)** / supporting nori / light brown, woven, flat on counter / Frames 1-16 / [Link] / High / None
+*   **Rice** / being transferred, spread / cooked, white, clumpy/sticky, transitioning from bowl to nori sheet (approx. 50% coverage by end) / Frames 1-16 / [Link] / High / None
+*   **Green Plate** / static background / teal, rectangular, holding 6-7 finished cut sushi rolls (maki) / Frames 1-16 / [Link] / High / None
+*   **Cutting Board** / static background / wooden, rectangular, stained/wet surface, holding raw fish / Frames 1-16 / [Link] / High / None
+*   **Tuna (Maguro)** / static background / raw, pink/red loins (two pieces), whole / Frames 1-16 / [Link] / High / Identification of fish species is likely but not certain.
+*   **Sauce Bottle** / static foreground / white bottle, green cap (likely Sriracha or similar), partially visible / Frames 1-16 / [Link] / High / Label not fully readable.
+*   **Small Tub** / static background / round container, reddish/orange paste inside (likely spicy mayo or similar), knife resting in/near it / Frames 1-16 / [Link] / Medium / Contents uncertain.
+
+**Action Progression:**
+1.  **Frames 1-5:** The person holds the rice bowl and uses the paddle to fluff/scoop the rice.
+2.  **Frames 6-9:** The person moves the paddle with a scoop of rice over to the nori sheet and begins depositing it.
+3.  **Frames 10-13:** The person returns to the bowl for another scoop and adds it to the nori, starting to spread it.
+4.  **Frames 14-16:** The person uses the paddle and their hand to spread the rice evenly across the bottom half of the nori sheet. The rice is being pressed down slightly.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-06 22:50:05 -> 2026-07-06 22:52:07
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 34.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report: identity, state (raw/cooked, fresh/wilted, whole/cut, dry/wet, empty/filled, separate/mixed), position, and any action occurring. Note background vessels, residue, and completion marks. Return compact evidence rows: object/action/state/window/query_link/conf/uncertainty."
+}
+
+[Output]:
+[
+  {"object": "sushi rolls", "action": "resting", "state": "cooked, cut, separate, arranged", "position": "green plate, top-left", "window": "1-16", "query_link": "Video 4", "conf": "high", "uncertainty": "none"},
+  {"object": "bamboo rolling mat (makisu)", "action": "being manipulated/rolled/unrolled", "state": "flat then curled around food", "position": "center counter", "window": "1-16", "query_link": "Video 4", "conf": "high", "uncertainty": "none"},
+  {"object": "nori sheet", "action": "being rolled", "state": "dark, flat then cylindrical, wet/rice-covered", "position": "on bamboo mat", "window": "1-16", "query_link": "Video 4", "conf": "high", "uncertainty": "none"},
+  {"object": "sushi rice", "action": "being rolled", "state": "white, cooked, spread on nori", "position": "on nori sheet", "window": "1-16", "query_link": "Video 4", "conf": "high", "uncertainty": "none"},
+  {"object": "tuna", "action": "being placed/enclosed", "state": "raw, pink, chunk/slice", "position": "cutting board (top-right) then inside roll", "window": "1-16", "query_link": "Video 4", "conf": "high", "uncertainty": "none"},
+  {"object": "knife", "action": "resting", "state": "metal, sharp", "position": "cutting board", "window": "1-16", "query_link": "Video 4", "conf": "high", "uncertainty": "none"},
+  {"object": "cutting board", "action": "supporting", "state": "wooden, wet/stained with juice", "position": "top-right", "window": "1-16", "query_link": "Video 4", "conf": "high", "uncertainty": "none"},
+  {"object": "sriracha bottle", "action": "resting", "state": "red, filled, capped", "position": "bottom-left", "window": "1-16", "query_link": "Video 4", "conf": "high", "uncertainty": "none"},
+  {"object": "spice bottle", "action": "resting", "state": "green, filled", "position": "bottom-left", "window": "1-16", "query_link": "Video 4", "conf": "high", "uncertainty": "none"},
+  {"object": "hands", "action": "rolling/shaping", "state": "active, manipulating mat and food", "position": "center", "window": "1-16", "query_link": "Video 4", "conf": "high", "uncertainty": "none"}
+]
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_5) ###
+Time: 2026-07-06 22:50:05 -> 2026-07-06 22:51:56
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 21.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report: identity, state (raw/cooked, fresh/wilted, whole/cut, dry/wet, empty/filled, separate/mixed), position, and any action occurring. Note background vessels, residue, and completion marks. Return compact evidence rows: object/action/state/window/query_link/conf/uncertainty."
+}
+
+[Output]:
+**Cooking Segment Description:**
+This segment depicts the assembly of a sushi roll, specifically the application of a sauce topping. A sheet of nori is laid out on a bamboo rolling mat, with white rice spread over the right half. A long, pink strip of imitation crab (surimi) is placed horizontally across the rice. The cook holds a small container of orange creamy sauce (likely spicy mayo) in their left hand and uses a small metal knife or spreader in their right hand. Throughout the sequence, the cook repeatedly dips the knife into the sauce container and spreads the sauce along the length of the crab strip, ensuring it is coated. In the background, a green plate holds several completed sushi rolls, and condiments like Sriracha and a spice shaker are visible, along with a wooden cutting board holding a large knife and a pink scraper.
+
+**Compact Evidence Rows:**
+
+*   **Sushi Assembly (Nori/Rice/Crab)** | Being topped with sauce | Raw, assembled, wet (sauce applied) | 1-16 | V5_0-21 | High | None
+*   **Sauce Container** | Held, scooped from | Filled with orange creamy substance, partially depleted | 1-16 | V5_0-21 | High | None
+*   **Knife/Spreader** | Spreading sauce, dipping | Metal, coated in orange sauce | 1-16 | V5_0-21 | High | None
+*   **Green Plate** | Static | Filled with 6 finished sushi rolls | 1-16 | V5_0-21 | High | None
+*   **Condiments (Sriracha/Spice)** | Static | Bottles/shakers, filled | 1-16 | V5_0-21 | High | None
+*   **Cutting Board** | Static | Wooden, holds large knife and pink scraper, residue visible | 1-16 | V5_0-21 | High | None
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-06 22:53:36 -> 2026-07-06 22:55:31
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 36.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: 1) nori sheet (dry/receiving rice/rice-covered), 2) rice (absent/spread on nori), 3) pink crab stick (whole cylinder/sliced strips/placed on rice), 4) green plate in background (approx count of rolls). Return compact rows: object/state/window/conf/uncertainty."
+}
+
+[Output]:
+nori sheet/rice-covered (partially)/1-16/high/low
+rice/spread on nori/1-16/high/low
+pink crab stick/sliced strips then placed on rice/1-16/high/low
+green plate/6-7 rolls/1-16/high/low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-06 22:53:36 -> 2026-07-06 22:55:15
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 73.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: 1) green plate (empty/partially filled/nearly full, approximate roll count change), 2) sushi rolls (uncut log/sliced pieces), 3) cutting board surface (residue). Return compact rows: object/state/window/conf/uncertainty."
+}
+
+[Output]:
+green_plate | partially filled to nearly full (approx count 6 -> 12 rolls) | 1-16 | high | low
+sushi_rolls | sliced pieces | 1-16 | high | low
+cutting_board_surface | residue (wet stains, small food bits/rice) | 1-16 | high | low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-06 22:53:36 -> 2026-07-06 22:55:03
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 59.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: 1) rice bowl (full/depleting), 2) nori sheet (dry/receiving rice/rice-covered), 3) green plate in background (approx count of rolls). Return compact rows: object/state/window/conf/uncertainty."
+}
+
+[Output]:
+rice bowl/full-depleting/1-16/high/low
+nori sheet/dry-receiving rice-partially rice-covered/1-16/high/low
+green plate/6-7 rolls/1-16/high/low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_4) ###
+Time: 2026-07-06 22:53:36 -> 2026-07-06 22:55:01
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 34.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: 1) nori sheet (flat with ingredients/rolled into cylinder), 2) filling ingredients (visible on surface/enclosed inside roll), 3) green plate in background (approx count of rolls). Return compact rows: object/state/window/conf/uncertainty."
+}
+
+[Output]:
+nori sheet/flat with ingredients and rolled into cylinder/1-16/high/low
+filling ingredients/visible on surface and enclosed inside roll/1-16/high/low
+green plate/approx 6-7 rolls/1-16/high/low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_5) ###
+Time: 2026-07-06 22:53:36 -> 2026-07-06 22:54:51
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 21.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: 1) pink crab strip (plain/sauce-coated), 2) sauce container (full/depleted), 3) green plate in background (approx count of rolls). Return compact rows: object/state/window/conf/uncertainty."
+}
+
+[Output]:
+pink crab strip | sauce-coated (application in progress) | 1-16 | high | low
+sauce container | full (sauce visible) | 1-16 | high | low
+green plate | ~6 rolls | 1-16 | high | low
+
+------------------------------------------------------------
+

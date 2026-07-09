@@ -1,0 +1,185 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "All segment states pending Layer1"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "citrus": {
+      "5": "whole",
+      "4": "whole/halved on board",
+      "1": "zested/juiced"
+    },
+    "herbs": {
+      "5": "being chopped",
+      "4": "on top of chicken then mixed",
+      "1": "in bowl",
+      "3": "in marinade"
+    },
+    "chicken_bowl": {
+      "5": "raw chunks",
+      "4": "dry->wet with oil/pepper",
+      "1": "with citrus",
+      "3": "fully marinated"
+    },
+    "skewers": {
+      "3": "being threaded raw",
+      "2": "cooking on grill"
+    },
+    "grill_pan": {
+      "2": "oiled then cooking skewers"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states raw->cooked",
+    "container fill/empty",
+    "transfer traces",
+    "residue/depletion",
+    "ingredient integration"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All segment states pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "object states raw->cooked",
+          "container fill/empty",
+          "transfer traces",
+          "residue/depletion",
+          "ingredient integration"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "5->4->1->3->2",
+        "order_confidence": 7,
+        "confidence_basis": [
+          "V5: herbs chopped, citrus whole",
+          "V4: herbs on chicken, oil/pepper added, citrus on board",
+          "V1: citrus zested/juiced into bowl",
+          "V3: threading marinated chicken + onion",
+          "V2: skewers cooking on grill"
+        ],
+        "blocking_uncertainties": [
+          "V4 citrus state: VLM reported whole oranges/halved lemon, need to verify if zested or not to confirm V4 is before V1",
+          "V4 bowl state: verify herbs are separate on top before mixing"
+        ],
+        "object_memory": {
+          "citrus": {
+            "5": "whole",
+            "4": "whole/halved on board",
+            "1": "zested/juiced"
+          },
+          "herbs": {
+            "5": "being chopped",
+            "4": "on top of chicken then mixed",
+            "1": "in bowl",
+            "3": "in marinade"
+          },
+          "chicken_bowl": {
+            "5": "raw chunks",
+            "4": "dry->wet with oil/pepper",
+            "1": "with citrus",
+            "3": "fully marinated"
+          },
+          "skewers": {
+            "3": "being threaded raw",
+            "2": "cooking on grill"
+          },
+          "grill_pan": {
+            "2": "oiled then cooking skewers"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                53
+              ],
+              "event": "citrus zesting/juicing",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                44
+              ],
+              "event": "skewer cooking",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                36
+              ],
+              "event": "skewer assembly",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                65
+              ],
+              "event": "oil/pepper mixing",
+              "confidence": "medium"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                7
+              ],
+              "event": "herb chopping",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "5->4->1->3->2"
+  ],
+  "order_confidence": [
+    "7"
+  ],
+  "confidence_basis": [
+    "V5: herbs chopped, citrus whole",
+    "V4: herbs on chicken, oil/pepper added, citrus on board",
+    "V1: citrus zested/juiced into bowl",
+    "V3: threading marinated chicken + onion",
+    "V2: skewers cooking on grill"
+  ],
+  "blocking_uncertainties": [
+    "V4 citrus state: VLM reported whole oranges/halved lemon, need to verify if zested or not to confirm V4 is before V1",
+    "V4 bowl state: verify herbs are separate on top before mixing"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 53], \"event\": \"citrus zesting/juicing\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 44], \"event\": \"skewer cooking\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 36], \"event\": \"skewer assembly\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 65], \"event\": \"oil/pepper mixing\", \"confidence\": \"medium\"}], \"video5\": [{\"window\": [0, 7], \"event\": \"herb chopping\", \"confidence\": \"high\"}]}"
+  ]
+}

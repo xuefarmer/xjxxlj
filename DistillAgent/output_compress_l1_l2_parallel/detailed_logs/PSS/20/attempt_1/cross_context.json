@@ -1,0 +1,116 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "full object state inventory pending Layer1"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "blender_jar": {
+      "3": "empty -> filled with solids -> liquid",
+      "2": "filled with liquid -> partially empty",
+      "1": "unknown",
+      "4": "unknown"
+    },
+    "cabbage_head": {
+      "3": "present on cutting board",
+      "1": "present on cutting board, leaf separated",
+      "2": "present on cutting board",
+      "4": "present on cutting board"
+    },
+    "wrap_on_plate": {
+      "1": "open, cabbage base + carrots + radish + herbs",
+      "2": "open/unknown, base + carrots + greens, receiving sauce",
+      "4": "open -> closed, top leaf tucked over filling"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states across segments",
+    "container fill/empty",
+    "raw vs cooked",
+    "transfer traces",
+    "residue/depletion"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "full object state inventory pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "object states across segments",
+          "container fill/empty",
+          "raw vs cooked",
+          "transfer traces",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "3 -> 1 -> 2 -> 4",
+        "order_confidence": 6,
+        "confidence_basis": [
+          "V3 makes sauce (blender empty->liquid)",
+          "V2 pours sauce (blender liquid->depleted)",
+          "V1 assembles wrap base (open)",
+          "V4 closes wrap (top leaf added)"
+        ],
+        "blocking_uncertainties": [
+          "Does V2 pour sauce on open or closed wrap?",
+          "Does V1 happen before or after V3?",
+          "Exact ingredient visibility in V2 to confirm open state"
+        ],
+        "object_memory": {
+          "blender_jar": {
+            "3": "empty -> filled with solids -> liquid",
+            "2": "filled with liquid -> partially empty",
+            "1": "unknown",
+            "4": "unknown"
+          },
+          "cabbage_head": {
+            "3": "present on cutting board",
+            "1": "present on cutting board, leaf separated",
+            "2": "present on cutting board",
+            "4": "present on cutting board"
+          },
+          "wrap_on_plate": {
+            "1": "open, cabbage base + carrots + radish + herbs",
+            "2": "open/unknown, base + carrots + greens, receiving sauce",
+            "4": "open -> closed, top leaf tucked over filling"
+          }
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3 -> 1 -> 2 -> 4"
+  ],
+  "order_confidence": [
+    "6"
+  ],
+  "confidence_basis": [
+    "V3 makes sauce (blender empty->liquid)",
+    "V2 pours sauce (blender liquid->depleted)",
+    "V1 assembles wrap base (open)",
+    "V4 closes wrap (top leaf added)"
+  ],
+  "blocking_uncertainties": [
+    "Does V2 pour sauce on open or closed wrap?",
+    "Does V1 happen before or after V3?",
+    "Exact ingredient visibility in V2 to confirm open state"
+  ]
+}

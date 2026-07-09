@@ -1,0 +1,167 @@
+{
+  "confirmed": [],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"peel/cut potatoes, boil water, add potatoes. raw meat on counter.\", \"2\": \"pipe mashed potatoes onto meat in glass dish. bake.\", \"3\": \"brown lamb, add veg, sauce, wine, stock. cook filling in pan.\", \"4\": \"transfer cooked meat filling from red pot to glass dish, spread.\", \"5\": \"strain boiled potatoes, mash with butter/cheese in white bowl.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "potatoes": {
+      "1": "raw/peeled/cut -> boiling",
+      "5": "boiled -> strained -> mashed",
+      "2": "mashed -> piped"
+    },
+    "meat_filling": {
+      "1": "raw on counter",
+      "3": "raw -> browned -> cooked with veg/sauce/stock in pan",
+      "4": "cooked -> transferred to glass dish",
+      "2": "in glass dish -> topped with potatoes"
+    },
+    "glass_dish": {
+      "4": "empty -> filled with meat",
+      "2": "contains meat -> topped with potatoes -> baked"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states",
+    "prep vs cooking vs finishing",
+    "container fill levels",
+    "residue/depletion",
+    "potato state",
+    "meat state",
+    "glass dish contents"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states",
+          "prep vs cooking vs finishing",
+          "container fill levels",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "peel/cut potatoes, boil water, add potatoes. raw meat on counter.",
+          "2": "pipe mashed potatoes onto meat in glass dish. bake.",
+          "3": "brown lamb, add veg, sauce, wine, stock. cook filling in pan.",
+          "4": "transfer cooked meat filling from red pot to glass dish, spread.",
+          "5": "strain boiled potatoes, mash with butter/cheese in white bowl."
+        },
+        "object_memory": {
+          "potatoes": {
+            "1": "raw/peeled/cut -> boiling",
+            "5": "boiled -> strained -> mashed",
+            "2": "mashed -> piped"
+          },
+          "meat_filling": {
+            "1": "raw on counter",
+            "3": "raw -> browned -> cooked with veg/sauce/stock in pan",
+            "4": "cooked -> transferred to glass dish",
+            "2": "in glass dish -> topped with potatoes"
+          },
+          "glass_dish": {
+            "4": "empty -> filled with meat",
+            "2": "contains meat -> topped with potatoes -> baked"
+          }
+        },
+        "preliminary_order": "1->3->5->4->2",
+        "order_confidence": 9,
+        "confidence_basis": "Clear state transitions: raw potatoes (1) -> boiled/mashed (5) -> piped (2). raw meat (1) -> cooked in pan (3) -> transferred to dish (4) -> topped and baked (2).",
+        "blocking_uncertainties": [],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                75
+              ],
+              "event": "prep and boil potatoes",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                72
+              ],
+              "event": "pipe and bake",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                127
+              ],
+              "event": "cook meat filling",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                12
+              ],
+              "event": "transfer meat to dish",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                52
+              ],
+              "event": "mash potatoes",
+              "confidence": "high"
+            }
+          ]
+        },
+        "uncertain": [],
+        "dimensions_to_compare": [
+          "potato state",
+          "meat state",
+          "glass dish contents"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "1->3->5->4->2"
+  ],
+  "order_confidence": [
+    "9"
+  ],
+  "confidence_basis": [
+    "Clear state transitions: raw potatoes (1) -> boiled/mashed (5) -> piped (2). raw meat (1) -> cooked in pan (3) -> transferred to dish (4) -> topped and baked (2)."
+  ],
+  "blocking_uncertainties": [],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 75], \"event\": \"prep and boil potatoes\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 72], \"event\": \"pipe and bake\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 127], \"event\": \"cook meat filling\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 12], \"event\": \"transfer meat to dish\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 52], \"event\": \"mash potatoes\", \"confidence\": \"high\"}]}"
+  ]
+}

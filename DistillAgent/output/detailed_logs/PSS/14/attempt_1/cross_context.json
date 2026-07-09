@@ -1,0 +1,252 @@
+{
+  "confirmed": [
+    "1->5",
+    "2->3",
+    "3->5",
+    "5->4"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Chopping onion, shallot, garlic. Transfer to white bowl.\", \"2\": \"Pouring boiled white noodles from purple pot to blue-fish bowl. Dark food already in left bowl.\", \"3\": \"Draining white then dark noodles from blue-fish bowl to strainer.\", \"4\": \"Rolling spring roll. Wet rice paper, filling (VLM says shredded reddish-brown meat, likely raw mixed filling).\", \"5\": \"Mixing raw filling: ground meat, onions (from white bowl), carrots, mushrooms, glass noodles (from white bowl), egg, seasoning.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "white_bowl_aromatics": {
+      "1": "filled with chopped onion/shallot/garlic",
+      "5": "used to pour diced onions into meat"
+    },
+    "blue_fish_bowl": {
+      "2": "receives white noodles from pot",
+      "3": "drains white then dark noodles to strainer"
+    },
+    "strainer": {
+      "3": "receives drained noodles"
+    },
+    "glass_bowl_filling": {
+      "5": "receives raw meat and ingredients, mixed",
+      "4": "contains filling for rolling"
+    },
+    "rice_paper": {
+      "4": "wetted, folded, rolled"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked, empty/filled, separate/mixed)",
+    "tool contact",
+    "transfer traces",
+    "residue/depletion",
+    "bowl fill levels",
+    "noodle states (wet/drained/mixed)",
+    "wrapper state",
+    "filling composition"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All segment roles and object states pending Layer1 results."
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked, empty/filled, separate/mixed)",
+          "tool contact",
+          "transfer traces",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Chopping onion, shallot, garlic. Transfer to white bowl.",
+          "2": "Pouring boiled white noodles from purple pot to blue-fish bowl. Dark food already in left bowl.",
+          "3": "Draining white then dark noodles from blue-fish bowl to strainer.",
+          "4": "Rolling spring roll. Wet rice paper, filling (VLM says shredded reddish-brown meat, likely raw mixed filling).",
+          "5": "Mixing raw filling: ground meat, onions (from white bowl), carrots, mushrooms, glass noodles (from white bowl), egg, seasoning."
+        },
+        "object_memory": {
+          "white_bowl_aromatics": {
+            "1": "filled with chopped onion/shallot/garlic",
+            "5": "used to pour diced onions into meat"
+          },
+          "blue_fish_bowl": {
+            "2": "receives white noodles from pot",
+            "3": "drains white then dark noodles to strainer"
+          },
+          "strainer": {
+            "3": "receives drained noodles"
+          },
+          "glass_bowl_filling": {
+            "5": "receives raw meat and ingredients, mixed",
+            "4": "contains filling for rolling"
+          },
+          "rice_paper": {
+            "4": "wetted, folded, rolled"
+          }
+        },
+        "preliminary_order": [
+          1,
+          2,
+          3,
+          5,
+          4
+        ],
+        "order_confidence": 8,
+        "confidence_basis": "Direct object transfers: 1->5 (white bowl with aromatics), 2->3 (blue bowl filled then drained), 3->5 (noodles drained then added to mix), 5->4 (mixed filling then rolled).",
+        "blocking_uncertainties": [
+          "Verify VLM's 'cooked shredded meat' in Video 4 is actually the raw mixed filling from Video 5 to confirm 5->4.",
+          "Confirm 1 is before 2 based on typical prep flow or background cues."
+        ],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "Exact visual state of filling in Video 4 (raw vs cooked appearance)."
+        ],
+        "dimensions_to_compare": [
+          "bowl fill levels",
+          "noodle states (wet/drained/mixed)",
+          "wrapper state",
+          "filling composition"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "1": "chopped aromatics in white bowl",
+          "2": "blue bowl receives white noodles",
+          "3": "blue bowl drains noodles",
+          "4": "rolls spring roll with mixed filling",
+          "5": "mixes raw filling with aromatics and noodles"
+        },
+        "temporal_index": {
+          "1": [
+            {
+              "window": [
+                0,
+                27
+              ],
+              "event": "chopping and transferring aromatics",
+              "confidence": "high"
+            }
+          ],
+          "2": [
+            {
+              "window": [
+                0,
+                3
+              ],
+              "event": "pouring noodles to blue bowl",
+              "confidence": "high"
+            }
+          ],
+          "3": [
+            {
+              "window": [
+                0,
+                5
+              ],
+              "event": "draining noodles from blue bowl",
+              "confidence": "high"
+            }
+          ],
+          "4": [
+            {
+              "window": [
+                0,
+                21
+              ],
+              "event": "rolling spring rolls",
+              "confidence": "high"
+            }
+          ],
+          "5": [
+            {
+              "window": [
+                0,
+                30
+              ],
+              "event": "mixing raw filling",
+              "confidence": "high"
+            }
+          ]
+        },
+        "irrelevant_windows": [],
+        "confirmed": [
+          "1->5",
+          "2->3",
+          "3->5",
+          "5->4"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "uncertain": [],
+        "focus_plan": [],
+        "order_confidence": 8
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1",
+    "2",
+    "3",
+    "5",
+    "4"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "Direct object transfers: 1->5 (white bowl with aromatics), 2->3 (blue bowl filled then drained), 3->5 (noodles drained then added to mix), 5->4 (mixed filling then rolled)."
+  ],
+  "blocking_uncertainties": [
+    "Verify VLM's 'cooked shredded meat' in Video 4 is actually the raw mixed filling from Video 5 to confirm 5->4.",
+    "Confirm 1 is before 2 based on typical prep flow or background cues."
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"chopped aromatics in white bowl\", \"2\": \"blue bowl receives white noodles\", \"3\": \"blue bowl drains noodles\", \"4\": \"rolls spring roll with mixed filling\", \"5\": \"mixes raw filling with aromatics and noodles\"}"
+  ],
+  "temporal_index": [
+    "{\"1\": [{\"window\": [0, 27], \"event\": \"chopping and transferring aromatics\", \"confidence\": \"high\"}], \"2\": [{\"window\": [0, 3], \"event\": \"pouring noodles to blue bowl\", \"confidence\": \"high\"}], \"3\": [{\"window\": [0, 5], \"event\": \"draining noodles from blue bowl\", \"confidence\": \"high\"}], \"4\": [{\"window\": [0, 21], \"event\": \"rolling spring rolls\", \"confidence\": \"high\"}], \"5\": [{\"window\": [0, 30], \"event\": \"mixing raw filling\", \"confidence\": \"high\"}]}"
+  ],
+  "irrelevant_windows": [],
+  "pruned_targets": [],
+  "focus_plan": []
+}

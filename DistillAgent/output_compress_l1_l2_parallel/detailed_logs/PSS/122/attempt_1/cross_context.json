@@ -1,0 +1,376 @@
+{
+  "confirmed": [
+    "Video 2: steamer with battered chunks",
+    "Video 4: thick batter preparation",
+    "Video 3: crispy golden-brown food on plate",
+    "Video 4: thick batter preparation (first)",
+    "Video 2: battered chunks -> steamer (second)",
+    "Video 1: battered chunks -> oil/frying (third)",
+    "Video 3: crispy fried chunks retrieved from oil -> plate (fourth)",
+    "Video 2: raw battered chunks -> steamer (second)",
+    "Video 1: set/steamed chunks -> oil/frying (third)"
+  ],
+  "uncertain": [
+    "Order between Video 1 (frying) and Video 2 (steaming): does 2->1 or 1->2?",
+    "Visual evidence for chunk cooking state before each cooking method"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"transfer white chunks from glass bowl to metal pot with liquid\", \"2\": \"transfer white chunks from metal bowl to large pot (steamer?)\", \"3\": \"retrieve cooked golden-brown chunks from pot onto plate with paper towel\", \"4\": \"mix white substance in small pot, pour from cup, background large pots\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "white_chunks": {
+      "1": "wet/fresh in glass bowl -> transferred to pot",
+      "2": "wet/fresh in metal bowl -> transferred to large pot",
+      "3": "cooked/golden-brown on plate"
+    },
+    "pots": {
+      "1": "metal pot with liquid",
+      "2": "large pot (steamer?)",
+      "3": "pot (source of cooked chunks)",
+      "4": "small pot (mixing), background large pots"
+    },
+    "white_mixture": {
+      "4": "mixed in small pot, poured from cup"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states: raw/cooked, whole/cut, separate/mixed",
+    "container states: empty/filled, residue/depletion",
+    "tool contact and transfer traces",
+    "liquid state: water/oil/batter",
+    "chunk state: plain/coated/crispy/soft",
+    "vessel type: steamer/fryer/boiler",
+    "mixture consistency: thick batter/thin sauce"
+  ],
+  "resolved_uncertain": [
+    "Video 1: chunks COATED in batter, pot liquid is OIL",
+    "Video 3: pot liquid is OIL, food is CRISPY/fried",
+    "Order between Video 1 and Video 2: Video 2 has raw gloopy batter, Video 1 has set/steamed batter, proving 2->1"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "full object state chains across all 4 segments"
+        ],
+        "dimensions_to_compare": [
+          "object states: raw/cooked, whole/cut, separate/mixed",
+          "container states: empty/filled, residue/depletion",
+          "tool contact and transfer traces"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "transfer white chunks from glass bowl to metal pot with liquid",
+          "2": "transfer white chunks from metal bowl to large pot (steamer?)",
+          "3": "retrieve cooked golden-brown chunks from pot onto plate with paper towel",
+          "4": "mix white substance in small pot, pour from cup, background large pots"
+        },
+        "object_memory": {
+          "white_chunks": {
+            "1": "wet/fresh in glass bowl -> transferred to pot",
+            "2": "wet/fresh in metal bowl -> transferred to large pot",
+            "3": "cooked/golden-brown on plate"
+          },
+          "pots": {
+            "1": "metal pot with liquid",
+            "2": "large pot (steamer?)",
+            "3": "pot (source of cooked chunks)",
+            "4": "small pot (mixing), background large pots"
+          },
+          "white_mixture": {
+            "4": "mixed in small pot, poured from cup"
+          }
+        },
+        "preliminary_order": "4 -> 1 -> 2 -> 3",
+        "order_confidence": 6,
+        "confidence_basis": "Video 4 is prep (mixing). Video 3 is final (cooked/plated). Video 1 and 2 are intermediate transfers but vessel types and chunk states are ambiguous.",
+        "blocking_uncertainties": [
+          "Is Video 1 pot water or oil? Are chunks coated?",
+          "Is Video 2 pot a steamer or fryer? Are chunks coated?",
+          "Is Video 3 pot oil or water? Are chunks crispy?",
+          "What is Video 4 mixture (batter vs sauce)?"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                10
+              ],
+              "event": "chunk transfer",
+              "key_objects": [
+                "glass bowl",
+                "metal pot"
+              ],
+              "visible_state": "chunks wet, pot liquid",
+              "why_it_matters": "intermediate step",
+              "confidence": "medium"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "chunk transfer to large pot",
+              "key_objects": [
+                "metal bowl",
+                "large pot"
+              ],
+              "visible_state": "chunks wet, large pot",
+              "why_it_matters": "intermediate step",
+              "confidence": "medium"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                22
+              ],
+              "event": "plating cooked chunks",
+              "key_objects": [
+                "tongs",
+                "plate",
+                "pot"
+              ],
+              "visible_state": "golden-brown chunks",
+              "why_it_matters": "final step",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                39
+              ],
+              "event": "mixing white mixture",
+              "key_objects": [
+                "small pot",
+                "cup"
+              ],
+              "visible_state": "white mixture",
+              "why_it_matters": "prep step",
+              "confidence": "medium"
+            }
+          ]
+        },
+        "candidate_targets": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "vessel types (steamer vs fryer vs boiler)",
+          "liquid states (water vs oil vs batter)",
+          "chunk coating state",
+          "mixture type in Video 4"
+        ],
+        "dimensions_to_compare": [
+          "liquid state: water/oil/batter",
+          "chunk state: plain/coated/crispy/soft",
+          "vessel type: steamer/fryer/boiler",
+          "mixture consistency: thick batter/thin sauce"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "video1": {
+            "chunks": "PLAIN white (uncertain if coated)",
+            "pot_liquid": "uncertain water/oil",
+            "role": "intermediate transfer"
+          },
+          "video2": {
+            "chunks": "COATED in thick batter",
+            "pot": "STEAMER with perforated insert",
+            "role": "battering and steaming"
+          },
+          "video3": {
+            "food": "CRISPY golden-brown",
+            "pot_liquid": "uncertain oil/water",
+            "role": "final plating"
+          },
+          "video4": {
+            "mixture": "THICK BATTER",
+            "role": "batter preparation"
+          }
+        },
+        "confirmed": [
+          "Video 2: steamer with battered chunks",
+          "Video 4: thick batter preparation",
+          "Video 3: crispy golden-brown food on plate"
+        ],
+        "uncertain": [
+          "Video 1: are chunks plain or coated? Is pot liquid water or oil?",
+          "Video 3: is pot liquid oil or water?"
+        ],
+        "focus_plan": [
+          "Verify Video 1 chunk coating state and pot liquid type",
+          "Verify Video 3 pot liquid type and food texture"
+        ],
+        "preliminary_order": "4 -> 1 -> 2 -> 3",
+        "order_confidence": 6,
+        "confidence_basis": "Video 4 makes batter, Video 2 uses batter in steamer, Video 3 is final plating. Video 1 position uncertain pending coating/liquid verification.",
+        "blocking_uncertainties": [
+          "Video 1: chunk coating state and pot liquid type",
+          "Video 3: pot liquid type"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "order_confidence": 7,
+        "confirmed": [
+          "Video 4: thick batter preparation (first)",
+          "Video 2: battered chunks -> steamer (second)",
+          "Video 1: battered chunks -> oil/frying (third)",
+          "Video 3: crispy fried chunks retrieved from oil -> plate (fourth)"
+        ],
+        "resolved_uncertain": [
+          "Video 1: chunks COATED in batter, pot liquid is OIL",
+          "Video 3: pot liquid is OIL, food is CRISPY/fried"
+        ],
+        "comparison_table": {
+          "video4": {
+            "mixture": "THICK BATTER",
+            "role": "batter prep"
+          },
+          "video2": {
+            "chunks": "COATED batter",
+            "vessel": "STEAMER",
+            "role": "steaming"
+          },
+          "video1": {
+            "chunks": "COATED batter",
+            "vessel": "OIL",
+            "role": "frying"
+          },
+          "video3": {
+            "food": "CRISPY fried",
+            "vessel": "OIL",
+            "role": "plating"
+          }
+        }
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "order_confidence": 7,
+        "uncertain": [
+          "Order between Video 1 (frying) and Video 2 (steaming): does 2->1 or 1->2?",
+          "Visual evidence for chunk cooking state before each cooking method"
+        ],
+        "focus_plan": [
+          "Check if Video 2 chunks are raw (before frying) or partially cooked (after frying)",
+          "Check if Video 1 chunks are raw (before steaming) or partially cooked (after steaming)"
+        ]
+      }
+    },
+    {
+      "turn": 6,
+      "update": {
+        "order_confidence": 9,
+        "confirmed": [
+          "Video 4: thick batter preparation (first)",
+          "Video 2: raw battered chunks -> steamer (second)",
+          "Video 1: set/steamed chunks -> oil/frying (third)",
+          "Video 3: crispy fried chunks retrieved from oil -> plate (fourth)"
+        ],
+        "resolved_uncertain": [
+          "Order between Video 1 and Video 2: Video 2 has raw gloopy batter, Video 1 has set/steamed batter, proving 2->1"
+        ],
+        "comparison_table": {
+          "video4": {
+            "mixture": "THICK BATTER",
+            "role": "batter prep"
+          },
+          "video2": {
+            "chunks": "RAW wet/gloopy batter",
+            "vessel": "STEAMER",
+            "role": "steaming"
+          },
+          "video1": {
+            "chunks": "SET/steamed white pieces",
+            "vessel": "OIL",
+            "role": "frying"
+          },
+          "video3": {
+            "food": "CRISPY fried",
+            "vessel": "OIL",
+            "role": "plating"
+          }
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "4 -> 1 -> 2 -> 3"
+  ],
+  "order_confidence": [
+    "6",
+    "7",
+    "9"
+  ],
+  "confidence_basis": [
+    "Video 4 is prep (mixing). Video 3 is final (cooked/plated). Video 1 and 2 are intermediate transfers but vessel types and chunk states are ambiguous.",
+    "Video 4 makes batter, Video 2 uses batter in steamer, Video 3 is final plating. Video 1 position uncertain pending coating/liquid verification."
+  ],
+  "blocking_uncertainties": [
+    "Is Video 1 pot water or oil? Are chunks coated?",
+    "Is Video 2 pot a steamer or fryer? Are chunks coated?",
+    "Is Video 3 pot oil or water? Are chunks crispy?",
+    "What is Video 4 mixture (batter vs sauce)?",
+    "Video 1: chunk coating state and pot liquid type",
+    "Video 3: pot liquid type"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 10], \"event\": \"chunk transfer\", \"key_objects\": [\"glass bowl\", \"metal pot\"], \"visible_state\": \"chunks wet, pot liquid\", \"why_it_matters\": \"intermediate step\", \"confidence\": \"medium\"}], \"video2\": [{\"window\": [0, 11], \"event\": \"chunk transfer to large pot\", \"key_objects\": [\"metal bowl\", \"large pot\"], \"visible_state\": \"chunks wet, large pot\", \"why_it_matters\": \"intermediate step\", \"confidence\": \"medium\"}], \"video3\": [{\"window\": [0, 22], \"event\": \"plating cooked chunks\", \"key_objects\": [\"tongs\", \"plate\", \"pot\"], \"visible_state\": \"golden-brown chunks\", \"why_it_matters\": \"final step\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 39], \"event\": \"mixing white mixture\", \"key_objects\": [\"small pot\", \"cup\"], \"visible_state\": \"white mixture\", \"why_it_matters\": \"prep step\", \"confidence\": \"medium\"}]}"
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"video1\": {\"chunks\": \"PLAIN white (uncertain if coated)\", \"pot_liquid\": \"uncertain water/oil\", \"role\": \"intermediate transfer\"}, \"video2\": {\"chunks\": \"COATED in thick batter\", \"pot\": \"STEAMER with perforated insert\", \"role\": \"battering and steaming\"}, \"video3\": {\"food\": \"CRISPY golden-brown\", \"pot_liquid\": \"uncertain oil/water\", \"role\": \"final plating\"}, \"video4\": {\"mixture\": \"THICK BATTER\", \"role\": \"batter preparation\"}}",
+    "{\"video4\": {\"mixture\": \"THICK BATTER\", \"role\": \"batter prep\"}, \"video2\": {\"chunks\": \"COATED batter\", \"vessel\": \"STEAMER\", \"role\": \"steaming\"}, \"video1\": {\"chunks\": \"COATED batter\", \"vessel\": \"OIL\", \"role\": \"frying\"}, \"video3\": {\"food\": \"CRISPY fried\", \"vessel\": \"OIL\", \"role\": \"plating\"}}",
+    "{\"video4\": {\"mixture\": \"THICK BATTER\", \"role\": \"batter prep\"}, \"video2\": {\"chunks\": \"RAW wet/gloopy batter\", \"vessel\": \"STEAMER\", \"role\": \"steaming\"}, \"video1\": {\"chunks\": \"SET/steamed white pieces\", \"vessel\": \"OIL\", \"role\": \"frying\"}, \"video3\": {\"food\": \"CRISPY fried\", \"vessel\": \"OIL\", \"role\": \"plating\"}}"
+  ],
+  "focus_plan": [
+    "Verify Video 1 chunk coating state and pot liquid type",
+    "Verify Video 3 pot liquid type and food texture",
+    "Check if Video 2 chunks are raw (before frying) or partially cooked (after frying)",
+    "Check if Video 1 chunks are raw (before steaming) or partially cooked (after steaming)"
+  ]
+}

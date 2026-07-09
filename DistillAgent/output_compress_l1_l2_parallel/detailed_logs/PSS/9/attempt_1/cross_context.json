@@ -1,0 +1,202 @@
+{
+  "confirmed": [
+    "1->2->5->3->4"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "glass_bowl": {
+      "1": "raw chopped aromatics",
+      "5": "fried yellowish garlic"
+    },
+    "white_bowl_greens": {
+      "1": "raw fresh greens (background)",
+      "2": "raw -> blanched greens",
+      "3": "blanched greens (background)",
+      "4": "greens plated"
+    },
+    "black_pan": {
+      "1": "empty/dry -> dark sauce",
+      "2": "boiling water",
+      "5": "oil -> fried garlic removed"
+    },
+    "noodles": {
+      "3": "boiled, plated",
+      "4": "drained, plated with toppings"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states across segments",
+    "raw-to-cooked progression",
+    "container fill/empty transitions",
+    "transfer traces",
+    "residue/depletion",
+    "glass bowl contents",
+    "pan initial/final states",
+    "greens state progression",
+    "white bowl greens state",
+    "noodles state/position",
+    "plate state",
+    "pot state",
+    "char siu state",
+    "wonton soup state"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": true,
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states across segments",
+          "raw-to-cooked progression",
+          "container fill/empty transitions",
+          "transfer traces",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "glass_bowl": {
+            "1": "raw chopped aromatics",
+            "5": "fried yellowish garlic"
+          },
+          "white_bowl_greens": {
+            "1": "raw fresh greens (background)",
+            "2": "raw -> blanched greens",
+            "3": "blanched greens (background)",
+            "4": "greens plated"
+          },
+          "black_pan": {
+            "1": "empty/dry -> dark sauce",
+            "2": "boiling water",
+            "5": "oil -> fried garlic removed"
+          },
+          "noodles": {
+            "3": "boiled, plated",
+            "4": "drained, plated with toppings"
+          }
+        },
+        "preliminary_order": "1->2->5->3->4",
+        "order_confidence": 7,
+        "confidence_basis": [
+          "1->2: greens raw in V1, blanched in V2",
+          "1->5: glass bowl raw in V1, fried in V5",
+          "2->3->4: greens background in V3, plated in V4; noodles boiled in V3, assembled in V4"
+        ],
+        "blocking_uncertainties": [
+          "relative order of 2 and 5 (pan usage)",
+          "exact pan state transitions between 1, 2, 5"
+        ],
+        "uncertain": [
+          "relative order of 2 and 5"
+        ],
+        "dimensions_to_compare": [
+          "glass bowl contents",
+          "pan initial/final states",
+          "greens state progression"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 8,
+        "comparison_table": {
+          "1": "pan: sauce->boiling; glass bowl: raw aromatics added",
+          "2": "pan: empty->boiling water; greens: raw->blanched in white bowl",
+          "5": "pan: oil->fried garlic removed; glass bowl: raw->fried garlic",
+          "3": "noodles: lifted to plate; greens: blanched in white bowl",
+          "4": "noodles: lifted to plate; greens: placed beside; char siu added; garnish sprinkled"
+        },
+        "confirmed": [
+          "1->2->5->3->4"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": [],
+        "focus_plan": []
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "layer2_done": true,
+        "uncertain": [],
+        "dimensions_to_compare": [
+          "white bowl greens state",
+          "noodles state/position",
+          "plate state",
+          "pot state",
+          "char siu state",
+          "wonton soup state"
+        ]
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 8,
+        "comparison_table": {
+          "1": "pan: sauce->boiling; glass bowl: raw aromatics added; white bowl: raw greens",
+          "2": "pan: empty->boiling water; white bowl: raw->blanched greens",
+          "5": "pan: oil->fried garlic removed; glass bowl: raw->fried garlic",
+          "3": "noodles: lifted to plate; white bowl: blanched greens; glass bowl: empty",
+          "4": "noodles: plated; greens: placed beside; char siu: added; wonton soup: presented"
+        },
+        "confirmed": [
+          "1->2->5->3->4"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": [],
+        "focus_plan": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1->2->5->3->4"
+  ],
+  "order_confidence": [
+    "7",
+    "8"
+  ],
+  "confidence_basis": [
+    "1->2: greens raw in V1, blanched in V2",
+    "1->5: glass bowl raw in V1, fried in V5",
+    "2->3->4: greens background in V3, plated in V4; noodles boiled in V3, assembled in V4"
+  ],
+  "blocking_uncertainties": [
+    "relative order of 2 and 5 (pan usage)",
+    "exact pan state transitions between 1, 2, 5"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"pan: sauce->boiling; glass bowl: raw aromatics added\", \"2\": \"pan: empty->boiling water; greens: raw->blanched in white bowl\", \"5\": \"pan: oil->fried garlic removed; glass bowl: raw->fried garlic\", \"3\": \"noodles: lifted to plate; greens: blanched in white bowl\", \"4\": \"noodles: lifted to plate; greens: placed beside; char siu added; garnish sprinkled\"}",
+    "{\"1\": \"pan: sauce->boiling; glass bowl: raw aromatics added; white bowl: raw greens\", \"2\": \"pan: empty->boiling water; white bowl: raw->blanched greens\", \"5\": \"pan: oil->fried garlic removed; glass bowl: raw->fried garlic\", \"3\": \"noodles: lifted to plate; white bowl: blanched greens; glass bowl: empty\", \"4\": \"noodles: plated; greens: placed beside; char siu: added; wonton soup: presented\"}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": [],
+  "focus_plan": []
+}

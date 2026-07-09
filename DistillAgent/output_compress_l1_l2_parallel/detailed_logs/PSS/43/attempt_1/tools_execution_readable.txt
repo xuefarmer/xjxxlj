@@ -1,0 +1,186 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-06 17:32:17
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-06 17:28:54 -> 2026-07-06 17:29:33
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 31.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: Measuring cup (glass), brown broth, pot, chopped carrots/celery | action: Pouring broth into pot over sautéed vegetables | state: Measuring cup (filled -> empty/depleted), broth (liquid, wet), vegetables (cooked, cut, wet) | window: Frames 1-4 | query_link: | conf: High | uncertainty: None
+
+objects: Can (red label), tomato sauce/puree, pot, black spatula | action: Pouring canned tomato product into pot | state: Can (depleting/emptying), sauce (thick, red, wet, present), pot (filled with liquid) | window: Frames 5-11 | query_link: | conf: High | uncertainty: None
+
+objects: Red cutting board, knife, chopped fresh tomatoes, pot | action: Sliding chopped fresh tomatoes from board into pot | state: Tomatoes (cut, fresh, raw, red, wet), board (present), pot (filled, ingredients separate then mixing) | window: Frames 12-16 | query_link: | conf: High | uncertainty: None
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-06 17:28:54 -> 2026-07-06 17:29:23
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 49.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: pan, oil | action: heating oil | state: pan present, oil wet/present (small pool spreading) | window: Frames 1-4 | query_link: null | conf: high | uncertainty: none
+objects: onions, hand | action: adding onions | state: onions cut, raw, fresh; hand present | window: Frames 5-7 | query_link: null | conf: high | uncertainty: none
+objects: carrots, celery | action: adding vegetables | state: carrots/celery cut, raw, fresh; mixed with onions | window: Frames 8-9 | query_link: null | conf: high | uncertainty: none
+objects: spatula, vegetables (onions, carrots, celery) | action: stirring/sautéing | state: vegetables mixed, cooking (wilted/softening), steam visible | window: Frames 10-16 | query_link: null | conf: high | uncertainty: none
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-06 17:28:54 -> 2026-07-06 17:30:24
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 18.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: blender jar, orange liquid (puree/soup) | action: blending/mixing | state: filled (partially, ~2/3), liquid is mixed, wet. Froth/foam visible at top indicating agitation (frames 7-11). | window: Frames 1-16 | query_link: - | conf: high | uncertainty: none
+objects: blender jar upper walls | action: splashing/settling | state: residue present (orange splatter/droplets) on upper walls, liquid level depleted from peak height (frames 12-16). | window: Frames 7-16 | query_link: - | conf: high | uncertainty: none
+objects: mortar and pestle, fruit basket | action: none | state: present, static, background. | window: Frames 1-16 | query_link: - | conf: high | uncertainty: none
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-06 17:28:54 -> 2026-07-06 17:30:17
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 51.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: red sauce in pot, action: simmering, state: cooked, wet, chunky (cut tomatoes), filled, window: 1-16, query_link: N/A, conf: high, uncertainty: none
+objects: wooden pepper grinder, action: grinding, state: present, residue (pepper specks) visible on sauce surface, window: 2-3, query_link: N/A, conf: high, uncertainty: none
+objects: chopped green herbs, action: added to center, state: fresh, cut, separate (pile) initially, window: 5-7, query_link: N/A, conf: high, uncertainty: none
+objects: chopped green herbs (scattered), action: resting/dispersing, state: fresh, cut, separate (scattered), window: 8-11, query_link: N/A, conf: high, uncertainty: none
+objects: black slotted spatula, action: stirring, state: present, mixing herbs into sauce (mixed), window: 12-16, query_link: N/A, conf: high, uncertainty: none
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-06 17:31:19 -> 2026-07-06 17:31:56
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 31.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check the pot contents at the end of this segment. Are the fresh chopped tomatoes visibly separate/chunky or already broken down into a smooth sauce? Is the measuring cup empty? Return compact rows: object/action/state/window/query_link/conf/uncertain."
+}
+
+[Output]:
+pot | filled with broth, canned sauce, fresh chunky tomatoes | 16 | chunky/separate | high | no
+measuring_cup | empty | 4 | depleted | high | no
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-06 17:31:19 -> 2026-07-06 17:31:52
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 49.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check the pan contents at the end of this segment. Are the onions, carrots, and celery visibly wilted/sautéed and soft? Return compact rows: object/action/state/window/query_link/conf/uncertain."
+}
+
+[Output]:
+pan_contents | sautéing/softening | onions translucent, carrots/celery softened and sautéed | 14-16 | Yes, visibly sautéed and soft | high | none
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-06 17:31:19 -> 2026-07-06 17:31:57
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 18.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check the blender jar. Is the liquid a smooth orange puree/soup, or does it contain visible chunky pieces of tomato or herbs? Return compact rows: object/action/state/window/query_link/conf/uncertain."
+}
+
+[Output]:
+blender_jar | filled with smooth orange puree/soup, froth/foam at top, residue on walls, no large chunky pieces visible | 1-16 | smooth_puree | high | none
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_4) ###
+Time: 2026-07-06 17:31:19 -> 2026-07-06 17:32:00
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 51.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check the pot contents. Are the tomatoes still visibly chunky/cut, or are they completely broken down into a smooth puree? Are the green herbs visibly separate on top or fully blended into the liquid? Return compact rows: object/action/state/window/query_link/conf/uncertain."
+}
+
+[Output]:
+pot | simmering | tomatoes remain visibly chunky/cut with distinct vegetable pieces, not a smooth puree | Video 4 | chunky_vs_smooth | high | no
+herbs | added_and_stirred | green herbs appear as distinct separate pieces/flecks (initially piled on top, then scattered), not fully blended/dissolved | Video 4 | herb_integration | high | no
+
+------------------------------------------------------------
+

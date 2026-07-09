@@ -1,0 +1,290 @@
+{
+  "confirmed": [
+    "V4 before V5 (lobster state)",
+    "V1 before V3 (shrimp in bowl)",
+    "V3 before V6 (shrimp depleted)",
+    "V6 before V5 (frying done)"
+  ],
+  "uncertain": [
+    "V4 vs V1 order (both raw prep)"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "shrimp": {
+      "1": "raw, peeled, cut, seasoned in metal bowl",
+      "2": "raw, on plate with vegetables",
+      "3": "raw, in separate bowl",
+      "5": "cooked, fried, on final platter"
+    },
+    "lobster": {
+      "4": "raw, meat extracted, shells empty/depleted",
+      "5": "cooked, red shells, on final platter"
+    },
+    "vegetables": {
+      "2": "raw, cut, on plate with shrimp",
+      "3": "raw, cut, on separate plate",
+      "6": "raw, cut, on plate, being fried",
+      "5": "cooked, breaded, on final platter"
+    },
+    "tools": {
+      "1": "knife, spoon, hands",
+      "2": "wooden stick",
+      "3": "chopsticks, tongs",
+      "6": "chopsticks"
+    },
+    "batter_bowl": {
+      "2": "present, residue on walls",
+      "3": "present",
+      "6": "present, residue on sides"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states across segments",
+    "transfer traces",
+    "container fill/empty",
+    "residue/depletion",
+    "raw-to-cooked progression",
+    "tool type (wooden stick vs chopsticks/tongs)",
+    "shrimp location (plate vs bowl vs absent)",
+    "vegetable location (with shrimp vs separate)",
+    "lobster state (extracted vs plated)"
+  ],
+  "resolved_uncertain": [
+    "tool change: wooden stick (V2) -> chopsticks/tongs (V3, V6)",
+    "shrimp location: plate (V2) -> bowl (V3) -> absent (V6)"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "full object state inventory pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states across segments",
+          "transfer traces",
+          "container fill/empty",
+          "residue/depletion",
+          "raw-to-cooked progression"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "4->1->2->3->6->5",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V4: lobster prep (meat extracted, shells empty)",
+          "V1: shrimp prep (peeled, cut, seasoned in metal bowl)",
+          "V2: frying start (shrimp on veg plate, wooden stick tool)",
+          "V3: frying mid (shrimp in bowl, chopsticks/tongs tool)",
+          "V6: frying end (only veg, chopsticks tool, no shrimp)",
+          "V5: final plated dish (cooked lobster, shrimp, veg)"
+        ],
+        "blocking_uncertainties": [
+          "Verify tool change: wooden stick (V2) -> chopsticks/tongs (V3, V6)",
+          "Verify shrimp location: plate (V2) -> bowl (V3) -> absent (V6)",
+          "Confirm V4 vs V1 order (both raw prep, no direct tool link)"
+        ],
+        "object_memory": {
+          "shrimp": {
+            "1": "raw, peeled, cut, seasoned in metal bowl",
+            "2": "raw, on plate with vegetables",
+            "3": "raw, in separate bowl",
+            "5": "cooked, fried, on final platter"
+          },
+          "lobster": {
+            "4": "raw, meat extracted, shells empty/depleted",
+            "5": "cooked, red shells, on final platter"
+          },
+          "vegetables": {
+            "2": "raw, cut, on plate with shrimp",
+            "3": "raw, cut, on separate plate",
+            "6": "raw, cut, on plate, being fried",
+            "5": "cooked, breaded, on final platter"
+          },
+          "tools": {
+            "1": "knife, spoon, hands",
+            "2": "wooden stick",
+            "3": "chopsticks, tongs",
+            "6": "chopsticks"
+          },
+          "batter_bowl": {
+            "2": "present, residue on walls",
+            "3": "present",
+            "6": "present, residue on sides"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                58
+              ],
+              "event": "shrimp prep",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                17
+              ],
+              "event": "frying shrimp/veg, wooden stick",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                16
+              ],
+              "event": "frying shrimp/veg, chopsticks/tongs",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                10
+              ],
+              "event": "lobster extraction",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                20
+              ],
+              "event": "final platter",
+              "confidence": "high"
+            }
+          ],
+          "video6": [
+            {
+              "window": [
+                0,
+                10
+              ],
+              "event": "frying veg only, chopsticks",
+              "confidence": "high"
+            }
+          ]
+        },
+        "candidate_targets": [
+          {
+            "id": 2,
+            "reason": "verify wooden stick and shrimp on plate"
+          },
+          {
+            "id": 3,
+            "reason": "verify chopsticks/tongs and shrimp in bowl"
+          },
+          {
+            "id": 6,
+            "reason": "verify chopsticks and no shrimp"
+          }
+        ],
+        "low_value_targets": [
+          {
+            "id": 5,
+            "reason": "clearly final dish"
+          },
+          {
+            "id": 4,
+            "reason": "clearly raw lobster prep"
+          }
+        ],
+        "uncertain": [
+          "V4 vs V1 order (both raw prep)"
+        ],
+        "dimensions_to_compare": [
+          "tool type (wooden stick vs chopsticks/tongs)",
+          "shrimp location (plate vs bowl vs absent)",
+          "vegetable location (with shrimp vs separate)",
+          "lobster state (extracted vs plated)"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 8,
+        "comparison_table": {
+          "V4": "lobster raw, extracted, shells empty",
+          "V1": "shrimp raw, prepped, in metal bowl",
+          "V2": "shrimp+veg on plate, wooden stick, frying",
+          "V3": "shrimp in bowl, veg on plate, chopsticks/tongs, frying",
+          "V6": "shrimp absent, veg only, chopsticks, frying",
+          "V5": "lobster+shrimp+veg cooked, final platter"
+        },
+        "confirmed": [
+          "V4 before V5 (lobster state)",
+          "V1 before V3 (shrimp in bowl)",
+          "V3 before V6 (shrimp depleted)",
+          "V6 before V5 (frying done)"
+        ],
+        "resolved_uncertain": [
+          "tool change: wooden stick (V2) -> chopsticks/tongs (V3, V6)",
+          "shrimp location: plate (V2) -> bowl (V3) -> absent (V6)"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "4->1->2->3->6->5"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "V4: lobster prep (meat extracted, shells empty)",
+    "V1: shrimp prep (peeled, cut, seasoned in metal bowl)",
+    "V2: frying start (shrimp on veg plate, wooden stick tool)",
+    "V3: frying mid (shrimp in bowl, chopsticks/tongs tool)",
+    "V6: frying end (only veg, chopsticks tool, no shrimp)",
+    "V5: final plated dish (cooked lobster, shrimp, veg)"
+  ],
+  "blocking_uncertainties": [
+    "Verify tool change: wooden stick (V2) -> chopsticks/tongs (V3, V6)",
+    "Verify shrimp location: plate (V2) -> bowl (V3) -> absent (V6)",
+    "Confirm V4 vs V1 order (both raw prep, no direct tool link)"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 58], \"event\": \"shrimp prep\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 17], \"event\": \"frying shrimp/veg, wooden stick\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 16], \"event\": \"frying shrimp/veg, chopsticks/tongs\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 10], \"event\": \"lobster extraction\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 20], \"event\": \"final platter\", \"confidence\": \"high\"}], \"video6\": [{\"window\": [0, 10], \"event\": \"frying veg only, chopsticks\", \"confidence\": \"high\"}]}"
+  ],
+  "candidate_targets": [
+    "{\"id\": 2, \"reason\": \"verify wooden stick and shrimp on plate\"}",
+    "{\"id\": 3, \"reason\": \"verify chopsticks/tongs and shrimp in bowl\"}",
+    "{\"id\": 6, \"reason\": \"verify chopsticks and no shrimp\"}"
+  ],
+  "low_value_targets": [
+    "{\"id\": 5, \"reason\": \"clearly final dish\"}",
+    "{\"id\": 4, \"reason\": \"clearly raw lobster prep\"}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V4\": \"lobster raw, extracted, shells empty\", \"V1\": \"shrimp raw, prepped, in metal bowl\", \"V2\": \"shrimp+veg on plate, wooden stick, frying\", \"V3\": \"shrimp in bowl, veg on plate, chopsticks/tongs, frying\", \"V6\": \"shrimp absent, veg only, chopsticks, frying\", \"V5\": \"lobster+shrimp+veg cooked, final platter\"}"
+  ]
+}

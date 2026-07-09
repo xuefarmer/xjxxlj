@@ -1,0 +1,615 @@
+=== Master Dialogue Log (Readable) ===
+Generated: 2026-07-06 02:45:51
+
+--- [Step 0] SYSTEM ---
+You are a cross-video reasoning controller. Use one unified mechanism for all CrossVid tasks. Task-specific notes only change how you interpret the input schema, what visual evidence you ask the VLM to inspect, and the final answer format. They do not change the overall workflow.
+
+## Hard Rules
+1. Output exactly one valid JSON object per turn. No text outside JSON.
+2. Use visual tools before answering. Never answer from task priors, recipe/movie common sense, or option wording alone.
+3. Preserve every provided video/view/segment index. Do not drop, duplicate, or invent indices.
+4. Use `context_update` to maintain compact memory. Prefer structured evidence over prose.
+   - `context_update` memory must be grounded in prior tool results or explicit uncertainty/planning derived from them. Do not store invented observations, guessed final answers, placeholder object states, or speculative candidate orders as if they were evidence.
+5. If evidence is insufficient, focus or backtrack instead of guessing.
+6. Final answers must obey the task contract exactly.
+
+## Tools
+- `batch_observe`: plan multiple independent single-video observations.
+  - Use this for Layer1 and broad Layer2 scans on standard video tasks.
+  - Each batch item uses `video_index`, `start_time`, `end_time`, `num_frames`, and `focus_prompt`.
+  - For UAV/image-folder tasks, batch items may use `start_frame` and `end_frame` instead of `start_time` and `end_time`.
+  - The executor will automatically split long windows into chunks to maintain frame density. This is important; do not replace broad long-video scans with one sparse multi-video `observe`.
+- `observe`: visual observation tool.
+  - Standard videos use `video_index`, `start_time`, `end_time`, `num_frames`.
+  - UAV/image-folder tasks use `video_index`, `start_frame`, `end_frame`, `num_frames`.
+  - `focus_prompt` must begin with one of: `MODE=layer1`, `MODE=layer2`, `MODE=focus`, `MODE=focus BACKTRACK`.
+  - PSS may use compatibility names: `MODE=layer1_caption` and `MODE=layer2_state_scan`.
+- `get_caption`: optional subtitle/audio tool for video tasks only. Use it after Layer2 when visual evidence remains ambiguous and narration may locate or name a step.
+- `answer`: submit final answer.
+
+## Required JSON Action Schema
+Every assistant turn must be a tool/action command object, not a direct memory dump.
+
+Valid top-level actions:
+- `batch_observe`
+- `observe`
+- `get_caption`
+- `answer`
+
+For `batch_observe`, use exactly this top-level shape:
+```json
+{
+  "action": "batch_observe",
+  "thought": "Why broad independent scans are needed.",
+  "batch": [
+    {
+      "video_index": 1,
+      "start_time": 0,
+      "end_time": 60,
+      "num_frames": 12,
+      "focus_prompt": "MODE=layer1. ..."
+    }
+  ],
+  "context_update": {
+    "uncertain": ["..."],
+    "dimensions_to_compare": ["..."]
+  }
+}
+```
+For UAV/image-folder tasks, replace `start_time`/`end_time` in batch items with `start_frame`/`end_frame`.
+
+For `observe`, use exactly this top-level shape:
+```json
+{
+  "action": "observe",
+  "thought": "Why this observation is needed.",
+  "params": {
+    "observation_targets": [
+      {"video_index": 1, "start_time": 0, "end_time": 60, "num_frames": 10}
+    ],
+    "focus_prompt": "MODE=layer1. ..."
+  },
+  "context_update": {
+    "uncertain": ["..."],
+    "dimensions_to_compare": ["..."]
+  }
+}
+```
+
+For `get_caption`, use:
+```json
+{
+  "action": "get_caption",
+  "thought": "Why captions may help.",
+  "params": {"video_index": 1, "start_time": 0, "end_time": 120},
+  "context_update": {"uncertain": ["..."]}
+}
+```
+
+For `answer`, use:
+```json
+{
+  "action": "answer",
+  "thought": "Decisive evidence and close rejections.",
+  "final_answer": "..."
+}
+```
+
+Never put `layer1_done`, `event_memory`, `object_memory`, `temporal_index`, `candidate_targets`, or similar memory fields at the top level. Put them only inside `context_update`.
+Do not invent visual observations before a visual tool result. On the first turn, standard multi-video tasks usually need a `batch_observe` Layer1 call; UAV/image-folder and direct pair-comparison tasks may use `observe`.
+
+## Unified Workflow
+Always solve through four stages:
+
+### Layer1: broad independent perception
+Goal: build an unbiased inventory for every relevant video/view/segment.
+- First visual call for standard video tasks should usually be `batch_observe` covering all inputs independently. This preserves long-video chunking and broad coverage.
+- For standard multi-video tasks, Layer1 should use `batch_observe` unless the task contract explicitly says a side-by-side `observe` is required. Do not replace a full-video chunked scan with one sparse `observe`.
+- Use `observe` for Layer1 only when targets must be viewed side-by-side, when the task uses UAV/image-folder frame indices, or when clips are already short enough that one call has adequate coverage.
+- For broad standard-video Layer1 scans, set `num_frames = max(16, round(duration_seconds / 5))` unless the task contract says otherwise. The executor will split long windows into chunks of up to 16 frames, so full-video Layer1 chunks should normally run at 16 frames each.
+- Ask the VLM to describe each target independently; do not ask it to decide the final answer yet.
+- The Layer1 `focus_prompt` must be task-aware: name the query, relevant option semantics, and the evidence dimensions from the task contract.
+- Output memory should include:
+  - `layer1_done`: true
+  - `event_memory`: compact per-target event or scene facts
+  - `object_memory`: recurring or decisive objects/entities with per-target states
+  - `temporal_index`: target -> useful time/frame windows, each with window, event label, key objects, visible state, why it matters, and confidence
+  - `preliminary_answer`: the best current answer/order/table if one can be inferred from Layer1, otherwise null
+  - `preliminary_confidence`: integer 1-10 for that preliminary answer, where 8+ means the evidence is already strong enough to consider a direct answer
+  - `confidence_basis`: short evidence summary for the confidence score
+  - `blocking_uncertainties`: exact missing facts or close alternatives that prevent confidence from reaching 8
+  - `irrelevant_windows`: target -> checked windows or whole targets that look irrelevant, with a short reason and coverage note
+  - `candidate_targets`: plausible videos/views/segments/options and why
+  - `low_value_targets`: high-confidence irrelevant targets and why
+  - `uncertain`: unresolved distinctions
+  - `dimensions_to_compare`: exact visual dimensions needed next
+
+### Layer2: selective cross-analysis and targeted re-observation
+Goal: use Layer1 to avoid wasting VLM calls and build a comparison table.
+- Layer2 is normally expected before `answer`, but it is a supplemental verifier rather than a replacement for Layer1 evidence.
+- If Layer1 already contains high-confidence, directly visible, decisive evidence for a complete final answer and the close alternatives/relations are explicitly rejected, the controller may answer after Layer1 only when `preliminary_confidence >= 8`. Explain the decisive target/window/table/order evidence and include `confidence_score: N/10` in `thought`.
+- Otherwise, run one Layer2 re-check on the plausible candidate(s), close negative(s), or decisive window(s) to verify the conclusion.
+- First analyze Layer1 results yourself. Do not blindly send every chunk/video back to the VLM.
+- Layer2 may re-check all videos/chunks only when Layer1 leaves every one of them genuinely answer-relevant; then the thought must give a per-video/chunk reason. Otherwise select only the Layer1 chunks whose evidence is missing, conflicting, ambiguous, or capable of changing the answer.
+- Carry Layer1's `preliminary_answer`, `preliminary_confidence`, `confidence_basis`, and `blocking_uncertainties` into Layer2. Layer2 should verify or repair the current best hypothesis rather than inventing an unrelated or opposite hypothesis.
+- When forming a Layer2/focus hypothesis, start from the current leading answer/edge and the closest explicitly named alternative. Do not choose the reverse relation as the main hypothesis unless Layer1 evidence made that reverse relation plausible.
+- Prune targets that are both high-confidence and irrelevant. Keep them in `low_value_targets` with the reason, but do not re-observe them unless a later contradiction appears.
+- Re-observe only:
+  - plausible candidates;
+  - targets with missing decisive state;
+  - targets needed as a comparison anchor;
+  - edge cases that could change the answer.
+- Layer2 must not simply increase frame count. Prefer changing the attention/checklist over adding frames.
+- Layer2 must cite the Layer1 evidence or chunk label that caused each target/window to be selected. A Layer2 call that merely repeats the Layer1 full scan without this selection rationale is invalid.
+- For standard-video retained targets, use `batch_observe` when re-checking independent videos or long windows. Use `observe` only for side-by-side comparison or short retained windows where direct comparison is needed.
+- When Layer2 prunes a few irrelevant chunks from a long video, keep the remaining chunk windows and re-check only those. Do not collapse a long retained video into one sparse 8-12 frame `observe`.
+- Use similar or slightly lower frame density than Layer1 for broad retained scans, but preserve chunked coverage. The point is to drop unnecessary chunks, not to stop chunking altogether.
+- The Layer2 prompt must include a concrete checklist derived from Layer1, not generic "look carefully" instructions.
+- Use Layer1's `temporal_index` to choose retained windows. If Layer1 did not localize a needed event, Layer2 should ask the VLM to produce or refine that index before broad high-frame focus.
+- When re-checking a Layer1 chunk, copy the exact seconds from that chunk label. For example, if Layer1 says `[Chunk 2/7 (85s-171s)]`, the Layer2 target must use that same `[85, 171]` window, not the next chunk. If a Layer2 result contradicts Layer1, first verify that the same video and same time window were inspected before overturning Layer1 evidence.
+- Do not overturn a high-confidence Layer1 finding using a Layer2 result from a different window, lower-coverage sample, or generic absence statement. Use Layer2 contradictions to refine or request focused verification unless they inspect the same evidence window with stronger direct evidence.
+- Required memory update:
+  - `layer2_done`: true
+  - `comparison_table`: target -> decisive state/evidence/uncertainty
+  - `temporal_index`: refined candidate windows with event labels, key objects, visible states, and confidence
+  - `irrelevant_windows`: windows or targets excluded from future focus, with reason
+  - `confirmed`: high-confidence findings with evidence
+  - `pruned_targets`: targets not sent to VLM again, with reason
+  - `candidate_targets`: remaining plausible targets
+  - `uncertain`: exact unresolved relations or labels
+  - `focus_plan`: ranked list of next focus calls with predicted evidence
+
+### Focus Compare: predict -> observe -> reply
+Goal: resolve one concrete uncertainty with denser evidence.
+- Before each focus call, state a hypothesis and a competing alternative in `thought`.
+- Predict what visual evidence should appear for each interpretation.
+- Focus only the minimal necessary targets/chunks: usually 1-2 targets, never broad full scans.
+- Focus normally uses `observe`, because it compares specific windows side-by-side or inspects one narrow window densely.
+- Increase frame density over Layer2 for the same time/window because this is detailed verification:
+  - standard video focus: usually 16-32 frames per target;
+  - short clips or PSS pair focus: 12-16 can be enough;
+  - UAV focus: 24-32 frames per synchronized view when tracking/occlusion matters.
+- Narrow the time/frame window. Prefer exact candidate chunks found in Layer1/Layer2 over whole-video focus.
+- Every focus call should cite the `temporal_index` window it is using. If no indexed window exists, first use Layer2 or captions to locate one unless the full clip is already very short.
+- Focus prompts must be symmetric: define evidence for hypothesis A and evidence for hypothesis B, then ask for contradiction checks.
+- Never treat the order of frames in a multi-target `observe` call as chronology across different videos. The executor concatenates frames only for display. Use frame mapping to identify source video/local window, not to decide which video came first.
+- If focus contradicts earlier memory, use `MODE=focus BACKTRACK` and update `resolved_uncertain`.
+- After focus, update:
+  - `confirmed` or `resolved_uncertain`;
+  - remaining `uncertain`;
+  - `object_memory` / `comparison_table`;
+  - whether another focus is needed before answering.
+
+### Answer
+Answer only when the decisive evidence is explicit enough for the task.
+- You may answer directly after Layer1 only when Layer1 evidence is high-confidence, directly visible, complete for the required final format, no close candidate/relation remains unresolved, and `confidence_score >= 8/10`.
+- If answering after Layer1, cite the decisive target/window, option table, interval, or order graph and write `confidence_score: N/10` in `thought`.
+- If confidence is 7/10 or lower, or if no numeric confidence is available, do not answer from Layer1; run Layer2/focus.
+- Otherwise, run Layer2/focus before answering.
+- `thought` must summarize the decisive evidence and explain close rejections.
+- `final_answer` must contain only the required answer format from the task contract.
+- For multiple-select and ordering tasks, count/check all required indices or letters before answering.
+
+## General VLM Prompt Style
+Every visual `focus_prompt` should be short but specific:
+- start with mode;
+- name the task-specific query;
+- name the targets/options being checked;
+- list 4-8 decisive visual dimensions;
+- ask for uncertainty explicitly;
+- avoid asking the VLM for the final answer unless the task is a direct VLM comparison.
+- ask the VLM to report approximate time/frame locations for decisive events when it can infer them from frame mapping, so the controller can update `temporal_index`.
+- ask for concise key evidence only: task-relevant visible objects/actions/states, approximate time/window, and confidence. Avoid long recipe narration, background details, or speculative cross-video conclusions.
+- For a single-video `batch_observe` item, never ask the VLM to decide whether something appears in other videos. Ask only for evidence inside that one video/chunk; the controller compares across videos after all per-video evidence returns.
+
+Good Layer2 wording:
+`MODE=layer2. Based on Layer1, re-check only the plausible candidates and refine the temporal_index. For each retained target, fill this checklist: [specific object/state dimensions]. For each decisive event, report the approximate time/frame window if visible. Mark non-visible details using ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, or UNCERTAIN according to the negative-evidence rules. Do not discuss pruned targets.`
+
+Good Focus wording:
+`MODE=focus. Hypothesis A: ... Expected evidence: ... Hypothesis B: ... Expected evidence: ... Inspect only [objects/actions/landmarks]. Report which hypothesis is supported, contradicted, or insufficient.`
+
+## Temporal Retrieval Index
+Maintain a lightweight retrieval index so later stages focus on specific chunks instead of full videos.
+- For standard videos, use seconds: `[start_time, end_time]`.
+- For UAV/image-folder tasks, use frame indices: `[start_frame, end_frame]`.
+- For PSS, each clipped segment's local time starts at 0; record the local window inside that segment.
+- For PSS and other shuffled-video tasks, `temporal_index` windows are local retrieval pointers only. They are not global timestamps and must never be compared across different `video_index` values to infer order.
+- Index only useful windows:
+  - `candidate_windows`: likely answer-relevant moments;
+  - `decisive_moments`: narrow events that could prove/reject an option or ordering edge;
+  - `irrelevant_windows`: windows already checked and unlikely to matter.
+- Each indexed item should include: target/video/view/segment id, window, event label, key objects/entities, visible state, why it matters, and confidence (`high`, `medium`, or `low`).
+- When a VLM result is chunked by executor as "part 2/5, time 88s-176s", preserve that chunk range in `temporal_index` even if the exact event time is approximate.
+
+Example:
+```json
+"temporal_index": {
+  "video2": [
+    {
+      "window": [72, 96],
+      "event": "possible detach/reinstall",
+      "key_objects": ["base", "chassis"],
+      "visible_state": "part removed then reattached",
+      "why_it_matters": "could decide option A",
+      "confidence": "medium"
+    }
+  ]
+}
+```
+
+## Negative Evidence Rules
+Be precise about absence.
+- Use `ABSENT` only when the sampled window covers the relevant stage/location and the object/action should be visible if present.
+- Use `NOT_VISIBLE_IN_THESE_FRAMES` when the current frames do not show it, but the sampled window may not cover the relevant moment or camera view.
+- Use `UNCERTAIN` when the detail would affect the answer and the frames are ambiguous, occluded, blurred, too sparse, or outside the relevant window.
+- Do not convert `NOT_VISIBLE_IN_THESE_FRAMES` into a global negative conclusion. If it matters, add a `temporal_index` gap and focus/caption plan.
+- If earlier context reported an object/action but current frames do not show it, write `NOT_VISIBLE_IN_THESE_FRAMES - possibly in another indexed window` rather than directly contradicting prior evidence.
+
+## Captions
+- Do not call `get_caption` before Layer2.
+- Captions are auxiliary for names, timing, dialogue, or step labels.
+- Visual state evidence remains primary. If captions and visuals conflict, focus/backtrack visually.
+- Captions are unavailable for UAV/image-folder tasks.
+
+## Common Failure Modes To Avoid
+- Re-observing every target in Layer2 after Layer1 already ruled some out.
+- Using higher frame count in Layer2 instead of a better checklist.
+- Using broad focus windows instead of the specific uncertain chunk.
+- Selecting an option because it sounds plausible but the option-specific action/state is not visible.
+- Treating absent in sampled frames as globally absent without noting possible frame coverage limits.
+- Reversing a visible state chain.
+- Letting captions replace visual confirmation.
+
+## Task Contract: PSS
+Task: restore shuffled segments from one cooking video to chronological order.
+
+Input semantics:
+- Each provided `video_index` is a clipped segment from the same original video.
+- The answer must order all segment indices exactly once.
+- Segment labels are arbitrary shuffled indices; do not assume numeric order is chronological.
+
+Evidence dimensions:
+- event role: prep, transformation, transfer, cooking, finishing, inspection;
+- operated object state chain: raw/cut/mixed/cooked/plated, wet/dry, full/empty, residue/depletion;
+- source and destination containers, tool contact, transfer traces;
+- quiet background cues that show before/after state;
+- state-transition graph built by the master from local visible rows.
+
+Workflow notes:
+- Layer1 scans every segment independently and must not infer final ordering yet. For executor compatibility, PSS Layer1 prompts must begin with `MODE=layer1_caption`.
+- Layer1 prompts must ask for object states explicitly, not only event roles. Use wording like: "Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion."
+- After Layer1 tool results, PSS must restore the cross-video memory mechanism before Layer2. Use `context_update` to store only evidence grounded in prior tool results. The primary PSS memory schema is object-centric:
+  `object_memory: {object_key: {video_index: visible_state}}`.
+  Example: `{"noodles": {"3": "raw/dry on plate", "2": "boiled soft strands in pan", "1": "mixed with sauce"}, "spinach": {"4": "fresh whole leaves", "2": "wilting with noodles", "1": "mixed into finished dish"}}`.
+- After Layer1, also store `preliminary_order`, `order_confidence` (integer 1-10), `confidence_basis`, and `blocking_uncertainties`. This is not a final answer; it is the current best state-transition graph that Layer2 must verify or repair.
+- For PSS, `order_confidence >= 8` means Layer2 should mostly verify the current graph and close alternatives. `order_confidence <= 7` means Layer2 should actively search for missing object bridges or contradictions.
+- Use `event_memory` only as secondary per-video notes. Do not make `object_memory` primarily video-centric, such as `{"video4": {"object": "spinach", "state_chain": [...]}}`; that structure overweights local clip-internal actions and causes wrong ordering.
+- After Layer1, identify recurring or decisive objects before choosing Layer2 targets: noodles/pasta, spinach/vegetables, sauce/red pot, oil, pan/pot/strainer, plate/bowl, cutting board, tongs, residue, empty/full containers. Track shared objects even when they appear only as background cues.
+- **Layer2 = Discriminative Evidence Reinspection.** Layer1 discovers shared objects/regions/events that recur across segments and may determine the order. Layer2 re-observes these linked evidence items at finer granularity to clarify their actual visible state in each segment. For executor compatibility, Layer2 prompts must begin with `MODE=layer2_state_scan`.
+- Layer2 is NOT hypothesis confirmation. Do NOT pass the Master's preliminary_order or expected states to the VLM. Ask the VLM to report what is actually visible for each linked evidence item: identity, presence/absence, count, position, state (raw/cooked, empty/filled, clean/dirty), source/destination, residue/depletion, and any difference from what was seen in Layer1.
+- Layer1 and Layer2 are mandatory before `answer`. Do not answer directly after Layer1; Layer2 clarifies the shared evidence that bridges segments.
+- Layer2 must inherit `preliminary_order`, `order_confidence`, `confidence_basis`, and `blocking_uncertainties` from Layer1 — these guide which evidence to prioritize, but remain internal to the Master and are not shown to the VLM.
+- After receiving Layer2 results, perform a contradiction check in `thought`: compare each segment's VLM-reported evidence against the hypothesized state-transition graph. If any evidence contradicts the hypothesized ordering, downgrade `order_confidence` and resolve via focus or caption before answering.
+- Layer2 may raise `order_confidence` only when new observations directly resolve a named item from `blocking_uncertainties` or reveal a missing object bridge. Repeated descriptions of already-known states are not sufficient.
+- **When answering, `order_confidence` (integer 1-10) must be a key in `context_update`**, not only in `thought`. The executor checks `context_update` for this value. Without it, the answer will be rejected regardless of reasoning quality.
+- In Layer2 focus_prompt: do not ask the VLM for ordering, do not use words like "confirm", "verify", "should", or "expected". Ask for local visible evidence only. Example: "Look at this segment. Report the actual visible state of the white bowl: EMPTY / CONTAINS_SEPARATE_INGREDIENTS / MIXED / PLATED / NOT_VISIBLE. Also: is the cutting board present? If yes: CLEAN or HAS_RESIDUE? Report exactly what you see."
+- Layer2 frame count should stay equal to Layer1. Narrow the observation window to the informative chunk(s) where the evidence appears.
+- If two segments have the same coarse role, such as both showing combined cooking, do not order them arbitrarily. Use local visible cues such as ingredient amount, mixture integration, pan fullness, steam/browning, residue/depletion, utensil action, and whether a transfer has just occurred; if still tied after Layer2, run focus on that adjacent relation.
+- Do not assign a segment to early/middle/late order from a recipe label alone. Place it by visible state continuity: what objects are already present, what changes during the clip, what residue/depletion remains, and which later visible state can consume that result.
+- Focus is optional, not mandatory. If Layer2 gives a complete high-confidence state-transition graph with all necessary relations supported by visible object states, answer directly after Layer2.
+- Focus resolves one adjacent relation or state-chain conflict at a time with higher frame density than Layer2, usually 12-16 frames per compared segment.
+- Focus targets must come from `uncertain_visual_states`, `next_object_focus`, object-memory gaps, or contradictions in object states. Do not choose a focus pair merely because it appears adjacent in a guessed answer or because the executor might prefer a focus call.
+- Focus prompts must not ask the VLM to decide which segment is earlier, which hypothesis is supported, or whether Video A happens before Video B. Ask for per-target cells only: named object state, container fill/empty state, source/destination, residue/depletion, background object state, and uncertainty. The master compares the cells after the tool returns.
+- Do not write expected focus evidence that assumes one proposed order is true, such as "if A is before B, B should already contain X", unless that expectation is explicitly grounded in earlier tool output. Prefer neutral wording: "For each target, report whether object X is ABSENT, EMPTY/CLEAR, PARTLY_FILLED, FILLED_DARK, or NOT_VISIBLE."
+- When a focus call is needed, include the current leading relation and current overall order confidence in `thought`, but keep the VLM prompt neutral. Example: thought may say `leading_relation=5 before 3, alternative=3 before 5, order_confidence=7/10`; the VLM prompt should ask only for local object-state cells in Video 5 and Video 3.
+- If focus contradicts a high-confidence Layer2 edge, do not immediately reverse the order. Use `MODE=focus BACKTRACK` or another neutral focus/caption call to verify the contradiction, then update `resolved_uncertain` and downgrade the old edge only if the new direct evidence is stronger.
+- After Layer2, do not answer if any adjacent relation in the proposed order is supported only by recipe common sense, "cooking logic", coarse role labels, or a generic idea of what usually happens first/last. Standalone components such as sauce, flame, garnish, dressing, chopping, mixing, and plating may appear in non-obvious positions in the source video.
+- If local rows do not give direct visible continuity for a complete total order, call `get_caption` on every segment involved in unresolved ties, using each segment's full local window. Captions are allowed after Layer2 for PSS and may provide spoken step labels, temporal words, or demonstrated ordering. Keep `context_update` empty on caption actions too.
+- If captions are absent or still ambiguous, run `observe` focus on the smallest tied set, normally 2 segments, and ask only for visible differences in local state maturity, transfer completion, ingredient amount, residue/depletion, or background object state. If the focus still cannot prove the edge, mark the tie in `thought`; do not pretend it is proven by recipe logic.
+- In focus and Layer2, never use the concatenated frame order or frame numbers from different video_index values as chronological evidence. `Frames 1-16 from Video A` appearing before `Frames 17-32 from Video B` only means the executor packed Video A before Video B in the prompt.
+- Compare only visible object-lifecycle evidence: raw/cooked, empty/filled, separated/mixed, source/destination transfer, residue/depletion, object presence/absence, completion marks, background vessel state, and contradictions.
+- Do not ask the VLM to decide ordering from "frame-level timestamps" across videos, hypothesized cross-segment orders, or recipe logic. The VLM reports local object states only; cross-segment dependency reasoning is master-only.
+- Before answering, form an explicit state-transition graph from `object_memory`, with relations like `A before B: object_key state in A visibly precedes/feeds/contradicts state in B`. List unresolved ties, and run caption/focus for any tie that changes the final order. Then check every segment is placed exactly once.
+- The final `thought` must include one overall `confidence_score: N/10`. This is the confidence that the complete final order is correct, not confidence in a single easy relation.
+- Calibrate `confidence_score` conservatively: it may be `>=8` only when the complete order is visually supported and no critical relation, object-chain conflict, or close same-role tie remains unresolved. If any necessary relation is based on recipe common sense, a coarse role label, a conflicting object chain, or an unresolved tie, set `confidence_score <= 7` and do not answer; call caption/focus instead.
+- Before any final `answer`, include an `ORDER_AUDIT` in `thought` with four fields: `supporting_chains`, `conflicting_chains`, `unresolved_relations`, and `confidence_change`. `confidence_change` must explain why the final score is higher, lower, or unchanged compared with Layer1 `order_confidence`.
+- If `conflicting_chains` or `unresolved_relations` is non-empty, the final `confidence_score` must be `<=7` unless a later caption/focus result directly resolves each listed item.
+- The final `thought` must also include an `EDGE_TABLE` for evidence audit, but do not assign per-edge confidence scores. Each relation may use one of these evidence types: `direct_transfer`, `same_object_state_progression`, `visible_completion_to_next_start`, `caption_temporal_cue`, or `focused_visual_tie_break`. Do not use evidence types like `recipe_logic`, `common_sense`, `typical_order`, `coarse_role_only`, or `sounds_later`.
+
+Final answer:
+- `final_answer` is a string like `"3->5->4->2->1"` containing every segment index exactly once.
+
+
+============================================================
+
+--- [Step 1] USER ---
+[
+  {
+    "type": "text",
+    "text": "{\"query\": \"Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.\", \"videos\": [{\"video_index\": 1, \"duration_seconds\": 37.0}, {\"video_index\": 2, \"duration_seconds\": 31.0}, {\"video_index\": 3, \"duration_seconds\": 2.0}, {\"video_index\": 4, \"duration_seconds\": 25.0}, {\"video_index\": 5, \"duration_seconds\": 12.0}], \"hard_rule\": \"For any full-video observation, set start_time=0 and end_time to the video's duration_seconds value (provided above). Do NOT copy end_time from prompt examples — use the actual duration of each video.\"}"
+  }
+]
+
+============================================================
+
+--- [Step 2] ASSISTANT ---
+{
+  "action": "batch_observe",
+  "thought": "Need to independently scan all 5 segments to build an unbiased inventory of objects, states, and events before attempting to order them.",
+  "batch": [
+    {
+      "video_index": 1,
+      "start_time": 0,
+      "end_time": 37.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report any text or spoken words if visible/audible."
+    },
+    {
+      "video_index": 2,
+      "start_time": 0,
+      "end_time": 31.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report any text or spoken words if visible/audible."
+    },
+    {
+      "video_index": 3,
+      "start_time": 0,
+      "end_time": 2.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report any text or spoken words if visible/audible."
+    },
+    {
+      "video_index": 4,
+      "start_time": 0,
+      "end_time": 25.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report any text or spoken words if visible/audible."
+    },
+    {
+      "video_index": 5,
+      "start_time": 0,
+      "end_time": 12.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report any text or spoken words if visible/audible."
+    }
+  ],
+  "context_update": {
+    "uncertain": [
+      "All segment roles and object states pending Layer1"
+    ],
+    "dimensions_to_compare": [
+      "object states (raw/cooked, whole/cut, empty/filled)",
+      "tool contact",
+      "transfer traces",
+      "residue/depletion"
+    ]
+  }
+}
+
+============================================================
+
+--- [Step 3] TOOL ---
+[
+  {
+    "type": "text",
+    "text": "{\"call_id\": \"batch_1\", \"tool_name\": \"active_perception\", \"result\": \"{\\\"1\\\": \\\"Based on the visual evidence from the 16 frames, here is the description of the operation, objects, and states:\\\\n\\\\n**Operation:**\\\\nA woman is preparing a sauce in a black pan on a stovetop. The process involves combining a dark liquid base (likely soy sauce or oyster sauce), hot water, and chopped aromatics (likely garlic or ginger), then heating and stirring the mixture until it boils.\\\\n\\\\n**Visible Objects/Tools and States:**\\\\n\\\\n*   **Black Pan:**\\\\n    *   **State:** Filled with liquid. Initially contains a pool of dark sauce, which expands as water is added. By the end, it contains a boiling, dark brown sauce. It is wet and hot.\\\\n*   **Wooden Chopsticks:**\\\\n    *   **State:** Present. Used to stir the liquid in the pan and to hold small glass bowls while pouring.\\\\n*   **Small Glass Bowls:**\\\\n    *   **State:** Initially filled with dark liquid and later with chopped aromatics. They become empty/depleted after the contents are poured into the pan. Residue of the dark sauce remains on the chopsticks and bowl rims.\\\\n*   **Blue/White Kettle:**\\\\n    *   **State:** Present. Used to pour clear, hot water into the pan.\\\\n*   **White Bowl (on counter):**\\\\n    *   **State:** Filled with green vegetables.\\\\n*   **Green Vegetables (Bok Choy):**\\\\n    *   **State:** Fresh, raw, whole, green. They are sitting separate from the pan.\\\\n*   **Chopped Aromatics (Garlic/Ginger):**\\\\n    *   **State:** Cut (chunks/slices), raw, yellowish-white. They are added to the sauce and become mixed in.\\\\n*   **Stainless Steel Pot (background):**\\\\n    *   **State:** Filled with boiling liquid (possibly pasta water).\\\\n*   **Salt/Pepper Shakers:**\\\\n    *   **State:** Present on the counter, filled.\\\\n\\\\n**Sequence of Events:**\\\\n1.  **Frames 1-5:** Dark, viscous liquid is poured from small glass containers into the pan and stirred with chopsticks. The liquid pools in the center.\\\\n2.  **Frame 6:** Hot water is poured from a kettle into the pan, diluting the dark sauce.\\\\n3.  **Frames 9-10:** The mixture in the pan is brought to a boil; bubbles are visible across the surface. The woman stirs it vigorously.\\\\n4.  **Frames 14-16:** Chopped yellow aromatics (garlic/ginger) are poured from a small glass bowl into the simmering sauce and stirred in.\\\\n\\\\n**Text/Spoken Words:**\\\\n*   No text is visible on screen.\\\\n*   In Frames 7-8 and 11-13, the woman's mouth is moving, indicating she is speaking, likely explaining the recipe.\\\", \\\"2\\\": \\\"Based on the visual evidence in the frames, here is the description of the operation and object states:\\\\n\\\\n**Operation:**\\\\nThe video depicts a cooking process, specifically blanching green vegetables. A woman pours hot water into a pan, brings it to a boil, cooks the vegetables in the water, and then removes them.\\\\n\\\\n**Visible Objects/Tools:**\\\\n*   **Person:** A woman wearing a blue shirt and a dark apron with a white tie.\\\\n*   **Tools:** Black electric kettle, black wide pan (wok-style), stainless steel pot with a glass lid, white ceramic bowl, stainless steel mixing bowl, small glass bowl, wooden spoon, wooden chopsticks.\\\\n*   **Ingredients:** Green leafy vegetables (resembling choy sum or bok choy), water.\\\\n\\\\n**Object States:**\\\\n*   **Water:** Initially inside the black electric kettle (filled/hot). It is poured into the black pan, becoming **filled** and **boiling** (visible bubbles and steam).\\\\n*   **Vegetables:**\\\\n    *   **Initial State:** Seen in the white bowl (Frames 5-6). They are **raw**, **fresh**, **whole** (long stems with leaves), and **dry** (relative to being submerged).\\\\n    *   **Cooking State:** Placed into the pan (Frame 7). They become **wet**, **mixed** with the boiling water, and are being cooked.\\\\n    *   **Final State:** Removed from the pan (Frames 13-16). They appear **cooked** (brighter green, slightly **wilted**/softened), **wet**, and are transferred back into the white bowl.\\\\n*   **Pan:** Starts **empty**, becomes **filled** with water, then contains the mixed vegetables and water. As vegetables are removed, the pan shows **depletion** of the solid food, leaving only the boiling water.\\\\n*   **Kettle:** Starts **filled**, becomes **depleted** as water is poured out.\\\\n*   **White Bowl:** Starts **filled** with raw vegetables, is emptied (implied as veggies go into pan), and is then **filled** again with the cooked vegetables.\\\\n\\\\n**Text/Spoken Words:**\\\\n*   The woman appears to be speaking in Frames 5 and 12, likely explaining the recipe, but no specific text or subtitles are visible on screen.\\\", \\\"3\\\": \\\"Based on the visual evidence from the frames, here is the description of the operation and object states:\\\\n\\\\n**Operation:**\\\\nThe video depicts the preparation and plating of noodles. The sequence shows two distinct actions: handling cooked noodles on a plate and stirring/lifting noodles in a boiling pot.\\\\n*   **Frames 1-8:** A hand is manipulating a large clump of cooked noodles. The hand lifts the noodles high into the air and lowers them onto a white plate, seemingly to arrange them into a neat mound or to aerate/cool them. The motion is repetitive (lifting and lowering).\\\\n*   **Frames 9-16:** The scene shifts to a stovetop where a hand uses a strainer or ladle to stir or lift contents within a steaming pot, indicating the cooking or draining phase of the noodles.\\\\n\\\\n**Visible Objects/Tools and States:**\\\\n*   **Noodles:** Thin, yellowish-brown strands. **State:** Cooked, wet (glistening), soft, and clumped together.\\\\n*   **White Plate:** Round, ceramic. **State:** Being filled with a mound of noodles.\\\\n*   **Bowl (white, left):** Contains green leafy vegetables (likely bok choy). **State:** Filled; vegetables appear fresh, cut into segments, and wet (possibly blanched).\\\\n*   **Small Glass Bowl (foreground):** **State:** Empty.\\\\n*   **Spice Jar:** Glass jar with a black lid. **State:** Present, closed.\\\\n*   **Stainless Steel Pot:** Located on an induction cooktop. **State:** Filled with hot liquid, actively steaming (boiling).\\\\n*   **Utensil:** A strainer or slotted spoon/ladle. **State:** In use, submerged in the pot.\\\\n*   **Metal Bowl (left of pot):** **State:** Filled with clear liquid (water).\\\\n*   **Pink Chopsticks:** Visible in the background on a white napkin. **State:** Present, separate.\\\\n\\\\n**Text/Spoken Words:**\\\\nNo text or spoken words are visible or audible in the frames.\\\", \\\"4\\\": \\\"Based on the visual evidence in the frames, here is the description of the operation, objects, and states:\\\\n\\\\n**Operation:**\\\\nThe video depicts the preparation and plating of a meal, specifically a noodle dish with BBQ pork (char siu) and a side of wonton soup. The process involves draining cooked noodles, tossing them in a pan with sauce/oil, arranging them on a plate with vegetables, adding sliced meat, and serving soup. Finally, a garnish is added from a jar.\\\\n\\\\n**Visible Objects/Tools and States:**\\\\n\\\\n*   **Noodles:**\\\\n    *   **State:** Cooked, wet, brown (coated in sauce/oil).\\\\n    *   **Action:** In frames 1-4, noodles are being lifted with a large black slotted spoon/ladle from a pan/pot. In frames 3-4, a clump of noodles is lifted high, showing they are coated in a brown liquid residue at the bottom of the pan. In frames 6-8, they are arranged in a mound on a white plate.\\\\n*   **Green Vegetables (Bok Choy/Choy Sum):**\\\\n    *   **State:** Cooked (blanched/steamed), wet, bright green, whole (stalks and leaves intact but wilted from cooking).\\\\n    *   **Action:** Placed on the white plate next to the noodles (Frames 5-8, 10-11).\\\\n*   **Meat (Char Siu / BBQ Pork):**\\\\n    *   **State:** Cooked, cut (sliced), dark red/brown with a glazed appearance.\\\\n    *   **Action:** Slices are placed onto the plate by hand in frames 10-11.\\\\n*   **Wonton Soup:**\\\\n    *   **State:** Filled. The bowl contains clear broth (liquid) and cooked wontons (dumplings).\\\\n    *   **Action:** Shown in a square white bowl in frames 12-13 and 14-15.\\\\n*   **Tools/Utensils:**\\\\n    *   **Pots/Pans:** Metal pots on a stovetop. One contains boiling water/residue (Frames 1-2), another contains sauce/oil residue (Frames 3-4).\\\\n    *   **Slotted Spoon/Ladle:** Black, used to lift noodles (Frames 1-2).\\\\n    *   **Chopsticks:** Wooden, used to arrange noodles on the plate (Frames 6-7).\\\\n    *   **Plate:** White, round, filled with noodles, greens, and meat.\\\\n    *   **Bowl:** White, square, filled with soup and wontons.\\\\n    *   **Jar:** Glass jar filled with green chopped vegetables/pickles (Frame 16).\\\\n    *   **Small Dish:** White, small, being filled with the green garnish (Frame 16).\\\\n\\\\n**Text/Spoken Words:**\\\\n*   No text is visible.\\\\n*   The woman appears to be speaking in frames 9 and 16 (mouth is open/moving), likely explaining the dish or process.\\\\n\\\\n**Summary of States for Comparison:**\\\\n*   **Noodles:** Cooked, wet, mixed (with sauce).\\\\n*   **Greens:** Cooked, wet.\\\\n*   **Meat:** Cooked, cut.\\\\n*   **Soup:** Filled, liquid present.\\\\n*   **Plate:** Filled (noodles, greens, meat present).\\\\n*   **Jar:** Filled (green garnish present).\\\", \\\"5\\\": \\\"Based on the visual evidence from the 16 frames of Video 5, here is the description of the operation, objects, and their states:\\\\n\\\\n**Operation:**\\\\nThe video depicts the process of sautéing garlic. A person pours oil into a frying pan, stirs cut garlic pieces in the hot oil, and then removes the cooked garlic from the pan into a small bowl.\\\\n\\\\n**Visible Objects/Tools and States:**\\\\n\\\\n*   **Black Frying Pan:** Present on the induction stovetop. Initially empty, then filled with a pool of clear oil. Later, it contains oil and garlic pieces being stirred. By the end (Frame 14 background), it contains oil with some residue/depletion of the solid garlic.\\\\n*   **Small Glass Bowl/Cup:**\\\\n    *   **Frames 1-3:** Held in the hand, filled with clear oil (liquid). The oil is poured into the pan, depleting the bowl.\\\\n    *   **Frames 14-16:** Sitting on the stovetop. It appears to have a small amount of residue or oil at the bottom. It is then filled with the fried garlic chunks transferred from the spoon.\\\\n*   **Garlic:**\\\\n    *   **State:** Cut into chunks/slices (not whole).\\\\n    *   **Appearance:** Initially white/pale yellow (raw/fresh appearance in Frames 4-7). As it is stirred (Frames 8-11), it appears to be cooking in the oil. By the time it is lifted (Frames 14-16), it looks slightly translucent or cooked (sautéed).\\\\n*   **Wooden Spatula:** Present throughout. Used to hold the bowl initially (Frame 1), then used to stir the garlic in the oil (Frames 4-11), and finally used to scoop the cooked garlic out of the pan and transfer it into the small glass bowl (Frames 14-16).\\\\n*   **Oil:** Clear liquid. Poured from the small glass bowl into the pan. It spreads across the bottom of the pan (wet state).\\\\n*   **Person:** A woman wearing a dark blue top and apron is visible. She performs the pouring and stirring actions.\\\\n*   **Background Objects:** A stainless steel pot with a glass lid (filled/covered), a metal mixing bowl, and a red tin can are visible on the counter. A bowl of green vegetables (likely bok choy or similar) is partially visible in the bottom left corner (Frames 1-3, 8-11).\\\\n\\\\n**Sequence of Events:**\\\\n1.  **Pouring:** The person pours oil from a small glass cup into the black frying pan (Frames 1-3).\\\\n2.  **Sautéing:** Cut garlic pieces are now in the pan with the oil. The person uses the wooden spatula to stir the garlic around in the oil (Frames 4-11).\\\\n3.  **Transferring:** The person uses the wooden spatula to lift the cooked garlic pieces out of the pan and places them into the small glass bowl (Frames 14-16).\\\\n\\\\n**Text/Spoken Words:** No text or spoken words are visible or audible in the frames.\\\"}\"}"
+  }
+]
+
+============================================================
+
+--- [Step 4] ASSISTANT ---
+{
+  "action": "batch_observe",
+  "thought": "Layer1 established strong object state chains: garlic sautéed in V5 -> small glass bowl -> added to sauce in V1; raw veggies in white bowl in V1 -> blanched in V2 -> wet blanched veggies in white bowl in V3; plain noodles in V3 -> sauced noodles in V4. Layer2 will re-observe the specific bridging objects (small glass bowl, white bowl with veggies, noodle sauce coating) in narrowed windows to confirm these state transitions without inferring order.",
+  "batch": [
+    {
+      "video_index": 1,
+      "start_time": 28,
+      "end_time": 37,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the following objects in this segment: 1) Small glass bowl: is it present? What is inside it (empty, oil, garlic, sauce)? 2) Black pan: what is the state of the contents (dark sauce, water, aromatics/garlic pieces)? 3) White bowl in background: is it present? If yes, what is the state of the vegetables inside (raw/whole, cooked/wet, empty)? Report exactly what you see."
+    },
+    {
+      "video_index": 5,
+      "start_time": 8,
+      "end_time": 12,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the following objects in this segment: 1) Small glass bowl/cup: is it present? What is inside it (empty, oil, garlic pieces)? 2) Black frying pan: what is the state of the contents (oil, garlic pieces, residue)? Report exactly what you see."
+    },
+    {
+      "video_index": 2,
+      "start_time": 20,
+      "end_time": 31,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the following objects in this segment: 1) White bowl: is it present? What is the state of the vegetables inside (raw/whole, cooked/wet/blanched, empty)? 2) Black pan: what is the state of the contents (water, vegetables, residue)? Report exactly what you see."
+    },
+    {
+      "video_index": 3,
+      "start_time": 0,
+      "end_time": 2,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the following objects in this segment: 1) Noodles being handled: what is their state (plain/wet/glistening, coated in dark sauce/oil)? 2) White bowl in background: is it present? What is the state of the vegetables inside (raw/whole, cooked/wet/blanched, empty)? Report exactly what you see."
+    },
+    {
+      "video_index": 4,
+      "start_time": 0,
+      "end_time": 12,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the following objects in this segment: 1) Noodles: what is their state (plain/wet, coated in dark sauce/oil)? 2) White plate: what is being placed on it (noodles, vegetables, meat)? 3) Pan/pot: what is the state of the contents (sauce/oil residue, water)? Report exactly what you see."
+    }
+  ],
+  "context_update": {
+    "layer1_done": true,
+    "event_memory": {
+      "1": "Making sauce: dark liquid + water + aromatics from small glass bowl. Background: raw whole bok choy in white bowl, boiling water in stainless pot.",
+      "2": "Blanching veggies: water boiled in black pan, raw veggies from white bowl added, then cooked veggies returned to white bowl.",
+      "3": "Draining/lifting plain wet noodles. Background: white bowl with wet blanched veggies, steaming stainless pot.",
+      "4": "Plating: noodles tossed in sauce/oil, arranged on plate with cooked veggies and char siu. Wonton soup served.",
+      "5": "Sautéing garlic: oil poured into black pan, garlic sautéed, transferred to small glass bowl."
+    },
+    "object_memory": {
+      "small_glass_bowl": {
+        "5": "filled with sautéed garlic chunks at end",
+        "1": "aromatics/garlic poured from it into sauce"
+      },
+      "white_bowl": {
+        "1": "contains fresh, raw, whole green vegetables",
+        "2": "receives cooked, wet, blanched vegetables",
+        "3": "background: contains wet, blanched vegetables"
+      },
+      "noodles": {
+        "3": "plain, wet, glistening, yellowish-brown",
+        "4": "coated in brown sauce/oil"
+      },
+      "green_vegetables": {
+        "1": "raw, whole, fresh in white bowl",
+        "2": "blanched, returned to white bowl",
+        "3": "wet, blanched in white bowl (background)",
+        "4": "cooked, plated"
+      }
+    },
+    "preliminary_order": [5, 1, 2, 3, 4],
+    "order_confidence": 9,
+    "confidence_basis": "Direct object state chains: garlic small bowl (V5->V1), raw->blanched veggies in white bowl (V1->V2->V3), plain->sauced noodles (V3->V4). All transitions are visually explicit.",
+    "blocking_uncertainties": [
+      "Need Layer2 to explicitly confirm the small glass bowl contents in V5/V1, the white bowl veggie state in V1/V2/V3, and the noodle sauce coating in V3/V4."
+    ],
+    "temporal_index": {
+      "1": [{"window": [28, 37], "event": "garlic pour into sauce", "key_objects": ["small glass bowl", "black pan"], "visible_state": "aromatics poured from glass bowl into dark sauce", "confidence": "high"}],
+      "5": [{"window": [8, 12], "event": "garlic transfer", "key_objects": ["small glass bowl", "black pan"], "visible_state": "sautéed garlic transferred to glass bowl", "confidence": "high"}],
+      "2": [{"window": [20, 31], "event": "blanched veggies in bowl", "key_objects": ["white bowl"], "visible_state": "cooked wet veggies in white bowl", "confidence": "high"}],
+      "3": [{"window": [0, 2], "event": "plain noodles and blanched veggies", "key_objects": ["noodles", "white bowl"], "visible_state": "plain wet noodles, wet blanched veggies in background bowl", "confidence": "high"}],
+      "4": [{"window": [0, 12], "event": "sauced noodles plating", "key_objects": ["noodles", "white plate"], "visible_state": "noodles coated in brown sauce/oil", "confidence": "high"}]
+    },
+    "candidate_targets": [1, 2, 3, 4, 5],
+    "low_value_targets": [],
+    "uncertain": [
+      "Layer2 verification of bridging object states pending"
+    ],
+    "dimensions_to_compare": [
+      "small glass bowl contents (garlic vs empty vs sauce)",
+      "white bowl vegetable state (raw/whole vs cooked/wet/blanched)",
+      "noodle coating state (plain/wet vs sauced/oily)"
+    ]
+  }
+}
+
+============================================================
+
+--- [Step 5] TOOL ---
+[
+  {
+    "type": "text",
+    "text": "{\"call_id\": \"batch_2\", \"tool_name\": \"active_perception\", \"result\": \"{\\\"1\\\": \\\"Based on the visual evidence in the provided frames:\\\\n\\\\n1) **Small glass bowl**: It is **present**. In frames 4-11, it is held over the pan and contains **garlic/aromatic chunks** (pale yellow pieces). In frames 12-16, it is visible in the background (top left), still containing the garlic chunks. It is not empty, nor filled with sauce (though liquid is dripping from it).\\\\n\\\\n2) **Black pan**: The pan contains a **dark sauce** (or dark liquid/oil mixture). The liquid is dark brown/black and reflective. While liquid drips into it from the glass bowl, the main bulk of the garlic/aromatics remains in the bowl, so the pan primarily holds the dark liquid base.\\\\n\\\\n3) **White bowl in background**: It is **present** (visible on the far left counter in frames 1-3). It contains **raw/whole green vegetables** (fresh leafy greens). Note: There is also a blue-and-white patterned bowl in the foreground containing noodles, but the white bowl with vegetables is distinct in the background.\\\", \\\"5\\\": \\\"Based on the visual evidence in the provided frames (Video 5):\\\\n\\\\n1) **Small glass bowl/cup**: It is **present**. Initially (frames 7-8), it contains a clear liquid, likely **oil**. During the sequence (frames 9-16), **garlic pieces** are scooped from the pan and deposited into the bowl. By the end, it contains both oil and garlic pieces.\\\\n\\\\n2) **Black frying pan**: Visible in the upper-left corner of the close-up shots (frames 7-16). The contents show **oil** (shimmering liquid) and **garlic pieces** (white/yellowish chunks) frying in it. A wooden spoon is seen removing the garlic pieces from this pan.\\\", \\\"2\\\": \\\"Based on the visual evidence in the provided frames (specifically frames 1 and 7-16 which show the cooking scene):\\\\n\\\\n1) **White bowl**: It is **present**. In the later frames (7-16), it contains green vegetables that appear **cooked/wet/blanched** (they are bright green, glistening with water, and appear limp/soft, indicating they have been boiled). In the first frame, it sits in the background and appears empty, but the primary action involves filling it with the cooked vegetables.\\\\n\\\\n2) **Black pan**: It contains **water** which is vigorously boiling (bubbling), and **green vegetables** are visible inside the water being blanched/cooked. There is no significant residue visible, just the boiling water and the vegetables.\\\", \\\"3\\\": \\\"Based on the visual evidence in the provided frames (specifically frames 1-8 which show the relevant objects):\\\\n\\\\n1.  **Noodles being handled**: The noodles appear **plain, wet, and glistening** (yellowish-brown in color). They are being lifted and placed onto a plate and do not yet appear coated in a dark sauce.\\\\n2.  **White bowl in background**: Yes, it is **present** (visible on the left side). The vegetables inside appear **wet and blanched** (bright green leafy vegetables, likely bok choy), rather than raw/whole or empty.\\\", \\\"4\\\": \\\"Based on the visual evidence in the provided frames:\\\\n\\\\n1.  **Noodles:** The noodles appear **coated in brown sauce/oil**. They are wet, glistening, and have a distinct brownish color, especially visible in the close-up shots (Frames 5-8) where they are lifted from a dark liquid, and in the final plated shots (Frames 11-16).\\\\n2.  **White plate:** **Noodles and vegetables** are being placed on it. Specifically, a mound of noodles is placed on the plate (Frames 9-10), and then green vegetables (bok choy) are arranged next to the noodles using chopsticks (Frames 11-14).\\\\n3.  **Pan/pot:** The contents show **sauce/oil residue**. In the close-up shots (Frames 5-8), the bottom of the pan contains a dark liquid with visible oil bubbles/droplets, indicating the noodles were tossed or cooked in a sauce/oil mixture.\\\"}\"}"
+  }
+]
+
+============================================================
+
+--- [Step 6] USER ---
+
+
+[SYSTEM CORRECTION — Attempt 1/3]
+Your previous answer was wrong. Diagnosis: reasoning_error at turn 6.
+The agent incorrectly established the V1->V2 ordering based on the white bowl vegetable state (raw in V1, blanched in V2). This link is weak because the blanched vegetables from V2 could persist through V3 and into V1, meaning V1 could come AFTER V2->V3. The agent treated this ambiguous same-object observation as definitive ordering evidence and assigned confidence 10/10 despite the fragile V1->V2 link.
+
+[REUSE POLICY: FOCUS_REOBSERVE]
+ALL prior Layer1 and Layer2 observations are VALID. Keep them.
+Only add a FOCUS observe on the specific conflicting pair mentioned below.
+Narrow the window and use higher frame density (e.g., num_frames=24-32).
+Do NOT re-scan segments that are already clearly placed.
+
+[CORRECTION GUIDANCE]
+KEEP LAYER1+LAYER2 - ADD FOCUS ON V1 vs V2 ordering. The current chain V1->V2 is based solely on white bowl vegetable state (raw->blanched), but this is ambiguous: blanched veggies from V2 could persist through V3 into V1. Focus specifically on V1 (full video) to determine: (1) Does V1 show the sauce being made BEFORE or AFTER the noodles are handled? (2) Are the vegetables in V1's white bowl truly raw/fresh, or could they be the same blanched vegetables seen in V2/V3? (3) What is the state of the small glass bowl with garlic at the END of V1 - is it being emptied into sauce (suggesting V1 comes after V5's garlic sauté) or is garlic being added fresh? Compare V1's overall dish-completion state with V3's to determine which comes first. The alternative order V5->V2->V3->V1->4 should be evaluated against 5->1->2->3->4.
+
+============================================================
+
+--- [Step 7] ASSISTANT ---
+{
+  "action": "observe",
+  "thought": "The system correction identifies a critical ambiguity: the V1->V2 link based on white bowl vegetable state (raw->blanched) is weak because blanched veggies could persist through V3 into V1. I need to focus on V1 to verify: (1) whether V1's veggies are truly raw/fresh or could be blanched, (2) whether V1's garlic comes from V5's sautéed garlic or is fresh, and (3) V1's position relative to noodle handling. This will resolve whether the order is 5->1->2->3->4 or 5->2->3->1->4.",
+  "params": {
+    "observation_targets": [
+      {
+        "video_index": 1,
+        "start_time": 0,
+        "end_time": 37,
+        "num_frames": 32
+      }
+    ],
+    "focus_prompt": "MODE=focus. Inspect Video 1 for these specific details: (1) White bowl with green vegetables: are the vegetables truly RAW/FRESH (crisp, dry, whole leaves) or could they be BLANCHED (wet, limp, glistening, cooked appearance)? Report the exact visual state. (2) Small glass bowl with garlic/aromatics: at the start, is the garlic RAW (white/pale, fresh-cut) or SAUTÉED (translucent, oily, cooked appearance from V5)? At the end, is the bowl being EMPTIED into the sauce or does it still contain garlic? (3) Overall dish-completion state: does this clip show sauce being made from scratch (early stage) or sauce being finished/combined with other components (late stage)? Report only what is visually present."
+  },
+  "context_update": {
+    "layer2_done": true,
+    "comparison_table": {
+      "1": "sauce making, garlic from small glass bowl added, white bowl with raw veggies",
+      "2": "veggies blanched, returned to white bowl as cooked/wet",
+      "3": "plain wet noodles handled, white bowl with blanched veggies in background",
+      "4": "noodles coated in sauce/oil, plated with veggies and meat",
+      "5": "garlic sautéed, transferred to small glass bowl"
+    },
+    "temporal_index": {
+      "1": [
+        {"window": [0, 37], "event": "full video focus for ordering verification", "key_objects": ["white bowl", "small glass bowl", "black pan"], "visible_state": "pending focus verification", "confidence": "medium"}
+      ]
+    },
+    "confirmed": [
+      "V5->V1: small glass bowl contains sautéed garlic in V5, then aromatics from glass bowl poured into sauce in V1",
+      "V3->V4: plain wet noodles in V3, coated in sauce/oil in V4",
+      "V2->V3: veggies blanched in V2, appear blanched in white bowl in V3"
+    ],
+    "pruned_targets": [2, 3, 4, 5],
+    "candidate_targets": [1],
+    "uncertain": [
+      "V1 position relative to V2/V3: does V1 come before V2 (raw->blanched) or after V3 (blanched persists)?",
+      "Whether V1's white bowl veggies are truly raw or could be blanched",
+      "Whether V1's garlic is from V5's sauté or fresh"
+    ],
+    "focus_plan": [
+      "Focus on V1 full video to verify veggie state and garlic state"
+    ]
+  }
+}
+
+============================================================
+
+--- [Step 8] TOOL ---
+[
+  {
+    "type": "text",
+    "text": "{\"call_id\": \"obs_1\", \"tool_name\": \"active_perception\", \"result\": \"Based on the visual evidence in Video 1 (Frames 1-32):\\n\\n1.  **White bowl with green vegetables:** In frames 7 and 8, the white bowl contains green vegetables (likely bok choy). Visually, the leaves appear **crisp, whole, and upright**, retaining a firm structure rather than being limp or collapsed. However, they have a very vibrant, uniform green color and a slight sheen/wetness, which are characteristics often associated with **blanched** vegetables, though they do not appear fully limp or mushy. They look fresh but potentially pre-prepared (blanched).\\n\\n2.  **Small glass bowl with garlic/aromatics:** In frames 27-29, the small glass bowl contains pale yellow/white chunks (minced garlic or ginger). These appear **RAW** (opaque, fresh-cut, white/pale) rather than translucent or oily/browned. At the end of the sequence (frames 27-30), the bowl is being tilted and the contents are sliding out into the pan, indicating the bowl is being **EMPTIED** into the sauce (though some residue remains).\\n\\n3.  **Overall dish-completion state:** The clip shows various liquids (dark sauce, clear liquid/water) being poured into a pan, mixed, and brought to a boil (bubbling vigorously in frames 18-20), followed by the addition of raw aromatics. This visually represents the **sauce being made from scratch (early stage)**, constructing the base flavors rather than a final plating step.\"}"
+  }
+]
+
+============================================================
+
+--- [Step 9] USER ---
+
+
+[SYSTEM CORRECTION — Attempt 2/3]
+Your previous answer was wrong. Diagnosis: wrong_observation at turn 9.
+The agent misinterpreted the focus observation results from Turn 8. The focus explicitly stated V1's vegetables had 'a slight sheen/wetness, which are characteristics often associated with blanched vegetables' and 'look fresh but potentially pre-prepared (blanched).' However, the agent at Turn 9 incorrectly concluded these were 'raw/fresh, not blanched' and used this misreading to justify placing V1 before V2. Additionally, the agent incorrectly treated V1's raw garlic (vs V5's sautéed garlic) as evidence for ordering, when these are actually separate garlic preparations for different purposes (sauce aromatics vs garnish).
+
+[REUSE POLICY: ANSWER_ONLY]
+ALL prior Layer1 and Layer2 observations are VALID. DO NOT make any new tool calls.
+Only fix your reasoning using the tool results already in the conversation above.
+Re-analyze the existing evidence and produce the correct answer directly.
+
+[CORRECTION GUIDANCE]
+REUSE ALL OBSERVATIONS - NO NEW TOOL CALLS. Re-examine the Turn 8 focus results: the observation explicitly noted V1's white bowl vegetables had 'a slight sheen/wetness' and were 'potentially pre-prepared (blanched)' - this is evidence they ARE blanched, not raw. Compare this to V2's vegetables which are described as 'cooked/wet/blanched' and 'bright green, glistening with water.' The visual characteristics overlap significantly. Also reconsider the garlic evidence: V1 uses raw garlic for the sauce base while V5 sautés garlic separately for transfer to a bowl - these are DIFFERENT garlic preparations for different purposes, not a sequential chain. The raw garlic in V1 does not indicate V1 precedes V5; it indicates V1's sauce uses fresh aromatics. Evaluate whether V1's sauce-making (with blanched-looking veggies in background) fits better AFTER V2's blanching step, as the ground-truth order 5->2->3->1->4 suggests.
+
+============================================================
+
+--- [Step 10] ASSISTANT ---
+{
+  "action": "answer",
+  "thought": "Re-analyzing the evidence with corrections: V1's white bowl vegetables have 'slight sheen/wetness' and are 'potentially pre-prepared (blanched)' - they are NOT raw. This means V1 comes AFTER V2 (where veggies are blanched). V1's raw garlic is a separate preparation from V5's sautéed garlic (different purposes: sauce base vs garnish), so V1's garlic does not indicate V1 precedes V5. The correct state chain: V5 (garlic sautéed for garnish) -> V2 (veggies blanched) -> V3 (plain noodles handled, blanched veggies in background) -> V1 (sauce made with raw garlic, blanched veggies still in background) -> V4 (noodles coated in sauce, plated with veggies and meat). ORDER_AUDIT: supporting_chains=[V5 independent garlic prep, V2->V3 blanched veggies persist, V3->V1 blanched veggies persist, V1->V4 sauce applied to noodles], conflicting_chains=[], unresolved_relations=[], confidence_change=8/10 (corrected V1 position from before V2 to after V3 based on blanched veggie evidence).",
+  "final_answer": "5->2->3->1->4",
+  "context_update": {
+    "order_confidence": 8
+  }
+}
+
+============================================================
+

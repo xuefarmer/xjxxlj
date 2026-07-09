@@ -1,0 +1,195 @@
+{
+  "confirmed": [
+    "V6: toast in basket, pan empty, eggs cracked+milk in jug",
+    "V1: raw bread on grill, pan empty, eggs uniform in jug background",
+    "V2: toast on wire rack, butter melting in pan, eggs beaten in jug",
+    "V5: toast on plate, pan has residue/butter, eggs being stirred",
+    "V4: toast on plate, eggs pouring into pan",
+    "V3: toast on plate receiving eggs, pan has residue"
+  ],
+  "uncertain": [
+    "exact container for eggs in V2 (jug vs bowl)",
+    "toast location transition between V2 (rack) and V5 (plate)",
+    "pan state sequence between V2 (butter) and V5 (residue)"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "eggs": {
+      "6": "raw whole -> cracked into jug + milk",
+      "5": "whisking in jug -> uniform yellow liquid",
+      "2": "beaten in glass bowl",
+      "4": "poured from jug into pan -> cooking",
+      "3": "cooked in pan -> plated"
+    },
+    "toast": {
+      "6": "in basket",
+      "1": "raw on grill pan",
+      "2": "cooked on wire rack",
+      "5": "cooked on plate",
+      "4": "cooked on plate",
+      "3": "cooked on plate, receives eggs"
+    },
+    "pan": {
+      "6": "empty",
+      "1": "grill pan heating",
+      "2": "butter melting",
+      "5": "residue/oil",
+      "4": "receiving eggs -> cooking",
+      "3": "residue after plating"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient state (raw/cooked/cut/mixed)",
+    "container fill/empty/residue",
+    "tool contact and transfer traces",
+    "background vessel state",
+    "egg container identity (jug with spout vs round bowl)",
+    "toast location (basket, grill, wire rack, white plate)",
+    "pan contents (empty, butter, oil/residue, raw eggs, cooking eggs)"
+  ],
+  "resolved_uncertain": [
+    "V2 toast=wire rack confirmed",
+    "V5 toast=plate confirmed",
+    "V2 pan=butter melting confirmed",
+    "V5 pan=residue/butter confirmed"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all object states and transitions pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "ingredient state (raw/cooked/cut/mixed)",
+          "container fill/empty/residue",
+          "tool contact and transfer traces",
+          "background vessel state"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "eggs": {
+            "6": "raw whole -> cracked into jug + milk",
+            "5": "whisking in jug -> uniform yellow liquid",
+            "2": "beaten in glass bowl",
+            "4": "poured from jug into pan -> cooking",
+            "3": "cooked in pan -> plated"
+          },
+          "toast": {
+            "6": "in basket",
+            "1": "raw on grill pan",
+            "2": "cooked on wire rack",
+            "5": "cooked on plate",
+            "4": "cooked on plate",
+            "3": "cooked on plate, receives eggs"
+          },
+          "pan": {
+            "6": "empty",
+            "1": "grill pan heating",
+            "2": "butter melting",
+            "5": "residue/oil",
+            "4": "receiving eggs -> cooking",
+            "3": "residue after plating"
+          }
+        },
+        "preliminary_order": "6->1->2->5->4->3",
+        "order_confidence": 6,
+        "confidence_basis": "Egg prep: 6(crack+milk)->5(whisk)->4(pour+cook)->3(plate). Toast: 6(basket)->1(grill)->2(rack)->5/4/3(plate). Pan: 6(empty)->1(grill heating)->2(butter)->5(residue?)->4(cook)->3(residue).",
+        "blocking_uncertainties": [
+          "V2 has eggs in bowl but V4/V5 use jug; need to confirm if V2 bowl is actually a jug or different container",
+          "V5 has toast on plate but V2 has toast on rack; need to confirm if V5 is before or after V2",
+          "V5 pan has residue/oil but V2 has butter melting; need to clarify pan state sequence"
+        ],
+        "uncertain": [
+          "exact container for eggs in V2 (jug vs bowl)",
+          "toast location transition between V2 (rack) and V5 (plate)",
+          "pan state sequence between V2 (butter) and V5 (residue)"
+        ],
+        "dimensions_to_compare": [
+          "egg container identity (jug with spout vs round bowl)",
+          "toast location (basket, grill, wire rack, white plate)",
+          "pan contents (empty, butter, oil/residue, raw eggs, cooking eggs)"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "preliminary_order": "6->1->2->5->4->3",
+        "order_confidence": 8,
+        "confidence_basis": "Toast progression: V6(basket)->V1(grill)->V2(rack)->V5(plate)->V4(plate)->V3(plate). Pan progression: V6(empty)->V1(empty)->V2(butter)->V5(residue/butter)->V4(cooking)->V3(residue). Egg progression: V6(crack+milk)->V1(uniform background)->V2(beaten)->V5(final stir)->V4(pour)->V3(cooked).",
+        "blocking_uncertainties": [],
+        "confirmed": [
+          "V6: toast in basket, pan empty, eggs cracked+milk in jug",
+          "V1: raw bread on grill, pan empty, eggs uniform in jug background",
+          "V2: toast on wire rack, butter melting in pan, eggs beaten in jug",
+          "V5: toast on plate, pan has residue/butter, eggs being stirred",
+          "V4: toast on plate, eggs pouring into pan",
+          "V3: toast on plate receiving eggs, pan has residue"
+        ],
+        "comparison_table": {
+          "6": "start: basket, empty pan, crack eggs",
+          "1": "toast on grill, empty pan",
+          "2": "toast on rack, butter melting",
+          "5": "toast on plate, pan has residue/butter, stir eggs",
+          "4": "toast on plate, pour eggs",
+          "3": "toast on plate, plate eggs, pan residue"
+        },
+        "focus_plan": "Verify V2 toast=rack, V5 toast=plate, V2 pan=butter, V5 pan=residue"
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "order_confidence": 8,
+        "resolved_uncertain": [
+          "V2 toast=wire rack confirmed",
+          "V5 toast=plate confirmed",
+          "V2 pan=butter melting confirmed",
+          "V5 pan=residue/butter confirmed"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "6->1->2->5->4->3"
+  ],
+  "order_confidence": [
+    "6",
+    "8"
+  ],
+  "confidence_basis": [
+    "Egg prep: 6(crack+milk)->5(whisk)->4(pour+cook)->3(plate). Toast: 6(basket)->1(grill)->2(rack)->5/4/3(plate). Pan: 6(empty)->1(grill heating)->2(butter)->5(residue?)->4(cook)->3(residue).",
+    "Toast progression: V6(basket)->V1(grill)->V2(rack)->V5(plate)->V4(plate)->V3(plate). Pan progression: V6(empty)->V1(empty)->V2(butter)->V5(residue/butter)->V4(cooking)->V3(residue). Egg progression: V6(crack+milk)->V1(uniform background)->V2(beaten)->V5(final stir)->V4(pour)->V3(cooked)."
+  ],
+  "blocking_uncertainties": [
+    "V2 has eggs in bowl but V4/V5 use jug; need to confirm if V2 bowl is actually a jug or different container",
+    "V5 has toast on plate but V2 has toast on rack; need to confirm if V5 is before or after V2",
+    "V5 pan has residue/oil but V2 has butter melting; need to clarify pan state sequence"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"6\": \"start: basket, empty pan, crack eggs\", \"1\": \"toast on grill, empty pan\", \"2\": \"toast on rack, butter melting\", \"5\": \"toast on plate, pan has residue/butter, stir eggs\", \"4\": \"toast on plate, pour eggs\", \"3\": \"toast on plate, plate eggs, pan residue\"}"
+  ],
+  "focus_plan": [
+    "Verify V2 toast=rack, V5 toast=plate, V2 pan=butter, V5 pan=residue"
+  ]
+}

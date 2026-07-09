@@ -1,0 +1,225 @@
+{
+  "confirmed": [
+    "rice pot state progression 1->2->5->4->3",
+    "main pan chickpeas integration 1->2->5->4",
+    "rice transfer to main pan only in Video 3"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "main_pan_vegetables": {
+      "1": "chopped peppers/onions sautéing, chickpeas being added",
+      "2": "cooked/browned mixture",
+      "3": "mixed with rice",
+      "4": "mixed vegetables corn/peas/carrots",
+      "5": "chopped mixed colors sautéing"
+    },
+    "rice_pot": {
+      "1": "not clearly visible",
+      "2": "water then rice poured in, boiling",
+      "3": "boiling then drained into sieve",
+      "4": "cloudy/starchy boiling liquid, being tested",
+      "5": "water being heated"
+    },
+    "sieve": {
+      "1": "not mentioned",
+      "2": "not mentioned",
+      "3": "used to drain rice",
+      "4": "not mentioned",
+      "5": "not mentioned"
+    },
+    "chickpeas_container": {
+      "1": "sealed then opened, poured into pan",
+      "2": "not mentioned",
+      "3": "not mentioned",
+      "4": "not mentioned",
+      "5": "not mentioned"
+    },
+    "rice_package": {
+      "1": "not mentioned",
+      "2": "purple package, opened, rice poured, then stored",
+      "3": "not mentioned",
+      "4": "not mentioned",
+      "5": "not mentioned"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object state progression",
+    "source/destination containers",
+    "transfer traces",
+    "residue/depletion",
+    "ingredient maturity"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "pending Layer1 results for all 5 segments"
+        ],
+        "dimensions_to_compare": [
+          "object state progression",
+          "source/destination containers",
+          "transfer traces",
+          "residue/depletion",
+          "ingredient maturity"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer1_done": true,
+        "layer2_done": false,
+        "preliminary_order": "5->1->2->4->3",
+        "order_confidence": 7,
+        "confidence_basis": [
+          "rice pot progression: water->rice+water->cloudy->drained",
+          "veg maturity in main pan: chopped->browned->mixed with rice"
+        ],
+        "blocking_uncertainties": [
+          "chickpeas state in each segment",
+          "exact rice pot state in Video 4 vs Video 2",
+          "whether sieve appears in multiple segments"
+        ],
+        "object_memory": {
+          "main_pan_vegetables": {
+            "1": "chopped peppers/onions sautéing, chickpeas being added",
+            "2": "cooked/browned mixture",
+            "3": "mixed with rice",
+            "4": "mixed vegetables corn/peas/carrots",
+            "5": "chopped mixed colors sautéing"
+          },
+          "rice_pot": {
+            "1": "not clearly visible",
+            "2": "water then rice poured in, boiling",
+            "3": "boiling then drained into sieve",
+            "4": "cloudy/starchy boiling liquid, being tested",
+            "5": "water being heated"
+          },
+          "sieve": {
+            "1": "not mentioned",
+            "2": "not mentioned",
+            "3": "used to drain rice",
+            "4": "not mentioned",
+            "5": "not mentioned"
+          },
+          "chickpeas_container": {
+            "1": "sealed then opened, poured into pan",
+            "2": "not mentioned",
+            "3": "not mentioned",
+            "4": "not mentioned",
+            "5": "not mentioned"
+          },
+          "rice_package": {
+            "1": "not mentioned",
+            "2": "purple package, opened, rice poured, then stored",
+            "3": "not mentioned",
+            "4": "not mentioned",
+            "5": "not mentioned"
+          }
+        },
+        "uncertain": [
+          "chickpeas state in each segment",
+          "exact rice pot state in Video 4 vs Video 2",
+          "whether sieve appears in multiple segments"
+        ],
+        "dimensions_to_compare": [
+          "object state progression",
+          "source/destination containers",
+          "transfer traces",
+          "residue/depletion",
+          "ingredient maturity"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 9,
+        "comparison_table": {
+          "rice_pot": {
+            "1": "clear water heating",
+            "2": "rice poured in, boiling",
+            "5": "cloudy white liquid steaming",
+            "4": "cloudy starchy liquid tested",
+            "3": "drained into sieve empty"
+          },
+          "main_pan": {
+            "1": "chopped veg sautéing chickpeas added at end ~40% full",
+            "2": "veg browned chickpeas not distinct ~50-60% full",
+            "5": "veg browned chickpeas mixed in ~50% full",
+            "4": "veg+chickpeas cooked mixture ~50-66% full",
+            "3": "rice added not yet mixed medium-high fill"
+          },
+          "chickpeas_container": {
+            "1": "sealed then opened poured into pan",
+            "2": "absent",
+            "5": "absent",
+            "4": "absent",
+            "3": "absent"
+          },
+          "rice_package": {
+            "1": "sealed unopened",
+            "2": "opened poured folded",
+            "5": "absent",
+            "4": "absent",
+            "3": "absent"
+          },
+          "sieve": {
+            "1": "absent",
+            "2": "absent",
+            "5": "absent",
+            "4": "absent",
+            "3": "present used to drain rice"
+          }
+        },
+        "confirmed": [
+          "rice pot state progression 1->2->5->4->3",
+          "main pan chickpeas integration 1->2->5->4",
+          "rice transfer to main pan only in Video 3"
+        ],
+        "uncertain": [],
+        "focus_plan": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "layer2_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "5->1->2->4->3"
+  ],
+  "order_confidence": [
+    "7",
+    "9"
+  ],
+  "confidence_basis": [
+    "rice pot progression: water->rice+water->cloudy->drained",
+    "veg maturity in main pan: chopped->browned->mixed with rice"
+  ],
+  "blocking_uncertainties": [
+    "chickpeas state in each segment",
+    "exact rice pot state in Video 4 vs Video 2",
+    "whether sieve appears in multiple segments"
+  ],
+  "comparison_table": [
+    "{\"rice_pot\": {\"1\": \"clear water heating\", \"2\": \"rice poured in, boiling\", \"5\": \"cloudy white liquid steaming\", \"4\": \"cloudy starchy liquid tested\", \"3\": \"drained into sieve empty\"}, \"main_pan\": {\"1\": \"chopped veg sautéing chickpeas added at end ~40% full\", \"2\": \"veg browned chickpeas not distinct ~50-60% full\", \"5\": \"veg browned chickpeas mixed in ~50% full\", \"4\": \"veg+chickpeas cooked mixture ~50-66% full\", \"3\": \"rice added not yet mixed medium-high fill\"}, \"chickpeas_container\": {\"1\": \"sealed then opened poured into pan\", \"2\": \"absent\", \"5\": \"absent\", \"4\": \"absent\", \"3\": \"absent\"}, \"rice_package\": {\"1\": \"sealed unopened\", \"2\": \"opened poured folded\", \"5\": \"absent\", \"4\": \"absent\", \"3\": \"absent\"}, \"sieve\": {\"1\": \"absent\", \"2\": \"absent\", \"5\": \"absent\", \"4\": \"absent\", \"3\": \"present used to drain rice\"}}"
+  ],
+  "focus_plan": []
+}

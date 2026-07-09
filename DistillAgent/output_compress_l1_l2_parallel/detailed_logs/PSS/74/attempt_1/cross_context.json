@@ -1,0 +1,222 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "pending Layer1 results"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "nori": {
+      "1": "rice spread, flipped, strips added",
+      "4": "rice bed with strips, tuna/avocado added",
+      "5": "rolled into cylinder",
+      "3": "rolled, topped with avocado slices",
+      "2": "sliced through plastic"
+    },
+    "avocado": {
+      "1": "whole then mashed mound",
+      "4": "mound added to nori",
+      "5": "inside rolled cylinder",
+      "3": "sliced on top of roll",
+      "2": "plated on cut sushi"
+    },
+    "plastic_wrap": {
+      "1": "absent",
+      "4": "absent",
+      "5": "absent then used with mat",
+      "3": "applied to roll",
+      "2": "used during slicing"
+    },
+    "orange_roe": {
+      "1": "on separate plate",
+      "2": "sprinkled as garnish on plated sushi"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked, whole/cut, empty/filled)",
+    "transfer traces",
+    "residue/depletion",
+    "tool contact"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked, whole/cut, empty/filled)",
+          "transfer traces",
+          "residue/depletion",
+          "tool contact"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "nori": {
+            "1": "rice spread, flipped, strips added",
+            "4": "rice bed with strips, tuna/avocado added",
+            "5": "rolled into cylinder",
+            "3": "rolled, topped with avocado slices",
+            "2": "sliced through plastic"
+          },
+          "avocado": {
+            "1": "whole then mashed mound",
+            "4": "mound added to nori",
+            "5": "inside rolled cylinder",
+            "3": "sliced on top of roll",
+            "2": "plated on cut sushi"
+          },
+          "plastic_wrap": {
+            "1": "absent",
+            "4": "absent",
+            "5": "absent then used with mat",
+            "3": "applied to roll",
+            "2": "used during slicing"
+          },
+          "orange_roe": {
+            "1": "on separate plate",
+            "2": "sprinkled as garnish on plated sushi"
+          }
+        },
+        "preliminary_order": "1->4->5->3->2",
+        "order_confidence": 9,
+        "confidence_basis": [
+          "V1 ends with strips placed; V4 starts with strips present and adds tuna/avocado",
+          "V5 rolls the filled nori",
+          "V3 tops rolled sushi with avocado slices and applies plastic",
+          "V2 slices plastic-wrapped roll and plates with roe"
+        ],
+        "blocking_uncertainties": [
+          "verify V3 plastic wrap application timing relative to V2 slicing",
+          "verify V5 rolling completion before V3 avocado topping"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                15,
+                30
+              ],
+              "event": "placing green strips",
+              "key_objects": [
+                "nori",
+                "rice",
+                "strips"
+              ],
+              "visible_state": "strips placed on rice-covered nori",
+              "why_it_matters": "links to V4 where strips are already present",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                13
+              ],
+              "event": "adding tuna and avocado",
+              "key_objects": [
+                "nori",
+                "rice",
+                "strips",
+                "tuna",
+                "avocado mound"
+              ],
+              "visible_state": "strips present, tuna/avocado being added",
+              "why_it_matters": "confirms V1 precedes V4",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                14
+              ],
+              "event": "rolling cylinder",
+              "key_objects": [
+                "filled nori",
+                "bamboo mat"
+              ],
+              "visible_state": "rolling into cylinder",
+              "why_it_matters": "follows V4 filling",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                26
+              ],
+              "event": "topping and wrapping",
+              "key_objects": [
+                "rolled sushi",
+                "avocado slices",
+                "plastic wrap"
+              ],
+              "visible_state": "avocado slices placed, plastic wrap applied",
+              "why_it_matters": "links rolled sushi to plastic-wrapped state in V2",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                16
+              ],
+              "event": "slicing and plating",
+              "key_objects": [
+                "plastic-wrapped roll",
+                "knife",
+                "plate",
+                "roe"
+              ],
+              "visible_state": "slicing through plastic, plating, adding roe",
+              "why_it_matters": "final step",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "1->4->5->3->2"
+  ],
+  "order_confidence": [
+    "9"
+  ],
+  "confidence_basis": [
+    "V1 ends with strips placed; V4 starts with strips present and adds tuna/avocado",
+    "V5 rolls the filled nori",
+    "V3 tops rolled sushi with avocado slices and applies plastic",
+    "V2 slices plastic-wrapped roll and plates with roe"
+  ],
+  "blocking_uncertainties": [
+    "verify V3 plastic wrap application timing relative to V2 slicing",
+    "verify V5 rolling completion before V3 avocado topping"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [15, 30], \"event\": \"placing green strips\", \"key_objects\": [\"nori\", \"rice\", \"strips\"], \"visible_state\": \"strips placed on rice-covered nori\", \"why_it_matters\": \"links to V4 where strips are already present\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 13], \"event\": \"adding tuna and avocado\", \"key_objects\": [\"nori\", \"rice\", \"strips\", \"tuna\", \"avocado mound\"], \"visible_state\": \"strips present, tuna/avocado being added\", \"why_it_matters\": \"confirms V1 precedes V4\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 14], \"event\": \"rolling cylinder\", \"key_objects\": [\"filled nori\", \"bamboo mat\"], \"visible_state\": \"rolling into cylinder\", \"why_it_matters\": \"follows V4 filling\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 26], \"event\": \"topping and wrapping\", \"key_objects\": [\"rolled sushi\", \"avocado slices\", \"plastic wrap\"], \"visible_state\": \"avocado slices placed, plastic wrap applied\", \"why_it_matters\": \"links rolled sushi to plastic-wrapped state in V2\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 16], \"event\": \"slicing and plating\", \"key_objects\": [\"plastic-wrapped roll\", \"knife\", \"plate\", \"roe\"], \"visible_state\": \"slicing through plastic, plating, adding roe\", \"why_it_matters\": \"final step\", \"confidence\": \"high\"}]}"
+  ]
+}

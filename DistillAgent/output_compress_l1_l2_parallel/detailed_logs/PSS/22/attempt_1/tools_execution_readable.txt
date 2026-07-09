@@ -1,0 +1,312 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-06 13:07:25
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-06 13:01:32 -> 2026-07-06 13:02:35
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 11.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool, report: identity, state (raw/cooked, fresh/wilted, whole/cut, dry/wet, empty/filled, separate/mixed, clean/dirty, residue/depletion), position, and any action performed. Report approximate time locations for decisive events. Return compact evidence rows only. Labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+[
+  {"objects": "Chef", "action": "Standing at counter, preparing ingredients", "state": "Wearing white uniform and hat", "window": "0.0s - 5.0s", "query_link": "Frames 1-7", "conf": "HIGH", "uncertainty": "None"},
+  {"objects": "Large glass bowl", "action": "Holding ingredients", "state": "Filled with shredded carrots (orange) and chopped red onions/shallots (white/purple)", "window": "0.0s - 11.0s", "query_link": "Frames 1-16", "conf": "HIGH", "uncertainty": "None"},
+  {"objects": "Small glass bowls (multiple)", "action": "Holding ingredients", "state": "Filled with various ingredients (dark liquid, white powder/granules, chopped items); one becomes empty after pouring", "window": "0.0s - 11.0s", "query_link": "Frames 1-16", "conf": "HIGH", "uncertainty": "Exact contents of all small bowls uncertain"},
+  {"objects": "Chopped red onions/shallots", "action": "Being added to large bowl", "state": "Chopped, raw", "window": "0.0s - 5.0s", "query_link": "Frames 1-5, 9", "conf": "HIGH", "uncertainty": "None"},
+  {"objects": "Shredded carrots", "action": "Base ingredient in large bowl", "state": "Shredded, raw, orange", "window": "0.0s - 11.0s", "query_link": "Frames 1-16", "conf": "HIGH", "uncertainty": "None"},
+  {"objects": "Plate with cooked food", "action": "Sitting on counter", "state": "Cooked, plated (looks like a burger or sandwich)", "window": "0.0s - 5.0s", "query_link": "Frames 1-7", "conf": "MEDIUM", "uncertainty": "Exact dish identity uncertain"},
+  {"objects": "Small fluted bowl (held in close-up)", "action": "Being shaken/poured over large bowl", "state": "Being emptied", "window": "8.0s - 11.0s", "query_link": "Frames 15-16", "conf": "HIGH", "uncertainty": "Contents uncertain (likely salt, sugar, or liquid)"}
+]
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-06 13:01:32 -> 2026-07-06 13:03:31
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 29.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool, report: identity, state (raw/cooked, fresh/wilted, whole/cut, dry/wet, empty/filled, separate/mixed, clean/dirty, residue/depletion), position, and any action performed. Report approximate time locations for decisive events. Return compact evidence rows only. Labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from Video 2 (Frames 1-16, 0.0s to 29.0s), here is the description of the cooking segment in compact evidence rows.
+
+**Decisive Events Timeline:**
+*   **~0.0s - 5.0s (Frames 1-3):** Spreading white cream on bread.
+*   **~8.0s - 11.0s (Frames 5-6):** Placing lettuce leaves.
+*   **~18.0s (Frame 10):** Placing onion rings.
+*   **~23.0s - 25.0s (Frames 13-14):** Placing cooked chicken breast.
+*   **~27.0s - 29.0s (Frames 15-16):** Placing jalapeño slices.
+
+**Evidence Rows:**
+
+*   **objects**: Bread (baguette/sub roll)
+    *   **state**: Cut lengthwise, toasted/baked, one half has dark residue (sun-dried tomatoes/olives) and white spread.
+    *   **position**: Wooden cutting board.
+    *   **action**: Being assembled as sandwich base.
+    *   **window**: Frames 1-16 (0.0s - 29.0s)
+    *   **query_link**: Video 2
+    *   **conf**: High
+    *   **uncertainty**: Low
+
+*   **objects**: White Cream (mayonnaise/cream cheese)
+    *   **state**: Creamy, white, filled in small glass bowl, then spread.
+    *   **position**: Glass bowl -> Bread surface.
+    *   **action**: Spread onto bread using a knife/utensil.
+    *   **window**: Frames 1-3 (0.0s - 5.0s)
+    *   **query_link**: Video 2
+    *   **conf**: High
+    *   **uncertainty**: Low
+
+*   **objects**: Lettuce
+    *   **state**: Fresh, green leaves, raw.
+    *   **position**: Counter/Hand -> Bread surface.
+    *   **action**: Placed on top of the spread bread.
+    *   **window**: Frames 5-6, 10-16 (8.0s - 29.0s)
+    *   **query_link**: Video 2
+    *   **conf**: High
+    *   **uncertainty**: Low
+
+*   **objects**: Onion Rings
+    *   **state**: Raw, white, sliced into rings.
+    *   **position**: Hand -> On top of lettuce.
+    *   **action**: Placed on the sandwich.
+    *   **window**: Frame 10 (approx. 18.0s)
+    *   **query_link**: Video 2
+    *   **conf**: High
+    *   **uncertainty**: Low
+
+*   **objects**: Chicken Breast
+    *   **state**: Cooked, seasoned (brown spots), whole piece.
+    *   **position**: White oval plate (Frames 1-12) -> On top of lettuce/onions (Frames 13-16).
+    *   **action**: Transferred from plate to sandwich.
+    *   **window**: Frames 1-16 (0.0s - 29.0s)
+    *   **query_link**: Video 2
+    *   **conf**: High
+    *   **uncertainty**: Low (Transfer confirmed visually)
+
+*   **objects**: Jalapeños
+    *   **state**: Green, sliced rings, raw or pickled.
+    *   **position**: Hand -> On top of chicken.
+    *   **action**: Placed as final topping.
+    *   **window**: Frames 15-16 (27.0s - 29.0s)
+    *   **query_link**: Video 2
+    *   **conf**: High
+    *   **uncertainty**: Low
+
+*   **objects**: Wooden Cutting Board
+    *   **state**: Clean/dry surface with some residue.
+    *   **position**: Center of workspace.
+    *   **action**: Support surface for assembly.
+    *   **window**: Frames 1-16
+    *   **query_link**: Video 2
+    *   **conf**: High
+    *   **uncertainty**: Low
+
+*   **objects**: Knife/Spreader
+    *   **state**: Metal, dirty with cream residue.
+    *   **position**: Hand -> Resting near plate.
+    *   **action**: Used to spread cream.
+    *   **window**: Frames 1-3, 10-16 (visible resting)
+    *   **query_link**: Video 2
+    *   **conf**: High
+    *   **uncertainty**: Low
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-06 13:01:32 -> 2026-07-06 13:02:19
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 7.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool, report: identity, state (raw/cooked, fresh/wilted, whole/cut, dry/wet, empty/filled, separate/mixed, clean/dirty, residue/depletion), position, and any action performed. Report approximate time locations for decisive events. Return compact evidence rows only. Labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+- **objects**: Chef, **action**: Assembling sandwich, **state**: Standing, wearing white uniform and tall hat, using tongs, **window**: 0.0-7.0s, **query_link**: null, **conf**: High, **uncertainty**: None.
+- **objects**: Baguette sandwich (bread, lettuce, onion rings), **action**: Being filled, **state**: Open-faced on wooden board, layered with lettuce and onion rings, receiving carrots, **window**: 0.0-7.0s, **query_link**: null, **conf**: High, **uncertainty**: Exact bread type (baguette vs sub) slightly uncertain but likely baguette.
+- **objects**: Shredded carrots, **action**: Transferred from bowl to sandwich, **state**: Raw, shredded, orange, piled on top of onion rings, **window**: 1.5-5.5s (close-up), **query_link**: null, **conf**: High, **uncertainty**: None.
+- **objects**: Glass bowl (salad mix), **action**: Source of carrots, **state**: Contains lettuce and shredded carrots, partially depleted as carrots are removed, **window**: 0.0-7.0s, **query_link**: null, **conf**: High, **uncertainty**: None.
+- **objects**: Metal tongs, **action**: Gripping and placing carrots, **state**: In use, holding shredded carrots, **window**: 1.5-5.5s, **query_link**: null, **conf**: High, **uncertainty**: None.
+- **objects**: Small glass bowls (row of 4-5), **action**: Stationary, **state**: Filled with various ingredients (sauces/chopped items), arranged on counter, **window**: 0.0-7.0s, **query_link**: null, **conf**: Medium, **uncertainty**: Specific contents of small bowls are unclear due to distance.
+- **objects**: Wooden cutting board, **action**: Support surface, **state**: Holding the open sandwich, **window**: 0.0-7.0s, **query_link**: null, **conf**: High, **uncertainty**: None.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-06 13:01:32 -> 2026-07-06 13:02:53
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 15.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool, report: identity, state (raw/cooked, fresh/wilted, whole/cut, dry/wet, empty/filled, separate/mixed, clean/dirty, residue/depletion), position, and any action performed. Report approximate time locations for decisive events. Return compact evidence rows only. Labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Chef | Standing, reaching for ingredients, preparing food | Wearing white uniform, tall hat, gloves (visible in wide shot) | 0.0s - 12.0s | - | high | None |
+| Bread (2 pieces) | Being brushed with liquid | Toasted/grilled, long, flat, on wooden board | 12.0s - 15.0s | - | high | Exact bread type (ciabatta/baguette) |
+| Small glass bowl | Held, source of liquid | Filled with dark reddish-brown liquid (sauce/vinegar) | 12.0s - 15.0s | - | high | Exact liquid identity (balsamic/oil) |
+| Brush | Brushing bread surface | Wet with dark sauce | 12.0s - 15.0s | - | high | None |
+| Ingredient bowls (multiple) | Stationary on counter | Filled with red (tomatoes?), green (herbs?), white (cheese/cream?) substances | 0.0s - 12.0s | - | high | Exact ingredient identity |
+| Plate with meat | Stationary in foreground | Cooked, seasoned chicken breast | 0.0s - 15.0s | - | high | None |
+| Wooden board | Supporting bread | Clean, dry surface with bread on it | 0.0s - 15.0s | - | high | None |
+
+**Decisive Events:**
+- **12.0s - 15.0s**: Close-up view shows the chef brushing a dark liquid (likely balsamic glaze or oil) onto a piece of toasted bread using a small brush.
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-06 13:05:37 -> 2026-07-06 13:06:45
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 11.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report: 1) Identity and state of the plated food on the counter (is it a fully assembled sandwich? what layers are visible?). 2) Exact contents of the large glass bowl (carrots, onions, lettuce, mixed?)."
+}
+
+[Output]:
+Based on the visual evidence in the frames:
+
+1.  **Plated Food Identity and State:**
+    *   **Identity:** There is a **fully assembled sandwich** (resembling a baguette or banh mi) resting on a rectangular white plate in the foreground.
+    *   **State/Layers:** The sandwich appears complete. Visible layers include a long bread roll (baguette) filled with ingredients. While specific layers are hard to distinguish perfectly in the wide shot, the fillings appear to include brownish meat (likely the chicken mentioned in context) and green vegetables (lettuce or herbs). The PSS context suggests layers of cream, lettuce, onion, chicken, and jalapeño, which aligns with the visible bulk and colors of the filling.
+
+2.  **Exact Contents of the Large Glass Bowl:**
+    *   The large glass bowl contains a mixture of **shredded carrots** (bright orange strips) and **sliced/shredded onions** (white and pale purple strips).
+    *   In the close-up frames (9-16), the chef is seen mixing these ingredients. The bowl clearly holds julienned carrots and thin slices of red or white onions. There is no large amount of lettuce visible inside this specific bowl in the close-ups, though small bowls of green ingredients are nearby. The mixture looks like a vegetable slaw or pickle base.
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-06 13:05:37 -> 2026-07-06 13:06:17
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 29.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report: 1) State of the white oval plate with chicken over time (full, partially empty, empty?). 2) Layers visible on the sandwich during assembly (cream, lettuce, onion, chicken, jalapeño)."
+}
+
+[Output]:
+Based on the visual evidence in the frames:
+
+1.  **State of the white oval plate with chicken:**
+    *   **Frames 1-6:** The plate is **full** (occupied), containing a cooked chicken breast.
+    *   **Frames 10-12:** The plate appears **empty**. The chicken has been removed.
+    *   **Frames 13-16:** The plate remains **empty** as the chicken has been transferred onto the sandwich.
+
+2.  **Layers visible on the sandwich during assembly:**
+    The sandwich is assembled in the following order from bottom to top:
+    *   **Cream:** A white cream/sauce is spread onto the bread first (Frames 1-3).
+    *   **Lettuce:** Green lettuce leaves are placed on top of the cream (Frames 4-6).
+    *   **Onion:** White onion rings are placed on top of the lettuce (visible clearly in Frame 10).
+    *   **Chicken:** The cooked chicken breast is placed on top of the onion and lettuce layers (Frame 13).
+    *   **Jalapeño:** Sliced green jalapeños are added as the top layer (Frames 15-16).
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-06 13:05:37 -> 2026-07-06 13:06:27
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 7.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report: 1) Layers already present on the sandwich before carrots are added (lettuce, onion, chicken, jalapeño?). 2) Contents of the glass bowl used for the carrots."
+}
+
+[Output]:
+Based on the visual evidence in the frames, specifically the close-up shots (Frames 5-13) where the carrots are being added:
+
+1.  **Layers already present on the sandwich:**
+    *   **Cream/Spread:** Visible as a white layer on the top half of the baguette (left side in close-ups).
+    *   **Lettuce:** Green leafy vegetables are the bottom layer on the sandwich.
+    *   **Onion:** A white onion ring is clearly visible on top of the lettuce.
+    *   **Jalapeño:** Green slices (likely jalapeños) are placed on the sandwich.
+    *   **Chicken:** Although partially covered, there appears to be a layer of meat (chicken) beneath the vegetables, consistent with the assembly process described in the context (transferred from the chicken plate).
+
+2.  **Contents of the glass bowl used for the carrots:**
+    *   The glass bowl to the right contains **shredded carrots** (orange strips) and **lettuce leaves** (green leaves). The chef uses tongs to extract the shredded carrots from this bowl.
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_4) ###
+Time: 2026-07-06 13:05:37 -> 2026-07-06 13:06:18
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 15.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report: 1) State of the white oval plate with chicken (full?). 2) Action on the bread and contents of the small bowl used for brushing."
+}
+
+[Output]:
+Based on the visual evidence from the provided frames (Video 4):
+
+1.  **State of the white oval plate with chicken:** The white oval plate (visible in the bottom left of the close-up frames and on the counter in the wide shots) is **full**; it contains cooked chicken pieces (likely grilled chicken breasts).
+
+2.  **Action on the bread and contents of the small bowl:** The chef is **brushing** a **dark reddish-brown liquid** (likely a sauce, marinade, or oil mixture) from a small fluted glass bowl onto the long pieces of bread (baguette/flatbread) on the wooden board. The bread is being coated with this liquid.
+
+------------------------------------------------------------
+

@@ -1,0 +1,531 @@
+=== Master Dialogue Log (Readable) ===
+Generated: 2026-07-06 05:53:41
+
+--- [Step 0] SYSTEM ---
+You are a cross-video reasoning controller. Use one unified mechanism for all CrossVid tasks. Task-specific notes only change how you interpret the input schema, what visual evidence you ask the VLM to inspect, and the final answer format. They do not change the overall workflow.
+
+## Hard Rules
+1. Output exactly one valid JSON object per turn. No text outside JSON.
+2. Use visual tools before answering. Never answer from task priors, recipe/movie common sense, or option wording alone.
+3. Preserve every provided video/view/segment index. Do not drop, duplicate, or invent indices.
+4. Use `context_update` to maintain compact memory. Prefer structured evidence over prose.
+   - `context_update` memory must be grounded in prior tool results or explicit uncertainty/planning derived from them. Do not store invented observations, guessed final answers, placeholder object states, or speculative candidate orders as if they were evidence.
+5. If evidence is insufficient, focus or backtrack instead of guessing.
+6. Final answers must obey the task contract exactly.
+
+## Tools
+- `batch_observe`: plan multiple independent single-video observations.
+  - Use this for Layer1 and broad Layer2 scans on standard video tasks.
+  - Each batch item uses `video_index`, `start_time`, `end_time`, `num_frames`, and `focus_prompt`.
+  - For UAV/image-folder tasks, batch items may use `start_frame` and `end_frame` instead of `start_time` and `end_time`.
+  - The executor will automatically split long windows into chunks to maintain frame density. This is important; do not replace broad long-video scans with one sparse multi-video `observe`.
+- `observe`: visual observation tool.
+  - Standard videos use `video_index`, `start_time`, `end_time`, `num_frames`.
+  - UAV/image-folder tasks use `video_index`, `start_frame`, `end_frame`, `num_frames`.
+  - `focus_prompt` must begin with one of: `MODE=layer1`, `MODE=layer2`, `MODE=focus`, `MODE=focus BACKTRACK`.
+  - PSS may use compatibility names: `MODE=layer1_caption` and `MODE=layer2_state_scan`.
+- `get_caption`: optional subtitle/audio tool for video tasks only. Use it after Layer2 when visual evidence remains ambiguous and narration may locate or name a step.
+- `answer`: submit final answer.
+
+## Required JSON Action Schema
+Every assistant turn must be a tool/action command object, not a direct memory dump.
+
+Valid top-level actions:
+- `batch_observe`
+- `observe`
+- `get_caption`
+- `answer`
+
+For `batch_observe`, use exactly this top-level shape:
+```json
+{
+  "action": "batch_observe",
+  "thought": "Why broad independent scans are needed.",
+  "batch": [
+    {
+      "video_index": 1,
+      "start_time": 0,
+      "end_time": 60,
+      "num_frames": 12,
+      "focus_prompt": "MODE=layer1. ..."
+    }
+  ],
+  "context_update": {
+    "uncertain": ["..."],
+    "dimensions_to_compare": ["..."]
+  }
+}
+```
+For UAV/image-folder tasks, replace `start_time`/`end_time` in batch items with `start_frame`/`end_frame`.
+
+For `observe`, use exactly this top-level shape:
+```json
+{
+  "action": "observe",
+  "thought": "Why this observation is needed.",
+  "params": {
+    "observation_targets": [
+      {"video_index": 1, "start_time": 0, "end_time": 60, "num_frames": 10}
+    ],
+    "focus_prompt": "MODE=layer1. ..."
+  },
+  "context_update": {
+    "uncertain": ["..."],
+    "dimensions_to_compare": ["..."]
+  }
+}
+```
+
+For `get_caption`, use:
+```json
+{
+  "action": "get_caption",
+  "thought": "Why captions may help.",
+  "params": {"video_index": 1, "start_time": 0, "end_time": 120},
+  "context_update": {"uncertain": ["..."]}
+}
+```
+
+For `answer`, use:
+```json
+{
+  "action": "answer",
+  "thought": "Decisive evidence and close rejections.",
+  "final_answer": "..."
+}
+```
+
+Never put `layer1_done`, `event_memory`, `object_memory`, `temporal_index`, `candidate_targets`, or similar memory fields at the top level. Put them only inside `context_update`.
+Do not invent visual observations before a visual tool result. On the first turn, standard multi-video tasks usually need a `batch_observe` Layer1 call; UAV/image-folder and direct pair-comparison tasks may use `observe`.
+
+## Unified Workflow
+Always solve through four stages:
+
+### Layer1: broad independent perception
+Goal: build an unbiased inventory for every relevant video/view/segment.
+- First visual call for standard video tasks should usually be `batch_observe` covering all inputs independently. This preserves long-video chunking and broad coverage.
+- For standard multi-video tasks, Layer1 should use `batch_observe` unless the task contract explicitly says a side-by-side `observe` is required. Do not replace a full-video chunked scan with one sparse `observe`.
+- Use `observe` for Layer1 only when targets must be viewed side-by-side, when the task uses UAV/image-folder frame indices, or when clips are already short enough that one call has adequate coverage.
+- For broad standard-video Layer1 scans, set `num_frames = max(16, round(duration_seconds / 5))` unless the task contract says otherwise. The executor will split long windows into chunks of up to 16 frames, so full-video Layer1 chunks should normally run at 16 frames each.
+- Ask the VLM to describe each target independently; do not ask it to decide the final answer yet.
+- The Layer1 `focus_prompt` must be task-aware: name the query, relevant option semantics, and the evidence dimensions from the task contract.
+- Output memory should include:
+  - `layer1_done`: true
+  - `event_memory`: compact per-target event or scene facts
+  - `object_memory`: recurring or decisive objects/entities with per-target states
+  - `temporal_index`: target -> useful time/frame windows, each with window, event label, key objects, visible state, why it matters, and confidence
+  - `preliminary_answer`: the best current answer/order/table if one can be inferred from Layer1, otherwise null
+  - `preliminary_confidence`: integer 1-10 for that preliminary answer, where 8+ means the evidence is already strong enough to consider a direct answer
+  - `confidence_basis`: short evidence summary for the confidence score
+  - `blocking_uncertainties`: exact missing facts or close alternatives that prevent confidence from reaching 8
+  - `irrelevant_windows`: target -> checked windows or whole targets that look irrelevant, with a short reason and coverage note
+  - `candidate_targets`: plausible videos/views/segments/options and why
+  - `low_value_targets`: high-confidence irrelevant targets and why
+  - `uncertain`: unresolved distinctions
+  - `dimensions_to_compare`: exact visual dimensions needed next
+
+### Layer2: selective cross-analysis and targeted re-observation
+Goal: use Layer1 to avoid wasting VLM calls and build a comparison table.
+- Layer2 is normally expected before `answer`, but it is a supplemental verifier rather than a replacement for Layer1 evidence.
+- If Layer1 already contains high-confidence, directly visible, decisive evidence for a complete final answer and the close alternatives/relations are explicitly rejected, the controller may answer after Layer1 only when `preliminary_confidence >= 8`. Explain the decisive target/window/table/order evidence and include `confidence_score: N/10` in `thought`.
+- Otherwise, run one Layer2 re-check on the plausible candidate(s), close negative(s), or decisive window(s) to verify the conclusion.
+- First analyze Layer1 results yourself. Do not blindly send every chunk/video back to the VLM.
+- Layer2 may re-check all videos/chunks only when Layer1 leaves every one of them genuinely answer-relevant; then the thought must give a per-video/chunk reason. Otherwise select only the Layer1 chunks whose evidence is missing, conflicting, ambiguous, or capable of changing the answer.
+- Carry Layer1's `preliminary_answer`, `preliminary_confidence`, `confidence_basis`, and `blocking_uncertainties` into Layer2. Layer2 should verify or repair the current best hypothesis rather than inventing an unrelated or opposite hypothesis.
+- When forming a Layer2/focus hypothesis, start from the current leading answer/edge and the closest explicitly named alternative. Do not choose the reverse relation as the main hypothesis unless Layer1 evidence made that reverse relation plausible.
+- Prune targets that are both high-confidence and irrelevant. Keep them in `low_value_targets` with the reason, but do not re-observe them unless a later contradiction appears.
+- Re-observe only:
+  - plausible candidates;
+  - targets with missing decisive state;
+  - targets needed as a comparison anchor;
+  - edge cases that could change the answer.
+- Layer2 must not simply increase frame count. Prefer changing the attention/checklist over adding frames.
+- Layer2 must cite the Layer1 evidence or chunk label that caused each target/window to be selected. A Layer2 call that merely repeats the Layer1 full scan without this selection rationale is invalid.
+- For standard-video retained targets, use `batch_observe` when re-checking independent videos or long windows. Use `observe` only for side-by-side comparison or short retained windows where direct comparison is needed.
+- When Layer2 prunes a few irrelevant chunks from a long video, keep the remaining chunk windows and re-check only those. Do not collapse a long retained video into one sparse 8-12 frame `observe`.
+- Use similar or slightly lower frame density than Layer1 for broad retained scans, but preserve chunked coverage. The point is to drop unnecessary chunks, not to stop chunking altogether.
+- The Layer2 prompt must include a concrete checklist derived from Layer1, not generic "look carefully" instructions.
+- Use Layer1's `temporal_index` to choose retained windows. If Layer1 did not localize a needed event, Layer2 should ask the VLM to produce or refine that index before broad high-frame focus.
+- When re-checking a Layer1 chunk, copy the exact seconds from that chunk label. For example, if Layer1 says `[Chunk 2/7 (85s-171s)]`, the Layer2 target must use that same `[85, 171]` window, not the next chunk. If a Layer2 result contradicts Layer1, first verify that the same video and same time window were inspected before overturning Layer1 evidence.
+- Do not overturn a high-confidence Layer1 finding using a Layer2 result from a different window, lower-coverage sample, or generic absence statement. Use Layer2 contradictions to refine or request focused verification unless they inspect the same evidence window with stronger direct evidence.
+- Required memory update:
+  - `layer2_done`: true
+  - `comparison_table`: target -> decisive state/evidence/uncertainty
+  - `temporal_index`: refined candidate windows with event labels, key objects, visible states, and confidence
+  - `irrelevant_windows`: windows or targets excluded from future focus, with reason
+  - `confirmed`: high-confidence findings with evidence
+  - `pruned_targets`: targets not sent to VLM again, with reason
+  - `candidate_targets`: remaining plausible targets
+  - `uncertain`: exact unresolved relations or labels
+  - `focus_plan`: ranked list of next focus calls with predicted evidence
+
+### Focus Compare: predict -> observe -> reply
+Goal: resolve one concrete uncertainty with denser evidence.
+- Before each focus call, state a hypothesis and a competing alternative in `thought`.
+- Predict what visual evidence should appear for each interpretation.
+- Focus only the minimal necessary targets/chunks: usually 1-2 targets, never broad full scans.
+- Focus normally uses `observe`, because it compares specific windows side-by-side or inspects one narrow window densely.
+- Increase frame density over Layer2 for the same time/window because this is detailed verification:
+  - standard video focus: usually 16-32 frames per target;
+  - short clips or PSS pair focus: 12-16 can be enough;
+  - UAV focus: 24-32 frames per synchronized view when tracking/occlusion matters.
+- Narrow the time/frame window. Prefer exact candidate chunks found in Layer1/Layer2 over whole-video focus.
+- Every focus call should cite the `temporal_index` window it is using. If no indexed window exists, first use Layer2 or captions to locate one unless the full clip is already very short.
+- Focus prompts must be symmetric: define evidence for hypothesis A and evidence for hypothesis B, then ask for contradiction checks.
+- Never treat the order of frames in a multi-target `observe` call as chronology across different videos. The executor concatenates frames only for display. Use frame mapping to identify source video/local window, not to decide which video came first.
+- If focus contradicts earlier memory, use `MODE=focus BACKTRACK` and update `resolved_uncertain`.
+- After focus, update:
+  - `confirmed` or `resolved_uncertain`;
+  - remaining `uncertain`;
+  - `object_memory` / `comparison_table`;
+  - whether another focus is needed before answering.
+
+### Answer
+Answer only when the decisive evidence is explicit enough for the task.
+- You may answer directly after Layer1 only when Layer1 evidence is high-confidence, directly visible, complete for the required final format, no close candidate/relation remains unresolved, and `confidence_score >= 8/10`.
+- If answering after Layer1, cite the decisive target/window, option table, interval, or order graph and write `confidence_score: N/10` in `thought`.
+- If confidence is 7/10 or lower, or if no numeric confidence is available, do not answer from Layer1; run Layer2/focus.
+- Otherwise, run Layer2/focus before answering.
+- `thought` must summarize the decisive evidence and explain close rejections.
+- `final_answer` must contain only the required answer format from the task contract.
+- For multiple-select and ordering tasks, count/check all required indices or letters before answering.
+
+## General VLM Prompt Style
+Every visual `focus_prompt` should be short but specific:
+- start with mode;
+- name the task-specific query;
+- name the targets/options being checked;
+- list 4-8 decisive visual dimensions;
+- ask for uncertainty explicitly;
+- avoid asking the VLM for the final answer unless the task is a direct VLM comparison.
+- ask the VLM to report approximate time/frame locations for decisive events when it can infer them from frame mapping, so the controller can update `temporal_index`.
+- ask for concise key evidence only: task-relevant visible objects/actions/states, approximate time/window, and confidence. Avoid long recipe narration, background details, or speculative cross-video conclusions.
+- For a single-video `batch_observe` item, never ask the VLM to decide whether something appears in other videos. Ask only for evidence inside that one video/chunk; the controller compares across videos after all per-video evidence returns.
+
+Good Layer2 wording:
+`MODE=layer2. Based on Layer1, re-check only the plausible candidates and refine the temporal_index. For each retained target, fill this checklist: [specific object/state dimensions]. For each decisive event, report the approximate time/frame window if visible. Mark non-visible details using ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, or UNCERTAIN according to the negative-evidence rules. Do not discuss pruned targets.`
+
+Good Focus wording:
+`MODE=focus. Hypothesis A: ... Expected evidence: ... Hypothesis B: ... Expected evidence: ... Inspect only [objects/actions/landmarks]. Report which hypothesis is supported, contradicted, or insufficient.`
+
+## Temporal Retrieval Index
+Maintain a lightweight retrieval index so later stages focus on specific chunks instead of full videos.
+- For standard videos, use seconds: `[start_time, end_time]`.
+- For UAV/image-folder tasks, use frame indices: `[start_frame, end_frame]`.
+- For PSS, each clipped segment's local time starts at 0; record the local window inside that segment.
+- For PSS and other shuffled-video tasks, `temporal_index` windows are local retrieval pointers only. They are not global timestamps and must never be compared across different `video_index` values to infer order.
+- Index only useful windows:
+  - `candidate_windows`: likely answer-relevant moments;
+  - `decisive_moments`: narrow events that could prove/reject an option or ordering edge;
+  - `irrelevant_windows`: windows already checked and unlikely to matter.
+- Each indexed item should include: target/video/view/segment id, window, event label, key objects/entities, visible state, why it matters, and confidence (`high`, `medium`, or `low`).
+- When a VLM result is chunked by executor as "part 2/5, time 88s-176s", preserve that chunk range in `temporal_index` even if the exact event time is approximate.
+
+Example:
+```json
+"temporal_index": {
+  "video2": [
+    {
+      "window": [72, 96],
+      "event": "possible detach/reinstall",
+      "key_objects": ["base", "chassis"],
+      "visible_state": "part removed then reattached",
+      "why_it_matters": "could decide option A",
+      "confidence": "medium"
+    }
+  ]
+}
+```
+
+## Negative Evidence Rules
+Be precise about absence.
+- Use `ABSENT` only when the sampled window covers the relevant stage/location and the object/action should be visible if present.
+- Use `NOT_VISIBLE_IN_THESE_FRAMES` when the current frames do not show it, but the sampled window may not cover the relevant moment or camera view.
+- Use `UNCERTAIN` when the detail would affect the answer and the frames are ambiguous, occluded, blurred, too sparse, or outside the relevant window.
+- Do not convert `NOT_VISIBLE_IN_THESE_FRAMES` into a global negative conclusion. If it matters, add a `temporal_index` gap and focus/caption plan.
+- If earlier context reported an object/action but current frames do not show it, write `NOT_VISIBLE_IN_THESE_FRAMES - possibly in another indexed window` rather than directly contradicting prior evidence.
+
+## Captions
+- Do not call `get_caption` before Layer2.
+- Captions are auxiliary for names, timing, dialogue, or step labels.
+- Visual state evidence remains primary. If captions and visuals conflict, focus/backtrack visually.
+- Captions are unavailable for UAV/image-folder tasks.
+
+## Common Failure Modes To Avoid
+- Re-observing every target in Layer2 after Layer1 already ruled some out.
+- Using higher frame count in Layer2 instead of a better checklist.
+- Using broad focus windows instead of the specific uncertain chunk.
+- Selecting an option because it sounds plausible but the option-specific action/state is not visible.
+- Treating absent in sampled frames as globally absent without noting possible frame coverage limits.
+- Reversing a visible state chain.
+- Letting captions replace visual confirmation.
+
+## Task Contract: PSS
+Task: restore shuffled segments from one cooking video to chronological order.
+
+Input semantics:
+- Each provided `video_index` is a clipped segment from the same original video.
+- The answer must order all segment indices exactly once.
+- Segment labels are arbitrary shuffled indices; do not assume numeric order is chronological.
+
+Evidence dimensions:
+- event role: prep, transformation, transfer, cooking, finishing, inspection;
+- operated object state chain: raw/cut/mixed/cooked/plated, wet/dry, full/empty, residue/depletion;
+- source and destination containers, tool contact, transfer traces;
+- quiet background cues that show before/after state;
+- state-transition graph built by the master from local visible rows.
+
+Workflow notes:
+- Layer1 scans every segment independently and must not infer final ordering yet. For executor compatibility, PSS Layer1 prompts must begin with `MODE=layer1_caption`.
+- Layer1 prompts must ask for object states explicitly, not only event roles. Use wording like: "Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion."
+- After Layer1 tool results, PSS must restore the cross-video memory mechanism before Layer2. Use `context_update` to store only evidence grounded in prior tool results. The primary PSS memory schema is object-centric:
+  `object_memory: {object_key: {video_index: visible_state}}`.
+  Example: `{"noodles": {"3": "raw/dry on plate", "2": "boiled soft strands in pan", "1": "mixed with sauce"}, "spinach": {"4": "fresh whole leaves", "2": "wilting with noodles", "1": "mixed into finished dish"}}`.
+- After Layer1, also store `preliminary_order`, `order_confidence` (integer 1-10), `confidence_basis`, and `blocking_uncertainties`. This is not a final answer; it is the current best state-transition graph that Layer2 must verify or repair.
+- For PSS, `order_confidence >= 8` means Layer2 should mostly verify the current graph and close alternatives. `order_confidence <= 7` means Layer2 should actively search for missing object bridges or contradictions.
+- Use `event_memory` only as secondary per-video notes. Do not make `object_memory` primarily video-centric, such as `{"video4": {"object": "spinach", "state_chain": [...]}}`; that structure overweights local clip-internal actions and causes wrong ordering.
+- After Layer1, identify recurring or decisive objects before choosing Layer2 targets: noodles/pasta, spinach/vegetables, sauce/red pot, oil, pan/pot/strainer, plate/bowl, cutting board, tongs, residue, empty/full containers. Track shared objects even when they appear only as background cues.
+- **Layer2 = Discriminative Evidence Reinspection.** Layer1 discovers shared objects/regions/events that recur across segments and may determine the order. Layer2 re-observes these linked evidence items at finer granularity to clarify their actual visible state in each segment. For executor compatibility, Layer2 prompts must begin with `MODE=layer2_state_scan`.
+- Layer2 is NOT hypothesis confirmation. Do NOT pass the Master's preliminary_order or expected states to the VLM. Ask the VLM to report what is actually visible for each linked evidence item: identity, presence/absence, count, position, state (raw/cooked, empty/filled, clean/dirty), source/destination, residue/depletion, and any difference from what was seen in Layer1.
+- Layer1 and Layer2 are mandatory before `answer`. Do not answer directly after Layer1; Layer2 clarifies the shared evidence that bridges segments.
+- Layer2 must inherit `preliminary_order`, `order_confidence`, `confidence_basis`, and `blocking_uncertainties` from Layer1 — these guide which evidence to prioritize, but remain internal to the Master and are not shown to the VLM.
+- After receiving Layer2 results, perform a contradiction check in `thought`: compare each segment's VLM-reported evidence against the hypothesized state-transition graph. If any evidence contradicts the hypothesized ordering, downgrade `order_confidence` and resolve via focus or caption before answering.
+- Layer2 may raise `order_confidence` only when new observations directly resolve a named item from `blocking_uncertainties` or reveal a missing object bridge. Repeated descriptions of already-known states are not sufficient.
+- **When answering, `order_confidence` (integer 1-10) must be a key in `context_update`**, not only in `thought`. The executor checks `context_update` for this value. Without it, the answer will be rejected regardless of reasoning quality.
+- In Layer2 focus_prompt: do not ask the VLM for ordering, do not use words like "confirm", "verify", "should", or "expected". Ask for local visible evidence only. Example: "Look at this segment. Report the actual visible state of the white bowl: EMPTY / CONTAINS_SEPARATE_INGREDIENTS / MIXED / PLATED / NOT_VISIBLE. Also: is the cutting board present? If yes: CLEAN or HAS_RESIDUE? Report exactly what you see."
+- Layer2 frame count should stay equal to Layer1. Narrow the observation window to the informative chunk(s) where the evidence appears.
+- If two segments have the same coarse role, such as both showing combined cooking, do not order them arbitrarily. Use local visible cues such as ingredient amount, mixture integration, pan fullness, steam/browning, residue/depletion, utensil action, and whether a transfer has just occurred; if still tied after Layer2, run focus on that adjacent relation.
+- Do not assign a segment to early/middle/late order from a recipe label alone. Place it by visible state continuity: what objects are already present, what changes during the clip, what residue/depletion remains, and which later visible state can consume that result.
+- Focus is optional, not mandatory. If Layer2 gives a complete high-confidence state-transition graph with all necessary relations supported by visible object states, answer directly after Layer2.
+- Focus resolves one adjacent relation or state-chain conflict at a time with higher frame density than Layer2, usually 12-16 frames per compared segment.
+- Focus targets must come from `uncertain_visual_states`, `next_object_focus`, object-memory gaps, or contradictions in object states. Do not choose a focus pair merely because it appears adjacent in a guessed answer or because the executor might prefer a focus call.
+- Focus prompts must not ask the VLM to decide which segment is earlier, which hypothesis is supported, or whether Video A happens before Video B. Ask for per-target cells only: named object state, container fill/empty state, source/destination, residue/depletion, background object state, and uncertainty. The master compares the cells after the tool returns.
+- Do not write expected focus evidence that assumes one proposed order is true, such as "if A is before B, B should already contain X", unless that expectation is explicitly grounded in earlier tool output. Prefer neutral wording: "For each target, report whether object X is ABSENT, EMPTY/CLEAR, PARTLY_FILLED, FILLED_DARK, or NOT_VISIBLE."
+- When a focus call is needed, include the current leading relation and current overall order confidence in `thought`, but keep the VLM prompt neutral. Example: thought may say `leading_relation=5 before 3, alternative=3 before 5, order_confidence=7/10`; the VLM prompt should ask only for local object-state cells in Video 5 and Video 3.
+- If focus contradicts a high-confidence Layer2 edge, do not immediately reverse the order. Use `MODE=focus BACKTRACK` or another neutral focus/caption call to verify the contradiction, then update `resolved_uncertain` and downgrade the old edge only if the new direct evidence is stronger.
+- After Layer2, do not answer if any adjacent relation in the proposed order is supported only by recipe common sense, "cooking logic", coarse role labels, or a generic idea of what usually happens first/last. Standalone components such as sauce, flame, garnish, dressing, chopping, mixing, and plating may appear in non-obvious positions in the source video.
+- If local rows do not give direct visible continuity for a complete total order, call `get_caption` on every segment involved in unresolved ties, using each segment's full local window. Captions are allowed after Layer2 for PSS and may provide spoken step labels, temporal words, or demonstrated ordering. Keep `context_update` empty on caption actions too.
+- If captions are absent or still ambiguous, run `observe` focus on the smallest tied set, normally 2 segments, and ask only for visible differences in local state maturity, transfer completion, ingredient amount, residue/depletion, or background object state. If the focus still cannot prove the edge, mark the tie in `thought`; do not pretend it is proven by recipe logic.
+- In focus and Layer2, never use the concatenated frame order or frame numbers from different video_index values as chronological evidence. `Frames 1-16 from Video A` appearing before `Frames 17-32 from Video B` only means the executor packed Video A before Video B in the prompt.
+- Compare only visible object-lifecycle evidence: raw/cooked, empty/filled, separated/mixed, source/destination transfer, residue/depletion, object presence/absence, completion marks, background vessel state, and contradictions.
+- Do not ask the VLM to decide ordering from "frame-level timestamps" across videos, hypothesized cross-segment orders, or recipe logic. The VLM reports local object states only; cross-segment dependency reasoning is master-only.
+- Before answering, form an explicit state-transition graph from `object_memory`, with relations like `A before B: object_key state in A visibly precedes/feeds/contradicts state in B`. List unresolved ties, and run caption/focus for any tie that changes the final order. Then check every segment is placed exactly once.
+- The final `thought` must include one overall `confidence_score: N/10`. This is the confidence that the complete final order is correct, not confidence in a single easy relation.
+- Calibrate `confidence_score` conservatively: it may be `>=8` only when the complete order is visually supported and no critical relation, object-chain conflict, or close same-role tie remains unresolved. If any necessary relation is based on recipe common sense, a coarse role label, a conflicting object chain, or an unresolved tie, set `confidence_score <= 7` and do not answer; call caption/focus instead.
+- Before any final `answer`, include an `ORDER_AUDIT` in `thought` with four fields: `supporting_chains`, `conflicting_chains`, `unresolved_relations`, and `confidence_change`. `confidence_change` must explain why the final score is higher, lower, or unchanged compared with Layer1 `order_confidence`.
+- If `conflicting_chains` or `unresolved_relations` is non-empty, the final `confidence_score` must be `<=7` unless a later caption/focus result directly resolves each listed item.
+- The final `thought` must also include an `EDGE_TABLE` for evidence audit, but do not assign per-edge confidence scores. Each relation may use one of these evidence types: `direct_transfer`, `same_object_state_progression`, `visible_completion_to_next_start`, `caption_temporal_cue`, or `focused_visual_tie_break`. Do not use evidence types like `recipe_logic`, `common_sense`, `typical_order`, `coarse_role_only`, or `sounds_later`.
+
+Final answer:
+- `final_answer` is a string like `"3->5->4->2->1"` containing every segment index exactly once.
+
+
+============================================================
+
+--- [Step 1] USER ---
+[
+  {
+    "type": "text",
+    "text": "{\"query\": \"Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.\", \"videos\": [{\"video_index\": 1, \"duration_seconds\": 65.0}, {\"video_index\": 2, \"duration_seconds\": 17.0}, {\"video_index\": 3, \"duration_seconds\": 58.0}, {\"video_index\": 4, \"duration_seconds\": 76.0}, {\"video_index\": 5, \"duration_seconds\": 23.0}, {\"video_index\": 6, \"duration_seconds\": 22.0}], \"hard_rule\": \"For any full-video observation, set start_time=0 and end_time to the video's duration_seconds value (provided above). Do NOT copy end_time from prompt examples — use the actual duration of each video.\"}"
+  }
+]
+
+============================================================
+
+--- [Step 2] ASSISTANT ---
+{
+  "action": "batch_observe",
+  "thought": "Layer1: scan all 6 shuffled segments independently to build an unbiased inventory of operations, objects, and states. Each segment gets its own batch item with full duration coverage.",
+  "batch": [
+    {
+      "video_index": 1,
+      "start_time": 0,
+      "end_time": 65.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment in detail. Report: (1) the main operation/role (prep, cooking, transfer, finishing, inspection); (2) all visible objects/tools/containers and their states: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) any visible state transitions during the clip; (4) background cues (stove on/off, pan residue, plate state); (5) any spoken narration or step labels heard. Be specific about object states at start vs end of clip."
+    },
+    {
+      "video_index": 2,
+      "start_time": 0,
+      "end_time": 17.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment in detail. Report: (1) the main operation/role (prep, cooking, transfer, finishing, inspection); (2) all visible objects/tools/containers and their states: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) any visible state transitions during the clip; (4) background cues (stove on/off, pan residue, plate state); (5) any spoken narration or step labels heard. Be specific about object states at start vs end of clip."
+    },
+    {
+      "video_index": 3,
+      "start_time": 0,
+      "end_time": 58.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment in detail. Report: (1) the main operation/role (prep, cooking, transfer, finishing, inspection); (2) all visible objects/tools/containers and their states: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) any visible state transitions during the clip; (4) background cues (stove on/off, pan residue, plate state); (5) any spoken narration or step labels heard. Be specific about object states at start vs end of clip."
+    },
+    {
+      "video_index": 4,
+      "start_time": 0,
+      "end_time": 76.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment in detail. Report: (1) the main operation/role (prep, cooking, transfer, finishing, inspection); (2) all visible objects/tools/containers and their states: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) any visible state transitions during the clip; (4) background cues (stove on/off, pan residue, plate state); (5) any spoken narration or step labels heard. Be specific about object states at start vs end of clip."
+    },
+    {
+      "video_index": 5,
+      "start_time": 0,
+      "end_time": 23.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment in detail. Report: (1) the main operation/role (prep, cooking, transfer, finishing, inspection); (2) all visible objects/tools/containers and their states: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) any visible state transitions during the clip; (4) background cues (stove on/off, pan residue, plate state); (5) any spoken narration or step labels heard. Be specific about object states at start vs end of clip."
+    },
+    {
+      "video_index": 6,
+      "start_time": 0,
+      "end_time": 22.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment in detail. Report: (1) the main operation/role (prep, cooking, transfer, finishing, inspection); (2) all visible objects/tools/containers and their states: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) any visible state transitions during the clip; (4) background cues (stove on/off, pan residue, plate state); (5) any spoken narration or step labels heard. Be specific about object states at start vs end of clip."
+    }
+  ],
+  "context_update": {
+    "uncertain": ["All segment roles and object states pending Layer1 results"],
+    "dimensions_to_compare": ["object state chains across segments", "container fill/empty/residue", "raw-to-cooked progression", "transfer traces", "background vessel states"]
+  }
+}
+
+============================================================
+
+--- [Step 3] TOOL ---
+[
+  {
+    "type": "text",
+    "text": "{\"call_id\": \"batch_1\", \"tool_name\": \"active_perception\", \"result\": \"{\\\"1\\\": \\\"Based on the visual evidence in the 16 frames, here is the detailed description of the cooking segment:\\\\n\\\\n**(1) Main Operation/Role:**\\\\nThe segment depicts the **assembly and layering** phase of a dish, likely a Vegetable Biryani or a similar rice casserole. The cook is transferring pre-cooked components into a large serving or baking dish to create distinct layers.\\\\n\\\\n**(2) Visible Objects/Tools/Containers and States:**\\\\n*   **Large Stainless Steel Bowl:** Contains cooked white rice (long-grain, likely basmati). State: **Cooked, fluffy, separate grains.** It starts full and becomes depleted as rice is added to the layers.\\\\n*   **Black Non-Stick Pan/Skillet:** Contains a cooked vegetable curry. The curry has an orange/red tomato-based gravy with visible yellow chunks (likely paneer, potato, or cauliflower) and green pieces (bell peppers or beans). State: **Cooked, wet, saucy, hot (steaming visible in some frames).** It starts full and is partially depleted.\\\\n*   **Large Glass Baking Dish (Ribbed):** The main vessel for assembly. State: **Empty** at the start, becoming **filled** with alternating layers.\\\\n*   **Small Glass Bowls:** Contain garnishes. One holds a brown substance (likely fried onions or a spice mix like garam masala) and another holds chopped green herbs (cilantro or mint). State: **Dry/Fresh, separate.**\\\\n*   **Ladle/Serving Spoon:** Metal utensil used for transferring the curry and rice.\\\\n\\\\n**(3) Visible State Transitions:**\\\\n*   **Glass Dish:** Transitions from **empty** (Frame 1) to having a **base layer of curry** (Frames 2-4), then a **layer of rice** (Frames 6-8), then **garnished** with brown spices/onions and green herbs (Frames 9-11), then a **second layer of curry** (Frames 12-14), and finally a **top layer of rice** (Frames 15-16).\\\\n*   **Metal Bowl (Rice):** Transitions from **full** to **partially empty** (after first rice layer) to **nearly empty** (poured out in Frame 15).\\\\n*   **Black Pan (Curry):** Transitions from **full** to **partially depleted** as two layers of curry are removed.\\\\n\\\\n**(4) Background Cues:**\\\\n*   **Setting:** A kitchen counter with a light wooden surface.\\\\n*   **Text:** \\\\\\\"Manjula's Kitchen\\\\\\\" watermark is visible in the top left corner throughout.\\\\n*   **Vessel States:** The black pan shows residue of the sauce on the sides, indicating the food was just cooked or heated. The rice in the metal bowl looks moist but not soggy.\\\\n\\\\n**(5) Spoken Narration/Step Labels:**\\\\n*   No audio is available to report spoken narration. However, the visual label \\\\\\\"Manjula's Kitchen\\\\\\\" identifies the source. The actions imply a step-by-step instructional demonstration of layering the dish.\\\\n\\\\n**Summary of Sequence:**\\\\nThe clip shows a systematic layering process: **Curry Layer $\\\\\\\\rightarrow$ Rice Layer $\\\\\\\\rightarrow$ Garnish (Onions/Spice & Herbs) $\\\\\\\\rightarrow$ Curry Layer $\\\\\\\\rightarrow$ Final Rice Layer.** This is a classic technique for Biryani to ensure flavor distribution.\\\", \\\"2\\\": \\\"Based on the visual evidence from the 16 frames, here is the detailed description of the cooking segment:\\\\n\\\\n**(1) Main Operation/Role:**\\\\nThis segment depicts a **finishing/seasoning** step, specifically the addition of color and flavor to cooked rice (likely for a dish like Biryani). The primary action is pouring a saffron-infused liquid over the rice and gently mixing it to distribute the color.\\\\n\\\\n**(2) Visible Objects/Tools/Containers and States:**\\\\n*   **Large Metal Bowl:** A large stainless steel bowl sitting on a wooden surface. It is **filled** with cooked, long-grain white rice (likely Basmati). The rice appears fluffy, with separate grains, indicating it is fully cooked and steamed.\\\\n*   **Small Glass Bowl:** Initially seen at the bottom left (Frame 1) and then held by the person (Frame 3). It contains a **yellow liquid** (likely milk or water infused with saffron) and visible **red strands** (saffron threads).\\\\n*   **Metal Spoon/Ladle:** A large serving spoon used to hold the rice and later to mix it.\\\\n*   **Rice State:**\\\\n    *   **Start:** Pure white, cooked, fluffy, dry surface.\\\\n    *   **End:** Partially yellow, wet in the mixed areas, with red saffron strands visible.\\\\n*   **Small Bowl State:**\\\\n    *   **Start:** Filled with yellow liquid and red strands.\\\\n    *   **End:** Empty (residue of yellow liquid remains), placed back on the table.\\\\n\\\\n**(3) Visible State Transitions:**\\\\n*   **Pouring (Frames 3-5):** The person lifts the small glass bowl and pours the yellow saffron liquid and red strands over the center of the white rice. The small bowl transitions from filled to empty.\\\\n*   **Mixing (Frames 6-16):** The person uses the large metal spoon to gently lift and fold the rice. This action transitions the rice from a uniform white mass to a mixture of white and yellow patches as the saffron liquid is incorporated. The red saffron strands are distributed into the rice.\\\\n\\\\n**(4) Background Cues:**\\\\n*   **Setting:** A wooden countertop or table.\\\\n*   **Text:** \\\\\\\"Manjula's Kitchen\\\\\\\" watermark is visible in the top left corner throughout.\\\\n*   **Other items:** Another small glass bowl is partially visible at the bottom left in later frames (likely containing ghee or more saffron milk, though it remains stationary).\\\\n\\\\n**(5) Spoken Narration/Step Labels:**\\\\n*   No audio is provided, but the visual context implies a step labeled or described as adding saffron milk or coloring the rice.\\\\n\\\\n**Summary of Object States (Start vs. End):**\\\\n*   **Rice:** Starts as a mound of pure white, cooked long-grain rice. Ends as a mound of rice with significant yellow coloring and red strands mixed into the top layer.\\\\n*   **Saffron Mixture:** Starts as a contained yellow liquid with red strands in a small glass bowl. Ends as a dispersed liquid and strands coating the rice grains.\\\\n*   **Small Bowl:** Starts filled. Ends empty/depleted.\\\", \\\"3\\\": \\\"Based on the visual evidence from the 16 frames, here is the detailed description of the cooking segment:\\\\n\\\\n**(1) Main Operation/Role:**\\\\nThis segment depicts the **preparation and assembly** phase of a dish. Specifically, the cook is combining various raw, chopped vegetables, nuts, dairy, and spices into a large mixing bowl to create a marinated or pre-cooked vegetable mixture.\\\\n\\\\n**(2) Visible Objects/Tools/Containers and States:**\\\\n*   **Large Clear Glass Bowl:** Initially empty (implied before Frame 2), it serves as the main mixing vessel. By the end, it is filled with a colorful, creamy vegetable mixture.\\\\n*   **Small Glass Bowls:** Several small bowls containing pre-portioned ingredients are visible on the wooden table. They transition from filled to empty as ingredients are added.\\\\n*   **Cauliflower:** White, raw, cut into florets. Added first.\\\\n*   **Green Bell Peppers (Capsicum):** Green, raw, chopped into chunks. Added second.\\\\n*   **Carrots:** Orange, raw, chopped into chunks. Added third.\\\\n*   **Green Beans:** Green, raw, chopped into small segments. Added fourth.\\\\n*   **Cashew Nuts:** Cream/white colored, whole or halved. Added fifth.\\\\n*   **Ginger/Garlic Paste (inferred):** A brownish paste is visible in the bowl in Frame 8 before the yogurt is fully poured.\\\\n*   **Yogurt/Curd (or Cream):** White, thick liquid. Poured generously over the vegetables.\\\\n*   **Spices:**\\\\n    *   **Turmeric:** Yellow powder.\\\\n    *   **Salt:** White granular powder.\\\\n    *   **Red Chili Powder:** Red powder.\\\\n*   **Spatula:** A black/dark grey spatula used for mixing.\\\\n*   **Red Bowl:** Visible in the background in Frame 1, remains unused in this sequence.\\\\n\\\\n**(3) Visible State Transitions:**\\\\n*   **Separation to Combination:** The ingredients start as separate, distinct piles in small bowls. They are sequentially transferred into the large glass bowl.\\\\n*   **Dry to Wet/Coated:** The vegetables start dry and distinct. After the addition of the white creamy substance (yogurt/cream) and mixing, the entire mixture becomes wet, cohesive, and coated in a pale yellowish-white sauce (due to the turmeric mixing with the white base).\\\\n*   **Unmixed to Mixed:** The final frames show the transition from layered ingredients (spices sitting on top of yogurt) to a homogenous mixture where the sauce covers all vegetable pieces.\\\\n\\\\n**(4) Background Cues:**\\\\n*   **Setting:** A home kitchen with a wooden table/counter.\\\\n*   **Stove:** In Frame 1, a stove is visible to the left with a metal pot on it. It appears to be off or in a standby state as no steam or active cooking is happening in the background during this prep phase.\\\\n*   **Text Overlay:** \\\\\\\"Manjula's Kitchen\\\\\\\" is visible in the top left corner throughout the clip.\\\\n\\\\n**(5) Spoken Narration or Step Labels:**\\\\n*   While audio is not provided, the visual text \\\\\\\"Manjula's Kitchen\\\\\\\" identifies the source. The actions follow a clear step-by-step assembly logic typical of cooking demonstrations: adding vegetables -> adding nuts -> adding wet ingredients (yogurt) -> adding dry spices -> mixing.\\\", \\\"4\\\": \\\"Based on the visual evidence from the 16 frames, here is the detailed description of the cooking segment:\\\\n\\\\n**(1) Main Operation/Role:**\\\\nThis segment depicts the **cooking** phase of a dish, specifically the preparation of a tomato-based sauce (masala) and the subsequent addition of mixed vegetables. The sequence moves from tempering spices to simmering a sauce, and finally combining it with chopped vegetables.\\\\n\\\\n**(2) Visible Objects/Tools/Containers and States:**\\\\n*   **Black Saucepan (Kadai):** Initially contains hot oil (implied by sizzling). By the end, it is filled with a mixture of red sauce and vegetables.\\\\n*   **Seeds (likely Cumin):** Visible in Frames 3-4 as small, brownish-grey seeds sizzling in the oil at the bottom of the pan. State: Raw/dry -> Sizzling in oil.\\\\n*   **Red Tomato Puree/Sauce:** Held in a clear glass bowl/measuring cup (Frames 1-2). It is bright red and liquid. State: Full in bowl -> Poured into pan (Frame 5) -> Simmering/bubbling in pan (Frame 6).\\\\n*   **Mixed Vegetables:** Held in a large glass bowl to the left (Frames 10-11). Contains chopped cauliflower (white/yellow), carrots (orange), and green beans or peppers (green). State: Raw/chopped/separate -> Transferred to pan (Frame 12) -> Mixed with sauce (Frames 13-16).\\\\n*   **Wooden Spoon:** Used to stir the tomato sauce (Frames 7, 10).\\\\n*   **Glass Lid:** Placed on the pan to cover the simmering sauce (Frames 8-9). State: Absent -> Present (covering pan) -> Absent (removed).\\\\n*   **Metal Spoon/Spatula:** Used to stir the vegetables once added (Frames 13-16).\\\\n*   **Background Pot (Left):** A stainless steel pot containing a white substance (possibly rice or yogurt/curd mixture) with a glass lid. The lid shows condensation/steam, indicating it is hot/cooking.\\\\n\\\\n**(3) Visible State Transitions:**\\\\n*   **Spice Tempering:** The clip starts with seeds being added to hot oil (inferred from Frame 1 hand motion and Frame 3 seeds appearing). The seeds transition from being held to sizzling in the pan.\\\\n*   **Sauce Creation:** The red puree is poured into the pan with the seeds. It transitions from a static liquid in a bowl to a bubbling, cooking sauce in the pan.\\\\n*   **Simmering:** The sauce is covered with a lid (Frame 9), allowing it to steam/cook, then uncovered.\\\\n*   **Combining:** The raw, separate mixed vegetables are poured from the large glass bowl into the simmering sauce. They transition from being a dry pile of chopped veggies to being coated and mixed with the wet red sauce.\\\\n\\\\n**(4) Background Cues:**\\\\n*   **Stove:** The electric coil burner under the black pan is active (evidenced by the bubbling sauce in Frame 6 and steam).\\\\n*   **Pan Residue:** The pan starts relatively clean/empty (with oil), becomes coated with red sauce, and finally holds the vegetable mixture.\\\\n*   **Plate/Bowl State:** The glass bowl for the tomato puree becomes empty and sits in the background (Frame 6). The large vegetable bowl is emptied into the pan (Frame 12).\\\\n\\\\n**(5) Spoken Narration/Step Labels:**\\\\n*   There is a watermark \\\\\\\"Manjula's Kitchen\\\\\\\" visible in the top left corner throughout the clip.\\\\n*   (Note: As an AI analyzing images, I cannot hear audio, but typically this step would involve narration about adding cumin seeds, tomato puree, and mixed vegetables).\\\", \\\"5\\\": \\\"Based on the visual evidence in the frames, here is the detailed description of the cooking segment:\\\\n\\\\n**(1) Main Operation/Role:**\\\\nThis segment depicts the **finishing and garnishing** stage of a layered dish, likely a rice-based preparation such as Biryani or a sweet rice dish (like Zarda). The cook is adding final toppings and flavor enhancers to the assembled dish before it is likely served or baked further (though no oven is shown).\\\\n\\\\n**(2) Visible Objects/Tools/Containers and States:**\\\\n*   **Large Glass Bowl (Casserole Dish):**\\\\n    *   **State:** Filled. It contains a layered dish. The bottom layer visible through the glass is orange/yellow (suggesting spiced rice, vegetables, or a sweet base). The top layer is a thick mound of cooked, fluffy white rice with yellow tints (likely saffron-infused).\\\\n    *   **Surface:** Initially dry and plain rice.\\\\n*   **Small Glass Bowl (Almonds):**\\\\n    *   **State:** Initially filled with sliced almonds (light brown skins, white interiors). By the end, it is held in the hand, partially depleted.\\\\n*   **Small Glass Bowl (Liquid/Ghee):**\\\\n    *   **State:** Filled with a yellow, translucent liquid, likely melted ghee (clarified butter) or butter.\\\\n*   **Metal Spoon:** Used to drizzle the liquid.\\\\n*   **Wooden Surface:** The bowl sits on a light-colored wooden countertop. A spoon rests on the table in the early frames (left side).\\\\n\\\\n**(3) Visible State Transitions:**\\\\n*   **Almond Addition (Frames 3-9):** The cook takes sliced almonds from the small bowl and scatters them by hand over the top layer of rice. The rice surface transitions from plain to being speckled with almond slices.\\\\n*   **Liquid Drizzling (Frames 10-14):** The cook uses a spoon to drizzle the yellow liquid (ghee) from the second small bowl over the rice and almonds. The surface of the dish transitions from dry to glistening/wet where the liquid lands.\\\\n*   **Final State (Frames 15-16):** The dish is fully topped with a generous layer of sliced almonds and drizzled with ghee. In the final frame, a utensil (spoon or knife) appears to be resting in or slightly pressing into the dish.\\\\n\\\\n**(4) Background Cues:**\\\\n*   **Text:** \\\\\\\"Manjula's Kitchen\\\\\\\" watermark is visible in the top left corner throughout.\\\\n*   **Person:** A person wearing a brown patterned top is performing the actions.\\\\n*   **Stove/Pan:** No stove or pan is active in the immediate background; the focus is entirely on the assembly on the counter.\\\\n\\\\n**(5) Spoken Narration/Step Labels:**\\\\n*   While audio is not available, the visual steps clearly indicate a garnishing process: \\\\\\\"Sprinkle sliced almonds\\\\\\\" followed by \\\\\\\"Drizzle melted ghee/butter.\\\\\\\"\\\\n\\\\n**Summary of Object States (Start vs. End):**\\\\n*   **Rice:** Start: Cooked, fluffy, plain top. End: Cooked, topped with almonds and ghee.\\\\n*   **Almonds:** Start: In small bowl. End: Scattered on top of rice.\\\\n*   **Ghee:** Start: In small bowl. End: Drizzled over the dish.\\\", \\\"6\\\": \\\"Based on the visual evidence from the provided frames, here is the detailed description of the cooking segment:\\\\n\\\\n**(1) Main Operation/Role:**\\\\nThe segment depicts the **cooking/preparation** phase, specifically the assembly of ingredients to begin boiling rice. The cook is combining water, rice, seasoning, and fat in a pot on the stove.\\\\n\\\\n**(2) Visible Objects/Tools/Containers and States:**\\\\n*   **Stainless Steel Pot:** Located on the front burner of a white electric stove. It starts relatively empty (or with a small amount of liquid) and ends filled with a mixture of water, rice, and oil.\\\\n*   **Glass Measuring Cup:** Initially filled with clear liquid (water). It is poured into the pot. By the end, it sits on the stove surface, partially empty or empty.\\\\n*   **Small Glass Bowl (Rice):** Contains raw, white, whole grains (rice). It is poured into the pot. By the end, it is empty and sitting on the stove surface.\\\\n*   **Small Glass Bowl (Seasoning):** A very small container held in the hand. It contains a white granular substance (likely salt).\\\\n*   **Oil/Ghee:** A thin stream of yellowish liquid is poured into the pot.\\\\n*   **Spoon/Ladle:** A metal utensil with a black handle used for stirring.\\\\n*   **Glass Lid:** Visible on the counter to the left, separate from the pot (absent state).\\\\n*   **Black Pot:** Sitting on the back burner, appears to contain liquid or food, lid on.\\\\n*   **Text Overlay:** \\\\\\\"Manjula's Kitchen\\\\\\\" is visible in the top left corner.\\\\n\\\\n**(3) Visible State Transitions:**\\\\n*   **Water Addition:** The cook pours water from the measuring cup into the stainless steel pot (Frames 1-4).\\\\n*   **Rice Addition:** Raw white rice is poured from a small glass bowl into the water in the pot (Frames 5-6).\\\\n*   **Seasoning Addition:** A pinch of white substance (salt) is added by hand from a small container (Frame 7).\\\\n*   **Fat Addition:** A stream of oil or ghee is poured into the pot (Frame 9).\\\\n*   **Mixing:** The contents (water, rice, salt, oil) are stirred together with a spoon (Frames 11-12).\\\\n*   **Settling:** The spoon is removed/rested, and the pot is left on the burner, likely heating up (Frames 13-16). The liquid surface shows slight disturbance, suggesting heat or recent movement.\\\\n\\\\n**(4) Background Cues:**\\\\n*   **Stove:** White electric coil stove. The burner under the pot is active (implied by the cooking process, though no red glow is distinct).\\\\n*   **Counter:** White tiled counter. A glass lid rests here, indicating the pot is currently open/uncovered.\\\\n*   **Residue:** The pot interior is clean and shiny before ingredients are added.\\\\n\\\\n**(5) Spoken Narration/Step Labels:**\\\\n*   No audio is available to report spoken narration.\\\\n*   Visual label: \\\\\\\"Manjula's Kitchen\\\\\\\" indicates the source/brand of the cooking show.\\\\n\\\\n**Summary of Object States (Start vs. End):**\\\\n*   **Start:** Pot is on the stove. Measuring cup has water. Small bowl has raw rice. Ingredients are separate.\\\\n*   **End:** Pot contains a mixture of water, raw rice, salt, and oil. The mixture has been stirred. The measuring cup and rice bowl are now empty and resting on the stovetop. The lid remains off the pot on the counter.\\\"}\"}"
+  }
+]
+
+============================================================
+
+--- [Step 4] ASSISTANT ---
+{
+  "action": "batch_observe",
+  "thought": "Layer2: Discriminative Evidence Reinspection. Layer1 identified a clear state-transition chain: V6 (boil raw rice) -> V3 (prep raw veggies) -> V4 (cook veggies in sauce, rice steaming in background) -> V2 (color cooked rice with saffron) -> V1 (layer curry and rice) -> V5 (garnish with almonds/ghee). To confirm this graph, Layer2 must re-observe the exact visible states of the bridging objects in each segment without passing the hypothesized order to the VLM.",
+  "batch": [
+    {
+      "video_index": 1,
+      "start_time": 0,
+      "end_time": 65.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the black pan: is it FULL, PARTIALLY_FULL, or EMPTY? What is inside? Report the state of the large glass baking dish: is it EMPTY, PARTIALLY_FILLED, or FULL? What layers are visible? Report the state of the large metal bowl with rice: FULL, PARTIALLY_FULL, or EMPTY?"
+    },
+    {
+      "video_index": 2,
+      "start_time": 0,
+      "end_time": 17.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the large metal bowl: is it FULL or PARTIALLY_FULL? What is the color of the rice (pure white, mixed white/yellow, fully yellow)? Report the state of the small glass bowl with saffron milk: FULL, PARTIALLY_FULL, or EMPTY?"
+    },
+    {
+      "video_index": 3,
+      "start_time": 0,
+      "end_time": 58.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the large clear glass bowl: is it EMPTY, PARTIALLY_FILLED, or FULL? What ingredients are visible inside (raw veggies, yogurt, spices)? Report the state of the small bowls with raw ingredients: are they FULL or EMPTY?"
+    },
+    {
+      "video_index": 4,
+      "start_time": 0,
+      "end_time": 76.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the black saucepan: is it EMPTY, PARTIALLY_FILLED, or FULL? What is inside (oil, tomato sauce, raw veggies, cooked veggies)? Report the state of the large glass bowl with mixed vegetables: FULL, PARTIALLY_FULL, or EMPTY? Report the state of the background stainless steel pot: is the lid on or off? Is there visible steam/condensation?"
+    },
+    {
+      "video_index": 5,
+      "start_time": 0,
+      "end_time": 23.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the large glass bowl: is it EMPTY, PARTIALLY_FILLED, or FULL? What layers or toppings are visible on top? Report the state of the small bowl with almonds: FULL, PARTIALLY_FULL, or EMPTY? Report the state of the small bowl with ghee: FULL, PARTIALLY_FULL, or EMPTY?"
+    },
+    {
+      "video_index": 6,
+      "start_time": 0,
+      "end_time": 22.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the stainless steel pot on the stove: is it EMPTY, PARTIALLY_FILLED, or FULL? What is inside (water, raw rice, oil)? Report the state of the small glass bowl with rice: FULL or EMPTY? Report the state of the glass measuring cup: FULL or EMPTY?"
+    }
+  ],
+  "context_update": {
+    "layer1_done": true,
+    "event_memory": {
+      "1": "Assembly/layering of biryani in glass dish using curry from black pan and rice from metal bowl.",
+      "2": "Saffron milk poured and mixed into cooked white rice in metal bowl.",
+      "3": "Raw veggies, cashews, yogurt, and spices mixed in large glass bowl.",
+      "4": "Tomato sauce and raw veggie mix cooked in black pan. Rice pot steaming in background.",
+      "5": "Almonds and ghee added as final garnish to already layered dish in glass bowl.",
+      "6": "Raw rice, water, salt, and oil combined in stainless steel pot on stove."
+    },
+    "object_memory": {
+      "rice": {
+        "6": "raw white grains + water + oil in steel pot",
+        "2": "cooked white grains in metal bowl, mixed with saffron to become white/yellow",
+        "1": "cooked rice (white/yellow) in metal bowl, being depleted into glass dish",
+        "5": "cooked layered rice in glass dish, topped with almonds/ghee"
+      },
+      "veggies": {
+        "3": "raw chopped cauliflower/carrots/beans/peppers + cashews + yogurt in glass bowl",
+        "4": "raw chopped veggies transferred from glass bowl into black pan with tomato sauce",
+        "1": "cooked veggie curry in black pan, being depleted into glass dish"
+      },
+      "black_pan": {
+        "4": "contains tomato sauce and raw veggies, transitions to cooking curry",
+        "1": "contains cooked veggie curry, transitions to partially empty"
+      },
+      "glass_baking_dish": {
+        "1": "empty, then layered with curry, rice, garnishes, curry, rice",
+        "5": "fully layered, receives final almond and ghee topping"
+      }
+    },
+    "preliminary_order": [6, 3, 4, 2, 1, 5],
+    "order_confidence": 8,
+    "confidence_basis": "Clear object state chains: raw rice (V6) -> cooked rice (V2) -> layered rice (V1) -> garnished rice (V5). Raw veggies (V3) -> cooked in sauce (V4) -> layered curry (V1). Background rice pot steaming in V4 confirms V4 is after V6 and before V2. Glass dish empty then layered in V1, already layered in V5.",
+    "blocking_uncertainties": ["Verify exact fill/empty states of bridging containers in Layer2 to ensure no skipped steps or reversed transitions."],
+    "candidate_targets": [1, 2, 3, 4, 5, 6],
+    "low_value_targets": [],
+    "uncertain": ["Exact fill levels of bridging containers need Layer2 verification"],
+    "dimensions_to_compare": ["container fill/empty states", "rice color progression", "veggie raw vs cooked state", "background pot steam"]
+  }
+}
+
+============================================================
+
+--- [Step 5] TOOL ---
+[
+  {
+    "type": "text",
+    "text": "{\"call_id\": \"batch_2\", \"tool_name\": \"active_perception\", \"result\": \"{\\\"1\\\": \\\"Based on the visual evidence in the frames:\\\\n\\\\n*   **Black Pan:** The pan is **PARTIALLY_FULL** (it starts full and is being depleted). Inside, it contains **cooked vegetable curry** (visible chunks of cauliflower, carrots, and green beans/peppers in a tomato-based sauce).\\\\n*   **Large Glass Baking Dish:** The dish is **PARTIALLY_FILLED** (transitioning from empty to full as layers are added). The visible layers, from bottom to top, are: a layer of **veggie curry**, a layer of **rice**, a layer of **garnishes** (fried onions and green herbs), another layer of **veggie curry**, and a final top layer of **rice**.\\\\n*   **Large Metal Bowl with Rice:** The bowl is **PARTIALLY_FULL** (it starts full and is being depleted/emptied into the glass dish). It contains **cooked white and yellow (saffron) rice**.\\\", \\\"2\\\": \\\"Based on the visual evidence in the frames:\\\\n\\\\n*   **Large metal bowl:** The bowl contains a large mound of cooked rice. While there is some space at the top, the volume of rice is substantial, filling the majority of the bowl's capacity. It is best described as **FULL** (or nearly full/heaping).\\\\n*   **Rice color:** The rice starts as pure white (frames 1-2). Saffron milk (yellow liquid with red strands) is poured onto it (frames 3-5). Then, the rice is mixed with a spoon (frames 7-16), resulting in patches of yellow spreading through the white rice. The state is **mixed white/yellow**.\\\\n*   **Small glass bowl with saffron milk:** In the beginning (frames 1-3), the bowl is full of yellow liquid. It is then poured out over the rice (frames 4-5). By the end of the sequence (frames 6-16), the bowl is sitting on the table (visible in the corner) and is **EMPTY** (having been depleted to color the rice).\\\\n\\\\n**Report:**\\\\n*   **Large metal bowl:** FULL\\\\n*   **Rice color:** mixed white/yellow\\\\n*   **Small glass bowl:** EMPTY\\\", \\\"3\\\": \\\"Based on the visual evidence in the frames:\\\\n\\\\n**Large Clear Glass Bowl:**\\\\n*   **State:** The bowl transitions from empty to **FULL** (or heavily filled) by the end of the sequence (Frame 16). It contains a thick, mixed combination of ingredients.\\\\n*   **Visible Ingredients:** Inside the bowl, you can see **raw chopped vegetables** (white cauliflower florets, orange carrots, green beans, and green peppers/celery), **cashews** (white nuts), a large amount of white **yogurt**, and **spices** (yellow turmeric powder, white salt, and red chili powder). These are all mixed together in the final frames.\\\\n\\\\n**Small Bowls with Raw Ingredients:**\\\\n*   **State:** In the initial setup (Frame 1), these small bowls are **FULL** of their respective raw ingredients (cauliflower, carrots, peppers, beans, cashews, yogurt, spices). As the video progresses (Frames 2-12), they are poured into the large bowl and become **EMPTY**. By the end, most are empty, though one small bowl with white chunks is visible in the bottom right corner in later frames, appearing **FULL** or partially filled. Generally, they start **FULL** and are emptied.\\\", \\\"4\\\": \\\"Based on the visual evidence in the frames:\\\\n\\\\n*   **Black Saucepan:** The saucepan is **PARTIALLY_FILLED** (filling up throughout the sequence). Inside, it initially contains **oil** (and seeds/spices), then **tomato sauce** is added, and finally **raw mixed vegetables** are poured in and stirred, transitioning into a cooking curry.\\\\n*   **Large Glass Bowl with Mixed Vegetables:** The bowl appears **FULL** (or heavily **PARTIALLY_FULL**) of **raw mixed vegetables** (cauliflower, carrots, beans, etc.) in frames 10-11 before being emptied into the saucepan in frame 12.\\\\n*   **Background Stainless Steel Pot:** The lid is **ON** (visible as a glass lid in frames 1-11). There is clearly visible **steam/condensation** (white fog) on the inside of the lid.\\\", \\\"5\\\": \\\"Based on the visual evidence in the frames:\\\\n\\\\n*   **Large Glass Bowl**: The bowl is **FULL**. It is filled with layers of food, primarily topped with a thick layer of cooked white/yellow rice. Through the glass sides, a lower layer of vegetable curry (orange/yellow mixture) is visible. The visible toppings on the rice layer are **sliced almonds** (being sprinkled in frames 4-9) and **ghee/melted butter** (being drizzled in frames 10-14).\\\\n*   **Small Bowl with Almonds**: The bowl is **PARTIALLY_FULL** (or transitioning from full to empty). It contains sliced almonds which are being sprinkled onto the rice.\\\\n*   **Small Bowl with Ghee**: The bowl is **PARTIALLY_FULL** (or full). It contains a yellow liquid (ghee/melted butter) which is being spooned over the dish.\\\", \\\"6\\\": \\\"Based on the visual evidence in the frames:\\\\n\\\\n*   **Stainless Steel Pot:** The pot is **PARTIALLY_FILLED**. It contains **water** (poured in frames 1-4), **raw rice** (white grains poured in frame 6), and **oil** (stream visible in frame 9). The mixture is being stirred in the later frames.\\\\n*   **Small Glass Bowl with Rice:** The bowl starts with rice (frame 5) but is emptied into the pot (frames 6-7). In the subsequent frames (8-16), it sits on the stove **EMPTY**.\\\\n*   **Glass Measuring Cup:** The cup is used to pour water into the pot (frames 1-4). By frame 4, it appears empty. In the later close-up frames (5-16), it sits on the stove to the left and appears **EMPTY** (or contains only a small residue, effectively empty of the main volume).\\\\n\\\\n**Report:**\\\\n*   **Stainless steel pot:** PARTIALLY_FILLED with water, raw rice, and oil.\\\\n*   **Small glass bowl with rice:** EMPTY.\\\\n*   **Glass measuring cup:** EMPTY.\\\"}\"}"
+  }
+]
+
+============================================================
+
+--- [Step 6] ASSISTANT ---
+{
+  "action": "answer",
+  "thought": "ORDER_AUDIT:\n- supporting_chains: \n  1. Rice lifecycle: raw grains + water + oil in steel pot (V6) -> rice pot steaming with lid on in background (V4) -> fully cooked white rice in metal bowl, colored with saffron to white/yellow (V2) -> white/yellow rice depleted from metal bowl into glass dish (V1) -> layered rice in glass dish receiving final garnish (V5).\n  2. Veggie lifecycle: raw veggies + yogurt + spices mixed in large glass bowl (V3) -> raw veggie mix transferred from glass bowl into black pan with tomato sauce (V4) -> cooked veggie curry depleted from black pan into glass dish (V1).\n  3. Glass dish lifecycle: empty -> layered with curry, rice, garnishes (V1) -> fully layered dish receiving almond and ghee topping (V5).\n- conflicting_chains: None.\n- unresolved_relations: None.\n- confidence_change: Layer2 confirmed all bridging container states (fill/empty transitions), background pot steam in V4 linking V6 to V4, and explicit transfer traces for both rice and veggies. Confidence increased from 8 to 9/10 as all state progressions are directly visible and unbroken.\n\nEDGE_TABLE:\n- 6 before 3: V6 fills pot to boil rice; V3 shows pot already on stove in standby. V6 initiates the rice cooking process.\n- 3 before 4: V3 mixes raw veggies in glass bowl; V4 shows that exact raw veggie mix being transferred from the glass bowl into the black pan. (direct_transfer)\n- 4 before 2: V4 shows rice pot steaming in background (rice cooking); V2 shows rice fully cooked in metal bowl. (same_object_state_progression)\n- 2 before 1: V2 colors white rice with saffron to create white/yellow rice; V1 shows that exact white/yellow rice being depleted from the metal bowl into the glass dish. (same_object_state_progression)\n- 1 before 5: V1 builds the layers in the glass dish; V5 shows the already completed layered dish receiving final almond and ghee garnish. (visible_completion_to_next_start)\n\nconfidence_score: 9/10",
+  "final_answer": "6->3->4->2->1->5",
+  "context_update": {
+    "layer2_done": true,
+    "comparison_table": {
+      "6": "raw rice + water + oil in steel pot; measuring cup and rice bowl empty after transfer",
+      "3": "raw veggies + yogurt + spices mixed in large glass bowl; small ingredient bowls emptied",
+      "4": "raw veggie mix added to tomato sauce in black pan; background rice pot steaming with lid on",
+      "2": "cooked white rice in metal bowl colored with saffron to white/yellow; saffron bowl emptied",
+      "1": "cooked curry and white/yellow rice layered in glass dish; black pan and metal bowl partially depleted",
+      "5": "fully layered dish in glass bowl topped with almonds and ghee; garnish bowls partially depleted"
+    },
+    "confirmed": [
+      "Rice state progression: raw (V6) -> cooking/steaming (V4 background) -> cooked white (V2) -> cooked white/yellow (V1) -> layered (V5)",
+      "Veggie state progression: raw mixed (V3) -> raw transferred to pan (V4) -> cooked curry (V1)",
+      "Glass dish state progression: empty -> layered (V1) -> fully layered with garnish (V5)"
+    ],
+    "pruned_targets": [],
+    "candidate_targets": [1, 2, 3, 4, 5, 6],
+    "uncertain": [],
+    "order_confidence": 9
+  }
+}
+
+============================================================
+

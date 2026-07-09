@@ -1,0 +1,243 @@
+{
+  "confirmed": [
+    "Clip 3 dries whole block",
+    "Clip 2 assembles garnish bed",
+    "Clip 1 slices block and plates on pre-assembled garnish bed"
+  ],
+  "uncertain": [
+    "identity of red objects in Clip 2 background"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "tuna_block": {
+      "3": "raw/whole dried in paper",
+      "1": "raw/whole -> sliced -> plated"
+    },
+    "garnish_bed": {
+      "2": "ice + garnish assembled",
+      "1": "garnish already present, tuna plated on it"
+    },
+    "knife": {
+      "1": "sharpened then used for slicing",
+      "2": "resting on table"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object state chain",
+    "container fill/empty",
+    "transfer traces",
+    "residue/depletion",
+    "garnish bed assembly state",
+    "background object identity"
+  ],
+  "resolved_uncertain": [
+    "garnish bed assembly state: Clip 2 assembles, Clip 1 uses already assembled",
+    "Clip 3 visible states confirmed via Layer2 re-observation"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object state chain",
+          "container fill/empty",
+          "transfer traces",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "tuna_block": {
+            "3": "raw/whole, being dried in paper towels",
+            "1": "raw/whole -> cut into slices -> plated on ice"
+          },
+          "garnish_bed": {
+            "2": "ice + shredded veg + shiso being assembled",
+            "1": "ice + garnish already present, then tuna plated on it"
+          },
+          "knife": {
+            "1": "sharpened then used for slicing",
+            "2": "resting on table"
+          }
+        },
+        "preliminary_order": "3->2->1",
+        "order_confidence": 7,
+        "confidence_basis": "Clip 3 dries whole block; Clip 2 assembles garnish bed; Clip 1 slices block and plates on bed. Contradiction: VLM reported sliced tuna in background of Clip 2.",
+        "blocking_uncertainties": [
+          "Are there actual tuna slices in Clip 2 background, or misidentified object?",
+          "Is garnish fully assembled before Clip 1 plating?"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                25,
+                42
+              ],
+              "event": "plating tuna on garnish bed",
+              "key_objects": [
+                "bowl",
+                "ice",
+                "tuna slices"
+              ],
+              "visible_state": "garnish present, tuna added",
+              "why_it_matters": "determines if Clip 2 precedes Clip 1",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                8
+              ],
+              "event": "garnish assembly",
+              "key_objects": [
+                "bowl",
+                "ice",
+                "background red objects"
+              ],
+              "visible_state": "garnish added to ice",
+              "why_it_matters": "check if background red objects are tuna slices or veg",
+              "confidence": "medium"
+            }
+          ]
+        },
+        "uncertain": [
+          "identity of red objects in Clip 2 background"
+        ],
+        "dimensions_to_compare": [
+          "garnish bed assembly state",
+          "background object identity"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "object_memory": {
+          "tuna_block": {
+            "3": "raw/whole dried in paper",
+            "1": "raw/whole -> sliced -> plated"
+          },
+          "garnish_bed": {
+            "2": "ice + garnish assembled",
+            "1": "garnish already present, tuna plated on it"
+          }
+        },
+        "preliminary_order": "3->2->1",
+        "order_confidence": 8,
+        "confirmed": [
+          "Clip 3 dries whole block",
+          "Clip 2 assembles garnish bed",
+          "Clip 1 slices block and plates on pre-assembled garnish bed"
+        ],
+        "resolved_uncertain": [
+          "garnish bed assembly state: Clip 2 assembles, Clip 1 uses already assembled"
+        ],
+        "comparison_table": {
+          "tuna_block": {
+            "3": "whole/drying",
+            "1": "sliced/plated"
+          },
+          "garnish_bed": {
+            "2": "assembling",
+            "1": "already assembled"
+          }
+        }
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "layer2_done": [
+          "True"
+        ],
+        "comparison_table": [
+          "{\"tuna_block\": {\"3\": \"whole/drying\", \"1\": \"sliced/plated\"}, \"garnish_bed\": {\"2\": \"assembling\", \"1\": \"already assembled\"}}"
+        ],
+        "uncertain": [
+          "identity of red objects in Clip 2 background"
+        ]
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "layer2_done": true,
+        "object_memory": {
+          "tuna_block": {
+            "3": "raw/whole dried in paper",
+            "1": "raw/whole -> sliced -> plated"
+          },
+          "garnish_bed": {
+            "2": "ice + garnish assembled",
+            "1": "garnish already present, tuna plated on it"
+          }
+        },
+        "preliminary_order": "3->2->1",
+        "order_confidence": 8,
+        "confirmed": [
+          "Clip 3 dries whole block",
+          "Clip 2 assembles garnish bed",
+          "Clip 1 slices block and plates on pre-assembled garnish bed"
+        ],
+        "resolved_uncertain": [
+          "garnish bed assembly state: Clip 2 assembles, Clip 1 uses already assembled",
+          "Clip 3 visible states confirmed via Layer2 re-observation"
+        ],
+        "comparison_table": {
+          "tuna_block": {
+            "3": "whole/drying",
+            "1": "sliced/plated"
+          },
+          "garnish_bed": {
+            "2": "assembling",
+            "1": "already assembled"
+          }
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3->2->1"
+  ],
+  "order_confidence": [
+    "7",
+    "8"
+  ],
+  "confidence_basis": [
+    "Clip 3 dries whole block; Clip 2 assembles garnish bed; Clip 1 slices block and plates on bed. Contradiction: VLM reported sliced tuna in background of Clip 2."
+  ],
+  "blocking_uncertainties": [
+    "Are there actual tuna slices in Clip 2 background, or misidentified object?",
+    "Is garnish fully assembled before Clip 1 plating?"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [25, 42], \"event\": \"plating tuna on garnish bed\", \"key_objects\": [\"bowl\", \"ice\", \"tuna slices\"], \"visible_state\": \"garnish present, tuna added\", \"why_it_matters\": \"determines if Clip 2 precedes Clip 1\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 8], \"event\": \"garnish assembly\", \"key_objects\": [\"bowl\", \"ice\", \"background red objects\"], \"visible_state\": \"garnish added to ice\", \"why_it_matters\": \"check if background red objects are tuna slices or veg\", \"confidence\": \"medium\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"tuna_block\": {\"3\": \"whole/drying\", \"1\": \"sliced/plated\"}, \"garnish_bed\": {\"2\": \"assembling\", \"1\": \"already assembled\"}}"
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "confirmed": [
+    "complete state progression verified: fresh->massaged->packed->sealed"
+  ],
+  "uncertain": [
+    "full object-state inventory pending Layer1"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"massaging cabbage in glass bowl\", \"2\": \"tamping cabbage into mason jar with black pestle\", \"3\": \"mise-en-place: fresh cabbage, empty jar, salt, lid\", \"4\": \"sealing filled jars with white and black lids\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "cabbage": {
+      "3": "fresh/dry/shredded in bowl",
+      "1": "wet/compacted being massaged in bowl",
+      "2": "packed in jar releasing liquid",
+      "4": "green chunky mixture in sealed jars"
+    },
+    "glass_bowl": {
+      "3": "filled with fresh cabbage",
+      "1": "filled with wet cabbage, residue on sides"
+    },
+    "glass_jar": {
+      "3": "empty in background",
+      "2": "being filled/packed with cabbage",
+      "4": "filled and sealed with lids"
+    },
+    "salt": {
+      "3": "pink salt container present"
+    },
+    "lids": {
+      "3": "white lid resting loose on table",
+      "4": "white and black lids being screwed on tight"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states raw->cooked",
+    "container fill/empty transitions",
+    "tool contact and residue",
+    "transfer traces between vessels",
+    "background vessel state changes",
+    "cabbage moisture/compaction",
+    "jar fill level and seal state",
+    "lid position (loose vs sealed)",
+    "salt container presence"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "full object-state inventory pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states raw->cooked",
+          "container fill/empty transitions",
+          "tool contact and residue",
+          "transfer traces between vessels",
+          "background vessel state changes"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "massaging cabbage in glass bowl",
+          "2": "tamping cabbage into mason jar with black pestle",
+          "3": "mise-en-place: fresh cabbage, empty jar, salt, lid",
+          "4": "sealing filled jars with white and black lids"
+        },
+        "object_memory": {
+          "cabbage": {
+            "3": "fresh/dry/shredded in bowl",
+            "1": "wet/compacted being massaged in bowl",
+            "2": "packed in jar releasing liquid",
+            "4": "green chunky mixture in sealed jars"
+          },
+          "glass_bowl": {
+            "3": "filled with fresh cabbage",
+            "1": "filled with wet cabbage, residue on sides"
+          },
+          "glass_jar": {
+            "3": "empty in background",
+            "2": "being filled/packed with cabbage",
+            "4": "filled and sealed with lids"
+          },
+          "salt": {
+            "3": "pink salt container present"
+          },
+          "lids": {
+            "3": "white lid resting loose on table",
+            "4": "white and black lids being screwed on tight"
+          }
+        },
+        "preliminary_order": "3->1->2->4",
+        "order_confidence": 9,
+        "confidence_basis": "clear state progression: fresh cabbage+empty jar (3) -> massaging in bowl (1) -> packing into jar (2) -> sealing jars (4)",
+        "blocking_uncertainties": [
+          "verify V4 mixture is indeed the packed cabbage from V2 and not a different recipe step"
+        ],
+        "dimensions_to_compare": [
+          "cabbage moisture/compaction",
+          "jar fill level and seal state",
+          "lid position (loose vs sealed)",
+          "salt container presence"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "V3": "fresh/dry cabbage, empty jar, loose lid, salt present",
+          "V1": "wet/compacted cabbage in bowl, jar empty in background",
+          "V2": "cabbage packed in jar with liquid, second jar appears",
+          "V4": "jars sealed with lids, green chunky mixture"
+        },
+        "confirmed": "complete state progression verified: fresh->massaged->packed->sealed",
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3->1->2->4"
+  ],
+  "order_confidence": [
+    "9"
+  ],
+  "confidence_basis": [
+    "clear state progression: fresh cabbage+empty jar (3) -> massaging in bowl (1) -> packing into jar (2) -> sealing jars (4)"
+  ],
+  "blocking_uncertainties": [
+    "verify V4 mixture is indeed the packed cabbage from V2 and not a different recipe step"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V3\": \"fresh/dry cabbage, empty jar, loose lid, salt present\", \"V1\": \"wet/compacted cabbage in bowl, jar empty in background\", \"V2\": \"cabbage packed in jar with liquid, second jar appears\", \"V4\": \"jars sealed with lids, green chunky mixture\"}"
+  ]
+}

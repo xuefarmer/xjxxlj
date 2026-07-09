@@ -1,0 +1,178 @@
+{
+  "confirmed": [
+    "V4 precedes V3 (whole to chopped)",
+    "V3 precedes V5 (meatballs on board to browning in pan)",
+    "V5 precedes V2 (sauce simmering, then mushrooms added)",
+    "V2 precedes V1 (sauce with mushrooms, then meatballs combined and plated)"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "meatballs": {
+      "3": "raw on board at end",
+      "5": "transferred to separate pan to cook",
+      "1": "cooked in sauce, plated"
+    },
+    "sauce": {
+      "3": "poured over veggies",
+      "5": "simmering in nearby pan",
+      "2": "mushrooms added to it",
+      "1": "coating pasta, meatballs in it"
+    },
+    "mushrooms": {
+      "2": "sautéed then transferred into sauce"
+    },
+    "veggies": {
+      "4": "whole then chopped",
+      "3": "chopped into pan, sautéing",
+      "5": "chopped, sautéing in sauce pan"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked/mixed/plated)",
+    "container fill/empty",
+    "transfer traces",
+    "residue/depletion",
+    "ingredient maturity",
+    "meatball location (board vs pan vs sauce)",
+    "sauce composition (veggies only vs with mushrooms vs with meatballs)",
+    "pan states (separate vs combined)"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "full object inventory across all 5 segments"
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked/mixed/plated)",
+          "container fill/empty",
+          "transfer traces",
+          "residue/depletion",
+          "ingredient maturity"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": [
+          4,
+          3,
+          5,
+          2,
+          1
+        ],
+        "order_confidence": 7,
+        "confidence_basis": [
+          "V4: whole ingredients chopped",
+          "V3: veggies in pan, sauce added, meatballs on board",
+          "V5: meatballs transferred to separate pan, sauce simmering nearby",
+          "V2: mushrooms added to sauce",
+          "V1: meatballs in sauce, plated"
+        ],
+        "blocking_uncertainties": [
+          "exact transition between V3 and V5 (overlap vs sequential)",
+          "when meatballs are combined with the sauce after V5",
+          "mushrooms timing relative to meatballs in sauce"
+        ],
+        "object_memory": {
+          "meatballs": {
+            "3": "raw on board at end",
+            "5": "transferred to separate pan to cook",
+            "1": "cooked in sauce, plated"
+          },
+          "sauce": {
+            "3": "poured over veggies",
+            "5": "simmering in nearby pan",
+            "2": "mushrooms added to it",
+            "1": "coating pasta, meatballs in it"
+          },
+          "mushrooms": {
+            "2": "sautéed then transferred into sauce"
+          },
+          "veggies": {
+            "4": "whole then chopped",
+            "3": "chopped into pan, sautéing",
+            "5": "chopped, sautéing in sauce pan"
+          }
+        },
+        "uncertain": [
+          "exact transition between V3 and V5",
+          "when meatballs are combined with the sauce after V5",
+          "mushrooms timing relative to meatballs in sauce"
+        ],
+        "dimensions_to_compare": [
+          "meatball location (board vs pan vs sauce)",
+          "sauce composition (veggies only vs with mushrooms vs with meatballs)",
+          "pan states (separate vs combined)"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 9,
+        "comparison_table": {
+          "V4": "whole veggies chopped, pan oiled",
+          "V3": "veggies in pan, sauce poured, meatballs on board",
+          "V5": "meatballs browning in separate pan, sauce simmering",
+          "V2": "mushrooms sautéed and added to simmering sauce",
+          "V1": "meatballs in sauce, plated with cheese"
+        },
+        "confirmed": [
+          "V4 precedes V3 (whole to chopped)",
+          "V3 precedes V5 (meatballs on board to browning in pan)",
+          "V5 precedes V2 (sauce simmering, then mushrooms added)",
+          "V2 precedes V1 (sauce with mushrooms, then meatballs combined and plated)"
+        ],
+        "pruned_targets": [],
+        "uncertain": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "4",
+    "3",
+    "5",
+    "2",
+    "1"
+  ],
+  "order_confidence": [
+    "7",
+    "9"
+  ],
+  "confidence_basis": [
+    "V4: whole ingredients chopped",
+    "V3: veggies in pan, sauce added, meatballs on board",
+    "V5: meatballs transferred to separate pan, sauce simmering nearby",
+    "V2: mushrooms added to sauce",
+    "V1: meatballs in sauce, plated"
+  ],
+  "blocking_uncertainties": [
+    "exact transition between V3 and V5 (overlap vs sequential)",
+    "when meatballs are combined with the sauce after V5",
+    "mushrooms timing relative to meatballs in sauce"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V4\": \"whole veggies chopped, pan oiled\", \"V3\": \"veggies in pan, sauce poured, meatballs on board\", \"V5\": \"meatballs browning in separate pan, sauce simmering\", \"V2\": \"mushrooms sautéed and added to simmering sauce\", \"V1\": \"meatballs in sauce, plated with cheese\"}"
+  ],
+  "pruned_targets": []
+}

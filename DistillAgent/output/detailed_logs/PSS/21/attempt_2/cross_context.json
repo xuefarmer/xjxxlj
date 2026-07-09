@@ -1,0 +1,223 @@
+{
+  "confirmed": [
+    "Veg chain: 4->3->1->2 (dry->wet->mixed->added)",
+    "Bread chain: 1->5->2 (split->spread+meat->+veg)",
+    "V1 is transition segment with two scenes",
+    "Inter-chain order resolved by moisture state progression"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {},
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "bread presence/state in V4 background",
+    "spiralizer/veg presence in V1 background",
+    "knife position in both",
+    "counter state progression",
+    "actual objects visible in V1 first second",
+    "presence/absence of glass bowl",
+    "presence/absence of spiralized veg",
+    "bread state in first frames",
+    "moisture state of spiralized veg in V1",
+    "presence of liquid in bowl",
+    "vegetable appearance (freshly dressed vs dry)"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "V1 vs V4 inter-chain order: need cross-chain background evidence"
+        ],
+        "dimensions_to_compare": [
+          "bread presence/state in V4 background",
+          "spiralizer/veg presence in V1 background",
+          "knife position in both",
+          "counter state progression"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "uncertain": [
+          "V1 Frame 1 contradiction: Layer1 said no glass bowl, focus said glass bowl with spiralized veg visible - need BACKTRACK verification"
+        ],
+        "dimensions_to_compare": [
+          "actual objects visible in V1 first second",
+          "presence/absence of glass bowl",
+          "presence/absence of spiralized veg",
+          "bread state in first frames"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "uncertain": [
+          "Whether spiralized veg in V1 Frame 1-2 is wet/pickled (post-V3) or dry/raw (pre-V3)"
+        ],
+        "dimensions_to_compare": [
+          "moisture state of spiralized veg in V1",
+          "presence of liquid in bowl",
+          "vegetable appearance (freshly dressed vs dry)"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "1": "TRANSITION: Frames 1-2 show wet/glistening pickled spiralized veg being mixed with fork; Frames 3-16 show bread splitting on plain white cutting board",
+          "2": "sandwich finishing: cucumber, pickled veg, cilantro added to bread with spread+meat, cutting board with handle cutout",
+          "3": "pickling: dry spiralized veg->wet pickled (liquid+powder added), plain white cutting board in background",
+          "4": "spiralizing: whole daikon/carrot->dry spiralized strands, no cutting board visible, sink in background",
+          "5": "bread assembly: Vegenaise spread on split bread, meat added, cutting board with handle cutout"
+        },
+        "temporal_index": {
+          "1": [
+            {
+              "window": [
+                0,
+                0.5
+              ],
+              "event": "pickled veg mixing",
+              "key_objects": [
+                "glass bowl",
+                "wet spiralized veg",
+                "fork"
+              ],
+              "visible_state": "wet/glistening pickled strands being mixed",
+              "confidence": "high"
+            },
+            {
+              "window": [
+                0.5,
+                3
+              ],
+              "event": "bread splitting",
+              "key_objects": [
+                "bread",
+                "knife",
+                "plain white cutting board"
+              ],
+              "visible_state": "bread whole->split",
+              "confidence": "high"
+            }
+          ],
+          "2": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "sandwich finishing",
+              "key_objects": [
+                "bread",
+                "cucumber",
+                "pickled veg",
+                "cilantro"
+              ],
+              "visible_state": "spread+meat bread + veg/herbs",
+              "confidence": "high"
+            }
+          ],
+          "3": [
+            {
+              "window": [
+                0,
+                5
+              ],
+              "event": "pickling veg",
+              "key_objects": [
+                "glass bowl",
+                "spiralized veg",
+                "yellow bottle"
+              ],
+              "visible_state": "dry strands->wet pickled",
+              "confidence": "high"
+            }
+          ],
+          "4": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "spiralizing veg",
+              "key_objects": [
+                "green spiralizer",
+                "daikon",
+                "carrot"
+              ],
+              "visible_state": "whole veg->dry strands",
+              "confidence": "high"
+            }
+          ],
+          "5": [
+            {
+              "window": [
+                0,
+                9
+              ],
+              "event": "bread assembly",
+              "key_objects": [
+                "bread",
+                "Vegenaise jar",
+                "cutting board with handle cutout"
+              ],
+              "visible_state": "split bread spread+meat",
+              "confidence": "high"
+            }
+          ]
+        },
+        "confirmed": [
+          "Veg chain: 4->3->1->2 (dry->wet->mixed->added)",
+          "Bread chain: 1->5->2 (split->spread+meat->+veg)",
+          "V1 is transition segment with two scenes",
+          "Inter-chain order resolved by moisture state progression"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "uncertain": [],
+        "focus_plan": [],
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"TRANSITION: Frames 1-2 show wet/glistening pickled spiralized veg being mixed with fork; Frames 3-16 show bread splitting on plain white cutting board\", \"2\": \"sandwich finishing: cucumber, pickled veg, cilantro added to bread with spread+meat, cutting board with handle cutout\", \"3\": \"pickling: dry spiralized veg->wet pickled (liquid+powder added), plain white cutting board in background\", \"4\": \"spiralizing: whole daikon/carrot->dry spiralized strands, no cutting board visible, sink in background\", \"5\": \"bread assembly: Vegenaise spread on split bread, meat added, cutting board with handle cutout\"}"
+  ],
+  "temporal_index": [
+    "{\"1\": [{\"window\": [0, 0.5], \"event\": \"pickled veg mixing\", \"key_objects\": [\"glass bowl\", \"wet spiralized veg\", \"fork\"], \"visible_state\": \"wet/glistening pickled strands being mixed\", \"confidence\": \"high\"}, {\"window\": [0.5, 3], \"event\": \"bread splitting\", \"key_objects\": [\"bread\", \"knife\", \"plain white cutting board\"], \"visible_state\": \"bread whole->split\", \"confidence\": \"high\"}], \"2\": [{\"window\": [0, 11], \"event\": \"sandwich finishing\", \"key_objects\": [\"bread\", \"cucumber\", \"pickled veg\", \"cilantro\"], \"visible_state\": \"spread+meat bread + veg/herbs\", \"confidence\": \"high\"}], \"3\": [{\"window\": [0, 5], \"event\": \"pickling veg\", \"key_objects\": [\"glass bowl\", \"spiralized veg\", \"yellow bottle\"], \"visible_state\": \"dry strands->wet pickled\", \"confidence\": \"high\"}], \"4\": [{\"window\": [0, 11], \"event\": \"spiralizing veg\", \"key_objects\": [\"green spiralizer\", \"daikon\", \"carrot\"], \"visible_state\": \"whole veg->dry strands\", \"confidence\": \"high\"}], \"5\": [{\"window\": [0, 9], \"event\": \"bread assembly\", \"key_objects\": [\"bread\", \"Vegenaise jar\", \"cutting board with handle cutout\"], \"visible_state\": \"split bread spread+meat\", \"confidence\": \"high\"}]}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "focus_plan": [],
+  "order_confidence": [
+    "9"
+  ]
+}

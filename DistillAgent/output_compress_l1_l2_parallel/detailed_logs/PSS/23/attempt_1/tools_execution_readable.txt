@@ -1,0 +1,159 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-06 13:23:15
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-06 13:15:13 -> 2026-07-06 13:15:49
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 18.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: baguette, action: held split open then filled, state: split, dry crust, soft interior, empty then filled, window: 1-3, 7-16, query_link: null, conf: high, uncertainty: none
+objects: meat chunks, action: cooking in pan then placed in bread, state: cooked, browned, glazed/wet, separate then mixed, window: 2, 4-5, 7-9, query_link: null, conf: high, uncertainty: none
+objects: shredded carrots, action: added on top of meat, state: cut (shredded), orange, fresh/crisp, present, window: 9-10, 12-16, query_link: null, conf: high, uncertainty: none
+objects: cucumber strips, action: added on top, state: cut (strips), green/white, fresh, present, window: 11-16, query_link: null, conf: high, uncertainty: none
+objects: red peppers/chili, action: added as topping, state: cut (sliced), red, fresh, present, window: 13-16, query_link: null, conf: high, uncertainty: none
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-06 13:15:13 -> 2026-07-06 13:16:05
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 21.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: knife, raw meat; action: slicing/cutting; state: raw, red, cut into strips/pieces; window: 1-4; query_link: N/A; conf: high; uncertainty: none
+objects: glass bottle/jar, liquid (dark and amber), meat; action: pouring; state: wet, glistening, marinated, mixed; window: 5-11; query_link: N/A; conf: high; uncertainty: specific liquid type (sauce vs oil/wine)
+objects: hands, wooden skewer, round meat objects/sausages; action: skewering/assembling; state: assembled on stick, raw; window: 12-14; query_link: N/A; conf: medium; uncertainty: exact identity of round objects (blurry)
+objects: frying pan, oil, meat skewer; action: placing into pan; state: raw meat, oil filled pan, cooking start; window: 15-16; query_link: N/A; conf: high; uncertainty: none
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-06 13:15:13 -> 2026-07-06 13:16:21
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 19.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: Grater, Carrot, Green Bowl | action: Grating, transferring | state: Carrot is raw, shredded/cut; shreds accumulating on surface and falling into bowl; bowl is being filled | window: Frames 1-4, 7 | query_link: N/A | conf: High | uncertainty: None
+
+objects: Bottle (Squid brand), Greens, Flatbread edge | action: Present (static) | state: Bottles present (likely condiments); greens appear fresh/whole; separate from main action | window: Frames 5, 12 | query_link: N/A | conf: Medium | uncertainty: Exact label on bottle blurry; specific type of greens unclear.
+
+objects: Red Chili, Surface | action: Chopped (implied), falling | state: Chili is raw, diced/chopped; pieces falling into container | window: Frames 9-11 | query_link: N/A | conf: High | uncertainty: None
+
+objects: Lime, Hand | action: Squeezing | state: Lime is raw, wet; juice dripping visibly | window: Frames 13-14 | query_link: N/A | conf: High | uncertainty: None
+
+objects: Bowl, Liquid, Chili pieces | action: Mixed/Combined | state: Liquid (likely lime juice) present with red chili pieces floating/mixed; bowl is wet/filled | window: Frame 15 | query_link: N/A | conf: High | uncertainty: None
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-06 13:17:25 -> 2026-07-06 13:18:11
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 21.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check background and counter state. Is the cutting board/counter clean or does it have residue from previous tasks? Are there any bowls, grated carrots, or chopped chilies visible in the background? Report exact visible states of background objects and counter cleanliness. Return compact rows: object/state/window/conf/uncertainty."
+}
+
+[Output]:
+cutting_board_surface | covered in raw meat slices and juices (current task residue) | 1-4 | high | low
+meat_container_surface | filled with marinated meat chunks and liquid | 6-11 | high | low
+glass_containers | visible (blurred), containing liquids (marinade ingredients) | 5, 8 | high | low
+frying_pan | visible, contains oil | 15-16 | high | low
+grated_carrots | not visible | 1-16 | high | low
+chopped_chilies | not visible | 1-16 | high | low
+counter_cleanliness | surfaces are wet with meat/marinade (current task), no foreign/vegetable residue visible | 1-16 | medium | medium (tight framing limits full counter view)
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-06 13:17:25 -> 2026-07-06 13:18:16
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 19.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check background and counter state. Is the cutting board/counter clean or does it have residue from previous tasks (e.g., meat juice, marinade)? Are there any raw meat pieces, skewers, or frying pans visible in the background? Report exact visible states of background objects and counter cleanliness. Return compact rows: object/state/window/conf/uncertainty."
+}
+
+[Output]:
+Counter/Board | Vegetable residue present (shredded carrots in frames 1-2, chopped chili in frame 10); no meat juice or marinade visible | 1-16 | High | Low
+Raw meat | Not visible | 1-16 | High | Low
+Skewers | Not visible | 1-16 | High | Low
+Frying pan | Not visible (bowls are present for mixing) | 1-16 | Medium | Medium
+Background objects | Metal grater, green bowl, fish sauce bottle (Squid brand), lime, baguette edge, green herbs | 1-16 | High | Low
+
+------------------------------------------------------------
+
+### [Turn 4] Tool: active_perception (ID: obs_4) ###
+Time: 2026-07-06 13:20:24 -> 2026-07-06 13:22:36
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0,
+      "end_time": 18.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the following objects in this segment: baguette (EMPTY / SPLIT / FILLED), meat (RAW / COOKED_IN_PAN / COOKED_IN_BREAD), carrots (WHOLE / SHREDDED_IN_BOWL / SHREDDED_ON_BREAD), chili (WHOLE / CHOPPED_IN_BOWL / CHOPPED_ON_BREAD), frying pan (EMPTY / CONTAINS_MEAT / NOT_VISIBLE), prep bowls (FILLED / EMPTY / NOT_VISIBLE). Report exactly what you see. Return compact rows: object/state/window/conf/uncertainty."
+}
+
+[Output]:
+baguette/FILLED/1-16/high/low
+meat/COOKED_IN_BREAD/1-16/high/low
+carrots/SHREDDED_ON_BREAD/1-16/high/low
+chili/CHOPPED_ON_BREAD/1-16/high/low
+frying pan/CONTAINS_MEAT/1-16/medium/medium
+prep bowls/FILLED/1-16/medium/medium
+
+------------------------------------------------------------
+

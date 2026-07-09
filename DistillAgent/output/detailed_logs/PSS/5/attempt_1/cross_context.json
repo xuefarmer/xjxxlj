@@ -1,0 +1,184 @@
+{
+  "confirmed": [
+    "3 before 2: counter goes from clean to wet spots, wooden board continuity",
+    "2 before 1: counter goes from wet spots to cluttered/messy, wooden board disappears",
+    "1 before 4: breading assembly transitions to frying"
+  ],
+  "uncertain": [
+    "Exact chronological relation between Video 3 and Video 2",
+    "Whether Video 3 is a parallel recipe or sequential step"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Breading assembly line: flour -> egg wash -> breadcrumbs. Two men.\", \"2\": \"Setup for breading: cracking egg into bowl, raw meat strips, white powder. Two men.\", \"3\": \"Mixing dark batter/mixture in white bowl on wooden board: dark powder, liquid, egg. Two men.\", \"4\": \"Pan-frying breaded food: raw breaded -> cooked golden brown -> transferred to paper towel plate. Two men.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "meat_strips": {
+      "1": "raw, pale strips, being coated in flour/egg/crumbs",
+      "2": "raw, dark strips, separate in a bowl",
+      "3": "ABSENT",
+      "4": "raw breaded pieces in pan, then cooked golden brown on plate"
+    },
+    "egg": {
+      "1": "yellow liquid in bowl (egg wash)",
+      "2": "raw, cracked into white bowl",
+      "3": "raw, whole, cracked into dark batter",
+      "4": "ABSENT"
+    },
+    "white_bowl": {
+      "1": "contains flour, egg wash, breadcrumbs",
+      "2": "contains cracked egg, near sink",
+      "3": "contains dark mix, on wooden board",
+      "4": "ABSENT (plates used instead)"
+    },
+    "frying_pan": {
+      "1": "ABSENT",
+      "2": "ABSENT",
+      "3": "ABSENT",
+      "4": "contains hot oil, then raw breaded food, then cooked food, then oil residue"
+    },
+    "wooden_board": {
+      "1": "NOT_VISIBLE_IN_THESE_FRAMES",
+      "2": "NOT_VISIBLE_IN_THESE_FRAMES",
+      "3": "PRESENT, white bowl sits on it",
+      "4": "NOT_VISIBLE_IN_THESE_FRAMES"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states (raw/cooked/cut/mixed)",
+    "container states (empty/filled/residue)",
+    "tool usage",
+    "transfer actions",
+    "background counter state (clean vs messy)",
+    "presence of wooden board",
+    "state of the dish rack and sink",
+    "ingredient depletion/residue"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All object states and segment roles pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cooked/cut/mixed)",
+          "container states (empty/filled/residue)",
+          "tool usage",
+          "transfer actions"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Breading assembly line: flour -> egg wash -> breadcrumbs. Two men.",
+          "2": "Setup for breading: cracking egg into bowl, raw meat strips, white powder. Two men.",
+          "3": "Mixing dark batter/mixture in white bowl on wooden board: dark powder, liquid, egg. Two men.",
+          "4": "Pan-frying breaded food: raw breaded -> cooked golden brown -> transferred to paper towel plate. Two men."
+        },
+        "object_memory": {
+          "meat_strips": {
+            "1": "raw, pale strips, being coated in flour/egg/crumbs",
+            "2": "raw, dark strips, separate in a bowl",
+            "3": "ABSENT",
+            "4": "raw breaded pieces in pan, then cooked golden brown on plate"
+          },
+          "egg": {
+            "1": "yellow liquid in bowl (egg wash)",
+            "2": "raw, cracked into white bowl",
+            "3": "raw, whole, cracked into dark batter",
+            "4": "ABSENT"
+          },
+          "white_bowl": {
+            "1": "contains flour, egg wash, breadcrumbs",
+            "2": "contains cracked egg, near sink",
+            "3": "contains dark mix, on wooden board",
+            "4": "ABSENT (plates used instead)"
+          },
+          "frying_pan": {
+            "1": "ABSENT",
+            "2": "ABSENT",
+            "3": "ABSENT",
+            "4": "contains hot oil, then raw breaded food, then cooked food, then oil residue"
+          },
+          "wooden_board": {
+            "1": "NOT_VISIBLE_IN_THESE_FRAMES",
+            "2": "NOT_VISIBLE_IN_THESE_FRAMES",
+            "3": "PRESENT, white bowl sits on it",
+            "4": "NOT_VISIBLE_IN_THESE_FRAMES"
+          }
+        },
+        "preliminary_order": "3 -> 2 -> 1 -> 4",
+        "order_confidence": 6,
+        "confidence_basis": "Video 3 is mixing a batter, Video 2 is setting up breading, Video 1 is breading, Video 4 is frying. Logical cooking order suggests prep (3 or 2) -> breading (1) -> frying (4). However, the relation between 3 and 2 is uncertain. Video 3 might be a separate recipe or a sauce made before/after.",
+        "blocking_uncertainties": [
+          "Is Video 3 part of the same recipe as 2/1/4, or a separate dish?",
+          "Does Video 3 happen before Video 2, or after Video 4?",
+          "Are there any background continuity cues (messiness, wooden board presence) that link the segments?"
+        ],
+        "uncertain": [
+          "Exact chronological relation between Video 3 and Video 2",
+          "Whether Video 3 is a parallel recipe or sequential step"
+        ],
+        "dimensions_to_compare": [
+          "background counter state (clean vs messy)",
+          "presence of wooden board",
+          "state of the dish rack and sink",
+          "ingredient depletion/residue"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "3": "clean counter, wooden board present, mixing dark batter",
+          "2": "wet spots on counter, wooden board present in early frames, initial breading setup",
+          "1": "cluttered/messy counter, wooden board absent, full breading assembly line",
+          "4": "cluttered with frying equipment, wooden board absent, frying breaded food"
+        },
+        "confirmed": [
+          "3 before 2: counter goes from clean to wet spots, wooden board continuity",
+          "2 before 1: counter goes from wet spots to cluttered/messy, wooden board disappears",
+          "1 before 4: breading assembly transitions to frying"
+        ],
+        "order_confidence": 8
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3 -> 2 -> 1 -> 4"
+  ],
+  "order_confidence": [
+    "6",
+    "8"
+  ],
+  "confidence_basis": [
+    "Video 3 is mixing a batter, Video 2 is setting up breading, Video 1 is breading, Video 4 is frying. Logical cooking order suggests prep (3 or 2) -> breading (1) -> frying (4). However, the relation between 3 and 2 is uncertain. Video 3 might be a separate recipe or a sauce made before/after."
+  ],
+  "blocking_uncertainties": [
+    "Is Video 3 part of the same recipe as 2/1/4, or a separate dish?",
+    "Does Video 3 happen before Video 2, or after Video 4?",
+    "Are there any background continuity cues (messiness, wooden board presence) that link the segments?"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"3\": \"clean counter, wooden board present, mixing dark batter\", \"2\": \"wet spots on counter, wooden board present in early frames, initial breading setup\", \"1\": \"cluttered/messy counter, wooden board absent, full breading assembly line\", \"4\": \"cluttered with frying equipment, wooden board absent, frying breaded food\"}"
+  ]
+}

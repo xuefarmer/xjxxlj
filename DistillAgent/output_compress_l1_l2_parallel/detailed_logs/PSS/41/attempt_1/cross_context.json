@@ -1,0 +1,118 @@
+{
+  "confirmed": [],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"raw tomatoes + spices -> boil\", \"2\": \"roux + puree -> red sauce\", \"3\": \"orange soup -> plate & garnish\", \"4\": \"red sauce + cream -> orange sauce\", \"5\": \"cooked tomatoes -> blend & strain -> puree\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "tomatoes": {
+      "1": "raw/chopped boiling",
+      "5": "cooked/wilted then pureed"
+    },
+    "puree": {
+      "5": "smooth liquid in bowl",
+      "2": "added to roux"
+    },
+    "sauce": {
+      "2": "red sauce formed",
+      "4": "red sauce turned orange-pink with cream"
+    },
+    "soup": {
+      "4": "orange-pink creamy sauce",
+      "3": "orange soup plated"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked, whole/cut, empty/filled)",
+    "event roles (prep, cooking, finishing)",
+    "transfer traces and residue",
+    "tomato state (raw vs cooked)",
+    "sauce color (red vs orange)",
+    "puree presence"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked, whole/cut, empty/filled)",
+          "event roles (prep, cooking, finishing)",
+          "transfer traces and residue"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "raw tomatoes + spices -> boil",
+          "2": "roux + puree -> red sauce",
+          "3": "orange soup -> plate & garnish",
+          "4": "red sauce + cream -> orange sauce",
+          "5": "cooked tomatoes -> blend & strain -> puree"
+        },
+        "object_memory": {
+          "tomatoes": {
+            "1": "raw/chopped boiling",
+            "5": "cooked/wilted then pureed"
+          },
+          "puree": {
+            "5": "smooth liquid in bowl",
+            "2": "added to roux"
+          },
+          "sauce": {
+            "2": "red sauce formed",
+            "4": "red sauce turned orange-pink with cream"
+          },
+          "soup": {
+            "4": "orange-pink creamy sauce",
+            "3": "orange soup plated"
+          }
+        },
+        "preliminary_order": "1->5->2->4->3",
+        "order_confidence": 8,
+        "confidence_basis": "Clear object state progression: raw->boiled->puree->red sauce->orange sauce->plated",
+        "blocking_uncertainties": [
+          "Verify V1 end state is boiled tomatoes ready for V5",
+          "Verify V5 output is puree used in V2",
+          "Verify V4 start is red sauce from V2"
+        ],
+        "uncertain": [],
+        "dimensions_to_compare": [
+          "tomato state (raw vs cooked)",
+          "sauce color (red vs orange)",
+          "puree presence"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1->5->2->4->3"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "Clear object state progression: raw->boiled->puree->red sauce->orange sauce->plated"
+  ],
+  "blocking_uncertainties": [
+    "Verify V1 end state is boiled tomatoes ready for V5",
+    "Verify V5 output is puree used in V2",
+    "Verify V4 start is red sauce from V2"
+  ]
+}

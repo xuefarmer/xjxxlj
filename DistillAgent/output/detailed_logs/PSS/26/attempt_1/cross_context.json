@@ -1,0 +1,201 @@
+{
+  "confirmed": [
+    "Rice state progression: raw (V6) -> cooking/steaming (V4 background) -> cooked white (V2) -> cooked white/yellow (V1) -> layered (V5)",
+    "Veggie state progression: raw mixed (V3) -> raw transferred to pan (V4) -> cooked curry (V1)",
+    "Glass dish state progression: empty -> layered (V1) -> fully layered with garnish (V5)"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Assembly/layering of biryani in glass dish using curry from black pan and rice from metal bowl.\", \"2\": \"Saffron milk poured and mixed into cooked white rice in metal bowl.\", \"3\": \"Raw veggies, cashews, yogurt, and spices mixed in large glass bowl.\", \"4\": \"Tomato sauce and raw veggie mix cooked in black pan. Rice pot steaming in background.\", \"5\": \"Almonds and ghee added as final garnish to already layered dish in glass bowl.\", \"6\": \"Raw rice, water, salt, and oil combined in stainless steel pot on stove.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "rice": {
+      "6": "raw white grains + water + oil in steel pot",
+      "2": "cooked white grains in metal bowl, mixed with saffron to become white/yellow",
+      "1": "cooked rice (white/yellow) in metal bowl, being depleted into glass dish",
+      "5": "cooked layered rice in glass dish, topped with almonds/ghee"
+    },
+    "veggies": {
+      "3": "raw chopped cauliflower/carrots/beans/peppers + cashews + yogurt in glass bowl",
+      "4": "raw chopped veggies transferred from glass bowl into black pan with tomato sauce",
+      "1": "cooked veggie curry in black pan, being depleted into glass dish"
+    },
+    "black_pan": {
+      "4": "contains tomato sauce and raw veggies, transitions to cooking curry",
+      "1": "contains cooked veggie curry, transitions to partially empty"
+    },
+    "glass_baking_dish": {
+      "1": "empty, then layered with curry, rice, garnishes, curry, rice",
+      "5": "fully layered, receives final almond and ghee topping"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object state chains across segments",
+    "container fill/empty/residue",
+    "raw-to-cooked progression",
+    "transfer traces",
+    "background vessel states",
+    "container fill/empty states",
+    "rice color progression",
+    "veggie raw vs cooked state",
+    "background pot steam"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All segment roles and object states pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object state chains across segments",
+          "container fill/empty/residue",
+          "raw-to-cooked progression",
+          "transfer traces",
+          "background vessel states"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Assembly/layering of biryani in glass dish using curry from black pan and rice from metal bowl.",
+          "2": "Saffron milk poured and mixed into cooked white rice in metal bowl.",
+          "3": "Raw veggies, cashews, yogurt, and spices mixed in large glass bowl.",
+          "4": "Tomato sauce and raw veggie mix cooked in black pan. Rice pot steaming in background.",
+          "5": "Almonds and ghee added as final garnish to already layered dish in glass bowl.",
+          "6": "Raw rice, water, salt, and oil combined in stainless steel pot on stove."
+        },
+        "object_memory": {
+          "rice": {
+            "6": "raw white grains + water + oil in steel pot",
+            "2": "cooked white grains in metal bowl, mixed with saffron to become white/yellow",
+            "1": "cooked rice (white/yellow) in metal bowl, being depleted into glass dish",
+            "5": "cooked layered rice in glass dish, topped with almonds/ghee"
+          },
+          "veggies": {
+            "3": "raw chopped cauliflower/carrots/beans/peppers + cashews + yogurt in glass bowl",
+            "4": "raw chopped veggies transferred from glass bowl into black pan with tomato sauce",
+            "1": "cooked veggie curry in black pan, being depleted into glass dish"
+          },
+          "black_pan": {
+            "4": "contains tomato sauce and raw veggies, transitions to cooking curry",
+            "1": "contains cooked veggie curry, transitions to partially empty"
+          },
+          "glass_baking_dish": {
+            "1": "empty, then layered with curry, rice, garnishes, curry, rice",
+            "5": "fully layered, receives final almond and ghee topping"
+          }
+        },
+        "preliminary_order": [
+          6,
+          3,
+          4,
+          2,
+          1,
+          5
+        ],
+        "order_confidence": 8,
+        "confidence_basis": "Clear object state chains: raw rice (V6) -> cooked rice (V2) -> layered rice (V1) -> garnished rice (V5). Raw veggies (V3) -> cooked in sauce (V4) -> layered curry (V1). Background rice pot steaming in V4 confirms V4 is after V6 and before V2. Glass dish empty then layered in V1, already layered in V5.",
+        "blocking_uncertainties": [
+          "Verify exact fill/empty states of bridging containers in Layer2 to ensure no skipped steps or reversed transitions."
+        ],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "Exact fill levels of bridging containers need Layer2 verification"
+        ],
+        "dimensions_to_compare": [
+          "container fill/empty states",
+          "rice color progression",
+          "veggie raw vs cooked state",
+          "background pot steam"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "6": "raw rice + water + oil in steel pot; measuring cup and rice bowl empty after transfer",
+          "3": "raw veggies + yogurt + spices mixed in large glass bowl; small ingredient bowls emptied",
+          "4": "raw veggie mix added to tomato sauce in black pan; background rice pot steaming with lid on",
+          "2": "cooked white rice in metal bowl colored with saffron to white/yellow; saffron bowl emptied",
+          "1": "cooked curry and white/yellow rice layered in glass dish; black pan and metal bowl partially depleted",
+          "5": "fully layered dish in glass bowl topped with almonds and ghee; garnish bowls partially depleted"
+        },
+        "confirmed": [
+          "Rice state progression: raw (V6) -> cooking/steaming (V4 background) -> cooked white (V2) -> cooked white/yellow (V1) -> layered (V5)",
+          "Veggie state progression: raw mixed (V3) -> raw transferred to pan (V4) -> cooked curry (V1)",
+          "Glass dish state progression: empty -> layered (V1) -> fully layered with garnish (V5)"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "uncertain": [],
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "6",
+    "3",
+    "4",
+    "2",
+    "1",
+    "5"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "Clear object state chains: raw rice (V6) -> cooked rice (V2) -> layered rice (V1) -> garnished rice (V5). Raw veggies (V3) -> cooked in sauce (V4) -> layered curry (V1). Background rice pot steaming in V4 confirms V4 is after V6 and before V2. Glass dish empty then layered in V1, already layered in V5."
+  ],
+  "blocking_uncertainties": [
+    "Verify exact fill/empty states of bridging containers in Layer2 to ensure no skipped steps or reversed transitions."
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"6\": \"raw rice + water + oil in steel pot; measuring cup and rice bowl empty after transfer\", \"3\": \"raw veggies + yogurt + spices mixed in large glass bowl; small ingredient bowls emptied\", \"4\": \"raw veggie mix added to tomato sauce in black pan; background rice pot steaming with lid on\", \"2\": \"cooked white rice in metal bowl colored with saffron to white/yellow; saffron bowl emptied\", \"1\": \"cooked curry and white/yellow rice layered in glass dish; black pan and metal bowl partially depleted\", \"5\": \"fully layered dish in glass bowl topped with almonds and ghee; garnish bowls partially depleted\"}"
+  ],
+  "pruned_targets": []
+}

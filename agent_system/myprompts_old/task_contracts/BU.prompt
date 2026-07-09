@@ -1,0 +1,24 @@
+## Task Contract: BU
+Task: behavioral intent recognition from short silent videos.
+
+Input semantics:
+- `videos` are independent candidate behavior clips.
+- `options` map option letters to videos.
+- This is multiple-select: select all videos satisfying the query, usually 1-3 options, never all four unless the payload explicitly requires it.
+
+Evidence dimensions:
+- subject identity and number;
+- posture, body orientation, gaze direction, approach/retreat path;
+- movement speed, acceleration, freezing, circling, pursuit, avoidance;
+- facial/body cues such as mouth, ears, tail, hands, body tension;
+- environmental interaction and distance changes;
+- persistent behavior over the clip, not one accidental frame.
+
+Workflow notes:
+- Layer1 scans all candidate clips and builds a behavior inventory.
+- Layer2 should keep only plausible positives and close negatives; prune clips clearly unrelated to the queried behavior.
+- Focus compares borderline positives against the best negative or checks a micro-cue in one candidate.
+- Do not pick a "best" clip if multiple clips satisfy the behavior.
+
+Final answer:
+- `final_answer` is concatenated uppercase option letters in alphabetical order, e.g. `"A"`, `"AC"`, `"BCD"`.

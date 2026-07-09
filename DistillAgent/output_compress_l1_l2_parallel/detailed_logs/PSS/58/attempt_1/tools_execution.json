@@ -1,0 +1,202 @@
+[
+  {
+    "turn": 1,
+    "call_id": "batch_1_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 94.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 1/2, time 0s–94s)"
+    },
+    "timestamp_start": "2026-07-06 20:03:15",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 94.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 1/2, time 0s–94s)\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient maturity\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "- objects: pan, oil bottle; action: pouring oil; state: pan transitions from empty/dry to wet/filled with oil pool; window: frames 1-3; query_link: VISIBLE; conf: high; uncertainty: none.\n- objects: cooked white rice, bowl, spatula; action: adding rice to pan, stirring; state: rice is cooked, fluffy, separate grains, becoming mixed with oil; window: frames 4-5; query_link: VISIBLE; conf: high; uncertainty: none.\n- objects: mixed vegetables (corn, carrots, green beans/peas); action: adding veggies to rice, stirring; state: veggies are cooked/frozen mix, becoming mixed with rice; window: frames 6-8; query_link: VISIBLE; conf: high; uncertainty: none.\n- objects: cooked chicken/mushroom pieces, bowl; action: adding protein to pan; state: pieces are cooked, light brown, added on top of rice mixture; window: frames 9-11; query_link: VISIBLE; conf: high; uncertainty: slight ambiguity on whether chicken or mushroom.\n- objects: salt/seasoning shakers; action: sprinkling seasoning; state: white powder (salt/sugar) and dark powder (pepper) visible as residue on top of fried rice; window: frames 13-16; query_link: VISIBLE; conf: high; uncertainty: exact type of white powder uncertain.",
+    "timestamp_end": "2026-07-06 20:03:54"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 94.0,
+          "end_time": 188.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 2/2, time 94s–188s)"
+    },
+    "timestamp_start": "2026-07-06 20:03:54",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (94.0s to 188.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 2/2, time 94s–188s)\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient maturity\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: soy sauce bottle, rice mix (white rice, corn, peas, carrots, chicken), action: pouring dark liquid in spiral pattern, state: rice is pale/white, sauce is dark liquid, window: frames 1-4, query_link: null, conf: high, uncertainty: none\nobjects: spatula, rice mix, action: stirring/frying, state: rice turning dark brown as sauce mixes in, window: frames 5-6, query_link: null, conf: high, uncertainty: none\nobjects: bowl, spatula, rice mix (dark brown), egg chunks, action: pouring yellow liquid then vigorous mixing, state: rice is fully brown/sauced, egg chunks being incorporated, window: frames 7-11, query_link: null, conf: high, uncertainty: none\nobjects: bean sprouts, green onions, bowl, action: adding garnishes to pan, state: sprouts fresh/white/long, onions chopped/green, sitting on top of brown rice, window: frames 12-13, query_link: null, conf: high, uncertainty: none\nobjects: spatula, rice mix, bean sprouts, green onions, action: toss/stir-fry, state: sprouts and onions being mixed in, slightly wilting, rice uniform dark brown, window: frames 14-16, query_link: null, conf: high, uncertainty: none",
+    "timestamp_end": "2026-07-06 20:04:35"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 39.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 20:03:15",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 39.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient maturity\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: bowl, raw cut chicken, white powder (cornstarch/flour), salt shaker\naction: spooning and shaking powder onto chicken\nstate: chicken raw/cut/pink, powder dry/present on top\nwindow: Frames 1-4\nquery_link: [Frames 1-4]\nconf: HIGH\nuncertainty: none\n\nobjects: bottles (light liquid/cooking wine, dark liquid/soy sauce, oil)\naction: pouring liquids onto chicken\nstate: chicken wet, dark liquid visible, oil sheen added, powder still distinct\nwindow: Frames 5-9\nquery_link: [Frames 5-9]\nconf: HIGH\nuncertainty: exact liquid types (likely soy sauce, cooking wine, sesame oil)\n\nobjects: hand, chicken mixture\naction: vigorous hand mixing\nstate: chicken coated, wet/sticky, powder incorporated/mixed\nwindow: Frames 12-16\nquery_link: [Frames 12-16]\nconf: HIGH\nuncertainty: none\n\nobjects: background bowls (eggs, mixed veggies, bean sprouts, rice)\naction: static/present\nstate: filled, separate, raw/prepped ingredients\nwindow: Frames 1-16\nquery_link: [Frames 1-16]\nconf: HIGH\nuncertainty: none",
+    "timestamp_end": "2026-07-06 20:03:56"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 25.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 20:03:15",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 25.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient maturity\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: oil bottle, wok, spatula, bowls (chicken, noodles, veggies) | action: pouring oil into wok | state: oil (liquid, green tint), wok (black surface with white residue/smear), bowls (filled with raw ingredients) | window: 1-4 | query_link: VISIBLE | conf: high | uncertainty: none\nobjects: bowl of chicken, spatula, wok | action: transferring raw chicken into wok | state: chicken (raw, marinated, wet, pinkish chunks), wok (contains pool of oil) | window: 5-7 | query_link: VISIBLE | conf: high | uncertainty: none\nobjects: chicken pieces, spatula, wok | action: stir-frying chicken | state: chicken (transitioning from raw/pink to cooked/white/opaque), wok (hot, sizzling) | window: 8-14 | query_link: VISIBLE | conf: high | uncertainty: Frame 11 shows green bits (peas/corn) suggesting mixed veggies added, but subsequent frames focus on chicken texture.\nobjects: wok, cooked chicken, white bowl | action: pouring cooked chicken out of wok | state: chicken (cooked, white, firm), wok (depleting/emptying), bowl (filling), stove (blue flame visible) | window: 15-16 | query_link: VISIBLE | conf: high | uncertainty: none",
+    "timestamp_end": "2026-07-06 20:03:52"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_5",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 30.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 20:03:15",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 30.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient maturity\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: oil bottle, frying pan; action: pouring oil; state: oil is liquid/green, pan surface transitions from empty to wet/filled with oil pool; window: 1-6; query_link: -; conf: high; uncertainty: low\nobjects: raw eggs (in bowl), frying pan, spatula; action: adding eggs and scrambling; state: eggs transition from raw (liquid yolk/white) to cooking (solidifying white, broken yolk), mixed with oil; window: 7-11; query_link: -; conf: high; uncertainty: low\nobjects: cooked eggs, spatula, bowl; action: removing eggs from pan; state: eggs are cooked/scrambled (solid yellow/white), pan has residue/oil depletion, bowl is filled; window: 12-16; query_link: -; conf: high; uncertainty: low",
+    "timestamp_end": "2026-07-06 20:03:59"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 94.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: 1) When egg is added (around 94s-188s), is it raw yellow liquid or pre-cooked solid egg chunks? 2) When chicken is added (0s-94s), is it cooked solid pieces? 3) State of the pan/wok at the very beginning (0s): is it completely empty/clean or does it have residue? Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose. (part 1/2, time 0s–94s)"
+    },
+    "timestamp_start": "2026-07-06 20:05:46",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 94.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: 1) When egg is added (around 94s-188s), is it raw yellow liquid or pre-cooked solid egg chunks? 2) When chicken is added (0s-94s), is it cooked solid pieces? 3) State of the pan/wok at the very beginning (0s): is it completely empty/clean or does it have residue? Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose. (part 1/2, time 0s–94s)\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"chicken\": {\n      \"2\": \"raw/marinated/pink\",\n      \"3\": \"cooked/white/in bowl\",\n      \"1\": \"cooked pieces added to rice\"\n    },\n    \"eggs\": {\n      \"2\": \"raw in background bowl\",\n      \"4\": \"raw -> cooked/scrambled/in bowl\",\n      \"1\": \"egg chunks added to rice\"\n    },\n    \"rice\": {\n      \"2\": \"raw/prepped in background bowl\",\n      \"1\": \"cooked grains added to pan\"\n    },\n    \"veggies\": {\n      \"2\": \"prepped in background bowl\",\n      \"1\": \"added to rice\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient maturity\",\n    \"egg state in V1 vs V4\",\n    \"chicken state chain\",\n    \"pan residue at V1 start\"\n  ],\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "egg_addition_state | NOT_VISIBLE_IN_THESE_FRAMES | 94s-188s | Q1 | N/A | UNCERTAIN (Event occurs after the provided 0s-94s frame range; frames show rice, veggies, chicken, and seasoning being added, but no eggs yet)\nchicken_addition_state | Cooked solid pieces (white/beige chunks) | ~50s (Frames 9-10) | Q2 | High | NOT_UNCERTAIN (Visual evidence shows solid, light-colored chunks being poured from a bowl, consistent with pre-cooked chicken, not raw pink meat)\npan_initial_state | Empty/Clean (black surface, no residue) | 0s (Frame 1) | Q3 | High | NOT_UNCERTAIN (Frame 1 shows a clean pan before oil is poured in Frame 2)",
+    "timestamp_end": "2026-07-06 20:06:45"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 94.0,
+          "end_time": 188.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: 1) When egg is added (around 94s-188s), is it raw yellow liquid or pre-cooked solid egg chunks? 2) When chicken is added (0s-94s), is it cooked solid pieces? 3) State of the pan/wok at the very beginning (0s): is it completely empty/clean or does it have residue? Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose. (part 2/2, time 94s–188s)"
+    },
+    "timestamp_start": "2026-07-06 20:06:45",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (94.0s to 188.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: 1) When egg is added (around 94s-188s), is it raw yellow liquid or pre-cooked solid egg chunks? 2) When chicken is added (0s-94s), is it cooked solid pieces? 3) State of the pan/wok at the very beginning (0s): is it completely empty/clean or does it have residue? Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose. (part 2/2, time 94s–188s)\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"chicken\": {\n      \"2\": \"raw/marinated/pink\",\n      \"3\": \"cooked/white/in bowl\",\n      \"1\": \"cooked pieces added to rice\"\n    },\n    \"eggs\": {\n      \"2\": \"raw in background bowl\",\n      \"4\": \"raw -> cooked/scrambled/in bowl\",\n      \"1\": \"egg chunks added to rice\"\n    },\n    \"rice\": {\n      \"2\": \"raw/prepped in background bowl\",\n      \"1\": \"cooked grains added to pan\"\n    },\n    \"veggies\": {\n      \"2\": \"prepped in background bowl\",\n      \"1\": \"added to rice\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient maturity\",\n    \"egg state in V1 vs V4\",\n    \"chicken state chain\",\n    \"pan residue at V1 start\"\n  ],\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "egg | added | pre-cooked solid egg chunks | 94s-188s | Q1 | HIGH |\nchicken | added | cooked solid pieces | 0s-94s (inferred from presence) | Q2 | HIGH |\npan | initial state | NOT_VISIBLE_IN_THESE_FRAMES | 0s | Q3 | N/A | UNCERTAIN (frames start at 94s)",
+    "timestamp_end": "2026-07-06 20:08:00"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 39.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: 1) State of the chicken (raw/marinated). 2) State of the eggs in the background bowl (raw liquid or cooked?). 3) State of the rice in the background bowl (raw or cooked?). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose."
+    },
+    "timestamp_start": "2026-07-06 20:05:46",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 39.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: 1) State of the chicken (raw/marinated). 2) State of the eggs in the background bowl (raw liquid or cooked?). 3) State of the rice in the background bowl (raw or cooked?). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"chicken\": {\n      \"2\": \"raw/marinated/pink\",\n      \"3\": \"cooked/white/in bowl\",\n      \"1\": \"cooked pieces added to rice\"\n    },\n    \"eggs\": {\n      \"2\": \"raw in background bowl\",\n      \"4\": \"raw -> cooked/scrambled/in bowl\",\n      \"1\": \"egg chunks added to rice\"\n    },\n    \"rice\": {\n      \"2\": \"raw/prepped in background bowl\",\n      \"1\": \"cooked grains added to pan\"\n    },\n    \"veggies\": {\n      \"2\": \"prepped in background bowl\",\n      \"1\": \"added to rice\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient maturity\",\n    \"egg state in V1 vs V4\",\n    \"chicken state chain\",\n    \"pan residue at V1 start\"\n  ],\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "chicken | marinating/mixing | raw/marinated (pink pieces with powder/sauce) | 1-16 | visual_question | High | -\neggs | resting | raw liquid (yolks visible) | 1-16 | visual_question | High | -\nrice | resting | cooked/white grains (background bowl) | 1-16 | visual_question | Medium | UNCERTAIN (visuals resemble cooked rice for fried rice, though memory notes raw/prepped)",
+    "timestamp_end": "2026-07-06 20:06:56"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 25.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: 1) Initial state of chicken (raw/marinated). 2) Final state of chicken (cooked/white). 3) Container chicken is transferred into at the end (bowl/wok). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose."
+    },
+    "timestamp_start": "2026-07-06 20:05:47",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 25.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: 1) Initial state of chicken (raw/marinated). 2) Final state of chicken (cooked/white). 3) Container chicken is transferred into at the end (bowl/wok). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"chicken\": {\n      \"2\": \"raw/marinated/pink\",\n      \"3\": \"cooked/white/in bowl\",\n      \"1\": \"cooked pieces added to rice\"\n    },\n    \"eggs\": {\n      \"2\": \"raw in background bowl\",\n      \"4\": \"raw -> cooked/scrambled/in bowl\",\n      \"1\": \"egg chunks added to rice\"\n    },\n    \"rice\": {\n      \"2\": \"raw/prepped in background bowl\",\n      \"1\": \"cooked grains added to pan\"\n    },\n    \"veggies\": {\n      \"2\": \"prepped in background bowl\",\n      \"1\": \"added to rice\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient maturity\",\n    \"egg state in V1 vs V4\",\n    \"chicken state chain\",\n    \"pan residue at V1 start\"\n  ],\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "chicken/initial_state/raw_marinated_pink/1-7/initial_state_check/HIGH/-\nchicken/final_state/cooked_white/11-16/final_state_check/HIGH/-\nchicken/transfer_container/white_bowl/15-16/container_check/HIGH/-",
+    "timestamp_end": "2026-07-06 20:06:34"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_5",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 30.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: 1) Initial state of eggs (raw liquid). 2) Final state of eggs (cooked/scrambled solid). 3) Container eggs are transferred into at the end (bowl). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose."
+    },
+    "timestamp_start": "2026-07-06 20:05:47",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 30.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: 1) Initial state of eggs (raw liquid). 2) Final state of eggs (cooked/scrambled solid). 3) Container eggs are transferred into at the end (bowl). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"chicken\": {\n      \"2\": \"raw/marinated/pink\",\n      \"3\": \"cooked/white/in bowl\",\n      \"1\": \"cooked pieces added to rice\"\n    },\n    \"eggs\": {\n      \"2\": \"raw in background bowl\",\n      \"4\": \"raw -> cooked/scrambled/in bowl\",\n      \"1\": \"egg chunks added to rice\"\n    },\n    \"rice\": {\n      \"2\": \"raw/prepped in background bowl\",\n      \"1\": \"cooked grains added to pan\"\n    },\n    \"veggies\": {\n      \"2\": \"prepped in background bowl\",\n      \"1\": \"added to rice\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient maturity\",\n    \"egg state in V1 vs V4\",\n    \"chicken state chain\",\n    \"pan residue at V1 start\"\n  ],\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "eggs/poured into pan/raw liquid (yolks and whites visible)/Frame 8/Initial state/High/No\neggs/scrambled and lifted/cooked solid (yellow and white chunks)/Frame 12-13/Final state/High/No\neggs/transferred out of pan/cooked solid on spatula moving toward background bowls/Frame 13-16/Container (bowl)/High/No",
+    "timestamp_end": "2026-07-06 20:06:38"
+  }
+]

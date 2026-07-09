@@ -1,0 +1,208 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "awaiting Layer2 state scan results for all 4 segments"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "bacon": {
+      "1": "raw strip -> diced lardons on board",
+      "2": "raw diced -> fried browned in pan",
+      "4": "cooked bits mixed in pasta",
+      "3": "raw diced in blue bowl"
+    },
+    "pasta": {
+      "3": "dry package -> poured into boiling water",
+      "4": "cooked wet strands -> coated in egg/cheese sauce",
+      "1": "absent",
+      "2": "absent"
+    },
+    "pot_water": {
+      "3": "clear boiling (steam)",
+      "4": "cloudy starchy residue",
+      "1": "absent",
+      "2": "absent"
+    },
+    "pan_contents": {
+      "2": "bacon -> +garlic -> +tomatoes/herbs",
+      "4": "pasta + bacon/herbs + egg + cheese",
+      "1": "absent",
+      "3": "absent"
+    },
+    "blue_bowl": {
+      "1": "absent",
+      "3": "contains diced raw bacon",
+      "2": "contains chopped green herbs",
+      "4": "contents unclear"
+    },
+    "wooden_bowl": {
+      "1": "contents unclear",
+      "3": "contains white grated parmesan",
+      "2": "contents indistinct",
+      "4": "contains grated cheese, being used"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states raw->cooked",
+    "container fill/empty/residue",
+    "transfer traces between vessels",
+    "tool contact and background cues"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "full object state inventory across all 4 segments needed"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states raw->cooked",
+          "container fill/empty/residue",
+          "transfer traces between vessels",
+          "tool contact and background cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "order_confidence": 8,
+        "object_memory": {
+          "bacon": {
+            "1": "raw strip -> diced lardons",
+            "2": "diced raw -> fried/browned",
+            "4": "cooked bits in pasta"
+          },
+          "pasta": {
+            "3": "dry package -> poured into boiling water",
+            "4": "cooked wet strands -> tossed with egg/cheese"
+          },
+          "pot_water": {
+            "3": "clear boiling water (steam)",
+            "4": "cloudy starchy water (residue)"
+          },
+          "pan_contents": {
+            "2": "bacon + garlic + herbs + tomatoes",
+            "4": "pasta + bacon/herbs/tomatoes + egg + cheese"
+          }
+        },
+        "preliminary_order": "3->1->2->4",
+        "confidence_basis": [
+          "direct state progression pot clear->cloudy",
+          "direct state progression bacon raw->fried",
+          "direct transfer sauce base to pasta",
+          "culinary workflow pasta boils before sauce prep"
+        ],
+        "blocking_uncertainties": [],
+        "layer2_done": true
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "uncertain": [
+          "awaiting Layer2 state scan results for all 4 segments"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states raw->cooked",
+          "container fill/empty/residue",
+          "transfer traces between vessels",
+          "tool contact and background cues"
+        ],
+        "order_confidence": 8,
+        "preliminary_order": "3->1->2->4",
+        "confidence_basis": [
+          "direct state progression pot clear->cloudy",
+          "direct state progression bacon raw->fried",
+          "direct transfer sauce base to pasta",
+          "culinary workflow pasta boils before sauce prep"
+        ],
+        "layer2_done": true
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "order_confidence": 9,
+        "object_memory": {
+          "bacon": {
+            "1": "raw strip -> diced lardons on board",
+            "3": "raw diced in blue bowl",
+            "2": "raw diced -> fried browned in pan",
+            "4": "cooked bits mixed in pasta"
+          },
+          "pasta": {
+            "1": "absent",
+            "3": "dry package -> poured into boiling water",
+            "2": "absent",
+            "4": "cooked wet strands -> coated in egg/cheese sauce"
+          },
+          "pot_water": {
+            "1": "absent",
+            "3": "clear boiling (steam)",
+            "2": "absent",
+            "4": "cloudy starchy residue"
+          },
+          "pan_contents": {
+            "1": "absent",
+            "3": "absent",
+            "2": "bacon -> +garlic -> +tomatoes/herbs",
+            "4": "pasta + bacon/herbs + egg + cheese"
+          },
+          "blue_bowl": {
+            "1": "absent",
+            "3": "contains diced raw bacon",
+            "2": "contains chopped green herbs",
+            "4": "contents unclear"
+          },
+          "wooden_bowl": {
+            "1": "contents unclear",
+            "3": "contains white grated parmesan",
+            "2": "contents indistinct",
+            "4": "contains grated cheese, being used"
+          }
+        },
+        "preliminary_order": "1->3->2->4",
+        "confidence_basis": [
+          "direct state progression bacon strip->diced->fried->in pasta",
+          "direct state progression pot water clear->cloudy",
+          "direct transfer sauce base to pasta",
+          "blue bowl reuse bacon->herbs",
+          "wooden bowl parmesan prep->use"
+        ],
+        "blocking_uncertainties": [],
+        "layer2_done": true
+      }
+    }
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "preliminary_order": [
+    "3->1->2->4",
+    "1->3->2->4"
+  ],
+  "confidence_basis": [
+    "direct state progression pot clear->cloudy",
+    "direct state progression bacon raw->fried",
+    "direct transfer sauce base to pasta",
+    "culinary workflow pasta boils before sauce prep",
+    "direct state progression bacon strip->diced->fried->in pasta",
+    "direct state progression pot water clear->cloudy",
+    "blue bowl reuse bacon->herbs",
+    "wooden bowl parmesan prep->use"
+  ],
+  "blocking_uncertainties": [],
+  "layer2_done": [
+    "True"
+  ]
+}

@@ -1,0 +1,654 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-07 00:34:29
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-07 00:06:57 -> 2026-07-07 00:09:30
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 92.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment independently. Report: (1) all visible objects/tools/containers and their states (raw/cooked, whole/cut, wet/dry, empty/filled, separate/mixed, clean/dirty, residue/depletion); (2) actions performed (chopping, boiling, frying, mixing, plating, etc.); (3) ingredient states at start vs end of clip; (4) any background cues (stove on/off, pan residue, bowl contents). Return compact evidence rows with labels VISIBLE/ABSENT/UNCERTAIN. Fields: objects, action, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the layer 1 caption describing the cooking segment.
+
+**Visible Objects/Tools/Containers:**
+*   **Cookware:** Black non-stick skillet (frying pan), stainless steel pot (background).
+*   **Tools:** Wooden spoon/spatula, wire whisk, pepper grinder/shaker.
+*   **Containers:** Green glass olive oil bottle, Pyrex glass measuring cup, small glass bowl (holding whole eggs), small bowl (holding yellow shreds/cheese), small bowl (holding white powder/salt), white square plate.
+*   **Ingredients:** Olive oil, chopped pink meat (bacon/ham), whole eggs (white shells), yellow shreds (likely cheese), white liquid (milk/cream), yellow solid lump (likely butter).
+
+**Actions Performed:**
+*   **Pouring:** Olive oil is poured into the skillet (Frame 1). Milk/cream is poured into the measuring cup (Frame 11).
+*   **Frying/Stirring:** Chopped meat is stirred in the hot pan with a wooden spoon (Frame 3, 14).
+*   **Cracking:** An egg is cracked into the measuring cup (Frame 6).
+*   **Seasoning/Mixing:** Ingredients (cheese, pepper, salt) are added to the cup. The mixture is whisked vigorously (Frame 12).
+*   **Transferring:** A yellow solid (butter) is scraped from a white plate into the pan with the cooked meat (Frame 15).
+
+**Ingredient States (Start vs. End):**
+*   **Meat (Bacon/Ham):**
+    *   *Start:* Raw, pink, cubed/chopped (Frame 2, 3).
+    *   *End:* Cooked, dark red/brown, crispy, rendered fat visible in pan (Frame 14, 15).
+*   **Egg Mixture:**
+    *   *Start:* Whole eggs in shell (Frame 6).
+    *   *End:* Whisked pale yellow liquid mixed with milk and other ingredients (Frame 12, 13).
+*   **Pan:**
+    *   *Start:* Empty, then filled with clear oil (Frame 1).
+    *   *End:* Contains dark rendered fat and crispy meat bits (Frame 14).
+
+**Background Cues:**
+*   **Stove:** Burner is on (red glow visible under pot in Frame 1, 3, 14).
+*   **Residue:** Pan shows oil residue and later dark bacon grease.
+*   **Setting:** Kitchen counter with white cabinets, microwave, and sink visible.
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Pan, Oil bottle | Pouring oil | Pan filled with oil | 1 | HIGH | None |
+| Plate, Bacon | Holding/Showing | Raw, pink, cubed | 2 | HIGH | None |
+| Pan, Bacon, Spoon | Frying/Stirring | Bacon cooking in oil | 3 | HIGH | None |
+| Cup, Eggs | Cracking | Eggs entering cup | 6 | HIGH | None |
+| Cup, Cheese, Shaker | Adding ingredients | Cheese/pepper added to eggs | 7-9 | HIGH | Yellow shreds likely cheese |
+| Cup, Milk container | Pouring | Milk added to egg mix | 11 | HIGH | Liquid is white (milk/cream) |
+| Cup, Whisk | Whisking | Mixture becomes yellow liquid | 12 | HIGH | None |
+| Pan, Bacon | Frying | Bacon is dark/crispy | 14 | HIGH | None |
+| Plate, Butter (likely) | Scraping/Adding | Solid yellow lump added to pan | 15 | MEDIUM | Could be butter or thickened mix |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-07 00:06:57 -> 2026-07-07 00:09:21
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 95.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment independently. Report: (1) all visible objects/tools/containers and their states (raw/cooked, whole/cut, wet/dry, empty/filled, separate/mixed, clean/dirty, residue/depletion); (2) actions performed (chopping, boiling, frying, mixing, plating, etc.); (3) ingredient states at start vs end of clip; (4) any background cues (stove on/off, pan residue, bowl contents). Return compact evidence rows with labels VISIBLE/ABSENT/UNCERTAIN. Fields: objects, action, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the description of the cooking segment:
+
+**1. Visible Objects/Tools/Containers and States**
+*   **Spaghetti**: VISIBLE. Dry, whole bunch standing in a clear glass (Frames 2, 16).
+*   **Garlic**: VISIBLE. Minced/chopped, yellow-white pile on a white cutting board (Frames 2, 4, 12).
+*   **Meat (Pancetta/Bacon/Ham)**: VISIBLE. Initially round slices stacked on the cutting board (Frames 3, 4), later cut into strips/cubes (Frames 9, 12). Raw/cured state.
+*   **Cheese (Parmesan/Pecorino)**: VISIBLE. Grated, white/yellow powder in a small glass bowl (Frame 12).
+*   **Eggs**: VISIBLE. Three whole white eggs in a clear glass bowl (Frame 13).
+*   **Cream/Milk**: VISIBLE. White liquid in a small black bowl (Frame 13).
+*   **Pot**: VISIBLE. Large stainless steel pot filled with water (Frame 16).
+*   **Knife**: VISIBLE. Large chef's knife used for cutting (Frames 8, 9, 13).
+*   **Cutting Board**: VISIBLE. White surface, holds garlic and meat (Frames 2, 3, 4, 8, 9, 12).
+
+**2. Actions Performed**
+*   **Talking/Explaining**: The host is introducing the recipe and ingredients (Frames 1, 5, 6, 7, 10, 11, 14, 15).
+*   **Displaying Ingredients**: Holding the spaghetti (Frame 2), pointing to the cheese (Frame 12), showing the eggs and cream (Frame 13).
+*   **Prepping/Cutting**: Stacking meat slices (Frame 3) and cutting the stack into strips/cubes with a knife (Frames 8, 9).
+*   **Boiling/Salting**: Adding salt to the pot of boiling water (Frame 16).
+
+**3. Ingredient States: Start vs. End**
+*   **Start**: Spaghetti is dry and whole. Meat is in whole round slices. Garlic is already minced. Eggs and cheese are separate in bowls.
+*   **End**: Meat is cut into small strips/cubes. Water in the pot is boiling and has been salted. Spaghetti is still dry (waiting to be cooked).
+
+**4. Background Cues**
+*   **Stove**: ON (water is boiling in Frame 16).
+*   **Kitchen**: White cabinets, red pot in background, stand mixer visible.
+*   **Residue**: Cutting board has minced garlic residue.
+
+**Compact Evidence Rows**
+
+| Objects | Action | State | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Spaghetti | Holding/Displaying | Dry, whole bunch in glass | 2, 16 | High | None |
+| Garlic | Prepped (minced) | Minced pile on cutting board | 2, 4, 12 | High | None |
+| Meat (Pancetta) | Stacking, Cutting | Round slices stacked -> cut into strips | 3, 4, 8, 9, 12 | High | None |
+| Cheese | Pointing/Displaying | Grated in glass bowl | 12 | High | None |
+| Eggs | Displaying | 3 whole eggs in glass bowl | 13 | High | None |
+| Cream/Milk | Displaying | White liquid in black bowl | 13 | High | None |
+| Pot/Water | Boiling, Salting | Water boiling, salt added | 16 | High | None |
+| Host | Talking/Explaining | Gesturing, introducing recipe | 1, 5-7, 10-11, 14-15 | High | None |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-07 00:06:57 -> 2026-07-07 00:08:58
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 39.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment independently. Report: (1) all visible objects/tools/containers and their states (raw/cooked, whole/cut, wet/dry, empty/filled, separate/mixed, clean/dirty, residue/depletion); (2) actions performed (chopping, boiling, frying, mixing, plating, etc.); (3) ingredient states at start vs end of clip; (4) any background cues (stove on/off, pan residue, bowl contents). Return compact evidence rows with labels VISIBLE/ABSENT/UNCERTAIN. Fields: objects, action, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the description of the cooking segment:
+
+**1. Visible Objects/Tools/Containers and States:**
+*   **Cutting Board & Knife:** White cutting board with a pile of chopped green herbs (parsley). Large chef's knife used for chopping.
+*   **Glass Mixing Bowl:** Contains cooked pasta coated in a creamy white sauce with visible pieces of meat (likely bacon or pancetta). Tongs are resting in it.
+*   **Serving Bowl:** A shallow bowl with a green patterned rim and white center. Initially empty, then filled with pasta.
+*   **Cheese Wedge & Grater:** A wedge of hard yellow cheese (Parmesan) and a metal grater are held by the woman.
+*   **Pasta Dish:** Cooked spaghetti/linguine with creamy sauce and meat. State changes from mixed in a bowl to plated, then topped with grated cheese, black pepper, and fresh herbs.
+
+**2. Actions Performed:**
+*   **Chopping:** The woman chops green herbs on a cutting board.
+*   **Plating:** Using tongs, she transfers the pasta from the glass mixing bowl to the serving bowl.
+*   **Garnishing/Seasoning:** She grates cheese over the pasta (implied by the wedge and final state) and adds the chopped herbs on top.
+
+**3. Ingredient States (Start vs. End):**
+*   **Herbs:** Start as a pile being chopped on the board; End as a garnish on top of the finished pasta.
+*   **Pasta:** Start mixed in a large glass bowl; End plated in a serving bowl with toppings.
+*   **Cheese:** Start as a solid wedge; End as grated powder sprinkled over the pasta.
+
+**4. Background Cues:**
+*   Kitchen setting with white cabinets and a red stand mixer in the background.
+*   "Dishin' With Di" watermark indicates a cooking show segment.
+
+**Compact Evidence Rows:**
+
+| objects | action | state | window | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Knife, cutting board, parsley | Chopping | Parsley is being cut into small pieces; pile accumulates. | 1-2 | HIGH | None |
+| Serving bowl (green rim) | Presenting | Bowl is empty and clean, held up to camera. | 3-4 | HIGH | None |
+| Tongs, glass bowl, pasta, serving bowl | Plating | Pasta (creamy, with meat) is transferred from glass bowl to serving bowl. | 5-7 | HIGH | None |
+| Cheese wedge, grater | Preparing | Woman holds cheese wedge and grater; pasta is plated in foreground. | 11-12 | HIGH | Grating action itself is cut/edited out. |
+| Pasta bowl, cheese, pepper | Seasoning | Pasta is now topped with grated cheese and black pepper. | 13-15 | HIGH | None |
+| Pasta bowl, parsley | Garnishing | Chopped parsley is placed on top of the cheese-covered pasta. | 16 | HIGH | None |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-07 00:06:57 -> 2026-07-07 00:09:10
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 54.5,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment independently. Report: (1) all visible objects/tools/containers and their states (raw/cooked, whole/cut, wet/dry, empty/filled, separate/mixed, clean/dirty, residue/depletion); (2) actions performed (chopping, boiling, frying, mixing, plating, etc.); (3) ingredient states at start vs end of clip; (4) any background cues (stove on/off, pan residue, bowl contents). Return compact evidence rows with labels VISIBLE/ABSENT/UNCERTAIN. Fields: objects, action, state, window, conf, uncertainty. (part 1/2, time 0s–54s)"
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the description of the cooking segment.
+
+**Layer 1 Caption: Pasta Preparation and Transfer**
+
+| Objects | Action | State | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Large stainless steel pot** | Boiling water; pasta cooking inside. | Filled with water; stove is on (green display visible). | 0s-54s | HIGH | None. |
+| **Glass measuring cup** | Scooping liquid from pot; held up for display. | Contains pale yellowish liquid (likely reserved pasta water). | 0s-5s, 50s-54s | HIGH | Liquid identity (water vs oil/egg mix) slightly uncertain but likely pasta water. |
+| **Long pasta (spaghetti/linguine)** | Boiled in pot; lifted with tongs; transferred to skillet. | Raw (implied start) -> Cooked, wet, clumped strands. | 10s-20s, 35s-40s | HIGH | None. |
+| **Dark skillet/pan** | Sautéing base ingredients; receiving pasta; pouring contents out. | Contains oil and red bits (bacon/pancetta/chili); later empty/residue. | 20s-25s, 35s-45s | HIGH | Specific red ingredient (bacon vs chili) uncertain. |
+| **Tongs** | Lifting pasta from pot; placing into skillet. | Metal, held by hand. | 10s-25s, 35s-40s | HIGH | None. |
+| **Glass bowl** | Receiving finished pasta dish. | Empty (implied) -> Filled with pasta and red ingredients. | 40s-50s | HIGH | None. |
+| **Woman (Cook)** | Managing pot, transferring pasta, talking to camera. | Wearing floral shirt, glasses. | 0s-54s | HIGH | None. |
+
+**Summary of Events:**
+1.  **Prep/Boiling:** The segment begins with a large pot of boiling water on the stove. The cook uses a glass measuring cup to reserve some of the cooking liquid (pasta water), shown in frames 1-2 and held up in frame 16.
+2.  **Cooking Pasta:** Long strands of pasta are cooked in the large pot. The cook uses tongs to lift the cooked, wet pasta out of the water (Frames 3-4).
+3.  **Transfer & Mix:** The cooked pasta is transferred directly into a skillet that already contains oil and red ingredients (likely bacon, pancetta, or chili flakes). This is seen clearly in Frames 5 and 9 where the pasta is piled into the pan.
+4.  **Plating:** The contents of the skillet (pasta mixed with the red ingredients/sauce) are poured into a large clear glass bowl (Frames 10-12).
+5.  **Conclusion:** The cook stands and talks, holding the cup of reserved liquid at the end (Frame 16), likely explaining the next step (emulsifying the sauce).
+
+**Ingredient States:**
+*   **Start:** Pasta is cooking in the pot. Skillet has base ingredients (oil/red bits).
+*   **End:** Pasta is cooked and transferred to a bowl, mixed with the skillet ingredients. Reserved liquid is in a cup.
+
+**Background Cues:**
+*   **Stove:** On (digital clock reads 1:46/1:47).
+*   **Countertop:** Cluttered with kitchen tools (red stand mixer, food processor, spatula).
+*   **Residue:** The skillet shows residue of the red sauce/bacon after pouring into the bowl.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_5) ###
+Time: 2026-07-07 00:09:10 -> 2026-07-07 00:10:21
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 54.5,
+      "end_time": 109.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment independently. Report: (1) all visible objects/tools/containers and their states (raw/cooked, whole/cut, wet/dry, empty/filled, separate/mixed, clean/dirty, residue/depletion); (2) actions performed (chopping, boiling, frying, mixing, plating, etc.); (3) ingredient states at start vs end of clip; (4) any background cues (stove on/off, pan residue, bowl contents). Return compact evidence rows with labels VISIBLE/ABSENT/UNCERTAIN. Fields: objects, action, state, window, conf, uncertainty. (part 2/2, time 54s–109s)"
+}
+
+[Output]:
+Based on the visual evidence from frames 1-16 (Video 4, 54.5s–109.0s), here is the description of the cooking segment:
+
+**Compact Evidence Rows**
+
+| Field | Details | Label |
+| :--- | :--- | :--- |
+| **objects** | Two Pyrex glass measuring cups (one with white liquid, one with yellow mixture), wire whisk, large glass bowl containing cooked spaghetti and meat bits (bacon/pancetta), metal tongs with black handles. | VISIBLE |
+| **action** | 1. Pouring white liquid (milk/cream) into the yellow mixture (eggs/cheese) while whisking. <br> 2. Pouring the combined sauce over the pasta. <br> 3. Tossing and mixing the pasta with the sauce using tongs. | VISIBLE |
+| **state** | **Start:** White liquid and yellow mixture are separate in measuring cups. Pasta is cooked and sits with meat in a bowl. <br> **End:** Liquids are combined into a pale yellow sauce. Pasta is fully coated in the creamy sauce. | VISIBLE |
+| **window** | 54.5s – 109.0s (Video 4) | VISIBLE |
+| **conf** | High. The actions of mixing a sauce and tossing pasta are clearly depicted. | VISIBLE |
+| **uncertainty** | Exact identity of ingredients (e.g., milk vs. cream, eggs vs. cheese mixture) is inferred from visual appearance (white liquid, yellow base) typical of a carbonara or creamy pasta sauce. | UNCERTAIN |
+
+**Detailed Observation:**
+*   **Background Cues:** A stainless steel pot is visible on the stove (likely used for boiling pasta). A red stand mixer and jars of dry ingredients (flour/sugar) are on the counter in the background. The counter surface is wooden.
+*   **Ingredient States:** The white liquid is poured into the yellow mixture to create a uniform sauce. This sauce is then poured over the hot pasta and meat. The tongs are used vigorously to lift and turn the pasta, ensuring the sauce coats the noodles and meat evenly, transforming the dish from separate components to a unified creamy pasta dish.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_6) ###
+Time: 2026-07-07 00:06:57 -> 2026-07-07 00:09:30
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 37.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment independently. Report: (1) all visible objects/tools/containers and their states (raw/cooked, whole/cut, wet/dry, empty/filled, separate/mixed, clean/dirty, residue/depletion); (2) actions performed (chopping, boiling, frying, mixing, plating, etc.); (3) ingredient states at start vs end of clip; (4) any background cues (stove on/off, pan residue, bowl contents). Return compact evidence rows with labels VISIBLE/ABSENT/UNCERTAIN. Fields: objects, action, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the frames, here is the description of the cooking segment:
+
+**Objects & Tools:**
+*   **Large Pyrex Measuring Cup:** Central container, initially empty, then filled with ingredients.
+*   **Eggs:** Visible as whole white eggs in a small glass bowl (background) and cracked into the large cup (yolks and whites visible).
+*   **Small Glass Bowl:** Contains whole eggs (background) and later held by the woman containing a white powder (likely salt).
+*   **Pepper Grinder:** Stainless steel/black grinder held by the woman.
+*   **Electric Hand Mixer:** Used briefly to mix ingredients.
+*   **Manual Whisk:** Used at the end to blend the mixture.
+*   **Liquid Ingredient:** A white liquid (likely milk or cream) poured from a smaller measuring cup.
+
+**Actions & States:**
+*   **Cracking:** The segment begins with cracking eggs into the large Pyrex cup. Two yolks are clearly visible at the bottom.
+*   **Pouring:** A white liquid is poured into the cup with the eggs.
+*   **Seasoning:** Black pepper is ground into the mixture. The woman holds a small bowl of white powder (salt), implying it is added.
+*   **Mixing:** An electric mixer is used, followed by a manual whisk.
+*   **Ingredient State Change:**
+    *   **Start:** Separate raw eggs (whole then cracked), separate liquid, separate seasonings.
+    *   **End:** A uniform, pale yellow, frothy liquid mixture (beaten eggs).
+
+**Compact Evidence Rows:**
+
+| Window | Objects | Action | State | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 1-2 | Pyrex cup, eggs, small bowl | Cracking eggs | Eggs cracked into cup; yolks visible. | HIGH | None |
+| 3-5 | Pyrex cup, measuring cup, liquid | Pouring | White liquid (milk/cream) added to eggs. | HIGH | Exact liquid type (milk vs cream) uncertain. |
+| 7-10 | Pepper grinder, Pyrex cup | Grinding pepper | Pepper added to mixture. | HIGH | None |
+| 12-13 | Small bowl, white powder | Holding/Showing | Woman holds bowl of salt/white powder. | HIGH | None |
+| 14 | Electric mixer, Pyrex cup | Mixing (electric) | Mixer inserted; white granular substance (salt/cheese) visible on top of yellow liquid. | HIGH | Identity of white pile (salt vs cheese) uncertain. |
+| 16 | Manual whisk, Pyrex cup | Whisking | Mixture is uniform pale yellow liquid. | HIGH | None |
+
+**Background Cues:**
+*   **Stove/Counter:** Wooden countertop visible. Kitchen background with white cabinets and red appliances (mixer, pot).
+*   **Residue:** The Pyrex cup shows measurement markings. The mixture fills the cup to roughly the 400-600ml mark by the end.
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_1) ###
+Time: 2026-07-07 00:14:10 -> 2026-07-07 00:17:28
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 92.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: (1) bacon state at start vs end; (2) exact ingredients added to the Pyrex cup and mixing tool used (manual whisk vs electric); (3) identity of the yellow solid lump added to the pan. Return compact rows: object/action/state/window/conf/uncertainty. Do not infer cross-target chronology."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames:
+
+*   **Bacon State:**
+    *   **Start (Frame 2):** Raw, pink, cubed slices/chunks held on a plate.
+    *   **End (Frame 14):** Dark red/brown, crispy, shriveled bits cooking in the pan.
+    *   **Window:** 1-16 | **Conf:** High | **Uncertainty:** Low.
+
+*   **Pyrex Cup Ingredients & Mixing Tool:**
+    *   **Ingredients:** Eggs (cracked in Frame 6), cheese/yellow shreds (held in Frame 7, visible in cup in Frame 9), pepper (ground in Frame 9), and milk/white liquid (poured in Frame 11).
+    *   **Tool:** Manual wire whisk (used in Frame 12).
+    *   **Window:** 6-13 | **Conf:** High | **Uncertainty:** Low (Cheese identification supported by PSS context "eggs+cheese...").
+
+*   **Yellow Solid Lump Identity:**
+    *   **Identity:** Butter (a yellow block/pat being slid from a board into the pan).
+    *   **Window:** 15 | **Conf:** High | **Uncertainty:** Low (Visual appearance consistent with butter).
+
+**Compact Rows:**
+
+| Object/Action | State/Details | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Bacon | Raw pink cubes (start) -> Dark crispy bits (end) | 2, 14 | High | Low |
+| Pyrex Ingredients | Eggs, cheese, pepper, milk added | 6-11 | High | Low |
+| Mixing Tool | Manual wire whisk used | 12 | High | Low |
+| Yellow Lump | Butter (yellow block) added to pan | 15 | High | Low |
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_2) ###
+Time: 2026-07-07 00:14:10 -> 2026-07-07 00:17:18
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 95.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: (1) meat state on cutting board (slices vs cut strips/cubes); (2) garlic state; (3) water state in the large pot (boiling/salted). Return compact rows: object/action/state/window/conf/uncertainty. Do not infer cross-target chronology."
+}
+
+[Output]:
+Based on the visual evidence in Frames 1-16 (Video 2), here are the extracted states for the requested objects:
+
+| Object | Action/State | Window (Frames) | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| **Meat** | Raw round slices (Frames 3, 4) $\rightarrow$ Cut into strips/cubes (Frames 8, 9, 12) | 3, 4, 8, 9, 12 | High | Low |
+| **Garlic** | Minced/Chopped pile | 2, 4, 12 | High | Low |
+| **Water (Large Pot)** | Boiling (bubbling), Salt being added | 16 | High | Low |
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_3) ###
+Time: 2026-07-07 00:14:10 -> 2026-07-07 00:17:15
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 39.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: (1) pasta state in glass bowl vs serving bowl; (2) cheese state (wedge vs grated); (3) parsley state (chopped pile vs garnish on pasta). Return compact rows: object/action/state/window/conf/uncertainty. Do not infer cross-target chronology."
+}
+
+[Output]:
+pasta | mixing/plating | coated in glass bowl (frames 1, 5); plated in serving bowl (frames 5-16) | 1-16 | high | low
+cheese | holding/grating | wedge held in hand (frames 11-12); grated on top of pasta (frames 13-16) | 1-16 | high | low
+parsley | chopping/garnishing | chopped pile on cutting board (frames 1-2); green garnish on pasta (frame 16) | 1-16 | high | low
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_4) ###
+Time: 2026-07-07 00:14:10 -> 2026-07-07 00:17:31
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 54.5,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: (1) Chunk 1: pasta state in pot, skillet contents; (2) Chunk 2: number of Pyrex cups, contents of each cup, identity of the white liquid poured (pasta water vs milk/cream), final sauce state. Return compact rows: object/action/state/window/conf/uncertainty. Do not infer cross-target chronology. (part 1/2, time 0s–54s)"
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (Video 4, 0s–54s):
+
+**Chunk 1: Pasta state in pot, skillet contents**
+*   **Pasta in pot:** Frames 1-2 show a large pot of boiling water. Frame 4 shows a bundle of dry spaghetti being held. Frame 9 shows cooked spaghetti being lifted from the pot. State: Boiling water -> Dry -> Cooked. (Window: 0s-10s approx, Conf: High, Uncertainty: Low)
+*   **Skillet contents:** Frame 5 shows cooked pasta being tossed in a skillet with tongs; brown bits (bacon/pancetta) are visible. Frame 9 shows cooked pasta being added to a skillet containing cooked bacon bits. State: Cooked bacon bits, then pasta added. (Window: 10s-20s approx, Conf: High, Uncertainty: Low)
+
+**Chunk 2: Pyrex cups, contents, liquid identity, final sauce state**
+*   **Number of Pyrex cups:** One main Pyrex measuring cup is actively used (Frames 1, 2, 16). Other glass bowls/cups are visible on the counter in the background (Frames 3, 13), likely containing ingredients (eggs, cheese). (Window: 0s-54s, Conf: Medium, Uncertainty: Exact count of background cups is unclear)
+*   **Contents of each cup:** The active measuring cup (Frames 1, 2, 16) contains a cloudy, pale yellow/white liquid. A bowl/cup in Frame 3 contains a yellow mixture (eggs). (Window: 0s-54s, Conf: High, Uncertainty: Low)
+*   **Identity of white liquid poured:** In Frames 1-2, the cup is dipped into the pasta pot to scoop liquid. In Frame 16, the woman holds up this cup of cloudy liquid. This confirms it is reserved **pasta water**, not milk/cream. (Window: 0s-5s, 50s-54s, Conf: High, Uncertainty: Low)
+*   **Final sauce state:** Frames 10-12 show the pasta being poured from the skillet into a glass bowl. The pasta is coated in a glossy, creamy sauce with visible bacon bits. (Window: 30s-40s approx, Conf: High, Uncertainty: Low)
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_5) ###
+Time: 2026-07-07 00:17:31 -> 2026-07-07 00:19:34
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 54.5,
+      "end_time": 109.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: (1) Chunk 1: pasta state in pot, skillet contents; (2) Chunk 2: number of Pyrex cups, contents of each cup, identity of the white liquid poured (pasta water vs milk/cream), final sauce state. Return compact rows: object/action/state/window/conf/uncertainty. Do not infer cross-target chronology. (part 2/2, time 54s–109s)"
+}
+
+[Output]:
+Based on the visual evidence in Frames 1-16 (Video 4, 54.5s–109.0s):
+
+| Object/Action | State/Details | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| **Pasta (Chunk 1)** | Cooked spaghetti transferred to a large glass bowl; pot visible in background (stove right) likely held water/pasta previously. | Frames 9-16 (bowl), Frames 1,5 (pot bg) | High | Pot contents not clearly visible; pasta state confirmed in bowl. |
+| **Skillet Contents (Chunk 1)** | Dark, crispy bacon bits are visible mixed in with the pasta in the glass bowl, indicating transfer from skillet. | Frames 9-16 | High | Skillet itself not shown in this sequence, only the transferred contents. |
+| **Pyrex Cups (Chunk 2)** | 2 active cups: one pouring white liquid, one receiving yellow mixture. (2 additional cups with dry ingredients visible on counter in background). | Frames 1-10 | High | Background cups are static. |
+| **Cup Contents (Chunk 2)** | Pouring cup: opaque white liquid. Receiving cup: yellow egg/cheese mixture. | Frames 3-4, 8-10 | High | None. |
+| **White Liquid Identity** | Opaque white fluid. Visually consistent with milk or cream (high opacity) rather than starchy pasta water (usually translucent/cloudy). | Frames 3-4 | Medium-High | Could be heavy cream or milk; pasta water is less likely due to brightness/opacity. |
+| **Final Sauce State** | Yellow/white mixture poured over pasta and bacon, then tossed until pasta is thoroughly coated in a creamy sauce. | Frames 12-16 | High | None. |
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_6) ###
+Time: 2026-07-07 00:14:10 -> 2026-07-07 00:18:06
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 37.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: (1) exact ingredients added to the Pyrex cup; (2) mixing tool used (electric mixer vs manual whisk); (3) any pan or bacon visible in background. Return compact rows: object/action/state/window/conf/uncertainty. Do not infer cross-target chronology."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames for Video 5:
+
+*   **Ingredients:** Eggs are cracked into the Pyrex cup (Frames 1-2). A white liquid (likely milk) is poured in (Frames 4-5). Pepper is ground into the mixture (Frames 7-10). A small bowl containing white granules (likely salt) is held (Frames 12-13).
+*   **Mixing Tool:** An electric hand mixer is visible mixing the ingredients in Frame 14. A manual wire whisk is visible mixing the ingredients in Frame 16.
+*   **Background:** A red pot (Dutch oven) is visible on the counter in the wide shots. No bacon or frying pan with bacon is visible.
+
+**Compact Rows:**
+
+| object/action/state | window | conf | uncertainty |
+| :--- | :--- | :--- | :--- |
+| Ingredients: Eggs (cracked), Milk (white liquid poured), Pepper (ground), Salt (white granules in bowl) | 1-13 | High | Salt addition inferred from bowl holding; exact moment of pouring not shown. |
+| Mixing Tool: Electric mixer (beaters visible in cup) | 14 | High | None. |
+| Mixing Tool: Manual whisk (whisking action visible) | 16 | High | None. |
+| Background: Red pot/Dutch oven on counter; No bacon visible | 3-15 | High | None. |
+
+------------------------------------------------------------
+
+### [Turn 5] Tool: active_perception (ID: obs_5) ###
+Time: 2026-07-07 00:21:18 -> 2026-07-07 00:23:34
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0,
+      "end_time": 92,
+      "num_frames": 16,
+      "focus_prompt": "MODE=focus. Inspect only the Pyrex cup sauce preparation in Video 1 and Video 5. For each target, report: (1) exact ingredients added to the cup (eggs, milk, cheese, pepper, salt, etc.); (2) mixing tool used (manual whisk vs electric mixer); (3) final state of the mixture (color, texture, volume); (4) any other containers or ingredients visible in the background. Return compact rows: object/action/state/window/conf/uncertainty. Do not infer cross-target chronology from display order."
+    },
+    {
+      "video_index": 5,
+      "start_time": 0,
+      "end_time": 37,
+      "num_frames": 16,
+      "focus_prompt": "MODE=focus. Inspect only the Pyrex cup sauce preparation in Video 1 and Video 5. For each target, report: (1) exact ingredients added to the cup (eggs, milk, cheese, pepper, salt, etc.); (2) mixing tool used (manual whisk vs electric mixer); (3) final state of the mixture (color, texture, volume); (4) any other containers or ingredients visible in the background. Return compact rows: object/action/state/window/conf/uncertainty. Do not infer cross-target chronology from display order."
+    }
+  ],
+  "focus_prompt": "MODE=focus. Inspect only the Pyrex cup sauce preparation in Video 1 and Video 5. For each target, report: (1) exact ingredients added to the cup (eggs, milk, cheese, pepper, salt, etc.); (2) mixing tool used (manual whisk vs electric mixer); (3) final state of the mixture (color, texture, volume); (4) any other containers or ingredients visible in the background. Return compact rows: object/action/state/window/conf/uncertainty. Do not infer cross-target chronology from display order."
+}
+
+[Output]:
+Based on the visual evidence in the mapped frames and the provided context:
+
+**Video 1 (Frames 1-16) - Pyrex Cup Sauce Preparation**
+*   **Ingredients Added:** Eggs (cracked in Frame 6), Cheese (yellow shreds visible in cup Frame 9, bowl held in Frame 7), Pepper (ground from mill in Frame 8-9), Milk (white liquid poured in Frame 11). Note: A small bowl with white powder (likely salt) is held in Frame 10 but not explicitly listed in the primary memory for this video.
+*   **Mixing Tool:** Manual wire whisk (seen in action in Frame 12 and held in Frame 13).
+*   **Final State:** Yellow, frothy liquid mixture. Volume appears to be around the 600-800 ml mark on the Pyrex cup.
+*   **Background/Other Containers:** Small clear glass bowl containing whole white eggs (visible in Frames 6, 9, 12). Wooden countertop.
+
+**Video 5 (Frames 17-32) - Pyrex Cup Sauce Preparation**
+*   **Ingredients Added:** Eggs (two cracked in Frames 17-18), Milk (white liquid poured from small glass cup in Frame 21), Pepper (ground in Frames 24-26), Salt (white powder in small bowl held in Frames 28-29). Note: A yellow pile (likely cheese) is visible in the cup in Frame 24, similar to Video 1, though the memory focuses on salt for this version.
+*   **Mixing Tool:** Electric hand mixer (beaters visible in Frame 30). A manual whisk is also seen in Frame 32, suggesting a switch or alternative take.
+*   **Final State:** Yellow mixture, well-combined.
+*   **Background/Other Containers:** Small clear glass bowl containing whole white eggs (visible in Frames 17, 18, 24, 30). Red towel in background.
+
+**Compact Rows:**
+
+| Object/Action | State/Details | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| **V1 Sauce Prep** | Ingredients: Eggs, Cheese, Pepper, Milk. Tool: Manual Whisk. State: Yellow, frothy, ~800ml. Background: Egg bowl. | Frames 1-16 | High | Salt bowl visible (Frame 10) but not in primary list. |
+| **V5 Sauce Prep** | Ingredients: Eggs, Milk, Pepper, Salt. Tool: Electric Mixer (Frame 30) / Manual Whisk (Frame 32). State: Yellow mixture. Background: Egg bowl. | Frames 17-32 | High | Cheese pile visible (Frame 24) but memory lists salt instead. Relative order of V1/V5 unknown. |
+
+------------------------------------------------------------
+
+### [Turn 6] Tool: active_perception (ID: obs_6) ###
+Time: 2026-07-07 00:24:27 -> 2026-07-07 00:26:56
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 40,
+      "end_time": 70,
+      "num_frames": 16,
+      "focus_prompt": "MODE=focus. Inspect the sauce preparation in Video 1 (40-70s) and Video 5 (full clip). For each target, report: (1) is cheese being ADDED during this clip, or is it already present? (2) what is the sequence of ingredient additions? (3) is the mixture being combined with another container's contents, or is it a standalone prep? Return compact rows: object/action/state/window/conf/uncertainty. Do not infer cross-target chronology."
+    },
+    {
+      "video_index": 5,
+      "start_time": 0,
+      "end_time": 37,
+      "num_frames": 16,
+      "focus_prompt": "MODE=focus. Inspect the sauce preparation in Video 1 (40-70s) and Video 5 (full clip). For each target, report: (1) is cheese being ADDED during this clip, or is it already present? (2) what is the sequence of ingredient additions? (3) is the mixture being combined with another container's contents, or is it a standalone prep? Return compact rows: object/action/state/window/conf/uncertainty. Do not infer cross-target chronology."
+    }
+  ],
+  "focus_prompt": "MODE=focus. Inspect the sauce preparation in Video 1 (40-70s) and Video 5 (full clip). For each target, report: (1) is cheese being ADDED during this clip, or is it already present? (2) what is the sequence of ingredient additions? (3) is the mixture being combined with another container's contents, or is it a standalone prep? Return compact rows: object/action/state/window/conf/uncertainty. Do not infer cross-target chronology."
+}
+
+[Output]:
+Based on the visual evidence in the mapped frames:
+
+**Video 1 (Frames 1-16, 40-70s)**
+*   **Cheese Status:** Cheese is being **added** (Frame 1 shows white shredded cheese being poured into the cup which already contains yellow egg liquid).
+*   **Sequence:** Eggs (already present) -> Cheese added -> Pepper ground (Frames 5-7) -> Milk/Cream poured (Frame 11) -> Whisked manually (Frame 14).
+*   **Prep Type:** Standalone prep in a Pyrex measuring cup; ingredients are added sequentially to the cup.
+
+**Video 5 (Frames 17-32, 0-37s)**
+*   **Cheese Status:** Cheese is being **added** (Frame 20 shows cheese being poured into the cup after eggs are cracked).
+*   **Sequence:** Empty cup -> Eggs cracked (Frames 17-18) -> Cheese added (Frame 20) -> Pepper ground (Frames 24-26) -> Milk/Cream held/added (Frames 27-29) -> Mixed with electric mixer (Frame 30 shows beaters).
+*   **Prep Type:** Standalone prep in a Pyrex measuring cup.
+
+**Compact Rows:**
+
+| Object | Action | State | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| egg_mixture (V1) | Add cheese, grind pepper, pour milk, whisk manually | Cheese added to existing eggs; pepper and milk added; manual whisking; standalone prep | 40-70s | High | Low |
+| egg_mixture (V5) | Crack eggs, add cheese, grind pepper, pour milk, mix electrically | Eggs cracked into empty cup; cheese, pepper, milk added; electric mixer used; standalone prep | 0-37s | High | Low (white liquid identity) |
+
+------------------------------------------------------------
+
+### [Turn 7] Tool: active_perception (ID: obs_7) ###
+Time: 2026-07-07 00:28:16 -> 2026-07-07 00:30:51
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 60,
+      "end_time": 92,
+      "num_frames": 16,
+      "focus_prompt": "MODE=focus. Inspect the final sauce state in Video 1 (60-92s) and Video 5 (20-37s). For each target, report: (1) final volume of sauce in the Pyrex cup; (2) is butter added to the pan in this clip? (3) is the sauce being poured into another container or combined with other ingredients? (4) what is the final color and texture of the sauce? Return compact rows: object/action/state/window/conf/uncertainty. Do not infer cross-target chronology."
+    },
+    {
+      "video_index": 5,
+      "start_time": 20,
+      "end_time": 37,
+      "num_frames": 12,
+      "focus_prompt": "MODE=focus. Inspect the final sauce state in Video 1 (60-92s) and Video 5 (20-37s). For each target, report: (1) final volume of sauce in the Pyrex cup; (2) is butter added to the pan in this clip? (3) is the sauce being poured into another container or combined with other ingredients? (4) what is the final color and texture of the sauce? Return compact rows: object/action/state/window/conf/uncertainty. Do not infer cross-target chronology."
+    }
+  ],
+  "focus_prompt": "MODE=focus. Inspect the final sauce state in Video 1 (60-92s) and Video 5 (20-37s). For each target, report: (1) final volume of sauce in the Pyrex cup; (2) is butter added to the pan in this clip? (3) is the sauce being poured into another container or combined with other ingredients? (4) what is the final color and texture of the sauce? Return compact rows: object/action/state/window/conf/uncertainty. Do not infer cross-target chronology."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames:
+
+**Video 1 (Frames 1-16)**
+*   **Final Volume:** Approximately 400-500ml (around the 2-cup mark in the Pyrex measuring cup).
+*   **Butter Added to Pan:** No. The pan (frames 9-14) contains frying bacon and minced garlic (added in frames 12-13); the fat appears to be rendered bacon fat.
+*   **Poured/Combined:** The sauce ingredients (eggs, cheese, etc.) are combined within the Pyrex cup. An electric mixer is visible in frame 1.
+*   **Final Color/Texture:** Pale yellow, liquid, and frothy/aerated (seen in frame 3).
+*   **Confidence:** High.
+*   **Uncertainty:** Exact volume measurement is difficult due to angle; whether the yellow pile in frame 11 is butter or garlic (visuals suggest minced garlic).
+
+**Video 5 (Frames 17-32)**
+*   **Final Volume:** Approximately 400-500ml (fill level rises after milk is added in frames 26-27).
+*   **Butter Added to Pan:** No. No pan is shown in this clip.
+*   **Poured/Combined:** A white liquid (milk/cream) is poured into the Pyrex cup (frames 26-27) and combined with the egg mixture using a manual whisk (frames 30-32).
+*   **Final Color/Texture:** Pale yellow, liquid, becoming uniform and slightly frothy.
+*   **Confidence:** High.
+*   **Uncertainty:** Exact identity of the white liquid (likely milk or cream).
+
+**Compact Rows:**
+
+| Object/Action/State | Window | Volume | Butter in Pan? | Transfer/Combine | Color/Texture | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Egg mixture (mixed electric) | Video 1 (60-92s) | ~500ml | No (bacon/garlic only) | Combined in cup | Yellow, frothy | High | Exact volume; garlic vs butter ID |
+| Egg mixture (whisked manual) | Video 5 (20-37s) | ~500ml | No (no pan shown) | Milk poured in, whisked | Pale yellow, liquid | High | Liquid identity (milk/cream) |
+
+------------------------------------------------------------
+

@@ -1,0 +1,150 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-08 17:36:22
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-08 17:32:09 -> 2026-07-08 17:33:02
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 43.76666666666665,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: pot, spoon, hand | action: stirring | state: pot filled with boiling white liquid (likely rice/pasta), wet, cooking; steam rising | window: 1-2 | query_link: null | conf: high | uncertainty: none
+objects: frying pan, spatula, hand, vegetables | action: stirring/sautéing | state: pan filled with mixed chopped vegetables (green, red, yellow), cooked/cooking, mixed; steam rising | window: 3-16 | query_link: null | conf: high | uncertainty: none
+objects: blue plate, spoon, bowl | action: resting | state: plate empty, spoon present on counter, bowl present (partially visible) | window: 1-16 | query_link: null | conf: high | uncertainty: none
+objects: pot (background) | action: boiling | state: pot remains on burner, liquid boiling, filled | window: 3-16 | query_link: null | conf: high | uncertainty: none
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-08 17:32:09 -> 2026-07-08 17:32:56
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 43.10000000000002,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: cutlery (knives, spoons), dish rack | action: retrieving cutlery | state: cutlery present, likely wet/clean (from rack) | window: Frames 1-2 | query_link: Video 2 | conf: high | uncertainty: low
+objects: cutlery, drawer, cutlery organizer | action: putting away/organizing cutlery | state: drawer filled with utensils, cutlery being placed into separate slots | window: Frames 3-7 | query_link: Video 2 | conf: high | uncertainty: low
+objects: frying pan, chopped vegetables, spatula, small pot, boiling liquid | action: stirring vegetables, cooking | state: vegetables cooked/mixed/chopped (green, yellow, brown), liquid boiling/wet/steaming | window: Frames 8-13 | query_link: Video 2 | conf: high | uncertainty: low
+objects: small pot, spoon, liquid | action: stirring liquid | state: liquid boiling/wet/hot | window: Frames 14-16 | query_link: Video 2 | conf: high | uncertainty: low
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-08 17:32:09 -> 2026-07-08 17:32:40
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 21.86666666666656,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: frying pan, mixed vegetables (corn, peas, carrots), action: stirring with spatula, state: cooked, mixed, present, window: Frames 1-8, query_link: null, conf: high, uncertainty: none
+objects: pot, rice/water mixture, action: boiling/simmering, state: wet, cooking, steam visible, window: Frames 1-16, query_link: null, conf: high, uncertainty: none
+objects: spoon, action: stirring rice pot then lifting to check/taste over hand, state: wet, residue present, window: Frames 9-15, query_link: null, conf: high, uncertainty: slight uncertainty on exact tasting vs checking texture
+objects: blue plate, green cutting board, spice bottles, action: stationary, state: present, separate, empty (plate/board), filled (bottles), window: Frames 1-16, query_link: null, conf: high, uncertainty: none
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-08 17:34:39 -> 2026-07-08 17:36:15
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 43.76666666666665,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: rice/pot state (liquid color, boiling intensity, spoon action), vegetable/pan state (colors, cooking stage), plate/cutlery state (presence, empty/filled, action). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology from display order; preserve local time/window evidence. No final answer or prose."
+}
+
+[Output]:
+rice_pot | stirring (frames 1-2), boiling (frames 3-16) | white liquid, starchy, steaming | 1-16 | - | High | -
+vegetables_pan | stirring (frames 3-16) | green/yellow/orange/brown (corn/peas/carrots), cooked/sautéed | 1-16 | - | High | -
+plate_cutlery | static | blue plate empty, spoon on counter | 1-16 | - | High | -
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-08 17:34:39 -> 2026-07-08 17:35:58
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 43.10000000000002,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: rice/pot state (liquid color, boiling intensity, spoon action), vegetable/pan state (colors, cooking stage), plate/cutlery state (presence, empty/filled, action). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology from display order; preserve local time/window evidence. No final answer or prose."
+}
+
+[Output]:
+rice_pot | boiling white liquid (starchy), spoon stirring/checking | 8-16 | rice liquid color and starch level, spoon action | High | -
+vegetables_pan | green/yellow/orange mixed veggies (corn/peas/carrots), being stirred | 8-16 | colors, cooking stage | High | exact vegetable progression
+plate_cutlery | cutlery put into drawer (1-7), spoon on counter (8-16) | 1-16 | cutlery direction, presence | High | confirm V2 cutlery is putting away not taking out
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-08 17:34:39 -> 2026-07-08 17:35:52
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 21.86666666666656,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: rice/pot state (liquid color, boiling intensity, spoon action), vegetable/pan state (colors, cooking stage), plate/cutlery state (presence, empty/filled, action). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology from display order; preserve local time/window evidence. No final answer or prose."
+}
+
+[Output]:
+rice_pot | boiling/stirring/checking | white starchy liquid, simmering, spoon stirs then checks grain on palm | 1-16 | rice/pot state | HIGH | -
+vegetables_pan | cooking/stirring | corn/peas/carrots/green mix, cooked stage, stirred with spatula then resting | 1-16 | vegetable/pan state | HIGH | UNCERTAIN (exact vegetable progression)
+plate_cutlery | empty/present/active | blue plate empty, green board empty, spoon on counter then picked up for rice | 1-16 | plate/cutlery state | HIGH | -
+
+------------------------------------------------------------
+

@@ -1,0 +1,242 @@
+[
+  {
+    "turn": 1,
+    "call_id": "batch_1_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 49.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-07 07:11:51",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 49.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"all segment roles and object states pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"background cues\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: metal bowl, shredded cabbage, person hands | action: mixing, massaging | state: cabbage is raw, cut/shredded, wet/moist, mixed; bowl is filled | window: 12.0s-49.0s (Frames 4-16) | query_link: Video 1 | conf: high | uncertainty: none\nobjects: metal bowl, shredded cabbage | action: resting | state: cabbage is raw, cut/shredded, fresh; bowl is filled | window: 0.0s-12.0s (Frames 1-3) | query_link: Video 1 | conf: high | uncertainty: none",
+    "timestamp_end": "2026-07-07 07:12:54"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 32.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-07 07:11:51",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 32.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"all segment roles and object states pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"background cues\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: cabbage (whole), knife, cutting board | action: cutting | state: raw, fresh, whole, green/white interior exposed | window: 0.0s-6.0s | query_link: - | conf: high | uncertainty: none\nobjects: cabbage (wedge/half) | action: holding/showing | state: raw, fresh, cut surface visible | window: 6.0s-10.0s | query_link: - | conf: high | uncertainty: none\nobjects: cabbage (slices), knife | action: slicing | state: raw, cut into thick slices, stacked on board | window: 10.0s-24.0s | query_link: - | conf: high | uncertainty: none\nobjects: metal bowl, shredded cabbage, knife | action: resting/filled | state: bowl filled with finely chopped/shredded cabbage, knife present with residue | window: 30.0s-32.0s | query_link: - | conf: high | uncertainty: transition from slices to shreds implies off-camera processing or time jump",
+    "timestamp_end": "2026-07-07 07:13:31"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 23.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-07 07:11:51",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 23.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"all segment roles and object states pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"background cues\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: large glass jar, small glass jar, chopped cabbage (sauerkraut) | action: filled, packed | state: filled, wet, chopped | window: 1-16 | query_link: - | conf: high | uncertainty: none\nobjects: white cloth/paper towel | action: placed on jar rims (likely wiping or temporary cover) | state: present on small jar (frames 2-6), present on large jar (frames 5-12), then removed | window: 2-12 | query_link: - | conf: medium | uncertainty: exact purpose (wiping vs covering)\nobjects: metal lids/rings | action: screwed onto jars | state: absent initially, then present and tightened (small jar frames 7-11, large jar frames 13-16) | window: 7-16 | query_link: - | conf: high | uncertainty: none\nobjects: person's hands | action: handling cloth, screwing lids | state: active | window: 1-16 | query_link: - | conf: high | uncertainty: none",
+    "timestamp_end": "2026-07-07 07:15:09"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 61.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 1/2, time 0s–61s)"
+    },
+    "timestamp_start": "2026-07-07 07:11:51",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 61.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 1/2, time 0s–61s)\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"all segment roles and object states pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"background cues\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: large glass jar, chopped cabbage, metal bowl, hands; action: transferring chopped cabbage into jar by hand; state: cabbage raw/cut/moist, jar partially filled (approx 1/3 to 2/3); window: 0s-10s; query_link: N/A; conf: high; uncertainty: none.\nobjects: wooden spoon/tamper, jar; action: pressing/tamping cabbage down inside jar; state: cabbage being compressed, jar filling up; window: 10s-13s; query_link: N/A; conf: high; uncertainty: none.\nobjects: large glass jar, small glass jar; action: holding and placing filled jars on counter; state: both jars filled with raw/cut/moist cabbage; window: 14s-16s; query_link: N/A; conf: high; uncertainty: none.",
+    "timestamp_end": "2026-07-07 07:13:13"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_5",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 61.0,
+          "end_time": 122.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 2/2, time 61s–122s)"
+    },
+    "timestamp_start": "2026-07-07 07:13:13",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (61.0s to 122.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 2/2, time 61s–122s)\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"all segment roles and object states pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"background cues\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: large glass jar, small glass jar, chopped vegetables (cabbage/sauerkraut), glass pitcher, clear liquid (brine/water), wooden board | action: jars sit filled with packed vegetables; person gestures towards jars; person pours liquid from pitcher into small jar; person presses vegetables in large jar with finger; person moves pitcher to large jar | state: vegetables are chopped, raw, packed tight; jars are filled with solids; small jar becomes filled with liquid (submerging vegetables); large jar is pressed down; pitcher contains liquid | window: 61s-122s | query_link: [Video 4] | conf: HIGH | uncertainty: UNCERTAIN (exact liquid type, likely brine)\n\nobjects: glass pitcher, small glass jar | action: pouring liquid | state: pitcher tilted, liquid flowing into small jar, liquid level rising in small jar | window: 88s-100s (Frames 9-13) | query_link: [Video 4] | conf: HIGH | uncertainty: NONE\n\nobjects: large glass jar, hand | action: pressing down contents | state: finger inserted into jar, pushing vegetables down to compact them | window: 108s-112s (Frame 14) | query_link: [Video 4] | conf: HIGH | uncertainty: NONE\n\nobjects: glass pitcher, large glass jar | action: positioning to pour | state: pitcher tilted over large jar, ready to fill | window: 118s-122s (Frame 16) | query_link: [Video 4] | conf: HIGH | uncertainty: NONE",
+    "timestamp_end": "2026-07-07 07:14:27"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_6",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 5,
+          "start_time": 0.0,
+          "end_time": 78.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-07 07:11:51",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 5 (0.0s to 78.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"all segment roles and object states pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"background cues\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: metal bowl, shredded white vegetable (likely cabbage) | action: filled | state: bowl is filled; vegetable is raw, cut, fresh, separate pieces | window: 1-2 (0.0s-10.0s) | query_link: N/A | conf: high | uncertainty: exact vegetable type\nobjects: hands, vegetable | action: mixing/massaging/squeezing | state: vegetable is raw, cut, being vigorously mixed and compressed; transitioning from separate to mixed; likely becoming wet/wilted | window: 3-16 (10.0s-78.0s) | query_link: N/A | conf: high | uncertainty: none\nobjects: wooden spoon (background) | action: resting | state: present, separate | window: 1-2 | query_link: N/A | conf: medium | uncertainty: usage context",
+    "timestamp_end": "2026-07-07 07:13:11"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 49.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. For this segment, report the exact visible state of the main ingredients and containers at the START (first 10s) and END (last 10s). Focus on: cabbage state (separate/mixed, dry/wet, fresh/wilted), container fill level, any liquid/brine present, background objects (cutting board, knife, lids). Return compact rows: object/state/window/conf. No prose."
+    },
+    "timestamp_start": "2026-07-07 07:16:34",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 49.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. For this segment, report the exact visible state of the main ingredients and containers at the START (first 10s) and END (last 10s). Focus on: cabbage state (separate/mixed, dry/wet, fresh/wilted), container fill level, any liquid/brine present, background objects (cutting board, knife, lids). Return compact rows: object/state/window/conf. No prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"cabbage\": {\n      \"2\": \"whole -> shredded\",\n      \"1\": \"shredded, wet/moist\",\n      \"5\": \"shredded, becoming wet/wilted\",\n      \"4\": \"shredded, packed in jars\",\n      \"3\": \"packed in jars with lids\"\n    },\n    \"metal_bowl\": {\n      \"2\": \"filled with shreds at end\",\n      \"1\": \"filled, wet/moist\",\n      \"5\": \"filled, becoming wet\"\n    },\n    \"jars\": {\n      \"4\": \"filled with cabbage, then brine added\",\n      \"3\": \"filled, lids screwed on\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"background cues\",\n    \"cabbage wet/wilted progression\",\n    \"container fill level\",\n    \"background objects\",\n    \"liquid presence\"\n  ],\n  \"uncertain\": [\n    \"all segment roles and object states pending Layer1\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "cabbage/shredded, dry, fresh, piled loosely/Start/High\nmetal_bowl/filled ~3/4 with cabbage/Start/High\nbackground/cutting board under bowl, sink, jars/Start/High\ncabbage/shredded, being massaged/squeezed, moist, wilting/End/High\nmetal_bowl/filled, hands actively mixing inside/End/High\nliquid/cabbage moist, no distinct brine pool yet/End/Medium",
+    "timestamp_end": "2026-07-07 07:18:05"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 32.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. For this segment, report the exact visible state of the main ingredients and containers at the START (first 10s) and END (last 10s). Focus on: cabbage state (separate/mixed, dry/wet, fresh/wilted), container fill level, any liquid/brine present, background objects (cutting board, knife, lids). Return compact rows: object/state/window/conf. No prose."
+    },
+    "timestamp_start": "2026-07-07 07:16:34",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 32.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. For this segment, report the exact visible state of the main ingredients and containers at the START (first 10s) and END (last 10s). Focus on: cabbage state (separate/mixed, dry/wet, fresh/wilted), container fill level, any liquid/brine present, background objects (cutting board, knife, lids). Return compact rows: object/state/window/conf. No prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"cabbage\": {\n      \"2\": \"whole -> shredded\",\n      \"1\": \"shredded, wet/moist\",\n      \"5\": \"shredded, becoming wet/wilted\",\n      \"4\": \"shredded, packed in jars\",\n      \"3\": \"packed in jars with lids\"\n    },\n    \"metal_bowl\": {\n      \"2\": \"filled with shreds at end\",\n      \"1\": \"filled, wet/moist\",\n      \"5\": \"filled, becoming wet\"\n    },\n    \"jars\": {\n      \"4\": \"filled with cabbage, then brine added\",\n      \"3\": \"filled, lids screwed on\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"background cues\",\n    \"cabbage wet/wilted progression\",\n    \"container fill level\",\n    \"background objects\",\n    \"liquid presence\"\n  ],\n  \"uncertain\": [\n    \"all segment roles and object states pending Layer1\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "cabbage/whole, fresh, dry, being cut on wooden board/start (frames 1-5)/high\nmetal_bowl/empty, silver, in background/start (frames 1-5)/high\nknife/held in hand, cutting cabbage/start (frames 1-5)/high\ncabbage/sliced into large wedges stacked on board (frames 12-15), shredded/chopped in bowl (frame 16)/end (frames 11-16)/high\nmetal_bowl/empty (frames 11-15), filled with shredded cabbage (frame 16)/end (frames 11-16)/high\nknife/resting on counter next to bowl/end (frame 16)/high\nliquid_brine/none visible, cabbage appears fresh/dry/end (frame 16)/medium",
+    "timestamp_end": "2026-07-07 07:18:35"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 23.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. For this segment, report the exact visible state of the main ingredients and containers at the START (first 10s) and END (last 10s). Focus on: cabbage state (separate/mixed, dry/wet, fresh/wilted), container fill level, any liquid/brine present, background objects (cutting board, knife, lids). Return compact rows: object/state/window/conf. No prose."
+    },
+    "timestamp_start": "2026-07-07 07:16:34",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 23.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. For this segment, report the exact visible state of the main ingredients and containers at the START (first 10s) and END (last 10s). Focus on: cabbage state (separate/mixed, dry/wet, fresh/wilted), container fill level, any liquid/brine present, background objects (cutting board, knife, lids). Return compact rows: object/state/window/conf. No prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"cabbage\": {\n      \"2\": \"whole -> shredded\",\n      \"1\": \"shredded, wet/moist\",\n      \"5\": \"shredded, becoming wet/wilted\",\n      \"4\": \"shredded, packed in jars\",\n      \"3\": \"packed in jars with lids\"\n    },\n    \"metal_bowl\": {\n      \"2\": \"filled with shreds at end\",\n      \"1\": \"filled, wet/moist\",\n      \"5\": \"filled, becoming wet\"\n    },\n    \"jars\": {\n      \"4\": \"filled with cabbage, then brine added\",\n      \"3\": \"filled, lids screwed on\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"background cues\",\n    \"cabbage wet/wilted progression\",\n    \"container fill level\",\n    \"background objects\",\n    \"liquid presence\"\n  ],\n  \"uncertain\": [\n    \"all segment roles and object states pending Layer1\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "cabbage/shredded, packed, wet/wilted, brine visible/Start, End/High\nlarge_jar/glass, filled to top/Start, End/High\nsmall_jar/glass, filled to top/Start, End/High\ncovers_right_jar/open -> white cloth -> metal lid screwed on/Start/High\ncovers_left_jar/white cloth -> metal lid screwed on/End/High\nbackground/wooden cutting board, blender visible/Start, End/High\nliquid/brine present inside jars/Start, End/High",
+    "timestamp_end": "2026-07-07 07:18:41"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 61.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. For this segment, report the exact visible state of the main ingredients and containers at the START (first 15s) and END (last 15s). Focus on: cabbage state (separate/mixed, dry/wet, fresh/wilted), container fill level, any liquid/brine present, background objects (cutting board, knife, lids). Return compact rows: object/state/window/conf. No prose. (part 1/2, time 0s–61s)"
+    },
+    "timestamp_start": "2026-07-07 07:16:34",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 61.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. For this segment, report the exact visible state of the main ingredients and containers at the START (first 15s) and END (last 15s). Focus on: cabbage state (separate/mixed, dry/wet, fresh/wilted), container fill level, any liquid/brine present, background objects (cutting board, knife, lids). Return compact rows: object/state/window/conf. No prose. (part 1/2, time 0s–61s)\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"cabbage\": {\n      \"2\": \"whole -> shredded\",\n      \"1\": \"shredded, wet/moist\",\n      \"5\": \"shredded, becoming wet/wilted\",\n      \"4\": \"shredded, packed in jars\",\n      \"3\": \"packed in jars with lids\"\n    },\n    \"metal_bowl\": {\n      \"2\": \"filled with shreds at end\",\n      \"1\": \"filled, wet/moist\",\n      \"5\": \"filled, becoming wet\"\n    },\n    \"jars\": {\n      \"4\": \"filled with cabbage, then brine added\",\n      \"3\": \"filled, lids screwed on\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"background cues\",\n    \"cabbage wet/wilted progression\",\n    \"container fill level\",\n    \"background objects\",\n    \"liquid presence\"\n  ],\n  \"uncertain\": [\n    \"all segment roles and object states pending Layer1\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "cabbage | shredded, fresh/light green, being hand-transferred from bowl | START (0-15s) | high\nlarge_jar | glass Mason jar, low fill (bottom ~1/3), open top | START (0-15s) | high\nmetal_bowl | silver, contains cabbage shreds, background left | START (0-15s) | high\ncutting_board | wooden, surface under jar | START (0-15s) | high\n\ncabbage | shredded, packed tight, wet/wilted appearance | END (45-61s) | high\nlarge_jar | glass Mason jar, high fill (near top), open top | END (45-61s) | high\nsmall_jar | glass jar, high fill, open top | END (45-61s) | high\ncutting_board | wooden, surface under jars | END (45-61s) | high\nliquid_brine | moisture/juices visible around cabbage in jars | END (45-61s) | medium",
+    "timestamp_end": "2026-07-07 07:18:13"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_5",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 61.0,
+          "end_time": 122.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. For this segment, report the exact visible state of the main ingredients and containers at the START (first 15s) and END (last 15s). Focus on: cabbage state (separate/mixed, dry/wet, fresh/wilted), container fill level, any liquid/brine present, background objects (cutting board, knife, lids). Return compact rows: object/state/window/conf. No prose. (part 2/2, time 61s–122s)"
+    },
+    "timestamp_start": "2026-07-07 07:18:13",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (61.0s to 122.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. For this segment, report the exact visible state of the main ingredients and containers at the START (first 15s) and END (last 15s). Focus on: cabbage state (separate/mixed, dry/wet, fresh/wilted), container fill level, any liquid/brine present, background objects (cutting board, knife, lids). Return compact rows: object/state/window/conf. No prose. (part 2/2, time 61s–122s)\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"cabbage\": {\n      \"2\": \"whole -> shredded\",\n      \"1\": \"shredded, wet/moist\",\n      \"5\": \"shredded, becoming wet/wilted\",\n      \"4\": \"shredded, packed in jars\",\n      \"3\": \"packed in jars with lids\"\n    },\n    \"metal_bowl\": {\n      \"2\": \"filled with shreds at end\",\n      \"1\": \"filled, wet/moist\",\n      \"5\": \"filled, becoming wet\"\n    },\n    \"jars\": {\n      \"4\": \"filled with cabbage, then brine added\",\n      \"3\": \"filled, lids screwed on\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"background cues\",\n    \"cabbage wet/wilted progression\",\n    \"container fill level\",\n    \"background objects\",\n    \"liquid presence\"\n  ],\n  \"uncertain\": [\n    \"all segment roles and object states pending Layer1\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "large_jar | filled with shredded cabbage, packed tight, moist | Start (Frames 1-4) | High\nsmall_jar | filled with shredded cabbage, packed tight, moist | Start (Frames 1-4) | High\npitcher | contains liquid (brine), background | Start (Frames 1-4) | High\ncutting_board | wooden surface under jars | Start (Frames 1-4) | High\nlarge_jar | filled with shredded cabbage, wet, finger pressing down | End (Frames 13-16) | High\nsmall_jar | filled with cabbage and liquid (brine added) | End (Frames 13-16) | High\npitcher | present, liquid poured out | End (Frames 13-16) | High\ncutting_board | wooden surface under jars | End (Frames 13-16) | High",
+    "timestamp_end": "2026-07-07 07:19:23"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_6",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 5,
+          "start_time": 0.0,
+          "end_time": 78.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. For this segment, report the exact visible state of the main ingredients and containers at the START (first 10s) and END (last 10s). Focus on: cabbage state (separate/mixed, dry/wet, fresh/wilted), container fill level, any liquid/brine present, background objects (cutting board, knife, lids). Return compact rows: object/state/window/conf. No prose."
+    },
+    "timestamp_start": "2026-07-07 07:16:34",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 5 (0.0s to 78.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. For this segment, report the exact visible state of the main ingredients and containers at the START (first 10s) and END (last 10s). Focus on: cabbage state (separate/mixed, dry/wet, fresh/wilted), container fill level, any liquid/brine present, background objects (cutting board, knife, lids). Return compact rows: object/state/window/conf. No prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"cabbage\": {\n      \"2\": \"whole -> shredded\",\n      \"1\": \"shredded, wet/moist\",\n      \"5\": \"shredded, becoming wet/wilted\",\n      \"4\": \"shredded, packed in jars\",\n      \"3\": \"packed in jars with lids\"\n    },\n    \"metal_bowl\": {\n      \"2\": \"filled with shreds at end\",\n      \"1\": \"filled, wet/moist\",\n      \"5\": \"filled, becoming wet\"\n    },\n    \"jars\": {\n      \"4\": \"filled with cabbage, then brine added\",\n      \"3\": \"filled, lids screwed on\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object state progression\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"background cues\",\n    \"cabbage wet/wilted progression\",\n    \"container fill level\",\n    \"background objects\",\n    \"liquid presence\"\n  ],\n  \"uncertain\": [\n    \"all segment roles and object states pending Layer1\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "cabbage/shredded, fresh, distinct pieces, relatively dry/start/high\nmetal_bowl/filled ~1/2 to 2/3 with shreds/start/high\nbackground/white stove, wooden spoon, counter/start/high\ncabbage/shredded, wet, wilted, clumping, being massaged/end/high\nmetal_bowl/filled, cabbage packed down/end/high\nliquid/moisture visible on cabbage, brine forming/end/medium",
+    "timestamp_end": "2026-07-07 07:18:09"
+  }
+]

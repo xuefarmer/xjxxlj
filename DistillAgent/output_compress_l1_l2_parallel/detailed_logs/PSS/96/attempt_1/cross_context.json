@@ -1,0 +1,213 @@
+{
+  "confirmed": [
+    "pan state progression: dry -> water -> liquid+powder -> cooked sauce"
+  ],
+  "uncertain": [
+    "verify pan state continuity"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "pan": {
+      "3": "empty/dry -> filled with clear liquid",
+      "2": "contains liquid/oil -> receives white powder",
+      "1": "filled with cooked brown sauce"
+    },
+    "pitcher": {
+      "3": "filled with clear liquid, depleting"
+    },
+    "packet": {
+      "2": "filled with white powder, depleting"
+    },
+    "bowls": {
+      "1": "filled with raw chopped veggies",
+      "3": "empty white bowl"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "raw vs cooked",
+    "separate vs mixed",
+    "empty vs filled",
+    "residue/depletion",
+    "tool contact",
+    "pan contents",
+    "pan state",
+    "ingredient state"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "object states across segments",
+          "state transitions linking segments"
+        ],
+        "dimensions_to_compare": [
+          "raw vs cooked",
+          "separate vs mixed",
+          "empty vs filled",
+          "residue/depletion",
+          "tool contact"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "pan": {
+            "3": "empty/dry -> filled with clear liquid",
+            "2": "contains liquid/oil -> receives white powder",
+            "1": "filled with cooked brown sauce"
+          },
+          "pitcher": {
+            "3": "filled with clear liquid, depleting"
+          },
+          "packet": {
+            "2": "filled with white powder, depleting"
+          },
+          "bowls": {
+            "1": "filled with raw chopped veggies",
+            "3": "empty white bowl"
+          }
+        },
+        "preliminary_order": [
+          3,
+          2,
+          1
+        ],
+        "order_confidence": 8,
+        "confidence_basis": [
+          "pan state progression: dry -> water -> liquid+powder -> cooked sauce",
+          "clear liquid poured before powder",
+          "sauce cooked last"
+        ],
+        "blocking_uncertainties": [
+          "verify pan contents in each segment to ensure no contradictions"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                13
+              ],
+              "event": "stirring brown sauce",
+              "key_objects": [
+                "pan",
+                "wooden spoon",
+                "background bowls"
+              ],
+              "visible_state": "pan filled with cooked brown sauce",
+              "why_it_matters": "final cooking stage",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                10
+              ],
+              "event": "pouring white powder",
+              "key_objects": [
+                "pan",
+                "packet"
+              ],
+              "visible_state": "pan has liquid, receives powder",
+              "why_it_matters": "middle stage",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                6
+              ],
+              "event": "pouring clear liquid",
+              "key_objects": [
+                "pan",
+                "pitcher"
+              ],
+              "visible_state": "pan empty/dry, filled with water",
+              "why_it_matters": "initial stage",
+              "confidence": "high"
+            }
+          ]
+        },
+        "uncertain": [
+          "verify pan state continuity"
+        ],
+        "dimensions_to_compare": [
+          "pan contents",
+          "pan state",
+          "ingredient state"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "pan": {
+            "3": "empty/dry -> water",
+            "2": "liquid -> liquid+powder",
+            "1": "cooked brown sauce"
+          },
+          "pitcher": {
+            "3": "filled -> depleting"
+          },
+          "packet": {
+            "2": "filled -> depleting"
+          },
+          "bowls": {
+            "1": "raw veggies",
+            "3": "empty"
+          }
+        },
+        "confirmed": [
+          "pan state progression: dry -> water -> liquid+powder -> cooked sauce"
+        ],
+        "order_confidence": 8
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3",
+    "2",
+    "1"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "pan state progression: dry -> water -> liquid+powder -> cooked sauce",
+    "clear liquid poured before powder",
+    "sauce cooked last"
+  ],
+  "blocking_uncertainties": [
+    "verify pan contents in each segment to ensure no contradictions"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 13], \"event\": \"stirring brown sauce\", \"key_objects\": [\"pan\", \"wooden spoon\", \"background bowls\"], \"visible_state\": \"pan filled with cooked brown sauce\", \"why_it_matters\": \"final cooking stage\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 10], \"event\": \"pouring white powder\", \"key_objects\": [\"pan\", \"packet\"], \"visible_state\": \"pan has liquid, receives powder\", \"why_it_matters\": \"middle stage\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 6], \"event\": \"pouring clear liquid\", \"key_objects\": [\"pan\", \"pitcher\"], \"visible_state\": \"pan empty/dry, filled with water\", \"why_it_matters\": \"initial stage\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"pan\": {\"3\": \"empty/dry -> water\", \"2\": \"liquid -> liquid+powder\", \"1\": \"cooked brown sauce\"}, \"pitcher\": {\"3\": \"filled -> depleting\"}, \"packet\": {\"2\": \"filled -> depleting\"}, \"bowls\": {\"1\": \"raw veggies\", \"3\": \"empty\"}}"
+  ]
+}

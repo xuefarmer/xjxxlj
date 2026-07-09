@@ -1,0 +1,117 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "Spoken temporal cues in Video 1 and Video 2 to confirm 2->1 order."
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {},
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "background objects",
+    "shared vessels",
+    "lighting/environmental markers",
+    "caption temporal cues",
+    "spoken step labels"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "1": "Chopping aromatics. White bowl filled with chopped onion/shallot/garlic. Cutting board has residue.",
+          "2": "Pouring white noodles from purple pot to blue-fish bowl. Dark food in left bowl.",
+          "3": "Draining white then dark noodles from blue-fish bowl to strainer.",
+          "4": "Rolling spring roll. Glass bowl has raw mixed filling. Wrapper wetted and rolled.",
+          "5": "Mixing raw filling in large glass bowl. Onions from white bowl, noodles from white bowl."
+        },
+        "preliminary_order": [
+          2,
+          1,
+          3,
+          5,
+          4
+        ],
+        "order_confidence": 7,
+        "confidence_basis": "Chains: 2->3 (blue-fish bowl filled then drained), 3->5 (noodles drained then added to mix), 5->4 (mixed filling then rolled), 1->5 (white bowl with aromatics used to pour onions). The 1-vs-2 relation was previously unresolved and incorrectly ordered by recipe logic. Focus is now verifying the 1-vs-2 visual evidence to confirm 2->1.",
+        "blocking_uncertainties": [
+          "Visual evidence for 2 before 1 in background/environmental markers."
+        ],
+        "candidate_targets": [
+          1,
+          2
+        ],
+        "low_value_targets": [
+          3,
+          4,
+          5
+        ],
+        "uncertain": [
+          "Exact visual cue placing Video 2 before Video 1."
+        ],
+        "dimensions_to_compare": [
+          "background objects",
+          "shared vessels",
+          "lighting/environmental markers"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "uncertain": [
+          "Spoken temporal cues in Video 1 and Video 2 to confirm 2->1 order."
+        ],
+        "dimensions_to_compare": [
+          "caption temporal cues",
+          "spoken step labels"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "order_confidence": 8
+      }
+    }
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"Chopping aromatics. White bowl filled with chopped onion/shallot/garlic. Cutting board has residue.\", \"2\": \"Pouring white noodles from purple pot to blue-fish bowl. Dark food in left bowl.\", \"3\": \"Draining white then dark noodles from blue-fish bowl to strainer.\", \"4\": \"Rolling spring roll. Glass bowl has raw mixed filling. Wrapper wetted and rolled.\", \"5\": \"Mixing raw filling in large glass bowl. Onions from white bowl, noodles from white bowl.\"}"
+  ],
+  "preliminary_order": [
+    "2",
+    "1",
+    "3",
+    "5",
+    "4"
+  ],
+  "order_confidence": [
+    "7",
+    "8"
+  ],
+  "confidence_basis": [
+    "Chains: 2->3 (blue-fish bowl filled then drained), 3->5 (noodles drained then added to mix), 5->4 (mixed filling then rolled), 1->5 (white bowl with aromatics used to pour onions). The 1-vs-2 relation was previously unresolved and incorrectly ordered by recipe logic. Focus is now verifying the 1-vs-2 visual evidence to confirm 2->1."
+  ],
+  "blocking_uncertainties": [
+    "Visual evidence for 2 before 1 in background/environmental markers."
+  ],
+  "candidate_targets": [
+    "1",
+    "2"
+  ],
+  "low_value_targets": [
+    "3",
+    "4",
+    "5"
+  ]
+}

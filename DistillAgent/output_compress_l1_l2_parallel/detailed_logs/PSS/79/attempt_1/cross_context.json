@@ -1,0 +1,160 @@
+{
+  "confirmed": [
+    "4->3: pan idle to used, pot boiling continuity",
+    "3->5: cutting board meat residue to clean",
+    "5->2: egg mixture whisked to poured",
+    "2->1: combined dish to plated"
+  ],
+  "uncertain": [
+    "pending Layer1 results"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "pasta": {
+      "4": "dry->wet in boiling water",
+      "2": "cooked in pan with meat/sauce",
+      "1": "plated on square white dish"
+    },
+    "meat": {
+      "3": "whole block->sliced->fried in pan",
+      "2": "cooked diced pieces in pan"
+    },
+    "egg_mixture": {
+      "5": "whisked yellow liquid in metal bowl",
+      "2": "poured from small metal bowl onto pasta"
+    },
+    "large_pot": {
+      "4": "boiling vigorously with basket",
+      "2": "used for pasta water"
+    },
+    "frying_pan": {
+      "3": "empty->filled with meat",
+      "2": "contains pasta+meat+sauce"
+    },
+    "plate": {
+      "1": "square white, receives plated pasta"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states across segments",
+    "ingredient progression raw->cooked",
+    "container fill/empty transitions",
+    "tool usage sequence"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states across segments",
+          "ingredient progression raw->cooked",
+          "container fill/empty transitions",
+          "tool usage sequence"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "pasta": {
+            "4": "dry->wet in boiling water",
+            "2": "cooked in pan with meat/sauce",
+            "1": "plated on square white dish"
+          },
+          "meat": {
+            "3": "whole block->sliced->fried in pan",
+            "2": "cooked diced pieces in pan"
+          },
+          "egg_mixture": {
+            "5": "whisked yellow liquid in metal bowl",
+            "2": "poured from small metal bowl onto pasta"
+          },
+          "large_pot": {
+            "4": "boiling vigorously with basket",
+            "2": "used for pasta water"
+          },
+          "frying_pan": {
+            "3": "empty->filled with meat",
+            "2": "contains pasta+meat+sauce"
+          },
+          "plate": {
+            "1": "square white, receives plated pasta"
+          }
+        },
+        "preliminary_order": [
+          4,
+          3,
+          5,
+          2,
+          1
+        ],
+        "order_confidence": 6,
+        "confidence_basis": "Clear progression: boil pasta (4), prep meat (3), prep eggs (5), combine (2), plate (1). Order of 3,4,5 needs verification via background cues.",
+        "blocking_uncertainties": [
+          "exact order of prep steps 3, 4, 5",
+          "background object continuity to link prep steps"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "4": "pasta added to boiling water, pan idle in background",
+          "3": "meat sliced (board residue) and fried, pot boiling in background",
+          "5": "eggs whisked in bowl, board clean in background",
+          "2": "pasta+meat combined, egg mixture poured, pot still boiling",
+          "1": "dish plated and seasoned"
+        },
+        "confirmed": [
+          "4->3: pan idle to used, pot boiling continuity",
+          "3->5: cutting board meat residue to clean",
+          "5->2: egg mixture whisked to poured",
+          "2->1: combined dish to plated"
+        ],
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "4",
+    "3",
+    "5",
+    "2",
+    "1"
+  ],
+  "order_confidence": [
+    "6",
+    "9"
+  ],
+  "confidence_basis": [
+    "Clear progression: boil pasta (4), prep meat (3), prep eggs (5), combine (2), plate (1). Order of 3,4,5 needs verification via background cues."
+  ],
+  "blocking_uncertainties": [
+    "exact order of prep steps 3, 4, 5",
+    "background object continuity to link prep steps"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"4\": \"pasta added to boiling water, pan idle in background\", \"3\": \"meat sliced (board residue) and fried, pot boiling in background\", \"5\": \"eggs whisked in bowl, board clean in background\", \"2\": \"pasta+meat combined, egg mixture poured, pot still boiling\", \"1\": \"dish plated and seasoned\"}"
+  ]
+}

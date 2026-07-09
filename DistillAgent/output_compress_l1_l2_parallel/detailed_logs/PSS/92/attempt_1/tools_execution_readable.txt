@@ -1,0 +1,379 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-07 01:03:15
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-07 00:56:09 -> 2026-07-07 00:57:02
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 7.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report what is being done, what containers/vessels are visible, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the layer 1 caption analysis:
+
+**Operation:** The video shows the final cooking stage of meatballs in tomato sauce, followed by plating the dish over spaghetti and garnishing it with freshly grated cheese.
+
+**Visible Objects/Tools:** Frying pan, wooden spoon, meatballs, red tomato sauce, stovetop, bowl (white with red pattern), spaghetti/pasta, cheese grater, block of hard cheese (likely Parmesan), condiment bottles (ketchup, spices/oil), wooden table.
+
+**Object States:**
+*   **Meatballs:** Cooked, browned, whole/round.
+*   **Sauce:** Red, liquid/simmering (in pan), coating the pasta (in bowl).
+*   **Pasta:** Cooked, mixed with sauce.
+*   **Cheese:** Block form (hard), being transformed into grated shavings.
+*   **Containers:** Pan is filled with sauce and meatballs; Bowl is filled with pasta, sauce, and meatballs.
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Meatballs, tomato sauce, frying pan, wooden spoon | Simmering/Cooking | Meatballs cooked/whole/browned; sauce red/liquid; pan filled; spoon resting in sauce | 1-2 | N/A | High | None |
+| Bowl, spaghetti, meatballs, sauce | Plated/Served | Pasta cooked/mixed with sauce; meatballs on top; bowl filled | 3-16 | N/A | High | None |
+| Hand, cheese grater, cheese (block/shavings) | Grating | Cheese shavings accumulating on top of dish; block held then placed down; transfer trace visible | 3-16 | N/A | High | None |
+| Condiment bottles (ketchup, spices) | Background | Present, upright on table | 3-16 | N/A | High | None |
+
+**Cross-Video Context Integration:**
+*   **Object states:** Transition from cooking (pan) to plated (bowl). Meatballs go from simmering in sauce to sitting on top of mixed pasta.
+*   **Container fill/empty:** Pan is full of cooking food; Bowl is full of served food.
+*   **Transfer traces:** Cheese is actively transferred from the block via the grater to the bowl surface.
+*   **Residue/depletion:** Cheese shavings accumulate (residue on food); cheese block is the source.
+*   **Ingredient maturity:** Meatballs appear fully cooked/browned in the pan and remain so in the bowl. Pasta is cooked and mixed.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-07 00:56:09 -> 2026-07-07 00:57:02
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 31.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report what is being done, what containers/vessels are visible, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from Video 2 (Frames 1-16), here is the description of the operation:
+
+**Operation Description:**
+The video shows a cooking process involving two pans on a stovetop. In the foreground, a red tomato-based sauce is simmering. In the background, whole button mushrooms are being sautéed until browned. The cook stirs the sauce, adds seasoning to the mushrooms from a small glass bowl, and pours agave nectar into the red sauce. Finally, the cooked mushrooms are transferred from the background pan into the red sauce using tongs, combining the ingredients.
+
+**Compact Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Red sauce (tomato base), Pan (foreground) | Simmering, Stirring with wooden spoon | Cooked, wet, chunky, filled pan | 1-5, 12 | [Link] | High | None |
+| Mushrooms (whole button), Pan (background) | Sautéing, Browning | Cooked, browned, whole, separate | 1-12 | [Link] | High | None |
+| Agave Nectar bottle (Groovy Food Co.) | Pouring/Adding to sauce | Present, liquid ingredient added to wet sauce | 7-11 | [Link] | High | None |
+| Small glass bowl | Seasoning mushrooms | Emptying/Depletion (residue left), dry contents added | 6 | [Link] | Medium | Exact content (salt/sugar) unclear |
+| Tongs, Mushrooms | Transferring | Moving from separate pan to mixed in sauce | 13-16 | [Link] | High | None |
+| Wooden spoon | Stirring | Present, used in sauce pan | 1-5, 12 | [Link] | High | None |
+
+**Key Observations for Cross-Video Comparison:**
+*   **Object States:** Mushrooms transition from **separate/browned** to **mixed** with the sauce. The sauce is **wet/cooked** throughout.
+*   **Container Fill/Empty:** The agave bottle is used (depletion). The small glass bowl in Frame 6 is being emptied (residue/depletion).
+*   **Transfer Traces:** Clear transfer of mushrooms from the back pan to the front pan using tongs in the final frames.
+*   **Ingredient Maturity:** Mushrooms are fully browned/cooked before being added to the sauce. The sauce appears thick and reduced.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-07 00:56:09 -> 2026-07-07 00:56:51
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 65.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report what is being done, what containers/vessels are visible, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the description of the cooking process:
+
+**Operation Description:**
+The video depicts the preparation of a sauce and meatballs. Initially, chopped white onions and red peppers are scraped from a wooden cutting board into a hot frying pan. The scene then cuts to the preparation of sausages; the casings are peeled off, and the meat is rolled into small balls (meatballs). The video returns to the stove where the vegetables are sautéing. Tomato sauce is poured over the cooking vegetables, followed by a sprinkling of dried green herbs. In the background of the cooking shots, the prepared raw meatballs are visible on a board.
+
+**Compact Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| chopped onions, red peppers, wooden board, frying pan | sliding/scraping vegetables into pan | raw, chopped, separate -> entering pan | 1-2 | [Frame 1-2] | high | none |
+| sausages, wooden board, knife | peeling casing off sausages | raw, whole, casing being removed | 3-5 | [Frame 3-5] | high | none |
+| sausage meat, hands | rolling/cutting meat into balls | raw, formed into round balls | 6-10 | [Frame 6-10] | high | none |
+| frying pan (with veggies), wooden spoon, meatballs (background) | stirring sautéing vegetables | cooking, wilted, mixed; meatballs raw/formed in background | 11 | [Frame 11] | high | none |
+| tomato sauce bottle/jar, frying pan | pouring red sauce over vegetables | liquid, red, filling center of pan | 12-14 | [Frame 12-14] | high | none |
+| herb jar/shaker, frying pan | sprinkling dried herbs | dried, green, residue on top of sauce | 15-16 | [Frame 15-16] | high | none |
+
+**Cross-Video Context Integration:**
+*   **Object States:** The vegetables transition from raw/chopped (Frames 1-2) to cooking/wilted (Frame 11). The sausages transition from whole/cased (Frames 3-5) to peeled and formed into raw meatballs (Frames 9-10), which are then seen waiting in the background (Frame 11).
+*   **Container Fill/Empty:** The frying pan starts relatively empty (with oil/residue), fills with vegetables, then is filled further with a large amount of red tomato sauce.
+*   **Transfer Traces:** Clear transfer of veggies from board to pan (Frames 1-2) and sauce from bottle to pan (Frames 12-14).
+*   **Ingredient Maturity:** The sauce base is being built (onions/peppers -> sauce -> herbs), while the protein (meatballs) is prepped separately and awaits cooking.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-07 00:56:09 -> 2026-07-07 00:57:05
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 40.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report what is being done, what containers/vessels are visible, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the layer 1 caption description organized into compact evidence rows.
+
+**Summary of Operation:** The video depicts the preparation phase of a meal, likely pasta sauce. A person chops a red bell pepper and an onion on a wooden board, then prepares a frying pan by spraying it with oil.
+
+**Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Red bell pepper (whole), onion (whole, unpeeled), garlic clove, spaghetti package, tomato sauce bottle, olive oil can, spice jar, wooden board | Setup / Initial view | Pepper raw/fresh/whole; Onion raw/fresh/whole; Spaghetti dry/packaged; Containers filled/present | 1-2 | layer1_caption | High | Exact spice type in jar unclear; garlic skin status (peeled/unpeeled) slightly ambiguous but looks like a clove. |
+| Red bell pepper (halved then sliced), knife | Slicing and dicing | Pepper cut into strips then small diced cubes; raw/fresh | 3-6 | layer1_caption | High | None. |
+| Onion (peeled, halved), knife, pile of diced red pepper | Slicing and dicing | Onion cut from halves to diced pieces; raw/fresh/white; Pepper pile separate/diced | 7-11 | layer1_caption | High | None. |
+| Two black frying pans, hand (holding spray can implied) | Spraying pan | Pan initially empty/dry, then coated with oil mist/residue (wet) | 12-13 | layer1_caption | High | Spray content assumed to be cooking oil based on context. |
+| Pile of diced onion, pile of diced red pepper, garlic clove, knife | Gathering / Final prep state | Onion and pepper diced and separate (not mixed); Garlic clove present/whole; Board has residue of chopping | 14-16 | layer1_caption | High | None. |
+
+**Detailed Observations:**
+*   **Object Inventory:** Red bell pepper, yellow onion, garlic clove, package of spaghetti (brand looks like Barilla or similar, "Spaghetti" text visible), bottle of red sauce (likely tomato/passata), tin of olive oil, small spice jar, wooden cutting board, large chef's knife, two black frying pans.
+*   **Process Flow:**
+    1.  **Start:** Whole ingredients are laid out. The green stem of the pepper is removed.
+    2.  **Pepper Prep:** The red pepper is sliced into strips and then diced into small cubes.
+    3.  **Onion Prep:** The onion is peeled (off-camera or between cuts), halved, and then diced next to the pepper pile.
+    4.  **Pan Prep:** A pan is sprayed with oil (visible mist/droplets).
+    5.  **End:** The chopped onions and peppers sit in separate piles on the board, ready for cooking. The garlic clove remains whole.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_5) ###
+Time: 2026-07-07 00:56:09 -> 2026-07-07 00:57:15
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 71.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report what is being done, what containers/vessels are visible, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+**Layer 1 Caption:**
+The video shows the preparation of a meatball dish with tomato sauce. First, raw sausages are peeled to remove the casings, and the meat is rolled into small balls on a wooden cutting board. Next, a sauce is prepared in a frying pan by sautéing chopped red peppers and onions, then adding tomato sauce and dried herbs, and stirring the mixture. Finally, the formed raw meatballs are transferred from the board into a separate hot frying pan to cook, while the sauce simmers in a nearby pan and a pot of water boils.
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Sausages, hands, wooden board | Peeling casing, rolling meat into balls | Raw meat, casing removed, formed spheres | 1-7 | - | High | Low |
+| Frying pan, chopped veggies (peppers/onions), wooden spoon | Stirring/Sautéing | Chopped, cooking/wilted | 8 | - | High | Low |
+| Tomato sauce jar, spice shaker, pan | Pouring sauce, sprinkling herbs | Red sauce added (filled), dry green herbs added | 9-12 | - | High | Low |
+| Pan, wooden spoon | Mixing sauce and veggies | Mixed, simmering, wet | 13-14 | - | High | Low |
+| Board (filled with meatballs), frying pan, pot | Placing meatballs into pan | Raw meatballs (on board), cooking meatballs (in pan), sauce simmering, water boiling | 15-16 | - | High | Low |
+
+**Observation Details:**
+*   **Object States:**
+    *   **Sausages/Meat:** Initially raw and whole in casing, then raw and casing-free, then formed into raw spheres (meatballs). Finally, browning/cooking in the pan.
+    *   **Vegetables:** Chopped red peppers and onions, appearing wilted and softening (cooked).
+    *   **Sauce:** Thick red liquid, mixed with herbs.
+    *   **Containers:** Wooden board (filled with meatballs then depleting), frying pans (one filled with sauce, one filling with meatballs), pot (filled with boiling water).
+*   **Transfers:** Meat is transferred from hands to board, then from board to frying pan. Sauce is transferred from jar to pan.
+*   **Background Cues:** Stovetop with multiple burners active (sauce pan, meatball pan, boiling pot). Bottles of ketchup/sauce and spices visible in background during prep.
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-07 00:59:29 -> 2026-07-07 01:00:07
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 7.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the main dish: are meatballs visible in the sauce? Is the dish plated in a bowl? Is cheese being grated or already on top? Report exactly what you see for: meatballs (present/absent, cooked/raw), sauce (present/absent, mixed with pasta), cheese (block/shavings/grated on food), bowl (empty/filled). Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+meatballs, present/cooked (simmering in pan then plated), 1-16, high, low
+sauce, present/mixed with pasta and meatballs, 1-16, high, low
+cheese, shavings/grated on food (being grated from block), 3-16, high, low
+bowl, filled (with pasta, sauce, meatballs), 3-16, high, low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-07 00:59:29 -> 2026-07-07 01:00:17
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 31.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the sauce and mushrooms. Is there a pan with red tomato sauce? Are mushrooms visible? Are mushrooms being transferred into the sauce? Report exactly what you see for: red sauce (present/absent, in pan), mushrooms (present/absent, separate/in sauce, raw/cooked), tongs (present/absent, transferring). Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+red sauce, present in pan (simmering/chunky), 1-16, high, low
+mushrooms, present, separate pan (cooked/browned) then transferred into sauce, 1-16, high, low
+tongs, present, transferring mushrooms into sauce, 13-16, high, low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-07 00:59:29 -> 2026-07-07 01:00:14
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 65.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the vegetables, sauce, and meatballs. Are chopped peppers/onions in a pan? Is red sauce poured over them? Are raw meatballs visible on a cutting board at the end? Report exactly what you see for: veggies in pan (present/absent, cooking), red sauce in pan (present/absent, poured over veggies), meatballs (on board/in pan, raw/cooked, count if possible). Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in Frames 1-16 (Video 3):
+
+*   **Veggies (peppers/onions):** Present in pan, cooking/sautéing.
+    *   **Window:** Frames 1-16 (Added in 1-2, cooking in 11-16).
+    *   **Conf:** High.
+    *   **Uncertainty:** None.
+
+*   **Red Sauce:** Present in pan, poured over veggies (large dollop sitting on top, herbs added).
+    *   **Window:** Frames 12-16.
+    *   **Conf:** High.
+    *   **Uncertainty:** Sauce is not yet stirred into the veggies.
+
+*   **Meatballs:** On cutting board (background), raw.
+    *   **Window:** Frames 3-16 (Being formed in 3-10, sitting on board in background in 11-16).
+    *   **Conf:** High.
+    *   **Uncertainty:** Count is approximately 6-8 formed balls visible in the background (top left); they are not yet in the pan.
+
+**Compact Rows:**
+
+| Object | State | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Veggies (peppers/onions) | Present in pan, cooking/sautéing | Frames 1-16 | High | Low |
+| Red Sauce | Present in pan, poured over veggies | Frames 12-16 | High | Low (sauce sits on top) |
+| Meatballs | On cutting board, raw (approx. 6-8 count) | Frames 3-16 | High | Medium (exact count obscured in background) |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_4) ###
+Time: 2026-07-07 00:59:29 -> 2026-07-07 01:00:06
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 40.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the ingredients and prep. Are whole peppers/onions visible? Are they being chopped? Is a pan being oiled? Report exactly what you see for: whole vegetables (present/absent), chopped vegetables (present/absent, on board), pan (empty/oiled), knife/board (present/absent). Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (Video 4):
+
+*   **Whole vegetables**: Present (red pepper, onion, garlic) in early frames (1-2), then absent as they are processed.
+*   **Chopped vegetables**: Present (diced red pepper and onion) on the cutting board in later frames (6-11, 14-16).
+*   **Pan**: Oiled (appears to be sprayed with oil/cooking spray) in frames 12-13.
+*   **Knife/board**: Present throughout the chopping sequences (frames 1-11, 14-16).
+
+**Compact Report:**
+
+| Object | State | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Whole vegetables | Present (initially), then Absent | Video 4 (Frames 1-2) | High | Low |
+| Chopped vegetables | Present (diced on board) | Video 4 (Frames 6-11, 14-16) | High | Low |
+| Pan | Oiled (sprayed) | Video 4 (Frames 12-13) | High | Low |
+| Knife/board | Present | Video 4 (Frames 1-11, 14-16) | High | Low |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_5) ###
+Time: 2026-07-07 00:59:29 -> 2026-07-07 01:00:10
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 71.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the meatballs and pans. Are raw sausages being peeled? Are meatballs being formed? Are meatballs being transferred from a board into a pan? Is there a separate pan with red sauce simmering? Report exactly what you see for: meatballs (on board/in pan, raw/cooking), sauce pan (present/absent, red sauce simmering), meatball pan (present/absent, meatballs browning). Return compact rows: object, state, window, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the frames:
+
+*   **Meatballs (Sausages):** Raw sausages are being peeled (Frames 1-3) and meatballs are being formed by hand (Frames 4-7).
+*   **Meatballs (on board):** Formed raw meatballs are visible resting on a wooden board in the background (Frames 8, 12) and held on a board (Frames 15-16).
+*   **Meatballs (in pan):** In Frames 15-16, meatballs are being transferred from the board into a separate black frying pan. Some meatballs are already in this pan, appearing to cook/brown.
+*   **Sauce pan:** Present in Frames 8-16. It contains chopped vegetables (peppers/onions) sautéing, then red sauce is added (Frame 9-10), seasoned, and simmering (Frames 11-16).
+*   **Meatball pan (separate):** Present. Visible as an empty black pan next to the sauce pan in Frames 8-14. In Frames 15-16, it contains meatballs that are being added and are cooking/browning.
+
+**Compact Report:**
+
+| Object | State | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Meatballs (sausages) | Raw, being peeled and formed | 1-7 | High | Low |
+| Meatballs | Raw, resting on board | 8, 12, 15 | High | Low |
+| Meatballs | Transferred to separate pan, cooking/browning | 15-16 | High | Low |
+| Sauce pan | Present, red sauce simmering with veggies | 8-16 | High | Low |
+| Meatball pan (separate) | Present, meatballs browning (initially empty) | 8-16 | High | Low |
+
+------------------------------------------------------------
+

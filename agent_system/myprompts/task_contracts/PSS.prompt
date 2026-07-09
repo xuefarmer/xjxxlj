@@ -1,0 +1,59 @@
+## Task Contract: PSS
+Task: restore shuffled segments from one cooking video to chronological order.
+
+Input semantics:
+- Each provided `video_index` is a clipped segment from the same original video.
+- The answer must order all segment indices exactly once.
+- Segment labels are arbitrary shuffled indices; do not assume numeric order is chronological.
+
+Evidence dimensions:
+- event role: prep, transformation, transfer, cooking, finishing, inspection;
+- operated object state chain: raw/cut/mixed/cooked/plated, wet/dry, full/empty, residue/depletion;
+- source and destination containers, tool contact, transfer traces;
+- quiet background cues that show before/after state;
+- state-transition graph built by the master from local visible rows.
+
+Workflow notes:
+- Layer1 scans every segment independently and must not infer final ordering yet. For executor compatibility, PSS Layer1 prompts must begin with `MODE=layer1_caption`.
+- Layer1 prompts must ask for object states explicitly, not only event roles. Use wording like: "Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion."
+- After Layer1 tool results, PSS must restore the cross-video memory mechanism before Layer2. Use `context_update` to store only evidence grounded in prior tool results. The primary PSS memory schema is object-centric:
+  `object_memory: {object_key: {video_index: visible_state}}`.
+  Example: `{"noodles": {"3": "raw/dry on plate", "2": "boiled soft strands in pan", "1": "mixed with sauce"}, "spinach": {"4": "fresh whole leaves", "2": "wilting with noodles", "1": "mixed into finished dish"}}`.
+- After Layer1, also store `preliminary_order`, `order_confidence` (integer 1-10), `confidence_basis`, and `blocking_uncertainties`. This is not a final answer; it is the current best state-transition graph that Layer2 must verify or repair.
+- For PSS, `order_confidence >= 8` means Layer2 should mostly verify the current graph and close alternatives. `order_confidence <= 7` means Layer2 should actively search for missing object bridges or contradictions.
+- Use `event_memory` only as secondary per-video notes. Do not make `object_memory` primarily video-centric, such as `{"video4": {"object": "spinach", "state_chain": [...]}}`; that structure overweights local clip-internal actions and causes wrong ordering.
+- After Layer1, identify recurring or decisive objects before choosing Layer2 targets: noodles/pasta, spinach/vegetables, sauce/red pot, oil, pan/pot/strainer, plate/bowl, cutting board, tongs, residue, empty/full containers. Track shared objects even when they appear only as background cues.
+- **Layer2 = Discriminative Evidence Reinspection.** Layer1 discovers shared objects/regions/events that recur across segments and may determine the order. Layer2 re-observes these linked evidence items at finer granularity to clarify their actual visible state in each segment. For executor compatibility, Layer2 prompts must begin with `MODE=layer2_state_scan`.
+- PSS Layer2 coverage is mandatory: the first Layer2 plan after Layer1 must include at least one `MODE=layer2_state_scan` item for every provided `video_index`.
+- Coverage is not greediness: choose only narrow Layer1 window(s)/checklist(s) that can change or verify the order; multiple windows are allowed when each has a named value such as missing bridge, contradiction, or same-role tie.
+- Layer2 is NOT hypothesis confirmation. Do NOT pass the Master's preliminary_order or expected states to the VLM. Ask the VLM to report what is actually visible for each linked evidence item: identity, presence/absence, count, position, state (raw/cooked, empty/filled, clean/dirty), source/destination, residue/depletion, and any difference from what was seen in Layer1.
+- Layer1 and Layer2 are mandatory before `answer`. Do not answer directly after Layer1; Layer2 clarifies the shared evidence that bridges segments.
+- Layer2 must inherit `preliminary_order`, `order_confidence`, `confidence_basis`, and `blocking_uncertainties` from Layer1 — these guide which evidence to prioritize, but remain internal to the Master and are not shown to the VLM.
+- After receiving Layer2 results, perform a contradiction check in `thought`: compare each segment's VLM-reported evidence against the hypothesized state-transition graph. If any evidence contradicts the hypothesized ordering, downgrade `order_confidence` and resolve via focus or caption before answering.
+- Layer2 may raise `order_confidence` only when new observations directly resolve a named item from `blocking_uncertainties` or reveal a missing object bridge. Repeated descriptions of already-known states are not sufficient.
+- **When answering, `order_confidence` (integer 1-10) must be a key in `context_update`**, not only in `thought`. The executor checks `context_update` for this value. Without it, the answer will be rejected regardless of reasoning quality.
+- In Layer2 focus_prompt: do not ask the VLM for ordering, do not use words like "confirm", "verify", "should", or "expected". Ask for local visible evidence only. Example: "Look at this segment. Report the actual visible state of the white bowl: EMPTY / CONTAINS_SEPARATE_INGREDIENTS / MIXED / PLATED / NOT_VISIBLE. Also: is the cutting board present? If yes: CLEAN or HAS_RESIDUE? Report exactly what you see."
+- Layer2 frame count should stay equal to Layer1. Narrow the observation window to the informative chunk(s) where the evidence appears.
+- If two segments have the same coarse role, such as both showing combined cooking, do not order them arbitrarily. Use local visible cues such as ingredient amount, mixture integration, pan fullness, steam/browning, residue/depletion, utensil action, and whether a transfer has just occurred; if still tied after Layer2, run focus on that adjacent relation.
+- Do not assign a segment to early/middle/late order from a recipe label alone. Place it by visible state continuity: what objects are already present, what changes during the clip, what residue/depletion remains, and which later visible state can consume that result.
+- Focus is optional, not mandatory. If Layer2 gives a complete high-confidence state-transition graph with all necessary relations supported by visible object states, answer directly after Layer2.
+- Focus resolves one adjacent relation or state-chain conflict at a time with higher frame density than Layer2, usually 12-16 frames per compared segment.
+- Focus targets must come from `uncertain_visual_states`, `next_object_focus`, object-memory gaps, or contradictions in object states. Do not choose a focus pair merely because it appears adjacent in a guessed answer or because the executor might prefer a focus call.
+- Focus prompts must not ask the VLM to decide which segment is earlier, which hypothesis is supported, or whether Video A happens before Video B. Ask for per-target cells only: named object state, container fill/empty state, source/destination, residue/depletion, background object state, and uncertainty. The master compares the cells after the tool returns.
+- Do not write expected focus evidence that assumes one proposed order is true, such as "if A is before B, B should already contain X", unless that expectation is explicitly grounded in earlier tool output. Prefer neutral wording: "For each target, report whether object X is ABSENT, EMPTY/CLEAR, PARTLY_FILLED, FILLED_DARK, or NOT_VISIBLE."
+- When a focus call is needed, include the current leading relation and current overall order confidence in `thought`, but keep the VLM prompt neutral. Example: thought may say `leading_relation=5 before 3, alternative=3 before 5, order_confidence=7/10`; the VLM prompt should ask only for local object-state cells in Video 5 and Video 3.
+- If focus contradicts a high-confidence Layer2 edge, do not immediately reverse the order. Use `MODE=focus BACKTRACK` or another neutral focus/caption call to verify the contradiction, then update `resolved_uncertain` and downgrade the old edge only if the new direct evidence is stronger.
+- After Layer2, do not answer if any adjacent relation in the proposed order is supported only by recipe common sense, "cooking logic", coarse role labels, or a generic idea of what usually happens first/last. Standalone components such as sauce, flame, garnish, dressing, chopping, mixing, and plating may appear in non-obvious positions in the source video.
+- If local rows do not give direct visible continuity for a complete total order, run `observe` focus on the smallest tied set, normally 2 segments, and ask only for visible differences in local state maturity, transfer completion, ingredient amount, residue/depletion, or background object state. If the focus still cannot prove the edge, mark the tie in `thought`; do not pretend it is proven by recipe logic.
+- In focus and Layer2, never use the concatenated frame order or frame numbers from different video_index values as chronological evidence. `Frames 1-16 from Video A` appearing before `Frames 17-32 from Video B` only means the executor packed Video A before Video B in the prompt.
+- Compare only visible object-lifecycle evidence: raw/cooked, empty/filled, separated/mixed, source/destination transfer, residue/depletion, object presence/absence, completion marks, background vessel state, and contradictions.
+- Do not ask the VLM to decide ordering from "frame-level timestamps" across videos, hypothesized cross-segment orders, or recipe logic. The VLM reports local object states only; cross-segment dependency reasoning is master-only.
+- Before answering, form an explicit state-transition graph from `object_memory`, with relations like `A before B: object_key state in A visibly precedes/feeds/contradicts state in B`. List unresolved ties, and run caption/focus for any tie that changes the final order. Then check every segment is placed exactly once.
+- The final `thought` must include one overall `confidence_score: N/10`. This is the confidence that the complete final order is correct, not confidence in a single easy relation.
+- Calibrate `confidence_score` conservatively: it may be `>=8` only when the complete order is visually supported and no critical relation, object-chain conflict, or close same-role tie remains unresolved. If any necessary relation is based on recipe common sense, a coarse role label, a conflicting object chain, or an unresolved tie, set `confidence_score <= 7` and do not answer; call caption/focus instead.
+- Before any final `answer`, include an `ORDER_AUDIT` in `thought` with four fields: `supporting_chains`, `conflicting_chains`, `unresolved_relations`, and `confidence_change`. `confidence_change` must explain why the final score is higher, lower, or unchanged compared with Layer1 `order_confidence`.
+- If `conflicting_chains` or `unresolved_relations` is non-empty, the final `confidence_score` must be `<=7` unless a later caption/focus result directly resolves each listed item.
+- The final `thought` must also include an `EDGE_TABLE` for evidence audit, but do not assign per-edge confidence scores. Each relation may use one of these evidence types: `direct_transfer`, `same_object_state_progression`, `visible_completion_to_next_start`, `caption_temporal_cue`, or `focused_visual_tie_break`. Do not use evidence types like `recipe_logic`, `common_sense`, `typical_order`, `coarse_role_only`, or `sounds_later`.
+
+Final answer:
+- `final_answer` is a string like `"3->5->4->2->1"` containing every segment index exactly once.

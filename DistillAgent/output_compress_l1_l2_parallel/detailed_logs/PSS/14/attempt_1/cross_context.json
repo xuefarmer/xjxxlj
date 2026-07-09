@@ -1,0 +1,157 @@
+{
+  "confirmed": [
+    "1->5 via white bowl aromatics",
+    "2->3 via fish-pattern bowls soaking->draining",
+    "3->5 via drained noodles added to meat",
+    "5->4 via mixed filling rolled"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "white_bowl": {
+      "1": "filled with chopped onion/shallot/garlic",
+      "5": "pours diced onions into meat"
+    },
+    "fish_pattern_bowls": {
+      "2": "soaking white noodles and dark seaweed",
+      "3": "draining dark noodles from bowl"
+    },
+    "glass_noodles": {
+      "2": "white strands soaking",
+      "3": "drained in strainer",
+      "5": "cut in meat mixture"
+    },
+    "meat_filling": {
+      "5": "mixed with aromatics/noodles/egg",
+      "4": "rolled in wrapper"
+    },
+    "purple_pot": {
+      "2": "pours water then removed"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked/mixed/plated)",
+    "container fill/residue",
+    "ingredient transformations",
+    "tool contact",
+    "background cues",
+    "bowl patterns and contents",
+    "ingredient state transitions",
+    "filling composition"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked/mixed/plated)",
+          "container fill/residue",
+          "ingredient transformations",
+          "tool contact",
+          "background cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "white_bowl": {
+            "1": "filled with chopped onion/shallot/garlic",
+            "5": "pours diced onions into meat"
+          },
+          "fish_pattern_bowls": {
+            "2": "soaking white noodles and dark seaweed",
+            "3": "draining dark noodles from bowl"
+          },
+          "glass_noodles": {
+            "2": "white strands soaking",
+            "3": "drained in strainer",
+            "5": "cut in meat mixture"
+          },
+          "meat_filling": {
+            "5": "mixed with aromatics/noodles/egg",
+            "4": "rolled in wrapper"
+          },
+          "purple_pot": {
+            "2": "pours water then removed"
+          }
+        },
+        "preliminary_order": "1->2->3->5->4",
+        "order_confidence": 8,
+        "confidence_basis": "1->5 (white bowl aromatics), 2->3 (fish bowl soaking->draining), 3->5 (drained noodles->mixed), 5->4 (mixed filling->rolled)",
+        "blocking_uncertainties": [
+          "exact order of 1 vs 2 (independent prep steps)"
+        ],
+        "uncertain": [
+          "1 vs 2 temporal order"
+        ],
+        "dimensions_to_compare": [
+          "bowl patterns and contents",
+          "ingredient state transitions",
+          "filling composition"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 8,
+        "comparison_table": {
+          "1": "chopped aromatics in white bowl",
+          "2": "noodles/seaweed soaking in fish bowls",
+          "3": "noodles drained from fish bowls",
+          "5": "aromatics/noodles mixed into meat",
+          "4": "mixed filling rolled in wrapper"
+        },
+        "confirmed": [
+          "1->5 via white bowl aromatics",
+          "2->3 via fish-pattern bowls soaking->draining",
+          "3->5 via drained noodles added to meat",
+          "5->4 via mixed filling rolled"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": [],
+        "focus_plan": null
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1->2->3->5->4"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "1->5 (white bowl aromatics), 2->3 (fish bowl soaking->draining), 3->5 (drained noodles->mixed), 5->4 (mixed filling->rolled)"
+  ],
+  "blocking_uncertainties": [
+    "exact order of 1 vs 2 (independent prep steps)"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"chopped aromatics in white bowl\", \"2\": \"noodles/seaweed soaking in fish bowls\", \"3\": \"noodles drained from fish bowls\", \"5\": \"aromatics/noodles mixed into meat\", \"4\": \"mixed filling rolled in wrapper\"}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": [],
+  "focus_plan": []
+}

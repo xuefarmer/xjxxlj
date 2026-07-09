@@ -1,0 +1,205 @@
+{
+  "confirmed": [
+    "onion state progression 2->3->1->4",
+    "meat container depletion 1->4",
+    "cutting board absence in 1,4 after washing in 3"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"sautéing pale onions, meat container on counter\", \"2\": \"chopping raw onions, discarding scraps\", \"3\": \"transferring chopped onions to pan, washing board\", \"4\": \"onions translucent, adding raw meat to pan\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "onions": {
+      "2": "raw whole -> chopped pile",
+      "3": "chopped raw on board -> transferred to pan",
+      "1": "pale/glistening cooking in pan",
+      "4": "translucent cooked in pan"
+    },
+    "meat": {
+      "1": "raw in container on counter",
+      "4": "raw being added from container to pan"
+    },
+    "cutting_board": {
+      "2": "present, chopped onions",
+      "3": "depleted to residue, washed at sink"
+    },
+    "meat_container": {
+      "1": "present on counter",
+      "4": "depleted as meat added"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked/mixed)",
+    "container fill/empty",
+    "transfer traces",
+    "residue/depletion",
+    "onion color (pale vs translucent)",
+    "meat container fill level",
+    "cutting board presence/residue"
+  ],
+  "resolved_uncertain": [
+    "onion color transition 1->4",
+    "meat container depletion 1->4"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked/mixed)",
+          "container fill/empty",
+          "transfer traces",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "sautéing pale onions, meat container on counter",
+          "2": "chopping raw onions, discarding scraps",
+          "3": "transferring chopped onions to pan, washing board",
+          "4": "onions translucent, adding raw meat to pan"
+        },
+        "object_memory": {
+          "onions": {
+            "2": "raw whole -> chopped pile",
+            "3": "chopped raw on board -> transferred to pan",
+            "1": "pale/glistening cooking in pan",
+            "4": "translucent cooked in pan"
+          },
+          "meat": {
+            "1": "raw in container on counter",
+            "4": "raw being added from container to pan"
+          },
+          "cutting_board": {
+            "2": "present, chopped onions",
+            "3": "depleted to residue, washed at sink"
+          },
+          "meat_container": {
+            "1": "present on counter",
+            "4": "depleted as meat added"
+          }
+        },
+        "preliminary_order": "2->3->1->4",
+        "order_confidence": 8,
+        "confidence_basis": "onion state progression: raw chopped (2) -> transferred (3) -> pale cooking (1) -> translucent (4); meat container: full on counter (1) -> depleted adding to pan (4)",
+        "blocking_uncertainties": [
+          "verify onion color transition between 1 and 4",
+          "verify meat container state in 1 vs 4"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                33
+              ],
+              "event": "onions cooking, meat on counter",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                44
+              ],
+              "event": "chopping onions",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                49
+              ],
+              "event": "transfer onions, wash board",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                29
+              ],
+              "event": "add meat to translucent onions",
+              "confidence": "high"
+            }
+          ]
+        },
+        "uncertain": [
+          "onion color transition 1->4",
+          "meat container depletion 1->4"
+        ],
+        "dimensions_to_compare": [
+          "onion color (pale vs translucent)",
+          "meat container fill level",
+          "cutting board presence/residue"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 9,
+        "comparison_table": {
+          "2": "raw chopped onions, board with residue",
+          "3": "onions transferred to pan, board depleted/washed",
+          "1": "pale onions in pan, meat container full, board absent",
+          "4": "translucent onions in pan, meat container partly filled, adding meat"
+        },
+        "confirmed": [
+          "onion state progression 2->3->1->4",
+          "meat container depletion 1->4",
+          "cutting board absence in 1,4 after washing in 3"
+        ],
+        "resolved_uncertain": [
+          "onion color transition 1->4",
+          "meat container depletion 1->4"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "2->3->1->4"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "onion state progression: raw chopped (2) -> transferred (3) -> pale cooking (1) -> translucent (4); meat container: full on counter (1) -> depleted adding to pan (4)"
+  ],
+  "blocking_uncertainties": [
+    "verify onion color transition between 1 and 4",
+    "verify meat container state in 1 vs 4"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 33], \"event\": \"onions cooking, meat on counter\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 44], \"event\": \"chopping onions\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 49], \"event\": \"transfer onions, wash board\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 29], \"event\": \"add meat to translucent onions\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"2\": \"raw chopped onions, board with residue\", \"3\": \"onions transferred to pan, board depleted/washed\", \"1\": \"pale onions in pan, meat container full, board absent\", \"4\": \"translucent onions in pan, meat container partly filled, adding meat\"}"
+  ]
+}

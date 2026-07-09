@@ -196,10 +196,21 @@ def interval_iou(interval1: Tuple[float, float], interval2: Tuple[float, float])
     return intersection / union
 
 
-def parse_json_interval_string(text: str) -> Optional[Tuple[float, float]]:
+def parse_json_interval_string(text: Any) -> Optional[Tuple[float, float]]:
     """Parse [start, end] time interval from LLM output."""
     if not text:
         return None
+    if isinstance(text, dict):
+        text = text.get("final_answer") or text.get("content") or text.get("answer")
+        if not text:
+            return None
+    if isinstance(text, (list, tuple)) and len(text) >= 2:
+        try:
+            return (float(text[0]), float(text[1]))
+        except (TypeError, ValueError):
+            return None
+    if not isinstance(text, str):
+        text = str(text)
     p_list = re.compile(r'\[\s*([\d\.]+)\s*,\s*([\d\.]+)\s*\]')
     p_str_val = re.compile(r'"([\d\.]+,\s*[\d\.]+)"')
 

@@ -1,0 +1,225 @@
+{
+  "confirmed": [
+    "V1->V4: cored wedges to half head shredded",
+    "V4->V3: dry shreds on board to dry shreds in bowl",
+    "V3->V2: jar packed to jar sealed"
+  ],
+  "uncertain": [
+    "full object/state inventory for all 4 segments pending Layer1"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"cabbage peeled, cut into wedge, cored on black board\", \"2\": \"filled glass jar sealed with clasp and moved off-screen\", \"3\": \"shredded cabbage massaged with salt in brown bowl, transferred and packed into glass jar\", \"4\": \"cabbage half weighed, salt weighed, cabbage shredded on dark board\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "cabbage": {
+      "1": "whole -> cored wedges",
+      "4": "half head -> weighed -> dry shredded pile",
+      "3": "dry shreds -> wet/massed -> packed in jar",
+      "2": "packed wet shreds inside sealed jar"
+    },
+    "glass_jar": {
+      "3": "empty -> filled -> packed",
+      "2": "filled -> sealed -> moved away"
+    },
+    "brown_bowl": {
+      "3": "filled with shreds -> empty with residue"
+    },
+    "salt": {
+      "4": "weighed in small glass bowl",
+      "3": "added to cabbage in brown bowl"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient state (raw/cooked/cut/mixed)",
+    "container fill/empty",
+    "transfer traces",
+    "residue/depletion",
+    "background vessel state",
+    "cabbage state (whole/wedge/shredded/massed)",
+    "jar fill level (empty/packed/sealed)",
+    "bowl residue/depletion",
+    "salt presence/location"
+  ],
+  "resolved_uncertain": [
+    "V1 end matches V4 start",
+    "V4 end matches V3 start",
+    "V3 end matches V2 start"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "full object/state inventory for all 4 segments pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "ingredient state (raw/cooked/cut/mixed)",
+          "container fill/empty",
+          "transfer traces",
+          "residue/depletion",
+          "background vessel state"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "cabbage peeled, cut into wedge, cored on black board",
+          "2": "filled glass jar sealed with clasp and moved off-screen",
+          "3": "shredded cabbage massaged with salt in brown bowl, transferred and packed into glass jar",
+          "4": "cabbage half weighed, salt weighed, cabbage shredded on dark board"
+        },
+        "object_memory": {
+          "cabbage": {
+            "1": "whole -> cored wedges",
+            "4": "half head -> weighed -> dry shredded pile",
+            "3": "dry shreds -> wet/massed -> packed in jar",
+            "2": "packed wet shreds inside sealed jar"
+          },
+          "glass_jar": {
+            "3": "empty -> filled -> packed",
+            "2": "filled -> sealed -> moved away"
+          },
+          "brown_bowl": {
+            "3": "filled with shreds -> empty with residue"
+          },
+          "salt": {
+            "4": "weighed in small glass bowl",
+            "3": "added to cabbage in brown bowl"
+          }
+        },
+        "preliminary_order": [
+          1,
+          4,
+          3,
+          2
+        ],
+        "order_confidence": 9,
+        "confidence_basis": [
+          "V1: whole cabbage -> cored wedges (prep before shredding)",
+          "V4: weighed wedge/half -> shredded (prep before massaging)",
+          "V3: dry shreds -> massaged -> packed in jar (massaging before sealing)",
+          "V2: jar sealed and stored (final step)"
+        ],
+        "blocking_uncertainties": [
+          "verify V1 end state matches V4 start state (cored wedges vs half head)",
+          "verify V4 end state matches V3 start state (dry shreds on board vs in bowl)",
+          "verify V3 end state matches V2 start state (packed jar vs sealing jar)"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                17
+              ],
+              "event": "coring cabbage",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                37
+              ],
+              "event": "weighing and shredding",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                49
+              ],
+              "event": "massaging and packing jar",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                8
+              ],
+              "event": "sealing jar",
+              "confidence": "high"
+            }
+          ]
+        },
+        "dimensions_to_compare": [
+          "cabbage state (whole/wedge/shredded/massed)",
+          "jar fill level (empty/packed/sealed)",
+          "bowl residue/depletion",
+          "salt presence/location"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "V1": "cabbage whole -> cored wedges, no salt/bowls",
+          "V4": "cabbage half weighed -> dry shredded pile, salt bowl present",
+          "V3": "dry shreds massaged -> jar fully packed, brown bowl empty with residue",
+          "V2": "jar fully packed with wet shreds -> sealed and moved away"
+        },
+        "confirmed": [
+          "V1->V4: cored wedges to half head shredded",
+          "V4->V3: dry shreds on board to dry shreds in bowl",
+          "V3->V2: jar packed to jar sealed"
+        ],
+        "resolved_uncertain": [
+          "V1 end matches V4 start",
+          "V4 end matches V3 start",
+          "V3 end matches V2 start"
+        ],
+        "order_confidence": 10
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1",
+    "4",
+    "3",
+    "2"
+  ],
+  "order_confidence": [
+    "9",
+    "10"
+  ],
+  "confidence_basis": [
+    "V1: whole cabbage -> cored wedges (prep before shredding)",
+    "V4: weighed wedge/half -> shredded (prep before massaging)",
+    "V3: dry shreds -> massaged -> packed in jar (massaging before sealing)",
+    "V2: jar sealed and stored (final step)"
+  ],
+  "blocking_uncertainties": [
+    "verify V1 end state matches V4 start state (cored wedges vs half head)",
+    "verify V4 end state matches V3 start state (dry shreds on board vs in bowl)",
+    "verify V3 end state matches V2 start state (packed jar vs sealing jar)"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 17], \"event\": \"coring cabbage\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 37], \"event\": \"weighing and shredding\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 49], \"event\": \"massaging and packing jar\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 8], \"event\": \"sealing jar\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V1\": \"cabbage whole -> cored wedges, no salt/bowls\", \"V4\": \"cabbage half weighed -> dry shredded pile, salt bowl present\", \"V3\": \"dry shreds massaged -> jar fully packed, brown bowl empty with residue\", \"V2\": \"jar fully packed with wet shreds -> sealed and moved away\"}"
+  ]
+}

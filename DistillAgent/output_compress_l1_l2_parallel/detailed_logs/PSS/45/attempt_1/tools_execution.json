@@ -1,0 +1,202 @@
+[
+  {
+    "turn": 1,
+    "call_id": "batch_1_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 57.5,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 1/2, time 0s–58s)"
+    },
+    "timestamp_start": "2026-07-06 17:32:57",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 57.5s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 1/2, time 0s–58s)\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"all object states and transitions pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut)\",\n    \"container state (empty/filled/residue)\",\n    \"tool usage\",\n    \"transfer events\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: celery, knife, wooden cutting board | action: chopping | state: celery is green, raw, fresh, cut into small diced pieces; pile accumulating on board | window: 1-3 | query_link: null | conf: high | uncertainty: none\nobjects: carrot, peeler, glass bowl, knife | action: peeling then chopping | state: carrot is orange, raw; peelings (strips) visible in bowl; carrot later chopped into small pieces on board next to celery | window: 4-10 | query_link: null | conf: high | uncertainty: none\nobjects: onion, knife, wooden cutting board | action: cutting in half, peeling skin | state: onion is raw, cut in half revealing white interior; brown skin being removed by hand | window: 11-16 | query_link: null | conf: high | uncertainty: none",
+    "timestamp_end": "2026-07-06 17:33:31"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 57.5,
+          "end_time": 115.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 2/2, time 58s–115s)"
+    },
+    "timestamp_start": "2026-07-06 17:33:31",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (57.5s to 115.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 2/2, time 58s–115s)\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"all object states and transitions pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut)\",\n    \"container state (empty/filled/residue)\",\n    \"tool usage\",\n    \"transfer events\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: onion, action: peeling then slicing/dicing, state: raw, whole->cut (diced), window: 1-11, query_link: null, conf: high, uncertainty: none\nobjects: carrots, celery, action: present on board, state: raw, cut (diced), separate piles, window: 1-16, query_link: null, conf: high, uncertainty: none\nobjects: garlic, action: peeling then slicing/chopping, state: raw, whole->cut (sliced), window: 7, 13-16, query_link: null, conf: high, uncertainty: none\nobjects: glass bowl, action: holding waste, state: filled with residue (onion skins), window: 6, 14, query_link: null, conf: high, uncertainty: none\nobjects: chef's knife, cutting board, action: cutting vegetables, state: present, wet (from veg), window: 1-16, query_link: null, conf: high, uncertainty: none",
+    "timestamp_end": "2026-07-06 17:34:09"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 25.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 17:32:57",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 25.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"all object states and transitions pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut)\",\n    \"container state (empty/filled/residue)\",\n    \"tool usage\",\n    \"transfer events\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: oil bottle, green pot, wooden spoon | action: pouring oil into pot | state: oil is liquid/yellow, pot bottom becomes wet/oily, spoon present | window: 1-2 | query_link: N/A | conf: high | uncertainty: none\nobjects: knife, chopped garlic (white bits) | action: scraping garlic into pot | state: garlic is raw/cut/small pieces, pot has oil residue | window: 6-7 | query_link: N/A | conf: high | uncertainty: none\nobjects: wooden spoon, pot bottom | action: stirring garlic in oil | state: garlic is raw/cut, sizzling in oil (wet) | window: 8-10 | query_link: N/A | conf: high | uncertainty: none\nobjects: cutting board, chopped onions, carrots, celery | action: pushing vegetables from board into pot | state: vegetables are raw/cut/diced/fresh, separate on board then mixed in pot | window: 11-15 | query_link: N/A | conf: high | uncertainty: none\nobjects: pot contents | action: accumulation of ingredients | state: pot is filling with mixed raw ingredients (garlic, onion, carrot, celery) in oil | window: 13-15 | query_link: N/A | conf: high | uncertainty: none",
+    "timestamp_end": "2026-07-06 17:33:51"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 18.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 17:32:57",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 18.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"all object states and transitions pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut)\",\n    \"container state (empty/filled/residue)\",\n    \"tool usage\",\n    \"transfer events\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: woman, green pot, wooden spoon, basil leaves (on board) | action: stirring | state: pot filled with cooked sauce; basil fresh/present/separate on board; spoon present | window: 1-2, 7 | query_link: | conf: high | uncertainty: none\nobjects: green pot, tomato sauce, basil leaves, wooden spoon | action: stirring basil into sauce | state: sauce cooked/hot/steaming/wet; basil fresh/mixed; pot filled | window: 3-6 | query_link: | conf: high | uncertainty: none\nobjects: green pot, tomato sauce, basil leaves, immersion blender | action: blending sauce | state: sauce cooked/chunky/wet; basil mixed/wilted; blender present/submerged; pot filled | window: 8-16 | query_link: | conf: high | uncertainty: none",
+    "timestamp_end": "2026-07-06 17:33:57"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_5",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 68.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 17:32:57",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 68.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"all object states and transitions pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut)\",\n    \"container state (empty/filled/residue)\",\n    \"tool usage\",\n    \"transfer events\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: green pot, wooden spoon, red chunky vegetable base | action: stirring | state: base is cooked, steaming, wet, mixed | window: 1-3 | query_link: N/A | conf: high | uncertainty: none\nobjects: whole red tomatoes, green basil leaves | action: adding tomatoes to pot, tearing basil leaves | state: tomatoes whole/raw, basil fresh/green, separate (initially) then mixed | window: 5-8 | query_link: N/A | conf: high | uncertainty: none\nobjects: white pitcher, yellow liquid | action: pouring liquid into pot | state: pot filled with liquid, sauce becomes soupy/wet, tomatoes submerged | window: 11-13 | query_link: N/A | conf: high | uncertainty: liquid type (broth vs water) uncertain\nobjects: hand, seasoning tool (grinder/shaker) | action: grinding/sprinkling seasoning | state: seasoning added to red liquid sauce | window: 14-16 | query_link: N/A | conf: high | uncertainty: specific seasoning type uncertain",
+    "timestamp_end": "2026-07-06 17:33:40"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 57.5,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: cutting board state (clean/residue), waste glass bowl state (empty/filled with skins), chopped vegetable piles (celery, carrot, onion, garlic) presence and state (raw/cut). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose. (part 1/2, time 0s–58s)"
+    },
+    "timestamp_start": "2026-07-06 17:35:05",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 57.5s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: cutting board state (clean/residue), waste glass bowl state (empty/filled with skins), chopped vegetable piles (celery, carrot, onion, garlic) presence and state (raw/cut). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose. (part 1/2, time 0s–58s)\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"green_pot\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"empty->filled with raw veg in oil\",\n      \"3\": \"filled with cooked sauce->blended smooth\",\n      \"4\": \"chunky base->soupy liquid with tomatoes\"\n    },\n    \"celery_carrot_onion_garlic\": {\n      \"1\": \"raw/diced separate piles\",\n      \"2\": \"raw/diced pushed into pot\",\n      \"3\": \"cooked in sauce\",\n      \"4\": \"cooked chunky base\"\n    },\n    \"tomatoes\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"ABSENT\",\n      \"3\": \"ABSENT\",\n      \"4\": \"whole/raw->submerged in liquid\"\n    },\n    \"basil\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"ABSENT\",\n      \"3\": \"fresh->mixed/wilted->blended\",\n      \"4\": \"fresh/torn->mixed in liquid\"\n    },\n    \"waste_bowl\": {\n      \"1\": \"fills with onion skins\",\n      \"2\": \"ABSENT\",\n      \"3\": \"ABSENT\",\n      \"4\": \"ABSENT\"\n    },\n    \"immersion_blender\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"ABSENT\",\n      \"3\": \"submerged blending\",\n      \"4\": \"ABSENT\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut)\",\n    \"container state (empty/filled/residue)\",\n    \"tool usage\",\n    \"transfer events\",\n    \"pot contents maturity (raw->chunky->soupy->smooth)\",\n    \"tomato state (absent->whole->submerged)\",\n    \"basil state (absent->fresh->wilted->blended)\"\n  ],\n  \"uncertain\": [\n    \"V4 start state vs V2 end state\",\n    \"V3 start state vs V4 end state\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "cutting board | residue (celery, carrot, onion prep) | 1-16 | high | -\nwaste glass bowl | empty -> filled with skins (carrot/onion peels) | 3-16 | high | -\ncelery pile | present, raw/cut | 1-16 | high | -\ncarrot pile | present, raw/cut | 10-16 | high | -\nonion pile | ABSENT (only halves/peeling visible, not chopped pile yet) | 1-16 | high | -\ngarlic pile | NOT_VISIBLE_IN_THESE_FRAMES | 1-16 | high | -",
+    "timestamp_end": "2026-07-06 17:36:16"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 57.5,
+          "end_time": 115.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: cutting board state (clean/residue), waste glass bowl state (empty/filled with skins), chopped vegetable piles (celery, carrot, onion, garlic) presence and state (raw/cut). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose. (part 2/2, time 58s–115s)"
+    },
+    "timestamp_start": "2026-07-06 17:36:16",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (57.5s to 115.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: cutting board state (clean/residue), waste glass bowl state (empty/filled with skins), chopped vegetable piles (celery, carrot, onion, garlic) presence and state (raw/cut). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose. (part 2/2, time 58s–115s)\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"green_pot\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"empty->filled with raw veg in oil\",\n      \"3\": \"filled with cooked sauce->blended smooth\",\n      \"4\": \"chunky base->soupy liquid with tomatoes\"\n    },\n    \"celery_carrot_onion_garlic\": {\n      \"1\": \"raw/diced separate piles\",\n      \"2\": \"raw/diced pushed into pot\",\n      \"3\": \"cooked in sauce\",\n      \"4\": \"cooked chunky base\"\n    },\n    \"tomatoes\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"ABSENT\",\n      \"3\": \"ABSENT\",\n      \"4\": \"whole/raw->submerged in liquid\"\n    },\n    \"basil\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"ABSENT\",\n      \"3\": \"fresh->mixed/wilted->blended\",\n      \"4\": \"fresh/torn->mixed in liquid\"\n    },\n    \"waste_bowl\": {\n      \"1\": \"fills with onion skins\",\n      \"2\": \"ABSENT\",\n      \"3\": \"ABSENT\",\n      \"4\": \"ABSENT\"\n    },\n    \"immersion_blender\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"ABSENT\",\n      \"3\": \"submerged blending\",\n      \"4\": \"ABSENT\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut)\",\n    \"container state (empty/filled/residue)\",\n    \"tool usage\",\n    \"transfer events\",\n    \"pot contents maturity (raw->chunky->soupy->smooth)\",\n    \"tomato state (absent->whole->submerged)\",\n    \"basil state (absent->fresh->wilted->blended)\"\n  ],\n  \"uncertain\": [\n    \"V4 start state vs V2 end state\",\n    \"V3 start state vs V4 end state\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "cutting_board | N/A | residue (covered with chopped vegetable piles) | 58s-115s | N/A | high | -\nwaste_glass_bowl | collecting_waste | filled with skins (onion/garlic skins visible in bowl) | 58s-115s | N/A | high | -\nchopped_vegetable_piles (celery, carrot, onion, garlic) | N/A | present, raw/cut (separate diced piles of green celery, orange carrot, white onion, and garlic) | 58s-115s | N/A | high | -",
+    "timestamp_end": "2026-07-06 17:37:26"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 25.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: green pot state at start (empty/oily), garlic state in pot (raw/sizzling), cutting board state when pushing veg (raw/diced piles present), green pot state at end (filled with raw veg in oil). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose."
+    },
+    "timestamp_start": "2026-07-06 17:35:05",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 25.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: green pot state at start (empty/oily), garlic state in pot (raw/sizzling), cutting board state when pushing veg (raw/diced piles present), green pot state at end (filled with raw veg in oil). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"green_pot\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"empty->filled with raw veg in oil\",\n      \"3\": \"filled with cooked sauce->blended smooth\",\n      \"4\": \"chunky base->soupy liquid with tomatoes\"\n    },\n    \"celery_carrot_onion_garlic\": {\n      \"1\": \"raw/diced separate piles\",\n      \"2\": \"raw/diced pushed into pot\",\n      \"3\": \"cooked in sauce\",\n      \"4\": \"cooked chunky base\"\n    },\n    \"tomatoes\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"ABSENT\",\n      \"3\": \"ABSENT\",\n      \"4\": \"whole/raw->submerged in liquid\"\n    },\n    \"basil\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"ABSENT\",\n      \"3\": \"fresh->mixed/wilted->blended\",\n      \"4\": \"fresh/torn->mixed in liquid\"\n    },\n    \"waste_bowl\": {\n      \"1\": \"fills with onion skins\",\n      \"2\": \"ABSENT\",\n      \"3\": \"ABSENT\",\n      \"4\": \"ABSENT\"\n    },\n    \"immersion_blender\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"ABSENT\",\n      \"3\": \"submerged blending\",\n      \"4\": \"ABSENT\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut)\",\n    \"container state (empty/filled/residue)\",\n    \"tool usage\",\n    \"transfer events\",\n    \"pot contents maturity (raw->chunky->soupy->smooth)\",\n    \"tomato state (absent->whole->submerged)\",\n    \"basil state (absent->fresh->wilted->blended)\"\n  ],\n  \"uncertain\": [\n    \"V4 start state vs V2 end state\",\n    \"V3 start state vs V4 end state\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "green_pot/oily/1-5/green pot state at start/high/-\ngarlic/sizzling/6-10/garlic state in pot/high/-\ncutting_board/raw/diced piles present/11-15/cutting board state when pushing veg/high/-\ngreen_pot/filled with raw veg in oil/15/green pot state at end/high/-",
+    "timestamp_end": "2026-07-06 17:36:10"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 18.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: green pot state at start (cooked sauce/steaming/chunky vs smooth), basil leaves state (fresh/separate vs mixed/wilted), immersion blender action (submerged/blending), pot state at end (smooth blended sauce). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose."
+    },
+    "timestamp_start": "2026-07-06 17:35:05",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 18.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: green pot state at start (cooked sauce/steaming/chunky vs smooth), basil leaves state (fresh/separate vs mixed/wilted), immersion blender action (submerged/blending), pot state at end (smooth blended sauce). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"green_pot\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"empty->filled with raw veg in oil\",\n      \"3\": \"filled with cooked sauce->blended smooth\",\n      \"4\": \"chunky base->soupy liquid with tomatoes\"\n    },\n    \"celery_carrot_onion_garlic\": {\n      \"1\": \"raw/diced separate piles\",\n      \"2\": \"raw/diced pushed into pot\",\n      \"3\": \"cooked in sauce\",\n      \"4\": \"cooked chunky base\"\n    },\n    \"tomatoes\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"ABSENT\",\n      \"3\": \"ABSENT\",\n      \"4\": \"whole/raw->submerged in liquid\"\n    },\n    \"basil\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"ABSENT\",\n      \"3\": \"fresh->mixed/wilted->blended\",\n      \"4\": \"fresh/torn->mixed in liquid\"\n    },\n    \"waste_bowl\": {\n      \"1\": \"fills with onion skins\",\n      \"2\": \"ABSENT\",\n      \"3\": \"ABSENT\",\n      \"4\": \"ABSENT\"\n    },\n    \"immersion_blender\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"ABSENT\",\n      \"3\": \"submerged blending\",\n      \"4\": \"ABSENT\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut)\",\n    \"container state (empty/filled/residue)\",\n    \"tool usage\",\n    \"transfer events\",\n    \"pot contents maturity (raw->chunky->soupy->smooth)\",\n    \"tomato state (absent->whole->submerged)\",\n    \"basil state (absent->fresh->wilted->blended)\"\n  ],\n  \"uncertain\": [\n    \"V4 start state vs V2 end state\",\n    \"V3 start state vs V4 end state\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "green_pot/cooked sauce, steaming, chunky/1-4/green pot state at start/HIGH/NO\nbasil/fresh, separate -> mixed, wilted/1-6/basil leaves state/HIGH/NO\nimmersion_blender/submerged, blending/8-16/immersion blender action/HIGH/NO\ngreen_pot/chunky, blending (not smooth)/8-16/pot state at end/MEDIUM/UNCERTAIN",
+    "timestamp_end": "2026-07-06 17:36:18"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_5",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 68.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: green pot state at start (red chunky vegetable base / cooked veg), whole tomatoes state (raw/whole vs submerged), basil leaves state (fresh/torn), white pitcher liquid pour (pot becomes soupy/wet), seasoning added. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose."
+    },
+    "timestamp_start": "2026-07-06 17:35:05",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 68.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: green pot state at start (red chunky vegetable base / cooked veg), whole tomatoes state (raw/whole vs submerged), basil leaves state (fresh/torn), white pitcher liquid pour (pot becomes soupy/wet), seasoning added. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"green_pot\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"empty->filled with raw veg in oil\",\n      \"3\": \"filled with cooked sauce->blended smooth\",\n      \"4\": \"chunky base->soupy liquid with tomatoes\"\n    },\n    \"celery_carrot_onion_garlic\": {\n      \"1\": \"raw/diced separate piles\",\n      \"2\": \"raw/diced pushed into pot\",\n      \"3\": \"cooked in sauce\",\n      \"4\": \"cooked chunky base\"\n    },\n    \"tomatoes\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"ABSENT\",\n      \"3\": \"ABSENT\",\n      \"4\": \"whole/raw->submerged in liquid\"\n    },\n    \"basil\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"ABSENT\",\n      \"3\": \"fresh->mixed/wilted->blended\",\n      \"4\": \"fresh/torn->mixed in liquid\"\n    },\n    \"waste_bowl\": {\n      \"1\": \"fills with onion skins\",\n      \"2\": \"ABSENT\",\n      \"3\": \"ABSENT\",\n      \"4\": \"ABSENT\"\n    },\n    \"immersion_blender\": {\n      \"1\": \"ABSENT\",\n      \"2\": \"ABSENT\",\n      \"3\": \"submerged blending\",\n      \"4\": \"ABSENT\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut)\",\n    \"container state (empty/filled/residue)\",\n    \"tool usage\",\n    \"transfer events\",\n    \"pot contents maturity (raw->chunky->soupy->smooth)\",\n    \"tomato state (absent->whole->submerged)\",\n    \"basil state (absent->fresh->wilted->blended)\"\n  ],\n  \"uncertain\": [\n    \"V4 start state vs V2 end state\",\n    \"V3 start state vs V4 end state\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "green_pot | state: red chunky vegetable base (cooked) | 1-5 | green pot state at start | HIGH | -\ntomatoes | state: whole/raw -> submerged in liquid | 5-16 | whole tomatoes state | HIGH | -\nbasil | state: fresh/torn leaves | 6-7 | basil leaves state | HIGH | -\nwhite_pitcher | action: pour liquid -> state: pot becomes soupy/wet | 11-13 | white pitcher liquid pour | HIGH | -\nhand/seasoning | action: sprinkling -> state: seasoning added | 14-15 | seasoning added | HIGH | -",
+    "timestamp_end": "2026-07-06 17:35:58"
+  }
+]

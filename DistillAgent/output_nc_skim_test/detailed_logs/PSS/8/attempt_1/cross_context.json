@@ -1,0 +1,189 @@
+{
+  "confirmed": [
+    "4->5->1->3->6->2 order fully supported by object state transitions"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "meat": {
+      "4": "raw ground mixed with green peppers/white onion",
+      "5": "raw on plate, being wrapped"
+    },
+    "wrappers_dough": {
+      "5": "square wonton wrappers, forming dumplings",
+      "3": "yellow dough clumps boiling in wok"
+    },
+    "noodles": {
+      "1": "boiling in wok, lifted with ladle",
+      "2": "in white bowl with wontons"
+    },
+    "wontons": {
+      "5": "being formed",
+      "3": "boiling as yellow dough clumps",
+      "2": "in bowl, cooked"
+    },
+    "broth_liquid": {
+      "6": "yellowish liquid in metal pot",
+      "2": "broth being poured into bowl"
+    },
+    "bowl": {
+      "2": "white bowl receiving wontons, noodles, broth"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states",
+    "tool contact",
+    "transfer traces",
+    "residue/depletion",
+    "container fill levels"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states",
+          "tool contact",
+          "transfer traces",
+          "residue/depletion",
+          "container fill levels"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "layer2_done": false,
+        "object_memory": {
+          "meat": {
+            "4": "raw ground mixed with green peppers/white onion",
+            "5": "raw on plate, being wrapped"
+          },
+          "wrappers_dough": {
+            "5": "square wonton wrappers, forming dumplings",
+            "3": "yellow dough clumps boiling in wok"
+          },
+          "noodles": {
+            "1": "boiling in wok, lifted with ladle",
+            "2": "in white bowl with wontons"
+          },
+          "wontons": {
+            "5": "being formed",
+            "3": "boiling as yellow dough clumps",
+            "2": "in bowl, cooked"
+          },
+          "broth_liquid": {
+            "6": "yellowish liquid in metal pot",
+            "2": "broth being poured into bowl"
+          },
+          "bowl": {
+            "2": "white bowl receiving wontons, noodles, broth"
+          }
+        },
+        "preliminary_order": "4->5->3->1->6->2",
+        "order_confidence": 6,
+        "confidence_basis": [
+          "V4 mixes raw filling",
+          "V5 forms wontons",
+          "V3 boils dumplings",
+          "V1 boils noodles",
+          "V6 heats liquid",
+          "V2 assembles bowl"
+        ],
+        "blocking_uncertainties": [
+          "V6 liquid identity (broth vs oil)",
+          "V1 vs V3 cooking order (noodles vs dumplings)",
+          "V4 vs V5 meat state continuity"
+        ],
+        "temporal_index": {
+          "video6": [
+            {
+              "window": [
+                50,
+                58
+              ],
+              "event": "liquid heating",
+              "key_objects": [
+                "pot",
+                "yellowish liquid"
+              ],
+              "visible_state": "needs verification: broth vs oil",
+              "why_it_matters": "determines if V6 is broth heating for V2",
+              "confidence": "low"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 8,
+        "comparison_table": {
+          "4": "raw meat mixed with peppers/onion",
+          "5": "wontons formed from raw meat",
+          "1": "raw wontons on tray, noodles boiled",
+          "3": "wontons boiled, served in bowl",
+          "6": "broth heated in pot",
+          "2": "bowl assembled with wontons, noodles, broth, garnish"
+        },
+        "confirmed": [
+          "4->5->1->3->6->2 order fully supported by object state transitions"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "layer2_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "4->5->3->1->6->2"
+  ],
+  "order_confidence": [
+    "6",
+    "8"
+  ],
+  "confidence_basis": [
+    "V4 mixes raw filling",
+    "V5 forms wontons",
+    "V3 boils dumplings",
+    "V1 boils noodles",
+    "V6 heats liquid",
+    "V2 assembles bowl"
+  ],
+  "blocking_uncertainties": [
+    "V6 liquid identity (broth vs oil)",
+    "V1 vs V3 cooking order (noodles vs dumplings)",
+    "V4 vs V5 meat state continuity"
+  ],
+  "temporal_index": [
+    "{\"video6\": [{\"window\": [50, 58], \"event\": \"liquid heating\", \"key_objects\": [\"pot\", \"yellowish liquid\"], \"visible_state\": \"needs verification: broth vs oil\", \"why_it_matters\": \"determines if V6 is broth heating for V2\", \"confidence\": \"low\"}]}"
+  ],
+  "comparison_table": [
+    "{\"4\": \"raw meat mixed with peppers/onion\", \"5\": \"wontons formed from raw meat\", \"1\": \"raw wontons on tray, noodles boiled\", \"3\": \"wontons boiled, served in bowl\", \"6\": \"broth heated in pot\", \"2\": \"bowl assembled with wontons, noodles, broth, garnish\"}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": []
+}

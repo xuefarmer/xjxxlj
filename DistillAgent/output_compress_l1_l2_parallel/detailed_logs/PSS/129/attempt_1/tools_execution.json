@@ -1,0 +1,202 @@
+[
+  {
+    "turn": 1,
+    "call_id": "batch_1_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 53.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report its state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Note the operation (prep, transformation, transfer, cooking, finishing, inspection). Note source and destination containers. Report approximate time locations for any state transitions. Return compact evidence rows only."
+    },
+    "timestamp_start": "2026-07-07 04:53:49",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 53.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report its state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Note the operation (prep, transformation, transfer, cooking, finishing, inspection). Note source and destination containers. Report approximate time locations for any state transitions. Return compact evidence rows only.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"All segment states pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states raw->cooked\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient integration\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "**Cooking Segment Description:**\nThe segment shows the preparation of a marinade for raw chicken. The cook adds citrus zest and juice to a bowl containing chicken and herbs.\n\n**Evidence Rows:**\n\n*   **Chicken & Herbs (in Glass Bowl):**\n    *   **State:** Raw, cut into chunks; mixed with chopped green herbs (likely cilantro or green onion).\n    *   **Container:** Clear glass bowl (filled).\n    *   **Operation:** Base ingredient present throughout.\n\n*   **Orange:**\n    *   **State:** Fresh, whole initially.\n    *   **Operation (Zesting):** Zested using a red microplane/grater over the bowl (Frames 4-6). State transition: whole -> zested. Residue (zest) visible in bowl.\n    *   **Operation (Cutting/Juicing):** Cut in half (Frame 15). Squeezed/juiced into the bowl (Frame 16). State transition: cut -> juiced (depletion of juice).\n    *   **Source/Destination:** Source: Hand/Board. Destination: Glass bowl.\n\n*   **Lemon:**\n    *   **State:** Fresh, whole initially.\n    *   **Operation (Zesting):** Zested using a red microplane over the bowl (Frames 8-12). State transition: whole -> zested. Residue (zest) visible in bowl.\n    *   **Operation (Rolling):** Rolled on the wooden cutting board to soften (Frame 13).\n    *   **Operation (Cutting):** Cut in half (Frame 14). State transition: whole -> cut.\n    *   **Source/Destination:** Source: Hand/Board. Destination: Glass bowl (for zest).\n\n*   **Tools:**\n    *   **Red Zester:** Present, used for grating citrus peel.\n    *   **Knife:** Present, used for cutting citrus.\n    *   **Cutting Board:** Wooden, holds citrus and knife.\n\n**Summary of Transitions:**\n*   **~Frames 4-6:** Orange zest added to chicken mixture.\n*   **~Frames 8-12:** Lemon zest added to chicken mixture.\n*   **~Frame 13:** Lemon rolled.\n*   **~Frame 14-15:** Citrus fruits cut in half.\n*   **~Frame 16:** Orange juice squeezed into the mixture.",
+    "timestamp_end": "2026-07-07 04:55:04"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 44.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report its state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Note the operation (prep, transformation, transfer, cooking, finishing, inspection). Note source and destination containers. Report approximate time locations for any state transitions. Return compact evidence rows only."
+    },
+    "timestamp_start": "2026-07-07 04:53:49",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 44.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report its state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Note the operation (prep, transformation, transfer, cooking, finishing, inspection). Note source and destination containers. Report approximate time locations for any state transitions. Return compact evidence rows only.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"All segment states pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states raw->cooked\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient integration\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "- **Oil Bottle**: Filled with yellow oil; state transitions to depletion as oil is poured (transfer operation) onto the grill pan (0.0s–4.0s).\n- **Grill Pan**: State transitions from dry to wet (oiled residue) during prep (0.0s–4.0s); subsequently filled with skewers for cooking (4.0s–44.0s).\n- **Skewers (Meat/Red Onion)**: State: raw, cut chunks, threaded on metal skewers; operation: transfer from plate to pan using tongs (4.0s–8.0s), then cooking (4.0s–44.0s).\n- **White Plate**: State: filled with raw skewers transitioning to depletion as source container (0.0s–8.0s).\n- **Tongs**: Tool used for transfer operation of skewers (4.0s–8.0s).\n- **Knife/Cutting Board**: Present, idle, separate state on counter (throughout).\n- **Woman**: Operation: explanation/inspection (gesturing/talking) while skewers cook (8.0s–36.0s).",
+    "timestamp_end": "2026-07-07 04:55:26"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 36.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report its state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Note the operation (prep, transformation, transfer, cooking, finishing, inspection). Note source and destination containers. Report approximate time locations for any state transitions. Return compact evidence rows only."
+    },
+    "timestamp_start": "2026-07-07 04:53:49",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 36.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report its state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Note the operation (prep, transformation, transfer, cooking, finishing, inspection). Note source and destination containers. Report approximate time locations for any state transitions. Return compact evidence rows only.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"All segment states pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states raw->cooked\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient integration\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "- **Large Glass Bowl**: Filled; Raw, cut, wet chicken pieces mixed with herbs/marinade; Present throughout (0.0s-36.0s).\n- **Small Glass Bowl (bottom right)**: Filled; Raw, cut red onion chunks; Present (visible clearly at 12.0s, 16.0s).\n- **Metal Skewer**: Empty -> Filled; Threaded with red onion chunk (0.0s-4.0s); Threaded with chicken piece (5.0s-8.0s); Threaded with additional chicken piece (15.0s-16.0s).\n- **White Plate**: Empty; Present on right side throughout (0.0s-36.0s).\n- **Operation**: Prep/Assembly; Threading raw ingredients (onion, chicken) onto metal skewer.\n- **State Transitions**: Skewer transitions from holding onion (0.0s-4.0s) to holding chicken (5.0s-8.0s) to holding multiple chicken pieces (15.0s-16.0s). Chicken remains raw/wet/mixed in bowl. Onion remains raw/cut in small bowl.",
+    "timestamp_end": "2026-07-07 04:55:16"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 65.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report its state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Note the operation (prep, transformation, transfer, cooking, finishing, inspection). Note source and destination containers. Report approximate time locations for any state transitions. Return compact evidence rows only."
+    },
+    "timestamp_start": "2026-07-07 04:53:49",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 65.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report its state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Note the operation (prep, transformation, transfer, cooking, finishing, inspection). Note source and destination containers. Report approximate time locations for any state transitions. Return compact evidence rows only.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"All segment states pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states raw->cooked\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient integration\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "**Layer 1 Caption: Cooking Segment Description**\n\n*   **Glass Bowl**: Filled with raw, cut chicken chunks and chopped green herbs (likely scallions/green onions). State transitions from ingredients sitting separately on top to being fully mixed and coated.\n*   **Wooden Grinder (Pepper Mill)**: Present and active. Operation: Grinding seasoning into the bowl. Time: Frames 1-5.\n*   **Olive Oil Bottle**: Present, filled with yellow oil. Operation: Pouring oil over the chicken mixture. Time: Frames 6-8.\n*   **Spatula (White head, wooden handle)**: Present. Operation: Mixing/stirring the chicken, herbs, oil, and ground seasoning together to coat the meat. Time: Frames 10-16.\n*   **Chicken**: State: Raw, cut into chunks. Transition: Dry/separate -> Wet/coated with oil and seasoning after mixing.\n*   **Green Herbs/Onions**: State: Fresh, chopped/cut. Transition: Separate (on top of chicken) -> Mixed in.\n*   **Oranges/Lemon**: Present on the wooden cutting board. State: Whole (oranges) and halved (lemon visible in later frames), separate from the bowl (likely source of juice for the marinade, though squeezing isn't explicitly shown in this specific sequence, the bottle pour is the main liquid addition).\n*   **Honey Bottle**: Present on counter, filled, unused in this specific sequence.\n*   **Operation Summary**: Prep/Seasoning phase. Ingredients (chicken, herbs, seasoning, oil) are combined in the glass bowl.",
+    "timestamp_end": "2026-07-07 04:55:03"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_5",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 5,
+          "start_time": 0.0,
+          "end_time": 7.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report its state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Note the operation (prep, transformation, transfer, cooking, finishing, inspection). Note source and destination containers. Report approximate time locations for any state transitions. Return compact evidence rows only."
+    },
+    "timestamp_start": "2026-07-07 04:53:49",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 5 (0.0s to 7.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe this cooking segment. For each visible object/tool/ingredient, report its state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Note the operation (prep, transformation, transfer, cooking, finishing, inspection). Note source and destination containers. Report approximate time locations for any state transitions. Return compact evidence rows only.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"All segment states pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states raw->cooked\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient integration\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "**Layer 1 Caption: Cooking Segment Description**\n\n*   **Green herbs (scallions/green onions):** State: Raw, fresh, cut (finely chopped/minced). Operation: Transformation (chopping/mincing). Location: Wooden cutting board. Time: 0.0s–7.0s (continuous chopping motion).\n*   **Chicken pieces:** State: Raw, cut (chunks), wet, present. Location: Glass bowl (bottom left).\n*   **Orange & Lemon:** State: Whole, raw, fresh, separate. Location: Foreground counter.\n*   **Knife:** State: Present, active tool. Operation: Cutting.\n*   **Grater (red handle):** State: Present, separate, unused. Location: Cutting board right side.\n*   **Honey bottle:** State: Present, filled. Location: Right background.\n*   **Garlic cloves:** State: Raw, whole/peeled, present. Location: Plate (bottom right).\n*   **Cutting board:** State: Residue (minced greens). Operation: Surface for prep.",
+    "timestamp_end": "2026-07-07 04:54:41"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 53.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: 1) Orange and Lemon (whole/zested/halved/juiced/depleted), 2) Glass bowl contents (chicken, herbs, citrus residue, oil, wet/dry), 3) Any other tools (zester, knife). Return compact rows: object/state/window/conf/uncertainty."
+    },
+    "timestamp_start": "2026-07-07 04:57:14",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 53.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of: 1) Orange and Lemon (whole/zested/halved/juiced/depleted), 2) Glass bowl contents (chicken, herbs, citrus residue, oil, wet/dry), 3) Any other tools (zester, knife). Return compact rows: object/state/window/conf/uncertainty.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"citrus\": {\n      \"5\": \"whole\",\n      \"4\": \"whole/halved on board\",\n      \"1\": \"zested/juiced\"\n    },\n    \"herbs\": {\n      \"5\": \"being chopped\",\n      \"4\": \"on top of chicken then mixed\",\n      \"1\": \"in bowl\",\n      \"3\": \"in marinade\"\n    },\n    \"chicken_bowl\": {\n      \"5\": \"raw chunks\",\n      \"4\": \"dry->wet with oil/pepper\",\n      \"1\": \"with citrus\",\n      \"3\": \"fully marinated\"\n    },\n    \"skewers\": {\n      \"3\": \"being threaded raw\",\n      \"2\": \"cooking on grill\"\n    },\n    \"grill_pan\": {\n      \"2\": \"oiled then cooking skewers\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states raw->cooked\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient integration\"\n  ],\n  \"uncertain\": [\n    \"All segment states pending Layer1\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Orange/Whole (F4) -> Zested (F6-8) -> Halved (F15) -> Juiced/Squeezed (F16)/1/High/Low\nLemon/Whole (F4,8) -> Zested (F9-12) -> Halved (F14-16)/1/High/Low\nGlass Bowl/Raw chicken chunks, chopped herbs, citrus zest residue (orange/yellow), wet/juiced (F16)/1/High/Low\nZester/Red microplane zester held in hand/1/High/None\nKnife/Black-handled chef knife on cutting board/1/High/None",
+    "timestamp_end": "2026-07-07 04:58:33"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 44.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: 1) Skewers (raw/cooking, meat/onion state), 2) Grill pan (dry/oiled/active cooking), 3) White plate (filled/depleted). Return compact rows: object/state/window/conf/uncertainty."
+    },
+    "timestamp_start": "2026-07-07 04:57:14",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 44.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of: 1) Skewers (raw/cooking, meat/onion state), 2) Grill pan (dry/oiled/active cooking), 3) White plate (filled/depleted). Return compact rows: object/state/window/conf/uncertainty.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"citrus\": {\n      \"5\": \"whole\",\n      \"4\": \"whole/halved on board\",\n      \"1\": \"zested/juiced\"\n    },\n    \"herbs\": {\n      \"5\": \"being chopped\",\n      \"4\": \"on top of chicken then mixed\",\n      \"1\": \"in bowl\",\n      \"3\": \"in marinade\"\n    },\n    \"chicken_bowl\": {\n      \"5\": \"raw chunks\",\n      \"4\": \"dry->wet with oil/pepper\",\n      \"1\": \"with citrus\",\n      \"3\": \"fully marinated\"\n    },\n    \"skewers\": {\n      \"3\": \"being threaded raw\",\n      \"2\": \"cooking on grill\"\n    },\n    \"grill_pan\": {\n      \"2\": \"oiled then cooking skewers\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states raw->cooked\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient integration\"\n  ],\n  \"uncertain\": [\n    \"All segment states pending Layer1\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Skewers/raw meat & onion, cooking on grill/1-16/High/Low\nGrill pan/oiled, active cooking/1-16/High/Low\nWhite plate/filled (early frames) -> depleted (as skewers move to grill)/1-6/High/Low",
+    "timestamp_end": "2026-07-07 04:58:23"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 36.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: 1) Large glass bowl (chicken state, marinade coating, herbs), 2) Small bowl (red onion state), 3) Metal skewers (empty/threaded with what), 4) White plate (empty/filled). Return compact rows: object/state/window/conf/uncertainty."
+    },
+    "timestamp_start": "2026-07-07 04:57:14",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 36.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of: 1) Large glass bowl (chicken state, marinade coating, herbs), 2) Small bowl (red onion state), 3) Metal skewers (empty/threaded with what), 4) White plate (empty/filled). Return compact rows: object/state/window/conf/uncertainty.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"citrus\": {\n      \"5\": \"whole\",\n      \"4\": \"whole/halved on board\",\n      \"1\": \"zested/juiced\"\n    },\n    \"herbs\": {\n      \"5\": \"being chopped\",\n      \"4\": \"on top of chicken then mixed\",\n      \"1\": \"in bowl\",\n      \"3\": \"in marinade\"\n    },\n    \"chicken_bowl\": {\n      \"5\": \"raw chunks\",\n      \"4\": \"dry->wet with oil/pepper\",\n      \"1\": \"with citrus\",\n      \"3\": \"fully marinated\"\n    },\n    \"skewers\": {\n      \"3\": \"being threaded raw\",\n      \"2\": \"cooking on grill\"\n    },\n    \"grill_pan\": {\n      \"2\": \"oiled then cooking skewers\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states raw->cooked\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient integration\"\n  ],\n  \"uncertain\": [\n    \"All segment states pending Layer1\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Large glass bowl / Raw chicken chunks coated in wet marinade with visible herbs / 1-16 / High / Low\nSmall bowl / Contains red onion chunks / 1-16 / High / Low\nMetal skewers / Being threaded with raw marinated chicken and red onion pieces / 1-16 / High / Low\nWhite plate / Empty / 1-16 / High / Low",
+    "timestamp_end": "2026-07-07 04:58:08"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 65.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: 1) Orange and Lemon on cutting board (whole/zested/halved/juiced), 2) Glass bowl contents (chicken, herbs separate/mixed, oil/pepper present, wet/dry), 3) Tools (grinder, oil bottle, spatula). Return compact rows: object/state/window/conf/uncertainty."
+    },
+    "timestamp_start": "2026-07-07 04:57:14",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 65.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of: 1) Orange and Lemon on cutting board (whole/zested/halved/juiced), 2) Glass bowl contents (chicken, herbs separate/mixed, oil/pepper present, wet/dry), 3) Tools (grinder, oil bottle, spatula). Return compact rows: object/state/window/conf/uncertainty.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"citrus\": {\n      \"5\": \"whole\",\n      \"4\": \"whole/halved on board\",\n      \"1\": \"zested/juiced\"\n    },\n    \"herbs\": {\n      \"5\": \"being chopped\",\n      \"4\": \"on top of chicken then mixed\",\n      \"1\": \"in bowl\",\n      \"3\": \"in marinade\"\n    },\n    \"chicken_bowl\": {\n      \"5\": \"raw chunks\",\n      \"4\": \"dry->wet with oil/pepper\",\n      \"1\": \"with citrus\",\n      \"3\": \"fully marinated\"\n    },\n    \"skewers\": {\n      \"3\": \"being threaded raw\",\n      \"2\": \"cooking on grill\"\n    },\n    \"grill_pan\": {\n      \"2\": \"oiled then cooking skewers\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states raw->cooked\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient integration\"\n  ],\n  \"uncertain\": [\n    \"All segment states pending Layer1\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in Frames 1-16 (Video 4):\n\n**1) Orange and Lemon on cutting board**\n*   **Object:** Citrus fruits (Oranges/Lemon)\n*   **State:** Two oranges are present; they appear whole but with pitted/textured skin indicating they have been **zested** (visible clearly in frames 11, 16). A **halved** lemon is visible on the board (frame 14).\n*   **Window:** V4 (Frames 1-16)\n*   **Conf:** High\n*   **Uncertainty:** Exact juicing level of the lemon half is not fully visible, but it is cut.\n\n**2) Glass bowl contents**\n*   **Object:** Glass Bowl\n*   **State:** Contains raw chicken chunks and chopped herbs. Initially, herbs are **separate** on top (Frames 1-5). **Pepper** is ground in (Frames 1-4) and **oil** is poured in (Frames 6-8), making the contents **wet**. Finally, ingredients are **mixed** together with a spatula (Frames 10-16). Orange zest is also visible in the mix.\n*   **Window:** V4 (Frames 1-16)\n*   **Conf:** High\n*   **Uncertainty:** Salt addition is implied in Frame 5 (small wooden container) but not explicitly labeled in query.\n\n**3) Tools**\n*   **Object:** Grinder, Oil Bottle, Spatula\n*   **State:**\n    *   **Grinder:** Wooden pepper mill, held and used in Frames 1-4, sitting on counter in 14, 16.\n    *   **Oil Bottle:** Glass bottle with red pour spout, used to pour oil in Frames 6-7, sitting on counter in 14, 16.\n    *   **Spatula:** White silicone head with wooden handle, used to mix bowl contents in Frames 10-16.\n*   **Window:** V4 (Frames 1-16)\n*   **Conf:** High\n*   **Uncertainty:** None.",
+    "timestamp_end": "2026-07-07 04:58:54"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_5",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 5,
+          "start_time": 0.0,
+          "end_time": 7.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of: 1) Green herbs (whole/chopped/minced), 2) Orange and Lemon (whole/cut/zested), 3) Glass bowl (chicken state), 4) Red grater (used/unused). Return compact rows: object/state/window/conf/uncertainty."
+    },
+    "timestamp_start": "2026-07-07 04:57:14",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 5 (0.0s to 7.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of: 1) Green herbs (whole/chopped/minced), 2) Orange and Lemon (whole/cut/zested), 3) Glass bowl (chicken state), 4) Red grater (used/unused). Return compact rows: object/state/window/conf/uncertainty.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"citrus\": {\n      \"5\": \"whole\",\n      \"4\": \"whole/halved on board\",\n      \"1\": \"zested/juiced\"\n    },\n    \"herbs\": {\n      \"5\": \"being chopped\",\n      \"4\": \"on top of chicken then mixed\",\n      \"1\": \"in bowl\",\n      \"3\": \"in marinade\"\n    },\n    \"chicken_bowl\": {\n      \"5\": \"raw chunks\",\n      \"4\": \"dry->wet with oil/pepper\",\n      \"1\": \"with citrus\",\n      \"3\": \"fully marinated\"\n    },\n    \"skewers\": {\n      \"3\": \"being threaded raw\",\n      \"2\": \"cooking on grill\"\n    },\n    \"grill_pan\": {\n      \"2\": \"oiled then cooking skewers\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states raw->cooked\",\n    \"container fill/empty\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"ingredient integration\"\n  ],\n  \"uncertain\": [\n    \"All segment states pending Layer1\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Green herbs | chopped/minced (being actively minced) | 1-16 | High | Low\nOrange and Lemon | whole | 2-16 | High | Low\nGlass bowl | raw chicken chunks | 2-16 | High | Low\nRed grater | unused (clean) | 2-16 | High | Low",
+    "timestamp_end": "2026-07-07 04:58:05"
+  }
+]

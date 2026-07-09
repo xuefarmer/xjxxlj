@@ -1,0 +1,474 @@
+=== Master Dialogue Log (Readable) ===
+Generated: 2026-07-06 13:07:25
+
+--- [Step 0] SYSTEM ---
+You are a cross-video reasoning controller. Use one unified mechanism for all CrossVid tasks. Task-specific notes only change how you interpret the input schema, what visual evidence you ask the VLM to inspect, and the final answer format. They do not change the overall workflow.
+
+## Hard Rules
+1. Output exactly one valid JSON object per turn. No text outside JSON.
+2. Use visual tools before answering. Never answer from task priors, recipe/movie common sense, or option wording alone.
+3. Preserve every provided video/view/segment index. Do not drop, duplicate, or invent indices.
+4. Use `context_update` to maintain compact memory. Prefer short structured evidence over prose.
+   - `context_update` memory must be grounded in prior tool results or explicit uncertainty/planning derived from them. Do not store invented observations, guessed final answers, placeholder object states, or speculative candidate orders as if they were evidence.
+   - Compress evidence into short cells. Do not copy full VLM prose into memory.
+5. If evidence is insufficient, focus or backtrack instead of guessing.
+6. Final answers must obey the task contract exactly.
+
+## Output Budget
+- Every assistant turn must be compact JSON only. No markdown, no prose outside JSON.
+- `thought`: 1-2 short sentences. Say why this action is needed; do not narrate the full reasoning chain or restate prior context.
+- For `answer`, `thought` may be slightly longer but must include only decisive evidence, key rejected counterexample(s), and `confidence_score: N/10`.
+- `context_update`: keep existing field names, but values must be short phrases, compact arrays, or small JSON tables. Do not duplicate the same evidence across multiple fields.
+- Keep `context_update` when the action schema expects it; omit only empty/no-change subfields inside it. Prefer IDs and labels over sentences.
+
+## Tools
+- `batch_observe`: plan multiple independent single-video observations.
+  - Use this for Layer1 and broad Layer2 scans on standard video tasks.
+  - Each batch item uses `video_index`, `start_time`, `end_time`, `num_frames`, and `focus_prompt`.
+  - For UAV/image-folder tasks, batch items may use `start_frame` and `end_frame` instead of `start_time` and `end_time`.
+  - The executor will automatically split long windows into chunks to maintain frame density. This is important; do not replace broad long-video scans with one sparse multi-video `observe`.
+- `observe`: visual observation tool.
+  - Standard videos use `video_index`, `start_time`, `end_time`, `num_frames`.
+  - UAV/image-folder tasks use `video_index`, `start_frame`, `end_frame`, `num_frames`.
+  - `focus_prompt` must begin with one of: `MODE=layer1`, `MODE=layer2`, `MODE=focus`, `MODE=focus BACKTRACK`.
+  - PSS may use compatibility names: `MODE=layer1_caption` and `MODE=layer2_state_scan`; these are visual modes, not `get_caption` calls.
+- `get_caption`: disabled. Never call it.
+- `answer`: submit final answer.
+
+## Required JSON Action Schema
+Every assistant turn must be a tool/action command object, not a direct memory dump.
+
+Valid top-level actions:
+- `batch_observe`
+- `observe`
+- `answer`
+
+For `batch_observe`, use exactly this top-level shape:
+```json
+{
+  "action": "batch_observe",
+  "thought": "Short reason for this action.",
+  "batch": [
+    {
+      "video_index": 1,
+      "start_time": 0,
+      "end_time": 60,
+      "num_frames": 12,
+      "focus_prompt": "MODE=layer1. ..."
+    }
+  ],
+  "context_update": {
+    "uncertain": ["..."],
+    "dimensions_to_compare": ["..."]
+  }
+}
+```
+For UAV/image-folder tasks, replace `start_time`/`end_time` in batch items with `start_frame`/`end_frame`.
+
+For `observe`, use exactly this top-level shape:
+```json
+{
+  "action": "observe",
+  "thought": "Short reason for this action.",
+  "params": {
+    "observation_targets": [
+      {"video_index": 1, "start_time": 0, "end_time": 60, "num_frames": 10}
+    ],
+    "focus_prompt": "MODE=layer1. ..."
+  },
+  "context_update": {
+    "uncertain": ["..."],
+    "dimensions_to_compare": ["..."]
+  }
+}
+```
+
+For `answer`, use:
+```json
+{
+  "action": "answer",
+  "thought": "Decisive evidence; key rejection; confidence_score: N/10.",
+  "final_answer": "..."
+}
+```
+
+Never put `layer1_done`, `event_memory`, `object_memory`, `temporal_index`, `candidate_targets`, or similar memory fields at the top level. Put them only inside `context_update`.
+Do not invent visual observations before a visual tool result. On the first turn, standard multi-video tasks usually need a `batch_observe` Layer1 call; UAV/image-folder and direct pair-comparison tasks may use `observe`.
+
+## Unified Workflow
+Always solve through four stages:
+
+### Layer1: broad independent perception
+Goal: build an unbiased inventory for every relevant video/view/segment.
+- First visual call for standard video tasks should usually be `batch_observe` covering all inputs independently. This preserves long-video chunking and broad coverage.
+- For standard multi-video tasks, Layer1 should use `batch_observe` unless the task contract explicitly says a side-by-side `observe` is required. Do not replace a full-video chunked scan with one sparse `observe`.
+- Use `observe` for Layer1 only when targets must be viewed side-by-side, when the task uses UAV/image-folder frame indices, or when clips are already short enough that one call has adequate coverage.
+- For broad standard-video Layer1 scans, set `num_frames = max(16, round(duration_seconds / 5))` unless the task contract says otherwise. The executor will split long windows into chunks to maintain frame density, so full-video Layer1 chunks should normally run at 16 frames each.
+- Ask the VLM to describe each target independently; do not ask it to decide the final answer yet.
+- The Layer1 `focus_prompt` must be task-aware: name the query, relevant option semantics, and the evidence dimensions from the task contract.
+- Output memory should be compact:
+  - `layer1_done`: true
+  - `event_memory`: only decisive events; one short cell per target
+  - `object_memory`: key objects and states only; avoid background inventory
+  - `temporal_index`: only useful windows; keep field names `window`, `event`, `key_objects`, `visible_state`, `why_it_matters`, `confidence`, but keep each value short
+  - `preliminary_answer`: the best current answer/order/table if one can be inferred from Layer1, otherwise null
+  - `preliminary_confidence`: integer 1-10 for that preliminary answer, where 8+ means the evidence is already strong enough to consider a direct answer
+  - `confidence_basis`: short evidence labels, not a paragraph
+  - `blocking_uncertainties`: exact missing facts only
+  - `irrelevant_windows`: id + one short reason
+  - `candidate_targets`: id + short reason
+  - `low_value_targets`: id + one short reason
+  - `uncertain`: unresolved facts only
+  - `dimensions_to_compare`: exact visual dimensions, max short phrases
+
+### Layer2: selective cross-analysis and targeted re-observation
+Goal: use Layer1 to avoid wasting VLM calls and build a comparison table.
+- Layer2 is normally expected before `answer`, but it is a supplemental verifier rather than a replacement for Layer1 evidence.
+- If Layer1 already contains high-confidence, directly visible, decisive evidence for a complete final answer and the close alternatives/relations are explicitly rejected, the controller may answer after Layer1 only when `preliminary_confidence >= 8`. Explain the decisive target/window/table/order evidence and include `confidence_score: N/10` in `thought`.
+- Otherwise, run one Layer2 re-check on the plausible candidate(s), close negative(s), or decisive window(s) to verify the conclusion.
+- First analyze Layer1 results yourself. Do not blindly send every chunk/video back to the VLM.
+- Layer2 may re-check all videos/chunks only when Layer1 leaves every one of them genuinely answer-relevant; then the thought must give a per-video/chunk reason. Otherwise select only the Layer1 chunks whose evidence is missing, conflicting, ambiguous, or capable of changing the answer.
+- Carry Layer1's `preliminary_answer`, `preliminary_confidence`, `confidence_basis`, and `blocking_uncertainties` into Layer2. Layer2 should verify or repair the current best hypothesis rather than inventing an unrelated or opposite hypothesis.
+- When forming a Layer2/focus hypothesis, start from the current leading answer/edge and the closest explicitly named alternative. Do not choose the reverse relation as the main hypothesis unless Layer1 evidence made that reverse relation plausible.
+- Prune targets that are both high-confidence and irrelevant. Keep them in `low_value_targets` with the reason, but do not re-observe them unless a later contradiction appears.
+- Re-observe only:
+  - plausible candidates;
+  - targets with missing decisive state;
+  - targets needed as a comparison anchor;
+  - edge cases that could change the answer.
+- Layer2 must not simply increase frame count. Prefer changing the attention/checklist over adding frames.
+- Layer2 must cite the Layer1 evidence or chunk label that caused each target/window to be selected. A Layer2 call that merely repeats the Layer1 full scan without this selection rationale is invalid.
+- For standard-video retained targets, use `batch_observe` when re-checking independent videos or long windows. Use `observe` only for side-by-side comparison or short retained windows where direct comparison is needed.
+- When Layer2 prunes a few irrelevant chunks from a long video, keep the remaining chunk windows and re-check only those. Do not collapse a long retained video into one sparse 8-12 frame `observe`.
+- Use similar or slightly lower frame density than Layer1 for broad retained scans, but preserve chunked coverage. The point is to drop unnecessary chunks, not to stop chunking altogether.
+- The Layer2 prompt must include a concrete checklist derived from Layer1, not generic "look carefully" instructions.
+- Use Layer1's `temporal_index` to choose retained windows. If Layer1 did not localize a needed event, Layer2 should ask the VLM to produce or refine that index before broad high-frame focus.
+- When re-checking a Layer1 chunk, copy the exact seconds from that chunk label. For example, if Layer1 says `[Chunk 2/7 (85s-171s)]`, the Layer2 target must use that same `[85, 171]` window, not the next chunk. If a Layer2 result contradicts Layer1, first verify that the same video and same time window were inspected before overturning Layer1 evidence.
+- Do not overturn a high-confidence Layer1 finding using a Layer2 result from a different window, lower-coverage sample, or generic absence statement. Use Layer2 contradictions to refine or request focused verification unless they inspect the same evidence window with stronger direct evidence.
+- Required memory update:
+  - `layer2_done`: true
+  - `comparison_table`: target -> decisive state/evidence/uncertainty as short cells
+  - `temporal_index`: refined useful windows only
+  - `irrelevant_windows`: id + reason
+  - `confirmed`: max short findings; avoid repeating `comparison_table`
+  - `pruned_targets`: id + reason
+  - `candidate_targets`: id + reason
+  - `uncertain`: exact unresolved facts/relations
+  - `focus_plan`: only if needed; max 2-3 short calls
+
+### Focus Compare: predict -> observe -> reply
+Goal: resolve one concrete uncertainty with denser evidence.
+- Before each focus call, state a hypothesis and a competing alternative in `thought`.
+- Predict what visual evidence should appear for each interpretation.
+- Focus only the minimal necessary targets/chunks: usually 1-2 targets, never broad full scans.
+- Focus normally uses `observe`, because it compares specific windows side-by-side or inspects one narrow window densely.
+- Increase frame density over Layer2 for the same time/window because this is detailed verification:
+  - standard video focus: usually 16-32 frames per target;
+  - short clips or PSS pair focus: 12-16 can be enough;
+  - UAV focus: 24-32 frames per synchronized view when tracking/occlusion matters.
+- Narrow the time/frame window. Prefer exact candidate chunks found in Layer1/Layer2 over whole-video focus.
+- Every focus call should cite the `temporal_index` window it is using. If no indexed window exists, first use Layer2 to locate one unless the full clip is already very short.
+- Focus prompts must be symmetric: define evidence for hypothesis A and evidence for hypothesis B, then ask for contradiction checks.
+- Do not infer cross-target chronology from display order. The executor concatenates frames only for display; preserve local time/window evidence and use visible state transitions for temporal reasoning.
+- If focus contradicts earlier memory, use `MODE=focus BACKTRACK` and update `resolved_uncertain`.
+- After focus, update:
+  - `confirmed` or `resolved_uncertain`;
+  - remaining `uncertain`;
+  - `object_memory` / `comparison_table`;
+  - whether another focus is needed before answering.
+
+### Answer
+Answer only when the decisive evidence is explicit enough for the task.
+- A direct answer after Layer1 requires `preliminary_confidence >= 8`, complete directly visible evidence, and no unresolved close candidate/relation.
+- If answering after Layer1, cite the decisive target/window, option table, interval, or order graph and write final `confidence_score: N/10` in `thought`.
+- If confidence is 7/10 or lower, or if no numeric confidence is available, do not answer from Layer1; run Layer2/focus.
+- Otherwise, run Layer2/focus before answering.
+- `thought` must summarize only decisive evidence and close rejections.
+- `final_answer` must contain only the required answer format from the task contract.
+- For multiple-select and ordering tasks, count/check all required indices or letters before answering.
+
+## General VLM Prompt Style
+Every visual `focus_prompt` should be short but specific:
+- start with mode;
+- name the task-specific query;
+- name the targets/options being checked;
+- list 4-8 decisive visual dimensions;
+- ask for uncertainty explicitly;
+- avoid asking the VLM for the final answer unless the task is a direct VLM comparison.
+- ask the VLM to report approximate time/frame locations for decisive events when it can infer them from frame mapping, so the controller can update `temporal_index`.
+- ask for concise key evidence only: task-relevant visible objects/actions/states, approximate time/window, relation to query/options, confidence, and uncertainty. Avoid long recipe narration, background details, scene atmosphere, unrelated objects, or speculative cross-video conclusions.
+- For a single-video `batch_observe` item, never ask the VLM to decide whether something appears in other videos. Ask only for evidence inside that one video/chunk; the controller compares across videos after all per-video evidence returns.
+- Require compact VLM output: "Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows unless the task requires more. No markdown sections, no full reasoning, no final answer unless the task explicitly requires direct visual comparison. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+
+Good Layer2 wording:
+`MODE=layer2. Re-check only these cells: [specific object/state dimensions]. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology from display order; preserve local time/window evidence. No final answer or prose.`
+
+Good Focus wording:
+`MODE=focus. Inspect only [objects/actions/landmarks] and [task-specific dims]. Return compact rows: object/action/state/window/query_link/conf/uncertainty. Do not infer cross-target chronology from display order; preserve local time/window evidence.`
+
+## Temporal Retrieval Index
+Maintain a lightweight retrieval index so later stages focus on specific chunks instead of full videos.
+- For standard videos, use seconds: `[start_time, end_time]`.
+- For UAV/image-folder tasks, use frame indices: `[start_frame, end_frame]`.
+- For PSS, each clipped segment's local time starts at 0; record the local window inside that segment.
+- For PSS and other shuffled-video tasks, `temporal_index` windows are local retrieval pointers only. They are not global timestamps and must never be compared across different `video_index` values to infer order.
+- Index only useful windows:
+  - `candidate_windows`: likely answer-relevant moments;
+  - `decisive_moments`: narrow events that could prove/reject an option or ordering edge;
+  - `irrelevant_windows`: windows already checked and unlikely to matter.
+- Each indexed item should keep the original field names: target/video/view/segment id, `window`, `event`, `key_objects`, `visible_state`, `why_it_matters`, and `confidence` (`high`, `medium`, or `low`). Compress field values, not field names.
+- When a VLM result is chunked by executor as "part 2/5, time 88s-176s", preserve that chunk range in `temporal_index` even if the exact event time is approximate.
+
+Example:
+```json
+"temporal_index": {
+  "video2": [
+    {
+      "window": [72, 96],
+      "event": "possible detach/reinstall",
+      "key_objects": ["base", "chassis"],
+      "visible_state": "part removed then reattached",
+      "why_it_matters": "could decide option A",
+      "confidence": "medium"
+    }
+  ]
+}
+```
+
+## Negative Evidence Rules
+Be precise about absence.
+- Use `ABSENT` only when the sampled window covers the relevant stage/location and the object/action should be visible if present.
+- Use `NOT_VISIBLE_IN_THESE_FRAMES` when the current frames do not show it, but the sampled window may not cover the relevant moment or camera view.
+- Use `UNCERTAIN` when the detail would affect the answer and the frames are ambiguous, occluded, blurred, too sparse, or outside the relevant window.
+- Do not convert `NOT_VISIBLE_IN_THESE_FRAMES` into a global negative conclusion. If it matters, add a `temporal_index` gap and focus plan.
+- If earlier context reported an object/action but current frames do not show it, write `NOT_VISIBLE_IN_THESE_FRAMES - possibly in another indexed window` rather than directly contradicting prior evidence.
+
+## Captions [DISABLED]
+- `get_caption` is disabled. Never call it.
+- Visual state evidence remains primary. If evidence is ambiguous, use focus/backtrack visually.
+
+## Common Failure Modes To Avoid
+- Re-observing every target in Layer2 after Layer1 already ruled some out.
+- Using higher frame count in Layer2 instead of a better checklist.
+- Using broad focus windows instead of the specific uncertain chunk.
+- Selecting an option because it sounds plausible but the option-specific action/state is not visible.
+- Treating absent in sampled frames as globally absent without noting possible frame coverage limits.
+- Reversing a visible state chain.
+- Letting non-visual assumptions replace visual confirmation.
+
+## Task Contract: PSS
+Task: restore shuffled segments from one cooking video to chronological order.
+
+Input semantics:
+- Each provided `video_index` is a clipped segment from the same original video.
+- The answer must order all segment indices exactly once.
+- Segment labels are arbitrary shuffled indices; do not assume numeric order is chronological.
+
+Evidence dimensions:
+- event role: prep, transformation, transfer, cooking, finishing, inspection;
+- operated object state chain: raw/cut/mixed/cooked/plated, wet/dry, full/empty, residue/depletion;
+- source and destination containers, tool contact, transfer traces;
+- quiet background cues that show before/after state;
+- state-transition graph built by the master from local visible rows.
+
+Workflow notes:
+- Layer1 scans every segment independently and must not infer final ordering yet. For executor compatibility, PSS Layer1 prompts must begin with `MODE=layer1_caption`.
+- Layer1 prompts must ask for object states explicitly, not only event roles. Use wording like: "Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion."
+- After Layer1 tool results, PSS must restore the cross-video memory mechanism before Layer2. Use `context_update` to store only evidence grounded in prior tool results. The primary PSS memory schema is object-centric:
+  `object_memory: {object_key: {video_index: visible_state}}`.
+  Example: `{"noodles": {"3": "raw/dry on plate", "2": "boiled soft strands in pan", "1": "mixed with sauce"}, "spinach": {"4": "fresh whole leaves", "2": "wilting with noodles", "1": "mixed into finished dish"}}`.
+- After Layer1, also store `preliminary_order`, `order_confidence` (integer 1-10), `confidence_basis`, and `blocking_uncertainties`. This is not a final answer; it is the current best state-transition graph that Layer2 must verify or repair.
+- For PSS, `order_confidence >= 8` means Layer2 should mostly verify the current graph and close alternatives. `order_confidence <= 7` means Layer2 should actively search for missing object bridges or contradictions.
+- Use `event_memory` only as secondary per-video notes. Do not make `object_memory` primarily video-centric, such as `{"video4": {"object": "spinach", "state_chain": [...]}}`; that structure overweights local clip-internal actions and causes wrong ordering.
+- After Layer1, identify recurring or decisive objects before choosing Layer2 targets: noodles/pasta, spinach/vegetables, sauce/red pot, oil, pan/pot/strainer, plate/bowl, cutting board, tongs, residue, empty/full containers. Track shared objects even when they appear only as background cues.
+- **Layer2 = Discriminative Evidence Reinspection.** Layer1 discovers shared objects/regions/events that recur across segments and may determine the order. Layer2 re-observes these linked evidence items at finer granularity to clarify their actual visible state in each segment. For executor compatibility, Layer2 prompts must begin with `MODE=layer2_state_scan`.
+- Layer2 is NOT hypothesis confirmation. Do NOT pass the Master's preliminary_order or expected states to the VLM. Ask the VLM to report what is actually visible for each linked evidence item: identity, presence/absence, count, position, state (raw/cooked, empty/filled, clean/dirty), source/destination, residue/depletion, and any difference from what was seen in Layer1.
+- Layer1 and Layer2 are mandatory before `answer`. Do not answer directly after Layer1; Layer2 clarifies the shared evidence that bridges segments.
+- Layer2 must inherit `preliminary_order`, `order_confidence`, `confidence_basis`, and `blocking_uncertainties` from Layer1 — these guide which evidence to prioritize, but remain internal to the Master and are not shown to the VLM.
+- After receiving Layer2 results, perform a contradiction check in `thought`: compare each segment's VLM-reported evidence against the hypothesized state-transition graph. If any evidence contradicts the hypothesized ordering, downgrade `order_confidence` and resolve via focus or caption before answering.
+- Layer2 may raise `order_confidence` only when new observations directly resolve a named item from `blocking_uncertainties` or reveal a missing object bridge. Repeated descriptions of already-known states are not sufficient.
+- **When answering, `order_confidence` (integer 1-10) must be a key in `context_update`**, not only in `thought`. The executor checks `context_update` for this value. Without it, the answer will be rejected regardless of reasoning quality.
+- In Layer2 focus_prompt: do not ask the VLM for ordering, do not use words like "confirm", "verify", "should", or "expected". Ask for local visible evidence only. Example: "Look at this segment. Report the actual visible state of the white bowl: EMPTY / CONTAINS_SEPARATE_INGREDIENTS / MIXED / PLATED / NOT_VISIBLE. Also: is the cutting board present? If yes: CLEAN or HAS_RESIDUE? Report exactly what you see."
+- Layer2 frame count should stay equal to Layer1. Narrow the observation window to the informative chunk(s) where the evidence appears.
+- If two segments have the same coarse role, such as both showing combined cooking, do not order them arbitrarily. Use local visible cues such as ingredient amount, mixture integration, pan fullness, steam/browning, residue/depletion, utensil action, and whether a transfer has just occurred; if still tied after Layer2, run focus on that adjacent relation.
+- Do not assign a segment to early/middle/late order from a recipe label alone. Place it by visible state continuity: what objects are already present, what changes during the clip, what residue/depletion remains, and which later visible state can consume that result.
+- Focus is optional, not mandatory. If Layer2 gives a complete high-confidence state-transition graph with all necessary relations supported by visible object states, answer directly after Layer2.
+- Focus resolves one adjacent relation or state-chain conflict at a time with higher frame density than Layer2, usually 12-16 frames per compared segment.
+- Focus targets must come from `uncertain_visual_states`, `next_object_focus`, object-memory gaps, or contradictions in object states. Do not choose a focus pair merely because it appears adjacent in a guessed answer or because the executor might prefer a focus call.
+- Focus prompts must not ask the VLM to decide which segment is earlier, which hypothesis is supported, or whether Video A happens before Video B. Ask for per-target cells only: named object state, container fill/empty state, source/destination, residue/depletion, background object state, and uncertainty. The master compares the cells after the tool returns.
+- Do not write expected focus evidence that assumes one proposed order is true, such as "if A is before B, B should already contain X", unless that expectation is explicitly grounded in earlier tool output. Prefer neutral wording: "For each target, report whether object X is ABSENT, EMPTY/CLEAR, PARTLY_FILLED, FILLED_DARK, or NOT_VISIBLE."
+- When a focus call is needed, include the current leading relation and current overall order confidence in `thought`, but keep the VLM prompt neutral. Example: thought may say `leading_relation=5 before 3, alternative=3 before 5, order_confidence=7/10`; the VLM prompt should ask only for local object-state cells in Video 5 and Video 3.
+- If focus contradicts a high-confidence Layer2 edge, do not immediately reverse the order. Use `MODE=focus BACKTRACK` or another neutral focus/caption call to verify the contradiction, then update `resolved_uncertain` and downgrade the old edge only if the new direct evidence is stronger.
+- After Layer2, do not answer if any adjacent relation in the proposed order is supported only by recipe common sense, "cooking logic", coarse role labels, or a generic idea of what usually happens first/last. Standalone components such as sauce, flame, garnish, dressing, chopping, mixing, and plating may appear in non-obvious positions in the source video.
+- If local rows do not give direct visible continuity for a complete total order, run `observe` focus on the smallest tied set, normally 2 segments, and ask only for visible differences in local state maturity, transfer completion, ingredient amount, residue/depletion, or background object state. If the focus still cannot prove the edge, mark the tie in `thought`; do not pretend it is proven by recipe logic.
+- In focus and Layer2, never use the concatenated frame order or frame numbers from different video_index values as chronological evidence. `Frames 1-16 from Video A` appearing before `Frames 17-32 from Video B` only means the executor packed Video A before Video B in the prompt.
+- Compare only visible object-lifecycle evidence: raw/cooked, empty/filled, separated/mixed, source/destination transfer, residue/depletion, object presence/absence, completion marks, background vessel state, and contradictions.
+- Do not ask the VLM to decide ordering from "frame-level timestamps" across videos, hypothesized cross-segment orders, or recipe logic. The VLM reports local object states only; cross-segment dependency reasoning is master-only.
+- Before answering, form an explicit state-transition graph from `object_memory`, with relations like `A before B: object_key state in A visibly precedes/feeds/contradicts state in B`. List unresolved ties, and run caption/focus for any tie that changes the final order. Then check every segment is placed exactly once.
+- The final `thought` must include one overall `confidence_score: N/10`. This is the confidence that the complete final order is correct, not confidence in a single easy relation.
+- Calibrate `confidence_score` conservatively: it may be `>=8` only when the complete order is visually supported and no critical relation, object-chain conflict, or close same-role tie remains unresolved. If any necessary relation is based on recipe common sense, a coarse role label, a conflicting object chain, or an unresolved tie, set `confidence_score <= 7` and do not answer; call caption/focus instead.
+- Before any final `answer`, include an `ORDER_AUDIT` in `thought` with four fields: `supporting_chains`, `conflicting_chains`, `unresolved_relations`, and `confidence_change`. `confidence_change` must explain why the final score is higher, lower, or unchanged compared with Layer1 `order_confidence`.
+- If `conflicting_chains` or `unresolved_relations` is non-empty, the final `confidence_score` must be `<=7` unless a later caption/focus result directly resolves each listed item.
+- The final `thought` must also include an `EDGE_TABLE` for evidence audit, but do not assign per-edge confidence scores. Each relation may use one of these evidence types: `direct_transfer`, `same_object_state_progression`, `visible_completion_to_next_start`, `caption_temporal_cue`, or `focused_visual_tie_break`. Do not use evidence types like `recipe_logic`, `common_sense`, `typical_order`, `coarse_role_only`, or `sounds_later`.
+
+Final answer:
+- `final_answer` is a string like `"3->5->4->2->1"` containing every segment index exactly once.
+
+
+============================================================
+
+--- [Step 1] USER ---
+[
+  {
+    "type": "text",
+    "text": "{\"query\": \"Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.\", \"videos\": [{\"video_index\": 1, \"duration_seconds\": 11.0}, {\"video_index\": 2, \"duration_seconds\": 29.0}, {\"video_index\": 3, \"duration_seconds\": 7.0}, {\"video_index\": 4, \"duration_seconds\": 15.0}], \"hard_rule\": \"For any full-video observation, set start_time=0 and end_time to the video's duration_seconds value (provided above). Do NOT copy end_time from prompt examples — use the actual duration of each video.\"}"
+  }
+]
+
+============================================================
+
+--- [Step 2] ASSISTANT ---
+{
+  "action": "batch_observe",
+  "thought": "Layer1: scan all 4 segments independently to build an unbiased inventory of objects, actions, and states.",
+  "batch": [
+    {
+      "video_index": 1,
+      "start_time": 0,
+      "end_time": 11.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool, report: identity, state (raw/cooked, fresh/wilted, whole/cut, dry/wet, empty/filled, separate/mixed, clean/dirty, residue/depletion), position, and any action performed. Report approximate time locations for decisive events. Return compact evidence rows only. Labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    {
+      "video_index": 2,
+      "start_time": 0,
+      "end_time": 29.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool, report: identity, state (raw/cooked, fresh/wilted, whole/cut, dry/wet, empty/filled, separate/mixed, clean/dirty, residue/depletion), position, and any action performed. Report approximate time locations for decisive events. Return compact evidence rows only. Labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    {
+      "video_index": 3,
+      "start_time": 0,
+      "end_time": 7.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool, report: identity, state (raw/cooked, fresh/wilted, whole/cut, dry/wet, empty/filled, separate/mixed, clean/dirty, residue/depletion), position, and any action performed. Report approximate time locations for decisive events. Return compact evidence rows only. Labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    {
+      "video_index": 4,
+      "start_time": 0,
+      "end_time": 15.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. For each visible object/tool, report: identity, state (raw/cooked, fresh/wilted, whole/cut, dry/wet, empty/filled, separate/mixed, clean/dirty, residue/depletion), position, and any action performed. Report approximate time locations for decisive events. Return compact evidence rows only. Labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    }
+  ],
+  "context_update": {
+    "uncertain": ["all object states and transitions across segments"],
+    "dimensions_to_compare": ["ingredient states (raw/cooked/cut/mixed)", "container states (empty/filled/residue)", "tool usage", "transfer events", "background cues"]
+  }
+}
+
+============================================================
+
+--- [Step 3] TOOL ---
+[
+  {
+    "type": "text",
+    "text": "{\"call_id\": \"batch_1\", \"tool_name\": \"active_perception\", \"result\": \"{\\\"1\\\": \\\"[\\\\n  {\\\\\\\"objects\\\\\\\": \\\\\\\"Chef\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"Standing at counter, preparing ingredients\\\\\\\", \\\\\\\"state\\\\\\\": \\\\\\\"Wearing white uniform and hat\\\\\\\", \\\\\\\"window\\\\\\\": \\\\\\\"0.0s - 5.0s\\\\\\\", \\\\\\\"query_link\\\\\\\": \\\\\\\"Frames 1-7\\\\\\\", \\\\\\\"conf\\\\\\\": \\\\\\\"HIGH\\\\\\\", \\\\\\\"uncertainty\\\\\\\": \\\\\\\"None\\\\\\\"},\\\\n  {\\\\\\\"objects\\\\\\\": \\\\\\\"Large glass bowl\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"Holding ingredients\\\\\\\", \\\\\\\"state\\\\\\\": \\\\\\\"Filled with shredded carrots (orange) and chopped red onions/shallots (white/purple)\\\\\\\", \\\\\\\"window\\\\\\\": \\\\\\\"0.0s - 11.0s\\\\\\\", \\\\\\\"query_link\\\\\\\": \\\\\\\"Frames 1-16\\\\\\\", \\\\\\\"conf\\\\\\\": \\\\\\\"HIGH\\\\\\\", \\\\\\\"uncertainty\\\\\\\": \\\\\\\"None\\\\\\\"},\\\\n  {\\\\\\\"objects\\\\\\\": \\\\\\\"Small glass bowls (multiple)\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"Holding ingredients\\\\\\\", \\\\\\\"state\\\\\\\": \\\\\\\"Filled with various ingredients (dark liquid, white powder/granules, chopped items); one becomes empty after pouring\\\\\\\", \\\\\\\"window\\\\\\\": \\\\\\\"0.0s - 11.0s\\\\\\\", \\\\\\\"query_link\\\\\\\": \\\\\\\"Frames 1-16\\\\\\\", \\\\\\\"conf\\\\\\\": \\\\\\\"HIGH\\\\\\\", \\\\\\\"uncertainty\\\\\\\": \\\\\\\"Exact contents of all small bowls uncertain\\\\\\\"},\\\\n  {\\\\\\\"objects\\\\\\\": \\\\\\\"Chopped red onions/shallots\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"Being added to large bowl\\\\\\\", \\\\\\\"state\\\\\\\": \\\\\\\"Chopped, raw\\\\\\\", \\\\\\\"window\\\\\\\": \\\\\\\"0.0s - 5.0s\\\\\\\", \\\\\\\"query_link\\\\\\\": \\\\\\\"Frames 1-5, 9\\\\\\\", \\\\\\\"conf\\\\\\\": \\\\\\\"HIGH\\\\\\\", \\\\\\\"uncertainty\\\\\\\": \\\\\\\"None\\\\\\\"},\\\\n  {\\\\\\\"objects\\\\\\\": \\\\\\\"Shredded carrots\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"Base ingredient in large bowl\\\\\\\", \\\\\\\"state\\\\\\\": \\\\\\\"Shredded, raw, orange\\\\\\\", \\\\\\\"window\\\\\\\": \\\\\\\"0.0s - 11.0s\\\\\\\", \\\\\\\"query_link\\\\\\\": \\\\\\\"Frames 1-16\\\\\\\", \\\\\\\"conf\\\\\\\": \\\\\\\"HIGH\\\\\\\", \\\\\\\"uncertainty\\\\\\\": \\\\\\\"None\\\\\\\"},\\\\n  {\\\\\\\"objects\\\\\\\": \\\\\\\"Plate with cooked food\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"Sitting on counter\\\\\\\", \\\\\\\"state\\\\\\\": \\\\\\\"Cooked, plated (looks like a burger or sandwich)\\\\\\\", \\\\\\\"window\\\\\\\": \\\\\\\"0.0s - 5.0s\\\\\\\", \\\\\\\"query_link\\\\\\\": \\\\\\\"Frames 1-7\\\\\\\", \\\\\\\"conf\\\\\\\": \\\\\\\"MEDIUM\\\\\\\", \\\\\\\"uncertainty\\\\\\\": \\\\\\\"Exact dish identity uncertain\\\\\\\"},\\\\n  {\\\\\\\"objects\\\\\\\": \\\\\\\"Small fluted bowl (held in close-up)\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"Being shaken/poured over large bowl\\\\\\\", \\\\\\\"state\\\\\\\": \\\\\\\"Being emptied\\\\\\\", \\\\\\\"window\\\\\\\": \\\\\\\"8.0s - 11.0s\\\\\\\", \\\\\\\"query_link\\\\\\\": \\\\\\\"Frames 15-16\\\\\\\", \\\\\\\"conf\\\\\\\": \\\\\\\"HIGH\\\\\\\", \\\\\\\"uncertainty\\\\\\\": \\\\\\\"Contents uncertain (likely salt, sugar, or liquid)\\\\\\\"}\\\\n]\\\", \\\"2\\\": \\\"Based on the visual evidence from Video 2 (Frames 1-16, 0.0s to 29.0s), here is the description of the cooking segment in compact evidence rows.\\\\n\\\\n**Decisive Events Timeline:**\\\\n*   **~0.0s - 5.0s (Frames 1-3):** Spreading white cream on bread.\\\\n*   **~8.0s - 11.0s (Frames 5-6):** Placing lettuce leaves.\\\\n*   **~18.0s (Frame 10):** Placing onion rings.\\\\n*   **~23.0s - 25.0s (Frames 13-14):** Placing cooked chicken breast.\\\\n*   **~27.0s - 29.0s (Frames 15-16):** Placing jalapeño slices.\\\\n\\\\n**Evidence Rows:**\\\\n\\\\n*   **objects**: Bread (baguette/sub roll)\\\\n    *   **state**: Cut lengthwise, toasted/baked, one half has dark residue (sun-dried tomatoes/olives) and white spread.\\\\n    *   **position**: Wooden cutting board.\\\\n    *   **action**: Being assembled as sandwich base.\\\\n    *   **window**: Frames 1-16 (0.0s - 29.0s)\\\\n    *   **query_link**: Video 2\\\\n    *   **conf**: High\\\\n    *   **uncertainty**: Low\\\\n\\\\n*   **objects**: White Cream (mayonnaise/cream cheese)\\\\n    *   **state**: Creamy, white, filled in small glass bowl, then spread.\\\\n    *   **position**: Glass bowl -> Bread surface.\\\\n    *   **action**: Spread onto bread using a knife/utensil.\\\\n    *   **window**: Frames 1-3 (0.0s - 5.0s)\\\\n    *   **query_link**: Video 2\\\\n    *   **conf**: High\\\\n    *   **uncertainty**: Low\\\\n\\\\n*   **objects**: Lettuce\\\\n    *   **state**: Fresh, green leaves, raw.\\\\n    *   **position**: Counter/Hand -> Bread surface.\\\\n    *   **action**: Placed on top of the spread bread.\\\\n    *   **window**: Frames 5-6, 10-16 (8.0s - 29.0s)\\\\n    *   **query_link**: Video 2\\\\n    *   **conf**: High\\\\n    *   **uncertainty**: Low\\\\n\\\\n*   **objects**: Onion Rings\\\\n    *   **state**: Raw, white, sliced into rings.\\\\n    *   **position**: Hand -> On top of lettuce.\\\\n    *   **action**: Placed on the sandwich.\\\\n    *   **window**: Frame 10 (approx. 18.0s)\\\\n    *   **query_link**: Video 2\\\\n    *   **conf**: High\\\\n    *   **uncertainty**: Low\\\\n\\\\n*   **objects**: Chicken Breast\\\\n    *   **state**: Cooked, seasoned (brown spots), whole piece.\\\\n    *   **position**: White oval plate (Frames 1-12) -> On top of lettuce/onions (Frames 13-16).\\\\n    *   **action**: Transferred from plate to sandwich.\\\\n    *   **window**: Frames 1-16 (0.0s - 29.0s)\\\\n    *   **query_link**: Video 2\\\\n    *   **conf**: High\\\\n    *   **uncertainty**: Low (Transfer confirmed visually)\\\\n\\\\n*   **objects**: Jalapeños\\\\n    *   **state**: Green, sliced rings, raw or pickled.\\\\n    *   **position**: Hand -> On top of chicken.\\\\n    *   **action**: Placed as final topping.\\\\n    *   **window**: Frames 15-16 (27.0s - 29.0s)\\\\n    *   **query_link**: Video 2\\\\n    *   **conf**: High\\\\n    *   **uncertainty**: Low\\\\n\\\\n*   **objects**: Wooden Cutting Board\\\\n    *   **state**: Clean/dry surface with some residue.\\\\n    *   **position**: Center of workspace.\\\\n    *   **action**: Support surface for assembly.\\\\n    *   **window**: Frames 1-16\\\\n    *   **query_link**: Video 2\\\\n    *   **conf**: High\\\\n    *   **uncertainty**: Low\\\\n\\\\n*   **objects**: Knife/Spreader\\\\n    *   **state**: Metal, dirty with cream residue.\\\\n    *   **position**: Hand -> Resting near plate.\\\\n    *   **action**: Used to spread cream.\\\\n    *   **window**: Frames 1-3, 10-16 (visible resting)\\\\n    *   **query_link**: Video 2\\\\n    *   **conf**: High\\\\n    *   **uncertainty**: Low\\\", \\\"3\\\": \\\"- **objects**: Chef, **action**: Assembling sandwich, **state**: Standing, wearing white uniform and tall hat, using tongs, **window**: 0.0-7.0s, **query_link**: null, **conf**: High, **uncertainty**: None.\\\\n- **objects**: Baguette sandwich (bread, lettuce, onion rings), **action**: Being filled, **state**: Open-faced on wooden board, layered with lettuce and onion rings, receiving carrots, **window**: 0.0-7.0s, **query_link**: null, **conf**: High, **uncertainty**: Exact bread type (baguette vs sub) slightly uncertain but likely baguette.\\\\n- **objects**: Shredded carrots, **action**: Transferred from bowl to sandwich, **state**: Raw, shredded, orange, piled on top of onion rings, **window**: 1.5-5.5s (close-up), **query_link**: null, **conf**: High, **uncertainty**: None.\\\\n- **objects**: Glass bowl (salad mix), **action**: Source of carrots, **state**: Contains lettuce and shredded carrots, partially depleted as carrots are removed, **window**: 0.0-7.0s, **query_link**: null, **conf**: High, **uncertainty**: None.\\\\n- **objects**: Metal tongs, **action**: Gripping and placing carrots, **state**: In use, holding shredded carrots, **window**: 1.5-5.5s, **query_link**: null, **conf**: High, **uncertainty**: None.\\\\n- **objects**: Small glass bowls (row of 4-5), **action**: Stationary, **state**: Filled with various ingredients (sauces/chopped items), arranged on counter, **window**: 0.0-7.0s, **query_link**: null, **conf**: Medium, **uncertainty**: Specific contents of small bowls are unclear due to distance.\\\\n- **objects**: Wooden cutting board, **action**: Support surface, **state**: Holding the open sandwich, **window**: 0.0-7.0s, **query_link**: null, **conf**: High, **uncertainty**: None.\\\", \\\"4\\\": \\\"| objects | action | state | window | query_link | conf | uncertainty |\\\\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\\\\n| Chef | Standing, reaching for ingredients, preparing food | Wearing white uniform, tall hat, gloves (visible in wide shot) | 0.0s - 12.0s | - | high | None |\\\\n| Bread (2 pieces) | Being brushed with liquid | Toasted/grilled, long, flat, on wooden board | 12.0s - 15.0s | - | high | Exact bread type (ciabatta/baguette) |\\\\n| Small glass bowl | Held, source of liquid | Filled with dark reddish-brown liquid (sauce/vinegar) | 12.0s - 15.0s | - | high | Exact liquid identity (balsamic/oil) |\\\\n| Brush | Brushing bread surface | Wet with dark sauce | 12.0s - 15.0s | - | high | None |\\\\n| Ingredient bowls (multiple) | Stationary on counter | Filled with red (tomatoes?), green (herbs?), white (cheese/cream?) substances | 0.0s - 12.0s | - | high | Exact ingredient identity |\\\\n| Plate with meat | Stationary in foreground | Cooked, seasoned chicken breast | 0.0s - 15.0s | - | high | None |\\\\n| Wooden board | Supporting bread | Clean, dry surface with bread on it | 0.0s - 15.0s | - | high | None |\\\\n\\\\n**Decisive Events:**\\\\n- **12.0s - 15.0s**: Close-up view shows the chef brushing a dark liquid (likely balsamic glaze or oil) onto a piece of toasted bread using a small brush.\\\"}\"}"
+  }
+]
+
+============================================================
+
+--- [Step 4] ASSISTANT ---
+{
+  "action": "batch_observe",
+  "thought": "Layer2: verify the key state transitions for the sandwich assembly and chicken plate to confirm the order 4->2->3->1.",
+  "batch": [
+    {
+      "video_index": 1,
+      "start_time": 0,
+      "end_time": 11.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer2_state_scan. Report: 1) Identity and state of the plated food on the counter (is it a fully assembled sandwich? what layers are visible?). 2) Exact contents of the large glass bowl (carrots, onions, lettuce, mixed?)."
+    },
+    {
+      "video_index": 2,
+      "start_time": 0,
+      "end_time": 29.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer2_state_scan. Report: 1) State of the white oval plate with chicken over time (full, partially empty, empty?). 2) Layers visible on the sandwich during assembly (cream, lettuce, onion, chicken, jalapeño)."
+    },
+    {
+      "video_index": 3,
+      "start_time": 0,
+      "end_time": 7.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer2_state_scan. Report: 1) Layers already present on the sandwich before carrots are added (lettuce, onion, chicken, jalapeño?). 2) Contents of the glass bowl used for the carrots."
+    },
+    {
+      "video_index": 4,
+      "start_time": 0,
+      "end_time": 15.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer2_state_scan. Report: 1) State of the white oval plate with chicken (full?). 2) Action on the bread and contents of the small bowl used for brushing."
+    }
+  ],
+  "context_update": {
+    "layer1_done": true,
+    "preliminary_order": "4->2->3->1",
+    "order_confidence": 7,
+    "confidence_basis": [
+      "V4: chicken on plate, bread brushed",
+      "V2: chicken transferred from plate to sandwich, layers added",
+      "V3: carrots added to sandwich with existing layers",
+      "V1: finished sandwich on counter, making side salad"
+    ],
+    "blocking_uncertainties": [
+      "Confirm V1 sandwich is fully assembled and matches V3 output",
+      "Confirm V2 chicken plate matches V4 chicken plate",
+      "Confirm V3 sandwich layers match V2 output"
+    ],
+    "object_memory": {
+      "chicken_plate": {"4": "full", "2": "transferred to sandwich"},
+      "sandwich": {"2": "assembled with cream, lettuce, onion, chicken, jalapeño", "3": "receives carrots", "1": "fully assembled on counter"},
+      "carrot_bowl": {"1": "carrots + onions", "3": "lettuce + carrots"}
+    }
+  }
+}
+
+============================================================
+
+--- [Step 5] TOOL ---
+[
+  {
+    "type": "text",
+    "text": "{\"call_id\": \"batch_2\", \"tool_name\": \"active_perception\", \"result\": \"{\\\"1\\\": \\\"Based on the visual evidence in the frames:\\\\n\\\\n1.  **Plated Food Identity and State:**\\\\n    *   **Identity:** There is a **fully assembled sandwich** (resembling a baguette or banh mi) resting on a rectangular white plate in the foreground.\\\\n    *   **State/Layers:** The sandwich appears complete. Visible layers include a long bread roll (baguette) filled with ingredients. While specific layers are hard to distinguish perfectly in the wide shot, the fillings appear to include brownish meat (likely the chicken mentioned in context) and green vegetables (lettuce or herbs). The PSS context suggests layers of cream, lettuce, onion, chicken, and jalapeño, which aligns with the visible bulk and colors of the filling.\\\\n\\\\n2.  **Exact Contents of the Large Glass Bowl:**\\\\n    *   The large glass bowl contains a mixture of **shredded carrots** (bright orange strips) and **sliced/shredded onions** (white and pale purple strips).\\\\n    *   In the close-up frames (9-16), the chef is seen mixing these ingredients. The bowl clearly holds julienned carrots and thin slices of red or white onions. There is no large amount of lettuce visible inside this specific bowl in the close-ups, though small bowls of green ingredients are nearby. The mixture looks like a vegetable slaw or pickle base.\\\", \\\"2\\\": \\\"Based on the visual evidence in the frames:\\\\n\\\\n1.  **State of the white oval plate with chicken:**\\\\n    *   **Frames 1-6:** The plate is **full** (occupied), containing a cooked chicken breast.\\\\n    *   **Frames 10-12:** The plate appears **empty**. The chicken has been removed.\\\\n    *   **Frames 13-16:** The plate remains **empty** as the chicken has been transferred onto the sandwich.\\\\n\\\\n2.  **Layers visible on the sandwich during assembly:**\\\\n    The sandwich is assembled in the following order from bottom to top:\\\\n    *   **Cream:** A white cream/sauce is spread onto the bread first (Frames 1-3).\\\\n    *   **Lettuce:** Green lettuce leaves are placed on top of the cream (Frames 4-6).\\\\n    *   **Onion:** White onion rings are placed on top of the lettuce (visible clearly in Frame 10).\\\\n    *   **Chicken:** The cooked chicken breast is placed on top of the onion and lettuce layers (Frame 13).\\\\n    *   **Jalapeño:** Sliced green jalapeños are added as the top layer (Frames 15-16).\\\", \\\"3\\\": \\\"Based on the visual evidence in the frames, specifically the close-up shots (Frames 5-13) where the carrots are being added:\\\\n\\\\n1.  **Layers already present on the sandwich:**\\\\n    *   **Cream/Spread:** Visible as a white layer on the top half of the baguette (left side in close-ups).\\\\n    *   **Lettuce:** Green leafy vegetables are the bottom layer on the sandwich.\\\\n    *   **Onion:** A white onion ring is clearly visible on top of the lettuce.\\\\n    *   **Jalapeño:** Green slices (likely jalapeños) are placed on the sandwich.\\\\n    *   **Chicken:** Although partially covered, there appears to be a layer of meat (chicken) beneath the vegetables, consistent with the assembly process described in the context (transferred from the chicken plate).\\\\n\\\\n2.  **Contents of the glass bowl used for the carrots:**\\\\n    *   The glass bowl to the right contains **shredded carrots** (orange strips) and **lettuce leaves** (green leaves). The chef uses tongs to extract the shredded carrots from this bowl.\\\", \\\"4\\\": \\\"Based on the visual evidence from the provided frames (Video 4):\\\\n\\\\n1.  **State of the white oval plate with chicken:** The white oval plate (visible in the bottom left of the close-up frames and on the counter in the wide shots) is **full**; it contains cooked chicken pieces (likely grilled chicken breasts).\\\\n\\\\n2.  **Action on the bread and contents of the small bowl:** The chef is **brushing** a **dark reddish-brown liquid** (likely a sauce, marinade, or oil mixture) from a small fluted glass bowl onto the long pieces of bread (baguette/flatbread) on the wooden board. The bread is being coated with this liquid.\\\"}\"}"
+  }
+]
+
+============================================================
+
+--- [Step 6] ASSISTANT ---
+{
+  "action": "answer",
+  "thought": "ORDER_AUDIT: supporting_chains: V4(chicken plate full, bread brushed) -> V2(chicken transferred from plate to sandwich, plate empties, layers built) -> V3(sandwich receives carrots, matching V2 layers) -> V1(finished sandwich plated, side salad prepared). conflicting_chains: none. unresolved_relations: none. confidence_change: increased from 7 to 9 because Layer2 confirmed all object state transitions (chicken plate full->empty, sandwich layer accumulation, final plating). EDGE_TABLE: 4->2 (direct_transfer: chicken plate full to empty), 2->3 (same_object_state_progression: sandwich layers match), 3->1 (visible_completion_to_next_start: carrots added, then final plate). confidence_score: 9/10.",
+  "final_answer": "4->2->3->1",
+  "context_update": {
+    "layer2_done": true,
+    "order_confidence": 9,
+    "comparison_table": {
+      "V4": "chicken plate full, bread brushed",
+      "V2": "chicken transferred, plate empty, sandwich layers built",
+      "V3": "carrots added to sandwich",
+      "V1": "finished sandwich plated, side salad made"
+    },
+    "confirmed": [
+      "chicken plate state: V4 full -> V2 empty",
+      "sandwich layers: V2 builds -> V3 adds carrots -> V1 final",
+      "carrot bowl: V3 source -> V1 side salad"
+    ]
+  }
+}
+
+============================================================
+

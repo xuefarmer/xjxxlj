@@ -1,0 +1,377 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-08 17:26:05
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-08 17:17:00 -> 2026-07-08 17:17:40
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 24.9,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: pan, chopped vegetables (peppers, onions), spatula | action: sautéing/cooking | state: mixed, cooking, wet/oily, chopped | window: 1-16 | query_link: VISIBLE | conf: high | uncertainty: low
+objects: plastic container, chickpeas | action: holding, opening package | state: filled, whole, sealed (plastic film) then open | window: 3-14 | query_link: VISIBLE | conf: high | uncertainty: low
+objects: knife, green cutting board | action: cutting plastic film | state: used, sharp | window: 4-7 | query_link: VISIBLE | conf: high | uncertainty: low
+objects: container, pan | action: pouring/dumping chickpeas | state: emptying, ingredients mixing into pan | window: 15-16 | query_link: VISIBLE | conf: high | uncertainty: low
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-08 17:17:00 -> 2026-07-08 17:18:19
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 39.23,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: frying pan, pot, stove, food mixture (vegetables/meat), green cutting board
+action: stirring with spatula, heating
+state: food mixture cooked/browned (mixed), pot filled with water (wet/steaming), cutting board present (empty)
+window: 2.0s - 15.0s
+query_link: Video 2
+conf: 0.95
+uncertainty: exact ingredients in pan unclear
+
+objects: purple package (rice), pot
+action: pouring
+state: raw rice (dry) poured into water, package opened, rice separate from water initially then mixing
+window: 15.0s - 25.0s
+query_link: Video 2
+conf: 0.9
+uncertainty: exact type of rice uncertain (looks like risotto or long grain)
+
+objects: purple package
+action: folding/closing
+state: package handled, contents partially depleted, top folded
+window: 25.0s - 35.0s
+query_link: Video 2
+conf: 0.85
+uncertainty: whether bag is fully sealed
+
+objects: purple package, drawer/cupboard
+action: storing
+state: package placed inside drawer (absent from counter/hand)
+window: 35.0s - 39.2s
+query_link: Video 2
+conf: 0.9
+uncertainty: none
+
+objects: washing machine, table, plants, legs
+action: standing/walking
+state: room view, pre-cooking context
+window: 0.0s - 2.0s
+query_link: Video 2
+conf: 0.9
+uncertainty: none
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-08 17:17:00 -> 2026-07-08 17:18:40
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 37.43,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: pot, sieve/strainer, frying pan, rice, vegetables, spatula
+action: draining cooked rice, transferring rice to frying pan
+state: rice is cooked/wet/steaming then drained; vegetables are cooked/mixed; pot transitions from filled (rice/water) to empty; sieve transitions from empty to filled (rice) to empty; pan transitions from veggies only to mixed rice and veggies
+window: 0.0s - 37.4s
+query_link: Video 3
+conf: 0.95
+uncertainty: Sequence of transfer (sieve to pan vs pot to pan) suggests rice may have been returned to pot after draining before final addition to pan.
+
+objects: pot, rice, water
+action: boiling/cooking
+state: pot filled with white liquid/rice mixture, steaming
+window: 0.0s - 2.0s (Frame 1)
+query_link: Video 3
+conf: 0.9
+uncertainty: None
+
+objects: pot, sieve, sink, rice
+action: pouring, draining
+state: pot emptied into sieve over sink, rice is wet/steaming in sieve, pot is empty/depleted
+window: 5.0s - 15.0s (Frames 3-7)
+query_link: Video 3
+conf: 0.95
+uncertainty: None
+
+objects: sieve, pot, frying pan, rice, vegetables, spatula
+action: transferring, scraping, mixing
+state: rice transferred from sieve (and later pot) into pan with vegetables, rice is white/cooked, vegetables are brown/green cooked mix, pot and sieve are empty/depleted
+window: 15.0s - 30.0s (Frames 8-13)
+query_link: Video 3
+conf: 0.9
+uncertainty: Visuals show rice being poured from sieve then scraped from pot, implying intermediate transfer back to pot.
+
+objects: frying pan, rice, vegetables, spatula
+action: resting/mixed
+state: pan filled with mixed rice and vegetables, spatula present on cutting board
+window: 35.0s - 37.4s (Frame 16)
+query_link: Video 3
+conf: 0.95
+uncertainty: None
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-08 17:17:00 -> 2026-07-08 17:17:39
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 24.77,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: frying pan, mixed vegetables (corn, peas, carrots), black spatula | action: stirring, sautéing | state: cooked, mixed, present | window: Frames 1-7 | query_link: N/A | conf: high | uncertainty: none
+objects: small pot, boiling liquid (cloudy/white), metal spoon | action: boiling, stirring, sampling | state: boiling, wet, hot | window: Frames 1-16 | query_link: N/A | conf: high | uncertainty: liquid content likely rice water or starchy water
+objects: hand, metal spoon, pot contents | action: transferring small amount to palm for inspection | state: testing/checking doneness | window: Frames 12-13 | query_link: N/A | conf: high | uncertainty: specific test (temperature vs grain texture) slightly ambiguous but likely texture
+objects: blue plate, green cutting board, condiment tray | action: static | state: empty (plate/board), filled (tray), present | window: Frames 1-16 | query_link: N/A | conf: high | uncertainty: none
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_5) ###
+Time: 2026-07-08 17:17:00 -> 2026-07-08 17:17:40
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 38.7,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: frying pan, chopped vegetables (mixed colors), black spatula | action: stirring sautéed vegetables | state: vegetables are cooked/mixed/browned, steam rising (hot) | window: Frames 1-6, 10 | query_link: Video 5 | conf: high | uncertainty: none
+objects: small saucepan, liquid (water), black spatula | action: stirring/checking boiling liquid | state: liquid is boiling/bubbling, wet | window: Frames 7-9 | query_link: Video 5 | conf: high | uncertainty: none
+objects: glass jar, sink tap, white spoon | action: filling jar with water | state: jar is filled/wet | window: Frames 11-13 | query_link: Video 5 | conf: high | uncertainty: none
+objects: wooden counter, glass jars, paper towel, drawer, cutlery | action: placing jar on counter, opening drawer | state: jars are present/separate, drawer is open/filled with cutlery, white spoon held in hand | window: Frames 14-16 | query_link: Video 5 | conf: high | uncertainty: none
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_1) ###
+Time: 2026-07-08 17:22:10 -> 2026-07-08 17:23:13
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 24.9,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of these evidence items: (1) main frying pan: what vegetables are present, are they raw/chopped/browned/mixed, are chickpeas present and in what state (sealed package/opened/poured into pan), pan fill level, residue/oil; (2) rice pot/saucepan: is it present, what is inside (empty/water/rice/cloudy liquid), boiling state; (3) sieve/strainer: present/absent, empty/filled; (4) cutting board: present/absent, clean/has residue; (5) containers/packages: chickpeas container state (sealed/open/emptying), rice package state. Return compact rows: object/state/window/conf/uncertainty. Do not infer order."
+}
+
+[Output]:
+Based on the visual evidence in frames 1-16:
+
+| Object | State Description | Window | Confidence | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| **main_frying_pan** | Contains chopped mixed vegetables (green, red, yellow peppers/onions/corn) sautéing/browning. Chickpeas are poured into the pan from a container in frames 15-16. Fill level ~40%. Oily residue visible. | 1-16 | High | Low |
+| **rice_pot** | Present (small silver saucepan on stove left). Contains water (clear/slightly cloudy). Not boiling vigorously (appears still/heating). | 1-16 | High | Low |
+| **sieve** | Absent. | 1-16 | High | Low |
+| **cutting_board** | Present (green). Mostly clean, minor residue. | 1-16 | High | Low |
+| **chickpeas_container** | Clear plastic rectangular tub. Initially sealed with film. Film is cut with a knife (frames 5-7) and peeled off (frames 8-14). Finally poured into the frying pan (frames 15-16). | 1-16 | High | Low |
+| **rice_package** | A dark/purple packet (labeled Couscous/grain) is visible. Held briefly in frame 2, then rests on the counter (top right, then far left in frame 15). Appears sealed/unopened in this sequence. | 1-16 | Medium | Medium (exact contents unclear, labeled Couscous but mapped as rice package) |
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_2) ###
+Time: 2026-07-08 17:22:10 -> 2026-07-08 17:23:35
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 39.23,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of these evidence items: (1) main frying pan: what vegetables are present, are they raw/chopped/browned/mixed, are chickpeas present and in what state, pan fill level, residue/oil; (2) rice pot/saucepan: is it present, what is inside (empty/water/rice/cloudy liquid), boiling state; (3) sieve/strainer: present/absent, empty/filled; (4) cutting board: present/absent, clean/has residue; (5) containers/packages: chickpeas container state, rice package state (sealed/open/partially depleted/stored). Return compact rows: object/state/window/conf/uncertainty. Do not infer order."
+}
+
+[Output]:
+Based on the visual evidence in Video 2 (Frames 1-16):
+
+*   **Main frying pan:** Visible (Frames 2-5, 7-8, 10, 12-13, 15); contains mixed chopped vegetables (corn, peas, carrots, peppers) appearing sautéed/browned; fill level ~50-60%; oily residue visible; chickpeas not clearly distinct (mixture dominated by colorful vegetables).
+*   **Rice pot/saucepan:** Visible (small silver saucepan on left burner, Frames 2-15); contains water, then rice is poured in; steaming/boiling state evident (steam in Frames 7-8).
+*   **Sieve/strainer:** Absent/Not visible in these frames.
+*   **Cutting board:** Visible (green board on right counter, Frames 2, 6, 9, 11); clean/empty state.
+*   **Rice package:** Visible (purple and white bag, Frames 6-14); state is opened, poured into saucepan, then folded/closed (partially depleted).
+*   **Chickpeas container:** Not visible/Absent (the package interaction shown is the rice bag; no can or chickpea container is clearly seen).
+
+**Compact Rows:**
+
+| Object | State | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| **Main frying pan** | Mixed vegetables (corn/peas/carrots/peppers) sautéed/browned; fill ~50%; oily; chickpeas not distinct. | Frames 2-15 | High | Low (veg type clear, chickpeas ambiguous) |
+| **Rice pot/saucepan** | Present (silver); contains water + rice; steaming/boiling. | Frames 2-15 | High | Low |
+| **Sieve/strainer** | Absent/Not visible. | Frames 1-16 | High | N/A |
+| **Cutting board** | Present (green); clean/empty. | Frames 2, 6, 9, 11 | High | Low |
+| **Rice package** | Purple/white bag; opened, poured into pot, then folded (partially depleted). | Frames 6-14 | High | Low |
+| **Chickpeas container** | Not visible/Absent. | Frames 1-16 | Medium | High (not seen, memory implies other segment) |
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_3) ###
+Time: 2026-07-08 17:22:10 -> 2026-07-08 17:23:54
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 37.43,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of these evidence items: (1) main frying pan: what vegetables are present, are they raw/chopped/browned/mixed, are chickpeas present and in what state, is rice present in the pan, pan fill level, residue/oil; (2) rice pot/saucepan: is it present, what is inside (empty/water/rice/cloudy liquid), boiling state, is it being drained; (3) sieve/strainer: present/absent, empty/filled with rice, is rice being poured from it; (4) cutting board: present/absent, clean/has residue; (5) containers/packages: chickpeas container state, rice package state. Return compact rows: object/state/window/conf/uncertainty. Do not infer order."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (Video 3), here is the state scan:
+
+**Main frying pan** | Contains cooked/browned mixed vegetables (visually corn, peas, carrots); chickpeas likely present within the mix (indistinct from corn); white steamed rice is added in a large pile (not yet fully mixed); pan is medium-high fill; oily/sautéed residue visible. | Frames 1, 8-13, 16 | High | Exact distinction between chickpeas and corn/vegetables in the mix.
+**Rice pot/saucepan** | Present; initially contains cloudy/starchy boiling liquid (steam visible); liquid is drained into sieve; pot becomes empty. | Frames 1-7, 11-14 | High | None.
+**Sieve/strainer** | Present (metal mesh); initially empty in sink; filled with white rice; rice is poured and scraped from it into the main frying pan. | Frames 2-10, 14-15 | High | None.
+**Cutting board** | Present (green); clean surface; used as a resting place for the sieve and spatula. | Frames 1, 14, 16 | High | None.
+**Containers/packages** | Chickpeas container: Not clearly visible as a distinct can in these frames (spice jars/bottles visible on red tray); Rice package: Not visible (rice is already in the pot boiling). | Frames 1-16 | Low | Specific location/visibility of original packaging.
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_4) ###
+Time: 2026-07-08 17:22:10 -> 2026-07-08 17:23:08
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 24.77,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of these evidence items: (1) main frying pan: what vegetables are present, are they raw/chopped/browned/mixed, are chickpeas present and in what state, pan fill level, residue/oil; (2) rice pot/saucepan: is it present, what is inside (empty/water/rice/cloudy liquid), boiling state, is liquid being tested/sampled; (3) sieve/strainer: present/absent, empty/filled; (4) cutting board: present/absent, clean/has residue; (5) containers/packages: chickpeas container state, rice package state. Return compact rows: object/state/window/conf/uncertainty. Do not infer order."
+}
+
+[Output]:
+Based on the visual evidence in Frames 1-16 (Video 4):
+
+**Main frying pan:**
+*   **State:** Contains a mixture of chopped vegetables (visible corn, peas, carrots) and chickpeas. The mixture appears sautéed/browned and cooked. The pan is moderately filled (approx. 1/2 to 2/3 full). There is an oily sheen/residue.
+*   **Window:** Frames 1-16
+*   **Conf:** High
+*   **Uncertainty:** Exact vegetable composition beyond corn/peas/carrots.
+
+**Rice pot/saucepan:**
+*   **State:** Present on the left burner. Contains cloudy, starchy white liquid (rice cooking in water). Steam is visible indicating simmering/boiling. A spoon is used to scoop and test/sample the liquid/rice (Frames 9-13).
+*   **Window:** Frames 1-16
+*   **Conf:** High
+*   **Uncertainty:** Exact doneness of the rice.
+
+**Sieve/strainer:**
+*   **State:** Absent.
+*   **Window:** Frames 1-16
+*   **Conf:** High
+*   **Uncertainty:** None.
+
+**Cutting board:**
+*   **State:** A wooden surface (counter/butcher block) is visible on the left. It appears clean. A blue plate and white bowl are present on this surface in later frames. No distinct cutting board with residue is visible.
+*   **Window:** Frames 1-16
+*   **Conf:** Medium
+*   **Uncertainty:** Whether the wooden surface is a dedicated cutting board or the main counter.
+
+**Containers/packages:**
+*   **State:** Chickpeas container: Absent (already emptied). Rice package: Absent. A spice rack/tray is visible in the top right.
+*   **Window:** Frames 1-16
+*   **Conf:** High
+*   **Uncertainty:** None.
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_5) ###
+Time: 2026-07-08 17:22:10 -> 2026-07-08 17:23:10
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 38.7,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of these evidence items: (1) main frying pan: what vegetables are present, are they raw/chopped/browned/mixed, are chickpeas present and in what state, pan fill level, residue/oil; (2) rice pot/saucepan: is it present, what is inside (empty/water/rice/cloudy liquid), boiling state; (3) sieve/strainer: present/absent, empty/filled; (4) cutting board: present/absent, clean/has residue; (5) containers/packages: chickpeas container state, rice package state, glass jars/water filling. Return compact rows: object/state/window/conf/uncertainty. Do not infer order."
+}
+
+[Output]:
+main_frying_pan | mixed vegetables (corn, peas, carrots, peppers) sautéed/browned, chickpeas present and mixed in, pan ~50% full, oily residue | Frames 1-10 | High | Low
+rice_pot | present, contains cloudy white liquid (rice/water mixture), steaming/hot | Frames 1-10 | High | Low (visuals suggest rice boiling, context notes water heating)
+sieve | absent | Frames 1-16 | High | None
+cutting_board | present (green board on right), clean/empty | Frames 1-10 | High | None
+glass_jars | glass jar filled with water from tap, placed on counter next to other jars | Frames 11-15 | High | None
+chickpeas_container | not visible (chickpeas already mixed in pan) | Frames 1-16 | High | None
+rice_package | not visible | Frames 1-16 | High | None
+
+------------------------------------------------------------
+

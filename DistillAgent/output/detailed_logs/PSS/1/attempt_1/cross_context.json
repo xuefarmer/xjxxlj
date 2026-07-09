@@ -1,0 +1,415 @@
+{
+  "confirmed": [
+    "5 before 3 (sauce bowl empty vs filling)",
+    "3 before 4 (sauce bowl filling vs whisking/finished)",
+    "4 before 2 (sauce in bowl vs poured into pot)",
+    "2 before 1 (mixture in pot vs plated)"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Plating: noodles+veg mixture from pan onto bed of greens. Garnished with carrots, green onions. Lettuce cut on side.\", \"2\": \"Combining: dark sauce poured over sautéed veg in blue pot. Cooked white noodles added from glass bowl. Tossed to coat.\", \"3\": \"Sauce prep: mixing soy sauce, oil, etc. in glass bowl. Dark liquid mixture.\", \"4\": \"Veg cooking: mushrooms, onions, peppers in blue pot. Garlic, green onions added. Glass bowl with brown liquid (sauce) being stirred.\", \"5\": \"Mushroom cooking: sliced mushrooms transferred from board to blue pot with oil. Sautéing.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "sauce_bowl": {
+      "3": "being filled/mixed with dark liquids",
+      "4": "already filled with brown liquid, being stirred",
+      "2": "sauce poured from small bowl/whisked"
+    },
+    "blue_pot": {
+      "5": "mushrooms + oil",
+      "4": "mushrooms + onions + peppers + garlic + green onions",
+      "2": "veg + sauce + noodles"
+    },
+    "noodles": {
+      "2": "white, cooked, in glass bowl -> added to pot",
+      "1": "cooked, coated in brown sauce, plated"
+    },
+    "rice_bowl": {
+      "5": "raw",
+      "4": "raw",
+      "3": "cooked (possible VLM error or different bowl)"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states (raw/cooked/cut/mixed)",
+    "container states (empty/filled/residue)",
+    "tool usage",
+    "audio/narration cues",
+    "sauce bowl state across V3, V4, V2",
+    "blue pot contents across V5, V4, V2",
+    "plate/pan state in V1",
+    "blue pot/sauce bowl/noodle state in V2"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all object states and transitions across the 5 segments"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cooked/cut/mixed)",
+          "container states (empty/filled/residue)",
+          "tool usage",
+          "audio/narration cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Plating: noodles+veg mixture from pan onto bed of greens. Garnished with carrots, green onions. Lettuce cut on side.",
+          "2": "Combining: dark sauce poured over sautéed veg in blue pot. Cooked white noodles added from glass bowl. Tossed to coat.",
+          "3": "Sauce prep: mixing soy sauce, oil, etc. in glass bowl. Dark liquid mixture.",
+          "4": "Veg cooking: mushrooms, onions, peppers in blue pot. Garlic, green onions added. Glass bowl with brown liquid (sauce) being stirred.",
+          "5": "Mushroom cooking: sliced mushrooms transferred from board to blue pot with oil. Sautéing."
+        },
+        "object_memory": {
+          "sauce_bowl": {
+            "3": "being filled/mixed with dark liquids",
+            "4": "already filled with brown liquid, being stirred",
+            "2": "sauce poured from small bowl/whisked"
+          },
+          "blue_pot": {
+            "5": "mushrooms + oil",
+            "4": "mushrooms + onions + peppers + garlic + green onions",
+            "2": "veg + sauce + noodles"
+          },
+          "noodles": {
+            "2": "white, cooked, in glass bowl -> added to pot",
+            "1": "cooked, coated in brown sauce, plated"
+          },
+          "rice_bowl": {
+            "5": "raw",
+            "4": "raw",
+            "3": "cooked (possible VLM error or different bowl)"
+          }
+        },
+        "preliminary_order": [
+          3,
+          5,
+          4,
+          2,
+          1
+        ],
+        "order_confidence": 8,
+        "confidence_basis": "Clear state progression for blue pot contents (mushrooms -> mushrooms+veg -> mushrooms+veg+sauce+noodles). Sauce bowl goes from being made (V3) to already prepared (V4) to poured (V2). Plating (V1) is the final step.",
+        "blocking_uncertainties": [
+          "Verify V3 sauce bowl is indeed the prep step and not a later reduction",
+          "Confirm V5 has no other veg in the pot"
+        ],
+        "candidate_targets": [
+          3,
+          5,
+          4,
+          2,
+          1
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "exact position of V3 relative to V5"
+        ],
+        "dimensions_to_compare": [
+          "sauce bowl state across V3, V4, V2",
+          "blue pot contents across V5, V4, V2"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "5": "blue pot: mushrooms+oil only. sauce bowl: empty. ingredients in bottles.",
+          "3": "sauce bowl: being filled with soy sauce, red label oil, can. blue pot not focus.",
+          "4": "blue pot: mushrooms+onions+peppers+garlic+green onions. sauce bowl: being whisked/finished.",
+          "2": "blue pot: veg+sauce+noodles combined. sauce bowl: poured out.",
+          "1": "plate: noodles+veg mixture plated and garnished. pan: depleted."
+        },
+        "temporal_index": {
+          "5": [
+            {
+              "window": [
+                0,
+                36
+              ],
+              "event": "mushroom sauté start",
+              "key_objects": [
+                "blue pot",
+                "sauce bowl"
+              ],
+              "visible_state": "pot has mushrooms+oil, bowl empty",
+              "why_it_matters": "establishes initial state before sauce prep",
+              "confidence": "high"
+            }
+          ],
+          "3": [
+            {
+              "window": [
+                0,
+                63
+              ],
+              "event": "sauce preparation",
+              "key_objects": [
+                "glass bowl",
+                "bottles",
+                "can"
+              ],
+              "visible_state": "bowl being filled with dark liquids",
+              "why_it_matters": "sauce creation step",
+              "confidence": "high"
+            }
+          ],
+          "4": [
+            {
+              "window": [
+                0,
+                46
+              ],
+              "event": "veg cooking + sauce finishing",
+              "key_objects": [
+                "blue pot",
+                "glass bowl"
+              ],
+              "visible_state": "pot has full veg mix, bowl being whisked",
+              "why_it_matters": "advanced pot state, sauce ready",
+              "confidence": "high"
+            }
+          ],
+          "2": [
+            {
+              "window": [
+                0,
+                37
+              ],
+              "event": "combining sauce and noodles",
+              "key_objects": [
+                "blue pot",
+                "glass bowl",
+                "noodles"
+              ],
+              "visible_state": "sauce poured into pot, noodles added and tossed",
+              "why_it_matters": "direct transfer from bowl to pot",
+              "confidence": "high"
+            }
+          ],
+          "1": [
+            {
+              "window": [
+                0,
+                65
+              ],
+              "event": "plating and garnishing",
+              "key_objects": [
+                "plate",
+                "pan",
+                "lettuce"
+              ],
+              "visible_state": "noodles plated, pan depleted, lettuce cut",
+              "why_it_matters": "final presentation step",
+              "confidence": "high"
+            }
+          ]
+        },
+        "irrelevant_windows": [],
+        "confirmed": [
+          "5 before 3 (sauce bowl empty vs filling)",
+          "3 before 4 (sauce bowl filling vs whisking/finished)",
+          "4 before 2 (sauce in bowl vs poured into pot)",
+          "2 before 1 (mixture in pot vs plated)"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          5,
+          3,
+          4,
+          2,
+          1
+        ],
+        "uncertain": [],
+        "focus_plan": [],
+        "order_confidence": 9
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "uncertain": [
+          "actual visible states in V1 and V2 for Layer2 completion"
+        ],
+        "dimensions_to_compare": [
+          "plate/pan state in V1",
+          "blue pot/sauce bowl/noodle state in V2"
+        ]
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "5": "blue pot: mushrooms+oil only. sauce bowl: empty. ingredients in bottles.",
+          "3": "sauce bowl: being filled with soy sauce, red label oil, can. blue pot not focus.",
+          "4": "blue pot: mushrooms+onions+peppers+garlic+green onions. sauce bowl: being whisked/finished.",
+          "2": "blue pot: veg+sauce+noodles combined. sauce bowl: poured out. noodles: white -> coated in brown sauce.",
+          "1": "plate: bed of greens -> filled with noodles and garnishes. pan: filled with noodles -> depleted with residue. lettuce: whole -> cut."
+        },
+        "temporal_index": {
+          "5": [
+            {
+              "window": [
+                0,
+                36
+              ],
+              "event": "mushroom sauté start",
+              "key_objects": [
+                "blue pot",
+                "sauce bowl"
+              ],
+              "visible_state": "pot has mushrooms+oil, bowl empty",
+              "why_it_matters": "establishes initial state before sauce prep",
+              "confidence": "high"
+            }
+          ],
+          "3": [
+            {
+              "window": [
+                0,
+                63
+              ],
+              "event": "sauce preparation",
+              "key_objects": [
+                "glass bowl",
+                "bottles",
+                "can"
+              ],
+              "visible_state": "bowl being filled with dark liquids",
+              "why_it_matters": "sauce creation step",
+              "confidence": "high"
+            }
+          ],
+          "4": [
+            {
+              "window": [
+                0,
+                46
+              ],
+              "event": "veg cooking + sauce finishing",
+              "key_objects": [
+                "blue pot",
+                "glass bowl"
+              ],
+              "visible_state": "pot has full veg mix, bowl being whisked",
+              "why_it_matters": "advanced pot state, sauce ready",
+              "confidence": "high"
+            }
+          ],
+          "2": [
+            {
+              "window": [
+                0,
+                37
+              ],
+              "event": "combining sauce and noodles",
+              "key_objects": [
+                "blue pot",
+                "glass bowl",
+                "noodles"
+              ],
+              "visible_state": "sauce poured into pot, noodles added and tossed",
+              "why_it_matters": "direct transfer from bowl to pot",
+              "confidence": "high"
+            }
+          ],
+          "1": [
+            {
+              "window": [
+                0,
+                65
+              ],
+              "event": "plating and garnishing",
+              "key_objects": [
+                "plate",
+                "pan",
+                "lettuce"
+              ],
+              "visible_state": "noodles plated, pan depleted, lettuce cut",
+              "why_it_matters": "final presentation step",
+              "confidence": "high"
+            }
+          ]
+        },
+        "irrelevant_windows": [],
+        "confirmed": [
+          "5 before 3 (sauce bowl empty vs filling)",
+          "3 before 4 (sauce bowl filling vs whisking/finished)",
+          "4 before 2 (sauce in bowl vs poured into pot)",
+          "2 before 1 (mixture in pot vs plated)"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          5,
+          3,
+          4,
+          2,
+          1
+        ],
+        "uncertain": [],
+        "focus_plan": [],
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3",
+    "5",
+    "4",
+    "2",
+    "1"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "Clear state progression for blue pot contents (mushrooms -> mushrooms+veg -> mushrooms+veg+sauce+noodles). Sauce bowl goes from being made (V3) to already prepared (V4) to poured (V2). Plating (V1) is the final step."
+  ],
+  "blocking_uncertainties": [
+    "Verify V3 sauce bowl is indeed the prep step and not a later reduction",
+    "Confirm V5 has no other veg in the pot"
+  ],
+  "candidate_targets": [
+    "3",
+    "5",
+    "4",
+    "2",
+    "1"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"5\": \"blue pot: mushrooms+oil only. sauce bowl: empty. ingredients in bottles.\", \"3\": \"sauce bowl: being filled with soy sauce, red label oil, can. blue pot not focus.\", \"4\": \"blue pot: mushrooms+onions+peppers+garlic+green onions. sauce bowl: being whisked/finished.\", \"2\": \"blue pot: veg+sauce+noodles combined. sauce bowl: poured out.\", \"1\": \"plate: noodles+veg mixture plated and garnished. pan: depleted.\"}",
+    "{\"5\": \"blue pot: mushrooms+oil only. sauce bowl: empty. ingredients in bottles.\", \"3\": \"sauce bowl: being filled with soy sauce, red label oil, can. blue pot not focus.\", \"4\": \"blue pot: mushrooms+onions+peppers+garlic+green onions. sauce bowl: being whisked/finished.\", \"2\": \"blue pot: veg+sauce+noodles combined. sauce bowl: poured out. noodles: white -> coated in brown sauce.\", \"1\": \"plate: bed of greens -> filled with noodles and garnishes. pan: filled with noodles -> depleted with residue. lettuce: whole -> cut.\"}"
+  ],
+  "temporal_index": [
+    "{\"5\": [{\"window\": [0, 36], \"event\": \"mushroom sauté start\", \"key_objects\": [\"blue pot\", \"sauce bowl\"], \"visible_state\": \"pot has mushrooms+oil, bowl empty\", \"why_it_matters\": \"establishes initial state before sauce prep\", \"confidence\": \"high\"}], \"3\": [{\"window\": [0, 63], \"event\": \"sauce preparation\", \"key_objects\": [\"glass bowl\", \"bottles\", \"can\"], \"visible_state\": \"bowl being filled with dark liquids\", \"why_it_matters\": \"sauce creation step\", \"confidence\": \"high\"}], \"4\": [{\"window\": [0, 46], \"event\": \"veg cooking + sauce finishing\", \"key_objects\": [\"blue pot\", \"glass bowl\"], \"visible_state\": \"pot has full veg mix, bowl being whisked\", \"why_it_matters\": \"advanced pot state, sauce ready\", \"confidence\": \"high\"}], \"2\": [{\"window\": [0, 37], \"event\": \"combining sauce and noodles\", \"key_objects\": [\"blue pot\", \"glass bowl\", \"noodles\"], \"visible_state\": \"sauce poured into pot, noodles added and tossed\", \"why_it_matters\": \"direct transfer from bowl to pot\", \"confidence\": \"high\"}], \"1\": [{\"window\": [0, 65], \"event\": \"plating and garnishing\", \"key_objects\": [\"plate\", \"pan\", \"lettuce\"], \"visible_state\": \"noodles plated, pan depleted, lettuce cut\", \"why_it_matters\": \"final presentation step\", \"confidence\": \"high\"}]}"
+  ],
+  "irrelevant_windows": [],
+  "pruned_targets": [],
+  "focus_plan": []
+}

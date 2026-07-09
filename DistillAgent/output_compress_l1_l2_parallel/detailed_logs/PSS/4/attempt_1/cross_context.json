@@ -1,0 +1,245 @@
+{
+  "confirmed": [
+    "4 before 2: trays in 4 lack egg wash, 2 shows setup",
+    "2 before 1: setup precedes active dredging",
+    "1 before 3: raw breaded precedes frying",
+    "1 before 3: raw breaded precedes frying, with raw breaded cutlets visible in 3"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Breading station active: meat dredged in flour, egg, crumbs.\", \"2\": \"Breading station setup: pouring egg wash into tray. Also shows cooked egg sheet.\", \"3\": \"Frying: breaded meat frying in butter, turning golden brown.\", \"4\": \"Prep: raw meat pounded flat, salted.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "meat": {
+      "4": "raw, pounded flat, salted",
+      "1": "raw, breaded (flour/egg/crumbs)",
+      "3": "cooking, golden brown in pan"
+    },
+    "breading_station": {
+      "2": "being set up (egg wash poured)",
+      "1": "actively used (meat in trays)"
+    },
+    "salt_container": {
+      "4": "present (La Baleine blue cylinder)",
+      "2": "unknown - checking"
+    },
+    "egg_sheet": {
+      "2": "cooked, solid yellow mass handled"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked, whole/cut, empty/filled)",
+    "tool contact",
+    "transfer traces",
+    "residue/depletion",
+    "breading station state (setup vs used)",
+    "background objects (salt container)",
+    "meat state (pounded vs breaded)"
+  ],
+  "resolved_uncertain": [
+    "Relative order of 2 and 4 resolved by background tray state",
+    "Video 3 Layer2 confirms frying stage follows breading"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All segment roles and object states pending Layer1 results."
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked, whole/cut, empty/filled)",
+          "tool contact",
+          "transfer traces",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Breading station active: meat dredged in flour, egg, crumbs.",
+          "2": "Breading station setup: pouring egg wash into tray. Also shows cooked egg sheet.",
+          "3": "Frying: breaded meat frying in butter, turning golden brown.",
+          "4": "Prep: raw meat pounded flat, salted."
+        },
+        "object_memory": {
+          "meat": {
+            "4": "raw, pounded flat, salted",
+            "1": "raw, breaded (flour/egg/crumbs)",
+            "3": "cooking, golden brown in pan"
+          },
+          "breading_station": {
+            "2": "being set up (egg wash poured)",
+            "1": "actively used (meat in trays)"
+          },
+          "salt_container": {
+            "4": "present (La Baleine blue cylinder)",
+            "2": "unknown - checking"
+          },
+          "egg_sheet": {
+            "2": "cooked, solid yellow mass handled"
+          }
+        },
+        "temporal_index": {
+          "video2": [
+            {
+              "window": [
+                0,
+                13
+              ],
+              "event": "breading station setup",
+              "key_objects": [
+                "trays",
+                "egg wash carton"
+              ],
+              "visible_state": "pouring egg into middle tray",
+              "why_it_matters": "must precede Video 1 usage",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                71
+              ],
+              "event": "meat pounding/salting",
+              "key_objects": [
+                "meat",
+                "mallet",
+                "salt"
+              ],
+              "visible_state": "raw meat flattened, salted",
+              "why_it_matters": "first meat prep step",
+              "confidence": "high"
+            }
+          ]
+        },
+        "preliminary_order": "2->4->1->3 or 4->2->1->3",
+        "order_confidence": 7,
+        "confidence_basis": "Meat state chain: pounded/salted (4) -> breaded (1) -> fried (3). Breading station setup (2) must precede usage (1). Order of 2 and 4 unresolved.",
+        "blocking_uncertainties": [
+          "Does Video 2 (station setup) occur before or after Video 4 (meat pounding)?",
+          "Is the salt container visible in Video 2 to link the prep station?"
+        ],
+        "candidate_targets": [
+          "Video 2",
+          "Video 4"
+        ],
+        "uncertain": [
+          "Relative order of Video 2 and Video 4"
+        ],
+        "dimensions_to_compare": [
+          "breading station state (setup vs used)",
+          "background objects (salt container)",
+          "meat state (pounded vs breaded)"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "video4": "meat pounded/salted, no flour. Trays in background.",
+          "video2": "breading station setup (pouring egg). Salt container visible.",
+          "video1": "breading station active, meat dredged.",
+          "video3": "meat frying, golden brown."
+        },
+        "uncertain": [
+          "Relative order of Video 2 and Video 4: does meat prep (4) precede station setup (2) or vice versa?"
+        ],
+        "focus_plan": [
+          "Compare background tray state in Video 4 vs Video 2 to resolve 2 vs 4 order."
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "order_confidence": 9,
+        "confirmed": [
+          "4 before 2: trays in 4 lack egg wash, 2 shows setup",
+          "2 before 1: setup precedes active dredging",
+          "1 before 3: raw breaded precedes frying"
+        ],
+        "resolved_uncertain": [
+          "Relative order of 2 and 4 resolved by background tray state"
+        ]
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "video4": "meat pounded/salted, no flour. Trays in background.",
+          "video2": "breading station setup (pouring egg). Salt container visible.",
+          "video1": "breading station active, meat dredged.",
+          "video3": "re-observing frying state and background plate."
+        },
+        "uncertain": [],
+        "focus_plan": []
+      }
+    },
+    {
+      "turn": 6,
+      "update": {
+        "order_confidence": 9,
+        "confirmed": [
+          "4 before 2: trays in 4 lack egg wash, 2 shows setup",
+          "2 before 1: setup precedes active dredging",
+          "1 before 3: raw breaded precedes frying, with raw breaded cutlets visible in 3"
+        ],
+        "resolved_uncertain": [
+          "Relative order of 2 and 4 resolved by background tray state",
+          "Video 3 Layer2 confirms frying stage follows breading"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "temporal_index": [
+    "{\"video2\": [{\"window\": [0, 13], \"event\": \"breading station setup\", \"key_objects\": [\"trays\", \"egg wash carton\"], \"visible_state\": \"pouring egg into middle tray\", \"why_it_matters\": \"must precede Video 1 usage\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 71], \"event\": \"meat pounding/salting\", \"key_objects\": [\"meat\", \"mallet\", \"salt\"], \"visible_state\": \"raw meat flattened, salted\", \"why_it_matters\": \"first meat prep step\", \"confidence\": \"high\"}]}"
+  ],
+  "preliminary_order": [
+    "2->4->1->3 or 4->2->1->3"
+  ],
+  "order_confidence": [
+    "7",
+    "9"
+  ],
+  "confidence_basis": [
+    "Meat state chain: pounded/salted (4) -> breaded (1) -> fried (3). Breading station setup (2) must precede usage (1). Order of 2 and 4 unresolved."
+  ],
+  "blocking_uncertainties": [
+    "Does Video 2 (station setup) occur before or after Video 4 (meat pounding)?",
+    "Is the salt container visible in Video 2 to link the prep station?"
+  ],
+  "candidate_targets": [
+    "Video 2",
+    "Video 4"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"video4\": \"meat pounded/salted, no flour. Trays in background.\", \"video2\": \"breading station setup (pouring egg). Salt container visible.\", \"video1\": \"breading station active, meat dredged.\", \"video3\": \"meat frying, golden brown.\"}",
+    "{\"video4\": \"meat pounded/salted, no flour. Trays in background.\", \"video2\": \"breading station setup (pouring egg). Salt container visible.\", \"video1\": \"breading station active, meat dredged.\", \"video3\": \"re-observing frying state and background plate.\"}"
+  ],
+  "focus_plan": [
+    "Compare background tray state in Video 4 vs Video 2 to resolve 2 vs 4 order."
+  ]
+}

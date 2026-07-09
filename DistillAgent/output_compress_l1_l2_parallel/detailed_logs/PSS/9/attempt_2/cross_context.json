@@ -1,0 +1,101 @@
+{
+  "confirmed": [
+    "5->1->2->3->4"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {},
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "glass bowl contents progression",
+    "pan state transitions",
+    "greens state across segments"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer2_done": true,
+        "preliminary_order": "5->1->2->3->4",
+        "order_confidence": 6,
+        "confidence_basis": [
+          "V5: frying prep (raw->fried garlic in bowl)",
+          "V1: sauce-making (dark sauce + aromatics added)",
+          "V2: blanching greens",
+          "V3: noodles lifted, greens in bowl",
+          "V4: final assembly with garnish"
+        ],
+        "blocking_uncertainties": [
+          "glass bowl identity: same bowl in V1 and V5?",
+          "relative order of V1 and V5",
+          "whether V1's aromatics are raw or pre-fried"
+        ],
+        "uncertain": [
+          "glass bowl identity across V1 and V5",
+          "V1 vs V5 order"
+        ],
+        "dimensions_to_compare": [
+          "glass bowl contents progression",
+          "pan state transitions",
+          "greens state across segments"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 8,
+        "comparison_table": {
+          "5": "pan: oil->fried garlic removed; glass bowl: receives fried garlic (prep step)",
+          "1": "pan: dark sauce+water->boiling with raw aromatics; glass bowl: raw aromatics",
+          "2": "pan: boiling water; white bowl: raw->blanched greens",
+          "3": "plate: noodles lifted; white bowl: blanched greens present",
+          "4": "plate: noodles+greens+char siu; glass bowl: fried garlic from V5 used"
+        },
+        "confirmed": [
+          "5->1->2->3->4"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": [],
+        "focus_plan": []
+      }
+    }
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "5->1->2->3->4"
+  ],
+  "order_confidence": [
+    "6",
+    "8"
+  ],
+  "confidence_basis": [
+    "V5: frying prep (raw->fried garlic in bowl)",
+    "V1: sauce-making (dark sauce + aromatics added)",
+    "V2: blanching greens",
+    "V3: noodles lifted, greens in bowl",
+    "V4: final assembly with garnish"
+  ],
+  "blocking_uncertainties": [
+    "glass bowl identity: same bowl in V1 and V5?",
+    "relative order of V1 and V5",
+    "whether V1's aromatics are raw or pre-fried"
+  ],
+  "comparison_table": [
+    "{\"5\": \"pan: oil->fried garlic removed; glass bowl: receives fried garlic (prep step)\", \"1\": \"pan: dark sauce+water->boiling with raw aromatics; glass bowl: raw aromatics\", \"2\": \"pan: boiling water; white bowl: raw->blanched greens\", \"3\": \"plate: noodles lifted; white bowl: blanched greens present\", \"4\": \"plate: noodles+greens+char siu; glass bowl: fried garlic from V5 used\"}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": [],
+  "focus_plan": []
+}

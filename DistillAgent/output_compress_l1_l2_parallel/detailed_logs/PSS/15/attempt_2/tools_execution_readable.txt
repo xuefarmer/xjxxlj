@@ -1,0 +1,428 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-06 12:34:57
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-06 12:23:52 -> 2026-07-06 12:24:44
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 4.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report visible containers, ingredients, utensils, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the frames, here is the description of the operation and object states:
+
+**Operation:** A chef is slicing a prepared fresh spring roll (summer roll) in half on a wooden cutting board. The scene shows the preparation and plating area with various fresh ingredients.
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Spring roll** | Slicing/Cutting | Fresh, wrapped (rice paper), whole $\rightarrow$ cut in half. Visible shrimp/greens inside. | 1-16 | N/A | High | None |
+| **Shrimp** | Present (in bowl & on board) | Cooked (pink/white), peeled, wet. | 1-16 | N/A | High | None |
+| **Glass bowl** | Holding shrimp | Filled with shrimp. | 1-16 | N/A | High | None |
+| **Mango slices** | Present | Cut (strips), fresh, yellow. | 1-16 | N/A | High | None |
+| **Red peppers** | Present | Cut (strips), fresh, red. | 1-16 | N/A | High | None |
+| **Green herbs** | Present | Fresh, whole leaves (mint/cilantro/basil). | 1-16 | N/A | High | None |
+| **Knife** | Cutting | In use, metal blade. | 2-13 | N/A | High | None |
+| **Chef** | Cutting/Preparing | Standing, wearing black coat. | 2-16 | N/A | High | None |
+| **Cutting board** | Surface | Wooden, holds ingredients. | 1-16 | N/A | High | None |
+| **Pot** | Sitting on stove | Stainless steel, appears empty or with clear liquid. | 2-16 | N/A | Medium | Liquid content unclear |
+| **Rice noodles** | Present | Packaged (bag visible on left). | 2-10 | N/A | High | None |
+
+**Summary of States:**
+*   **Raw vs. Cooked:** Shrimp are cooked. Vegetables (mango, peppers, herbs) are raw/fresh. The spring roll is assembled (fresh, not fried).
+*   **Whole vs. Cut:** The spring roll starts whole and is cut in half. Mango and peppers are already sliced into strips.
+*   **Empty vs. Filled:** The glass bowl is filled with shrimp. Small white bowls are present (some appear empty or contain small amounts of sauce/ingredients).
+*   **Residue/Depletion:** No significant depletion observed; ingredients are laid out for assembly or serving.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-06 12:23:52 -> 2026-07-06 12:25:01
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 14.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report visible containers, ingredients, utensils, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the frames, here is the description of the operation and object states:
+
+**Operation:** A chef is assembling fresh spring rolls (summer rolls). The process involves placing ingredients onto a wet rice paper wrapper and rolling it up.
+
+**Visible Objects/Tools & States:**
+*   **Shrimp:** Visible in a glass bowl and on the wooden board. They appear pink and white, suggesting they are cooked and peeled (or raw but turning pink). They are separate on the board and mixed/piled in the bowl.
+*   **Rice Paper Wrapper:** Translucent and wet, indicating it has been soaked. It is being manipulated by hand.
+*   **Spring Roll:** In various stages of assembly. One roll (Frame 4) appears mostly formed with green herbs and white noodles visible inside.
+*   **Vermicelli Noodles:** White, thin strands. They appear cooked and are tangled inside the roll and on the board.
+*   **Green Herbs/Leaf:** Fresh green leaves (likely mint, basil, or cilantro) are being placed onto the wrapper (Frames 15-16).
+*   **Yellow Strips:** Likely mango or yellow bell pepper. They are cut into strips and piled on the board.
+*   **Red Slices:** Likely red bell pepper or strawberries. They are cut and piled on the board.
+*   **Glass Bowl:** Contains shrimp. It is filled.
+*   **Chef:** Wearing a black chef's coat, standing at a kitchen island with a mise en place setup.
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Shrimp | Resting in bowl/on board | Pink/white, peeled, cooked (likely), present | 1-5, 15-16 | - | High | Raw vs cooked (color suggests cooked) |
+| Rice Paper Wrapper | Being folded/rolled | Wet, translucent, filled | 1-5, 15-16 | - | High | None |
+| Spring Roll | Being assembled | Filled with noodles/herbs, partially rolled | 1-5 | - | High | None |
+| Vermicelli Noodles | Inside roll/on board | White, cooked, tangled | 4, 15-16 | - | High | None |
+| Green Herbs/Leaf | Being placed into roll | Fresh, green, whole leaves | 15-16 | - | High | Specific herb type unknown |
+| Yellow Strips | Resting on board | Cut, piled, fresh | 1-5, 15-16 | - | High | Mango vs Pepper |
+| Red Slices | Resting on board | Cut, piled, fresh | 5, 15-16 | - | High | Pepper vs Strawberry |
+| Glass Bowl | Holding shrimp | Filled, transparent | 1-5, 15-16 | - | High | None |
+| Chef | Assembling rolls at counter | Standing, working with hands | 6-14 | - | High | None |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-06 12:23:52 -> 2026-07-06 12:24:44
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 7.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report visible containers, ingredients, utensils, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+[Layer 1 Caption]
+- **objects**: glass bowl, raw shrimp, wooden cutting board, cut shrimp, green herbs (mint/cilantro), yellow strips (mango/pepper), rice paper wrapper, vermicelli noodles, red/yellow/green vegetable strips, hands.
+- **action**: arranging filling, pressing down, rolling wrapper.
+- **state**: bowl filled with raw/pink shrimp; cut shrimp separate on board; herbs/strips fresh/cut; wrapper wet/translucent/pliable; noodles white/cooked piled on wrapper; veggies cut/mixed on noodles.
+- **window**: 1-16
+- **query_link**: N/A
+- **conf**: high
+- **uncertainty**: low
+
+**Detailed Evidence Rows:**
+1. **Glass bowl**: present, filled with raw pink shrimp, wet state. (Window 1-16)
+2. **Cut shrimp**: present on board, raw, separate from bowl. (Window 1-16)
+3. **Herbs & Yellow strips**: present on left, fresh, cut, separate. (Window 1-16)
+4. **Rice paper wrapper**: present on right, wet/translucent (residue visible on board), flat initially. (Window 1-6)
+5. **Filling (noodles + veggies)**: present on wrapper, mixed pile (white noodles, red/yellow/green strips), cooked/cut. (Window 1-9)
+6. **Hands**: action changes from arranging/adjusting filling (Window 1-6) to pressing/compacting (Window 7-9) to folding/rolling the wrapper edge over the filling (Window 10-16).
+7. **Rolling process**: Wrapper is being rolled tightly around the filling; noodles and veggies are being encased. (Window 10-16)
+8. **Board surface**: wet residue visible where rice paper was/is, indicating wet wrapper. (Window 1-16)
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-06 12:23:52 -> 2026-07-06 12:25:04
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 10.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report visible containers, ingredients, utensils, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the frames, here is the description of the operation and object states.
+
+**Operation Description:**
+A chef is rehydrating or soaking a large, rectangular, textured food sheet (likely a rice paper wrapper, bean curd sheet, or noodle sheet) in a pan of water. The chef submerges the stiff, dry sheet into the water, presses it down to ensure it is fully wet, and then lifts it out once it has become pliable. Surrounding the stove are prepared ingredients including a bowl of raw shrimp and a cutting board with chopped vegetables and meat, suggesting preparation for a meal (possibly spring rolls or a stir-fry).
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Stainless steel pan** | Sitting on burner | Filled with clear water; wet | 1-16 | - | High | None |
+| **Textured sheet (wrapper/noodle sheet)** | Being held, submerged, pressed, lifted | Initially dry/stiff/rigid; becomes wet/pliable/flexible; grid/honeycomb pattern visible | 1-14 | - | High | Exact material (rice paper vs bean curd) |
+| **Glass bowl** | Sitting on counter | Filled with raw shrimp (pink/white, peeled); separate | 1-16 | - | High | None |
+| **Chef's hands** | Manipulating sheet | Wet (after touching water); active | 6-14 | - | High | None |
+| **Package of sheets** | Sitting on counter (left) | Present; contains dry sheets | 1-16 | - | High | None |
+| **Cutting board ingredients** | Prepared on counter | Cut (carrots, peppers, meat); raw; separate piles/bowls | 15-16 | - | High | None |
+| **Stove/Kitchen** | Background | Clean; gas burners visible | 1-16 | - | High | None |
+
+**Detailed State Analysis:**
+*   **Raw vs. Cooked:** The shrimp in the bowl appear raw (translucent/pinkish white). The meat on the cutting board (visible in frames 15-16) appears raw and chopped. The sheet is being rehydrated, not cooked yet (though the water might be hot, no steam is vigorously rising, suggesting warm or hot water for soaking).
+*   **Dry vs. Wet:** The sheet starts dry and stiff (Frame 1-3). It becomes wet and submerged (Frame 4-11). It is lifted out wet and pliable (Frame 12-16). The chef's hands become wet.
+*   **Empty vs. Filled:** The large pan is filled with water. The small glass bowl is filled with shrimp.
+*   **Separate vs. Mixed:** The sheet is initially separate, then mixed (submerged) in the water, then separated (lifted out) again. The ingredients on the counter are kept in separate piles/bowls.
+*   **Whole vs. Cut:** The sheet is a whole large rectangle. The vegetables and meat on the counter are cut/chopped. The shrimp appear whole (peeled).
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_5) ###
+Time: 2026-07-06 12:23:52 -> 2026-07-06 12:24:58
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 29.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report visible containers, ingredients, utensils, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the frames, here is the description of the operation and object states:
+
+**Operation:** A chef is assembling fresh spring rolls (or similar rolls). He retrieves cooked rice vermicelli noodles from a water bath, drains them, places them on a wrapper/leaf, and begins adding sliced vegetables.
+
+**Evidence Rows:**
+
+| Objects | Action | State | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Glass Bowl & Noodles** | Chef reaches in and lifts noodles | Bowl filled with water and white noodles; Noodles are wet, cooked, soft strands | 1-8 | High | None |
+| **Noodles (on board)** | Placed onto surface (lettuce leaf/wet rice paper) | Wet, clumped pile, white; separated from water | 9-11 | High | Exact wrapper type (lettuce vs rice paper) slightly ambiguous but looks like assembly base |
+| **Red Peppers & Cucumber** | Picked from small glass bowl and placed on noodles | Sliced/julienned, fresh, raw, red and green; mixed in small bowl | 12-14 | High | None |
+| **Shrimp & Mango** | Present on board, hands working nearby | Shrimp: Peeled, pink/white (likely cooked), in glass bowl. Mango: Sliced yellow strips, fresh | 15-16 | High | Shrimp raw vs cooked (likely cooked given color) |
+| **Pot & Plate** | Stationary on stove/counter | Pot: Stainless steel, empty/standing. Plate: White, rectangular, holds one finished roll with residue/filling visible | 1-16 | High | None |
+| **Sauce Bottles/Jars** | Stationary on board | Filled containers (fish sauce, olive bacon jar), labels visible | 4-16 | High | None |
+
+**Summary of States:**
+*   **Noodles:** Wet, cooked, transferred from filled bowl to board.
+*   **Vegetables (Peppers, Cucumber, Mango):** Fresh, cut/sliced, raw.
+*   **Shrimp:** Peeled, present in bowl.
+*   **Containers:** Glass bowl (filled with water/noodles), small glass bowl (filled with veggies), pot (empty/on stove).
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_6) ###
+Time: 2026-07-06 12:23:52 -> 2026-07-06 12:24:44
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 6,
+      "start_time": 0.0,
+      "end_time": 7.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report visible containers, ingredients, utensils, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from frames 1-16 (Video 6), here is the layer 1 captioning:
+
+**Operation:** A person is assembling and rolling a fresh spring roll (summer roll) on a wooden cutting board. They fold the sides of a wet rice paper wrapper over the filling and then roll it tightly into a cylinder.
+
+**Visible Objects & States:**
+*   **Hands:** Active, manipulating the wrapper.
+*   **Rice Paper Wrapper:** Wet, translucent, pliable. It starts flat and is folded/rolled into a cylinder.
+*   **Shrimp (in roll):** Cooked (pink/white), split/butterflied (cut), being enclosed.
+*   **Green Leaf (Mint/Basil):** Fresh, green, placed on top of the shrimp.
+*   **Vermicelli Noodles:** Cooked, white, wet, placed at the end of the wrapper.
+*   **Glass Bowl (top left):** Filled with cooked shrimp.
+*   **Shrimp (on board, left):** Cooked, split, separate from the roll.
+*   **Yellow Strips (bottom left):** Cut (julienned), raw (likely mango or bell pepper), separate.
+*   **Red Slices (bottom center):** Cut, raw (likely peppers or tomatoes), separate.
+*   **Green Herbs (bottom right):** Fresh, separate.
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Hands, Rice Paper Wrapper | Folding, Rolling | Wrapper is wet/translucent; filling is being enclosed | 1-16 | [Video 6] | High | None |
+| Shrimp (in roll & bowl) | Being rolled / Static | Cooked, pink/white, split (cut) | 1-16 | [Video 6] | High | None |
+| Green Leaf (Mint) | Being rolled | Fresh, green, whole leaf | 1-16 | [Video 6] | High | Specific herb type (mint vs basil) |
+| Vermicelli Noodles | Being rolled | Cooked, white, wet | 1-16 | [Video 6] | High | None |
+| Glass Bowl | Static | Filled with shrimp | 1-16 | [Video 6] | High | None |
+| Yellow Strips (Mango/Pepper) | Static | Cut (julienned), raw, separate | 1-16 | [Video 6] | High | Exact ingredient (mango vs pepper) |
+| Red Slices (Pepper/Tomato) | Static | Cut, raw, separate | 1-16 | [Video 6] | High | Exact ingredient |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-06 12:26:40 -> 2026-07-06 12:28:11
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 14.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the rice paper wrapper: FLAT / PARTIALLY_FOLDED / ROLLED. What ingredients are visibly ON the wrapper: NOODLES, VEGGIES, HERBS, SHRIMP? Is the shrimp IN the roll or SEPARATE on the board/bowl? Report exactly what you see."
+}
+
+[Output]:
+Based on the visual evidence in the frames:
+
+*   **Wrapper State:** There are two states visible. A completed **ROLLED** spring roll is sitting on the cutting board (visible clearly in Frames 1 and 4). The chef is actively working on a **FLAT** (wet/translucent) rice paper wrapper to assemble a new one (visible in Frames 2, 15, 16), which transitions to **PARTIALLY_FOLDED** as he rolls it (Frame 3).
+*   **Ingredients on Wrapper:** **NOODLES** (white vermicelli strands) and **HERBS** (green leaves, likely mint or basil) are visibly placed on the flat wrapper.
+*   **Shrimp Location:** The shrimp are **SEPARATE**. They are visible in a glass bowl and lying directly on the cutting board next to the rolled spring roll (Frame 4), not inside the active wrapper being assembled in the close-ups.
+
+**Summary Report:**
+*   **Wrapper State:** **FLAT** (being assembled) and **ROLLED** (finished item on board).
+*   **Ingredients on Wrapper:** **NOODLES**, **HERBS**.
+*   **Shrimp:** **SEPARATE** on the board/bowl.
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-06 12:26:40 -> 2026-07-06 12:27:36
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 7.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the rice paper wrapper: FLAT / PARTIALLY_FOLDED / ROLLED. What ingredients are visibly ON the wrapper: NOODLES, VEGGIES, HERBS, SHRIMP? Is the shrimp IN the roll or SEPARATE on the board/bowl? Report exactly what you see."
+}
+
+[Output]:
+Based on the visual evidence in the frames:
+
+*   **Rice Paper Wrapper State:** The wrapper transitions through states. It starts **FLAT** (Frames 1-6) with ingredients arranged on it. Hands then begin to fold the bottom edge over, making it **PARTIALLY_FOLDED** (Frames 7-12). Finally, the hands roll it up tightly, making it **ROLLED** (Frames 13-16).
+*   **Ingredients on the wrapper:** **NOODLES** (white vermicelli strands), **VEGGIES** (red and yellow strips, likely peppers or mango, and green strips), and **HERBS** (green leaves/cilantro).
+*   **Shrimp Location:** The shrimp are **SEPARATE on the board/bowl**. They are visible in the glass bowl (top left) and lying on the wooden board (center left). They are not currently on the wrapper or inside the roll being formed in these frames.
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-06 12:26:40 -> 2026-07-06 12:28:19
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 6,
+      "start_time": 0.0,
+      "end_time": 7.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the rice paper wrapper: FLAT / PARTIALLY_FOLDED / ROLLED. What ingredients are visibly ON the wrapper: NOODLES, VEGGIES, HERBS, SHRIMP? Is the shrimp IN the roll or SEPARATE on the board/bowl? Report exactly what you see."
+}
+
+[Output]:
+Based on the visual evidence in the frames:
+
+*   **Rice Paper Wrapper State:** The wrapper transitions from **PARTIALLY_FOLDED** (frames 1-7, where hands are folding it over ingredients) to **ROLLED** (frames 8-16, where it forms a tight cylinder). It is not flat.
+*   **Ingredients on the wrapper:**
+    *   **NOODLES:** Yes, a bundle of white vermicelli noodles is visible on the right side of the wrapper assembly.
+    *   **HERBS:** Yes, a large green leaf (likely mint or basil) is prominent in the center being folded over.
+    *   **SHRIMP:** Yes, a pinkish/white shrimp (or shrimp slice) is visible under the green leaf and inside the forming roll.
+    *   **VEGGIES:** Yellow strips (likely mango or peppers) are visible on the cutting board to the left, but do not appear clearly placed *on* the wrapper in these specific frames (though they may be underneath). The green leaf is classified as herbs.
+*   **Shrimp Location:** Shrimp are visible **SEPARATE** in a glass bowl (top left) and on the cutting board (left), and a shrimp is also visible **IN the roll** (being wrapped inside the rice paper).
+
+------------------------------------------------------------
+
+### [Turn 4] Tool: active_perception (ID: batch_4_1) ###
+Time: 2026-07-06 12:30:07 -> 2026-07-06 12:30:52
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 4.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the spring roll: WHOLE / CUT_IN_HALF / SLICED. What ingredients are visible INSIDE the cut roll: NOODLES, VEGGIES, HERBS, SHRIMP? Is the roll on a plate or cutting board? Report exactly what you see."
+}
+
+[Output]:
+Based on the visual evidence in the frames:
+
+*   **State of the spring roll:** The roll is **CUT_IN_HALF**. The video sequence shows the chef slicing the roll down the middle, resulting in two distinct halves in the final frames (14-16).
+*   **Ingredients visible inside:** Through the translucent wrapper and the cut end, **SHRIMP** (pink), **NOODLES** (white strands), **HERBS** (green leaves), and **VEGGIES** (green/white filling) are visible.
+*   **Surface:** The roll is resting on a wooden **cutting board**.
+
+------------------------------------------------------------
+
+### [Turn 4] Tool: active_perception (ID: batch_4_2) ###
+Time: 2026-07-06 12:30:07 -> 2026-07-06 12:31:35
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 10.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the wrapper sheet: DRY_STIFF / WET_PLIABLE / SUBMERGED. What is in the pan: WATER / EMPTY? Are there raw or cooked shrimp visible in the background? Report exactly what you see."
+}
+
+[Output]:
+Based on the visual evidence in the frames:
+
+*   **Wrapper Sheet State:** The video shows a progression of states. In frame 3, the wrapper is **DRY_STIFF** (rigid with a visible grid pattern). From frames 4 to 14, the wrapper is **SUBMERGED** in the pan of water as the chef presses it down. In frames 15-16, the chef holds the wrapper up, and it is **WET_PLIABLE** (limp, translucent, and flexible).
+*   **Pan Content:** The pan contains **WATER**.
+*   **Shrimp:** There are shrimp visible. In the close-up frames (1-14), a glass bowl contains shrimp that appear pink and white, suggesting they are **cooked** (raw shrimp are typically grey/translucent). In the wide shot (frames 15-16), orange/pink shrimp are visible on the cutting board, which also indicates **cooked** shrimp.
+
+**Summary:**
+*   Wrapper: Transitions from DRY_STIFF to SUBMERGED to WET_PLIABLE.
+*   Pan: WATER.
+*   Shrimp: Cooked shrimp are visible.
+
+------------------------------------------------------------
+
+### [Turn 4] Tool: active_perception (ID: batch_4_3) ###
+Time: 2026-07-06 12:30:07 -> 2026-07-06 12:31:09
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 29.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the noodles: DRY / COOKED_WET_IN_WATER / DRAINED_ON_BOARD. What ingredients are being added: VEGGIES / HERBS / SHRIMP? Is there a finished roll visible on a plate? Report exactly what you see."
+}
+
+[Output]:
+Based on the visual evidence in the frames:
+
+*   **Noodles State:** The noodles are initially seen as **COOKED_WET_IN_WATER** inside a glass bowl (Frames 4-6), where the chef lifts a clump out. They are then placed onto the cutting board/wrapper, becoming **DRAINED_ON_BOARD** (Frames 9-11, 13-16).
+*   **Ingredients Being Added:** The chef is adding **VEGGIES**. Specifically, in Frames 13-14, the chef places strips of red pepper and cucumber onto the bed of noodles.
+*   **Finished Roll:** **Yes**, there is a finished roll (cut in half to show filling) visible on the long white rectangular plate in the foreground (Frames 1, 2, 9, 10, 11).
+
+------------------------------------------------------------
+

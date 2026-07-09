@@ -1,0 +1,239 @@
+{
+  "confirmed": [
+    "V1 before V3: slaw bowl full to depleted",
+    "V4 before V2: meat in bowl to meat used",
+    "V4 before V2/V3: bare bread to assembled halves"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "bread": {
+      "4": "bare, getting dark sauce",
+      "2": "getting white spread, lettuce, onions",
+      "3": "has lettuce, onions, getting carrots"
+    },
+    "meat": {
+      "4": "in white oval bowl",
+      "2": "on white oval plate, transferred to sandwich"
+    },
+    "carrot_slaw": {
+      "1": "being made in large glass bowl with onions and liquid",
+      "3": "in glass bowl, carrots being taken out"
+    },
+    "foreground_sandwich": {
+      "1": "present",
+      "2": "present",
+      "3": "present",
+      "4": "present"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked, whole/cut, empty/filled)",
+    "tool usage",
+    "transfer actions",
+    "residue/depletion",
+    "bread state before/after",
+    "ingredient layering order",
+    "meat container vs sandwich"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "Need to see all segments to identify shared objects and state transitions."
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked, whole/cut, empty/filled)",
+          "tool usage",
+          "transfer actions",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "1->4->2->3",
+        "order_confidence": 8,
+        "confidence_basis": "Clear state-transition graph for sandwich assembly: V4 (sauce on bare bread) -> V2 (spread, veggies, meat added) -> V3 (carrots added on top). V1 is prep for the carrots used in V3.",
+        "blocking_uncertainties": [
+          "Need to confirm V4 bread is bare before sauce, V2 bread has no carrots yet, V3 bread has lettuce/onions before carrots are added."
+        ],
+        "object_memory": {
+          "bread": {
+            "4": "bare, getting dark sauce",
+            "2": "getting white spread, lettuce, onions",
+            "3": "has lettuce, onions, getting carrots"
+          },
+          "meat": {
+            "4": "in white oval bowl",
+            "2": "on white oval plate, transferred to sandwich"
+          },
+          "carrot_slaw": {
+            "1": "being made in large glass bowl with onions and liquid",
+            "3": "in glass bowl, carrots being taken out"
+          },
+          "foreground_sandwich": {
+            "1": "present",
+            "2": "present",
+            "3": "present",
+            "4": "present"
+          }
+        },
+        "temporal_index": {
+          "video4": [
+            {
+              "window": [
+                0,
+                15
+              ],
+              "event": "sauce application",
+              "key_objects": [
+                "bread",
+                "dark sauce",
+                "meat in bowl"
+              ],
+              "visible_state": "bare bread getting sauce",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                29
+              ],
+              "event": "main assembly",
+              "key_objects": [
+                "bread",
+                "white spread",
+                "lettuce",
+                "onions",
+                "meat",
+                "jalapeños"
+              ],
+              "visible_state": "layering ingredients",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                7
+              ],
+              "event": "carrot addition",
+              "key_objects": [
+                "bread",
+                "carrots",
+                "lettuce",
+                "onions"
+              ],
+              "visible_state": "carrots added on top of existing veggies",
+              "confidence": "high"
+            }
+          ],
+          "video1": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "slaw prep",
+              "key_objects": [
+                "large glass bowl",
+                "carrots",
+                "onions",
+                "liquid"
+              ],
+              "visible_state": "mixing raw ingredients",
+              "confidence": "high"
+            }
+          ]
+        },
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "low_value_targets": [],
+        "uncertain": [],
+        "dimensions_to_compare": [
+          "bread state before/after",
+          "ingredient layering order",
+          "meat container vs sandwich"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 9,
+        "comparison_table": {
+          "1": "slaw prep, large glass bowl filled",
+          "4": "bare bread, dark sauce applied, meat in bowl",
+          "2": "meat half assembled, meat taken from bowl",
+          "3": "veggie half assembled, slaw taken from bowl"
+        },
+        "confirmed": [
+          "V1 before V3: slaw bowl full to depleted",
+          "V4 before V2: meat in bowl to meat used",
+          "V4 before V2/V3: bare bread to assembled halves"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "uncertain": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1->4->2->3"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "Clear state-transition graph for sandwich assembly: V4 (sauce on bare bread) -> V2 (spread, veggies, meat added) -> V3 (carrots added on top). V1 is prep for the carrots used in V3."
+  ],
+  "blocking_uncertainties": [
+    "Need to confirm V4 bread is bare before sauce, V2 bread has no carrots yet, V3 bread has lettuce/onions before carrots are added."
+  ],
+  "temporal_index": [
+    "{\"video4\": [{\"window\": [0, 15], \"event\": \"sauce application\", \"key_objects\": [\"bread\", \"dark sauce\", \"meat in bowl\"], \"visible_state\": \"bare bread getting sauce\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 29], \"event\": \"main assembly\", \"key_objects\": [\"bread\", \"white spread\", \"lettuce\", \"onions\", \"meat\", \"jalapeños\"], \"visible_state\": \"layering ingredients\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 7], \"event\": \"carrot addition\", \"key_objects\": [\"bread\", \"carrots\", \"lettuce\", \"onions\"], \"visible_state\": \"carrots added on top of existing veggies\", \"confidence\": \"high\"}], \"video1\": [{\"window\": [0, 11], \"event\": \"slaw prep\", \"key_objects\": [\"large glass bowl\", \"carrots\", \"onions\", \"liquid\"], \"visible_state\": \"mixing raw ingredients\", \"confidence\": \"high\"}]}"
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"slaw prep, large glass bowl filled\", \"4\": \"bare bread, dark sauce applied, meat in bowl\", \"2\": \"meat half assembled, meat taken from bowl\", \"3\": \"veggie half assembled, slaw taken from bowl\"}"
+  ],
+  "pruned_targets": []
+}

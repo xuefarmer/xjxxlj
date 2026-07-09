@@ -1,0 +1,1563 @@
+2026-07-08 16:35:27,592 - INFO - Log file: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/log_EPIC_PSS_diagnosis_main_q1_to_20_20260708_163527.log
+2026-07-08 16:35:27,593 - INFO - Runtime: MASTER_BACKEND=api | LOCAL_MASTER_MODEL_PATH=/media/data6/xuejj/Qwen3-8B | MASTER_MODEL_NAME=qwen3.7-plus | TOOL_BACKEND=api | LOCAL_TOOL_MODEL_PATH=/media/data6/xuejj/Qwen | TOOL_MODEL_NAME=qwen3.7-plus | ORACLE_ANSWER_HINT=false | PROMPT=/media/data6/xuejj/CVRAgent/agent_system/myprompts/_unified_crossvid_base_compress.prompt + /media/data6/xuejj/CVRAgent/agent_system/myprompts/task_contracts/PSS.prompt
+2026-07-08 16:35:27,593 - INFO - Questions: /media/data6/xuejj/Epic_Kitchen/PSS_train.json | frames: /media/data6/xuejj/Epic_Kitchen/new_frames
+2026-07-08 16:35:27,640 - INFO - Running EPIC_PSS Q1-Q20 (20 samples)
+2026-07-08 16:35:27,640 - INFO - DiagnosisAgent initialized: model=qwen3.7-plus
+2026-07-08 16:35:27,640 - INFO - ======================================================================
+2026-07-08 16:35:27,640 - INFO -   Testing Question 1/614 (ID: 0)
+2026-07-08 16:35:27,640 - INFO -   Task: EPIC_PSS | segments=3
+2026-07-08 16:35:27,640 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 16:35:27,640 - INFO - Correct Answer: [2->1->3]
+2026-07-08 16:35:27,824 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 16:35:27,824 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 16:35:27,824 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 16:35:46,897 - INFO -   ⏱️  LLM: 19.1s
+2026-07-08 16:35:46,897 - INFO -   🤖 Thought: Layer1: scan all 3 segments independently to build object-state inventory for ordering....
+2026-07-08 16:35:46,898 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 16:35:46,898 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=4
+2026-07-08 16:35:46,899 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=True)
+2026-07-08 16:35:46,900 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-33s, 16 frames
+2026-07-08 16:35:46,901 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-26s, 16 frames
+2026-07-08 16:35:46,902 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-23s, 16 frames
+2026-07-08 16:35:47,146 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 16:35:47,146 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 16:35:47,157 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 16:35:47,157 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 16:35:47,207 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 16:35:47,207 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 16:36:23,127 - INFO -     [BATCH 2/3] Video 2 done in 36.2s (1 chunks)
+2026-07-08 16:36:39,235 - INFO -     [BATCH 3/3] Video 3 done in 52.3s (1 chunks)
+2026-07-08 16:37:30,994 - INFO -     [BATCH 1/3] Video 1 done in 104.1s (1 chunks)
+2026-07-08 16:37:30,995 - INFO -   ⏱️  Batch Tool (3 videos): 104.1s, Turn total: 123.2s
+2026-07-08 16:37:30,995 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 123.2s)
+2026-07-08 16:37:30,995 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 16:38:31,950 - INFO -   ⏱️  LLM: 61.0s
+2026-07-08 16:38:31,950 - INFO -   🤖 Thought: Layer2: verify the state progression of the white bowl and blue cutting board across all 3 segments ...
+2026-07-08 16:38:31,950 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 16:38:31,950 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=4
+2026-07-08 16:38:31,951 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=False)
+2026-07-08 16:38:31,952 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-33s, 16 frames
+2026-07-08 16:38:31,953 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-26s, 16 frames
+2026-07-08 16:38:31,954 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-23s, 16 frames
+2026-07-08 16:38:32,040 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 16:38:32,041 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 16:38:32,061 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 16:38:32,061 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 16:38:32,079 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 16:38:32,079 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 16:39:19,709 - INFO -     [BATCH 3/3] Video 3 done in 47.8s (1 chunks)
+2026-07-08 16:39:34,331 - INFO -     [BATCH 1/3] Video 1 done in 62.4s (1 chunks)
+2026-07-08 16:40:21,698 - INFO -     [BATCH 2/3] Video 2 done in 109.7s (1 chunks)
+2026-07-08 16:40:21,699 - INFO -   ⏱️  Batch Tool (3 videos): 109.7s, Turn total: 170.7s
+2026-07-08 16:40:21,700 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 293.9s)
+2026-07-08 16:40:21,700 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 16:40:49,686 - INFO -   ⏱️  LLM: 28.0s
+2026-07-08 16:40:49,687 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains=[bowl: V2 empty -> V1 cucumber+tomato filling -> V3 mixed salad compl...
+2026-07-08 16:40:49,687 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 16:40:49,687 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=4
+2026-07-08 16:40:49,692 - INFO - 🎯 Final Answer: 2->1->3 (Turn total: 28.0s)
+2026-07-08 16:40:49,701 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/0/attempt_1 (JSON + Readable TXT)
+2026-07-08 16:40:49,701 - INFO - Evaluating result...
+2026-07-08 16:40:49,701 - INFO -   - Predicted: 2->1->3
+2026-07-08 16:40:49,701 - INFO -   - Ground Truth: 2->1->3
+2026-07-08 16:40:49,701 - INFO -   - Result: CORRECT
+2026-07-08 16:40:49,701 - INFO - Attempt 1 elapsed: 322.1s
+2026-07-08 16:40:49,701 - INFO -   - Final Result: CORRECT
+2026-07-08 16:40:49,701 - INFO - --- End of Q0 ---
+2026-07-08 16:40:49,701 - INFO - ======================================================================
+2026-07-08 16:40:49,702 - INFO -   Testing Question 2/614 (ID: 1)
+2026-07-08 16:40:49,702 - INFO -   Task: EPIC_PSS | segments=4
+2026-07-08 16:40:49,702 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 16:40:49,702 - INFO - Correct Answer: [2->4->1->3]
+2026-07-08 16:40:50,112 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 16:40:50,112 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 16:40:50,112 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 16:41:18,778 - INFO -   ⏱️  LLM: 28.7s
+2026-07-08 16:41:18,779 - INFO -   🤖 Thought: Layer1: scan all 4 shuffled segments independently to build object-state inventory and event roles....
+2026-07-08 16:41:18,779 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 16:41:18,779 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=5
+2026-07-08 16:41:18,780 - INFO -   ⚡ Batch observe parallel enabled: 4 items, 4 workers (tool_backend=api, layer1=True)
+2026-07-08 16:41:18,780 - INFO -     [CHUNK 1/4] Video 1 chunk 1/1: 0-33s, 16 frames
+2026-07-08 16:41:18,781 - INFO -     [CHUNK 2/4] Video 2 chunk 1/1: 0-28s, 16 frames
+2026-07-08 16:41:18,782 - INFO -     [CHUNK 3/4] Video 3 chunk 1/1: 0-28s, 16 frames
+2026-07-08 16:41:18,784 - INFO -     [CHUNK 4/4] Video 4 chunk 1/1: 0-42s, 16 frames
+2026-07-08 16:41:18,895 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 16:41:18,896 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 16:41:18,946 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 16:41:18,947 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 16:41:18,969 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 16:41:18,969 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 16:41:18,980 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 16:41:18,981 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 16:42:44,178 - INFO -     [BATCH 4/4] Video 4 done in 85.4s (1 chunks)
+2026-07-08 16:42:44,696 - INFO -     [BATCH 2/4] Video 2 done in 85.9s (1 chunks)
+2026-07-08 16:42:53,119 - INFO -     [BATCH 1/4] Video 1 done in 94.3s (1 chunks)
+2026-07-08 16:43:58,677 - INFO -     [BATCH 3/4] Video 3 done in 159.9s (1 chunks)
+2026-07-08 16:43:58,678 - INFO -   ⏱️  Batch Tool (4 videos): 159.9s, Turn total: 188.6s
+2026-07-08 16:43:58,679 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 188.6s)
+2026-07-08 16:43:58,680 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 16:45:52,974 - INFO -   ⏱️  LLM: 114.3s
+2026-07-08 16:45:52,974 - INFO -   🤖 Thought: Layer2: Re-observe all 4 segments to clarify the exact dough shapes, transitions, and background cue...
+2026-07-08 16:45:52,974 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 16:45:52,975 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=8
+2026-07-08 16:45:52,975 - INFO -   ⚡ Batch observe parallel enabled: 4 items, 4 workers (tool_backend=api, layer1=False)
+2026-07-08 16:45:52,976 - INFO -     [CHUNK 1/4] Video 1 chunk 1/1: 0-33s, 16 frames
+2026-07-08 16:45:52,976 - INFO -     [CHUNK 2/4] Video 2 chunk 1/1: 0-28s, 16 frames
+2026-07-08 16:45:52,978 - INFO -     [CHUNK 3/4] Video 3 chunk 1/1: 0-28s, 16 frames
+2026-07-08 16:45:52,979 - INFO -     [CHUNK 4/4] Video 4 chunk 1/1: 0-42s, 16 frames
+2026-07-08 16:45:53,071 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 16:45:53,071 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 16:45:53,078 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 16:45:53,078 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 16:45:53,084 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 16:45:53,084 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 16:45:53,095 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 16:45:53,096 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 16:46:27,368 - INFO -     [BATCH 3/4] Video 3 done in 34.4s (1 chunks)
+2026-07-08 16:46:40,446 - INFO -     [BATCH 4/4] Video 4 done in 47.5s (1 chunks)
+2026-07-08 16:46:40,673 - INFO -     [BATCH 2/4] Video 2 done in 47.7s (1 chunks)
+2026-07-08 16:47:02,269 - INFO -     [BATCH 1/4] Video 1 done in 69.3s (1 chunks)
+2026-07-08 16:47:02,270 - INFO -   ⏱️  Batch Tool (4 videos): 69.3s, Turn total: 183.6s
+2026-07-08 16:47:02,270 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 372.2s)
+2026-07-08 16:47:02,270 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 16:49:49,519 - INFO -   ⏱️  LLM: 167.2s
+2026-07-08 16:49:49,519 - INFO -   🤖 Thought: Focus on V2 and V3 to verify the pizza state progression (V3 has no cooked items, V2 has cooked pizz...
+2026-07-08 16:49:49,519 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 16:49:49,520 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=0, dimensions=10
+2026-07-08 16:49:49,520 - INFO -   ⚡ Batch observe parallel enabled: 2 items, 2 workers (tool_backend=api, layer1=False)
+2026-07-08 16:49:49,521 - INFO -     [CHUNK 1/2] Video 2 chunk 1/1: 0-28s, 16 frames
+2026-07-08 16:49:49,522 - INFO -     [CHUNK 2/2] Video 3 chunk 1/1: 0-28s, 16 frames
+2026-07-08 16:49:49,625 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 16:49:49,625 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 16:49:49,635 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 16:49:49,635 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 16:50:34,594 - INFO -     [BATCH 2/2] Video 3 done in 45.1s (1 chunks)
+2026-07-08 16:51:15,848 - INFO -     [BATCH 1/2] Video 2 done in 86.3s (1 chunks)
+2026-07-08 16:51:15,849 - INFO -   ⏱️  Batch Tool (2 videos): 86.3s, Turn total: 253.6s
+2026-07-08 16:51:15,850 - INFO - 🔄 [TURN 4] Master Thinking... (elapsed since loop start: 625.7s)
+2026-07-08 16:51:15,850 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 16:53:33,316 - INFO -   ⏱️  LLM: 137.5s
+2026-07-08 16:53:33,317 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains: pot progression (V4: liquid/onions -> V1: liquid/onions/pasta -> V3:...
+2026-07-08 16:53:33,317 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 16:53:33,317 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=0, dimensions=10
+2026-07-08 16:53:33,318 - INFO - 🎯 Final Answer: 4->1->3->2 (Turn total: 137.5s)
+2026-07-08 16:53:33,333 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/1/attempt_1 (JSON + Readable TXT)
+2026-07-08 16:53:33,334 - INFO - Evaluating result...
+2026-07-08 16:53:33,334 - INFO -   - Predicted: 4->1->3->2
+2026-07-08 16:53:33,334 - INFO -   - Ground Truth: 2->4->1->3
+2026-07-08 16:53:33,334 - INFO -   - Result: WRONG
+2026-07-08 16:53:33,334 - INFO - Attempt 1 elapsed: 763.6s
+2026-07-08 16:53:33,334 - INFO - Diagnosis attempt 1/3
+2026-07-08 16:58:33,573 - WARNING - Diagnosis API attempt 1 failed: HTTPSConnectionPool(host='dashscope.aliyuncs.com', port=443): Read timed out. (read timeout=300)
+2026-07-08 17:03:36,811 - WARNING - Diagnosis API attempt 2 failed: HTTPSConnectionPool(host='dashscope.aliyuncs.com', port=443): Read timed out. (read timeout=300)
+2026-07-08 17:04:09,637 - INFO - Diagnosis: turn=8 type=reasoning_error strategy= confidence=0.92
+2026-07-08 17:04:09,742 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 17:04:09,743 - INFO - 📋 Resuming from pre-loaded history (9 messages)
+2026-07-08 17:04:09,743 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 17:04:09,743 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:04:44,926 - INFO -   ⏱️  LLM: 35.2s
+2026-07-08 17:04:44,927 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains: ['V2: dough trimmed to circle with cooked pizza as reference (start ...
+2026-07-08 17:04:44,927 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 17:04:44,927 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=0, dimensions=0
+2026-07-08 17:04:44,929 - INFO - 🎯 Final Answer: 2->4->1->3 (Turn total: 35.2s)
+2026-07-08 17:04:44,944 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/1/attempt_2 (JSON + Readable TXT)
+2026-07-08 17:04:44,944 - INFO - Evaluating diagnosis attempt 1 result...
+2026-07-08 17:04:44,944 - INFO -   - Predicted: 2->4->1->3
+2026-07-08 17:04:44,944 - INFO -   - Ground Truth: 2->4->1->3
+2026-07-08 17:04:44,944 - INFO -   - Result: CORRECTED
+2026-07-08 17:04:44,944 - INFO - Attempt 2 elapsed: 35.3s
+2026-07-08 17:04:44,944 - INFO -   - Final Result: CORRECTED_BY_DIAGNOSIS_1
+2026-07-08 17:04:44,945 - INFO - --- End of Q1 ---
+2026-07-08 17:04:44,945 - INFO - ======================================================================
+2026-07-08 17:04:44,945 - INFO -   Testing Question 3/614 (ID: 2)
+2026-07-08 17:04:44,945 - INFO -   Task: EPIC_PSS | segments=3
+2026-07-08 17:04:44,945 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 17:04:44,945 - INFO - Correct Answer: [3->1->2]
+2026-07-08 17:04:45,379 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 17:04:45,380 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 17:04:45,380 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:05:08,328 - INFO -   ⏱️  LLM: 22.9s
+2026-07-08 17:05:08,329 - INFO -   🤖 Thought: Layer1: scan all three segments independently to build object-state inventory and event roles....
+2026-07-08 17:05:08,329 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 17:05:08,330 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=5
+2026-07-08 17:05:08,330 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=True)
+2026-07-08 17:05:08,331 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-24s, 16 frames
+2026-07-08 17:05:08,332 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-37s, 16 frames
+2026-07-08 17:05:08,334 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-45s, 16 frames
+2026-07-08 17:05:08,486 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:05:08,487 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:05:08,488 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:05:08,492 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:05:08,499 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:05:08,499 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:06:09,817 - INFO -     [BATCH 2/3] Video 2 done in 61.5s (1 chunks)
+2026-07-08 17:06:23,300 - INFO -     [BATCH 3/3] Video 3 done in 75.0s (1 chunks)
+2026-07-08 17:06:27,364 - INFO -     [BATCH 1/3] Video 1 done in 79.0s (1 chunks)
+2026-07-08 17:06:27,365 - INFO -   ⏱️  Batch Tool (3 videos): 79.0s, Turn total: 102.0s
+2026-07-08 17:06:27,366 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 102.0s)
+2026-07-08 17:06:27,366 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:07:37,735 - INFO -   ⏱️  LLM: 70.4s
+2026-07-08 17:07:37,735 - INFO -   🤖 Thought: Decisive evidence from Layer1 establishes a clear state-transition graph. Tomatoes progress from on-...
+2026-07-08 17:07:37,735 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 17:07:37,736 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=5
+2026-07-08 17:07:37,736 - WARNING -   ⚠️ Rejected premature final answer: Do not answer yet. PSS requires Layer2 before `answer`. Missing: Layer2 discriminative evidence reinspection. Layer2 re-observes shared evidence (objects/regions/events) that Layer1 found recurring across segments. For each segment, ask the VLM to report the actual visible state of these evidence items. Do NOT pass your hypothesized order to the VLM. Use `batch_observe` with `MODE=layer2_state_scan`.
+2026-07-08 17:07:37,736 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 172.4s)
+2026-07-08 17:07:37,737 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:08:08,665 - INFO -   ⏱️  LLM: 30.9s
+2026-07-08 17:08:08,665 - INFO -   🤖 Thought: PSS requires Layer2 discriminative evidence reinspection before answering. I will re-observe all thr...
+2026-07-08 17:08:08,665 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 17:08:08,665 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=0, dimensions=5
+2026-07-08 17:08:08,666 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=False)
+2026-07-08 17:08:08,667 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-24s, 16 frames
+2026-07-08 17:08:08,667 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-37s, 16 frames
+2026-07-08 17:08:08,669 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-45s, 16 frames
+2026-07-08 17:08:08,757 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:08:08,757 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:08:08,761 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:08:08,761 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:08:08,768 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:08:08,768 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:09:25,284 - INFO -     [BATCH 3/3] Video 3 done in 76.6s (1 chunks)
+2026-07-08 17:09:47,765 - INFO -     [BATCH 2/3] Video 2 done in 99.1s (1 chunks)
+2026-07-08 17:09:54,364 - INFO -     [BATCH 1/3] Video 1 done in 105.7s (1 chunks)
+2026-07-08 17:09:54,365 - INFO -   ⏱️  Batch Tool (3 videos): 105.7s, Turn total: 136.6s
+2026-07-08 17:09:54,366 - INFO - 🔄 [TURN 4] Master Thinking... (elapsed since loop start: 309.0s)
+2026-07-08 17:09:54,366 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:10:26,377 - INFO -   ⏱️  LLM: 32.0s
+2026-07-08 17:10:26,377 - INFO -   🤖 Thought: Layer2 confirms the state-transition graph. Board progression: clean (V3) -> tomato residue (V1) -> ...
+2026-07-08 17:10:26,377 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 17:10:26,378 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=0, dimensions=5
+2026-07-08 17:10:26,378 - INFO - 🎯 Final Answer: 3->1->2 (Turn total: 32.0s)
+2026-07-08 17:10:26,387 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/2/attempt_1 (JSON + Readable TXT)
+2026-07-08 17:10:26,388 - INFO - Evaluating result...
+2026-07-08 17:10:26,388 - INFO -   - Predicted: 3->1->2
+2026-07-08 17:10:26,388 - INFO -   - Ground Truth: 3->1->2
+2026-07-08 17:10:26,388 - INFO -   - Result: CORRECT
+2026-07-08 17:10:26,388 - INFO - Attempt 1 elapsed: 341.4s
+2026-07-08 17:10:26,388 - INFO -   - Final Result: CORRECT
+2026-07-08 17:10:26,388 - INFO - --- End of Q2 ---
+2026-07-08 17:10:26,388 - INFO - ======================================================================
+2026-07-08 17:10:26,388 - INFO -   Testing Question 4/614 (ID: 3)
+2026-07-08 17:10:26,388 - INFO -   Task: EPIC_PSS | segments=4
+2026-07-08 17:10:26,389 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 17:10:26,389 - INFO - Correct Answer: [2->1->4->3]
+2026-07-08 17:10:27,067 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 17:10:27,067 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 17:10:27,067 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:10:49,100 - INFO -   ⏱️  LLM: 22.0s
+2026-07-08 17:10:49,100 - INFO -   🤖 Thought: Layer1: scan all 4 segments independently to build an unbiased inventory of objects, states, and eve...
+2026-07-08 17:10:49,101 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 17:10:49,101 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=5
+2026-07-08 17:10:49,101 - INFO -   ⚡ Batch observe parallel enabled: 4 items, 4 workers (tool_backend=api, layer1=True)
+2026-07-08 17:10:49,102 - INFO -     [CHUNK 1/4] Video 1 chunk 1/1: 0-16s, 16 frames
+2026-07-08 17:10:49,103 - INFO -     [CHUNK 2/4] Video 2 chunk 1/1: 0-27s, 16 frames
+2026-07-08 17:10:49,104 - INFO -     [CHUNK 3/4] Video 3 chunk 1/1: 0-18s, 16 frames
+2026-07-08 17:10:49,105 - INFO -     [CHUNK 4/4] Video 4 chunk 1/1: 0-10s, 16 frames
+2026-07-08 17:10:49,267 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:10:49,267 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:10:49,274 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:10:49,274 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:10:49,282 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:10:49,283 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:10:49,318 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:10:49,318 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:11:43,300 - INFO -     [BATCH 1/4] Video 1 done in 54.2s (1 chunks)
+2026-07-08 17:12:01,385 - INFO -     [BATCH 2/4] Video 2 done in 72.3s (1 chunks)
+2026-07-08 17:12:02,680 - INFO -     [BATCH 4/4] Video 4 done in 73.6s (1 chunks)
+2026-07-08 17:12:09,474 - INFO -     [BATCH 3/4] Video 3 done in 80.4s (1 chunks)
+2026-07-08 17:12:09,475 - INFO -   ⏱️  Batch Tool (4 videos): 80.4s, Turn total: 102.4s
+2026-07-08 17:12:09,476 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 102.4s)
+2026-07-08 17:12:09,477 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:13:49,749 - INFO -   ⏱️  LLM: 100.3s
+2026-07-08 17:13:49,750 - INFO -   🤖 Thought: Layer2: Re-check decisive object states (pepper lifecycle, lettuce container, pot contents, cutting ...
+2026-07-08 17:13:49,750 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 17:13:49,750 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=9
+2026-07-08 17:13:49,751 - INFO -   ⚡ Batch observe parallel enabled: 4 items, 4 workers (tool_backend=api, layer1=False)
+2026-07-08 17:13:49,752 - INFO -     [CHUNK 1/4] Video 1 chunk 1/1: 0-16s, 16 frames
+2026-07-08 17:13:49,753 - INFO -     [CHUNK 2/4] Video 2 chunk 1/1: 0-27s, 16 frames
+2026-07-08 17:13:49,754 - INFO -     [CHUNK 3/4] Video 3 chunk 1/1: 0-18s, 16 frames
+2026-07-08 17:13:49,756 - INFO -     [CHUNK 4/4] Video 4 chunk 1/1: 0-10s, 16 frames
+2026-07-08 17:13:49,834 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:13:49,834 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:13:49,840 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:13:49,840 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:13:49,848 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:13:49,849 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:13:49,856 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:13:49,857 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:14:45,021 - INFO -     [BATCH 2/4] Video 2 done in 55.3s (1 chunks)
+2026-07-08 17:14:53,648 - INFO -     [BATCH 4/4] Video 4 done in 63.9s (1 chunks)
+2026-07-08 17:14:54,456 - INFO -     [BATCH 1/4] Video 1 done in 64.7s (1 chunks)
+2026-07-08 17:15:19,549 - INFO -     [BATCH 3/4] Video 3 done in 89.8s (1 chunks)
+2026-07-08 17:15:19,550 - INFO -   ⏱️  Batch Tool (4 videos): 89.8s, Turn total: 190.1s
+2026-07-08 17:15:19,550 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 292.5s)
+2026-07-08 17:15:19,550 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:16:23,352 - INFO -   ⏱️  LLM: 63.8s
+2026-07-08 17:16:23,353 - INFO -   🤖 Thought: Decisive evidence from object state chains: 1) Pepper lifecycle: V1(wash whole)->V4(halve/deseed/rin...
+2026-07-08 17:16:23,353 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 17:16:23,353 - INFO -   🧠 Cross-context updated: confirmed=3, uncertain=0, dimensions=9
+2026-07-08 17:16:23,355 - INFO - 🎯 Final Answer: 2->1->4->3 (Turn total: 63.8s)
+2026-07-08 17:16:23,367 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/3/attempt_1 (JSON + Readable TXT)
+2026-07-08 17:16:23,367 - INFO - Evaluating result...
+2026-07-08 17:16:23,367 - INFO -   - Predicted: 2->1->4->3
+2026-07-08 17:16:23,368 - INFO -   - Ground Truth: 2->1->4->3
+2026-07-08 17:16:23,368 - INFO -   - Result: CORRECT
+2026-07-08 17:16:23,368 - INFO - Attempt 1 elapsed: 357.0s
+2026-07-08 17:16:23,368 - INFO -   - Final Result: CORRECT
+2026-07-08 17:16:23,368 - INFO - --- End of Q3 ---
+2026-07-08 17:16:23,368 - INFO - ======================================================================
+2026-07-08 17:16:23,368 - INFO -   Testing Question 5/614 (ID: 4)
+2026-07-08 17:16:23,369 - INFO -   Task: EPIC_PSS | segments=5
+2026-07-08 17:16:23,369 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 17:16:23,369 - INFO - Correct Answer: [1->2->5->4->3]
+2026-07-08 17:16:23,982 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 17:16:23,982 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 17:16:23,982 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:17:00,682 - INFO -   ⏱️  LLM: 36.7s
+2026-07-08 17:17:00,683 - INFO -   🤖 Thought: Layer1: scan all 5 segments independently to build object-state inventory and event roles without in...
+2026-07-08 17:17:00,683 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 17:17:00,683 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=5
+2026-07-08 17:17:00,683 - INFO -   ⚡ Batch observe parallel enabled: 5 items, 5 workers (tool_backend=api, layer1=True)
+2026-07-08 17:17:00,684 - INFO -     [CHUNK 1/5] Video 1 chunk 1/1: 0-25s, 16 frames
+2026-07-08 17:17:00,685 - INFO -     [CHUNK 2/5] Video 2 chunk 1/1: 0-39s, 16 frames
+2026-07-08 17:17:00,686 - INFO -     [CHUNK 3/5] Video 3 chunk 1/1: 0-37s, 16 frames
+2026-07-08 17:17:00,688 - INFO -     [CHUNK 4/5] Video 4 chunk 1/1: 0-25s, 16 frames
+2026-07-08 17:17:00,689 - INFO -     [CHUNK 5/5] Video 5 chunk 1/1: 0-39s, 16 frames
+2026-07-08 17:17:00,840 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:17:00,841 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:17:00,851 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:17:00,851 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:17:00,859 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:17:00,859 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:17:00,883 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:17:00,884 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:17:00,893 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:17:00,893 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:17:39,425 - INFO -     [BATCH 4/5] Video 4 done in 38.7s (1 chunks)
+2026-07-08 17:17:40,517 - INFO -     [BATCH 1/5] Video 1 done in 39.8s (1 chunks)
+2026-07-08 17:17:40,935 - INFO -     [BATCH 5/5] Video 5 done in 40.3s (1 chunks)
+2026-07-08 17:18:19,249 - INFO -     [BATCH 2/5] Video 2 done in 78.6s (1 chunks)
+2026-07-08 17:18:40,923 - INFO -     [BATCH 3/5] Video 3 done in 100.2s (1 chunks)
+2026-07-08 17:18:40,925 - INFO -   ⏱️  Batch Tool (5 videos): 100.2s, Turn total: 136.9s
+2026-07-08 17:18:40,925 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 136.9s)
+2026-07-08 17:18:40,926 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:21:14,348 - INFO -   ⏱️  LLM: 153.4s
+2026-07-08 17:21:14,348 - INFO -   🤖 Thought: Decisive evidence: The rice pot shows a clear state progression across segments. Video 5 shows a sau...
+2026-07-08 17:21:14,348 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 17:21:14,349 - WARNING -   ⚠️ Rejected premature final answer: Do not answer yet. PSS requires Layer2 before `answer`. Missing: Layer2 discriminative evidence reinspection. Layer2 re-observes shared evidence (objects/regions/events) that Layer1 found recurring across segments. For each segment, ask the VLM to report the actual visible state of these evidence items. Do NOT pass your hypothesized order to the VLM. Use `batch_observe` with `MODE=layer2_state_scan`.
+2026-07-08 17:21:14,349 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 290.4s)
+2026-07-08 17:21:14,349 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:22:10,040 - INFO -   ⏱️  LLM: 55.7s
+2026-07-08 17:22:10,041 - INFO -   🤖 Thought: Layer2: re-observe shared evidence items (main pan vegetables, rice pot/saucepan, sieve, cutting boa...
+2026-07-08 17:22:10,041 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 17:22:10,041 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=3, dimensions=5
+2026-07-08 17:22:10,042 - INFO -   ⚡ Batch observe parallel enabled: 5 items, 5 workers (tool_backend=api, layer1=False)
+2026-07-08 17:22:10,043 - INFO -     [CHUNK 1/5] Video 1 chunk 1/1: 0-25s, 16 frames
+2026-07-08 17:22:10,043 - INFO -     [CHUNK 2/5] Video 2 chunk 1/1: 0-39s, 16 frames
+2026-07-08 17:22:10,044 - INFO -     [CHUNK 3/5] Video 3 chunk 1/1: 0-37s, 16 frames
+2026-07-08 17:22:10,046 - INFO -     [CHUNK 4/5] Video 4 chunk 1/1: 0-25s, 16 frames
+2026-07-08 17:22:10,047 - INFO -     [CHUNK 5/5] Video 5 chunk 1/1: 0-39s, 16 frames
+2026-07-08 17:22:10,130 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:22:10,130 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:22:10,130 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:22:10,130 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:22:10,144 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:22:10,144 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:22:10,150 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:22:10,151 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:22:10,160 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:22:10,160 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:23:08,430 - INFO -     [BATCH 4/5] Video 4 done in 58.4s (1 chunks)
+2026-07-08 17:23:10,054 - INFO -     [BATCH 5/5] Video 5 done in 60.0s (1 chunks)
+2026-07-08 17:23:13,090 - INFO -     [BATCH 1/5] Video 1 done in 63.0s (1 chunks)
+2026-07-08 17:23:35,393 - INFO -     [BATCH 2/5] Video 2 done in 85.4s (1 chunks)
+2026-07-08 17:23:54,054 - INFO -     [BATCH 3/5] Video 3 done in 104.0s (1 chunks)
+2026-07-08 17:23:54,055 - INFO -   ⏱️  Batch Tool (5 videos): 104.0s, Turn total: 159.7s
+2026-07-08 17:23:54,056 - INFO - 🔄 [TURN 4] Master Thinking... (elapsed since loop start: 450.1s)
+2026-07-08 17:23:54,056 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:26:05,453 - INFO -   ⏱️  LLM: 131.4s
+2026-07-08 17:26:05,454 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains=[rice pot progression: 1(clear water heating)->2(rice poured in, boil...
+2026-07-08 17:26:05,454 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 17:26:05,454 - INFO -   🧠 Cross-context updated: confirmed=3, uncertain=0, dimensions=5
+2026-07-08 17:26:05,457 - INFO - 🎯 Final Answer: 1->2->5->4->3 (Turn total: 131.4s)
+2026-07-08 17:26:05,472 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/4/attempt_1 (JSON + Readable TXT)
+2026-07-08 17:26:05,473 - INFO - Evaluating result...
+2026-07-08 17:26:05,473 - INFO -   - Predicted: 1->2->5->4->3
+2026-07-08 17:26:05,473 - INFO -   - Ground Truth: 1->2->5->4->3
+2026-07-08 17:26:05,473 - INFO -   - Result: CORRECT
+2026-07-08 17:26:05,473 - INFO - Attempt 1 elapsed: 582.1s
+2026-07-08 17:26:05,473 - INFO -   - Final Result: CORRECT
+2026-07-08 17:26:05,474 - INFO - --- End of Q4 ---
+2026-07-08 17:26:05,474 - INFO - ======================================================================
+2026-07-08 17:26:05,474 - INFO -   Testing Question 6/614 (ID: 5)
+2026-07-08 17:26:05,475 - INFO -   Task: EPIC_PSS | segments=6
+2026-07-08 17:26:05,475 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 17:26:05,475 - INFO - Correct Answer: [1->3->5->4->2->6]
+2026-07-08 17:26:05,684 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 17:26:05,684 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 17:26:05,684 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:26:44,498 - INFO -   ⏱️  LLM: 38.8s
+2026-07-08 17:26:44,498 - INFO -   🤖 Thought: Layer1: scan all 6 shuffled cooking segments independently to build an unbiased inventory of objects...
+2026-07-08 17:26:44,498 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 17:26:44,498 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=5
+2026-07-08 17:26:44,499 - INFO -   ⚡ Batch observe parallel enabled: 6 items, 6 workers (tool_backend=api, layer1=True)
+2026-07-08 17:26:44,500 - INFO -     [CHUNK 1/6] Video 1 chunk 1/1: 0-30s, 16 frames
+2026-07-08 17:26:44,500 - INFO -     [CHUNK 2/6] Video 2 chunk 1/1: 0-20s, 16 frames
+2026-07-08 17:26:44,502 - INFO -     [CHUNK 3/6] Video 3 chunk 1/1: 0-17s, 16 frames
+2026-07-08 17:26:44,503 - INFO -     [CHUNK 4/6] Video 4 chunk 1/1: 0-46s, 16 frames
+2026-07-08 17:26:44,504 - INFO -     [CHUNK 5/6] Video 5 chunk 1/1: 0-35s, 16 frames
+2026-07-08 17:26:44,505 - INFO -     [CHUNK 6/6] Video 6 chunk 1/1: 0-25s, 16 frames
+2026-07-08 17:26:44,575 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:26:44,575 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:26:44,590 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:26:44,590 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:26:44,663 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:26:44,663 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:26:44,674 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:26:44,675 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:26:44,682 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:26:44,683 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:26:44,689 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:26:44,689 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:27:12,600 - INFO -     [BATCH 6/6] Video 6 done in 28.1s (1 chunks)
+2026-07-08 17:27:22,693 - INFO -     [BATCH 4/6] Video 4 done in 38.2s (1 chunks)
+2026-07-08 17:27:30,694 - INFO -     [BATCH 2/6] Video 2 done in 46.2s (1 chunks)
+2026-07-08 17:27:39,096 - INFO -     [BATCH 3/6] Video 3 done in 54.6s (1 chunks)
+2026-07-08 17:27:42,339 - INFO -     [BATCH 5/6] Video 5 done in 57.8s (1 chunks)
+2026-07-08 17:27:44,219 - INFO -     [BATCH 1/6] Video 1 done in 59.7s (1 chunks)
+2026-07-08 17:27:44,220 - INFO -   ⏱️  Batch Tool (6 videos): 59.7s, Turn total: 98.5s
+2026-07-08 17:27:44,221 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 98.5s)
+2026-07-08 17:27:44,221 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:29:40,002 - INFO -   ⏱️  LLM: 115.8s
+2026-07-08 17:29:40,003 - INFO -   🤖 Thought: Layer2: verify pan contents and cutting board states across all 6 segments to confirm the state-tran...
+2026-07-08 17:29:40,003 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 17:29:40,003 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=7
+2026-07-08 17:29:40,003 - INFO -   ⚡ Batch observe parallel enabled: 6 items, 6 workers (tool_backend=api, layer1=False)
+2026-07-08 17:29:40,004 - INFO -     [CHUNK 1/6] Video 1 chunk 1/1: 0-30s, 16 frames
+2026-07-08 17:29:40,004 - INFO -     [CHUNK 2/6] Video 2 chunk 1/1: 0-20s, 16 frames
+2026-07-08 17:29:40,005 - INFO -     [CHUNK 3/6] Video 3 chunk 1/1: 0-17s, 16 frames
+2026-07-08 17:29:40,006 - INFO -     [CHUNK 4/6] Video 4 chunk 1/1: 0-46s, 16 frames
+2026-07-08 17:29:40,006 - INFO -     [CHUNK 5/6] Video 5 chunk 1/1: 0-35s, 16 frames
+2026-07-08 17:29:40,007 - INFO -     [CHUNK 6/6] Video 6 chunk 1/1: 0-25s, 16 frames
+2026-07-08 17:29:40,062 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:29:40,063 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:29:40,064 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:29:40,070 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:29:40,077 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:29:40,077 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:29:40,088 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:29:40,088 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:29:40,099 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:29:40,099 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:29:40,108 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:29:40,108 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:30:16,594 - INFO -     [BATCH 4/6] Video 4 done in 36.6s (1 chunks)
+2026-07-08 17:30:48,295 - INFO -     [BATCH 2/6] Video 2 done in 68.3s (1 chunks)
+2026-07-08 17:30:53,995 - INFO -     [BATCH 3/6] Video 3 done in 74.0s (1 chunks)
+2026-07-08 17:30:59,732 - INFO -     [BATCH 5/6] Video 5 done in 79.7s (1 chunks)
+2026-07-08 17:31:21,897 - INFO -     [BATCH 1/6] Video 1 done in 101.9s (1 chunks)
+2026-07-08 17:31:35,895 - INFO -     [BATCH 6/6] Video 6 done in 115.9s (1 chunks)
+2026-07-08 17:31:35,896 - INFO -   ⏱️  Batch Tool (6 videos): 115.9s, Turn total: 231.7s
+2026-07-08 17:31:35,896 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 330.2s)
+2026-07-08 17:31:35,897 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:31:48,700 - INFO -   ⏱️  LLM: 12.8s
+2026-07-08 17:31:48,701 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains=[onion prep: 1->3->5 (peel->chop->mince, board has onion residue), tr...
+2026-07-08 17:31:48,701 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 17:31:48,702 - INFO - 🎯 Final Answer: 1->3->5->4->2->6 (Turn total: 12.8s)
+2026-07-08 17:31:48,713 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/5/attempt_1 (JSON + Readable TXT)
+2026-07-08 17:31:48,713 - INFO - Evaluating result...
+2026-07-08 17:31:48,714 - INFO -   - Predicted: 1->3->5->4->2->6
+2026-07-08 17:31:48,714 - INFO -   - Ground Truth: 1->3->5->4->2->6
+2026-07-08 17:31:48,714 - INFO -   - Result: CORRECT
+2026-07-08 17:31:48,714 - INFO - Attempt 1 elapsed: 343.2s
+2026-07-08 17:31:48,714 - INFO -   - Final Result: CORRECT
+2026-07-08 17:31:48,715 - INFO - --- End of Q5 ---
+2026-07-08 17:31:48,715 - INFO - ======================================================================
+2026-07-08 17:31:48,715 - INFO -   Testing Question 7/614 (ID: 6)
+2026-07-08 17:31:48,715 - INFO -   Task: EPIC_PSS | segments=3
+2026-07-08 17:31:48,715 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 17:31:48,715 - INFO - Correct Answer: [2->1->3]
+2026-07-08 17:31:48,840 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 17:31:48,840 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 17:31:48,840 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:32:09,571 - INFO -   ⏱️  LLM: 20.7s
+2026-07-08 17:32:09,572 - INFO -   🤖 Thought: Starting Layer1 to independently scan all 3 segments for object states, operations, and visible tran...
+2026-07-08 17:32:09,572 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 17:32:09,572 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=3
+2026-07-08 17:32:09,572 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=True)
+2026-07-08 17:32:09,573 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-44s, 16 frames
+2026-07-08 17:32:09,574 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-43s, 16 frames
+2026-07-08 17:32:09,575 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-22s, 16 frames
+2026-07-08 17:32:09,663 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:32:09,663 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:32:09,720 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:32:09,721 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:32:09,726 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:32:09,726 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:32:40,331 - INFO -     [BATCH 3/3] Video 3 done in 30.8s (1 chunks)
+2026-07-08 17:32:56,097 - INFO -     [BATCH 2/3] Video 2 done in 46.5s (1 chunks)
+2026-07-08 17:33:02,729 - INFO -     [BATCH 1/3] Video 1 done in 53.2s (1 chunks)
+2026-07-08 17:33:02,730 - INFO -   ⏱️  Batch Tool (3 videos): 53.2s, Turn total: 73.9s
+2026-07-08 17:33:02,730 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 73.9s)
+2026-07-08 17:33:02,731 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:34:39,798 - INFO -   ⏱️  LLM: 97.1s
+2026-07-08 17:34:39,799 - INFO -   🤖 Thought: Running Layer2 to verify the rice state progression (boiling liquid -> boiling white -> checking/tas...
+2026-07-08 17:34:39,799 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 17:34:39,799 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=6
+2026-07-08 17:34:39,799 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=False)
+2026-07-08 17:34:39,799 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-44s, 16 frames
+2026-07-08 17:34:39,800 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-43s, 16 frames
+2026-07-08 17:34:39,801 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-22s, 16 frames
+2026-07-08 17:34:39,876 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:34:39,877 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:34:39,890 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:34:39,890 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:34:39,912 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:34:39,913 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:35:52,049 - INFO -     [BATCH 3/3] Video 3 done in 72.3s (1 chunks)
+2026-07-08 17:35:58,399 - INFO -     [BATCH 2/3] Video 2 done in 78.6s (1 chunks)
+2026-07-08 17:36:15,718 - INFO -     [BATCH 1/3] Video 1 done in 95.9s (1 chunks)
+2026-07-08 17:36:15,719 - INFO -   ⏱️  Batch Tool (3 videos): 95.9s, Turn total: 193.0s
+2026-07-08 17:36:15,719 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 266.9s)
+2026-07-08 17:36:15,719 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:36:22,897 - INFO -   ⏱️  LLM: 7.2s
+2026-07-08 17:36:22,897 - INFO -   🤖 Thought: Decisive evidence: Rice state progression V2 (boiling liquid) -> V1 (white starchy liquid) -> V3 (ch...
+2026-07-08 17:36:22,897 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 17:36:22,898 - INFO - 🎯 Final Answer: 2->1->3 (Turn total: 7.2s)
+2026-07-08 17:36:22,905 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/6/attempt_1 (JSON + Readable TXT)
+2026-07-08 17:36:22,905 - INFO - Evaluating result...
+2026-07-08 17:36:22,905 - INFO -   - Predicted: 2->1->3
+2026-07-08 17:36:22,905 - INFO -   - Ground Truth: 2->1->3
+2026-07-08 17:36:22,905 - INFO -   - Result: CORRECT
+2026-07-08 17:36:22,905 - INFO - Attempt 1 elapsed: 274.2s
+2026-07-08 17:36:22,905 - INFO -   - Final Result: CORRECT
+2026-07-08 17:36:22,906 - INFO - --- End of Q6 ---
+2026-07-08 17:36:22,906 - INFO - ======================================================================
+2026-07-08 17:36:22,906 - INFO -   Testing Question 8/614 (ID: 7)
+2026-07-08 17:36:22,906 - INFO -   Task: EPIC_PSS | segments=4
+2026-07-08 17:36:22,906 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 17:36:22,906 - INFO - Correct Answer: [3->2->4->1]
+2026-07-08 17:36:23,084 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 17:36:23,084 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 17:36:23,084 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:36:49,710 - INFO -   ⏱️  LLM: 26.6s
+2026-07-08 17:36:49,710 - INFO -   🤖 Thought: Initiating Layer1 to independently scan all 4 shuffled cooking segments and build an unbiased invent...
+2026-07-08 17:36:49,710 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 17:36:49,711 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=4
+2026-07-08 17:36:49,711 - INFO -   ⚡ Batch observe parallel enabled: 4 items, 4 workers (tool_backend=api, layer1=True)
+2026-07-08 17:36:49,723 - INFO -     [CHUNK 1/4] Video 1 chunk 1/1: 0-10s, 16 frames
+2026-07-08 17:36:49,739 - INFO -     [CHUNK 2/4] Video 2 chunk 1/1: 0-22s, 16 frames
+2026-07-08 17:36:49,759 - INFO -     [CHUNK 3/4] Video 3 chunk 1/1: 0-24s, 16 frames
+2026-07-08 17:36:49,760 - INFO -     [CHUNK 4/4] Video 4 chunk 1/1: 0-17s, 16 frames
+2026-07-08 17:36:49,858 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:36:49,858 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:36:49,893 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:36:49,893 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:36:49,915 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:36:49,915 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:36:49,986 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:36:49,987 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:37:19,706 - INFO -     [BATCH 2/4] Video 2 done in 30.0s (1 chunks)
+2026-07-08 17:37:39,746 - INFO -     [BATCH 1/4] Video 1 done in 50.0s (1 chunks)
+2026-07-08 17:37:42,554 - INFO -     [BATCH 3/4] Video 3 done in 52.8s (1 chunks)
+2026-07-08 17:37:43,600 - INFO -     [BATCH 4/4] Video 4 done in 53.9s (1 chunks)
+2026-07-08 17:37:43,600 - INFO -   ⏱️  Batch Tool (4 videos): 53.9s, Turn total: 80.5s
+2026-07-08 17:37:43,601 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 80.5s)
+2026-07-08 17:37:43,601 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:39:06,258 - INFO -   ⏱️  LLM: 82.7s
+2026-07-08 17:39:06,258 - INFO -   🤖 Thought: Running Layer2 state scan on all 4 segments to verify the preliminary order 3->2->4->1 by checking s...
+2026-07-08 17:39:06,258 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 17:39:06,259 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=3, dimensions=8
+2026-07-08 17:39:06,259 - INFO -   ⚡ Batch observe parallel enabled: 4 items, 4 workers (tool_backend=api, layer1=False)
+2026-07-08 17:39:06,260 - INFO -     [CHUNK 1/4] Video 1 chunk 1/1: 0-10s, 16 frames
+2026-07-08 17:39:06,260 - INFO -     [CHUNK 2/4] Video 2 chunk 1/1: 0-22s, 16 frames
+2026-07-08 17:39:06,261 - INFO -     [CHUNK 3/4] Video 3 chunk 1/1: 0-24s, 16 frames
+2026-07-08 17:39:06,262 - INFO -     [CHUNK 4/4] Video 4 chunk 1/1: 0-17s, 16 frames
+2026-07-08 17:39:06,338 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:39:06,339 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:39:06,349 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:39:06,349 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:39:06,361 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:39:06,362 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:39:06,373 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:39:06,373 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:40:00,565 - INFO -     [BATCH 3/4] Video 3 done in 54.3s (1 chunks)
+2026-07-08 17:40:01,864 - INFO -     [BATCH 2/4] Video 2 done in 55.6s (1 chunks)
+2026-07-08 17:40:14,963 - INFO -     [BATCH 1/4] Video 1 done in 68.7s (1 chunks)
+2026-07-08 17:40:45,401 - INFO -     [BATCH 4/4] Video 4 done in 99.1s (1 chunks)
+2026-07-08 17:40:45,401 - INFO -   ⏱️  Batch Tool (4 videos): 99.1s, Turn total: 181.8s
+2026-07-08 17:40:45,402 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 262.3s)
+2026-07-08 17:40:45,402 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:41:34,219 - INFO -   ⏱️  LLM: 48.8s
+2026-07-08 17:41:34,220 - INFO -   🤖 Thought: Layer2 confirms the order 3->2->4->1 with strong visible state progression across multiple object ch...
+2026-07-08 17:41:34,220 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 17:41:34,220 - INFO -   🧠 Cross-context updated: confirmed=5, uncertain=0, dimensions=8
+2026-07-08 17:41:34,223 - INFO - 🎯 Final Answer: 3->2->4->1 (Turn total: 48.8s)
+2026-07-08 17:41:34,233 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/7/attempt_1 (JSON + Readable TXT)
+2026-07-08 17:41:34,233 - INFO - Evaluating result...
+2026-07-08 17:41:34,233 - INFO -   - Predicted: 3->2->4->1
+2026-07-08 17:41:34,233 - INFO -   - Ground Truth: 3->2->4->1
+2026-07-08 17:41:34,233 - INFO -   - Result: CORRECT
+2026-07-08 17:41:34,234 - INFO - Attempt 1 elapsed: 311.3s
+2026-07-08 17:41:34,234 - INFO -   - Final Result: CORRECT
+2026-07-08 17:41:34,234 - INFO - --- End of Q7 ---
+2026-07-08 17:41:34,234 - INFO - ======================================================================
+2026-07-08 17:41:34,234 - INFO -   Testing Question 9/614 (ID: 8)
+2026-07-08 17:41:34,234 - INFO -   Task: EPIC_PSS | segments=3
+2026-07-08 17:41:34,234 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 17:41:34,234 - INFO - Correct Answer: [2->3->1]
+2026-07-08 17:41:34,326 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 17:41:34,326 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 17:41:34,326 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:41:51,164 - INFO -   ⏱️  LLM: 16.8s
+2026-07-08 17:41:51,164 - INFO -   🤖 Thought: Layer1: scan all 3 segments independently to build an unbiased inventory of objects, states, and act...
+2026-07-08 17:41:51,164 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 17:41:51,164 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=3, dimensions=5
+2026-07-08 17:41:51,164 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=True)
+2026-07-08 17:41:51,165 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-8s, 16 frames
+2026-07-08 17:41:51,166 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-36s, 16 frames
+2026-07-08 17:41:51,166 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-33s, 16 frames
+2026-07-08 17:41:51,317 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:41:51,317 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:41:51,329 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:41:51,329 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:41:51,366 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:41:51,366 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:42:45,333 - INFO -     [BATCH 3/3] Video 3 done in 54.2s (1 chunks)
+2026-07-08 17:42:53,903 - INFO -     [BATCH 1/3] Video 1 done in 62.7s (1 chunks)
+2026-07-08 17:43:25,519 - INFO -     [BATCH 2/3] Video 2 done in 94.4s (1 chunks)
+2026-07-08 17:43:25,520 - INFO -   ⏱️  Batch Tool (3 videos): 94.4s, Turn total: 111.2s
+2026-07-08 17:43:25,521 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 111.2s)
+2026-07-08 17:43:25,522 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:44:32,240 - INFO -   ⏱️  LLM: 66.7s
+2026-07-08 17:44:32,241 - INFO -   🤖 Thought: Layer2: Re-check the decisive object states (orange packet, white liquid pot, sauce viscosity, sink)...
+2026-07-08 17:44:32,241 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 17:44:32,241 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=3, dimensions=5
+2026-07-08 17:44:32,242 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=False)
+2026-07-08 17:44:32,242 - INFO -     [CHUNK 1/3] Video 3 chunk 1/1: 0-33s, 16 frames
+2026-07-08 17:44:32,243 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-36s, 16 frames
+2026-07-08 17:44:32,244 - INFO -     [CHUNK 3/3] Video 1 chunk 1/1: 0-8s, 16 frames
+2026-07-08 17:44:32,324 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:44:32,324 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:44:32,330 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:44:32,330 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:44:32,350 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:44:32,351 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:45:37,844 - INFO -     [BATCH 3/3] Video 1 done in 65.6s (1 chunks)
+2026-07-08 17:46:17,548 - INFO -     [BATCH 1/3] Video 3 done in 105.3s (1 chunks)
+2026-07-08 17:48:10,703 - INFO -     [BATCH 2/3] Video 2 done in 218.5s (1 chunks)
+2026-07-08 17:48:10,704 - INFO -   ⏱️  Batch Tool (3 videos): 218.5s, Turn total: 285.2s
+2026-07-08 17:48:10,704 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 396.4s)
+2026-07-08 17:48:10,704 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:48:31,877 - INFO -   ⏱️  LLM: 21.2s
+2026-07-08 17:48:31,878 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains: orange_packet torn(V3)->poured(V2); white_liquid_pot lidded(V3)->pou...
+2026-07-08 17:48:31,878 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 17:48:31,878 - INFO -   🧠 Cross-context updated: confirmed=4, uncertain=3, dimensions=5
+2026-07-08 17:48:31,879 - INFO - 🎯 Final Answer: 3->2->1 (Turn total: 21.2s)
+2026-07-08 17:48:31,888 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/8/attempt_1 (JSON + Readable TXT)
+2026-07-08 17:48:31,889 - INFO - Evaluating result...
+2026-07-08 17:48:31,889 - INFO -   - Predicted: 3->2->1
+2026-07-08 17:48:31,889 - INFO -   - Ground Truth: 2->3->1
+2026-07-08 17:48:31,889 - INFO -   - Result: WRONG
+2026-07-08 17:48:31,889 - INFO - Attempt 1 elapsed: 417.7s
+2026-07-08 17:48:31,889 - INFO - Diagnosis attempt 1/3
+2026-07-08 17:49:32,599 - INFO - Diagnosis: turn=4 type=wrong_observation strategy= confidence=0.82
+2026-07-08 17:49:32,621 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 17:49:32,621 - INFO - 📋 Resuming from pre-loaded history (7 messages)
+2026-07-08 17:49:32,621 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 17:49:32,621 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:50:12,275 - INFO -   ⏱️  LLM: 39.7s
+2026-07-08 17:50:12,276 - INFO -   🤖 Thought: Focus on V2 frames 1-10 (0-20s) to resolve the orange packet contradiction: is it sealed/intact bein...
+2026-07-08 17:50:12,276 - INFO -   🤖 Action:  [OBSERVE]
+2026-07-08 17:50:12,276 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=0
+2026-07-08 17:50:12,617 - INFO -     [TOOL] 👁️ Calling VLM with 28 frames...
+2026-07-08 17:50:12,618 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:53:12,507 - INFO -   ⏱️  Tool: 180.2s, Turn total: 219.9s
+2026-07-08 17:53:12,508 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 219.9s)
+2026-07-08 17:53:12,508 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:54:18,500 - INFO -   ⏱️  LLM: 66.0s
+2026-07-08 17:54:18,500 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains: V2 (sealed packet held over pot, no contents entering) -> V3 (packet...
+2026-07-08 17:54:18,500 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 17:54:18,501 - INFO - 🎯 Final Answer: 2->3->1 (Turn total: 66.0s)
+2026-07-08 17:54:18,511 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/8/attempt_2 (JSON + Readable TXT)
+2026-07-08 17:54:18,511 - INFO - Evaluating diagnosis attempt 1 result...
+2026-07-08 17:54:18,511 - INFO -   - Predicted: 2->3->1
+2026-07-08 17:54:18,511 - INFO -   - Ground Truth: 2->3->1
+2026-07-08 17:54:18,511 - INFO -   - Result: CORRECTED
+2026-07-08 17:54:18,511 - INFO - Attempt 2 elapsed: 285.9s
+2026-07-08 17:54:18,511 - INFO -   - Final Result: CORRECTED_BY_DIAGNOSIS_1
+2026-07-08 17:54:18,512 - INFO - --- End of Q8 ---
+2026-07-08 17:54:18,512 - INFO - ======================================================================
+2026-07-08 17:54:18,512 - INFO -   Testing Question 10/614 (ID: 9)
+2026-07-08 17:54:18,512 - INFO -   Task: EPIC_PSS | segments=3
+2026-07-08 17:54:18,512 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 17:54:18,512 - INFO - Correct Answer: [2->1->3]
+2026-07-08 17:54:18,574 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 17:54:18,574 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 17:54:18,574 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:54:41,338 - INFO -   ⏱️  LLM: 22.8s
+2026-07-08 17:54:41,339 - INFO -   🤖 Thought: Initiating Layer1 to independently scan all three shuffled segments and build an unbiased inventory ...
+2026-07-08 17:54:41,339 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 17:54:41,339 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=0, dimensions=4
+2026-07-08 17:54:41,340 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=True)
+2026-07-08 17:54:41,341 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-27s, 16 frames
+2026-07-08 17:54:41,341 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-50s, 16 frames
+2026-07-08 17:54:41,343 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-11s, 16 frames
+2026-07-08 17:54:41,430 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:54:41,430 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:54:41,446 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:54:41,446 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:54:41,523 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:54:41,524 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:55:28,927 - INFO -     [BATCH 1/3] Video 1 done in 47.6s (1 chunks)
+2026-07-08 17:55:43,650 - INFO -     [BATCH 2/3] Video 2 done in 62.3s (1 chunks)
+2026-07-08 17:56:09,332 - INFO -     [BATCH 3/3] Video 3 done in 88.0s (1 chunks)
+2026-07-08 17:56:09,333 - INFO -   ⏱️  Batch Tool (3 videos): 88.0s, Turn total: 110.8s
+2026-07-08 17:56:09,334 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 110.8s)
+2026-07-08 17:56:09,334 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 17:57:59,871 - INFO -   ⏱️  LLM: 110.5s
+2026-07-08 17:57:59,872 - INFO -   🤖 Thought: Running Layer2 state scan on all three segments to verify the object state transitions (flatbreads b...
+2026-07-08 17:57:59,872 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 17:57:59,872 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=0, dimensions=7
+2026-07-08 17:57:59,873 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=False)
+2026-07-08 17:57:59,874 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-27s, 16 frames
+2026-07-08 17:57:59,874 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-50s, 16 frames
+2026-07-08 17:57:59,876 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-11s, 16 frames
+2026-07-08 17:57:59,980 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:57:59,980 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:57:59,989 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:57:59,989 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:57:59,999 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 17:57:59,999 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 17:59:04,518 - INFO -     [BATCH 3/3] Video 3 done in 64.6s (1 chunks)
+2026-07-08 17:59:21,083 - INFO -     [BATCH 1/3] Video 1 done in 81.2s (1 chunks)
+2026-07-08 17:59:38,299 - INFO -     [BATCH 2/3] Video 2 done in 98.4s (1 chunks)
+2026-07-08 17:59:38,300 - INFO -   ⏱️  Batch Tool (3 videos): 98.4s, Turn total: 209.0s
+2026-07-08 17:59:38,301 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 319.7s)
+2026-07-08 17:59:38,301 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:00:07,049 - INFO -   ⏱️  LLM: 28.7s
+2026-07-08 18:00:07,049 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains: V2->V1 (raw dough/empty pan -> pale flatbreads/simmering curries); V...
+2026-07-08 18:00:07,049 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 18:00:07,050 - INFO - 🎯 Final Answer: 2->1->3 (Turn total: 28.7s)
+2026-07-08 18:00:07,061 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/9/attempt_1 (JSON + Readable TXT)
+2026-07-08 18:00:07,061 - INFO - Evaluating result...
+2026-07-08 18:00:07,061 - INFO -   - Predicted: 2->1->3
+2026-07-08 18:00:07,061 - INFO -   - Ground Truth: 2->1->3
+2026-07-08 18:00:07,061 - INFO -   - Result: CORRECT
+2026-07-08 18:00:07,061 - INFO - Attempt 1 elapsed: 348.5s
+2026-07-08 18:00:07,061 - INFO -   - Final Result: CORRECT
+2026-07-08 18:00:07,061 - INFO - --- End of Q9 ---
+2026-07-08 18:00:07,061 - INFO - ======================================================================
+2026-07-08 18:00:07,061 - INFO -   Testing Question 11/614 (ID: 10)
+2026-07-08 18:00:07,061 - INFO -   Task: EPIC_PSS | segments=5
+2026-07-08 18:00:07,062 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 18:00:07,062 - INFO - Correct Answer: [2->1->5->4->3]
+2026-07-08 18:00:07,186 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 18:00:07,187 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 18:00:07,187 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:00:37,200 - INFO -   ⏱️  LLM: 30.0s
+2026-07-08 18:00:37,200 - INFO -   🤖 Thought: Layer1: independently scan all 5 segments to build object-state inventory without inferring order....
+2026-07-08 18:00:37,200 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 18:00:37,201 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=5
+2026-07-08 18:00:37,201 - INFO -   ⚡ Batch observe parallel enabled: 5 items, 5 workers (tool_backend=api, layer1=True)
+2026-07-08 18:00:37,202 - INFO -     [CHUNK 1/5] Video 1 chunk 1/1: 0-44s, 16 frames
+2026-07-08 18:00:37,202 - INFO -     [CHUNK 2/5] Video 2 chunk 1/1: 0-38s, 16 frames
+2026-07-08 18:00:37,203 - INFO -     [CHUNK 3/5] Video 3 chunk 1/1: 0-21s, 16 frames
+2026-07-08 18:00:37,205 - INFO -     [CHUNK 4/5] Video 4 chunk 1/1: 0-22s, 16 frames
+2026-07-08 18:00:37,206 - INFO -     [CHUNK 5/5] Video 5 chunk 1/1: 0-40s, 16 frames
+2026-07-08 18:00:37,304 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:00:37,304 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:00:37,358 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:00:37,359 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:00:37,371 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:00:37,371 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:00:37,380 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:00:37,381 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:00:37,395 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:00:37,396 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:01:35,333 - INFO -     [BATCH 2/5] Video 2 done in 58.1s (1 chunks)
+2026-07-08 18:01:52,403 - INFO -     [BATCH 1/5] Video 1 done in 75.2s (1 chunks)
+2026-07-08 18:01:57,009 - INFO -     [BATCH 5/5] Video 5 done in 79.8s (1 chunks)
+2026-07-08 18:02:01,139 - INFO -     [BATCH 3/5] Video 3 done in 83.9s (1 chunks)
+2026-07-08 18:02:06,460 - INFO -     [BATCH 4/5] Video 4 done in 89.3s (1 chunks)
+2026-07-08 18:02:06,462 - INFO -   ⏱️  Batch Tool (5 videos): 89.3s, Turn total: 119.3s
+2026-07-08 18:02:06,462 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 119.3s)
+2026-07-08 18:02:06,462 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:06:39,243 - INFO -   ⏱️  LLM: 272.8s
+2026-07-08 18:06:39,244 - INFO -   🤖 Thought: Layer1 complete. Preliminary order: 2->5->1->4->3 based on drawer link (V2 opens, V5 closes), onion-...
+2026-07-08 18:06:39,244 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 18:06:39,244 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=4, dimensions=10
+2026-07-08 18:06:39,244 - INFO -   ⚡ Batch observe parallel enabled: 5 items, 5 workers (tool_backend=api, layer1=False)
+2026-07-08 18:06:39,245 - INFO -     [CHUNK 1/5] Video 1 chunk 1/1: 0-44s, 16 frames
+2026-07-08 18:06:39,245 - INFO -     [CHUNK 2/5] Video 2 chunk 1/1: 0-38s, 16 frames
+2026-07-08 18:06:39,247 - INFO -     [CHUNK 3/5] Video 3 chunk 1/1: 0-21s, 16 frames
+2026-07-08 18:06:39,248 - INFO -     [CHUNK 4/5] Video 4 chunk 1/1: 0-22s, 16 frames
+2026-07-08 18:06:39,249 - INFO -     [CHUNK 5/5] Video 5 chunk 1/1: 0-40s, 16 frames
+2026-07-08 18:06:39,328 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:06:39,328 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:06:39,346 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:06:39,346 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:06:39,359 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:06:39,359 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:06:39,368 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:06:39,368 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:06:39,369 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:06:39,369 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:07:28,547 - INFO -     [BATCH 2/5] Video 2 done in 49.3s (1 chunks)
+2026-07-08 18:08:09,500 - INFO -     [BATCH 3/5] Video 3 done in 90.3s (1 chunks)
+2026-07-08 18:08:27,523 - INFO -     [BATCH 5/5] Video 5 done in 108.3s (1 chunks)
+2026-07-08 18:08:32,001 - INFO -     [BATCH 1/5] Video 1 done in 112.8s (1 chunks)
+2026-07-08 18:08:33,247 - INFO -     [BATCH 4/5] Video 4 done in 114.0s (1 chunks)
+2026-07-08 18:08:33,247 - INFO -   ⏱️  Batch Tool (5 videos): 114.0s, Turn total: 386.8s
+2026-07-08 18:08:33,248 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 506.1s)
+2026-07-08 18:08:33,248 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:10:54,313 - INFO -   ⏱️  LLM: 141.1s
+2026-07-08 18:10:54,314 - INFO -   🤖 Thought: Layer2 complete. Leading order: 2->1->5->4->3. Key uncertainty: V4 vs V5 order (both have rice cooki...
+2026-07-08 18:10:54,314 - INFO -   🤖 Action:  [OBSERVE]
+2026-07-08 18:10:54,315 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=10
+2026-07-08 18:10:54,848 - INFO -     [TOOL] 👁️ Calling VLM with 48 frames...
+2026-07-08 18:10:54,849 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:12:26,572 - INFO -   ⏱️  Tool: 92.3s, Turn total: 233.3s
+2026-07-08 18:12:26,573 - INFO - 🔄 [TURN 4] Master Thinking... (elapsed since loop start: 739.4s)
+2026-07-08 18:12:26,573 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:13:29,987 - INFO -   ⏱️  LLM: 63.4s
+2026-07-08 18:13:29,987 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains=[Drawer: V2 opens->V1 opens->V5 closes; Frying pan: V2 onion->V1 chic...
+2026-07-08 18:13:29,987 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 18:13:29,988 - INFO - 🎯 Final Answer: 2->1->5->4->3 (Turn total: 63.4s)
+2026-07-08 18:13:30,005 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/10/attempt_1 (JSON + Readable TXT)
+2026-07-08 18:13:30,005 - INFO - Evaluating result...
+2026-07-08 18:13:30,005 - INFO -   - Predicted: 2->1->5->4->3
+2026-07-08 18:13:30,005 - INFO -   - Ground Truth: 2->1->5->4->3
+2026-07-08 18:13:30,005 - INFO -   - Result: CORRECT
+2026-07-08 18:13:30,005 - INFO - Attempt 1 elapsed: 802.9s
+2026-07-08 18:13:30,005 - INFO -   - Final Result: CORRECT
+2026-07-08 18:13:30,005 - INFO - --- End of Q10 ---
+2026-07-08 18:13:30,006 - INFO - ======================================================================
+2026-07-08 18:13:30,006 - INFO -   Testing Question 12/614 (ID: 11)
+2026-07-08 18:13:30,006 - INFO -   Task: EPIC_PSS | segments=3
+2026-07-08 18:13:30,006 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 18:13:30,006 - INFO - Correct Answer: [2->1->3]
+2026-07-08 18:13:30,175 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 18:13:30,176 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 18:13:30,176 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:13:44,270 - INFO -   ⏱️  LLM: 14.1s
+2026-07-08 18:13:44,271 - INFO -   🤖 Thought: Running Layer1 on all 3 segments to build an unbiased inventory of object states, actions, and trans...
+2026-07-08 18:13:44,271 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 18:13:44,271 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=5
+2026-07-08 18:13:44,272 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=True)
+2026-07-08 18:13:44,272 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-11s, 16 frames
+2026-07-08 18:13:44,273 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-23s, 16 frames
+2026-07-08 18:13:44,275 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-18s, 16 frames
+2026-07-08 18:13:44,386 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:13:44,386 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:13:44,458 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:13:44,459 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:13:44,467 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:13:44,467 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:14:39,100 - INFO -     [BATCH 2/3] Video 2 done in 54.8s (1 chunks)
+2026-07-08 18:14:41,458 - INFO -     [BATCH 3/3] Video 3 done in 57.2s (1 chunks)
+2026-07-08 18:14:47,404 - INFO -     [BATCH 1/3] Video 1 done in 63.1s (1 chunks)
+2026-07-08 18:14:47,405 - INFO -   ⏱️  Batch Tool (3 videos): 63.1s, Turn total: 77.2s
+2026-07-08 18:14:47,405 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 77.2s)
+2026-07-08 18:14:47,406 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:15:29,203 - INFO -   ⏱️  LLM: 41.8s
+2026-07-08 18:15:29,204 - INFO -   🤖 Thought: Layer2 to compare Video 1 and Video 2 closely. Video 1 ends with pouring grounds into the filter. Vi...
+2026-07-08 18:15:29,204 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 18:15:29,204 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=5
+2026-07-08 18:15:29,205 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=False)
+2026-07-08 18:15:29,205 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-11s, 16 frames
+2026-07-08 18:15:29,206 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-23s, 16 frames
+2026-07-08 18:15:29,208 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-18s, 16 frames
+2026-07-08 18:15:29,303 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:15:29,303 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:15:29,311 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:15:29,311 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:15:29,324 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:15:29,324 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:16:16,022 - INFO -     [BATCH 3/3] Video 3 done in 46.8s (1 chunks)
+2026-07-08 18:16:29,195 - INFO -     [BATCH 1/3] Video 1 done in 60.0s (1 chunks)
+2026-07-08 18:17:05,939 - INFO -     [BATCH 2/3] Video 2 done in 96.7s (1 chunks)
+2026-07-08 18:17:05,940 - INFO -   ⏱️  Batch Tool (3 videos): 96.7s, Turn total: 138.5s
+2026-07-08 18:17:05,940 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 215.8s)
+2026-07-08 18:17:05,941 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:18:27,003 - INFO -   ⏱️  LLM: 81.1s
+2026-07-08 18:18:27,004 - INFO -   🤖 Thought: Decisive evidence: Video 2 ends with the hand reaching to open the coffee maker lid (lid closed). Vi...
+2026-07-08 18:18:27,004 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 18:18:27,004 - INFO - 🎯 Final Answer: 2->1->3 (Turn total: 81.1s)
+2026-07-08 18:18:27,015 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/11/attempt_1 (JSON + Readable TXT)
+2026-07-08 18:18:27,015 - INFO - Evaluating result...
+2026-07-08 18:18:27,015 - INFO -   - Predicted: 2->1->3
+2026-07-08 18:18:27,015 - INFO -   - Ground Truth: 2->1->3
+2026-07-08 18:18:27,016 - INFO -   - Result: CORRECT
+2026-07-08 18:18:27,016 - INFO - Attempt 1 elapsed: 297.0s
+2026-07-08 18:18:27,016 - INFO -   - Final Result: CORRECT
+2026-07-08 18:18:27,016 - INFO - --- End of Q11 ---
+2026-07-08 18:18:27,016 - INFO - ======================================================================
+2026-07-08 18:18:27,016 - INFO -   Testing Question 13/614 (ID: 12)
+2026-07-08 18:18:27,016 - INFO -   Task: EPIC_PSS | segments=6
+2026-07-08 18:18:27,017 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 18:18:27,017 - INFO - Correct Answer: [3->5->2->6->4->1]
+2026-07-08 18:18:27,215 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 18:18:27,215 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 18:18:27,215 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:18:59,199 - INFO -   ⏱️  LLM: 32.0s
+2026-07-08 18:18:59,200 - INFO -   🤖 Thought: Layer1: scan all 6 segments independently to build an unbiased inventory of objects, states, and eve...
+2026-07-08 18:18:59,200 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 18:18:59,200 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=5
+2026-07-08 18:18:59,201 - INFO -   ⚡ Batch observe parallel enabled: 6 items, 6 workers (tool_backend=api, layer1=True)
+2026-07-08 18:18:59,201 - INFO -     [CHUNK 1/6] Video 1 chunk 1/1: 0-45s, 16 frames
+2026-07-08 18:18:59,202 - INFO -     [CHUNK 2/6] Video 2 chunk 1/1: 0-8s, 16 frames
+2026-07-08 18:18:59,203 - INFO -     [CHUNK 3/6] Video 3 chunk 1/1: 0-29s, 16 frames
+2026-07-08 18:18:59,204 - INFO -     [CHUNK 4/6] Video 4 chunk 1/1: 0-45s, 16 frames
+2026-07-08 18:18:59,205 - INFO -     [CHUNK 5/6] Video 5 chunk 1/1: 0-35s, 16 frames
+2026-07-08 18:18:59,206 - INFO -     [CHUNK 6/6] Video 6 chunk 1/1: 0-10s, 16 frames
+2026-07-08 18:18:59,378 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:18:59,378 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:18:59,388 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:18:59,389 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:18:59,389 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:18:59,389 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:18:59,407 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:18:59,407 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:18:59,414 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:18:59,414 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:18:59,486 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:18:59,487 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:19:48,685 - INFO -     [BATCH 3/6] Video 3 done in 49.5s (1 chunks)
+2026-07-08 18:19:56,134 - INFO -     [BATCH 1/6] Video 1 done in 56.9s (1 chunks)
+2026-07-08 18:19:56,804 - INFO -     [BATCH 4/6] Video 4 done in 57.6s (1 chunks)
+2026-07-08 18:20:06,474 - INFO -     [BATCH 2/6] Video 2 done in 67.3s (1 chunks)
+2026-07-08 18:20:10,996 - INFO -     [BATCH 6/6] Video 6 done in 71.8s (1 chunks)
+2026-07-08 18:20:52,296 - INFO -     [BATCH 5/6] Video 5 done in 113.1s (1 chunks)
+2026-07-08 18:20:52,297 - INFO -   ⏱️  Batch Tool (6 videos): 113.1s, Turn total: 145.1s
+2026-07-08 18:20:52,299 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 145.1s)
+2026-07-08 18:20:52,299 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:23:15,628 - INFO -   ⏱️  LLM: 143.3s
+2026-07-08 18:23:15,628 - INFO -   🤖 Thought: Layer2: Re-observe all 6 segments to clarify the exact state of the left pan, right pan, and cutting...
+2026-07-08 18:23:15,628 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 18:23:15,629 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=9
+2026-07-08 18:23:15,629 - INFO -   ⚡ Batch observe parallel enabled: 6 items, 6 workers (tool_backend=api, layer1=False)
+2026-07-08 18:23:15,630 - INFO -     [CHUNK 1/6] Video 1 chunk 1/1: 0-45s, 16 frames
+2026-07-08 18:23:15,631 - INFO -     [CHUNK 2/6] Video 2 chunk 1/1: 0-8s, 16 frames
+2026-07-08 18:23:15,632 - INFO -     [CHUNK 3/6] Video 3 chunk 1/1: 0-29s, 16 frames
+2026-07-08 18:23:15,634 - INFO -     [CHUNK 4/6] Video 4 chunk 1/1: 0-45s, 16 frames
+2026-07-08 18:23:15,634 - INFO -     [CHUNK 5/6] Video 5 chunk 1/1: 0-35s, 16 frames
+2026-07-08 18:23:15,636 - INFO -     [CHUNK 6/6] Video 6 chunk 1/1: 0-10s, 16 frames
+2026-07-08 18:23:15,721 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:23:15,721 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:23:15,729 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:23:15,729 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:23:15,752 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:23:15,753 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:23:15,760 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:23:15,761 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:23:15,770 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:23:15,770 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:23:15,771 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:23:15,778 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:23:47,817 - INFO -     [BATCH 6/6] Video 6 done in 32.2s (1 chunks)
+2026-07-08 18:24:17,142 - INFO -     [BATCH 4/6] Video 4 done in 61.5s (1 chunks)
+2026-07-08 18:24:19,153 - INFO -     [BATCH 1/6] Video 1 done in 63.5s (1 chunks)
+2026-07-08 18:24:40,841 - INFO -     [BATCH 2/6] Video 2 done in 85.2s (1 chunks)
+2026-07-08 18:24:48,787 - INFO -     [BATCH 3/6] Video 3 done in 93.2s (1 chunks)
+2026-07-08 18:24:57,438 - INFO -     [BATCH 5/6] Video 5 done in 101.8s (1 chunks)
+2026-07-08 18:24:57,440 - INFO -   ⏱️  Batch Tool (6 videos): 101.8s, Turn total: 245.1s
+2026-07-08 18:24:57,440 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 390.2s)
+2026-07-08 18:24:57,440 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:28:00,739 - INFO -   ⏱️  LLM: 183.3s
+2026-07-08 18:28:00,740 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains=[Left pan progression: V3(onions/peppers) -> V6(add yellow powder/liq...
+2026-07-08 18:28:00,740 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 18:28:00,740 - INFO -   🧠 Cross-context updated: confirmed=4, uncertain=2, dimensions=9
+2026-07-08 18:28:00,741 - INFO - 🎯 Final Answer: 5->3->6->2->4->1 (Turn total: 183.3s)
+2026-07-08 18:28:00,753 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/12/attempt_1 (JSON + Readable TXT)
+2026-07-08 18:28:00,753 - INFO - Evaluating result...
+2026-07-08 18:28:00,753 - INFO -   - Predicted: 5->3->6->2->4->1
+2026-07-08 18:28:00,753 - INFO -   - Ground Truth: 3->5->2->6->4->1
+2026-07-08 18:28:00,754 - INFO -   - Result: WRONG
+2026-07-08 18:28:00,754 - INFO - Attempt 1 elapsed: 573.7s
+2026-07-08 18:28:00,754 - INFO - Diagnosis attempt 1/3
+2026-07-08 18:33:00,993 - WARNING - Diagnosis API attempt 1 failed: HTTPSConnectionPool(host='dashscope.aliyuncs.com', port=443): Read timed out. (read timeout=300)
+2026-07-08 18:33:45,298 - INFO - Diagnosis: turn=6 type=reasoning_error strategy= confidence=0.85
+2026-07-08 18:33:45,477 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 18:33:45,477 - INFO - 📋 Resuming from pre-loaded history (7 messages)
+2026-07-08 18:33:45,477 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 18:33:45,477 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:34:13,451 - INFO -   ⏱️  LLM: 28.0s
+2026-07-08 18:34:13,451 - INFO -   🤖 Thought: Focus on V3 vs V5 to compare right pan states and determine chronological relationship. V3 right pan...
+2026-07-08 18:34:13,451 - INFO -   🤖 Action:  [OBSERVE]
+2026-07-08 18:34:13,451 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=0, dimensions=0
+2026-07-08 18:34:14,115 - INFO -     [TOOL] 👁️ Calling VLM with 48 frames...
+2026-07-08 18:34:14,115 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:35:24,475 - INFO -   ⏱️  Tool: 71.0s, Turn total: 99.0s
+2026-07-08 18:35:24,476 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 99.0s)
+2026-07-08 18:35:24,477 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:37:59,621 - INFO -   ⏱️  LLM: 155.1s
+2026-07-08 18:37:59,622 - INFO -   🤖 Thought: Focus result shows V5 right pan = sautéed onions/peppers (earlier stage, ~1/3 full, static), V3 righ...
+2026-07-08 18:37:59,622 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 18:37:59,623 - INFO -   🧠 Cross-context updated: confirmed=4, uncertain=0, dimensions=0
+2026-07-08 18:37:59,624 - INFO - 🎯 Final Answer: 5->3->6->4->2->1 (Turn total: 155.1s)
+2026-07-08 18:37:59,636 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/12/attempt_2 (JSON + Readable TXT)
+2026-07-08 18:37:59,636 - INFO - Evaluating diagnosis attempt 1 result...
+2026-07-08 18:37:59,636 - INFO -   - Predicted: 5->3->6->4->2->1
+2026-07-08 18:37:59,636 - INFO -   - Ground Truth: 3->5->2->6->4->1
+2026-07-08 18:37:59,637 - INFO -   - Result: STILL WRONG
+2026-07-08 18:37:59,637 - INFO - Attempt 2 elapsed: 254.3s
+2026-07-08 18:37:59,637 - INFO - Diagnosis attempt 2/3
+2026-07-08 18:38:48,286 - INFO - Diagnosis: turn=9 type=reasoning_error strategy= confidence=0.85
+2026-07-08 18:38:48,466 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 18:38:48,466 - INFO - 📋 Resuming from pre-loaded history (10 messages)
+2026-07-08 18:38:48,466 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 18:38:48,466 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:39:35,668 - INFO -   ⏱️  LLM: 47.2s
+2026-07-08 18:39:35,668 - INFO -   🤖 Thought: Focus on V3, V5, and V2 to verify the order 3->5->2 by checking mushroom progression and task depend...
+2026-07-08 18:39:35,668 - INFO -   🤖 Action:  [OBSERVE]
+2026-07-08 18:39:35,668 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=0, dimensions=0
+2026-07-08 18:39:36,763 - INFO -     [TOOL] 👁️ Calling VLM with 84 frames...
+2026-07-08 18:39:36,763 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:41:49,023 - INFO -   ⏱️  Tool: 133.4s, Turn total: 180.6s
+2026-07-08 18:41:49,023 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 180.6s)
+2026-07-08 18:41:49,024 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:42:29,969 - INFO -   ⏱️  LLM: 40.9s
+2026-07-08 18:42:29,969 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains: V3->V5->V2 (dumpling prep progression with mushrooms staying on plat...
+2026-07-08 18:42:29,970 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 18:42:29,971 - INFO - 🎯 Final Answer: 3->5->2->6->4->1 (Turn total: 40.9s)
+2026-07-08 18:42:29,983 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/12/attempt_3 (JSON + Readable TXT)
+2026-07-08 18:42:29,984 - INFO - Evaluating diagnosis attempt 2 result...
+2026-07-08 18:42:29,984 - INFO -   - Predicted: 3->5->2->6->4->1
+2026-07-08 18:42:29,984 - INFO -   - Ground Truth: 3->5->2->6->4->1
+2026-07-08 18:42:29,984 - INFO -   - Result: CORRECTED
+2026-07-08 18:42:29,984 - INFO - Attempt 3 elapsed: 221.7s
+2026-07-08 18:42:29,984 - INFO -   - Final Result: CORRECTED_BY_DIAGNOSIS_2
+2026-07-08 18:42:29,985 - INFO - --- End of Q12 ---
+2026-07-08 18:42:29,985 - INFO - ======================================================================
+2026-07-08 18:42:29,985 - INFO -   Testing Question 14/614 (ID: 13)
+2026-07-08 18:42:29,985 - INFO -   Task: EPIC_PSS | segments=3
+2026-07-08 18:42:29,985 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 18:42:29,985 - INFO - Correct Answer: [2->1->3]
+2026-07-08 18:42:30,009 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 18:42:30,010 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 18:42:30,010 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:42:51,713 - INFO -   ⏱️  LLM: 21.7s
+2026-07-08 18:42:51,714 - INFO -   🤖 Thought: Layer1: scan all three segments independently to build an unbiased inventory of objects, actions, an...
+2026-07-08 18:42:51,714 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 18:42:51,714 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=4
+2026-07-08 18:42:51,715 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=True)
+2026-07-08 18:42:51,716 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-31s, 16 frames
+2026-07-08 18:42:51,716 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-15s, 16 frames
+2026-07-08 18:42:51,718 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-12s, 16 frames
+2026-07-08 18:42:51,873 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:42:51,873 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:42:51,900 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:42:51,901 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:42:51,912 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:42:51,913 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:43:39,064 - INFO -     [BATCH 1/3] Video 1 done in 47.3s (1 chunks)
+2026-07-08 18:43:42,188 - INFO -     [BATCH 2/3] Video 2 done in 50.5s (1 chunks)
+2026-07-08 18:43:49,133 - INFO -     [BATCH 3/3] Video 3 done in 57.4s (1 chunks)
+2026-07-08 18:43:49,134 - INFO -   ⏱️  Batch Tool (3 videos): 57.4s, Turn total: 79.1s
+2026-07-08 18:43:49,134 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 79.1s)
+2026-07-08 18:43:49,134 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:45:10,140 - INFO -   ⏱️  LLM: 81.0s
+2026-07-08 18:45:10,141 - INFO -   🤖 Thought: Layer2: Re-check the state of the main cooking vessel and the orange packet across all segments to v...
+2026-07-08 18:45:10,142 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 18:45:10,142 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=4
+2026-07-08 18:45:10,142 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=False)
+2026-07-08 18:45:10,143 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-31s, 16 frames
+2026-07-08 18:45:10,144 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-15s, 16 frames
+2026-07-08 18:45:10,145 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-12s, 16 frames
+2026-07-08 18:45:10,246 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:45:10,247 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:45:10,256 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:45:10,256 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:45:10,257 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:45:10,257 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:46:01,106 - INFO -     [BATCH 3/3] Video 3 done in 51.0s (1 chunks)
+2026-07-08 18:46:04,583 - INFO -     [BATCH 1/3] Video 1 done in 54.4s (1 chunks)
+2026-07-08 18:46:28,667 - INFO -     [BATCH 2/3] Video 2 done in 78.5s (1 chunks)
+2026-07-08 18:46:28,669 - INFO -   ⏱️  Batch Tool (3 videos): 78.5s, Turn total: 159.5s
+2026-07-08 18:46:28,669 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 238.7s)
+2026-07-08 18:46:28,669 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:48:07,876 - INFO -   ⏱️  LLM: 99.2s
+2026-07-08 18:48:07,877 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains=[Packet state: V1(sealed->torn, not empty) -> V2(torn->opened/added);...
+2026-07-08 18:48:07,877 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 18:48:07,877 - INFO -   🧠 Cross-context updated: confirmed=3, uncertain=0, dimensions=4
+2026-07-08 18:48:07,878 - INFO - 🎯 Final Answer: 1->2->3 (Turn total: 99.2s)
+2026-07-08 18:48:07,888 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/13/attempt_1 (JSON + Readable TXT)
+2026-07-08 18:48:07,888 - INFO - Evaluating result...
+2026-07-08 18:48:07,888 - INFO -   - Predicted: 1->2->3
+2026-07-08 18:48:07,888 - INFO -   - Ground Truth: 2->1->3
+2026-07-08 18:48:07,888 - INFO -   - Result: WRONG
+2026-07-08 18:48:07,888 - INFO - Attempt 1 elapsed: 337.9s
+2026-07-08 18:48:07,888 - INFO - Diagnosis attempt 1/3
+2026-07-08 18:48:33,808 - INFO - Diagnosis: turn=6 type=reasoning_error strategy= confidence=0.95
+2026-07-08 18:48:33,834 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 18:48:33,834 - INFO - 📋 Resuming from pre-loaded history (7 messages)
+2026-07-08 18:48:33,834 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 18:48:33,835 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:50:45,113 - INFO -   ⏱️  LLM: 131.3s
+2026-07-08 18:50:45,113 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains: V2→V1: pot state progression from white liquid (V2) to yellowish foa...
+2026-07-08 18:50:45,113 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 18:50:45,113 - INFO -   🧠 Cross-context updated: confirmed=2, uncertain=0, dimensions=0
+2026-07-08 18:50:45,115 - INFO - 🎯 Final Answer: 2->1->3 (Turn total: 131.3s)
+2026-07-08 18:50:45,124 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/13/attempt_2 (JSON + Readable TXT)
+2026-07-08 18:50:45,124 - INFO - Evaluating diagnosis attempt 1 result...
+2026-07-08 18:50:45,124 - INFO -   - Predicted: 2->1->3
+2026-07-08 18:50:45,124 - INFO -   - Ground Truth: 2->1->3
+2026-07-08 18:50:45,124 - INFO -   - Result: CORRECTED
+2026-07-08 18:50:45,124 - INFO - Attempt 2 elapsed: 131.3s
+2026-07-08 18:50:45,124 - INFO -   - Final Result: CORRECTED_BY_DIAGNOSIS_1
+2026-07-08 18:50:45,125 - INFO - --- End of Q13 ---
+2026-07-08 18:50:45,125 - INFO - ======================================================================
+2026-07-08 18:50:45,125 - INFO -   Testing Question 15/614 (ID: 14)
+2026-07-08 18:50:45,125 - INFO -   Task: EPIC_PSS | segments=4
+2026-07-08 18:50:45,125 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 18:50:45,125 - INFO - Correct Answer: [2->3->1->4]
+2026-07-08 18:50:45,958 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 18:50:45,958 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 18:50:45,958 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:51:09,416 - INFO -   ⏱️  LLM: 23.5s
+2026-07-08 18:51:09,417 - INFO -   🤖 Thought: Need to independently scan all 4 video segments to build an unbiased inventory of objects, states, a...
+2026-07-08 18:51:09,417 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 18:51:09,417 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=4
+2026-07-08 18:51:09,418 - INFO -   ⚡ Batch observe parallel enabled: 4 items, 4 workers (tool_backend=api, layer1=True)
+2026-07-08 18:51:09,419 - INFO -     [CHUNK 1/4] Video 1 chunk 1/1: 0-33s, 16 frames
+2026-07-08 18:51:09,420 - INFO -     [CHUNK 2/4] Video 2 chunk 1/1: 0-44s, 16 frames
+2026-07-08 18:51:09,421 - INFO -     [CHUNK 3/4] Video 3 chunk 1/1: 0-49s, 16 frames
+2026-07-08 18:51:09,422 - INFO -     [CHUNK 4/4] Video 4 chunk 1/1: 0-29s, 16 frames
+2026-07-08 18:51:09,589 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:51:09,589 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:51:09,596 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:51:09,597 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:51:09,606 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:51:09,607 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:51:09,615 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:51:09,615 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:51:35,502 - INFO -     [BATCH 1/4] Video 1 done in 26.1s (1 chunks)
+2026-07-08 18:51:46,516 - INFO -     [BATCH 3/4] Video 3 done in 37.1s (1 chunks)
+2026-07-08 18:52:10,691 - INFO -     [BATCH 4/4] Video 4 done in 61.3s (1 chunks)
+2026-07-08 18:52:27,566 - INFO -     [BATCH 2/4] Video 2 done in 78.1s (1 chunks)
+2026-07-08 18:52:27,567 - INFO -   ⏱️  Batch Tool (4 videos): 78.1s, Turn total: 101.6s
+2026-07-08 18:52:27,567 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 101.6s)
+2026-07-08 18:52:27,568 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:53:11,482 - INFO -   ⏱️  LLM: 43.9s
+2026-07-08 18:53:11,483 - INFO -   🤖 Thought: Layer1 shows a clear progression: V2 (chop onions) -> V3 (transfer to pan) -> V1 (pale onions cookin...
+2026-07-08 18:53:11,483 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 18:53:11,483 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=7
+2026-07-08 18:53:11,484 - INFO -   ⚡ Batch observe parallel enabled: 4 items, 4 workers (tool_backend=api, layer1=False)
+2026-07-08 18:53:11,484 - INFO -     [CHUNK 1/4] Video 1 chunk 1/1: 0-33s, 16 frames
+2026-07-08 18:53:11,485 - INFO -     [CHUNK 2/4] Video 2 chunk 1/1: 0-44s, 16 frames
+2026-07-08 18:53:11,487 - INFO -     [CHUNK 3/4] Video 3 chunk 1/1: 0-49s, 16 frames
+2026-07-08 18:53:11,487 - INFO -     [CHUNK 4/4] Video 4 chunk 1/1: 0-29s, 16 frames
+2026-07-08 18:53:11,581 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:53:11,582 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:53:11,590 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:53:11,590 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:53:11,603 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:53:11,603 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:53:11,613 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:53:11,613 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:53:50,011 - INFO -     [BATCH 2/4] Video 2 done in 38.5s (1 chunks)
+2026-07-08 18:54:08,893 - INFO -     [BATCH 3/4] Video 3 done in 57.4s (1 chunks)
+2026-07-08 18:54:09,135 - INFO -     [BATCH 1/4] Video 1 done in 57.7s (1 chunks)
+2026-07-08 18:54:10,612 - INFO -     [BATCH 4/4] Video 4 done in 59.1s (1 chunks)
+2026-07-08 18:54:10,613 - INFO -   ⏱️  Batch Tool (4 videos): 59.1s, Turn total: 103.0s
+2026-07-08 18:54:10,613 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 204.7s)
+2026-07-08 18:54:10,613 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:54:36,279 - INFO -   ⏱️  LLM: 25.7s
+2026-07-08 18:54:36,279 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains: onions progress from raw chopped (2) -> transferred to pan (3) -> wh...
+2026-07-08 18:54:36,279 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 18:54:36,280 - INFO -   🧠 Cross-context updated: confirmed=3, uncertain=0, dimensions=7
+2026-07-08 18:54:36,281 - INFO - 🎯 Final Answer: 2->3->1->4 (Turn total: 25.7s)
+2026-07-08 18:54:36,291 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/14/attempt_1 (JSON + Readable TXT)
+2026-07-08 18:54:36,291 - INFO - Evaluating result...
+2026-07-08 18:54:36,291 - INFO -   - Predicted: 2->3->1->4
+2026-07-08 18:54:36,291 - INFO -   - Ground Truth: 2->3->1->4
+2026-07-08 18:54:36,291 - INFO -   - Result: CORRECT
+2026-07-08 18:54:36,291 - INFO - Attempt 1 elapsed: 231.2s
+2026-07-08 18:54:36,291 - INFO -   - Final Result: CORRECT
+2026-07-08 18:54:36,291 - INFO - --- End of Q14 ---
+2026-07-08 18:54:36,291 - INFO - ======================================================================
+2026-07-08 18:54:36,291 - INFO -   Testing Question 16/614 (ID: 15)
+2026-07-08 18:54:36,292 - INFO -   Task: EPIC_PSS | segments=3
+2026-07-08 18:54:36,292 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 18:54:36,292 - INFO - Correct Answer: [1->3->2]
+2026-07-08 18:54:36,370 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 18:54:36,370 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 18:54:36,370 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:55:01,968 - INFO -   ⏱️  LLM: 25.6s
+2026-07-08 18:55:01,969 - INFO -   🤖 Thought: Starting Layer1 to independently perceive all 3 shuffled segments and build an object state inventor...
+2026-07-08 18:55:01,969 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 18:55:01,969 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=4
+2026-07-08 18:55:01,970 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=True)
+2026-07-08 18:55:01,970 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-10s, 16 frames
+2026-07-08 18:55:01,971 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-12s, 16 frames
+2026-07-08 18:55:01,971 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-35s, 16 frames
+2026-07-08 18:55:02,074 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:55:02,074 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:55:02,156 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:55:02,156 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:55:02,177 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:55:02,177 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:55:45,891 - INFO -     [BATCH 1/3] Video 1 done in 43.9s (1 chunks)
+2026-07-08 18:55:46,369 - INFO -     [BATCH 3/3] Video 3 done in 44.4s (1 chunks)
+2026-07-08 18:55:56,810 - INFO -     [BATCH 2/3] Video 2 done in 54.8s (1 chunks)
+2026-07-08 18:55:56,811 - INFO -   ⏱️  Batch Tool (3 videos): 54.8s, Turn total: 80.4s
+2026-07-08 18:55:56,812 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 80.4s)
+2026-07-08 18:55:56,812 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:58:28,012 - INFO -   ⏱️  LLM: 151.2s
+2026-07-08 18:58:28,012 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains: [V3->V1: orange packet whole/wrapped in V3 becomes small box on coun...
+2026-07-08 18:58:28,013 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 18:58:28,013 - INFO -   🧠 Cross-context updated: confirmed=2, uncertain=0, dimensions=4
+2026-07-08 18:58:28,013 - WARNING -   ⚠️ Rejected premature final answer: Do not answer yet. PSS requires Layer2 before `answer`. Missing: Layer2 discriminative evidence reinspection. Layer2 re-observes shared evidence (objects/regions/events) that Layer1 found recurring across segments. For each segment, ask the VLM to report the actual visible state of these evidence items. Do NOT pass your hypothesized order to the VLM. Use `batch_observe` with `MODE=layer2_state_scan`.
+2026-07-08 18:58:28,013 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 231.6s)
+2026-07-08 18:58:28,013 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 18:58:46,601 - INFO -   ⏱️  LLM: 18.6s
+2026-07-08 18:58:46,601 - INFO -   🤖 Thought: Running mandatory Layer2 discriminative evidence reinspection on all 3 segments to verify shared obj...
+2026-07-08 18:58:46,602 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 18:58:46,602 - INFO -   🧠 Cross-context updated: confirmed=2, uncertain=1, dimensions=4
+2026-07-08 18:58:46,602 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=False)
+2026-07-08 18:58:46,603 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-10s, 16 frames
+2026-07-08 18:58:46,604 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-12s, 16 frames
+2026-07-08 18:58:46,605 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-35s, 16 frames
+2026-07-08 18:58:46,694 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:58:46,694 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:58:46,711 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:58:46,712 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:58:46,712 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 18:58:46,718 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 18:59:38,615 - INFO -     [BATCH 3/3] Video 3 done in 52.0s (1 chunks)
+2026-07-08 19:00:03,233 - INFO -     [BATCH 2/3] Video 2 done in 76.6s (1 chunks)
+2026-07-08 19:00:22,000 - INFO -     [BATCH 1/3] Video 1 done in 95.4s (1 chunks)
+2026-07-08 19:00:22,001 - INFO -   ⏱️  Batch Tool (3 videos): 95.4s, Turn total: 114.0s
+2026-07-08 19:00:22,001 - INFO - 🔄 [TURN 4] Master Thinking... (elapsed since loop start: 345.6s)
+2026-07-08 19:00:22,002 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 19:01:07,776 - INFO -   ⏱️  LLM: 45.8s
+2026-07-08 19:01:07,776 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains: [V3->V1: glass lid on counter/separate -> placed on saucepan; orange...
+2026-07-08 19:01:07,776 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 19:01:07,776 - INFO -   🧠 Cross-context updated: confirmed=4, uncertain=0, dimensions=4
+2026-07-08 19:01:07,777 - INFO - 🎯 Final Answer: 3->1->2 (Turn total: 45.8s)
+2026-07-08 19:01:07,785 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/15/attempt_1 (JSON + Readable TXT)
+2026-07-08 19:01:07,785 - INFO - Evaluating result...
+2026-07-08 19:01:07,785 - INFO -   - Predicted: 3->1->2
+2026-07-08 19:01:07,785 - INFO -   - Ground Truth: 1->3->2
+2026-07-08 19:01:07,785 - INFO -   - Result: WRONG
+2026-07-08 19:01:07,786 - INFO - Attempt 1 elapsed: 391.5s
+2026-07-08 19:01:07,786 - INFO - Diagnosis attempt 1/3
+2026-07-08 19:01:56,176 - INFO - Diagnosis: turn=4 type=reasoning_error strategy= confidence=0.92
+2026-07-08 19:01:56,262 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 19:01:56,263 - INFO - 📋 Resuming from pre-loaded history (9 messages)
+2026-07-08 19:01:56,263 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 19:01:56,263 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 19:02:25,345 - INFO -   ⏱️  LLM: 29.1s
+2026-07-08 19:02:25,345 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains: [V1->V3: lid placed ON saucepan in V1 (frames 11-15) -> lid OFF/sauc...
+2026-07-08 19:02:25,345 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 19:02:25,345 - INFO -   🧠 Cross-context updated: confirmed=2, uncertain=0, dimensions=0
+2026-07-08 19:02:25,346 - INFO - 🎯 Final Answer: 1->3->2 (Turn total: 29.1s)
+2026-07-08 19:02:25,353 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/15/attempt_2 (JSON + Readable TXT)
+2026-07-08 19:02:25,354 - INFO - Evaluating diagnosis attempt 1 result...
+2026-07-08 19:02:25,354 - INFO -   - Predicted: 1->3->2
+2026-07-08 19:02:25,354 - INFO -   - Ground Truth: 1->3->2
+2026-07-08 19:02:25,354 - INFO -   - Result: CORRECTED
+2026-07-08 19:02:25,354 - INFO - Attempt 2 elapsed: 29.2s
+2026-07-08 19:02:25,354 - INFO -   - Final Result: CORRECTED_BY_DIAGNOSIS_1
+2026-07-08 19:02:25,354 - INFO - --- End of Q15 ---
+2026-07-08 19:02:25,354 - INFO - ======================================================================
+2026-07-08 19:02:25,354 - INFO -   Testing Question 17/614 (ID: 16)
+2026-07-08 19:02:25,354 - INFO -   Task: EPIC_PSS | segments=4
+2026-07-08 19:02:25,354 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 19:02:25,354 - INFO - Correct Answer: [4->3->2->1]
+2026-07-08 19:02:25,972 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 19:02:25,972 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 19:02:25,972 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 19:02:44,536 - INFO -   ⏱️  LLM: 18.6s
+2026-07-08 19:02:44,536 - INFO -   🤖 Thought: Layer1: independently scan all 4 segments to build an unbiased inventory of objects, actions, and st...
+2026-07-08 19:02:44,537 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 19:02:44,537 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=4
+2026-07-08 19:02:44,537 - INFO -   ⚡ Batch observe parallel enabled: 4 items, 4 workers (tool_backend=api, layer1=True)
+2026-07-08 19:02:44,538 - INFO -     [CHUNK 1/4] Video 1 chunk 1/1: 0-22s, 16 frames
+2026-07-08 19:02:44,539 - INFO -     [CHUNK 2/4] Video 2 chunk 1/1: 0-22s, 16 frames
+2026-07-08 19:02:44,540 - INFO -     [CHUNK 3/4] Video 3 chunk 1/1: 0-37s, 16 frames
+2026-07-08 19:02:44,541 - INFO -     [CHUNK 4/4] Video 4 chunk 1/1: 0-43s, 16 frames
+2026-07-08 19:02:44,639 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:02:44,640 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:02:44,652 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:02:44,653 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:02:44,706 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:02:44,706 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:02:44,719 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:02:44,719 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:03:28,491 - INFO -     [BATCH 4/4] Video 4 done in 44.0s (1 chunks)
+2026-07-08 19:03:31,089 - INFO -     [BATCH 2/4] Video 2 done in 46.6s (1 chunks)
+2026-07-08 19:03:35,129 - INFO -     [BATCH 3/4] Video 3 done in 50.6s (1 chunks)
+2026-07-08 19:03:51,249 - INFO -     [BATCH 1/4] Video 1 done in 66.7s (1 chunks)
+2026-07-08 19:03:51,250 - INFO -   ⏱️  Batch Tool (4 videos): 66.7s, Turn total: 85.3s
+2026-07-08 19:03:51,251 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 85.3s)
+2026-07-08 19:03:51,251 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 19:05:34,516 - INFO -   ⏱️  LLM: 103.3s
+2026-07-08 19:05:34,516 - INFO -   🤖 Thought: Layer2: Re-inspect the small pot/saucepan and frying pan contents in all 4 segments to verify the st...
+2026-07-08 19:05:34,516 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 19:05:34,516 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=7
+2026-07-08 19:05:34,517 - INFO -   ⚡ Batch observe parallel enabled: 4 items, 4 workers (tool_backend=api, layer1=False)
+2026-07-08 19:05:34,518 - INFO -     [CHUNK 1/4] Video 1 chunk 1/1: 0-22s, 16 frames
+2026-07-08 19:05:34,519 - INFO -     [CHUNK 2/4] Video 2 chunk 1/1: 0-22s, 16 frames
+2026-07-08 19:05:34,519 - INFO -     [CHUNK 3/4] Video 3 chunk 1/1: 0-37s, 16 frames
+2026-07-08 19:05:34,521 - INFO -     [CHUNK 4/4] Video 4 chunk 1/1: 0-43s, 16 frames
+2026-07-08 19:05:34,625 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:05:34,625 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:05:34,637 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:05:34,638 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:05:34,646 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:05:34,646 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:05:34,652 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:05:34,652 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:06:06,478 - INFO -     [BATCH 4/4] Video 4 done in 32.0s (1 chunks)
+2026-07-08 19:06:28,484 - INFO -     [BATCH 1/4] Video 1 done in 54.0s (1 chunks)
+2026-07-08 19:07:00,587 - INFO -     [BATCH 3/4] Video 3 done in 86.1s (1 chunks)
+2026-07-08 19:07:08,526 - INFO -     [BATCH 2/4] Video 2 done in 94.0s (1 chunks)
+2026-07-08 19:07:08,527 - INFO -   ⏱️  Batch Tool (4 videos): 94.0s, Turn total: 197.3s
+2026-07-08 19:07:08,527 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 282.6s)
+2026-07-08 19:07:08,527 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 19:08:00,449 - INFO -   ⏱️  LLM: 51.9s
+2026-07-08 19:08:00,450 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains: 1) Frying pan progression: Video 4 (opening brown cubes, yellow/gree...
+2026-07-08 19:08:00,450 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 19:08:00,450 - INFO -   🧠 Cross-context updated: confirmed=1, uncertain=1, dimensions=7
+2026-07-08 19:08:00,452 - INFO - 🎯 Final Answer: 4->3->2->1 (Turn total: 51.9s)
+2026-07-08 19:08:00,462 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/16/attempt_1 (JSON + Readable TXT)
+2026-07-08 19:08:00,462 - INFO - Evaluating result...
+2026-07-08 19:08:00,462 - INFO -   - Predicted: 4->3->2->1
+2026-07-08 19:08:00,462 - INFO -   - Ground Truth: 4->3->2->1
+2026-07-08 19:08:00,462 - INFO -   - Result: CORRECT
+2026-07-08 19:08:00,462 - INFO - Attempt 1 elapsed: 335.1s
+2026-07-08 19:08:00,462 - INFO -   - Final Result: CORRECT
+2026-07-08 19:08:00,462 - INFO - --- End of Q16 ---
+2026-07-08 19:08:00,462 - INFO - ======================================================================
+2026-07-08 19:08:00,462 - INFO -   Testing Question 18/614 (ID: 17)
+2026-07-08 19:08:00,462 - INFO -   Task: EPIC_PSS | segments=3
+2026-07-08 19:08:00,463 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 19:08:00,463 - INFO - Correct Answer: [2->3->1]
+2026-07-08 19:08:00,512 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 19:08:00,513 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 19:08:00,513 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 19:08:13,594 - INFO -   ⏱️  LLM: 13.1s
+2026-07-08 19:08:13,595 - INFO -   🤖 Thought: Layer1: scan all three segments independently to inventory objects, states, and events without infer...
+2026-07-08 19:08:13,595 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 19:08:13,595 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=0, dimensions=0
+2026-07-08 19:08:13,595 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=True)
+2026-07-08 19:08:13,596 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-33s, 16 frames
+2026-07-08 19:08:13,597 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-31s, 16 frames
+2026-07-08 19:08:13,598 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-40s, 16 frames
+2026-07-08 19:08:13,800 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:08:13,800 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:08:13,811 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:08:13,812 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:08:13,823 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:08:13,823 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:09:01,581 - INFO -     [BATCH 2/3] Video 2 done in 48.0s (1 chunks)
+2026-07-08 19:09:35,725 - INFO -     [BATCH 3/3] Video 3 done in 82.1s (1 chunks)
+2026-07-08 19:09:39,213 - INFO -     [BATCH 1/3] Video 1 done in 85.6s (1 chunks)
+2026-07-08 19:09:39,214 - INFO -   ⏱️  Batch Tool (3 videos): 85.6s, Turn total: 98.7s
+2026-07-08 19:09:39,215 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 98.7s)
+2026-07-08 19:09:39,215 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 19:10:37,979 - INFO -   ⏱️  LLM: 58.8s
+2026-07-08 19:10:37,979 - INFO -   🤖 Thought: Layer2: Re-check decisive object states to verify the hypothesized order V2->V3->V1. Focus on white ...
+2026-07-08 19:10:37,979 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 19:10:37,980 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=4
+2026-07-08 19:10:37,980 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=False)
+2026-07-08 19:10:37,981 - INFO -     [CHUNK 1/3] Video 2 chunk 1/1: 0-31s, 16 frames
+2026-07-08 19:10:37,981 - INFO -     [CHUNK 2/3] Video 3 chunk 1/1: 0-40s, 16 frames
+2026-07-08 19:10:37,983 - INFO -     [CHUNK 3/3] Video 1 chunk 1/1: 0-33s, 16 frames
+2026-07-08 19:10:38,072 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:10:38,073 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:10:38,101 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:10:38,101 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:10:38,109 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:10:38,109 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:11:37,337 - INFO -     [BATCH 2/3] Video 3 done in 59.4s (1 chunks)
+2026-07-08 19:12:19,679 - INFO -     [BATCH 3/3] Video 1 done in 101.7s (1 chunks)
+2026-07-08 19:12:46,178 - INFO -     [BATCH 1/3] Video 2 done in 128.2s (1 chunks)
+2026-07-08 19:12:46,179 - INFO -   ⏱️  Batch Tool (3 videos): 128.2s, Turn total: 187.0s
+2026-07-08 19:12:46,180 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 285.7s)
+2026-07-08 19:12:46,180 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 19:13:21,745 - INFO -   ⏱️  LLM: 35.6s
+2026-07-08 19:13:21,746 - INFO -   🤖 Thought: Focus needed to verify V3->V1 transition. V3 ends with bowl ~1/2 full, V1 starts with bowl filled. N...
+2026-07-08 19:13:21,746 - INFO -   🤖 Action:  [OBSERVE]
+2026-07-08 19:13:21,746 - INFO -   🧠 Cross-context updated: confirmed=3, uncertain=1, dimensions=4
+2026-07-08 19:13:22,198 - INFO -     [TOOL] 👁️ Calling VLM with 32 frames...
+2026-07-08 19:13:22,198 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:14:31,779 - INFO -   ⏱️  Tool: 70.0s, Turn total: 105.6s
+2026-07-08 19:14:31,780 - INFO - 🔄 [TURN 4] Master Thinking... (elapsed since loop start: 391.3s)
+2026-07-08 19:14:31,780 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 19:14:50,405 - INFO -   ⏱️  LLM: 18.6s
+2026-07-08 19:14:50,406 - INFO -   🤖 Thought: Focus needed to verify V2->V3 transition. V2 ends with washed tomatoes in sink. V3 starts with cucum...
+2026-07-08 19:14:50,406 - INFO -   🤖 Action:  [OBSERVE]
+2026-07-08 19:14:50,406 - INFO -   🧠 Cross-context updated: confirmed=4, uncertain=1, dimensions=4
+2026-07-08 19:14:50,837 - INFO -     [TOOL] 👁️ Calling VLM with 32 frames...
+2026-07-08 19:14:50,838 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:15:53,017 - INFO -   ⏱️  Tool: 62.6s, Turn total: 81.2s
+2026-07-08 19:15:53,018 - INFO - 🔄 [TURN 5] Master Thinking... (elapsed since loop start: 472.5s)
+2026-07-08 19:15:53,019 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 19:16:06,989 - INFO -   ⏱️  LLM: 14.0s
+2026-07-08 19:16:06,990 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains=[bowl: empty(V2)->1/2 full(V3)->2/3 full(V1); tomatoes: packaged(V2)-...
+2026-07-08 19:16:06,990 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 19:16:06,990 - INFO -   🧠 Cross-context updated: confirmed=7, uncertain=0, dimensions=4
+2026-07-08 19:16:06,992 - INFO - 🎯 Final Answer: 2->3->1 (Turn total: 14.0s)
+2026-07-08 19:16:07,003 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/17/attempt_1 (JSON + Readable TXT)
+2026-07-08 19:16:07,003 - INFO - Evaluating result...
+2026-07-08 19:16:07,003 - INFO -   - Predicted: 2->3->1
+2026-07-08 19:16:07,003 - INFO -   - Ground Truth: 2->3->1
+2026-07-08 19:16:07,003 - INFO -   - Result: CORRECT
+2026-07-08 19:16:07,004 - INFO - Attempt 1 elapsed: 486.5s
+2026-07-08 19:16:07,004 - INFO -   - Final Result: CORRECT
+2026-07-08 19:16:07,005 - INFO - --- End of Q17 ---
+2026-07-08 19:16:07,005 - INFO - ======================================================================
+2026-07-08 19:16:07,005 - INFO -   Testing Question 19/614 (ID: 18)
+2026-07-08 19:16:07,005 - INFO -   Task: EPIC_PSS | segments=3
+2026-07-08 19:16:07,005 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 19:16:07,005 - INFO - Correct Answer: [3->1->2]
+2026-07-08 19:16:07,842 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 19:16:07,842 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 19:16:07,842 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 19:16:24,917 - INFO -   ⏱️  LLM: 17.1s
+2026-07-08 19:16:24,917 - INFO -   🤖 Thought: Layer1: scan all 3 segments independently to build an unbiased inventory of objects, states, and eve...
+2026-07-08 19:16:24,917 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 19:16:24,917 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=5
+2026-07-08 19:16:24,918 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=True)
+2026-07-08 19:16:24,919 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-47s, 16 frames
+2026-07-08 19:16:24,919 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-23s, 16 frames
+2026-07-08 19:16:24,922 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-48s, 16 frames
+2026-07-08 19:16:25,065 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:16:25,065 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:16:25,085 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:16:25,085 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:16:25,129 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:16:25,130 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:17:06,515 - INFO -     [BATCH 1/3] Video 1 done in 41.6s (1 chunks)
+2026-07-08 19:17:14,956 - INFO -     [BATCH 3/3] Video 3 done in 50.0s (1 chunks)
+2026-07-08 19:18:02,512 - INFO -     [BATCH 2/3] Video 2 done in 97.6s (1 chunks)
+2026-07-08 19:18:02,514 - INFO -   ⏱️  Batch Tool (3 videos): 97.6s, Turn total: 114.7s
+2026-07-08 19:18:02,515 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 114.7s)
+2026-07-08 19:18:02,515 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 19:18:46,602 - INFO -   ⏱️  LLM: 44.1s
+2026-07-08 19:18:46,602 - INFO -   🤖 Thought: Layer2: verify the state-transition graph. V3 shows sealed meat and early onions; V1 shows meat adde...
+2026-07-08 19:18:46,602 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 19:18:46,603 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=8
+2026-07-08 19:18:46,603 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=False)
+2026-07-08 19:18:46,604 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-47s, 16 frames
+2026-07-08 19:18:46,605 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-23s, 16 frames
+2026-07-08 19:18:46,606 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-48s, 16 frames
+2026-07-08 19:18:46,709 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:18:46,710 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:18:46,720 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:18:46,720 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:18:46,729 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:18:46,729 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:19:28,951 - INFO -     [BATCH 2/3] Video 2 done in 42.3s (1 chunks)
+2026-07-08 19:19:44,506 - INFO -     [BATCH 3/3] Video 3 done in 57.9s (1 chunks)
+2026-07-08 19:20:28,762 - INFO -     [BATCH 1/3] Video 1 done in 102.2s (1 chunks)
+2026-07-08 19:20:28,763 - INFO -   ⏱️  Batch Tool (3 videos): 102.2s, Turn total: 146.2s
+2026-07-08 19:20:28,763 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 260.9s)
+2026-07-08 19:20:28,764 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 19:20:44,879 - INFO -   ⏱️  LLM: 16.1s
+2026-07-08 19:20:44,880 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains=[meat package sealed(V3)->opened(V1)->depleted(V2); meat absent(V3)->...
+2026-07-08 19:20:44,880 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 19:20:44,880 - INFO -   🧠 Cross-context updated: confirmed=3, uncertain=2, dimensions=8
+2026-07-08 19:20:44,882 - INFO - 🎯 Final Answer: 3->1->2 (Turn total: 16.1s)
+2026-07-08 19:20:44,892 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/18/attempt_1 (JSON + Readable TXT)
+2026-07-08 19:20:44,892 - INFO - Evaluating result...
+2026-07-08 19:20:44,892 - INFO -   - Predicted: 3->1->2
+2026-07-08 19:20:44,892 - INFO -   - Ground Truth: 3->1->2
+2026-07-08 19:20:44,892 - INFO -   - Result: CORRECT
+2026-07-08 19:20:44,893 - INFO - Attempt 1 elapsed: 277.9s
+2026-07-08 19:20:44,893 - INFO -   - Final Result: CORRECT
+2026-07-08 19:20:44,893 - INFO - --- End of Q18 ---
+2026-07-08 19:20:44,893 - INFO - ======================================================================
+2026-07-08 19:20:44,893 - INFO -   Testing Question 20/614 (ID: 19)
+2026-07-08 19:20:44,893 - INFO -   Task: EPIC_PSS | segments=3
+2026-07-08 19:20:44,893 - INFO - Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-08 19:20:44,893 - INFO - Correct Answer: [3->1->2]
+2026-07-08 19:20:45,198 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 19:20:45,198 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 19:20:45,198 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 19:21:01,600 - INFO -   ⏱️  LLM: 16.4s
+2026-07-08 19:21:01,600 - INFO -   🤖 Thought: Need to perform Layer1 observation on all 3 video segments to understand the operations, objects, an...
+2026-07-08 19:21:01,600 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 19:21:01,601 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=3
+2026-07-08 19:21:01,601 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=True)
+2026-07-08 19:21:01,602 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-28s, 16 frames
+2026-07-08 19:21:01,602 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-11s, 16 frames
+2026-07-08 19:21:01,603 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-50s, 16 frames
+2026-07-08 19:21:01,697 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:21:01,697 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:21:01,719 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:21:01,719 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:21:01,732 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:21:01,732 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:22:09,442 - INFO -     [BATCH 1/3] Video 1 done in 67.8s (1 chunks)
+2026-07-08 19:22:13,445 - INFO -     [BATCH 2/3] Video 2 done in 71.8s (1 chunks)
+2026-07-08 19:22:30,430 - INFO -     [BATCH 3/3] Video 3 done in 88.8s (1 chunks)
+2026-07-08 19:22:30,430 - INFO -   ⏱️  Batch Tool (3 videos): 88.8s, Turn total: 105.2s
+2026-07-08 19:22:30,431 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 105.2s)
+2026-07-08 19:22:30,431 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 19:23:23,722 - INFO -   ⏱️  LLM: 53.3s
+2026-07-08 19:23:23,723 - INFO -   🤖 Thought: Layer1 shows a clear flatbread state progression: V3 (rolling dough, pan empty) -> V2 (pressing doug...
+2026-07-08 19:23:23,723 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 19:23:23,723 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=3
+2026-07-08 19:23:23,724 - INFO -   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=False)
+2026-07-08 19:23:23,724 - INFO -     [CHUNK 1/3] Video 1 chunk 1/1: 0-28s, 16 frames
+2026-07-08 19:23:23,725 - INFO -     [CHUNK 2/3] Video 2 chunk 1/1: 0-11s, 16 frames
+2026-07-08 19:23:23,727 - INFO -     [CHUNK 3/3] Video 3 chunk 1/1: 0-50s, 16 frames
+2026-07-08 19:23:23,830 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:23:23,830 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:23:23,838 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:23:23,839 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:23:23,853 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 19:23:23,853 - INFO -   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 19:24:24,411 - INFO -     [BATCH 1/3] Video 1 done in 60.7s (1 chunks)
+2026-07-08 19:24:30,193 - INFO -     [BATCH 2/3] Video 2 done in 66.5s (1 chunks)
+2026-07-08 19:24:56,480 - INFO -     [BATCH 3/3] Video 3 done in 92.8s (1 chunks)
+2026-07-08 19:24:56,481 - INFO -   ⏱️  Batch Tool (3 videos): 92.8s, Turn total: 146.0s
+2026-07-08 19:24:56,481 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 251.3s)
+2026-07-08 19:24:56,482 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 19:25:09,099 - INFO -   ⏱️  LLM: 12.6s
+2026-07-08 19:25:09,099 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains: flatbread_dough state progression V3 (raw dough rolled, pan empty) -...
+2026-07-08 19:25:09,100 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 19:25:09,100 - INFO -   🧠 Cross-context updated: confirmed=2, uncertain=1, dimensions=3
+2026-07-08 19:25:09,101 - INFO - 🎯 Final Answer: 3->2->1 (Turn total: 12.6s)
+2026-07-08 19:25:09,113 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/19/attempt_1 (JSON + Readable TXT)
+2026-07-08 19:25:09,113 - INFO - Evaluating result...
+2026-07-08 19:25:09,114 - INFO -   - Predicted: 3->2->1
+2026-07-08 19:25:09,114 - INFO -   - Ground Truth: 3->1->2
+2026-07-08 19:25:09,114 - INFO -   - Result: WRONG
+2026-07-08 19:25:09,114 - INFO - Attempt 1 elapsed: 264.2s
+2026-07-08 19:25:09,114 - INFO - Diagnosis attempt 1/3
+2026-07-08 19:25:44,776 - INFO - Diagnosis: turn=6 type=reasoning_error strategy= confidence=0.88
+2026-07-08 19:25:44,854 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-08 19:25:44,854 - INFO - 📋 Resuming from pre-loaded history (7 messages)
+2026-07-08 19:25:44,854 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 19:25:44,855 - INFO -   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 19:26:48,349 - INFO -   ⏱️  LLM: 63.5s
+2026-07-08 19:26:48,350 - INFO -   🤖 Thought: ORDER_AUDIT: supporting_chains=[V3->V1: V3 has empty pan + rolling raw dough, V1 has 2 flatbreads in...
+2026-07-08 19:26:48,350 - INFO -   🤖 Action:  [ANSWER]
+2026-07-08 19:26:48,350 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=0, dimensions=0
+2026-07-08 19:26:48,351 - INFO - 🎯 Final Answer: 3->1->2 (Turn total: 63.5s)
+2026-07-08 19:26:48,360 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/detailed_logs/EPIC_PSS/19/attempt_2 (JSON + Readable TXT)
+2026-07-08 19:26:48,360 - INFO - Evaluating diagnosis attempt 1 result...
+2026-07-08 19:26:48,360 - INFO -   - Predicted: 3->1->2
+2026-07-08 19:26:48,360 - INFO -   - Ground Truth: 3->1->2
+2026-07-08 19:26:48,360 - INFO -   - Result: CORRECTED
+2026-07-08 19:26:48,360 - INFO - Attempt 2 elapsed: 63.6s
+2026-07-08 19:26:48,360 - INFO -   - Final Result: CORRECTED_BY_DIAGNOSIS_1
+2026-07-08 19:26:48,361 - INFO - --- End of Q19 ---
+2026-07-08 19:26:48,403 - INFO - Raw trajectories saved to /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/raw_trajectories
+2026-07-08 19:26:48,428 - INFO - Saved 20 SFT samples to /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/sft_data.jsonl (skipped: 0 incorrect, 0 empty)
+2026-07-08 19:26:48,429 - INFO - ======================================================================
+2026-07-08 19:26:48,430 - INFO - ******************************
+2026-07-08 19:26:48,430 - INFO -    Final Summary   
+2026-07-08 19:26:48,430 - INFO - ******************************
+2026-07-08 19:26:48,430 - INFO - Questions Run:    20
+2026-07-08 19:26:48,430 - INFO - Correct First Try: 14
+2026-07-08 19:26:48,430 - INFO - Corrected by Diagnosis: 6
+2026-07-08 19:26:48,430 - INFO - Failed after 3 Diagnosis: 0
+2026-07-08 19:26:48,430 - INFO - First Try Accuracy: 70.00%
+2026-07-08 19:26:48,430 - INFO - Success after Diagnosis: 100.00%
+2026-07-08 19:26:48,430 - INFO - Report: /media/data6/xuejj/CVRAgent/DistillAgent/output_epic_pss_diagnosis/epic_pss_diagnosis_report.json

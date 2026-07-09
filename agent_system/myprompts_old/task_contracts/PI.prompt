@@ -1,0 +1,24 @@
+## Task Contract: PI
+Task: infer the missing middle event from beginning and ending movie clips.
+
+Input semantics:
+- Video 1 is the beginning clip.
+- Video 2 is the ending clip.
+- `options` are possible missing middle events.
+- Choose the option most consistent with before/after visual state changes and caption clues.
+
+Evidence dimensions:
+- characters present/absent, clothing, injuries, emotion;
+- object positions, missing/broken objects, environmental damage;
+- location/lighting/weather continuity;
+- irreversible consequences visible in the ending;
+- captions naming cause, motive, person, or event.
+
+Workflow notes:
+- Layer1 scans beginning and ending independently for state differences.
+- Layer2 builds a before/after change table and prunes options inconsistent with observed changes.
+- Focus compares exact object/person/location changes that discriminate close options.
+- Captions are useful after Layer2, but final plausibility should align with visible changes.
+
+Final answer:
+- `final_answer` is one uppercase option letter.

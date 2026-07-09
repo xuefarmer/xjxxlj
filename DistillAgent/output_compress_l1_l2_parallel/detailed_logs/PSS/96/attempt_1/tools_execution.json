@@ -1,0 +1,122 @@
+[
+  {
+    "turn": 1,
+    "call_id": "batch_1_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 13.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-07 01:04:02",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 13.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"object states across segments\",\n    \"state transitions linking segments\"\n  ],\n  \"dimensions_to_compare\": [\n    \"raw vs cooked\",\n    \"separate vs mixed\",\n    \"empty vs filled\",\n    \"residue/depletion\",\n    \"tool contact\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence from the provided frames (Video 1, 0.0s - 13.0s), here is the description of the operation and object states:\n\n**Operation:** A chef is cooking a sauce or gravy in a frying pan on a gas stove while explaining the process to a woman standing beside him. He is actively stirring the contents.\n\n**Compact Evidence Rows:**\n\n| Objects | Action | State | Window | Query Link | Conf | Uncertainty |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| **Chef, Woman** | Standing, Talking, Watching | Present, Separate | 1-16 | [Link] | High | Low |\n| **Frying Pan, Gas Stove** | Heating, Cooking | Filled (partially with liquid), Hot (blue flame visible) | 1-16 | [Link] | High | Low |\n| **Wooden Spoon/Spatula** | Stirring | Tool contact active (inside pan), Wet (coated) | 1-16 | [Link] | High | Low |\n| **Brown Sauce/Liquid** | Simmering, Being stirred | Cooked (brown color), Wet, Mixed (homogenous liquid) | 10-15 | [Link] | High | Low (viscosity unclear) |\n| **Background Bowls (small)** | Resting on counter | Filled (with ingredients), Separate (individual bowls), Raw, Cut (chopped veggies visible) | 5-10 | [Link] | Medium | Medium (blurry details) |\n\n**Key Observations regarding dimensions to compare:**\n*   **Raw vs Cooked:** The sauce in the pan is **cooked** (simmering brown liquid), while the ingredients in the background bowls appear **raw** and chopped.\n*   **Separate vs Mixed:** The background ingredients are **separate** in individual bowls. The sauce in the pan is **mixed** (a uniform liquid).\n*   **Empty vs Filled:** The pan is **filled** with sauce. The background bowls are **filled** with prepped ingredients.\n*   **Residue/Depletion:** No significant depletion is visible yet; the sauce level remains consistent.\n*   **Tool Contact:** The wooden spoon is in constant **contact** with the sauce for stirring.",
+    "timestamp_end": "2026-07-07 01:04:55"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 10.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-07 01:04:02",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 10.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"object states across segments\",\n    \"state transitions linking segments\"\n  ],\n  \"dimensions_to_compare\": [\n    \"raw vs cooked\",\n    \"separate vs mixed\",\n    \"empty vs filled\",\n    \"residue/depletion\",\n    \"tool contact\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence from the frames, here is the description of the operation and object states:\n\n**Operation:** A chef is adding the contents of a small packet (sachet) into a frying pan on a stove while a woman observes.\n\n**Evidence Rows:**\n\n| Objects | Action | State | Window | Query Link | Conf | Uncertainty |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| Chef, Woman | Standing, Observing | Present | 1-16 | [Link] | High | None |\n| Packet (Sachet) | Held, Opened, Poured | Filled $\\rightarrow$ Depleting (Residue) | 4-12 | [Link] | High | Exact contents unclear (likely sugar, salt, or yeast) |\n| Frying Pan | On stove, Receiving ingredient | Present, Wet (contains liquid/oil) | 4-12 | [Link] | High | Liquid type unclear |\n| White Powder/Granules | Pouring into pan | Raw, Dry $\\rightarrow$ Mixed (becoming wet) | 9-12 | [Link] | High | Specific ingredient identity uncertain |\n\n**Detailed Observations:**\n*   **Frames 1-3:** The chef is looking down, preparing. In frame 3, he appears to be handling a small object, possibly tearing a packet.\n*   **Frames 4-8:** The chef holds a red/orange packet. He positions it over the black frying pan. The pan appears to have some liquid or oil in it (shiny surface).\n*   **Frames 9-12 (Close-up):** The chef pours a white, granular substance from the packet into the pan. The substance is dry and raw. As it hits the pan, it begins to mix with the existing liquid/wet surface. The packet is being depleted.\n*   **Frames 13-16:** The chef finishes the action and speaks/looks down. The packet is likely empty or depleted.\n\n**Cross-Video Context Application:**\n*   **Raw vs Cooked:** The ingredient being poured is raw.\n*   **Separate vs Mixed:** The ingredient starts separate (in packet) and becomes mixed (in pan).\n*   **Empty vs Filled:** The packet goes from filled to depleting/empty. The pan is being filled with the ingredient.\n*   **Residue/Depletion:** The packet shows depletion as the white powder flows out.\n*   **Tool Contact:** The chef's hands are in direct contact with the packet; the packet contents contact the pan.",
+    "timestamp_end": "2026-07-07 01:04:44"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 6.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-07 01:04:02",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 6.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"object states across segments\",\n    \"state transitions linking segments\"\n  ],\n  \"dimensions_to_compare\": [\n    \"raw vs cooked\",\n    \"separate vs mixed\",\n    \"empty vs filled\",\n    \"residue/depletion\",\n    \"tool contact\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence from the frames, here is the description of the operation and object states:\n\n**Operation Description:**\nA chef in a white uniform is pouring a clear liquid (likely water) from a glass pitcher into a black frying pan on a gas stove. A woman in a blue top stands beside him, holding a wooden spatula inside the pan. In the later frames (8-16), the shot widens to show the chef (now clearly wearing a tall chef's hat) holding the pitcher while the woman speaks, suggesting a demonstration or instructional context.\n\n**Compact Evidence Rows:**\n\n| Objects | Action | State | Window | Query Link | Conf | Uncertainty |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| **Glass Pitcher** | Pouring / Holding | **Filled** with clear liquid (water), **wet**, **depleting** as poured | 1-7 (pouring), 8-16 (holding) | Video 3 | High | Liquid identity (water vs oil) - likely water due to clarity and volume. |\n| **Black Pan** | Receiving liquid | **Empty** (initially) -> **Filled** (partially), **wet**, **raw** content | 1-7 | Video 3 | High | Initial state (dry vs oily residue) is dark and hard to distinguish. |\n| **Wooden Spatula** | Resting / Stirring | **Present**, **separate** (tool), inside pan, held by woman (bare arm visible) | 1-7 | Video 3 | High | None |\n| **White Bowl** | Stationary | **Empty**, **present** on counter, **dry** | 1-7 | Video 3 | High | None |\n| **Chef & Woman** | Cooking / Observing | **Present**, Chef active (pouring), Woman assisting (holding spatula/talking) | 1-16 | Video 3 | High | Chef's hat visibility (cropped in 1-7, visible tall hat in 8-16). |\n\n**Key Dimensions Comparison:**\n*   **Raw vs. Cooked**: The liquid being poured is raw (water). The pan is in the early stages of cooking/preparation.\n*   **Separate vs. Mixed**: The water starts separate in the pitcher and is being transferred to mix with the pan contents.\n*   **Empty vs. Filled**: The pitcher starts filled and depletes; the pan starts empty/dry and fills with liquid. The white bowl remains empty.\n*   **Residue/Depletion**: The pitcher shows depletion of volume as the liquid flows out.\n*   **Tool Contact**: The wooden spatula is in direct contact with the pan interior, held by the woman. The chef's hands contact the pitcher.",
+    "timestamp_end": "2026-07-07 01:05:05"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 13.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: pan contents (empty/water/liquid+powder/cooked sauce), pan state (dry/wet), background bowls (empty/filled with raw veggies), tool (wooden spoon). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose."
+    },
+    "timestamp_start": "2026-07-07 01:06:10",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 13.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: pan contents (empty/water/liquid+powder/cooked sauce), pan state (dry/wet), background bowls (empty/filled with raw veggies), tool (wooden spoon). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"pan\": {\n      \"3\": \"empty/dry -> filled with clear liquid\",\n      \"2\": \"contains liquid/oil -> receives white powder\",\n      \"1\": \"filled with cooked brown sauce\"\n    },\n    \"pitcher\": {\n      \"3\": \"filled with clear liquid, depleting\"\n    },\n    \"packet\": {\n      \"2\": \"filled with white powder, depleting\"\n    },\n    \"bowls\": {\n      \"1\": \"filled with raw chopped veggies\",\n      \"3\": \"empty white bowl\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"raw vs cooked\",\n    \"separate vs mixed\",\n    \"empty vs filled\",\n    \"residue/depletion\",\n    \"tool contact\",\n    \"pan contents\",\n    \"pan state\",\n    \"ingredient state\"\n  ],\n  \"uncertain\": [\n    \"verify pan state continuity\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "pan contents/cooked sauce/10-15/-/high/UNCERTAIN (early frames 1-4 unclear, appears dark/liquid)\npan state/wet/1-16/-/high/uncertain (continuity between wide and close-up)\nbackground bowls/filled with raw veggies/5-13/-/high/-\ntool/wooden spoon/1-16/-/high/-",
+    "timestamp_end": "2026-07-07 01:07:08"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 10.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: pan contents (empty/water/liquid+powder/cooked sauce), pan state (dry/wet), packet (filled/depleting/empty), white powder state (dry/mixing). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose."
+    },
+    "timestamp_start": "2026-07-07 01:06:10",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 10.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: pan contents (empty/water/liquid+powder/cooked sauce), pan state (dry/wet), packet (filled/depleting/empty), white powder state (dry/mixing). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"pan\": {\n      \"3\": \"empty/dry -> filled with clear liquid\",\n      \"2\": \"contains liquid/oil -> receives white powder\",\n      \"1\": \"filled with cooked brown sauce\"\n    },\n    \"pitcher\": {\n      \"3\": \"filled with clear liquid, depleting\"\n    },\n    \"packet\": {\n      \"2\": \"filled with white powder, depleting\"\n    },\n    \"bowls\": {\n      \"1\": \"filled with raw chopped veggies\",\n      \"3\": \"empty white bowl\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"raw vs cooked\",\n    \"separate vs mixed\",\n    \"empty vs filled\",\n    \"residue/depletion\",\n    \"tool contact\",\n    \"pan contents\",\n    \"pan state\",\n    \"ingredient state\"\n  ],\n  \"uncertain\": [\n    \"verify pan state continuity\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "pan contents | liquid (Frames 4-8), liquid+powder (Frames 9-12) | Video 2 (Frames 1-16) | High | UNCERTAIN (verify pan state continuity)\npan state | wet (Frames 4-12) | Video 2 (Frames 1-16) | High |\npacket | filled (Frames 4-5), depleting (Frames 6-12) | Video 2 (Frames 1-16) | High |\nwhite powder state | dry (Frames 4-8), mixing (Frames 9-12) | Video 2 (Frames 1-16) | High |\nNOT_VISIBLE_IN_THESE_FRAMES | pan, packet, powder (Frames 1-3, 13-16) | Video 2 | - | -",
+    "timestamp_end": "2026-07-07 01:07:22"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 6.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: pan contents (empty/water/liquid+powder/cooked sauce), pan state (dry/wet), pitcher (filled/depleting), clear liquid state. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose."
+    },
+    "timestamp_start": "2026-07-07 01:06:10",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 6.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: pan contents (empty/water/liquid+powder/cooked sauce), pan state (dry/wet), pitcher (filled/depleting), clear liquid state. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology. No final answer or prose.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"pan\": {\n      \"3\": \"empty/dry -> filled with clear liquid\",\n      \"2\": \"contains liquid/oil -> receives white powder\",\n      \"1\": \"filled with cooked brown sauce\"\n    },\n    \"pitcher\": {\n      \"3\": \"filled with clear liquid, depleting\"\n    },\n    \"packet\": {\n      \"2\": \"filled with white powder, depleting\"\n    },\n    \"bowls\": {\n      \"1\": \"filled with raw chopped veggies\",\n      \"3\": \"empty white bowl\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"raw vs cooked\",\n    \"separate vs mixed\",\n    \"empty vs filled\",\n    \"residue/depletion\",\n    \"tool contact\",\n    \"pan contents\",\n    \"pan state\",\n    \"ingredient state\"\n  ],\n  \"uncertain\": [\n    \"verify pan state continuity\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "pan | receiving liquid | contents: empty->water, state: dry->wet | 1-7 | visual_evidence | high | no\npan | resting on stove | contents: water (inferred), state: wet | 8-16 | visual_evidence | medium | uncertain_visibility\npitcher | pouring | depleting | 1-7 | visual_evidence | high | no\npitcher | holding | filled | 8-16 | visual_evidence | high | no\nclear liquid | flowing | stream into pan | 1-7 | visual_evidence | high | no\nclear liquid | static | contained in pitcher | 8-16 | visual_evidence | high | no",
+    "timestamp_end": "2026-07-07 01:07:47"
+  }
+]

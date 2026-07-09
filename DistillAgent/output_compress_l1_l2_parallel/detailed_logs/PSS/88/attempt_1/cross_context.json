@@ -1,0 +1,348 @@
+{
+  "confirmed": [
+    "V5=initial sauce prep (eggs+milk+pepper+salt, electric mixer)",
+    "V1=bacon fry + finish sauce (add cheese, manual whisk)",
+    "V5 starts from empty cup, V1 starts with eggs already present",
+    "Both V1 and V5 show cheese being added during the clip"
+  ],
+  "uncertain": [
+    "Whether V1 and V5 are the same sauce or different steps",
+    "Identity of white liquid in V4 Chunk 2"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "bacon": {
+      "2": "raw slices->cut",
+      "1": "raw pink->dark crispy in pan",
+      "4_chunk1": "already cooked in skillet"
+    },
+    "egg_mixture": {
+      "1": "eggs+cheese+pepper+milk whisked manually",
+      "5": "eggs+milk+pepper+salt mixed with electric mixer",
+      "4_chunk2": "yellow mixture + white liquid combined"
+    },
+    "pasta": {
+      "2": "dry whole",
+      "4_chunk1": "boiled->transferred to skillet",
+      "4_chunk2": "coated in sauce",
+      "3": "plated"
+    },
+    "parsley": {
+      "3": "chopped->garnish"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient state (raw/cooked/cut/mixed)",
+    "container state (empty/filled/residue)",
+    "action type (prep/cooking/finishing)",
+    "tool contact and transfer traces"
+  ],
+  "resolved_uncertain": [
+    "Relative order of V1 and V5: V5 before V1"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all object states and event roles pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "ingredient state (raw/cooked/cut/mixed)",
+          "container state (empty/filled/residue)",
+          "action type (prep/cooking/finishing)",
+          "tool contact and transfer traces"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "2->1->5->4->3",
+        "order_confidence": 7,
+        "confidence_basis": [
+          "V2=intro/prep",
+          "V1=bacon fry+sauce prep",
+          "V5=sauce prep electric mixer",
+          "V4=pasta cook+assembly",
+          "V3=plate/garnish"
+        ],
+        "blocking_uncertainties": [
+          "Relative order of V1 and V5",
+          "Identity of white liquid in V4 Chunk 2 (pasta water vs milk)"
+        ],
+        "object_memory": {
+          "bacon": {
+            "2": "raw slices->cut",
+            "1": "raw pink->dark crispy in pan",
+            "4_chunk1": "already cooked in skillet"
+          },
+          "egg_mixture": {
+            "1": "eggs+cheese+pepper+milk whisked manually",
+            "5": "eggs+milk+pepper+salt mixed with electric mixer",
+            "4_chunk2": "yellow mixture + white liquid combined"
+          },
+          "pasta": {
+            "2": "dry whole",
+            "4_chunk1": "boiled->transferred to skillet",
+            "4_chunk2": "coated in sauce",
+            "3": "plated"
+          },
+          "parsley": {
+            "3": "chopped->garnish"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                92
+              ],
+              "event": "bacon fry + sauce prep",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                95
+              ],
+              "event": "intro + prep",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                39
+              ],
+              "event": "plating + garnish",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                54
+              ],
+              "event": "pasta boil + transfer",
+              "confidence": "high"
+            },
+            {
+              "window": [
+                54,
+                109
+              ],
+              "event": "sauce combine + toss",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                37
+              ],
+              "event": "sauce prep electric mixer",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "preliminary_order": "2->1->5->4->3",
+        "order_confidence": 7,
+        "confidence_basis": [
+          "V2=intro/prep",
+          "V1=bacon fry+sauce prep",
+          "V5=sauce prep electric mixer",
+          "V4=pasta cook+assembly",
+          "V3=plate/garnish"
+        ],
+        "blocking_uncertainties": [
+          "Relative order of V1 and V5",
+          "Identity of white liquid in V4 Chunk 2"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                92
+              ],
+              "event": "bacon fry + sauce prep",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                95
+              ],
+              "event": "intro + prep",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                39
+              ],
+              "event": "plating + garnish",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                54
+              ],
+              "event": "pasta boil + transfer",
+              "confidence": "high"
+            },
+            {
+              "window": [
+                54,
+                109
+              ],
+              "event": "sauce combine + toss",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                37
+              ],
+              "event": "sauce prep electric mixer",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "uncertain": [
+          "Relative order of V1 and V5",
+          "Identity of white liquid in V4 Chunk 2"
+        ],
+        "focus_plan": [
+          "Compare V1 and V5 sauce prep ingredients and tools to resolve order tie"
+        ]
+      }
+    },
+    {
+      "turn": 6,
+      "update": {
+        "confirmed": [
+          "V5=initial sauce prep (eggs+milk+pepper+salt, electric mixer)",
+          "V1=bacon fry + finish sauce (add cheese, manual whisk)"
+        ],
+        "resolved_uncertain": [
+          "Relative order of V1 and V5: V5 before V1"
+        ],
+        "uncertain": [
+          "Identity of white liquid in V4 Chunk 2"
+        ],
+        "preliminary_order": "2->5->1->4->3",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V2=intro",
+          "V5=initial sauce",
+          "V1=bacon+finish sauce",
+          "V4=assembly",
+          "V3=plate"
+        ],
+        "blocking_uncertainties": []
+      }
+    },
+    {
+      "turn": 7,
+      "update": {
+        "confirmed": [
+          "V5 starts from empty cup, V1 starts with eggs already present",
+          "Both V1 and V5 show cheese being added during the clip"
+        ],
+        "uncertain": [
+          "Whether V1 and V5 are the same sauce or different steps",
+          "Identity of white liquid in V4 Chunk 2"
+        ],
+        "resolved_uncertain": [],
+        "preliminary_order": "2->5->1->4->3",
+        "order_confidence": 7,
+        "confidence_basis": [
+          "V2=intro",
+          "V5=initial sauce prep",
+          "V1=bacon fry + main sauce",
+          "V4=assembly",
+          "V3=plate"
+        ],
+        "blocking_uncertainties": [
+          "V1 vs V5 sauce relationship"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "2->1->5->4->3",
+    "2->5->1->4->3"
+  ],
+  "order_confidence": [
+    "7",
+    "8"
+  ],
+  "confidence_basis": [
+    "V2=intro/prep",
+    "V1=bacon fry+sauce prep",
+    "V5=sauce prep electric mixer",
+    "V4=pasta cook+assembly",
+    "V3=plate/garnish",
+    "V2=intro",
+    "V5=initial sauce",
+    "V1=bacon+finish sauce",
+    "V4=assembly",
+    "V3=plate",
+    "V5=initial sauce prep",
+    "V1=bacon fry + main sauce"
+  ],
+  "blocking_uncertainties": [
+    "Relative order of V1 and V5",
+    "Identity of white liquid in V4 Chunk 2 (pasta water vs milk)",
+    "Identity of white liquid in V4 Chunk 2",
+    "V1 vs V5 sauce relationship"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 92], \"event\": \"bacon fry + sauce prep\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 95], \"event\": \"intro + prep\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 39], \"event\": \"plating + garnish\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 54], \"event\": \"pasta boil + transfer\", \"confidence\": \"high\"}, {\"window\": [54, 109], \"event\": \"sauce combine + toss\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 37], \"event\": \"sauce prep electric mixer\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "focus_plan": [
+    "Compare V1 and V5 sauce prep ingredients and tools to resolve order tie"
+  ]
+}

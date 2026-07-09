@@ -1,0 +1,238 @@
+{
+  "confirmed": [
+    "V3 is initial prep (whole block, no final plate)",
+    "V1 is slicing (sliced on board, plate has only daikon)",
+    "V2 is final plating (plated, plate has daikon + fish + sauce)"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{}",
+    "{\"1\": \"Slicing sashimi (tuna). Plate has daikon. Fish sliced on board.\", \"2\": \"Plating/finishing. Plate has daikon + tuna + soy sauce. Stove idle in background.\", \"3\": \"Prep/mise en place. Raw meat handled. Pans idle on stove.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "rectangular_plate": {
+      "1": "ONLY_DAIKON (ready to receive fish)",
+      "2": "DAIKON_FISH_AND_SAUCE (fully assembled)",
+      "3": "NOT_VISIBLE"
+    },
+    "main_protein": {
+      "1": "TUNA: WHOLE_BLOCK -> SLICED_ON_BOARD",
+      "2": "TUNA: PLATED",
+      "3": "BEEF/LAMB: WHOLE_RAW_MANIPULATED"
+    },
+    "stove_pans": {
+      "1": "NOT_VISIBLE (cold prep station)",
+      "2": "VISIBLE, IDLE",
+      "3": "VISIBLE, IDLE"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object state chains (raw->cooked, separate->mixed, empty->filled)",
+    "tool contact and transfer traces",
+    "residue/depletion cues",
+    "background vessel states",
+    "plate contents progression",
+    "protein state progression",
+    "stove/pans activity state"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {},
+        "object_memory": {},
+        "temporal_index": {},
+        "preliminary_order": null,
+        "order_confidence": 0,
+        "confidence_basis": "awaiting Layer1 results",
+        "blocking_uncertainties": [
+          "all object states and transitions unknown"
+        ],
+        "candidate_targets": [
+          1,
+          2,
+          3
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "full inventory of objects, states, and transitions across all 3 segments"
+        ],
+        "dimensions_to_compare": [
+          "object state chains (raw->cooked, separate->mixed, empty->filled)",
+          "tool contact and transfer traces",
+          "residue/depletion cues",
+          "background vessel states"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "layer2_done": false,
+        "event_memory": {
+          "1": "Slicing sashimi (tuna). Plate has daikon. Fish sliced on board.",
+          "2": "Plating/finishing. Plate has daikon + tuna + soy sauce. Stove idle in background.",
+          "3": "Prep/mise en place. Raw meat handled. Pans idle on stove."
+        },
+        "object_memory": {
+          "rectangular_plate": {
+            "1": "ONLY_DAIKON (ready to receive fish)",
+            "2": "DAIKON_FISH_AND_SAUCE (fully assembled)",
+            "3": "NOT_VISIBLE"
+          },
+          "main_protein": {
+            "1": "TUNA: WHOLE_BLOCK -> SLICED_ON_BOARD",
+            "2": "TUNA: PLATED",
+            "3": "BEEF/LAMB: WHOLE_RAW_MANIPULATED"
+          },
+          "stove_pans": {
+            "1": "NOT_VISIBLE (cold prep station)",
+            "2": "VISIBLE, IDLE",
+            "3": "VISIBLE, IDLE"
+          }
+        },
+        "temporal_index": {
+          "1": [
+            {
+              "window": [
+                0,
+                12
+              ],
+              "event": "slicing tuna",
+              "key_objects": [
+                "tuna block",
+                "knife",
+                "daikon plate"
+              ],
+              "visible_state": "tuna sliced on board, plate has only daikon",
+              "why_it_matters": "establishes pre-plating state",
+              "confidence": "high"
+            }
+          ],
+          "2": [
+            {
+              "window": [
+                0,
+                10
+              ],
+              "event": "plating and adding sauce",
+              "key_objects": [
+                "tuna",
+                "daikon",
+                "soy sauce dish"
+              ],
+              "visible_state": "tuna plated on daikon, soy sauce added",
+              "why_it_matters": "establishes final finished state",
+              "confidence": "high"
+            }
+          ],
+          "3": [
+            {
+              "window": [
+                0,
+                5
+              ],
+              "event": "raw meat prep",
+              "key_objects": [
+                "raw meat",
+                "idle pans"
+              ],
+              "visible_state": "raw meat manipulated, pans idle",
+              "why_it_matters": "establishes initial prep state before cooking/assembly",
+              "confidence": "high"
+            }
+          ]
+        },
+        "preliminary_order": "3->1->2",
+        "order_confidence": 8,
+        "confidence_basis": "Clear state progression: V3 is initial raw meat prep (pans idle, before cooking). V1 is slicing fish (plate has only daikon, fish on board). V2 is final plating (plate has fish, daikon, and soy sauce, ready for service).",
+        "blocking_uncertainties": [
+          "Need to confirm V3 is definitively before V1 based on visible state maturity and lack of cross-contamination or residue that would imply it happened after."
+        ],
+        "candidate_targets": [
+          1,
+          2,
+          3
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "exact visual bridge between V3 and V1 to confirm 3 is before 1"
+        ],
+        "dimensions_to_compare": [
+          "plate contents progression",
+          "protein state progression",
+          "stove/pans activity state"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 9,
+        "comparison_table": {
+          "1": "Protein: sliced on board. Plate: only daikon. Stove: not visible.",
+          "2": "Protein: plated. Plate: daikon + fish + sauce. Stove: visible, idle.",
+          "3": "Protein: whole block manipulated. Plate: not visible (prep only). Stove: visible, idle."
+        },
+        "confirmed": [
+          "V3 is initial prep (whole block, no final plate)",
+          "V1 is slicing (sliced on board, plate has only daikon)",
+          "V2 is final plating (plated, plate has daikon + fish + sauce)"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": [],
+        "focus_plan": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "temporal_index": [
+    "{}",
+    "{\"1\": [{\"window\": [0, 12], \"event\": \"slicing tuna\", \"key_objects\": [\"tuna block\", \"knife\", \"daikon plate\"], \"visible_state\": \"tuna sliced on board, plate has only daikon\", \"why_it_matters\": \"establishes pre-plating state\", \"confidence\": \"high\"}], \"2\": [{\"window\": [0, 10], \"event\": \"plating and adding sauce\", \"key_objects\": [\"tuna\", \"daikon\", \"soy sauce dish\"], \"visible_state\": \"tuna plated on daikon, soy sauce added\", \"why_it_matters\": \"establishes final finished state\", \"confidence\": \"high\"}], \"3\": [{\"window\": [0, 5], \"event\": \"raw meat prep\", \"key_objects\": [\"raw meat\", \"idle pans\"], \"visible_state\": \"raw meat manipulated, pans idle\", \"why_it_matters\": \"establishes initial prep state before cooking/assembly\", \"confidence\": \"high\"}]}"
+  ],
+  "preliminary_order": [
+    "3->1->2"
+  ],
+  "order_confidence": [
+    "0",
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "awaiting Layer1 results",
+    "Clear state progression: V3 is initial raw meat prep (pans idle, before cooking). V1 is slicing fish (plate has only daikon, fish on board). V2 is final plating (plate has fish, daikon, and soy sauce, ready for service)."
+  ],
+  "blocking_uncertainties": [
+    "all object states and transitions unknown",
+    "Need to confirm V3 is definitively before V1 based on visible state maturity and lack of cross-contamination or residue that would imply it happened after."
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "False",
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"Protein: sliced on board. Plate: only daikon. Stove: not visible.\", \"2\": \"Protein: plated. Plate: daikon + fish + sauce. Stove: visible, idle.\", \"3\": \"Protein: whole block manipulated. Plate: not visible (prep only). Stove: visible, idle.\"}"
+  ],
+  "pruned_targets": [],
+  "focus_plan": []
+}

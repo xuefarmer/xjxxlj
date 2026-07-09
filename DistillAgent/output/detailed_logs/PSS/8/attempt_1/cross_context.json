@@ -1,0 +1,330 @@
+{
+  "confirmed": [
+    "V4 shows separate raw ingredients mixed into homogenous paste",
+    "V5 shows flat wrappers and homogenous paste being folded into dumplings",
+    "V6 shows broth being made and background bowl containing ONLY_NOODLES",
+    "V3 shows wontons being boiled and added to bowl with noodles (NOODLES_AND_WONTONS)",
+    "V2 shows broth being poured into bowl with noodles and wontons (NOODLES_WONTONS_AND_BROTH)"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Boiling noodles in wok, rinsing, reheating\", \"2\": \"Pouring broth into bowl with noodles and wontons\", \"3\": \"Boiling wontons in wok, adding to bowl with noodles\", \"4\": \"Mixing wonton filling (shrimp, meat, egg, seasoning)\", \"5\": \"Wrapping wontons with filling and wrappers\", \"6\": \"Making broth in saucepan (fat, sauce, water)\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "noodles": {
+      "1": "raw -> boiled -> drained",
+      "6": "cooked, waiting in white bowl",
+      "3": "cooked, in white bowl, wontons added on top",
+      "2": "cooked, in white bowl with wontons, broth added"
+    },
+    "wontons": {
+      "4": "filling being mixed (raw)",
+      "5": "being wrapped (raw)",
+      "3": "boiled in wok, transferred to bowl",
+      "2": "cooked, in bowl, submerged in broth"
+    },
+    "broth": {
+      "6": "being made in saucepan (fat + sauce + water)",
+      "2": "poured from ladle into bowl"
+    },
+    "serving_bowl": {
+      "6": "contains ONLY_NOODLES (background)",
+      "3": "contains NOODLES_AND_WONTONS (end)",
+      "2": "contains NOODLES_AND_WONTONS -> NOODLES_WONTONS_AND_BROTH"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object state chains across segments",
+    "shared containers/tools",
+    "ingredient maturity progression",
+    "transfer traces",
+    "residue/depletion patterns",
+    "bowl contents (noodles only vs noodles+wontons vs full soup)",
+    "broth preparation vs assembly"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All segment roles and object states pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object state chains across segments",
+          "shared containers/tools",
+          "ingredient maturity progression",
+          "transfer traces",
+          "residue/depletion patterns"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Boiling noodles in wok, rinsing, reheating",
+          "2": "Pouring broth into bowl with noodles and wontons",
+          "3": "Boiling wontons in wok, adding to bowl with noodles",
+          "4": "Mixing wonton filling (shrimp, meat, egg, seasoning)",
+          "5": "Wrapping wontons with filling and wrappers",
+          "6": "Making broth in saucepan (fat, sauce, water)"
+        },
+        "object_memory": {
+          "noodles": {
+            "1": "raw -> boiled -> drained",
+            "6": "cooked, waiting in white bowl",
+            "3": "cooked, in white bowl, wontons added on top",
+            "2": "cooked, in white bowl with wontons, broth added"
+          },
+          "wontons": {
+            "4": "filling being mixed (raw)",
+            "5": "being wrapped (raw)",
+            "3": "boiled in wok, transferred to bowl",
+            "2": "cooked, in bowl, submerged in broth"
+          },
+          "broth": {
+            "6": "being made in saucepan (fat + sauce + water)",
+            "2": "poured from ladle into bowl"
+          },
+          "serving_bowl": {
+            "6": "contains ONLY_NOODLES (background)",
+            "3": "contains NOODLES_AND_WONTONS (end)",
+            "2": "contains NOODLES_AND_WONTONS -> NOODLES_WONTONS_AND_BROTH"
+          }
+        },
+        "preliminary_order": [
+          4,
+          5,
+          1,
+          6,
+          3,
+          2
+        ],
+        "order_confidence": 9,
+        "confidence_basis": "Clear state-transition graph for the serving bowl: V6 (noodles only) -> V3 (noodles + wontons) -> V2 (noodles + wontons + broth). Prep steps V4 (mix filling) -> V5 (wrap wontons) are logically sequential. Noodle cooking V1 precedes V6 where they are seen waiting.",
+        "blocking_uncertainties": [
+          "Verify V6 bowl contains only noodles and no wontons to confirm it precedes V3",
+          "Verify V3 bowl receives wontons to confirm it precedes V2"
+        ],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "low_value_targets": [
+          4,
+          5
+        ],
+        "uncertain": [
+          "Bowl state progression across V6, V3, V2"
+        ],
+        "dimensions_to_compare": [
+          "bowl contents (noodles only vs noodles+wontons vs full soup)",
+          "broth preparation vs assembly"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "1": "Noodles: raw -> boiled -> drained. Bowl: not present.",
+          "2": "Bowl: NOODLES_AND_WONTONS -> NOODLES_WONTONS_AND_BROTH. Broth added from ladle.",
+          "3": "Bowl: NOODLES -> NOODLES_AND_WONTONS. Wontons added from wok.",
+          "4": "Filling: separate raw shrimp/meat/egg -> homogenous paste in mixer.",
+          "5": "Wrappers: flat stack. Filling: homogenous paste. Action: folding into dumplings.",
+          "6": "Broth: fat/sauce/water -> simmering yellow broth. Bowl in background: ONLY_NOODLES."
+        },
+        "temporal_index": {
+          "1": [
+            {
+              "window": [
+                0,
+                38
+              ],
+              "event": "noodle boiling",
+              "key_objects": [
+                "noodles",
+                "wok",
+                "strainer"
+              ],
+              "visible_state": "raw to cooked drained",
+              "why_it_matters": "noodles prepared",
+              "confidence": "high"
+            }
+          ],
+          "2": [
+            {
+              "window": [
+                0,
+                21
+              ],
+              "event": "broth assembly",
+              "key_objects": [
+                "bowl",
+                "broth",
+                "wontons",
+                "noodles"
+              ],
+              "visible_state": "noodles+wontons to full soup",
+              "why_it_matters": "final assembly",
+              "confidence": "high"
+            }
+          ],
+          "3": [
+            {
+              "window": [
+                0,
+                44
+              ],
+              "event": "wonton boiling and plating",
+              "key_objects": [
+                "wontons",
+                "wok",
+                "bowl",
+                "noodles"
+              ],
+              "visible_state": "wontons boiled and added to noodles",
+              "why_it_matters": "intermediate assembly",
+              "confidence": "high"
+            }
+          ],
+          "4": [
+            {
+              "window": [
+                0,
+                55
+              ],
+              "event": "filling preparation",
+              "key_objects": [
+                "shrimp",
+                "meat",
+                "egg",
+                "mixer"
+              ],
+              "visible_state": "separate ingredients to homogenous paste",
+              "why_it_matters": "first prep step",
+              "confidence": "high"
+            }
+          ],
+          "5": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "wonton wrapping",
+              "key_objects": [
+                "wrappers",
+                "filling",
+                "dumpling"
+              ],
+              "visible_state": "flat wrappers and paste folded into dumplings",
+              "why_it_matters": "second prep step",
+              "confidence": "high"
+            }
+          ],
+          "6": [
+            {
+              "window": [
+                0,
+                58
+              ],
+              "event": "broth making",
+              "key_objects": [
+                "saucepan",
+                "fat",
+                "sauce",
+                "water",
+                "noodles"
+              ],
+              "visible_state": "fat/sauce/water to broth; background bowl has only noodles",
+              "why_it_matters": "broth prepared after noodles cooked",
+              "confidence": "high"
+            }
+          ]
+        },
+        "confirmed": [
+          "V4 shows separate raw ingredients mixed into homogenous paste",
+          "V5 shows flat wrappers and homogenous paste being folded into dumplings",
+          "V6 shows broth being made and background bowl containing ONLY_NOODLES",
+          "V3 shows wontons being boiled and added to bowl with noodles (NOODLES_AND_WONTONS)",
+          "V2 shows broth being poured into bowl with noodles and wontons (NOODLES_WONTONS_AND_BROTH)"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "uncertain": [],
+        "focus_plan": []
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "order_confidence": 10
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "4",
+    "5",
+    "1",
+    "6",
+    "3",
+    "2"
+  ],
+  "order_confidence": [
+    "9",
+    "10"
+  ],
+  "confidence_basis": [
+    "Clear state-transition graph for the serving bowl: V6 (noodles only) -> V3 (noodles + wontons) -> V2 (noodles + wontons + broth). Prep steps V4 (mix filling) -> V5 (wrap wontons) are logically sequential. Noodle cooking V1 precedes V6 where they are seen waiting."
+  ],
+  "blocking_uncertainties": [
+    "Verify V6 bowl contains only noodles and no wontons to confirm it precedes V3",
+    "Verify V3 bowl receives wontons to confirm it precedes V2"
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "6",
+    "4",
+    "5"
+  ],
+  "low_value_targets": [
+    "4",
+    "5"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"Noodles: raw -> boiled -> drained. Bowl: not present.\", \"2\": \"Bowl: NOODLES_AND_WONTONS -> NOODLES_WONTONS_AND_BROTH. Broth added from ladle.\", \"3\": \"Bowl: NOODLES -> NOODLES_AND_WONTONS. Wontons added from wok.\", \"4\": \"Filling: separate raw shrimp/meat/egg -> homogenous paste in mixer.\", \"5\": \"Wrappers: flat stack. Filling: homogenous paste. Action: folding into dumplings.\", \"6\": \"Broth: fat/sauce/water -> simmering yellow broth. Bowl in background: ONLY_NOODLES.\"}"
+  ],
+  "temporal_index": [
+    "{\"1\": [{\"window\": [0, 38], \"event\": \"noodle boiling\", \"key_objects\": [\"noodles\", \"wok\", \"strainer\"], \"visible_state\": \"raw to cooked drained\", \"why_it_matters\": \"noodles prepared\", \"confidence\": \"high\"}], \"2\": [{\"window\": [0, 21], \"event\": \"broth assembly\", \"key_objects\": [\"bowl\", \"broth\", \"wontons\", \"noodles\"], \"visible_state\": \"noodles+wontons to full soup\", \"why_it_matters\": \"final assembly\", \"confidence\": \"high\"}], \"3\": [{\"window\": [0, 44], \"event\": \"wonton boiling and plating\", \"key_objects\": [\"wontons\", \"wok\", \"bowl\", \"noodles\"], \"visible_state\": \"wontons boiled and added to noodles\", \"why_it_matters\": \"intermediate assembly\", \"confidence\": \"high\"}], \"4\": [{\"window\": [0, 55], \"event\": \"filling preparation\", \"key_objects\": [\"shrimp\", \"meat\", \"egg\", \"mixer\"], \"visible_state\": \"separate ingredients to homogenous paste\", \"why_it_matters\": \"first prep step\", \"confidence\": \"high\"}], \"5\": [{\"window\": [0, 11], \"event\": \"wonton wrapping\", \"key_objects\": [\"wrappers\", \"filling\", \"dumpling\"], \"visible_state\": \"flat wrappers and paste folded into dumplings\", \"why_it_matters\": \"second prep step\", \"confidence\": \"high\"}], \"6\": [{\"window\": [0, 58], \"event\": \"broth making\", \"key_objects\": [\"saucepan\", \"fat\", \"sauce\", \"water\", \"noodles\"], \"visible_state\": \"fat/sauce/water to broth; background bowl has only noodles\", \"why_it_matters\": \"broth prepared after noodles cooked\", \"confidence\": \"high\"}]}"
+  ],
+  "pruned_targets": [],
+  "focus_plan": []
+}

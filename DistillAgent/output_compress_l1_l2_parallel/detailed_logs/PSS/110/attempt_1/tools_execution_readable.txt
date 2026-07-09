@@ -1,0 +1,845 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-07 02:38:24
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-07 02:12:56 -> 2026-07-07 02:14:24
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 45.01,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. Report: (1) main action/operation, (2) all visible objects/tools/containers with their states (raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion), (3) any transfers between containers, (4) background cues (other vessels, cutting board state, stove on/off). Return compact evidence rows with labels VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the description of the cooking segment:
+
+**Main Action/Operation:**
+The segment depicts the preparation of a liquid dressing or sauce. The process involves combining liquid ingredients (likely lime juice, soy sauce, and sesame oil) with dry ingredients (sugar/salt and chili flakes) and whisking them together.
+
+**Visible Objects/Tools/Containers & States:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Lime** | Held in hand | Whole, green, fresh, raw | Frames 1-2 | - | High | None |
+| **Soy Sauce Bottle (VH)** | Shown close-up | Bottle present, filled, label visible | Frames 2, 5 | - | High | None |
+| **Sesame Oil Bottle** | Held/Shown | Bottle present, filled, label visible ("Pure Sesame Oil") | Frames 2, 6 | - | High | None |
+| **White Granular Substance (Sugar/Salt)** | On plate, then added to bowl | Dry, white pile, separate initially | Frames 3-4, 9 | - | High | Uncertain if sugar or salt (likely sugar for dressing) |
+| **Red Chili Flakes** | On plate, then added to bowl | Dry, red/brown flakes, separate initially | Frames 3-4, 9 | - | High | None |
+| **Whisk** | Mixing action | Metal, wet with residue, active | Frames 7-8, 10-11, 13-16 | - | High | None |
+| **Mixing Bowl (White with blue rim)** | Holding mixture | Filled with yellowish-brown liquid, green bits (zest/juice), and red flakes | Frames 12-16 | - | High | None |
+| **Small White Bowl/Plate** | Holding dry ingredients | Contains sugar and chili flakes initially | Frames 3-4 | - | High | None |
+
+**Transfers between containers:**
+*   **Dry to Wet Transfer:** The white granular substance and red chili flakes (seen separate in Frames 3-4) are added to the liquid mixture in the bowl (visible in Frame 9 sitting on top of the liquid).
+*   **Bowl Transfer (Likely):** In Frame 12, a white bowl is tilted over the blue-rimmed bowl, suggesting the contents (likely the dry ingredients or a pre-mix) are being poured into the main mixing bowl where the whisk is located.
+
+**Background Cues:**
+*   **Countertop:** Dark, speckled granite-like surface visible in Frames 1-2, 5.
+*   **Stove:** Not clearly visible; focus is on countertop preparation.
+*   **Other vessels:** A white bowl/plate is used for dry ingredients.
+
+**Summary of Progression:**
+1.  **Ingredients:** Lime, Soy Sauce, Sesame Oil are introduced.
+2.  **Dry Prep:** Sugar and chili flakes are shown on a plate.
+3.  **Wet Base:** A liquid mixture with green bits (lime zest/juice) is in a bowl.
+4.  **Combining:** Dry ingredients are added to the wet base.
+5.  **Mixing:** The ingredients are whisked together to form a unified dressing with suspended flakes and zest.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-07 02:12:56 -> 2026-07-07 02:13:51
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 16.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. Report: (1) main action/operation, (2) all visible objects/tools/containers with their states (raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion), (3) any transfers between containers, (4) background cues (other vessels, cutting board state, stove on/off). Return compact evidence rows with labels VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+**Main Action/Operation:**
+The segment depicts the transfer of diced, marinated meat from a plate into a hot frying pan containing a dark liquid (likely oil or sauce), followed by spreading and stirring the meat with a spatula.
+
+**Visible Objects/Tools/Containers & States:**
+*   **Frying Pan:** Black, round skillet. State: Initially contains a pool of dark liquid (oil/sauce), then becomes filled with meat.
+*   **Diced Meat:** Brownish/pinkish chunks (likely chicken or pork). State: Wet, glossy (marinated), raw-to-cooking progression, diced.
+*   **Plate/Bowl:** White with a rim (blue line visible). State: Initially filled with meat, becomes depleted/empty with dark sauce residue.
+*   **Spatula:** White, flat turner/spatula. State: Present, used for manipulation.
+*   **Stove:** Gas stovetop with black grates. State: Visible, supporting the pan.
+*   **Yellow Object:** (Likely a lemon or small bowl). State: Visible in background, static.
+
+**Transfers:**
+*   **Plate to Pan:** The diced meat is poured from the white plate into the black frying pan (Frames 1-7).
+
+**Background Cues:**
+*   **Stove:** Gas burner grates are clearly visible.
+*   **Cutting Board:** Not visible.
+*   **Other Vessels:** A yellow object is visible in the upper background.
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Frying Pan** | Receiving meat, holding liquid | Black, filled with dark liquid then meat | 1-16 | Frames 1-16 | High | Liquid identity (oil vs sauce) uncertain. |
+| **Diced Meat** | Being poured, being stirred | Wet, marinated, diced, raw/cooking | 1-16 | Frames 1-16 | High | Meat type (chicken/pork) uncertain. |
+| **Plate** | Pouring source | White, filled -> empty with residue | 1-7 | Frames 1-7 | High | None. |
+| **Spatula** | Stirring, spreading | White, flat | 11-16 | Frames 11-16 | High | None. |
+| **Stove** | Supporting pan | Gas grates visible | 1-16 | Frames 1-16 | High | Burner flame status (on/off) hard to see due to angle/darkness, but cooking implies ON. |
+| **Yellow Object** | Static background | Yellow, round | 1-6 | Frames 1-6 | Medium | Identity (lemon vs bowl) uncertain. |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-07 02:12:56 -> 2026-07-07 02:13:58
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 31.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. Report: (1) main action/operation, (2) all visible objects/tools/containers with their states (raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion), (3) any transfers between containers, (4) background cues (other vessels, cutting board state, stove on/off). Return compact evidence rows with labels VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the description of the cooking segment:
+
+**Main Action/Operation:**
+The segment depicts the marination of cubed meat. Initially, raw, pink cubed meat is added to a bowl containing a dark liquid and mixed vigorously with a metal whisk. Later, the meat appears fully coated in the dark marinade, a yellow spatula is introduced, and a specific "Szechwan Stir-Fry Sauce" is poured over the mixture from a glass bottle.
+
+**Visible Objects/Tools/Containers & States:**
+*   **Bowl:** White ceramic bowl with a blue rim. **State:** Filled with meat and sauce. **Window:** 1-16.
+*   **Meat:** Cubed pieces (likely chicken or pork). **State:** Initially raw/pink/white (Frames 1-7), transitioning to coated/brown (Frames 8-16). **Window:** 1-16.
+*   **Dark Liquid (Marinade):** **State:** Present at bottom of bowl, dark brown/black. **Window:** 1-8.
+*   **Metal Whisk:** **State:** Present, used for mixing. **Window:** 1-8.
+*   **Yellow Spatula:** Silicone head with wooden handle. **State:** Present, resting in bowl. **Window:** 9-16.
+*   **Dark Bottle (likely Soy Sauce):** **State:** Visible in background (Frames 2-7) and pouring (Frame 9). **Window:** 2-10.
+*   **Szechwan Sauce Bottle:** **State:** Label visible "SZECHWAN STIR-FRY SAUCE" (Frame 13). Glass bottle containing reddish-brown sauce being poured (Frames 15-16). **Window:** 13, 15-16.
+*   **Yellow Bottle Cap:** **State:** Resting on countertop. **Window:** 2-4.
+
+**Transfers:**
+*   **Meat to Bowl:** Hand adds raw meat cubes into the dark liquid (Frames 1-7).
+*   **Sauce to Bowl:** Dark liquid poured from dark bottle (Frame 9 - uncertain if pouring or just hovering, but liquid level seems high). Reddish Szechwan sauce poured from glass bottle onto meat (Frames 15-16).
+
+**Background Cues:**
+*   **Countertop:** Speckled grey surface.
+*   **Other Vessels:** Orange and blue bowls visible in background (Frame 14).
+*   **Stove:** Not visible/Not applicable (preparation phase).
+
+**Compact Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Bowl, raw meat cubes, dark liquid, metal whisk | Whisking/Mixing raw meat into marinade | Meat: raw/pink/cubed. Liquid: dark/filled. Whisk: active. | 1-8 | Video 3 | High | Meat type (chicken vs pork) uncertain. |
+| Bowl, coated meat, yellow spatula, dark bottle | Pouring/Coating | Meat: brown/coated. Spatula: present. Bottle: pouring/hovering. | 9-12 | Video 3 | Medium | Whether frame 9 is active pouring or just positioning is slightly ambiguous, but liquid level is high. |
+| Szechwan Sauce Bottle | Displaying Label | Label: "SZECHWAN STIR-FRY SAUCE". | 13 | Video 3 | High | None. |
+| Bowl, meat, spatula, glass sauce bottle | Pouring sauce | Sauce: reddish-brown/flowing. Meat: fully coated. | 15-16 | Video 3 | High | None. |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-07 02:12:56 -> 2026-07-07 02:13:57
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 36.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. Report: (1) main action/operation, (2) all visible objects/tools/containers with their states (raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion), (3) any transfers between containers, (4) background cues (other vessels, cutting board state, stove on/off). Return compact evidence rows with labels VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the description of the cooking segment:
+
+**Main Action/Operation:**
+The segment depicts two distinct preparation phases followed by plating: first, mixing cooked noodles with sauteed ingredients (shrimp and vegetables) in a wok; second, peeling fresh leaves from a head of iceberg lettuce; finally, presenting a plated meal with the noodles and a lettuce wrap filled with a meat and vegetable mixture.
+
+**Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Noodles, Shrimp, Vegetables (peppers, carrots), Wok, Wooden Spatula** | Mixing/Stir-frying | Noodles: Cooked, yellow/brown, mixed. Shrimp: Cooked (orange). Veggies: Sauteed. Wok: Filled. | Frames 1-4 | [Link] | High | None. Text overlay confirms "Mix the noodles in with sauteed ingredients." |
+| **Iceberg Lettuce, White Plate, Hand** | Peeling/Preparing | Lettuce: Raw, fresh, green/white. Head is whole initially, leaves are being peeled off. Plate: Present. | Frames 5-14 | [Link] | High | None. Clear peeling action. |
+| **Small Bowl (background)** | Holding ingredients | Filled with chopped mixed vegetables (peas, carrots, peppers). | Frame 11 | [Link] | High | None. |
+| **White Plate, Lettuce Leaf, Meat/Veg Mixture, Noodles** | Plating (Static) | Lettuce leaf: Raw, used as cup/wrap. Filling: Cooked diced meat and veggies. Noodles: Cooked, on side. | Frames 15-16 | [Link] | High | The cooking of the meat filling is not shown, only the noodle mixing. |
+| **Sauce Bottles** | Background | Present on counter. | Frames 7, 11, 12 | [Link] | High | None. |
+
+**Transfers:**
+- **Within Wok (Frames 1-4):** Noodles are being tossed and mixed with the sauteed shrimp and vegetables using a wooden spatula.
+- **Lettuce (Frames 5-14):** Leaves are physically separated (peeled) from the main head of lettuce.
+- **To Plate (Frames 15-16):** The final shot implies transfer of the cooked noodle mixture and the prepared lettuce wrap (filled with meat/veg) onto the white serving plate.
+
+**Background Cues:**
+- **Countertop:** Dark, speckled surface (granite-like) visible in lettuce prep and plating shots.
+- **Stove:** Implied for the wok scenes (Frames 1-4) due to the cooking state of food, though the burner itself is not clearly visible.
+- **Other Vessels:** A small bowl containing chopped raw vegetables is visible in the background during the lettuce prep (Frame 11), which likely corresponds to the vegetable component of the filling in the final lettuce wrap. Sauce bottles are visible in the background.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_5) ###
+Time: 2026-07-07 02:12:56 -> 2026-07-07 02:13:48
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 49.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. Report: (1) main action/operation, (2) all visible objects/tools/containers with their states (raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion), (3) any transfers between containers, (4) background cues (other vessels, cutting board state, stove on/off). Return compact evidence rows with labels VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 1/2, time 0s–49s)"
+}
+
+[Output]:
+Based on the visual evidence from frames 1-16 (Video 5, 0.0s–49.0s), here is the description of the cooking segment:
+
+**Main Action/Operation:**
+The segment depicts the process of stir-frying a vegetable medley. It begins with heating an aromatic paste (likely garlic or ginger) in oil, followed by the sequential addition of sliced bell peppers, shredded carrots, and chopped mushrooms. The vegetables are sautéed together, and finally, chopped green onions are added.
+
+**Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Pan, wooden spatula, oil residue** | Resting/Heating | Pan is black with oil streaks/residue; spatula is resting in pan. | 1-4 | V5_00-04 | High | None |
+| **Small white bowl, yellow paste (garlic/ginger)** | Transfer (Pouring) | Paste is transferred from bowl to pan; paste appears minced and wet. | 2-4 | V5_02-04 | High | Exact identity of paste (garlic vs ginger) uncertain. |
+| **Bowl of green onions (bottom left)** | Present | Bowl contains chopped green onions; separate from main action initially. | 4 | V5_04 | High | None |
+| **White bowl, sliced bell peppers (red, green, orange)** | Transfer (Pouring) | Peppers are raw, sliced into strips; poured into pan. | 5-7 | V5_05-07 | High | None |
+| **Pan, peppers, spatula** | Stir-frying | Peppers are being tossed and mixed with the aromatic paste; starting to cook. | 6-8 | V5_06-08 | High | None |
+| **Shredded carrots, chopped mushrooms** | Transfer (Adding) | Carrots are shredded orange; mushrooms are white chunks; added raw on top of peppers. | 9 | V5_09 | High | None |
+| **Pan, mixed vegetables (peppers, carrots, mushrooms), spatula** | Stir-frying | Vegetables are being mixed; carrots and mushrooms integrating with peppers. | 10-15 | V5_10-15 | High | None |
+| **Background pan (left burner)** | Cooking (passive) | Contains a brown mixture (likely meat/sauce); separate vessel. | 10 | V5_10 | High | Contents uncertain. |
+| **Chopped green onions** | Transfer (Adding) | Fresh, green, chopped; added on top of the sautéed vegetable mix at the end. | 16 | V5_16 | High | None |
+
+**Summary of States & Transfers:**
+*   **Transfers:** Yellow paste $\rightarrow$ Pan; Sliced peppers $\rightarrow$ Pan; Carrots/Mushrooms $\rightarrow$ Pan; Green onions $\rightarrow$ Pan.
+*   **Progression:** Raw ingredients (peppers, carrots, mushrooms) are added sequentially and transition from separate piles to a mixed, sautéed state. The green onions remain fresh/raw as they are added last.
+*   **Background Cues:** Stove is on (blue flame visible under pan in later frames). Another pan with cooked food is visible on the back left burner. Text overlay indicates loud fan noise.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_6) ###
+Time: 2026-07-07 02:13:48 -> 2026-07-07 02:14:59
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 49.0,
+      "end_time": 98.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. Report: (1) main action/operation, (2) all visible objects/tools/containers with their states (raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion), (3) any transfers between containers, (4) background cues (other vessels, cutting board state, stove on/off). Return compact evidence rows with labels VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 2/2, time 49s–98s)"
+}
+
+[Output]:
+Based on the visual evidence from frames 1-16 (Video 5, 49.0s–98.0s), here is the description of the cooking segment:
+
+**1. Main Action/Operation**
+The segment depicts the mid-to-late stages of cooking a vegetable curry or stir-fry. The cook sautés mixed vegetables, seasons them with curry powder, adds pre-cooked meatballs (or sausage slices), and finally adds liquid (vegetable stock) to create a sauce.
+
+**2. Visible Objects/Tools/Containers & States**
+
+| Objects | Action | State | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Black Pan/Wok** | Holding food, simmering | Filled with sautéed vegetables, then meat, then liquid sauce. | 1-16 | High | None. |
+| **Vegetables** (Peppers, Carrots, Mushrooms, Green Onions) | Being stirred, cooked | Sliced/julienned. Sautéed/wilted. Coated in yellow spice. | 1-16 | High | None. |
+| **Curry Powder** (Suraj brand) | Added to pan | Yellow powder. Bag shown (yellow/red packaging). | 2, 4-7 | High | None. |
+| **Meatballs/Sausages** | Added to pan | Brown, round/oval pieces. Appear pre-cooked/browned. | 9-11 | High | Exact meat type uncertain (sausage vs meatball). |
+| **Liquid** (Stock) | Poured into pan | Brownish-yellow liquid. Fills bottom of pan. | 12-16 | High | Text confirms "vegetable-stock". |
+| **Wooden Spoon** | Stirring | Present, used for mixing ingredients. | 1, 3, 5, 8, 10, 13, 14 | High | None. |
+| **Metal Spoon** | Adding powder | Present, holds curry powder. | 2, 4 | High | None. |
+| **White Bowls** | Holding ingredients | One bowl holds meat (then empty). One bowl/cup pours liquid. | 9, 12 | High | None. |
+
+**3. Transfers Between Containers**
+
+| Transfer Trace | Details | Window | Conf |
+| :--- | :--- | :--- | :--- |
+| **Powder to Pan** | Metal spoon dumps yellow curry powder onto vegetables. | 2 | High |
+| **Meat to Pan** | White bowl tilts, dumping brown meatballs/sausages into the pan. Bowl becomes empty. | 9-10 | High |
+| **Liquid to Pan** | Small white bowl/cup pours liquid over the mixture. | 12-13 | High |
+
+**4. Background Cues**
+
+| Cue | Details | Window | Conf |
+| :--- | :--- | :--- | :--- |
+| **Second Pan** | Visible on back burner. Contains a light brown simmering sauce/liquid. | 4, 9 | High |
+| **Stove** | Gas stove. Blue flame visible under the pans. | 3, 4, 9 | High |
+| **Text Overlay** | "Suraj Curry Powder found at Superstore..." and "You can [use] vegetable-stock too". | 4, 5, 16 | High |
+
+**Summary of Progression:**
+The food progresses from **dry sautéed vegetables** (Frame 1) -> **spiced vegetables** (Frame 5) -> **mixed with meat** (Frame 10) -> **simmering in liquid sauce** (Frame 13-16). The pan goes from relatively dry/oily to filled with a simmering broth.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_7) ###
+Time: 2026-07-07 02:12:56 -> 2026-07-07 02:13:46
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 6,
+      "start_time": 0.0,
+      "end_time": 66.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. Report: (1) main action/operation, (2) all visible objects/tools/containers with their states (raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion), (3) any transfers between containers, (4) background cues (other vessels, cutting board state, stove on/off). Return compact evidence rows with labels VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the 16 frames, here is the description of the cooking segment:
+
+**Main Action/Operation**:
+The segment depicts two parallel cooking processes: preparing noodles (draining and mixing with liquid) and pan-frying shrimp (searing and glazing with sauce).
+
+**Visible Objects/Tools/Containers & States**:
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Noodles (white strands)** | Drained, then mixed | Raw/cooked (boiled), wet, separate then mixed | Frames 3-4, 6-7 | N/A | High | None |
+| **Metal Colander** | Holding noodles | Filled with noodles, wet residue | Frames 4, 7, 8 | N/A | High | None |
+| **Large Metal Pot** | Receiving noodles/liquid | Filled with noodles and liquid | Frames 3, 5-6 | N/A | High | None |
+| **White Measuring Cup** | Pouring liquid | Filled with light yellow liquid (oil/broth), then depleted | Frames 5-6 | N/A | High | None |
+| **Shrimp** | Pan-frying | Raw (pale/translucent) $\rightarrow$ Cooked (brown/opaque) | Frames 8-10 (raw), 12-16 (cooked) | N/A | High | None |
+| **Black Frying Pan** | Frying shrimp | Contains oil and shrimp, residue of sauce | Frames 9-10, 12-16 | N/A | High | None |
+| **White Bowl** | Holding sauce | Filled with dark liquid (soy sauce), then depleted | Frames 11-12 | N/A | High | None |
+| **Wooden Spoon** | Stirring | Present, used to mix shrimp and sauce | Frames 12-13 | N/A | High | None |
+| **Stove Burner** | Heating | On (blue flame visible) | Frame 16 | N/A | High | None |
+| **Background Pan** | Cooking other food | Filled with brown food (minced meat/beans) | Frame 16 | N/A | Medium | Exact contents uncertain |
+
+**Transfers between containers**:
+1.  **Noodles**: Transferred from the metal colander (Frames 4, 7) into the large metal pot (Frame 6).
+2.  **Liquid (Light)**: Poured from the white measuring cup into the pot with noodles (Frame 6).
+3.  **Shrimp**: Transferred from hand/colander (Frame 8) into the black frying pan (Frame 9).
+4.  **Sauce (Dark)**: Poured from the white bowl into the frying pan with shrimp (Frame 12).
+
+**Background Cues**:
+*   **Stove**: The stove is **on**, indicated by the blue flame under the frying pan in Frame 16.
+*   **Other Vessels**: A second pan containing brown food (possibly minced meat or beans) is visible on a back burner in Frame 16.
+*   **Cutting Board**: Not clearly visible; focus is on stove and pots.
+
+**Summary of Progression**:
+The video starts with draining white noodles (Frames 1-4, 7). Liquid is added to the noodles in a pot (Frames 5-6). Then, raw shrimp are handled (Frame 8) and placed in a frying pan (Frames 9-10). A dark sauce is prepared (Frame 11) and poured over the cooking shrimp (Frame 12). The shrimp are stirred (Frame 13) until they are fully browned and cooked (Frames 14-16).
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-07 02:16:01 -> 2026-07-07 02:16:47
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 45.01,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check the final state of the dressing bowl. Report: (1) Is the whisked dressing still in the blue-rimmed white bowl at the end? (2) What is the exact color/consistency? (3) Is any of this dressing transferred to another container or used on other food? (4) What other objects are visible in the background? Return compact rows: object/state/window/conf/uncertainty."
+}
+
+[Output]:
+dressing_bowl/present, blue-rimmed white ceramic, contains final mixture/13-16/high/low
+dressing_state/yellowish-brown translucent liquid, red pepper flakes, green specks, whisk resting inside/13-16/high/low
+transfer_status/no transfer out observed; ingredients (white powder/chili) poured INTO bowl from white plate at frame 12/12-16/high/low (future use unknown)
+background_objects/kitchen counter, VH soya sauce bottle, sesame oil bottle, lime, tiled floor, person's legs (jeans)/1-16/high/low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-07 02:16:01 -> 2026-07-07 02:17:12
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 16.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check the meat and pan. Report: (1) What is the exact state of the meat at the end (raw/cooking/cooked)? (2) Is any sauce or dressing added to the pan? (3) What is the state of the plate after meat is removed (empty/residue)? (4) What other objects are visible in background? Return compact rows: object/state/window/conf/uncertainty."
+}
+
+[Output]:
+meat/cooking (browning)/1-16/high/low
+pan/contains dark liquid (sauce/marinade)/1-16/high/low
+plate/residue (sauce remaining)/1-7/high/low
+spatula/stirring meat/11-16/high/low
+stove/background object/1-16/high/low
+yellow_object/visible (possibly lemon)/1-16/low/high
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-07 02:16:01 -> 2026-07-07 02:16:51
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 31.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check the meat marination. Report: (1) What is the exact state of the meat at the end (raw/marinated/coated)? (2) Is the meat transferred to another container or plate? (3) What is the state of the blue-rimmed bowl at the end? (4) What other objects are visible? Return compact rows: object/state/window/conf/uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in frames 1-16 (Video 3):
+
+(1) **State of meat:** The meat is **marinated** (raw pink cubes are added and mixed until coated in dark brown sauce).
+(2) **Transfer:** No, the meat remains in the same bowl throughout the sequence.
+(3) **State of blue-rimmed bowl:** It contains the marinated meat mixture and sauce.
+(4) **Other objects:** Whisk, yellow spatula, sauce bottles (including Szechwan sauce), yellow bottle cap.
+
+**Compact Rows:**
+
+| object | state | window | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| meat | marinated (raw cubes coated in dark sauce) | 1-16 | high | low |
+| blue-rimmed bowl | contains marinated meat mixture | 1-16 | high | low |
+| whisk | mixing meat into sauce | 1-7 | high | low |
+| yellow spatula | resting in bowl/mixing | 9-16 | high | low |
+| sauce bottles (Szechwan) | pouring liquid onto meat | 9, 13, 15-16 | high | low |
+| yellow cap | sitting on counter | 2-7 | high | low |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_4) ###
+Time: 2026-07-07 02:16:01 -> 2026-07-07 02:17:01
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 36.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check the final plated dish. Report: (1) What exactly is in the lettuce wrap (meat type, vegetables, sauce)? (2) What is on the side (noodles, shrimp, other)? (3) Is any dressing visible on the food? (4) What is the state of the wok at the end? (5) What other objects are visible in background? Return compact rows: object/state/window/conf/uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the final frames (15-16) and the cooking process shown earlier:
+
+*   **Lettuce Wrap Contents:** A large lettuce leaf holds a mixture of diced cooked meat (brown cubes, likely pork or chicken based on object memory) and chopped vegetables (red and green peppers/scallions).
+*   **Side Dish:** A portion of stir-fried noodles (yellow/brown) mixed with cooked shrimp (orange) and vegetables.
+*   **Dressing:** Yes, a reddish-brown sauce is drizzled over the noodles. The meat mixture also appears glazed.
+*   **Wok State:** The wok is not visible in the final frames (15-16), indicating the food has been fully transferred to the plate. In the last visible wok frames (1-4), it contained the mixed noodle dish.
+*   **Background Objects:** A dark granite countertop, spice bottles/jars (one with a red label), and a small green/white packet are visible.
+
+**Compact Rows:**
+
+| Object | State | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Lettuce wrap filling | Diced cooked meat cubes, chopped red/green peppers | 15-16 | High | Exact meat type |
+| Side dish | Noodles, cooked shrimp, veggies, red sauce drizzle | 15-16 | High | None |
+| Dressing/Sauce | Reddish sauce visible on noodles | 15-16 | Medium | Specific ingredients |
+| Wok | Not visible (food transferred out) | 15-16 | High | None |
+| Background | Granite counter, spice bottles, small packet | 15-16 | High | None |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_5) ###
+Time: 2026-07-07 02:16:01 -> 2026-07-07 02:16:47
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 49.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check the background pan and final state. Report: (1) What is in the background pan on the left burner (frames around 10s and later)? (2) What is the final state of the main pan at the end (dry/saucy/simmering)? (3) Are the vegetables/meatballs transferred to another container? (4) What other objects are visible? Return compact rows: object/state/window/conf/uncertainty. (part 1/2, time 0s–49s)"
+}
+
+[Output]:
+background_pan | brown food/meatballs in sauce (simmering) | frame 10 | high | identity uncertain (likely meatballs/curry)
+main_pan | sautéed vegetables (peppers, carrots, mushrooms) with green onions added | frame 16 | high | -
+vegetables | being cooked/stirred, no transfer out observed | frame 1-16 | high | -
+wooden_spatula | used for stirring | frame 1-16 | high | -
+white_bowls | used to add ingredients (garlic, peppers, mushrooms) | frame 2, 5, 8, 12 | high | -
+silver_cuff_bracelet | on person's wrist | frame 10-14 | high | -
+stove | gas burner active | frame 1-16 | high | -
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_6) ###
+Time: 2026-07-07 02:16:47 -> 2026-07-07 02:17:50
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 49.0,
+      "end_time": 98.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check the background pan and final state. Report: (1) What is in the background pan on the left burner (frames around 10s and later)? (2) What is the final state of the main pan at the end (dry/saucy/simmering)? (3) Are the vegetables/meatballs transferred to another container? (4) What other objects are visible? Return compact rows: object/state/window/conf/uncertainty. (part 2/2, time 49s–98s)"
+}
+
+[Output]:
+Based on the visual evidence in frames 1-16 (Video 5, 49s–98s):
+
+*   **background_pan**: brown food/sauce simmering (likely meatballs or meat in broth) / frames 4, 9 / high / exact contents unclear
+*   **main_pan_final_state**: saucy/simmering (liquid stock added, curry consistency) / frames 13–16 / high / none
+*   **transfer**: meatballs transferred *into* main pan from white bowl; liquid poured in / frames 9, 12 / high / no transfer out observed
+*   **other_objects**: Suraj Curry Powder bag (yellow/red), wooden spoon, metal spoon, white bowls, silver bracelet / frames 4–16 / high / none
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_7) ###
+Time: 2026-07-07 02:16:01 -> 2026-07-07 02:16:48
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 6,
+      "start_time": 0.0,
+      "end_time": 66.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check the background pan and shrimp. Report: (1) What is in the background pan on the back burner (frame 16)? (2) What is the exact state of the shrimp at the end? (3) Are the noodles or shrimp transferred to another container? (4) What other objects are visible? Return compact rows: object/state/window/conf/uncertainty."
+}
+
+[Output]:
+background_pan/brown food (mince or beans) simmering/16/medium/exact identity unclear
+shrimp/cooked, browned, curled in pan/14-16/high/-
+noodles/drained and transferred colander to pot/3-6/high/-
+shrimp/transferred raw from colander to pan/8-9/high/-
+stove/lit blue flame under background pan/16/high/-
+bowl_cup/holding dark sauce (soy sauce)/11-12/high/exact liquid unknown
+wooden_spoon/stirring shrimp/12-13/high/-
+colander/metal with holes, holding noodles then shrimp/3-4, 7-8/high/-
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: obs_3) ###
+Time: 2026-07-07 02:18:33 -> 2026-07-07 02:20:10
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0,
+      "end_time": 98.0,
+      "num_frames": 24,
+      "focus_prompt": "MODE=focus. Compare Video 5 and Video 6. For each video, report: (1) What is in the background pan on the back/left burner, and what is its state at the START vs END of the clip? (2) What is the overall cooking progression (early prep/mid cooking/late finishing)? (3) Are there any temporal cues like text overlays, ingredient amounts, or pan fullness that indicate early vs late? (4) Is the background pan the SAME vessel in both videos (compare appearance, contents, fill level)? Return compact rows per video: background_pan_start, background_pan_end, cooking_stage, temporal_cues, conf, uncertainty. Do not infer order - report local evidence only."
+    },
+    {
+      "video_index": 6,
+      "start_time": 0,
+      "end_time": 66.0,
+      "num_frames": 24,
+      "focus_prompt": "MODE=focus. Compare Video 5 and Video 6. For each video, report: (1) What is in the background pan on the back/left burner, and what is its state at the START vs END of the clip? (2) What is the overall cooking progression (early prep/mid cooking/late finishing)? (3) Are there any temporal cues like text overlays, ingredient amounts, or pan fullness that indicate early vs late? (4) Is the background pan the SAME vessel in both videos (compare appearance, contents, fill level)? Return compact rows per video: background_pan_start, background_pan_end, cooking_stage, temporal_cues, conf, uncertainty. Do not infer order - report local evidence only."
+    }
+  ],
+  "focus_prompt": "MODE=focus. Compare Video 5 and Video 6. For each video, report: (1) What is in the background pan on the back/left burner, and what is its state at the START vs END of the clip? (2) What is the overall cooking progression (early prep/mid cooking/late finishing)? (3) Are there any temporal cues like text overlays, ingredient amounts, or pan fullness that indicate early vs late? (4) Is the background pan the SAME vessel in both videos (compare appearance, contents, fill level)? Return compact rows per video: background_pan_start, background_pan_end, cooking_stage, temporal_cues, conf, uncertainty. Do not infer order - report local evidence only."
+}
+
+[Output]:
+Based on the visual evidence in the frames:
+
+**Video 5**
+*   **background_pan_start:** Visible from Frame 8 onwards on the back burner. Contains a light brown, chunky mixture (appears to be meatballs or mushrooms in sauce) that is simmering. Fill level is moderate-high.
+*   **background_pan_end:** Visible in Frame 22. State is unchanged; still simmering brown food with chunks.
+*   **cooking_stage:** Early prep to mid-cooking. The foreground pan progresses from sautéing aromatics (garlic/ginger) to adding raw vegetables (peppers, carrots, mushrooms), then spices (curry powder), meatballs, and finally liquid stock to create a sauce.
+*   **temporal_cues:** Text overlays ("Sorry the fan is kind of LOUD!", "Suraj Curry Powder...", "You can vegetable stock..."). Sequential addition of ingredients shows progression from raw to sauced.
+*   **conf:** High
+*   **uncertainty:** Low
+
+**Video 6**
+*   **background_pan_start:** Not clearly distinct in early frames (blurry), but presumably present.
+*   **background_pan_end:** Clearly visible in Frame 48 on the back burner. Contains the same light brown, chunky simmering mixture seen in Video 5.
+*   **cooking_stage:** Early prep to mid-cooking. Shows draining noodles and cooking shrimp from raw (translucent/white) to cooked (orange/brown/caramelized) with sauce.
+*   **temporal_cues:** Shrimp color change (raw to cooked). Noodles being drained and seasoned.
+*   **conf:** High
+*   **uncertainty:** Low
+
+**Comparison (Question 4):**
+Yes, the background pan appears to be the **SAME vessel** in both videos.
+*   **Appearance:** Black pan, similar handle position.
+*   **Contents:** Light brown sauce with white/light chunks (meatballs/mushrooms).
+*   **Fill level:** Consistently about half-to-three-quarters full with simmering liquid.
+*   **State:** It remains in a "simmering/finished" state throughout both clips, acting as a background element while other components (curry in V5, shrimp/noodles in V6) are prepared in the foreground.
+
+| Video | background_pan_start | background_pan_end | cooking_stage | temporal_cues | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Video 5** | Brown chunky stew/meatballs simmering (visible frame 8) | Brown chunky stew simmering (visible frame 22) | Early prep -> Mid cooking (foreground curry being built) | Text overlays, sequential ingredient addition (veggies->spices->liquid) | High | Low |
+| **Video 6** | (Blurry/obscured early) | Brown chunky stew simmering (visible frame 48) | Early prep -> Mid cooking (shrimp/noodles) | Shrimp color change (raw->cooked), noodle draining | High | Low |
+
+------------------------------------------------------------
+
+### [Turn 4] Tool: active_perception (ID: obs_4) ###
+Time: 2026-07-07 02:20:49 -> 2026-07-07 02:22:28
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0,
+      "end_time": 36.0,
+      "num_frames": 24
+    }
+  ],
+  "focus_prompt": "MODE=focus. Inspect Video 4's final plated dish (frames 15-16). Report: (1) What is the exact appearance of the sauce/dressing on the noodles (color, consistency, ingredients visible)? (2) Does it match the yellowish-brown dressing with red flakes and green specks from Video 1? (3) What is in the lettuce wrap (exact meat type, vegetables, sauce)? (4) Are there any temporal cues indicating this is the final step? Return compact rows: sauce_appearance, match_with_V1, lettuce_wrap_contents, temporal_cues, conf, uncertainty."
+}
+
+[Output]:
+sauce_appearance: Yellowish-brown, glossy coating on noodles; visible orange shrimp, green peas/peppers, red pepper pieces, and shredded vegetables.
+match_with_V1: Visual color profile matches (yellow-brown with red/green bits), but consistency appears to be a stir-fry glaze rather than the whisked liquid dressing from V1; no direct transfer observed in V1.
+lettuce_wrap_contents: Large iceberg lettuce leaves acting as cups; filled with diced cooked brown meat (cubed), diced red and green bell peppers, coated in glossy brown sauce.
+temporal_cues: Food is fully arranged on a white serving plate; noodles portioned separately from lettuce cups; cooking process (wok mixing) is complete; indicates final plating/serving step.
+conf: High
+uncertainty: Exact meat type (pork vs chicken); whether the sauce is identical to V1 dressing (V1 showed no transfer to pan); exact vegetable identification (peas vs diced peppers).
+
+------------------------------------------------------------
+
+### [Turn 6] Tool: active_perception (ID: obs_6) ###
+Time: 2026-07-07 02:24:47 -> 2026-07-07 02:26:58
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0,
+      "end_time": 20,
+      "num_frames": 16,
+      "focus_prompt": "MODE=focus. Compare Video 5 (0-20s) and Video 6 (0-20s). For each video, report: (1) Is the background pan visible in the FIRST 5 frames? If yes, what is its state (empty/filled/simmering)? (2) What is the cooking stage at the START (early prep/mid/late)? (3) Are there any temporal cues like text overlays, ingredient amounts, or pan states that indicate this is the BEGINNING of cooking? Return compact rows per video: background_pan_early_state, cooking_stage_start, temporal_cues, conf, uncertainty. Do not infer order - report local evidence only."
+    },
+    {
+      "video_index": 6,
+      "start_time": 0,
+      "end_time": 20,
+      "num_frames": 16,
+      "focus_prompt": "MODE=focus. Compare Video 5 (0-20s) and Video 6 (0-20s). For each video, report: (1) Is the background pan visible in the FIRST 5 frames? If yes, what is its state (empty/filled/simmering)? (2) What is the cooking stage at the START (early prep/mid/late)? (3) Are there any temporal cues like text overlays, ingredient amounts, or pan states that indicate this is the BEGINNING of cooking? Return compact rows per video: background_pan_early_state, cooking_stage_start, temporal_cues, conf, uncertainty. Do not infer order - report local evidence only."
+    }
+  ],
+  "focus_prompt": "MODE=focus. Compare Video 5 (0-20s) and Video 6 (0-20s). For each video, report: (1) Is the background pan visible in the FIRST 5 frames? If yes, what is its state (empty/filled/simmering)? (2) What is the cooking stage at the START (early prep/mid/late)? (3) Are there any temporal cues like text overlays, ingredient amounts, or pan states that indicate this is the BEGINNING of cooking? Return compact rows per video: background_pan_early_state, cooking_stage_start, temporal_cues, conf, uncertainty. Do not infer order - report local evidence only."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames:
+
+**Video 5 (Frames 1-16)**
+*   **background_pan_early_state:** Visible (black pan/wok). State: **Empty/Oiled** (contains oil and reflections, no solid food mass yet).
+*   **cooking_stage_start:** **Early prep** (sautéing aromatics/vegetables).
+*   **temporal_cues:** The pan starts with only oil (Frames 1-2), then a small amount of minced ingredient (garlic/ginger) is added (Frame 3), followed by raw sliced peppers (Frame 11). This sequence indicates the very beginning of the cooking process for this component. Text overlay "Sorry the fan is kind of LOUD!" appears.
+*   **conf:** 0.9
+*   **uncertainty:** Low.
+
+**Video 6 (Frames 17-32)**
+*   **background_pan_early_state:** Visible (metal pot/pan, very blurry in first 5 frames). State: **Filled** (contains brownish liquid/sauce).
+*   **cooking_stage_start:** **Mid/Late** (assembly/combining ingredients).
+*   **temporal_cues:** Noodles are being poured from a colander/strainer (Frames 23-29), indicating they have already been boiled/drained (wet state). A spoon adds liquid/sauce to the noodles (Frames 30-32). This indicates a later stage of combining pre-cooked elements.
+*   **conf:** 0.7
+*   **uncertainty:** Medium/High (initial frames 17-22 are very blurry, making precise state identification difficult, though liquid is visible).
+
+| Video | background_pan_early_state | cooking_stage_start | temporal_cues | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Video 5** | Visible, Empty/Oiled | Early prep | Pan starts with oil, garlic added, then raw veggies. | 0.9 | Low |
+| **Video 6** | Visible (blurry), Filled (liquid) | Mid/Late | Noodles drained from colander (wet), sauce added. | 0.7 | Medium |
+
+------------------------------------------------------------
+
+### [Turn 8] Tool: active_perception (ID: obs_8) ###
+Time: 2026-07-07 02:27:56 -> 2026-07-07 02:29:00
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 35,
+      "end_time": 45.01,
+      "num_frames": 16,
+      "focus_prompt": "MODE=focus. Inspect the END of Video 1 (35-45s) and END of Video 3 (20-31s). For each, report: (1) Is there any transfer of the dressing/sauce OUT of the bowl to another container or food? (2) What is the final state of the bowl (full/partially empty/empty)? (3) Are there any temporal cues indicating what happens next? Return compact rows: transfer_out, bowl_final_state, temporal_cues, conf, uncertainty. Do not infer order - report local evidence only."
+    },
+    {
+      "video_index": 3,
+      "start_time": 20,
+      "end_time": 31,
+      "num_frames": 16,
+      "focus_prompt": "MODE=focus. Inspect the END of Video 1 (35-45s) and END of Video 3 (20-31s). For each, report: (1) Is there any transfer of the dressing/sauce OUT of the bowl to another container or food? (2) What is the final state of the bowl (full/partially empty/empty)? (3) Are there any temporal cues indicating what happens next? Return compact rows: transfer_out, bowl_final_state, temporal_cues, conf, uncertainty. Do not infer order - report local evidence only."
+    }
+  ],
+  "focus_prompt": "MODE=focus. Inspect the END of Video 1 (35-45s) and END of Video 3 (20-31s). For each, report: (1) Is there any transfer of the dressing/sauce OUT of the bowl to another container or food? (2) What is the final state of the bowl (full/partially empty/empty)? (3) Are there any temporal cues indicating what happens next? Return compact rows: transfer_out, bowl_final_state, temporal_cues, conf, uncertainty. Do not infer order - report local evidence only."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames:
+
+**Video 1 (Frames 1-16, 35-45s):**
+*   **transfer_out:** No. The dressing (yellowish liquid with red flakes) remains in the blue-rimmed bowl. The whisk is used for mixing and then rests.
+*   **bowl_final_state:** Partially full (contains the mixed dressing/sauce).
+*   **temporal_cues:** The whisk stops moving and rests in the bowl (Frames 13-16), indicating the mixing step is complete. No immediate next action is shown.
+*   **conf:** High
+*   **uncertainty:** The destination of this dressing is not shown in this segment.
+
+**Video 3 (Frames 17-32, 20-31s):**
+*   **transfer_out:** No. The transfer is *into* the bowl. Szechwan sauce is poured from a bottle onto the marinated meat.
+*   **bowl_final_state:** Full (filled with cubed meat and dark sauce/marinade).
+*   **temporal_cues:** The video ends while the sauce is actively being poured from the bottle (Frames 27-32), implying that mixing or further marinating will happen next.
+*   **conf:** High
+*   **uncertainty:** The mixing of the newly added sauce is implied but not shown.
+
+| Video Segment | transfer_out | bowl_final_state | temporal_cues | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Video 1 (End)** | No | Partially full (liquid dressing) | Whisk rests, mixing done | High | Dressing destination unknown |
+| **Video 3 (End)** | No (Transfer IN) | Full (meat + sauce) | Pouring active, ongoing | High | Mixing step implied |
+
+------------------------------------------------------------
+
+### [Turn 9] Tool: active_perception (ID: obs_9) ###
+Time: 2026-07-07 02:29:28 -> 2026-07-07 02:31:22
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0,
+      "end_time": 36.0,
+      "num_frames": 32
+    }
+  ],
+  "focus_prompt": "MODE=focus. Inspect Video 4's cooking process (frames 1-4) and final plate (frames 15-16). Report: (1) What ingredients are visible being mixed in the wok with noodles (exact vegetables, meat, sauce)? (2) Does the sauce have visible lime zest/juice, sesame oil sheen, or red chili flakes? (3) What vegetables are in the lettuce wrap filling (exact types, colors)? (4) Are there any temporal cues showing the sequence of adding ingredients? Return compact rows: wok_ingredients, sauce_characteristics, lettuce_wrap_vegetables, temporal_sequence, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from Video 4 (Frames 1-32):
+
+*   **wok_ingredients**: Thin noodles (vermicelli-style), orange cooked shrimp (curled shapes), green bell pepper strips, yellow/orange strips (likely bell peppers or carrots), and small red pepper pieces. There are also round brownish items that appear to be shrimp or sausage slices.
+*   **sauce_characteristics**: The sauce has a glossy sheen (consistent with oil/sesame oil) and coats the noodles in a light brown color. Small red flecks are visible (could be chili flakes or red pepper bits). Distinct lime zest is not clearly visible, though the sheen suggests an oil-based dressing.
+*   **lettuce_wrap_vegetables**: The lettuce cups (iceberg lettuce) are filled with diced brown meat, diced red peppers, and diced green vegetables (scallions or green peppers).
+*   **temporal_sequence**: The text overlay "Mix the noodles in with sauteed ingredients" in frames 1-8 indicates the noodles were added after the vegetables and protein were already sauteed. Frames 9-28 show the preparation of lettuce cups (peeling leaves). Frames 29-32 show the final plating where the noodle mixture and the meat-filled lettuce wrap are served side-by-side on a white plate.
+*   **conf**: High
+*   **uncertainty**: Exact identity of the yellow/orange strips (carrot vs. pepper) and the specific composition of the sauce (lime/sesame presence is inferred from sheen and context memory rather than distinct visual particles). The round brown items in the wok are slightly ambiguous but likely shrimp based on color.
+
+| Category | Details |
+| :--- | :--- |
+| **wok_ingredients** | Thin noodles, orange shrimp, green pepper strips, yellow/orange strips, red pepper pieces. |
+| **sauce_characteristics** | Glossy sheen (oil), brown coating, small red flecks. No clear lime zest. |
+| **lettuce_wrap_vegetables** | Diced red peppers, diced green peppers/scallions (mixed with diced meat). |
+| **temporal_sequence** | Noodles mixed into pre-sauteed ingredients -> Lettuce leaves peeled -> Final plating. |
+| **conf** | High |
+| **uncertainty** | Specific sauce ingredients (lime/sesame) not visually distinct; yellow strip identity. |
+
+------------------------------------------------------------
+
+### [Turn 10] Tool: active_perception (ID: obs_10) ###
+Time: 2026-07-07 02:32:01 -> 2026-07-07 02:34:05
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0,
+      "end_time": 45.01,
+      "num_frames": 32
+    }
+  ],
+  "focus_prompt": "MODE=focus. Inspect Video 1's dressing preparation. Report: (1) What are the EXACT ingredients added (list each one with color/texture)? (2) What is the final appearance of the dressing (color, consistency, visible particles)? (3) Is there any indication this dressing is for a specific dish (text overlay, verbal cue, visual cue)? (4) What is the final state of all containers (bowls, plates, bottles)? Return compact rows: ingredients_list, final_dressing_appearance, dish_indication, container_states, conf, uncertainty."
+}
+
+[Output]:
+ingredients_list: Lime (green skin, juiced), Sugar (white granular pile), Red chili flakes (coarse), Sesame Oil (bottle labeled "Pure Sesame Oil"), Dark liquid sauce (likely soy sauce, bottle with red cap in background), Minced green aromatics (visible in initial mix, likely lime zest or garlic/ginger).
+final_dressing_appearance: Light amber/brown translucent liquid, thin/watery consistency, suspended red chili flakes and small green specks.
+dish_indication: No text overlay or verbal cue visible. Visual ingredients (lime, soy, sesame, sugar, chili) strongly suggest an Asian-style dressing or dipping sauce, consistent with the context of noodles or lettuce wraps.
+container_states: Large white bowl with blue rim (filled with final dressing, metal whisk resting inside), Small white bowl (empty/residue after pouring lime juice), Bottle of sesame oil (held/shown), Background bottles (standing on counter).
+conf: 0.85
+uncertainty: Exact identity of the dark base sauce (soy vs. fish vs. stir-fry sauce from the blurry jar) and the specific green minced ingredient (zest vs. garlic). The jar in frame 9 is too blurry to read definitively (looks like "VR" or similar).
+
+------------------------------------------------------------
+
+### [Turn 11] Tool: active_perception (ID: obs_11) ###
+Time: 2026-07-07 02:35:30 -> 2026-07-07 02:37:35
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0,
+      "end_time": 10,
+      "num_frames": 16,
+      "focus_prompt": "MODE=focus. Compare Video 1 (0-10s) and Video 3 (0-10s) side-by-side. Report: (1) What is the FIRST action shown in each video? (2) What objects are visible on the counter at the START of each video? (3) Are there any temporal cues (text overlays, verbal cues, visual states) indicating which comes first? (4) Is there any indication that one video's prep depends on the other? Return compact rows per video: first_action, initial_counter_state, temporal_cues, dependency_cues, conf, uncertainty. Do not infer order - report local evidence only."
+    },
+    {
+      "video_index": 3,
+      "start_time": 0,
+      "end_time": 10,
+      "num_frames": 16,
+      "focus_prompt": "MODE=focus. Compare Video 1 (0-10s) and Video 3 (0-10s) side-by-side. Report: (1) What is the FIRST action shown in each video? (2) What objects are visible on the counter at the START of each video? (3) Are there any temporal cues (text overlays, verbal cues, visual states) indicating which comes first? (4) Is there any indication that one video's prep depends on the other? Return compact rows per video: first_action, initial_counter_state, temporal_cues, dependency_cues, conf, uncertainty. Do not infer order - report local evidence only."
+    }
+  ],
+  "focus_prompt": "MODE=focus. Compare Video 1 (0-10s) and Video 3 (0-10s) side-by-side. Report: (1) What is the FIRST action shown in each video? (2) What objects are visible on the counter at the START of each video? (3) Are there any temporal cues (text overlays, verbal cues, visual states) indicating which comes first? (4) Is there any indication that one video's prep depends on the other? Return compact rows per video: first_action, initial_counter_state, temporal_cues, dependency_cues, conf, uncertainty. Do not infer order - report local evidence only."
+}
+
+[Output]:
+Based on the visual evidence in the frames:
+
+**Video 1 (Frames 1-16)**
+*   **first_action:** A hand holds up a large green lime, then the view shifts to show a white plate/bowl containing a pile of white sugar and red chili flakes.
+*   **initial_counter_state:** Granite countertop with a lime, bottles (soy sauce, oil with yellow cap), a knife, and a white plate with sugar and chili flakes.
+*   **temporal_cues:** Ingredients are shown in their raw, separate states (whole lime, distinct piles of dry ingredients).
+*   **dependency_cues:** The ingredients shown (lime, sugar, chili, soy sauce bottle) match the components of the dark sauce with chili flakes seen in Video 3.
+*   **conf:** 0.9
+*   **uncertainty:** The whisking action mentioned in context memory is not explicitly visible in these frames, suggesting it happens later in the segment or is the next logical step.
+
+**Video 3 (Frames 17-32)**
+*   **first_action:** Raw cubed meat is added by hand into a blue-rimmed bowl containing a dark liquid sauce, then mixed with a whisk.
+*   **initial_counter_state:** Blue-rimmed bowl filled with dark sauce (visible red chili flakes suspended in it), a whisk, and bottles in the background.
+*   **temporal_cues:** The sauce is already a mixed liquid state (dark with specks), indicating the dry ingredients (sugar/chili) and liquids (soy/lime) have been combined. The meat is raw.
+*   **dependency_cues:** The sauce in the bowl appears to be the result of mixing the ingredients from Video 1 (soy sauce, chili flakes, sugar, lime juice). The meat is being marinated in this prepared sauce.
+*   **conf:** 0.9
+*   **uncertainty:** Whether the sauce was prepared in the same bowl immediately prior or transferred from another container (though "no transfer observed" in memory suggests it might be the same bowl).
+
+------------------------------------------------------------
+

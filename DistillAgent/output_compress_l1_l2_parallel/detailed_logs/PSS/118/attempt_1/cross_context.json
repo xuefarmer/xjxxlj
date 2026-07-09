@@ -1,0 +1,133 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "pending Layer1 results"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "noodles": {
+      "3": "raw->boiled, removed",
+      "4": "cooked, in bowl"
+    },
+    "prawns": {
+      "3": "raw->poached pink, removed",
+      "4": "cooked pink, placed on noodles"
+    },
+    "chicken": {
+      "3": "raw->boiled white, removed",
+      "4": "cooked white, placed on noodles"
+    },
+    "curry_broth": {
+      "5": "paste->fried->liquid->coconut milk->tofu/bok choy added",
+      "4": "pot contains tofu/bok choy, ladled over noodles"
+    },
+    "onions": {
+      "2": "raw->fried crispy, scooped out",
+      "4": "fried shallots implied for garnish"
+    },
+    "prawn_shells": {
+      "1": "raw->fried red, strained",
+      "4": "not explicitly shown but likely garnish"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states raw->cooked",
+    "container fill/empty transitions",
+    "transfer traces",
+    "residue/depletion",
+    "background vessel states",
+    "curry pot contents (tofu/bok choy)",
+    "assembly bowl initial state",
+    "boiling pot final depletion",
+    "garnish crispness"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": true,
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states raw->cooked",
+          "container fill/empty transitions",
+          "transfer traces",
+          "residue/depletion",
+          "background vessel states"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "noodles": {
+            "3": "raw->boiled, removed",
+            "4": "cooked, in bowl"
+          },
+          "prawns": {
+            "3": "raw->poached pink, removed",
+            "4": "cooked pink, placed on noodles"
+          },
+          "chicken": {
+            "3": "raw->boiled white, removed",
+            "4": "cooked white, placed on noodles"
+          },
+          "curry_broth": {
+            "5": "paste->fried->liquid->coconut milk->tofu/bok choy added",
+            "4": "pot contains tofu/bok choy, ladled over noodles"
+          },
+          "onions": {
+            "2": "raw->fried crispy, scooped out",
+            "4": "fried shallots implied for garnish"
+          },
+          "prawn_shells": {
+            "1": "raw->fried red, strained",
+            "4": "not explicitly shown but likely garnish"
+          }
+        },
+        "preliminary_order": "5->3->1->2->4",
+        "order_confidence": 8,
+        "confidence_basis": "V5 makes curry base ending with tofu/bok choy; V4 starts with curry pot already containing tofu/bok choy. V3 boils noodles/prawns/chicken and removes them; V4 starts by placing these cooked items into bowl. V2 fries onions crispy; V4 uses fried shallots for garnish. V1 fries prawn shells, parallel garnish prep.",
+        "blocking_uncertainties": [
+          "Verify V5 final state matches V4 initial curry pot state",
+          "Verify V3 final removal matches V4 initial assembly",
+          "Confirm V2 crispy onions link to V4 garnish"
+        ],
+        "dimensions_to_compare": [
+          "curry pot contents (tofu/bok choy)",
+          "assembly bowl initial state",
+          "boiling pot final depletion",
+          "garnish crispness"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "5->3->1->2->4"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "V5 makes curry base ending with tofu/bok choy; V4 starts with curry pot already containing tofu/bok choy. V3 boils noodles/prawns/chicken and removes them; V4 starts by placing these cooked items into bowl. V2 fries onions crispy; V4 uses fried shallots for garnish. V1 fries prawn shells, parallel garnish prep."
+  ],
+  "blocking_uncertainties": [
+    "Verify V5 final state matches V4 initial curry pot state",
+    "Verify V3 final removal matches V4 initial assembly",
+    "Confirm V2 crispy onions link to V4 garnish"
+  ]
+}

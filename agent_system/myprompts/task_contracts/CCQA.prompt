@@ -1,0 +1,22 @@
+## Task Contract: CCQA
+Task: open-ended comparison of two cooking videos for the same or related recipe.
+
+Input semantics:
+- `video A` and `video B` are the two videos.
+- The user question asks for a comparative explanation, not an option letter.
+- Scoring may reward specific points, so cover all major visible differences relevant to the question.
+
+Evidence dimensions:
+- ingredient handling, tool/container choice, timing/sequence, cooking method, texture/color state, plating/finishing;
+- which difference belongs to Video A vs Video B;
+- whether a claimed difference is visual, caption-supported, or uncertain.
+
+Workflow notes:
+- Layer1 scans both videos and extracts the major stages and likely comparison dimensions.
+- Layer2 prunes irrelevant stages and re-observes only the comparison dimensions named by the question.
+- Focus uses denser frames on the exact step difference, usually both videos side by side.
+- Use captions only to locate steps or clarify named ingredients.
+
+Final answer:
+- `final_answer` is a concise comparative paragraph, usually 3-5 sentences.
+- Do not output an option letter.

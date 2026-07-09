@@ -1,0 +1,248 @@
+{
+  "confirmed": [
+    "V1->V2: raw prep to sauté",
+    "V2->V4: raw veg in oil to chunky base",
+    "V4->V3: soupy sauce to blended"
+  ],
+  "uncertain": [
+    "V4 start state vs V2 end state",
+    "V3 start state vs V4 end state"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"chop celery, carrot, onion, garlic; waste bowl fills\", \"2\": \"oil in pot, add garlic, add raw diced veg from board\", \"3\": \"stir cooked sauce, add basil, blend with immersion blender\", \"4\": \"stir chunky base, add whole tomatoes, tear basil, pour liquid, season\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "green_pot": {
+      "1": "ABSENT",
+      "2": "empty->filled with raw veg in oil",
+      "3": "filled with cooked sauce->blended smooth",
+      "4": "chunky base->soupy liquid with tomatoes"
+    },
+    "celery_carrot_onion_garlic": {
+      "1": "raw/diced separate piles",
+      "2": "raw/diced pushed into pot",
+      "3": "cooked in sauce",
+      "4": "cooked chunky base"
+    },
+    "tomatoes": {
+      "1": "ABSENT",
+      "2": "ABSENT",
+      "3": "ABSENT",
+      "4": "whole/raw->submerged in liquid"
+    },
+    "basil": {
+      "1": "ABSENT",
+      "2": "ABSENT",
+      "3": "fresh->mixed/wilted->blended",
+      "4": "fresh/torn->mixed in liquid"
+    },
+    "waste_bowl": {
+      "1": "fills with onion skins",
+      "2": "ABSENT",
+      "3": "ABSENT",
+      "4": "ABSENT"
+    },
+    "immersion_blender": {
+      "1": "ABSENT",
+      "2": "ABSENT",
+      "3": "submerged blending",
+      "4": "ABSENT"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient state (raw/cooked/cut)",
+    "container state (empty/filled/residue)",
+    "tool usage",
+    "transfer events",
+    "pot contents maturity (raw->chunky->soupy->smooth)",
+    "tomato state (absent->whole->submerged)",
+    "basil state (absent->fresh->wilted->blended)"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all object states and transitions pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "ingredient state (raw/cooked/cut)",
+          "container state (empty/filled/residue)",
+          "tool usage",
+          "transfer events"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "chop celery, carrot, onion, garlic; waste bowl fills",
+          "2": "oil in pot, add garlic, add raw diced veg from board",
+          "3": "stir cooked sauce, add basil, blend with immersion blender",
+          "4": "stir chunky base, add whole tomatoes, tear basil, pour liquid, season"
+        },
+        "object_memory": {
+          "green_pot": {
+            "1": "ABSENT",
+            "2": "empty->filled with raw veg in oil",
+            "3": "filled with cooked sauce->blended smooth",
+            "4": "chunky base->soupy liquid with tomatoes"
+          },
+          "celery_carrot_onion_garlic": {
+            "1": "raw/diced separate piles",
+            "2": "raw/diced pushed into pot",
+            "3": "cooked in sauce",
+            "4": "cooked chunky base"
+          },
+          "tomatoes": {
+            "1": "ABSENT",
+            "2": "ABSENT",
+            "3": "ABSENT",
+            "4": "whole/raw->submerged in liquid"
+          },
+          "basil": {
+            "1": "ABSENT",
+            "2": "ABSENT",
+            "3": "fresh->mixed/wilted->blended",
+            "4": "fresh/torn->mixed in liquid"
+          },
+          "waste_bowl": {
+            "1": "fills with onion skins",
+            "2": "ABSENT",
+            "3": "ABSENT",
+            "4": "ABSENT"
+          },
+          "immersion_blender": {
+            "1": "ABSENT",
+            "2": "ABSENT",
+            "3": "submerged blending",
+            "4": "ABSENT"
+          }
+        },
+        "preliminary_order": "1->2->4->3",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V1: all raw prep",
+          "V2: raw veg into oiled pot",
+          "V4: cooked chunky base + tomatoes + liquid",
+          "V3: fully cooked sauce + blending"
+        ],
+        "blocking_uncertainties": [
+          "verify V4 start is indeed the cooked down veg from V2",
+          "verify V3 start is the soupy sauce from V4"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                115
+              ],
+              "event": "raw prep",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                25
+              ],
+              "event": "sauté base",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                18
+              ],
+              "event": "blend sauce",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                68
+              ],
+              "event": "add tomatoes+liquid",
+              "confidence": "high"
+            }
+          ]
+        },
+        "preliminary_confidence": 8,
+        "uncertain": [
+          "V4 start state vs V2 end state",
+          "V3 start state vs V4 end state"
+        ],
+        "dimensions_to_compare": [
+          "pot contents maturity (raw->chunky->soupy->smooth)",
+          "tomato state (absent->whole->submerged)",
+          "basil state (absent->fresh->wilted->blended)"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "green_pot": "empty/oily(V2)->chunky base(V4)->soupy sauce(V4)->cooked chunky(V3)->blended(V3)",
+          "tomatoes": "absent(V1,V2)->whole/submerged(V4)",
+          "basil": "absent(V1,V2)->fresh/torn(V4)->wilted/blended(V3)",
+          "immersion_blender": "absent(V1,V2,V4)->submerged blending(V3)"
+        },
+        "confirmed": [
+          "V1->V2: raw prep to sauté",
+          "V2->V4: raw veg in oil to chunky base",
+          "V4->V3: soupy sauce to blended"
+        ],
+        "order_confidence": 8
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1->2->4->3"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "V1: all raw prep",
+    "V2: raw veg into oiled pot",
+    "V4: cooked chunky base + tomatoes + liquid",
+    "V3: fully cooked sauce + blending"
+  ],
+  "blocking_uncertainties": [
+    "verify V4 start is indeed the cooked down veg from V2",
+    "verify V3 start is the soupy sauce from V4"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 115], \"event\": \"raw prep\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 25], \"event\": \"sauté base\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 18], \"event\": \"blend sauce\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 68], \"event\": \"add tomatoes+liquid\", \"confidence\": \"high\"}]}"
+  ],
+  "preliminary_confidence": [
+    "8"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"green_pot\": \"empty/oily(V2)->chunky base(V4)->soupy sauce(V4)->cooked chunky(V3)->blended(V3)\", \"tomatoes\": \"absent(V1,V2)->whole/submerged(V4)\", \"basil\": \"absent(V1,V2)->fresh/torn(V4)->wilted/blended(V3)\", \"immersion_blender\": \"absent(V1,V2,V4)->submerged blending(V3)\"}"
+  ]
+}

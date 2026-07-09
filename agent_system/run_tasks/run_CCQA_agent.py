@@ -15,6 +15,7 @@ from typing import List, Dict, Any, Optional
 
 from qwen_agent import QwenModel
 from agent_executor import AgentExecutor
+from runtime_options import apply_runtime_overrides, parse_runtime_args, resolve_prompt_config, runtime_summary
 from utils import video_processor
 from utils.config import get_local_video_root, get_remote_video_base_url
 from utils.log_utils import setup_logger
@@ -27,7 +28,7 @@ START_FROM_QUESTION_NUM = 1
 END_AT_QUESTION_NUM = None
 TASK_NAME = "CCQA_task"
 SCORING_PROMPT_FILE = os.path.join(_ROOT, "prompts", "scoring.prompt")
-PROMPT_CONFIG = {"master": os.path.join(_ROOT, "prompts", "master_CCQA.prompt")}
+DEFAULT_PROMPT_CONFIG = {"master": os.path.join(_ROOT, "prompts", "master_CCQA.prompt")}
 
 SCORING_API_CONFIG = {
     "base_url": os.environ.get("SCORING_API_BASE_URL", "https://your-scoring-api.com/v1:generateContent"),
@@ -82,6 +83,11 @@ def extract_json_from_score(text: str) -> Optional[Dict]:
         return None
 
 if __name__ == "__main__":
+    runtime_args = parse_runtime_args("Run CCQA agent with selectable master/tool backends.")
+    apply_runtime_overrides(runtime_args)
+    PROMPT_CONFIG = resolve_prompt_config(_ROOT, "CCQA", DEFAULT_PROMPT_CONFIG, runtime_args)
+    max_turns = runtime_args.max_turns or MAX_TURNS
+
     if not os.path.exists(QUESTION_FILE):
         print(f"FATAL: Question file not found: {QUESTION_FILE}")
         raise SystemExit(1)
@@ -89,9 +95,13 @@ if __name__ == "__main__":
         all_questions = json.load(f)
 
     start_question_num = START_FROM_QUESTION_NUM
+    if runtime_args.start is not None:
+        start_question_num = runtime_args.start
     if start_question_num < 1: start_question_num = 1
     start_index = start_question_num - 1
     end_question_num = END_AT_QUESTION_NUM
+    if runtime_args.end is not None:
+        end_question_num = runtime_args.end
     original_total_questions = len(all_questions)
     if end_question_num is None: end_index = original_total_questions
     else: end_index = min(end_question_num, original_total_questions)
@@ -100,6 +110,7 @@ if __name__ == "__main__":
 
     logger = setup_logger(TASK_NAME.replace("_task", ""), start_question_num, end_index)
     logger.info(f"▶️  Run Config: Task={TASK_NAME}, Q{start_question_num}-Q{end_index}")
+    logger.info("⚙️  Runtime: %s", runtime_summary(PROMPT_CONFIG))
 
     qwen_agent_instance = QwenModel(prompt_config=PROMPT_CONFIG)
     executor = AgentExecutor(agent_instance=qwen_agent_instance, prompt_config=PROMPT_CONFIG)
@@ -134,8 +145,8 @@ if __name__ == "__main__":
                 logger.error(f"❌ Missing key '{v_key}' in question.")
                 continue
             v_name = question_data[v_key]
-            local_path = os.path.join(get_local_video_root(), "CC", f"{v_name}.mp4")
-            remote_url = f"{get_remote_video_base_url().rstrip('/')}/CC/{v_name}.mp4"
+            local_path = os.path.join(get_local_video_root(), v_name)
+            remote_url = f"{get_remote_video_base_url().rstrip('/')}/{v_name}"
             video_path = local_path if os.path.exists(local_path) else remote_url
             try:
                 _, _, _, original_fps, total_f, total_d = video_processor.process_video(
@@ -160,7 +171,7 @@ if __name__ == "__main__":
             continue
 
         try:
-            final_answer_text, final_history = executor.run_agent_loop(max_turns=MAX_TURNS)
+            final_answer_text, final_history = executor.run_agent_loop(max_turns=max_turns)
             logger.info("📊 Evaluating result...")
             standard_answer = question_data.get('answer', 'N/A')
             scoring_points = question_data.get('scoring_points', [])

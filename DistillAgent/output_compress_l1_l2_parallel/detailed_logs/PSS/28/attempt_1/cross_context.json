@@ -1,0 +1,112 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "object states per segment",
+    "shared objects across segments",
+    "state transitions"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "cauliflower_bowl": {
+      "2": "counter",
+      "3": "counter",
+      "4": "held_by_woman",
+      "1": "poured_into_pot"
+    },
+    "pan_contents": {
+      "2": "onions+garlic_ginger",
+      "4": "onions+spice->dark_paste",
+      "3": "sautéed_onions+potatoes"
+    },
+    "blue_pot": {
+      "1": "receives_carrots_then_cauliflower",
+      "5": "has_meat_sauce_receives_green_beans"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states (raw/cooked/mixed)",
+    "container states (empty/filled/residue)",
+    "tool usage",
+    "transfer events"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "object states per segment",
+          "shared objects across segments",
+          "state transitions"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cooked/mixed)",
+          "container states (empty/filled/residue)",
+          "tool usage",
+          "transfer events"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "2->4->3->1->5",
+        "order_confidence": 6,
+        "confidence_basis": [
+          "cauliflower bowl: counter(V2)->counter(V3)->held(V4)->poured(V1)",
+          "pan sequence: onions+garlic(V2)->onions+spice->paste(V4)->potatoes added(V3)"
+        ],
+        "blocking_uncertainties": [
+          "exact pan contents in V3 (is it dark spice paste or just onions?)",
+          "whether V1 and V5 share the same blue pot or are different dishes",
+          "placement of V5 relative to V1"
+        ],
+        "object_memory": {
+          "cauliflower_bowl": {
+            "2": "counter",
+            "3": "counter",
+            "4": "held_by_woman",
+            "1": "poured_into_pot"
+          },
+          "pan_contents": {
+            "2": "onions+garlic_ginger",
+            "4": "onions+spice->dark_paste",
+            "3": "sautéed_onions+potatoes"
+          },
+          "blue_pot": {
+            "1": "receives_carrots_then_cauliflower",
+            "5": "has_meat_sauce_receives_green_beans"
+          }
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "2->4->3->1->5"
+  ],
+  "order_confidence": [
+    "6"
+  ],
+  "confidence_basis": [
+    "cauliflower bowl: counter(V2)->counter(V3)->held(V4)->poured(V1)",
+    "pan sequence: onions+garlic(V2)->onions+spice->paste(V4)->potatoes added(V3)"
+  ],
+  "blocking_uncertainties": [
+    "exact pan contents in V3 (is it dark spice paste or just onions?)",
+    "whether V1 and V5 share the same blue pot or are different dishes",
+    "placement of V5 relative to V1"
+  ]
+}

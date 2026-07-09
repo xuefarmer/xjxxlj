@@ -1,0 +1,381 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-06 17:45:04
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-06 17:38:28 -> 2026-07-06 17:39:34
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 48.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows only: objects, action, state, window, query_link, conf, uncertainty. No final answer."
+}
+
+[Output]:
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Blender pitcher, large bowl | Pouring | Orange soup (cooked, pureed, wet) transferring; pitcher depleting, bowl filling | 0-3s (Frame 1) | - | High | None |
+| Ladle, large bowl, small bowl | Ladling/Serving | Soup transferred to small bowl; small bowl filled with orange liquid | 6-24s (Frames 3-8) | - | High | None |
+| Basil sprig, small bowl | Garnishing | Fresh green basil leaves placed on soup surface; separate from liquid | 24-33s (Frames 9, 11) | - | High | None |
+| Plastic container, white powder (cheese), small bowl | Sprinkling | Dry white grated cheese sprinkled over soup/basil; residue/depletion of cheese container visible | 33-48s (Frames 12, 15, 16) | - | High | None |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-06 17:38:28 -> 2026-07-06 17:39:27
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 91.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows only: objects, action, state, window, query_link, conf, uncertainty. No final answer. (part 1/2, time 0s–91s)"
+}
+
+[Output]:
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| yellow pot, tomato sauce, yellow chunks (potatoes/gnocchi), wooden spoon | stirring/mixing | cooked, mixed, wet, chunky | 00:06–00:12, 01:30–01:31 | [Frame 2, Frame 16] | high | exact identity of yellow chunks (potato vs gnocchi) |
+| silver pot, liquid (broth/water) | boiling | boiling, hot, wet | 00:12–00:18 | [Frame 3] | high | exact liquid type |
+| wine glass, red wine | holding, smelling, presenting | filled, liquid, red | 00:24–01:24 | [Frame 5-14] | high | none |
+| man, black t-shirt ("NO SWEAT NO SAUCE!") | talking, gesturing, pointing | present, animated | 00:00–01:31 | [Frame 1, 4, 6-15] | high | none |
+| plates, counter | sitting, waiting | empty/ready, present, separate | 00:00–00:06, 00:18–00:24 | [Frame 1, 4] | medium | contents of plates unclear |
+| orange kettle | sitting | present, dry | 00:12–00:18 | [Frame 3] | high | none |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-06 17:39:27 -> 2026-07-06 17:40:24
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 91.0,
+      "end_time": 182.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows only: objects, action, state, window, query_link, conf, uncertainty. No final answer. (part 2/2, time 91s–182s)"
+}
+
+[Output]:
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| silver pot, ladle, broth | ladling | hot liquid, filled pot | 91s-105s | [Frame 2] | high | exact liquid type (stock vs water) |
+| yellow pot, red sauce | simmering | chunky, cooked, thick | 105s-120s | [Frame 3] | high | chunk identity (potato vs pasta) |
+| glass measuring cup, broth | holding/filling | filled with yellow liquid | 120s-135s | [Frame 5, 6] | high | none |
+| measuring cup, yellow pot | pouring | transferring broth to sauce | 135s-150s | [Frame 7, 8] | high | none |
+| wooden spoon, yellow pot | stirring | sauce becomes thinner/wetter | 150s-160s | [Frame 9] | high | none |
+| man, wine glass | holding/talking | glass filled with red wine | 160s-182s | [Frame 13-16] | high | none |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-06 17:38:28 -> 2026-07-06 17:39:21
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 46.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows only: objects, action, state, window, query_link, conf, uncertainty. No final answer."
+}
+
+[Output]:
+- **objects**: pot, potatoes, onions, green onions, wooden spoon; **action**: adding green onions and stirring; **state**: potatoes (raw, cut, cubed, yellow), onions (raw, cut, white chunks), green onions (fresh, cut, green pieces), mixed in pot; **window**: Frames 1-2 (0.0s-5.0s); **query_link**: [1, 2]; **conf**: high; **uncertainty**: none
+- **objects**: man, kitchen counter, food processor; **action**: talking and gesturing towards counter; **state**: man present, explaining process; **window**: Frames 3-8 (5.0s-20.0s); **query_link**: [3, 4, 5, 6, 7, 8]; **conf**: high; **uncertainty**: none
+- **objects**: white bowl, whole peeled tomatoes, hands, knife; **action**: crushing tomatoes by hand; **state**: tomatoes (raw, whole -> crushed, wet, red pulp/juice), bowl filled with crushed tomatoes; **window**: Frames 9-13 (20.0s-35.0s); **query_link**: [9, 10, 11, 12, 13]; **conf**: high; **uncertainty**: none
+- **objects**: white bowl, pot, crushed tomatoes; **action**: pouring crushed tomatoes into pot; **state**: tomatoes (wet, crushed pulp), bowl (emptying, residue left), pot (filled, mixed with potatoes/onions); **window**: Frames 14-16 (35.0s-46.0s); **query_link**: [14, 15, 16]; **conf**: high; **uncertainty**: none
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_5) ###
+Time: 2026-07-06 17:38:28 -> 2026-07-06 17:39:32
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 63.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows only: objects, action, state, window, query_link, conf, uncertainty. No final answer."
+}
+
+[Output]:
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| potato, peeler, plate, basil | peeling | potato raw, whole -> peeled; plate contains peeled potatoes and peels (residue); basil fresh, present | 1-2 | - | high | low |
+| peeled potatoes, paper towel, cutting board | drying | potatoes raw, peeled, wet -> dry (paper towel used); cutting board present | 3-6 | - | high | low |
+| peeled potatoes, knife, cutting board | cutting | potatoes raw, whole -> cut into chunks | 7-9 | - | high | low |
+| cut potatoes, cutting board, pot, onions | transferring | potatoes raw, cut; onions raw, chopped; potatoes separate -> mixed in pot; pot filled | 10-11 | - | high | low |
+| pot, potatoes, onions, wooden spoon | stirring | mixture raw, mixed; pot on stove | 12-14 | - | high | low |
+| salt container, pot | seasoning | salt container present; salt added (depletion from container) | 15-16 | - | high | low |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_6) ###
+Time: 2026-07-06 17:38:28 -> 2026-07-06 17:39:19
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 47.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows only: objects, action, state, window, query_link, conf, uncertainty. No final answer."
+}
+
+[Output]:
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Onion | Chopping | Raw, cut into chunks on white board | Frames 1-8 (0-23s) | [Link] | High | Low |
+| Chopped Onion | Transfer | Cut, scraped from board into yellow pot | Frames 8-9 (20-26s) | [Link] | High | Low |
+| Oil | Pouring | Liquid, poured from bottle onto onions in pot | Frames 10-11 (26-30s) | [Link] | High | Low |
+| Potatoes | None | Raw, whole, separate on plate with greens | Frames 1-16 (0-47s) | [Link] | High | Low |
+| Yellow Pot | Placement | Filled with onion/oil, placed on gas stove burner | Frames 12-15 (30-42s) | [Link] | High | Low |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_7) ###
+Time: 2026-07-06 17:38:28 -> 2026-07-06 17:39:42
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 6,
+      "start_time": 0.0,
+      "end_time": 50.5,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows only: objects, action, state, window, query_link, conf, uncertainty. No final answer. (part 1/2, time 0s–50s)"
+}
+
+[Output]:
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Man, yellow pot, red sauce, wooden spoon | stirring | sauce is red, liquid, cooked; pot is filled | 0-5s | video_6 | high | none |
+| Basil leaves, sauce, pot | adding basil, stirring | basil is fresh, green, whole leaves; sauce is wet/hot | 5-10s | video_6 | high | none |
+| Man, small white cup, wooden spoon | holding cup, stirring pot | cup is present; sauce is simmering in pot | 10-20s | video_6 | high | cup content level unclear initially |
+| Man, small white cup, metal spoon | tasting sauce | cup is filled with sauce; sauce is cooked | 20-30s | video_6 | high | none |
+| Man, small jar/container, spoon, pot | adding seasoning | jar contains white granular substance; substance added to sauce | 30-45s | video_6 | high | substance identity (salt/sugar) uncertain |
+| Man, yellow pot, wooden spoon | stirring sauce | sauce is mixed, red, liquid | 45-50s | video_6 | high | none |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_8) ###
+Time: 2026-07-06 17:39:42 -> 2026-07-06 17:40:27
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 6,
+      "start_time": 50.5,
+      "end_time": 101.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time locations for decisive events. Return compact evidence rows only: objects, action, state, window, query_link, conf, uncertainty. No final answer. (part 2/2, time 50s–101s)"
+}
+
+[Output]:
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Man, yellow pot, ladle, blender pitcher | Ladling sauce | Pot filled with hot red chunky sauce; Blender contains red chunks, level rising | 1-4, 11 | - | 0.95 | None |
+| Man, blender pitcher | Talking/Gesturing | Blender filled with red sauce/chunks (unblended mixture) | 5-10 | - | 0.95 | None |
+| Blender pitcher, lid | Blending (implied), removing lid | Contents transformed to smooth orange-brown liquid; Steam rising (hot) | 13-14 | - | 0.95 | Blending action happens between frames 12 and 13 |
+| Blender pitcher, white bowl | Pouring | Blender emptying smooth orange sauce; Bowl filling with orange liquid | 15-16 | - | 0.95 | None |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-06 17:43:03 -> 2026-07-06 17:43:44
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 30.0,
+      "end_time": 47.0,
+      "num_frames": 12
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the yellow pot: is it on the stove? What is inside (onions, oil, potatoes)? Are the potatoes on the plate whole or cut? Report exactly what you see."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (Video 5):
+
+*   **Pot Location:** The yellow pot starts on the granite countertop (Frames 1-6) and is then moved and placed onto the gas stove burner (Frames 7-10).
+*   **Pot Contents:** Inside the pot, there are chopped white onions. Oil is being poured from a bottle onto the onions (Frames 1-5). There are no potatoes inside the pot yet.
+*   **Potatoes on Plate:** In the background (Frames 11-12), there is a plate visible on the counter. The items on the plate appear to be **whole** potatoes (consistent with the context "raw whole on plate"). They are not cut.
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-06 17:43:03 -> 2026-07-06 17:43:27
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 30.0,
+      "end_time": 63.0,
+      "num_frames": 12
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the pot: what ingredients are being added or are already inside (potatoes, onions)? Are the potatoes raw/cut or whole? Report exactly what you see."
+}
+
+[Output]:
+Based on the visual evidence in the frames:
+
+*   **Pot Contents:** The yellow pot on the stove contains chopped white onions and yellow potato chunks.
+*   **Potato State:** The potatoes are **raw**, peeled, and **cut** into chunks/cubes. They are not whole.
+*   **Action:** The frames show the raw, cut potatoes being slid from a cutting board into the pot which already contains the chopped onions. Subsequently, the mixture of potatoes and onions is being stirred with a wooden spoon. The potatoes appear firm and raw as they are added and mixed.
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-06 17:43:03 -> 2026-07-06 17:44:44
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 15.0,
+      "num_frames": 12
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the pot: what ingredients are inside (potatoes, onions, green onions)? Are the tomatoes whole or crushed? Report exactly what you see."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (Video 3):
+
+*   **Potatoes:** The pot contains **raw, cubed/chunked potatoes** (yellowish-white chunks).
+*   **Onions:** There are **raw, chopped/sliced onions** (white curved pieces) mixed with the potatoes.
+*   **Green Onions:** A small **green piece** (likely a green onion or scallion) is visible in the pot, particularly in frames 2, 3, and 4 where it appears to be added.
+*   **Tomatoes:** **Tomatoes are not clearly visible** in the pot in these frames. The pot is filled with the pale raw ingredients (potatoes and onions). While the context suggests tomatoes are "whole crushed by hand, added to pot" at this stage, visually the pot is dominated by the potatoes and onions, and no distinct red tomato mass or sauce is seen yet. The ingredients appear to be in the early sautéing or assembly stage before the tomatoes/sauce are fully incorporated.
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_4) ###
+Time: 2026-07-06 17:43:03 -> 2026-07-06 17:43:41
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 120.0,
+      "end_time": 160.0,
+      "num_frames": 12
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the yellow pot and silver pot. Is broth being poured from the measuring cup into the yellow pot? What is the state of the sauce (red, chunky, with yellow pieces)? Report exactly what you see."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (Video 2, frames 1-12):
+
+**Visible State of Pots:**
+*   **Yellow Pot:** A yellow enameled pot sits on the front burner. Initially, it contains a thick red sauce with large yellow chunks (potatoes). As the sequence progresses (Frames 2-6), liquid is added, increasing the volume. By Frame 7, the pot is filled with a red, soupy mixture containing the yellow chunks.
+*   **Silver Pot:** A stainless steel pot sits on the back left burner. It appears to contain a clear liquid. In later frames (9-11), a ladle or spoon is visible resting inside it.
+
+**Pouring Action:**
+*   **Yes**, broth (a yellowish/clear liquid) is being poured from a glass measuring cup into the yellow pot. This action is clearly visible in Frames 2, 3, 4, 5, and 6. The man holds the cup with one hand and stirs with a wooden spoon in the other.
+
+**State of the Sauce:**
+*   The sauce is **red and chunky** (appearing to be crushed tomatoes).
+*   It contains large **yellow pieces** (identified as potatoes in the context).
+*   As the broth is poured in, the sauce transitions from a chunky mixture to a more liquid, soup-like consistency (seen clearly in Frame 7).
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_5) ###
+Time: 2026-07-06 17:43:03 -> 2026-07-06 17:43:35
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 6,
+      "start_time": 0.0,
+      "end_time": 20.0,
+      "num_frames": 12
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the yellow pot. Is the sauce red and chunky? Are basil leaves being added? Is there a small cup for tasting? Report exactly what you see."
+}
+
+[Output]:
+Based on the visual evidence in the frames:
+
+*   **Yellow Pot State:** The yellow pot is sitting on the stovetop burner. It is filled with a simmering liquid.
+*   **Sauce:** The sauce inside the pot is **red and chunky**, with visible pieces of vegetables (likely tomatoes and onions/potatoes).
+*   **Basil Leaves:** **Yes**, basil leaves are being added. The man holds a bunch of fresh green basil leaves in his hand (Frames 1-4) and then places them into the pot (Frame 5 shows the leaves sitting on top of the sauce).
+*   **Small Cup:** **Yes**, there is a small cup. A small metal cup is visible sitting on the counter next to the stove (Frames 6-8). Later, the man holds a small white cup/bowl in his hand (Frames 11-12) and appears to be ladling sauce from the pot into it, likely for tasting.
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_6) ###
+Time: 2026-07-06 17:43:03 -> 2026-07-06 17:43:39
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 10.0,
+      "num_frames": 12
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the blender pitcher and the large bowl. Is orange pureed soup being poured from the pitcher into the bowl? Report exactly what you see."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames:
+
+**Visible State:**
+*   **Blender Pitcher:** In the first three frames (1-3), a clear blender pitcher is tilted over a large bowl. A thick stream of smooth, orange liquid is actively flowing out of the pitcher.
+*   **Large Bowl:** A large white bowl with a decorative leaf pattern on the rim is positioned below the pitcher. In frames 1-3, the bowl is partially filled with the orange liquid and is receiving more. In frames 10-12, the bowl is filled with the orange soup, and a ladle is being used to scoop it.
+
+**Pouring Action:**
+Yes, orange pureed soup is being poured from the pitcher into the bowl. This action is clearly visible in frames 1, 2, and 3, where a continuous stream of orange liquid transfers from the blender container into the large serving bowl. By frame 4 and onwards, the pouring has finished, and the bowl contains the soup.
+
+------------------------------------------------------------
+

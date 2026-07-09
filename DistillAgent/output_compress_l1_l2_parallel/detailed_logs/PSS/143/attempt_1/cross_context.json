@@ -1,0 +1,147 @@
+{
+  "confirmed": [
+    "2->1->5->4->3"
+  ],
+  "uncertain": [
+    "all segment roles and object states pending Layer1"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"massaging cabbage in metal bowl\", \"2\": \"cutting whole cabbage into shreds\", \"3\": \"packing jars and screwing lids\", \"4\": \"transferring cabbage to jars, adding brine\", \"5\": \"massaging/squeezing cabbage in metal bowl\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "cabbage": {
+      "2": "whole -> shredded",
+      "1": "shredded, wet/moist",
+      "5": "shredded, becoming wet/wilted",
+      "4": "shredded, packed in jars",
+      "3": "packed in jars with lids"
+    },
+    "metal_bowl": {
+      "2": "filled with shreds at end",
+      "1": "filled, wet/moist",
+      "5": "filled, becoming wet"
+    },
+    "jars": {
+      "4": "filled with cabbage, then brine added",
+      "3": "filled, lids screwed on"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object state progression",
+    "container fill/empty",
+    "transfer traces",
+    "residue/depletion",
+    "background cues",
+    "cabbage wet/wilted progression",
+    "container fill level",
+    "background objects",
+    "liquid presence"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all segment roles and object states pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "object state progression",
+          "container fill/empty",
+          "transfer traces",
+          "residue/depletion",
+          "background cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "massaging cabbage in metal bowl",
+          "2": "cutting whole cabbage into shreds",
+          "3": "packing jars and screwing lids",
+          "4": "transferring cabbage to jars, adding brine",
+          "5": "massaging/squeezing cabbage in metal bowl"
+        },
+        "object_memory": {
+          "cabbage": {
+            "2": "whole -> shredded",
+            "1": "shredded, wet/moist",
+            "5": "shredded, becoming wet/wilted",
+            "4": "shredded, packed in jars",
+            "3": "packed in jars with lids"
+          },
+          "metal_bowl": {
+            "2": "filled with shreds at end",
+            "1": "filled, wet/moist",
+            "5": "filled, becoming wet"
+          },
+          "jars": {
+            "4": "filled with cabbage, then brine added",
+            "3": "filled, lids screwed on"
+          }
+        },
+        "preliminary_order": "2 -> 1 -> 5 -> 4 -> 3",
+        "order_confidence": 6,
+        "confidence_basis": "2 cuts cabbage. 1 and 5 massage it. 4 packs into jars and adds brine. 3 seals jars. Uncertain whether 1 or 5 comes first.",
+        "blocking_uncertainties": [
+          "order of Video 1 vs Video 5 massaging clips",
+          "exact start/end states of cabbage in 1 and 5 to determine sequence"
+        ],
+        "dimensions_to_compare": [
+          "cabbage wet/wilted progression",
+          "container fill level",
+          "background objects",
+          "liquid presence"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "1": "massages cabbage, no brine pool yet, volume 3/4",
+          "5": "massages cabbage, brine forming, volume 1/2-2/3",
+          "2": "cuts cabbage, fills bowl",
+          "4": "transfers cabbage to jars, adds brine",
+          "3": "jars filled, seals with lids"
+        },
+        "confirmed": "2->1->5->4->3",
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "2 -> 1 -> 5 -> 4 -> 3"
+  ],
+  "order_confidence": [
+    "6",
+    "9"
+  ],
+  "confidence_basis": [
+    "2 cuts cabbage. 1 and 5 massage it. 4 packs into jars and adds brine. 3 seals jars. Uncertain whether 1 or 5 comes first."
+  ],
+  "blocking_uncertainties": [
+    "order of Video 1 vs Video 5 massaging clips",
+    "exact start/end states of cabbage in 1 and 5 to determine sequence"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"massages cabbage, no brine pool yet, volume 3/4\", \"5\": \"massages cabbage, brine forming, volume 1/2-2/3\", \"2\": \"cuts cabbage, fills bowl\", \"4\": \"transfers cabbage to jars, adds brine\", \"3\": \"jars filled, seals with lids\"}"
+  ]
+}

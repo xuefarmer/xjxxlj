@@ -1,0 +1,395 @@
+{
+  "confirmed": [
+    "V2 is first (chop bacon)",
+    "V4 is last (final assembly)",
+    "V1 has background pan with cooking bacon",
+    "V2 is first",
+    "V3 precedes V1 (pan empty -> pan has bacon)",
+    "V1 precedes V4 (batter mixed -> batter poured)",
+    "V4 is last"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"prep egg/cheese batter in white bowl\", \"2\": \"chop raw bacon strip on cutting board\", \"3\": \"cook chopped bacon in pan with oil\", \"4\": \"boil pasta, combine with bacon, pour egg mixture, mix\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "bacon": {
+      "2": "raw strip -> chopped on board",
+      "3": "chopped, transferred to pan, cooked with oil",
+      "4": "cooked, mixed with pasta and egg"
+    },
+    "egg_cheese_batter": {
+      "1": "cracked, grated, mixed in white bowl",
+      "4": "poured from bowl over pasta"
+    },
+    "pasta": {
+      "4": "boiled in pot, transferred to pan"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked/mixed)",
+    "container fill/empty",
+    "tool contact",
+    "residue/depletion",
+    "background cues (boiling water, cooking bacon)",
+    "bowl continuity",
+    "pan continuity"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked/mixed)",
+          "container fill/empty",
+          "tool contact",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "prep egg/cheese batter in white bowl",
+          "2": "chop raw bacon strip on cutting board",
+          "3": "cook chopped bacon in pan with oil",
+          "4": "boil pasta, combine with bacon, pour egg mixture, mix"
+        },
+        "object_memory": {
+          "bacon": {
+            "2": "raw strip -> chopped on board",
+            "3": "chopped, transferred to pan, cooked with oil",
+            "4": "cooked, mixed with pasta and egg"
+          },
+          "egg_cheese_batter": {
+            "1": "cracked, grated, mixed in white bowl",
+            "4": "poured from bowl over pasta"
+          },
+          "pasta": {
+            "4": "boiled in pot, transferred to pan"
+          }
+        },
+        "preliminary_order": [
+          2,
+          3,
+          4
+        ],
+        "order_confidence": 6,
+        "confidence_basis": "V2->V3->V4 linked by bacon state (whole->chopped->cooked->combined). V1 placement uncertain.",
+        "blocking_uncertainties": [
+          "Where does V1 fit relative to V2 and V3? Background cues needed."
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                59
+              ],
+              "event": "batter prep",
+              "key_objects": [
+                "white bowl",
+                "eggs",
+                "cheese"
+              ],
+              "visible_state": "batter mixed",
+              "why_it_matters": "needs placement relative to bacon prep/cooking",
+              "confidence": "medium"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                18
+              ],
+              "event": "bacon chopping",
+              "key_objects": [
+                "bacon strip",
+                "cutting board"
+              ],
+              "visible_state": "chopped",
+              "why_it_matters": "precedes V3",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                30
+              ],
+              "event": "bacon cooking",
+              "key_objects": [
+                "pan",
+                "bacon",
+                "oil"
+              ],
+              "visible_state": "cooking in oil",
+              "why_it_matters": "follows V2, precedes V4",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                56
+              ],
+              "event": "final assembly",
+              "key_objects": [
+                "pot",
+                "pan",
+                "bowl",
+                "pasta"
+              ],
+              "visible_state": "combined and cooked",
+              "why_it_matters": "final step",
+              "confidence": "high"
+            }
+          ]
+        },
+        "uncertain": [
+          "V1 placement relative to V2/V3"
+        ],
+        "dimensions_to_compare": [
+          "background cues (boiling water, cooking bacon)",
+          "bowl continuity",
+          "pan continuity"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "V1": "batter prep; background has pot boiling and pan with cooking bacon",
+          "V2": "chop bacon; no pan/pot visible; board has meat residue",
+          "V3": "bacon transferred to pan, cooked; pot visible; bowl not clearly visible",
+          "V4": "pasta boiled, combined with bacon, batter poured from bowl"
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                59
+              ],
+              "event": "batter prep with background cooking",
+              "key_objects": [
+                "bowl",
+                "background pan",
+                "background pot"
+              ],
+              "visible_state": "batter mixed; background pan has meat, pot boiling",
+              "why_it_matters": "proves V1 is after bacon is in pan",
+              "confidence": "medium"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                18
+              ],
+              "event": "bacon chopping",
+              "key_objects": [
+                "bacon",
+                "board"
+              ],
+              "visible_state": "chopped",
+              "why_it_matters": "first step",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                30
+              ],
+              "event": "bacon cooking start",
+              "key_objects": [
+                "pan",
+                "bacon",
+                "oil"
+              ],
+              "visible_state": "bacon put in pan, cooked",
+              "why_it_matters": "bacon enters pan",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                56
+              ],
+              "event": "final assembly",
+              "key_objects": [
+                "pot",
+                "pan",
+                "bowl",
+                "pasta"
+              ],
+              "visible_state": "combined",
+              "why_it_matters": "last step",
+              "confidence": "high"
+            }
+          ]
+        },
+        "confirmed": [
+          "V2 is first (chop bacon)",
+          "V4 is last (final assembly)",
+          "V1 has background pan with cooking bacon"
+        ],
+        "uncertain": [
+          "Exact order of V1 and V3: does V1 start before V3 puts bacon in pan, or after?"
+        ],
+        "focus_plan": [
+          "Verify V1 background pan state to confirm if bacon is already in it",
+          "Check V3 for any bowl visibility"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "order_confidence": 9,
+        "layer1_done": true,
+        "layer2_done": true,
+        "comparison_table": {
+          "V1": "batter prep; background pan already has bacon",
+          "V2": "chop bacon strip",
+          "V3": "empty pan, then bacon added and cooked",
+          "V4": "pasta combined, batter poured"
+        },
+        "confirmed": [
+          "V2 is first",
+          "V3 precedes V1 (pan empty -> pan has bacon)",
+          "V1 precedes V4 (batter mixed -> batter poured)",
+          "V4 is last"
+        ],
+        "uncertain": [],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                59
+              ],
+              "event": "batter prep",
+              "key_objects": [
+                "bowl",
+                "background pan"
+              ],
+              "visible_state": "batter mixed, background pan has bacon",
+              "why_it_matters": "follows V3",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                18
+              ],
+              "event": "bacon chopping",
+              "key_objects": [
+                "bacon",
+                "board"
+              ],
+              "visible_state": "chopped",
+              "why_it_matters": "first step",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                30
+              ],
+              "event": "bacon cooking start",
+              "key_objects": [
+                "pan",
+                "bacon"
+              ],
+              "visible_state": "pan empty then bacon added",
+              "why_it_matters": "precedes V1",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                56
+              ],
+              "event": "final assembly",
+              "key_objects": [
+                "pot",
+                "pan",
+                "bowl",
+                "pasta"
+              ],
+              "visible_state": "combined",
+              "why_it_matters": "last step",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "2",
+    "3",
+    "4"
+  ],
+  "order_confidence": [
+    "6",
+    "9"
+  ],
+  "confidence_basis": [
+    "V2->V3->V4 linked by bacon state (whole->chopped->cooked->combined). V1 placement uncertain."
+  ],
+  "blocking_uncertainties": [
+    "Where does V1 fit relative to V2 and V3? Background cues needed."
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 59], \"event\": \"batter prep\", \"key_objects\": [\"white bowl\", \"eggs\", \"cheese\"], \"visible_state\": \"batter mixed\", \"why_it_matters\": \"needs placement relative to bacon prep/cooking\", \"confidence\": \"medium\"}], \"video2\": [{\"window\": [0, 18], \"event\": \"bacon chopping\", \"key_objects\": [\"bacon strip\", \"cutting board\"], \"visible_state\": \"chopped\", \"why_it_matters\": \"precedes V3\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 30], \"event\": \"bacon cooking\", \"key_objects\": [\"pan\", \"bacon\", \"oil\"], \"visible_state\": \"cooking in oil\", \"why_it_matters\": \"follows V2, precedes V4\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 56], \"event\": \"final assembly\", \"key_objects\": [\"pot\", \"pan\", \"bowl\", \"pasta\"], \"visible_state\": \"combined and cooked\", \"why_it_matters\": \"final step\", \"confidence\": \"high\"}]}",
+    "{\"video1\": [{\"window\": [0, 59], \"event\": \"batter prep with background cooking\", \"key_objects\": [\"bowl\", \"background pan\", \"background pot\"], \"visible_state\": \"batter mixed; background pan has meat, pot boiling\", \"why_it_matters\": \"proves V1 is after bacon is in pan\", \"confidence\": \"medium\"}], \"video2\": [{\"window\": [0, 18], \"event\": \"bacon chopping\", \"key_objects\": [\"bacon\", \"board\"], \"visible_state\": \"chopped\", \"why_it_matters\": \"first step\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 30], \"event\": \"bacon cooking start\", \"key_objects\": [\"pan\", \"bacon\", \"oil\"], \"visible_state\": \"bacon put in pan, cooked\", \"why_it_matters\": \"bacon enters pan\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 56], \"event\": \"final assembly\", \"key_objects\": [\"pot\", \"pan\", \"bowl\", \"pasta\"], \"visible_state\": \"combined\", \"why_it_matters\": \"last step\", \"confidence\": \"high\"}]}",
+    "{\"video1\": [{\"window\": [0, 59], \"event\": \"batter prep\", \"key_objects\": [\"bowl\", \"background pan\"], \"visible_state\": \"batter mixed, background pan has bacon\", \"why_it_matters\": \"follows V3\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 18], \"event\": \"bacon chopping\", \"key_objects\": [\"bacon\", \"board\"], \"visible_state\": \"chopped\", \"why_it_matters\": \"first step\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 30], \"event\": \"bacon cooking start\", \"key_objects\": [\"pan\", \"bacon\"], \"visible_state\": \"pan empty then bacon added\", \"why_it_matters\": \"precedes V1\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 56], \"event\": \"final assembly\", \"key_objects\": [\"pot\", \"pan\", \"bowl\", \"pasta\"], \"visible_state\": \"combined\", \"why_it_matters\": \"last step\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V1\": \"batter prep; background has pot boiling and pan with cooking bacon\", \"V2\": \"chop bacon; no pan/pot visible; board has meat residue\", \"V3\": \"bacon transferred to pan, cooked; pot visible; bowl not clearly visible\", \"V4\": \"pasta boiled, combined with bacon, batter poured from bowl\"}",
+    "{\"V1\": \"batter prep; background pan already has bacon\", \"V2\": \"chop bacon strip\", \"V3\": \"empty pan, then bacon added and cooked\", \"V4\": \"pasta combined, batter poured\"}"
+  ],
+  "focus_plan": [
+    "Verify V1 background pan state to confirm if bacon is already in it",
+    "Check V3 for any bowl visibility"
+  ]
+}

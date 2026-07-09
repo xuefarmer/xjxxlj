@@ -1,0 +1,304 @@
+{
+  "confirmed": [
+    "V5 end residue matches V6 start",
+    "V6 end bean sprouts matches V3 start via V4",
+    "V3 end noodles+liquid matches V2 start sauce mix",
+    "V2 end plate matches V1 start plated",
+    "V6 end onions match V4 start onions+mushrooms",
+    "V4 end mixed veggies match V3 start mixed veggies+bean sprouts"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{}",
+    "{\"5\": \"cook chicken, remove, leave residue\", \"6\": \"sauté onions, bean sprouts on board\", \"4\": \"add mushrooms/carrots/cabbage to onions\", \"3\": \"add bean sprouts + noodles + liquid to veggies\", \"2\": \"pour dark sauce, mix noodles brown\", \"1\": \"plate dish, drizzle mayo\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "pan_state": {
+      "5_end": "empty, oil residue, white bits",
+      "6_start": "empty, oil residue",
+      "6_end": "onions cooking",
+      "4_start": "onions+mushrooms",
+      "3_start": "mixed veggies",
+      "2_start": "noodles+chicken+veggies"
+    },
+    "bean_sprouts": {
+      "6_end": "raw on cutting board",
+      "3_start": "added to pan"
+    },
+    "noodles": {
+      "3_end": "white, piled, liquid poured",
+      "2_start": "white/pale, sauce poured",
+      "2_end": "brown, coated",
+      "1_start": "plated, brown"
+    },
+    "chicken": {
+      "5_end": "removed from pan",
+      "2_start": "in pan with noodles",
+      "1_start": "on plate"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "pan residue state",
+    "bean sprouts presence/location",
+    "noodle color/coating",
+    "plating state"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {},
+        "object_memory": {},
+        "temporal_index": {},
+        "preliminary_order": null,
+        "preliminary_confidence": 0,
+        "confidence_basis": [],
+        "blocking_uncertainties": [],
+        "irrelevant_windows": [],
+        "candidate_targets": [],
+        "low_value_targets": [],
+        "uncertain": [],
+        "dimensions_to_compare": []
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "5": "cook chicken, remove, leave residue",
+          "6": "sauté onions, bean sprouts on board",
+          "4": "add mushrooms/carrots/cabbage to onions",
+          "3": "add bean sprouts + noodles + liquid to veggies",
+          "2": "pour dark sauce, mix noodles brown",
+          "1": "plate dish, drizzle mayo"
+        },
+        "object_memory": {
+          "pan_state": {
+            "5_end": "empty, oil residue, white bits",
+            "6_start": "empty, oil residue",
+            "6_end": "onions cooking",
+            "4_start": "onions+mushrooms",
+            "3_start": "mixed veggies",
+            "2_start": "noodles+chicken+veggies"
+          },
+          "bean_sprouts": {
+            "6_end": "raw on cutting board",
+            "3_start": "added to pan"
+          },
+          "noodles": {
+            "3_end": "white, piled, liquid poured",
+            "2_start": "white/pale, sauce poured",
+            "2_end": "brown, coated",
+            "1_start": "plated, brown"
+          },
+          "chicken": {
+            "5_end": "removed from pan",
+            "2_start": "in pan with noodles",
+            "1_start": "on plate"
+          }
+        },
+        "temporal_index": {
+          "5": [
+            {
+              "window": [
+                25,
+                30
+              ],
+              "event": "pan empty with residue",
+              "confidence": "high"
+            }
+          ],
+          "6": [
+            {
+              "window": [
+                0,
+                5
+              ],
+              "event": "pan empty with residue",
+              "confidence": "high"
+            },
+            {
+              "window": [
+                15,
+                20
+              ],
+              "event": "bean sprouts on board",
+              "confidence": "high"
+            }
+          ],
+          "3": [
+            {
+              "window": [
+                0,
+                5
+              ],
+              "event": "veggies in pan, bean sprouts added",
+              "confidence": "high"
+            },
+            {
+              "window": [
+                20,
+                26
+              ],
+              "event": "noodles piled, liquid poured",
+              "confidence": "high"
+            }
+          ],
+          "2": [
+            {
+              "window": [
+                0,
+                5
+              ],
+              "event": "noodles+chicken, sauce poured",
+              "confidence": "high"
+            },
+            {
+              "window": [
+                10,
+                15
+              ],
+              "event": "noodles brown, plate view",
+              "confidence": "high"
+            }
+          ],
+          "1": [
+            {
+              "window": [
+                0,
+                5
+              ],
+              "event": "plated dish, mayo drizzle",
+              "confidence": "high"
+            }
+          ]
+        },
+        "preliminary_order": "5->6->4->3->2->1",
+        "preliminary_confidence": 8,
+        "confidence_basis": [
+          "V5 end residue matches V6 start",
+          "V6 end bean sprouts matches V3 start",
+          "V3 end noodles+liquid matches V2 start sauce mix",
+          "V2 end plate matches V1 start plated"
+        ],
+        "blocking_uncertainties": [
+          "Verify V5->V6 residue continuity",
+          "Verify V6->V3 bean sprouts continuity",
+          "Verify V3->V2 noodle state continuity",
+          "Verify V2->V1 plating continuity"
+        ],
+        "dimensions_to_compare": [
+          "pan residue state",
+          "bean sprouts presence/location",
+          "noodle color/coating",
+          "plating state"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "5->6": "pan residue continuity confirmed",
+          "6->4": "onions to mushrooms+cabbage confirmed",
+          "4->3": "mixed veggies to bean sprouts addition confirmed",
+          "3->2": "white noodles+liquid to dark sauce mix confirmed",
+          "2->1": "brown noodles in pan to plated dish confirmed"
+        },
+        "confirmed": [
+          "V5 end residue matches V6 start",
+          "V6 end bean sprouts matches V3 start via V4",
+          "V3 end noodles+liquid matches V2 start sauce mix",
+          "V2 end plate matches V1 start plated"
+        ],
+        "order_confidence": 9
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "5->6": "pan residue continuity confirmed",
+          "6->4": "pending V4 observation",
+          "4->3": "pending V4 observation",
+          "3->2": "white noodles+liquid to dark sauce mix confirmed",
+          "2->1": "brown noodles in pan to plated dish confirmed"
+        },
+        "order_confidence": 8
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "5->6": "pan residue continuity confirmed",
+          "6->4": "onions to mushrooms+cabbage confirmed",
+          "4->3": "mixed veggies to bean sprouts addition confirmed",
+          "3->2": "white noodles+liquid to dark sauce mix confirmed",
+          "2->1": "brown noodles in pan to plated dish confirmed"
+        },
+        "confirmed": [
+          "V5 end residue matches V6 start",
+          "V6 end onions match V4 start onions+mushrooms",
+          "V4 end mixed veggies match V3 start mixed veggies+bean sprouts",
+          "V3 end noodles+liquid matches V2 start sauce mix",
+          "V2 end plate matches V1 start plated"
+        ],
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "temporal_index": [
+    "{}",
+    "{\"5\": [{\"window\": [25, 30], \"event\": \"pan empty with residue\", \"confidence\": \"high\"}], \"6\": [{\"window\": [0, 5], \"event\": \"pan empty with residue\", \"confidence\": \"high\"}, {\"window\": [15, 20], \"event\": \"bean sprouts on board\", \"confidence\": \"high\"}], \"3\": [{\"window\": [0, 5], \"event\": \"veggies in pan, bean sprouts added\", \"confidence\": \"high\"}, {\"window\": [20, 26], \"event\": \"noodles piled, liquid poured\", \"confidence\": \"high\"}], \"2\": [{\"window\": [0, 5], \"event\": \"noodles+chicken, sauce poured\", \"confidence\": \"high\"}, {\"window\": [10, 15], \"event\": \"noodles brown, plate view\", \"confidence\": \"high\"}], \"1\": [{\"window\": [0, 5], \"event\": \"plated dish, mayo drizzle\", \"confidence\": \"high\"}]}"
+  ],
+  "preliminary_order": [
+    "5->6->4->3->2->1"
+  ],
+  "preliminary_confidence": [
+    "0",
+    "8"
+  ],
+  "confidence_basis": [
+    "V5 end residue matches V6 start",
+    "V6 end bean sprouts matches V3 start",
+    "V3 end noodles+liquid matches V2 start sauce mix",
+    "V2 end plate matches V1 start plated"
+  ],
+  "blocking_uncertainties": [
+    "Verify V5->V6 residue continuity",
+    "Verify V6->V3 bean sprouts continuity",
+    "Verify V3->V2 noodle state continuity",
+    "Verify V2->V1 plating continuity"
+  ],
+  "irrelevant_windows": [],
+  "candidate_targets": [],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"5->6\": \"pan residue continuity confirmed\", \"6->4\": \"onions to mushrooms+cabbage confirmed\", \"4->3\": \"mixed veggies to bean sprouts addition confirmed\", \"3->2\": \"white noodles+liquid to dark sauce mix confirmed\", \"2->1\": \"brown noodles in pan to plated dish confirmed\"}",
+    "{\"5->6\": \"pan residue continuity confirmed\", \"6->4\": \"pending V4 observation\", \"4->3\": \"pending V4 observation\", \"3->2\": \"white noodles+liquid to dark sauce mix confirmed\", \"2->1\": \"brown noodles in pan to plated dish confirmed\"}"
+  ],
+  "order_confidence": [
+    "9",
+    "8"
+  ]
+}

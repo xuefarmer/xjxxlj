@@ -1,0 +1,445 @@
+2026-07-03 19:37:11,628 - INFO - ▶️  Run Config: Task=PSS_task, Q1-Q10
+2026-07-03 19:37:11,629 - INFO - ⚙️  Runtime: MASTER_BACKEND=api | LOCAL_MASTER_MODEL_PATH=/media/data6/xuejj/Qwen3-8B | MASTER_MODEL_NAME=qwen3.7-plus | TOOL_BACKEND=api | LOCAL_TOOL_MODEL_PATH=/media/data6/xuejj/Qwen | TOOL_MODEL_NAME=qwen3.7-plus | ORACLE_ANSWER_HINT=false | PROMPT=/media/data6/xuejj/CVRAgent/agent_system/myprompts/_unified_crossvid_base.prompt + /media/data6/xuejj/CVRAgent/agent_system/myprompts/task_contracts/PSS.prompt
+2026-07-03 19:37:11,630 - INFO - ==================================
+2026-07-03 19:37:11,630 - INFO -    Testing Question 1/664 (ID: 0)   
+2026-07-03 19:37:11,630 - INFO - 🎯 Standard Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-03 19:37:11,630 - INFO - 🔑 Correct Answer: [3->5->4->2->1]
+2026-07-03 19:37:11,630 - INFO - 📹 Preparing video metadata...
+2026-07-03 19:37:11,695 - INFO -     ✅ Segment 1 (Video 1): [135.0-149.0]
+2026-07-03 19:37:11,695 - INFO -     ✅ Segment 2 (Video 2): [113.0-125.0]
+2026-07-03 19:37:11,695 - INFO -     ✅ Segment 3 (Video 3): [40.0-44.0]
+2026-07-03 19:37:11,695 - INFO -     ✅ Segment 4 (Video 4): [88.0-98.0]
+2026-07-03 19:37:11,695 - INFO -     ✅ Segment 5 (Video 5): [46.0-66.0]
+2026-07-03 19:37:11,695 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-03 19:37:11,695 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-03 19:37:42,539 - INFO -   ⏱️  LLM: 30.8s
+2026-07-03 19:37:42,540 - INFO -   🤖 Thought: Layer1: broad independent perception of all 5 shuffled segments. Need to build an unbiased inventory...
+2026-07-03 19:37:42,540 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-03 19:37:42,540 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=5
+2026-07-03 19:37:42,540 - INFO -     [CHUNK 1/5] Video 1 chunk 1/1: 0-14s, 16 frames
+2026-07-03 19:37:42,541 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 19:37:42,543 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 19:37:42,822 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 19:38:43,346 - INFO -     [BATCH 1/5] Video 1 done in 60.8s (1 chunks)
+2026-07-03 19:38:43,347 - INFO -     [CHUNK 2/5] Video 2 chunk 1/1: 0-12s, 16 frames
+2026-07-03 19:38:43,347 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 19:38:43,347 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 19:38:43,578 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 19:39:37,907 - INFO -     [BATCH 2/5] Video 2 done in 115.4s (1 chunks)
+2026-07-03 19:39:37,908 - INFO -     [CHUNK 3/5] Video 3 chunk 1/1: 0-4s, 16 frames
+2026-07-03 19:39:37,908 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 19:39:37,908 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 19:39:38,105 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 19:40:38,353 - INFO -     [BATCH 3/5] Video 3 done in 175.8s (1 chunks)
+2026-07-03 19:40:38,353 - INFO -     [CHUNK 4/5] Video 4 chunk 1/1: 0-10s, 16 frames
+2026-07-03 19:40:38,353 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 19:40:38,353 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 19:40:38,577 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 19:41:47,990 - INFO -     [BATCH 4/5] Video 4 done in 245.4s (1 chunks)
+2026-07-03 19:41:47,990 - INFO -     [CHUNK 5/5] Video 5 chunk 1/1: 0-20s, 16 frames
+2026-07-03 19:41:47,990 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 19:41:47,991 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 19:41:48,303 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 19:42:52,507 - INFO -     [BATCH 5/5] Video 5 done in 310.0s (1 chunks)
+2026-07-03 19:42:52,507 - INFO -   ⏱️  Batch Tool (5 videos): 310.0s, Turn total: 340.8s
+2026-07-03 19:42:52,508 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 340.8s)
+2026-07-03 19:45:46,541 - INFO -   ⏱️  LLM: 174.0s
+2026-07-03 19:45:46,541 - INFO -   🤖 Thought: Layer1 evidence provides a clear state-transition graph for the pasta dish and a separate sequence f...
+2026-07-03 19:45:46,541 - INFO -   🤖 Action:  [ANSWER]
+2026-07-03 19:45:46,541 - WARNING -   ⚠️ Rejected premature final answer: Do not answer yet. PSS requires Layer2 before `answer`. Missing: Layer2 local state scan on all segments. Plan Layer2 for EVERY segment, but for each segment target only the informative chunk(s) with narrow start_time/end_time. Each prompt should ask concrete per-object questions, not general descriptions. Use `batch_observe` with `MODE=layer2_state_scan`.
+2026-07-03 19:45:46,541 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 514.8s)
+2026-07-03 19:46:57,445 - INFO -   ⏱️  LLM: 70.9s
+2026-07-03 19:46:57,445 - INFO -   🤖 Thought: Layer2: Targeted state scan for all 5 segments. Based on Layer1, I have a preliminary order (3->4->2...
+2026-07-03 19:46:57,445 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-03 19:46:57,446 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=9
+2026-07-03 19:46:57,446 - INFO -     [CHUNK 1/5] Video 1 chunk 1/1: 11-14s, 16 frames
+2026-07-03 19:46:57,446 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 19:46:57,446 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 19:46:57,646 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 19:47:55,587 - INFO -     [BATCH 1/5] Video 1 done in 58.1s (1 chunks)
+2026-07-03 19:47:55,587 - INFO -     [CHUNK 2/5] Video 2 chunk 1/1: 4-9s, 16 frames
+2026-07-03 19:47:55,587 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 19:47:55,587 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 19:47:55,752 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 19:48:37,282 - INFO -     [BATCH 2/5] Video 2 done in 99.8s (1 chunks)
+2026-07-03 19:48:37,282 - INFO -     [CHUNK 3/5] Video 3 chunk 1/1: 2-4s, 16 frames
+2026-07-03 19:48:37,282 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 19:48:37,282 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 19:48:37,417 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 19:48:58,728 - INFO -     [BATCH 3/5] Video 3 done in 121.3s (1 chunks)
+2026-07-03 19:48:58,729 - INFO -     [CHUNK 4/5] Video 4 chunk 1/1: 5-10s, 16 frames
+2026-07-03 19:48:58,729 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 19:48:58,729 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 19:48:58,930 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 19:50:19,316 - INFO -     [BATCH 4/5] Video 4 done in 201.9s (1 chunks)
+2026-07-03 19:50:19,316 - INFO -     [CHUNK 5/5] Video 5 chunk 1/1: 13-20s, 16 frames
+2026-07-03 19:50:19,316 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 19:50:19,316 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 19:50:19,544 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 19:50:46,180 - INFO -     [BATCH 5/5] Video 5 done in 228.7s (1 chunks)
+2026-07-03 19:50:46,180 - INFO -   ⏱️  Batch Tool (5 videos): 228.7s, Turn total: 299.6s
+2026-07-03 19:50:46,180 - INFO - 🔄 [TURN 4] Master Thinking... (elapsed since loop start: 814.5s)
+2026-07-03 19:51:29,966 - INFO -   ⏱️  LLM: 43.8s
+2026-07-03 19:51:29,966 - INFO -   🤖 Thought: Layer2 explicitly verified all blocking uncertainties. The object-state progression is visually cont...
+2026-07-03 19:51:29,966 - INFO -   🤖 Action:  [ANSWER]
+2026-07-03 19:51:29,968 - INFO - 🎯 Final Answer: 3->4->2->1->5 (Turn total: 43.8s)
+2026-07-03 19:51:29,968 - INFO - 📊 Evaluating result...
+2026-07-03 19:51:29,968 - INFO -   - Predicted: 3->4->2->1->5
+2026-07-03 19:51:29,968 - INFO -   - Ground Truth: 3->5->4->2->1
+2026-07-03 19:51:29,968 - INFO -   - Result: 🔴 WRONG. 🔴
+2026-07-03 19:51:30,010 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/agent_system/logs/PSS_task/0_new_mechanism (JSON + Readable TXT)
+2026-07-03 19:51:30,011 - INFO - --- End of Q0 ---
+2026-07-03 19:51:30,011 - INFO - ==================================
+2026-07-03 19:51:30,011 - INFO -    Testing Question 2/664 (ID: 1)   
+2026-07-03 19:51:30,011 - INFO - 🎯 Standard Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-03 19:51:30,011 - INFO - 🔑 Correct Answer: [5->3->4->2->1]
+2026-07-03 19:51:30,011 - INFO - 📹 Preparing video metadata...
+2026-07-03 19:51:31,488 - INFO -     ✅ Segment 1 (Video 1): [265.0-330.0]
+2026-07-03 19:51:31,488 - INFO -     ✅ Segment 2 (Video 2): [212.0-249.0]
+2026-07-03 19:51:31,488 - INFO -     ✅ Segment 3 (Video 3): [67.0-130.0]
+2026-07-03 19:51:31,488 - INFO -     ✅ Segment 4 (Video 4): [135.0-181.0]
+2026-07-03 19:51:31,488 - INFO -     ✅ Segment 5 (Video 5): [22.0-58.0]
+2026-07-03 19:51:31,488 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-03 19:51:31,488 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-03 19:52:09,267 - INFO -   ⏱️  LLM: 37.8s
+2026-07-03 19:52:09,267 - INFO -   🤖 Thought: Layer1: scan all 5 shuffled segments independently to build an unbiased inventory of operations, obj...
+2026-07-03 19:52:09,267 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-03 19:52:09,267 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=4
+2026-07-03 19:52:09,268 - INFO -     [CHUNK 1/5] Video 1 chunk 1/1: 0-65s, 16 frames
+2026-07-03 19:52:09,268 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 19:52:09,268 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 19:52:10,441 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 19:53:08,491 - INFO -     [BATCH 1/5] Video 1 done in 59.2s (1 chunks)
+2026-07-03 19:53:08,491 - INFO -     [CHUNK 2/5] Video 2 chunk 1/1: 0-37s, 16 frames
+2026-07-03 19:53:08,491 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 19:53:08,492 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 19:53:09,470 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 19:54:25,873 - INFO -     [BATCH 2/5] Video 2 done in 136.6s (1 chunks)
+2026-07-03 19:54:25,874 - INFO -     [CHUNK 3/5] Video 3 chunk 1/1: 0-63s, 16 frames
+2026-07-03 19:54:25,874 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 19:54:25,874 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 19:54:27,004 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 19:55:27,143 - INFO -     [BATCH 3/5] Video 3 done in 197.9s (1 chunks)
+2026-07-03 19:55:27,143 - INFO -     [CHUNK 4/5] Video 4 chunk 1/1: 0-46s, 16 frames
+2026-07-03 19:55:27,143 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 19:55:27,143 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 19:55:28,303 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 19:57:15,867 - INFO -     [BATCH 4/5] Video 4 done in 306.6s (1 chunks)
+2026-07-03 19:57:15,867 - INFO -     [CHUNK 5/5] Video 5 chunk 1/1: 0-36s, 16 frames
+2026-07-03 19:57:15,868 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 19:57:15,868 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 19:57:17,016 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 19:58:19,344 - INFO -     [BATCH 5/5] Video 5 done in 370.1s (1 chunks)
+2026-07-03 19:58:19,344 - INFO -   ⏱️  Batch Tool (5 videos): 370.1s, Turn total: 407.9s
+2026-07-03 19:58:19,345 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 407.9s)
+2026-07-03 20:01:31,914 - INFO -   ⏱️  LLM: 192.6s
+2026-07-03 20:01:31,914 - INFO -   🤖 Thought: Layer2: Layer1 established a strong preliminary order (3->5->4->2->1) based on the pan contents prog...
+2026-07-03 20:01:31,914 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-03 20:01:31,914 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=7
+2026-07-03 20:01:31,914 - INFO -     [CHUNK 1/6] Video 3 chunk 1/1: 45-63s, 16 frames
+2026-07-03 20:01:31,914 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:01:31,914 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:01:32,674 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:02:50,863 - INFO -     [BATCH 1/6] Video 3 done in 78.9s (1 chunks)
+2026-07-03 20:02:50,863 - INFO -     [CHUNK 2/6] Video 5 chunk 1/1: 12-20s, 16 frames
+2026-07-03 20:02:50,864 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:02:50,864 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:02:51,417 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:03:26,029 - INFO -     [BATCH 2/6] Video 5 done in 114.1s (1 chunks)
+2026-07-03 20:03:26,029 - INFO -     [CHUNK 3/6] Video 4 chunk 1/1: 0-15s, 16 frames
+2026-07-03 20:03:26,029 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:03:26,029 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:03:26,790 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:03:59,265 - INFO -     [BATCH 3/6] Video 4 done in 147.4s (1 chunks)
+2026-07-03 20:03:59,265 - INFO -     [CHUNK 4/6] Video 4 chunk 1/1: 25-30s, 16 frames
+2026-07-03 20:03:59,265 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:03:59,266 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:03:59,783 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:04:24,640 - INFO -     [BATCH 4/6] Video 4 done in 172.7s (1 chunks)
+2026-07-03 20:04:24,641 - INFO -     [CHUNK 5/6] Video 2 chunk 1/1: 3-15s, 16 frames
+2026-07-03 20:04:24,641 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:04:24,641 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:04:25,315 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:04:53,417 - INFO -     [BATCH 5/6] Video 2 done in 201.5s (1 chunks)
+2026-07-03 20:04:53,417 - INFO -     [CHUNK 6/6] Video 1 chunk 1/1: 15-35s, 16 frames
+2026-07-03 20:04:53,418 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:04:53,418 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:04:54,099 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:05:10,808 - INFO -     [BATCH 6/6] Video 1 done in 218.9s (1 chunks)
+2026-07-03 20:05:10,808 - INFO -   ⏱️  Batch Tool (6 videos): 218.9s, Turn total: 411.5s
+2026-07-03 20:05:10,809 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 819.3s)
+2026-07-03 20:05:35,926 - INFO -   ⏱️  LLM: 25.1s
+2026-07-03 20:05:35,926 - INFO -   🤖 Thought: Layer2 has fully verified the state-transition graph across all segments. The blue pan progression i...
+2026-07-03 20:05:35,926 - INFO -   🤖 Action:  [ANSWER]
+2026-07-03 20:05:35,927 - WARNING -   ⚠️ Rejected premature final answer: All segments are covered by Layer2, but order_confidence (missing) is still too low (need >=7). Consider `observe` focus on the weakest adjacent relation, or `get_caption` if narration may help.
+2026-07-03 20:05:35,927 - INFO - 🔄 [TURN 4] Master Thinking... (elapsed since loop start: 844.4s)
+2026-07-03 20:06:11,326 - INFO -   ⏱️  LLM: 35.4s
+2026-07-03 20:06:11,326 - INFO -   🤖 Thought: The state-transition graph is fully verified across all segments with direct visual evidence. The bl...
+2026-07-03 20:06:11,326 - INFO -   🤖 Action:  [ANSWER]
+2026-07-03 20:06:11,326 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=0, dimensions=7
+2026-07-03 20:06:11,328 - INFO - 🎯 Final Answer: 3->5->4->2->1 (Turn total: 35.4s)
+2026-07-03 20:06:11,328 - INFO - 📊 Evaluating result...
+2026-07-03 20:06:11,328 - INFO -   - Predicted: 3->5->4->2->1
+2026-07-03 20:06:11,328 - INFO -   - Ground Truth: 5->3->4->2->1
+2026-07-03 20:06:11,328 - INFO -   - Result: 🔴 WRONG. 🔴
+2026-07-03 20:06:11,387 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/agent_system/logs/PSS_task/1_new_mechanism (JSON + Readable TXT)
+2026-07-03 20:06:11,389 - INFO - --- End of Q1 ---
+2026-07-03 20:06:11,389 - INFO - ==================================
+2026-07-03 20:06:11,389 - INFO -    Testing Question 3/664 (ID: 2)   
+2026-07-03 20:06:11,389 - INFO - 🎯 Standard Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-03 20:06:11,389 - INFO - 🔑 Correct Answer: [5->6->4->3->2->1]
+2026-07-03 20:06:11,389 - INFO - 📹 Preparing video metadata...
+2026-07-03 20:06:13,440 - INFO -     ✅ Segment 1 (Video 1): [230.0-240.0]
+2026-07-03 20:06:13,440 - INFO -     ✅ Segment 2 (Video 2): [175.0-190.0]
+2026-07-03 20:06:13,440 - INFO -     ✅ Segment 3 (Video 3): [147.0-173.0]
+2026-07-03 20:06:13,440 - INFO -     ✅ Segment 4 (Video 4): [103.0-136.0]
+2026-07-03 20:06:13,440 - INFO -     ✅ Segment 5 (Video 5): [50.0-80.0]
+2026-07-03 20:06:13,440 - INFO -     ✅ Segment 6 (Video 6): [80.0-100.0]
+2026-07-03 20:06:13,440 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-03 20:06:13,440 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-03 20:06:41,903 - INFO -   ⏱️  LLM: 28.5s
+2026-07-03 20:06:41,903 - INFO -   🤖 Thought: Layer1: scan all 6 segments independently to build an object-centric inventory. Each segment needs a...
+2026-07-03 20:06:41,904 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-03 20:06:41,904 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=5
+2026-07-03 20:06:41,904 - INFO -     [CHUNK 1/6] Video 1 chunk 1/1: 0-10s, 16 frames
+2026-07-03 20:06:41,904 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:06:41,904 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:06:42,489 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:07:35,984 - INFO -     [BATCH 1/6] Video 1 done in 54.1s (1 chunks)
+2026-07-03 20:07:35,984 - INFO -     [CHUNK 2/6] Video 2 chunk 1/1: 0-15s, 16 frames
+2026-07-03 20:07:35,984 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:07:35,985 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:07:36,780 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:08:15,614 - INFO -     [BATCH 2/6] Video 2 done in 93.7s (1 chunks)
+2026-07-03 20:08:15,614 - INFO -     [CHUNK 3/6] Video 3 chunk 1/1: 0-26s, 16 frames
+2026-07-03 20:08:15,614 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:08:15,614 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:08:16,760 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:09:07,705 - INFO -     [BATCH 3/6] Video 3 done in 145.8s (1 chunks)
+2026-07-03 20:09:07,705 - INFO -     [CHUNK 4/6] Video 4 chunk 1/1: 0-33s, 16 frames
+2026-07-03 20:09:07,706 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:09:07,706 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:09:08,895 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:10:01,854 - INFO -     [BATCH 4/6] Video 4 done in 200.0s (1 chunks)
+2026-07-03 20:10:01,854 - INFO -     [CHUNK 5/6] Video 5 chunk 1/1: 0-30s, 16 frames
+2026-07-03 20:10:01,855 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:10:01,855 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:10:03,010 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:10:51,914 - INFO -     [BATCH 5/6] Video 5 done in 250.0s (1 chunks)
+2026-07-03 20:10:51,915 - INFO -     [CHUNK 6/6] Video 6 chunk 1/1: 0-20s, 16 frames
+2026-07-03 20:10:51,915 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:10:51,915 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:10:52,761 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:11:34,303 - INFO -     [BATCH 6/6] Video 6 done in 292.4s (1 chunks)
+2026-07-03 20:11:34,303 - INFO -   ⏱️  Batch Tool (6 videos): 292.4s, Turn total: 320.9s
+2026-07-03 20:11:34,304 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 320.9s)
+2026-07-03 20:14:24,798 - INFO -   ⏱️  LLM: 170.5s
+2026-07-03 20:14:24,798 - INFO -   🤖 Thought: Layer2: Verify the state-transition graph by targeting the decisive boundary chunks for each segment...
+2026-07-03 20:14:24,798 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-03 20:14:24,798 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=9
+2026-07-03 20:14:24,799 - INFO -     [CHUNK 1/6] Video 5 chunk 1/1: 25-30s, 16 frames
+2026-07-03 20:14:24,799 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:14:24,799 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:14:25,254 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:14:55,876 - INFO -     [BATCH 1/6] Video 5 done in 31.1s (1 chunks)
+2026-07-03 20:14:55,876 - INFO -     [CHUNK 2/6] Video 6 chunk 1/1: 15-20s, 16 frames
+2026-07-03 20:14:55,876 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:14:55,876 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:14:56,304 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:15:54,298 - INFO -     [BATCH 2/6] Video 6 done in 89.5s (1 chunks)
+2026-07-03 20:15:54,298 - INFO -     [CHUNK 3/6] Video 4 chunk 1/1: 25-33s, 16 frames
+2026-07-03 20:15:54,299 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:15:54,299 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:15:54,944 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:16:13,089 - INFO -     [BATCH 3/6] Video 4 done in 108.3s (1 chunks)
+2026-07-03 20:16:13,089 - INFO -     [CHUNK 4/6] Video 3 chunk 1/1: 0-6s, 16 frames
+2026-07-03 20:16:13,090 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:16:13,090 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:16:13,719 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:16:41,458 - INFO -     [BATCH 4/6] Video 3 done in 136.7s (1 chunks)
+2026-07-03 20:16:41,458 - INFO -     [CHUNK 5/6] Video 2 chunk 1/1: 0-5s, 16 frames
+2026-07-03 20:16:41,458 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:16:41,459 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:16:42,017 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:19:06,571 - INFO -     [BATCH 5/6] Video 2 done in 281.8s (1 chunks)
+2026-07-03 20:19:06,572 - INFO -     [CHUNK 6/6] Video 1 chunk 1/1: 0-10s, 16 frames
+2026-07-03 20:19:06,572 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:19:06,573 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:19:07,173 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:19:15,032 - INFO -     [BATCH 6/6] Video 1 done in 290.2s (1 chunks)
+2026-07-03 20:19:15,033 - INFO -   ⏱️  Batch Tool (6 videos): 290.2s, Turn total: 460.7s
+2026-07-03 20:19:15,033 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 781.6s)
+2026-07-03 20:20:03,396 - INFO -   ⏱️  LLM: 48.4s
+2026-07-03 20:20:03,396 - INFO -   🤖 Thought: ORDER_AUDIT:
+- supporting_chains: V5->V6 (V5 ends with pan residue, V6 starts with pan residue then ...
+2026-07-03 20:20:03,396 - INFO -   🤖 Action:  [ANSWER]
+2026-07-03 20:20:03,397 - INFO - 🎯 Final Answer: 5->6->4->3->2->1 (Turn total: 48.4s)
+2026-07-03 20:20:03,397 - INFO - 📊 Evaluating result...
+2026-07-03 20:20:03,397 - INFO -   - Predicted: 5->6->4->3->2->1
+2026-07-03 20:20:03,397 - INFO -   - Ground Truth: 5->6->4->3->2->1
+2026-07-03 20:20:03,397 - INFO -   - Result: 🎉 CORRECT! 🎉
+2026-07-03 20:20:03,408 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/agent_system/logs/PSS_task/2_new_mechanism (JSON + Readable TXT)
+2026-07-03 20:20:03,408 - INFO - --- End of Q2 ---
+2026-07-03 20:20:03,409 - INFO - ==================================
+2026-07-03 20:20:03,409 - INFO -    Testing Question 4/664 (ID: 3)   
+2026-07-03 20:20:03,409 - INFO - 🎯 Standard Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-03 20:20:03,409 - INFO - 🔑 Correct Answer: [3->1->2->4]
+2026-07-03 20:20:03,409 - INFO - 📹 Preparing video metadata...
+2026-07-03 20:20:03,747 - INFO -     ✅ Segment 1 (Video 1): [33.0-61.0]
+2026-07-03 20:20:03,747 - INFO -     ✅ Segment 2 (Video 2): [63.0-90.0]
+2026-07-03 20:20:03,747 - INFO -     ✅ Segment 3 (Video 3): [31.0-32.0]
+2026-07-03 20:20:03,747 - INFO -     ✅ Segment 4 (Video 4): [91.0-115.0]
+2026-07-03 20:20:03,747 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-03 20:20:03,747 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-03 20:20:33,224 - INFO -   ⏱️  LLM: 29.5s
+2026-07-03 20:20:33,224 - INFO -   🤖 Thought: Layer1: scan all 4 segments independently to build an unbiased inventory of object states, operation...
+2026-07-03 20:20:33,225 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-03 20:20:33,225 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=4
+2026-07-03 20:20:33,225 - INFO -     [CHUNK 1/4] Video 1 chunk 1/1: 0-28s, 16 frames
+2026-07-03 20:20:33,226 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:20:33,226 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:20:34,017 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:21:13,669 - INFO -     [BATCH 1/4] Video 1 done in 40.4s (1 chunks)
+2026-07-03 20:21:13,669 - INFO -     [CHUNK 2/4] Video 2 chunk 1/1: 0-27s, 16 frames
+2026-07-03 20:21:13,669 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:21:13,669 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:21:14,397 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:21:55,617 - INFO -     [BATCH 2/4] Video 2 done in 82.4s (1 chunks)
+2026-07-03 20:21:55,617 - INFO -     [CHUNK 3/4] Video 3 chunk 1/1: 0-1s, 16 frames
+2026-07-03 20:21:55,617 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:21:55,618 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:21:55,903 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:22:41,965 - INFO -     [BATCH 3/4] Video 3 done in 128.7s (1 chunks)
+2026-07-03 20:22:41,966 - INFO -     [CHUNK 4/4] Video 4 chunk 1/1: 0-24s, 16 frames
+2026-07-03 20:22:41,966 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:22:41,966 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:22:42,680 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:23:23,172 - INFO -     [BATCH 4/4] Video 4 done in 169.9s (1 chunks)
+2026-07-03 20:23:23,172 - INFO -   ⏱️  Batch Tool (4 videos): 169.9s, Turn total: 199.4s
+2026-07-03 20:23:23,173 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 199.4s)
+2026-07-03 20:24:51,353 - INFO -   ⏱️  LLM: 88.2s
+2026-07-03 20:24:51,353 - INFO -   🤖 Thought: Layer2: Verify the state transitions at the boundaries of each segment to confirm the object-state c...
+2026-07-03 20:24:51,353 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-03 20:24:51,353 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=0, dimensions=8
+2026-07-03 20:24:51,354 - INFO -     [CHUNK 1/7] Video 3 chunk 1/1: 0-1s, 16 frames
+2026-07-03 20:24:51,354 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:24:51,354 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:24:51,602 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:25:04,061 - INFO -     [BATCH 1/7] Video 3 done in 12.7s (1 chunks)
+2026-07-03 20:25:04,061 - INFO -     [CHUNK 2/7] Video 1 chunk 1/1: 0-6s, 16 frames
+2026-07-03 20:25:04,062 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:25:04,062 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:25:04,406 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:25:29,377 - INFO -     [BATCH 2/7] Video 1 done in 38.0s (1 chunks)
+2026-07-03 20:25:29,377 - INFO -     [CHUNK 3/7] Video 1 chunk 1/1: 24-28s, 16 frames
+2026-07-03 20:25:29,378 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:25:29,378 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:25:29,723 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:26:17,994 - INFO -     [BATCH 3/7] Video 1 done in 86.6s (1 chunks)
+2026-07-03 20:26:17,994 - INFO -     [CHUNK 4/7] Video 2 chunk 1/1: 0-6s, 16 frames
+2026-07-03 20:26:17,995 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:26:17,995 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:26:18,386 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:26:36,519 - INFO -     [BATCH 4/7] Video 2 done in 105.2s (1 chunks)
+2026-07-03 20:26:36,519 - INFO -     [CHUNK 5/7] Video 2 chunk 1/1: 22-27s, 16 frames
+2026-07-03 20:26:36,519 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:26:36,519 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:26:36,876 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:27:49,202 - INFO -     [BATCH 5/7] Video 2 done in 177.8s (1 chunks)
+2026-07-03 20:27:49,202 - INFO -     [CHUNK 6/7] Video 4 chunk 1/1: 0-6s, 16 frames
+2026-07-03 20:27:49,202 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:27:49,202 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:27:49,543 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:28:11,470 - INFO -     [BATCH 6/7] Video 4 done in 200.1s (1 chunks)
+2026-07-03 20:28:11,470 - INFO -     [CHUNK 7/7] Video 4 chunk 1/1: 20-24s, 16 frames
+2026-07-03 20:28:11,471 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:28:11,471 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:28:11,826 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:28:30,454 - INFO -     [BATCH 7/7] Video 4 done in 219.1s (1 chunks)
+2026-07-03 20:28:30,454 - INFO -   ⏱️  Batch Tool (7 videos): 219.1s, Turn total: 307.3s
+2026-07-03 20:28:30,454 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 506.7s)
+2026-07-03 20:28:52,131 - INFO -   ⏱️  LLM: 21.7s
+2026-07-03 20:28:52,131 - INFO -   🤖 Thought: ORDER_AUDIT:
+- supporting_chains: V3->V1 (V3 has oil only; V1 starts with oil only and adds raw shri...
+2026-07-03 20:28:52,131 - INFO -   🤖 Action:  [ANSWER]
+2026-07-03 20:28:52,132 - INFO - 🎯 Final Answer: 3->1->2->4 (Turn total: 21.7s)
+2026-07-03 20:28:52,132 - INFO - 📊 Evaluating result...
+2026-07-03 20:28:52,132 - INFO -   - Predicted: 3->1->2->4
+2026-07-03 20:28:52,132 - INFO -   - Ground Truth: 3->1->2->4
+2026-07-03 20:28:52,132 - INFO -   - Result: 🎉 CORRECT! 🎉
+2026-07-03 20:28:52,142 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/agent_system/logs/PSS_task/3_new_mechanism (JSON + Readable TXT)
+2026-07-03 20:28:52,143 - INFO - --- End of Q3 ---
+2026-07-03 20:28:52,144 - INFO - ==================================
+2026-07-03 20:28:52,144 - INFO -    Testing Question 5/664 (ID: 4)   
+2026-07-03 20:28:52,145 - INFO - 🎯 Standard Query: Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.
+2026-07-03 20:28:52,145 - INFO - 🔑 Correct Answer: [4->2->1->3]
+2026-07-03 20:28:52,145 - INFO - 📹 Preparing video metadata...
+2026-07-03 20:28:53,494 - INFO -     ✅ Segment 1 (Video 1): [273.0-292.0]
+2026-07-03 20:28:53,495 - INFO -     ✅ Segment 2 (Video 2): [252.0-265.0]
+2026-07-03 20:28:53,495 - INFO -     ✅ Segment 3 (Video 3): [326.0-407.0]
+2026-07-03 20:28:53,495 - INFO -     ✅ Segment 4 (Video 4): [167.0-238.0]
+2026-07-03 20:28:53,495 - INFO - 🚀 Starting Master Agent Loop...
+2026-07-03 20:28:53,495 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-03 20:29:17,124 - INFO -   ⏱️  LLM: 23.6s
+2026-07-03 20:29:17,124 - INFO -   🤖 Thought: Layer1: independently scan all 4 segments to build an unbiased inventory of operations, objects, and...
+2026-07-03 20:29:17,124 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-03 20:29:17,124 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=5
+2026-07-03 20:29:17,125 - INFO -     [CHUNK 1/4] Video 1 chunk 1/1: 0-19s, 16 frames
+2026-07-03 20:29:17,125 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:29:17,125 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:29:18,035 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:30:37,897 - INFO -     [BATCH 1/4] Video 1 done in 80.8s (1 chunks)
+2026-07-03 20:30:37,897 - INFO -     [CHUNK 2/4] Video 2 chunk 1/1: 0-13s, 16 frames
+2026-07-03 20:30:37,897 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:30:37,897 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:30:38,483 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:32:58,093 - INFO -     [BATCH 2/4] Video 2 done in 221.0s (1 chunks)
+2026-07-03 20:32:58,093 - INFO -     [CHUNK 3/4] Video 3 chunk 1/1: 0-81s, 16 frames
+2026-07-03 20:32:58,093 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:32:58,094 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:32:59,625 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:34:09,652 - INFO -     [BATCH 3/4] Video 3 done in 292.5s (1 chunks)
+2026-07-03 20:34:09,652 - INFO -     [CHUNK 4/4] Video 4 chunk 1/1: 0-71s, 16 frames
+2026-07-03 20:34:09,653 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:34:09,653 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:34:10,794 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:35:05,023 - INFO -     [BATCH 4/4] Video 4 done in 347.9s (1 chunks)
+2026-07-03 20:35:05,024 - INFO -   ⏱️  Batch Tool (4 videos): 347.9s, Turn total: 371.5s
+2026-07-03 20:35:05,024 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 371.5s)
+2026-07-03 20:37:21,512 - INFO -   ⏱️  LLM: 136.5s
+2026-07-03 20:37:21,512 - INFO -   🤖 Thought: Layer2: verify the object state transitions and check for background object continuity to resolve th...
+2026-07-03 20:37:21,512 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-07-03 20:37:21,512 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=8
+2026-07-03 20:37:21,513 - INFO -     [CHUNK 1/4] Video 4 chunk 1/1: 0-71s, 16 frames
+2026-07-03 20:37:21,513 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:37:21,513 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:37:22,676 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:38:05,999 - INFO -     [BATCH 1/4] Video 4 done in 44.5s (1 chunks)
+2026-07-03 20:38:05,999 - INFO -     [CHUNK 2/4] Video 2 chunk 1/1: 0-13s, 16 frames
+2026-07-03 20:38:05,999 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:38:05,999 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:38:06,536 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:38:51,937 - INFO -     [BATCH 2/4] Video 2 done in 90.4s (1 chunks)
+2026-07-03 20:38:51,937 - INFO -     [CHUNK 3/4] Video 1 chunk 1/1: 0-19s, 16 frames
+2026-07-03 20:38:51,938 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:38:51,938 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:38:52,766 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:41:05,944 - INFO -     [BATCH 3/4] Video 1 done in 224.4s (1 chunks)
+2026-07-03 20:41:05,944 - INFO -     [CHUNK 4/4] Video 3 chunk 1/1: 0-81s, 16 frames
+2026-07-03 20:41:05,945 - INFO -     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-03 20:41:05,945 - INFO -     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-03 20:41:07,312 - INFO -     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-03 20:41:44,995 - INFO -     [BATCH 4/4] Video 3 done in 263.5s (1 chunks)
+2026-07-03 20:41:44,995 - INFO -   ⏱️  Batch Tool (4 videos): 263.5s, Turn total: 400.0s
+2026-07-03 20:41:44,995 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 771.5s)
+2026-07-03 20:42:08,857 - INFO -   ⏱️  LLM: 23.9s
+2026-07-03 20:42:08,857 - INFO -   🤖 Thought: Layer2 confirmed the complete state-transition graph. The meat is pounded and salted in V4 (mallet a...
+2026-07-03 20:42:08,858 - INFO -   🤖 Action:  [ANSWER]
+2026-07-03 20:42:08,858 - WARNING -   ⚠️ Rejected premature final answer: All segments are covered by Layer2, but order_confidence (missing) is still too low (need >=7). Consider `observe` focus on the weakest adjacent relation, or `get_caption` if narration may help.
+2026-07-03 20:42:08,858 - INFO - 🔄 [TURN 4] Master Thinking... (elapsed since loop start: 795.4s)
+2026-07-03 20:42:39,900 - INFO -   ⏱️  LLM: 31.0s
+2026-07-03 20:42:39,901 - INFO -   🤖 Thought: The environment indicates order_confidence is missing or too low. I will retrieve captions for V3 to...
+2026-07-03 20:42:39,901 - INFO -   🤖 Action:  [GET_CAPTION]
+2026-07-03 20:42:39,901 - INFO -   🧠 Cross-context updated: confirmed=4, uncertain=2, dimensions=8
+2026-07-03 20:42:39,901 - INFO -     [TOOL] 📝 Get Caption (on-demand Whisper): Video 3, Time: 0-81.0
+2026-07-03 20:43:02,881 - INFO -     [Caption] Loading Whisper 'large-v3' @ cuda:0 ...

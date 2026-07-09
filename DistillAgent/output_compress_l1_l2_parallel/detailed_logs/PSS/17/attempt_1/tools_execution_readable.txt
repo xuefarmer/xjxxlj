@@ -1,0 +1,143 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-06 12:40:45
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-06 12:37:04 -> 2026-07-06 12:38:05
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 30.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: ground pork, grated carrots, minced onions, quartered shrimp, big metal bowl, plate | action: ingredients presented/ready for mixing | state: raw, cut (grated/minced/quartered), separate (pork/carrots in bowl, onions/shrimp on plate), present | window: 1-3 | query_link: N/A | conf: high | uncertainty: shrimp not yet added to bowl
+
+objects: sugar, garlic salt, ground pepper, small glass bowl | action: spices shown | state: dry, separate piles, filled | window: 4-6 | query_link: N/A | conf: high | uncertainty: none
+
+objects: mixed spices (sugar, garlic salt, pepper), large bowl contents (pork, carrots, onions) | action: pouring spices into large bowl | state: dry (spices), wet (main ingredients), mixed (spices in small bowl), depletion (small bowl emptying) | window: 7-12 | query_link: N/A | conf: high | uncertainty: none
+
+objects: hand, large bowl mixture | action: kneading | state: raw, wet, mixed (uniform consistency), present | window: 13-16 | query_link: N/A | conf: high | uncertainty: shrimp visibility low in final mix (likely buried)
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-06 12:37:04 -> 2026-07-06 12:37:55
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 22.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: Filling (meat/vegetable mix), large glass bowl, fork; action: Placing filling onto wrapper; state: Raw, mixed, wet; window: 1-5; query_link: N/A; conf: High; uncertainty: None.
+objects: Wrapper (square sheet), white plate; action: Folding bottom corner, sides, and rolling tightly; state: Raw, flat then rolled cylinder; window: 1-16; query_link: N/A; conf: High; uncertainty: None.
+objects: Paste (white mixture), small glass bowl, spoon; action: Applying smear to top corner to seal; state: Wet, viscous; window: 14-16; query_link: N/A; conf: High; uncertainty: None.
+objects: Plastic container; action: Holding finished rolls; state: Filled with rolled items; window: 1; query_link: N/A; conf: High; uncertainty: None.
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-06 12:37:04 -> 2026-07-06 12:37:47
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 20.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: spring roll, chopsticks; action: placing into pot; state: raw, whole, present, separate; window: 1-5; query_link: null; conf: high; uncertainty: none
+objects: pot, oil; action: heating/frying; state: filled, wet, hot; window: 1-16; query_link: null; conf: high; uncertainty: none
+objects: spring rolls (submerged); action: deep frying; state: cooking, mixed (batch), wet, bubbling; window: 8-16; query_link: null; conf: high; uncertainty: individual rolls obscured by vigorous boiling, count inferred from text (max 6)
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-06 12:38:46 -> 2026-07-06 12:39:23
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 30.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: filling mixture state in the large bowl at the end of the clip (after kneading). Report exact visible ingredients, consistency, and container. Return compact rows: object/action/state/window/query_link/conf/uncertain. No final answer or prose."
+}
+
+[Output]:
+filling_mixture/kneading/raw, wet, sticky mix of ground pork, grated carrots, minced onions in large metal bowl/13-16/filling mixture state end/0.9/degree of uniformity
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-06 12:38:46 -> 2026-07-06 12:40:21
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 22.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: filling mixture state in the glass bowl at the start; state of the finished rolled items in the plastic container at the end. Report exact visible ingredients, consistency, wrapper state, and container. Return compact rows: object/action/state/window/query_link/conf/uncertain. No final answer or prose."
+}
+
+[Output]:
+filling_mixture | resting | raw, wet, chunky mix of ground meat and shredded carrots | large glass bowl | start | high | none
+spring_rolls | stored | raw, tightly rolled cylinders, white wrapper sealed with paste | clear plastic container | end | high | none
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-06 12:38:46 -> 2026-07-06 12:39:19
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 20.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: state of the spring rolls at the very beginning before/during placement into the pot. Report wrapper appearance, raw/cooked state, and oil state. Return compact rows: object/action/state/window/query_link/conf/uncertain. No final answer or prose."
+}
+
+[Output]:
+spring_rolls/placement/white, smooth, cylindrical wrapper/1-5/wrapper appearance/high/no
+spring_rolls/placement/raw, uncooked/1-5/raw/cooked state/high/no
+oil/heating/hot, clear, golden, bubbling upon contact/1-6/oil state/high/no
+
+------------------------------------------------------------
+

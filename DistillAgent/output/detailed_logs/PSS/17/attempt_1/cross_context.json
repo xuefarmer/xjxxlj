@@ -1,0 +1,220 @@
+{
+  "confirmed": [
+    "Video 1 produces the mixed filling.",
+    "Video 2 consumes the mixed filling and produces raw spring rolls.",
+    "Video 3 consumes the raw spring rolls."
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Prep of raw filling: pork, carrots, onions, shrimp, spices mixed and kneaded into uniform mass.\", \"2\": \"Assembly of spring rolls: mixed filling placed on wrappers, rolled, sealed with paste.\", \"3\": \"Deep frying: raw spring rolls dropped into hot oil, vigorous boiling.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "filling_mixture": {
+      "1": "Starts separate (pork, carrots, onions, shrimp, spices), ends as wet/sticky/uniform mixed mass in large metal bowl.",
+      "2": "Already fully mixed (meat and carrots visible), moist/wet, in large glass bowl, being portioned onto wrappers."
+    },
+    "spring_rolls": {
+      "2": "Raw, cylindrical, assembled and sealed. Background container holds several finished raw rolls.",
+      "3": "Raw, whole, cylindrical, dropped into hot oil by chopsticks."
+    },
+    "oil_pot": {
+      "3": "Filled with golden oil, transitions from calm/shimmering to vigorous bubbling upon food entry."
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked, empty/filled, separate/mixed)",
+    "transfers between containers",
+    "residue/depletion",
+    "background vessel states",
+    "filling mixture state (separate vs mixed)",
+    "spring roll state (assembled raw vs frying)"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "Need to identify shared objects across segments to build a state-transition graph."
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked, empty/filled, separate/mixed)",
+          "transfers between containers",
+          "residue/depletion",
+          "background vessel states"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Prep of raw filling: pork, carrots, onions, shrimp, spices mixed and kneaded into uniform mass.",
+          "2": "Assembly of spring rolls: mixed filling placed on wrappers, rolled, sealed with paste.",
+          "3": "Deep frying: raw spring rolls dropped into hot oil, vigorous boiling."
+        },
+        "object_memory": {
+          "filling_mixture": {
+            "1": "Starts separate (pork, carrots, onions, shrimp, spices), ends as wet/sticky/uniform mixed mass in large metal bowl.",
+            "2": "Already fully mixed (meat and carrots visible), moist/wet, in large glass bowl, being portioned onto wrappers."
+          },
+          "spring_rolls": {
+            "2": "Raw, cylindrical, assembled and sealed. Background container holds several finished raw rolls.",
+            "3": "Raw, whole, cylindrical, dropped into hot oil by chopsticks."
+          },
+          "oil_pot": {
+            "3": "Filled with golden oil, transitions from calm/shimmering to vigorous bubbling upon food entry."
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                30
+              ],
+              "event": "filling preparation and kneading",
+              "key_objects": [
+                "large metal bowl",
+                "pork",
+                "carrots",
+                "onions",
+                "shrimp",
+                "spices"
+              ],
+              "visible_state": "separate ingredients -> uniform mixed raw filling",
+              "why_it_matters": "establishes start of filling state chain",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                22
+              ],
+              "event": "spring roll assembly",
+              "key_objects": [
+                "large glass bowl",
+                "mixed filling",
+                "wrappers",
+                "paste",
+                "raw spring rolls"
+              ],
+              "visible_state": "mixed filling portioned, wrappers rolled and sealed",
+              "why_it_matters": "consumes mixed filling, produces raw spring rolls",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                20
+              ],
+              "event": "deep frying",
+              "key_objects": [
+                "metal pot",
+                "oil",
+                "chopsticks",
+                "raw spring rolls"
+              ],
+              "visible_state": "raw spring rolls dropped into hot oil, oil boils vigorously",
+              "why_it_matters": "consumes raw spring rolls",
+              "confidence": "high"
+            }
+          ]
+        },
+        "preliminary_order": [
+          1,
+          2,
+          3
+        ],
+        "order_confidence": 9,
+        "confidence_basis": "Clear linear state-transition graph: Video 1 produces the mixed filling. Video 2 consumes the mixed filling to produce raw spring rolls. Video 3 consumes the raw spring rolls to fry them. No missing links or contradictions.",
+        "blocking_uncertainties": [
+          "None. The object state chain is complete and visually unambiguous."
+        ],
+        "candidate_targets": [
+          1,
+          2,
+          3
+        ],
+        "low_value_targets": [],
+        "uncertain": [],
+        "dimensions_to_compare": [
+          "filling mixture state (separate vs mixed)",
+          "spring roll state (assembled raw vs frying)"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "1": "Filling starts separate, ends fully mixed/uniform in metal bowl.",
+          "2": "Filling is already fully mixed, used to assemble raw spring rolls.",
+          "3": "Raw spring rolls dropped into hot oil, oil boils vigorously."
+        },
+        "confirmed": [
+          "Video 1 produces the mixed filling.",
+          "Video 2 consumes the mixed filling and produces raw spring rolls.",
+          "Video 3 consumes the raw spring rolls."
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          1,
+          2,
+          3
+        ],
+        "uncertain": [],
+        "focus_plan": [],
+        "order_confidence": 10
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 30], \"event\": \"filling preparation and kneading\", \"key_objects\": [\"large metal bowl\", \"pork\", \"carrots\", \"onions\", \"shrimp\", \"spices\"], \"visible_state\": \"separate ingredients -> uniform mixed raw filling\", \"why_it_matters\": \"establishes start of filling state chain\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 22], \"event\": \"spring roll assembly\", \"key_objects\": [\"large glass bowl\", \"mixed filling\", \"wrappers\", \"paste\", \"raw spring rolls\"], \"visible_state\": \"mixed filling portioned, wrappers rolled and sealed\", \"why_it_matters\": \"consumes mixed filling, produces raw spring rolls\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 20], \"event\": \"deep frying\", \"key_objects\": [\"metal pot\", \"oil\", \"chopsticks\", \"raw spring rolls\"], \"visible_state\": \"raw spring rolls dropped into hot oil, oil boils vigorously\", \"why_it_matters\": \"consumes raw spring rolls\", \"confidence\": \"high\"}]}"
+  ],
+  "preliminary_order": [
+    "1",
+    "2",
+    "3"
+  ],
+  "order_confidence": [
+    "9",
+    "10"
+  ],
+  "confidence_basis": [
+    "Clear linear state-transition graph: Video 1 produces the mixed filling. Video 2 consumes the mixed filling to produce raw spring rolls. Video 3 consumes the raw spring rolls to fry them. No missing links or contradictions."
+  ],
+  "blocking_uncertainties": [
+    "None. The object state chain is complete and visually unambiguous."
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"Filling starts separate, ends fully mixed/uniform in metal bowl.\", \"2\": \"Filling is already fully mixed, used to assemble raw spring rolls.\", \"3\": \"Raw spring rolls dropped into hot oil, oil boils vigorously.\"}"
+  ],
+  "pruned_targets": [],
+  "focus_plan": []
+}

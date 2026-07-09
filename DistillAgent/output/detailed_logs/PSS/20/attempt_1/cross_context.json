@@ -1,0 +1,251 @@
+{
+  "confirmed": [
+    "1->2: exact wrap state match, no sauce",
+    "2->4: physical constraint requires sauce poured before top leaf added",
+    "3->2: sauce created in blender then poured"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Assembles wrap base: cabbage leaf, carrots, radish, herbs. All raw.\", \"2\": \"Pours orange sauce from blender pitcher over assembled open wrap.\", \"3\": \"Makes sauce in blender: empty -> chunks -> blended reddish-brown liquid.\", \"4\": \"Closes wrap: adds top cabbage leaf over filled base, presses down.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "blender_jar_pitcher": {
+      "3": "Starts empty, filled with chunks, blended into liquid. End state needs verification (lifted off base?).",
+      "2": "Pitcher filled with orange liquid, pours it out, becomes depleted."
+    },
+    "wrap_assembly_on_plate": {
+      "1": "End state: open wrap with cabbage base, carrots, radish, herbs. Needs verification for sauce presence.",
+      "2": "Start state: open wrap. End state: dressed with orange sauce.",
+      "4": "Start state: filled base. Needs verification for sauce presence on fillings before top leaf is added."
+    },
+    "cutting_board_with_cabbage_and_carrots": {
+      "1": "Present with cabbage head and carrot pile.",
+      "2": "Present with cabbage head and carrot pile.",
+      "3": "Present with cabbage head and carrot pile.",
+      "4": "Present with cabbage head and carrot pile."
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object state chains across segments",
+    "source/destination container transitions",
+    "residue/depletion patterns",
+    "raw-to-cooked progression",
+    "blender jar/pitcher physical features (handle, spout, lid, material)",
+    "wrap filling layers and sauce presence at segment boundaries"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All ordering relations - need Layer1 evidence first"
+        ],
+        "dimensions_to_compare": [
+          "object state chains across segments",
+          "source/destination container transitions",
+          "residue/depletion patterns",
+          "raw-to-cooked progression"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Assembles wrap base: cabbage leaf, carrots, radish, herbs. All raw.",
+          "2": "Pours orange sauce from blender pitcher over assembled open wrap.",
+          "3": "Makes sauce in blender: empty -> chunks -> blended reddish-brown liquid.",
+          "4": "Closes wrap: adds top cabbage leaf over filled base, presses down."
+        },
+        "object_memory": {
+          "blender_jar_pitcher": {
+            "3": "Starts empty, filled with chunks, blended into liquid. End state needs verification (lifted off base?).",
+            "2": "Pitcher filled with orange liquid, pours it out, becomes depleted."
+          },
+          "wrap_assembly_on_plate": {
+            "1": "End state: open wrap with cabbage base, carrots, radish, herbs. Needs verification for sauce presence.",
+            "2": "Start state: open wrap. End state: dressed with orange sauce.",
+            "4": "Start state: filled base. Needs verification for sauce presence on fillings before top leaf is added."
+          },
+          "cutting_board_with_cabbage_and_carrots": {
+            "1": "Present with cabbage head and carrot pile.",
+            "2": "Present with cabbage head and carrot pile.",
+            "3": "Present with cabbage head and carrot pile.",
+            "4": "Present with cabbage head and carrot pile."
+          }
+        },
+        "preliminary_order": [
+          "3",
+          "1",
+          "2",
+          "4"
+        ],
+        "order_confidence": 7,
+        "confidence_basis": "Strong logical flow: make sauce (3) -> assemble wrap (1) -> dress wrap (2) -> close wrap (4). Visual bridges need verification: blender jar in V3 == pitcher in V2; wrap in V1 == wrap in V2 (no sauce); wrap in V2 (with sauce) == wrap in V4 (with sauce?).",
+        "blocking_uncertainties": [
+          "Is the blender jar in V3 the same physical object as the pitcher in V2? (Need to verify handle/spout/lid).",
+          "Does the wrap in V2 start exactly as it ends in V1, with no sauce yet?",
+          "Does the wrap in V4 start with the orange sauce already on the fillings, confirming it follows V2?"
+        ],
+        "candidate_targets": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "Physical continuity of blender jar/pitcher between V3 and V2.",
+          "Presence/absence of orange sauce on the wrap at the V1->V2 and V2->V4 boundaries."
+        ],
+        "dimensions_to_compare": [
+          "blender jar/pitcher physical features (handle, spout, lid, material)",
+          "wrap filling layers and sauce presence at segment boundaries"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "1": "End state: open wrap, cabbage/carrots/radish/herbs, no sauce.",
+          "2": "Start state: open wrap, no sauce. End state: dressed wrap.",
+          "3": "End state: sauce blended in blender jar on base.",
+          "4": "Start state: filled base (dressed). End state: closed wrap."
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                30,
+                40
+              ],
+              "event": "wrap base assembly complete",
+              "key_objects": [
+                "cabbage leaf",
+                "carrots",
+                "radish",
+                "herbs"
+              ],
+              "visible_state": "open wrap, no sauce",
+              "why_it_matters": "matches V2 start exactly",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                5
+              ],
+              "event": "pouring sauce begins",
+              "key_objects": [
+                "blender pitcher",
+                "open wrap"
+              ],
+              "visible_state": "open wrap, no sauce yet",
+              "why_it_matters": "matches V1 end",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                80,
+                93
+              ],
+              "event": "sauce blending complete",
+              "key_objects": [
+                "blender jar",
+                "orange liquid"
+              ],
+              "visible_state": "smooth orange sauce in jar on base",
+              "why_it_matters": "sauce source for V2",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                2.5
+              ],
+              "event": "top leaf placement begins",
+              "key_objects": [
+                "filled wrap base",
+                "top cabbage leaf"
+              ],
+              "visible_state": "filled base, top leaf separate",
+              "why_it_matters": "must follow V2 due to physical constraint",
+              "confidence": "high"
+            }
+          ]
+        },
+        "confirmed": [
+          "1->2: exact wrap state match, no sauce",
+          "2->4: physical constraint requires sauce poured before top leaf added",
+          "3->2: sauce created in blender then poured"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "uncertain": [],
+        "focus_plan": [],
+        "order_confidence": 8
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3",
+    "1",
+    "2",
+    "4"
+  ],
+  "order_confidence": [
+    "7",
+    "8"
+  ],
+  "confidence_basis": [
+    "Strong logical flow: make sauce (3) -> assemble wrap (1) -> dress wrap (2) -> close wrap (4). Visual bridges need verification: blender jar in V3 == pitcher in V2; wrap in V1 == wrap in V2 (no sauce); wrap in V2 (with sauce) == wrap in V4 (with sauce?)."
+  ],
+  "blocking_uncertainties": [
+    "Is the blender jar in V3 the same physical object as the pitcher in V2? (Need to verify handle/spout/lid).",
+    "Does the wrap in V2 start exactly as it ends in V1, with no sauce yet?",
+    "Does the wrap in V4 start with the orange sauce already on the fillings, confirming it follows V2?"
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"End state: open wrap, cabbage/carrots/radish/herbs, no sauce.\", \"2\": \"Start state: open wrap, no sauce. End state: dressed wrap.\", \"3\": \"End state: sauce blended in blender jar on base.\", \"4\": \"Start state: filled base (dressed). End state: closed wrap.\"}"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [30, 40], \"event\": \"wrap base assembly complete\", \"key_objects\": [\"cabbage leaf\", \"carrots\", \"radish\", \"herbs\"], \"visible_state\": \"open wrap, no sauce\", \"why_it_matters\": \"matches V2 start exactly\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 5], \"event\": \"pouring sauce begins\", \"key_objects\": [\"blender pitcher\", \"open wrap\"], \"visible_state\": \"open wrap, no sauce yet\", \"why_it_matters\": \"matches V1 end\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [80, 93], \"event\": \"sauce blending complete\", \"key_objects\": [\"blender jar\", \"orange liquid\"], \"visible_state\": \"smooth orange sauce in jar on base\", \"why_it_matters\": \"sauce source for V2\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 2.5], \"event\": \"top leaf placement begins\", \"key_objects\": [\"filled wrap base\", \"top cabbage leaf\"], \"visible_state\": \"filled base, top leaf separate\", \"why_it_matters\": \"must follow V2 due to physical constraint\", \"confidence\": \"high\"}]}"
+  ],
+  "pruned_targets": [],
+  "focus_plan": []
+}

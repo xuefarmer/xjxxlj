@@ -1,0 +1,551 @@
+{
+  "confirmed": [
+    "Video 2 is final garnishing",
+    "Video 3 is combining stage",
+    "Video 5 contains multiple steps",
+    "Video 1 is embedded within Video 5 cornflour prep"
+  ],
+  "uncertain": [
+    "Video 4 relationship to Video 5 vegetable sautéing"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{}",
+    "{\"video1\": \"cornflour slurry prep, background pot with reddish contents\", \"video2\": \"soup garnishing with coriander and cream\", \"video3\": \"combining: vegetables, water, cornflour, spices into main pot\", \"video4\": \"butter melting, vegetable sautéing\", \"video5\": \"tomato base prep, cornflour slurry, vegetable sautéing, straining\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "cornflour_slurry": {
+      "1": "being made",
+      "3": "added to pot 31.5-38.5s",
+      "5": "made 25-50s"
+    },
+    "butter_vegetables": {
+      "4": "sautéed",
+      "5": "sautéed 75-120s"
+    },
+    "main_pot": {
+      "1": "background reddish contents",
+      "3": "receives ingredients",
+      "5": "receives tomato juice 145-150s"
+    },
+    "tomato_base": {
+      "5": "prepared 0-60s, strained 120-150s"
+    },
+    "soup_bowl": {
+      "2": "garnished final"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states",
+    "container fill/empty",
+    "tool contact",
+    "transfer traces",
+    "residue/depletion",
+    "background vessel state",
+    "cornflour bowl state",
+    "main pot state",
+    "black pan state",
+    "tomato pot state",
+    "ingredient bowl fill levels"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {},
+        "object_memory": {},
+        "temporal_index": {},
+        "preliminary_order": null,
+        "preliminary_confidence": 0,
+        "confidence_basis": [],
+        "blocking_uncertainties": [
+          "awaiting Layer1 results"
+        ],
+        "irrelevant_windows": [],
+        "candidate_targets": [],
+        "low_value_targets": [],
+        "uncertain": [
+          "all segment states pending"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states",
+          "container fill/empty",
+          "tool contact",
+          "transfer traces",
+          "residue/depletion",
+          "background vessel state"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "video1": "cornflour slurry prep, background pot with reddish contents",
+          "video2": "soup garnishing with coriander and cream",
+          "video3": "combining: vegetables, water, cornflour, spices into main pot",
+          "video4": "butter melting, vegetable sautéing",
+          "video5": "tomato base prep, cornflour slurry, vegetable sautéing, straining"
+        },
+        "object_memory": {
+          "cornflour_slurry": {
+            "1": "being made",
+            "3": "added to pot 31.5-38.5s",
+            "5": "made 25-50s"
+          },
+          "butter_vegetables": {
+            "4": "sautéed",
+            "5": "sautéed 75-120s"
+          },
+          "main_pot": {
+            "1": "background reddish contents",
+            "3": "receives ingredients",
+            "5": "receives tomato juice 145-150s"
+          },
+          "tomato_base": {
+            "5": "prepared 0-60s, strained 120-150s"
+          },
+          "soup_bowl": {
+            "2": "garnished final"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                25
+              ],
+              "event": "cornflour slurry prep",
+              "key_objects": [
+                "cornflour bowl",
+                "background pot"
+              ],
+              "visible_state": "slurry being made, pot with reddish contents in background",
+              "why_it_matters": "establishes cornflour prep timing relative to tomato base",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                28
+              ],
+              "event": "soup garnishing",
+              "key_objects": [
+                "white bowl",
+                "coriander",
+                "cream"
+              ],
+              "visible_state": "soup garnished with herbs and cream swirl",
+              "why_it_matters": "final finishing step",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                56
+              ],
+              "event": "combining ingredients",
+              "key_objects": [
+                "main pot",
+                "vegetable pan",
+                "cornflour bowl"
+              ],
+              "visible_state": "vegetables transferred, water/cornflour/spices added",
+              "why_it_matters": "combining stage after prep",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                46
+              ],
+              "event": "vegetable sautéing",
+              "key_objects": [
+                "black pan",
+                "butter",
+                "vegetables"
+              ],
+              "visible_state": "butter melting, vegetables sautéed",
+              "why_it_matters": "cooking stage",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                75
+              ],
+              "event": "tomato base and cornflour prep",
+              "key_objects": [
+                "steel pot",
+                "cornflour bowl"
+              ],
+              "visible_state": "tomatoes boiling, cornflour slurry made",
+              "why_it_matters": "early prep stage",
+              "confidence": "high"
+            },
+            {
+              "window": [
+                75,
+                150
+              ],
+              "event": "vegetable sautéing and straining",
+              "key_objects": [
+                "black pan",
+                "sieve",
+                "white bowl"
+              ],
+              "visible_state": "vegetables sautéed, tomatoes strained",
+              "why_it_matters": "cooking and prep completion",
+              "confidence": "high"
+            }
+          ]
+        },
+        "preliminary_order": "5->1->4->3->2",
+        "preliminary_confidence": 6,
+        "confidence_basis": [
+          "video5 contains early prep steps",
+          "video1 shows cornflour with tomato base in background",
+          "video4 shows vegetable sautéing",
+          "video3 shows combining",
+          "video2 shows final garnishing"
+        ],
+        "blocking_uncertainties": [
+          "overlap between video1 and video5 cornflour prep",
+          "overlap between video4 and video5 vegetable sautéing",
+          "exact position of video1 and video4 relative to video5"
+        ],
+        "irrelevant_windows": [],
+        "candidate_targets": [],
+        "low_value_targets": [],
+        "uncertain": [
+          "video1 vs video5 cornflour overlap",
+          "video4 vs video5 vegetable overlap",
+          "exact order of video1, video4, video5"
+        ],
+        "dimensions_to_compare": [
+          "cornflour bowl state",
+          "main pot state",
+          "black pan state",
+          "tomato pot state",
+          "ingredient bowl fill levels"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "cornflour_slurry": {
+            "1": "being made, background pot COVERED",
+            "5_25_50s": "being made, tomatoes boiling",
+            "3": "added to pot 31.5-38.5s"
+          },
+          "vegetable_sautéing": {
+            "4": "butter melting, vegetables sautéed",
+            "5_75_120s": "butter melting, vegetables sautéed, pan covered"
+          },
+          "main_pot": {
+            "1": "background COVERED RED_LIQUID",
+            "3_start": "RED_LIQUID",
+            "3_end": "CREAMY_ORANGE",
+            "5_145_150s": "receives tomato juice"
+          },
+          "tomato_base": {
+            "5_0_60s": "paste→boiling",
+            "5_120_150s": "strained"
+          },
+          "soup_bowl": {
+            "2": "EMPTY→SOUP→GARNISHED"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                25
+              ],
+              "event": "cornflour slurry prep",
+              "key_objects": [
+                "cornflour bowl",
+                "background pot"
+              ],
+              "visible_state": "slurry being made, pot COVERED RED_LIQUID",
+              "why_it_matters": "overlaps with Video 5 cornflour prep",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                20,
+                55
+              ],
+              "event": "cornflour slurry prep",
+              "key_objects": [
+                "cornflour bowl",
+                "tomato pot"
+              ],
+              "visible_state": "slurry being made, tomatoes boiling",
+              "why_it_matters": "overlaps with Video 1",
+              "confidence": "high"
+            },
+            {
+              "window": [
+                75,
+                120
+              ],
+              "event": "vegetable sautéing",
+              "key_objects": [
+                "black pan",
+                "butter",
+                "vegetables"
+              ],
+              "visible_state": "butter melting, vegetables sautéed, pan covered",
+              "why_it_matters": "overlaps with Video 4",
+              "confidence": "high"
+            }
+          ]
+        },
+        "preliminary_order": "5->1->4->3->2",
+        "order_confidence": 6,
+        "confidence_basis": [
+          "Video 5 contains early prep",
+          "Video 1 shows slurry with covered pot",
+          "Video 4 shows vegetable sautéing",
+          "Video 3 shows combining",
+          "Video 2 shows garnishing"
+        ],
+        "blocking_uncertainties": [
+          "Video 1 vs Video 5 cornflour overlap",
+          "Video 4 vs Video 5 vegetable overlap",
+          "exact order of Video 1 and Video 4 relative to Video 5"
+        ],
+        "irrelevant_windows": [],
+        "candidate_targets": [],
+        "pruned_targets": [],
+        "confirmed": [
+          "Video 2 is final garnishing",
+          "Video 3 is combining stage",
+          "Video 5 contains multiple steps"
+        ],
+        "uncertain": [
+          "Video 1 and Video 4 relationship to Video 5"
+        ],
+        "focus_plan": [
+          {
+            "targets": [
+              1,
+              "5_20_55"
+            ],
+            "dims": [
+              "bowl size",
+              "background pot state",
+              "unique objects"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "cornflour_slurry": {
+            "1": "being made, background pot COVERED",
+            "5_25_50s": "being made, tomatoes boiling",
+            "3": "added to pot 31.5-38.5s"
+          },
+          "vegetable_sautéing": {
+            "4": "butter melting, vegetables sautéed",
+            "5_75_120s": "butter melting, vegetables sautéed, pan covered"
+          },
+          "main_pot": {
+            "1": "background COVERED RED_LIQUID",
+            "3_start": "RED_LIQUID",
+            "3_end": "CREAMY_ORANGE",
+            "5_145_150s": "receives tomato juice"
+          },
+          "tomato_base": {
+            "5_0_60s": "paste→boiling",
+            "5_120_150s": "strained"
+          },
+          "soup_bowl": {
+            "2": "EMPTY→SOUP→GARNISHED"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                25
+              ],
+              "event": "cornflour slurry prep",
+              "key_objects": [
+                "cornflour bowl",
+                "background pot"
+              ],
+              "visible_state": "slurry being made, pot COVERED RED_LIQUID",
+              "why_it_matters": "embedded within Video 5 cornflour prep",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                20,
+                55
+              ],
+              "event": "cornflour slurry prep",
+              "key_objects": [
+                "cornflour bowl",
+                "tomato pot"
+              ],
+              "visible_state": "slurry being made, tomatoes boiling",
+              "why_it_matters": "contains Video 1's cornflour prep with broader context",
+              "confidence": "high"
+            },
+            {
+              "window": [
+                75,
+                120
+              ],
+              "event": "vegetable sautéing",
+              "key_objects": [
+                "black pan",
+                "butter",
+                "vegetables"
+              ],
+              "visible_state": "butter melting, vegetables sautéed, pan covered",
+              "why_it_matters": "overlaps with Video 4",
+              "confidence": "high"
+            }
+          ]
+        },
+        "preliminary_order": "5->1->4->3->2",
+        "order_confidence": 6,
+        "confidence_basis": [
+          "Video 1 embedded in Video 5 cornflour prep",
+          "Video 5 contains multiple steps",
+          "Video 4 shows vegetable sautéing",
+          "Video 3 shows combining",
+          "Video 2 shows garnishing"
+        ],
+        "blocking_uncertainties": [
+          "Video 4 vs Video 5 vegetable overlap",
+          "exact order of Video 1 and Video 4 relative to Video 5"
+        ],
+        "irrelevant_windows": [],
+        "candidate_targets": [],
+        "pruned_targets": [],
+        "confirmed": [
+          "Video 2 is final garnishing",
+          "Video 3 is combining stage",
+          "Video 5 contains multiple steps",
+          "Video 1 is embedded within Video 5 cornflour prep"
+        ],
+        "uncertain": [
+          "Video 4 relationship to Video 5 vegetable sautéing"
+        ],
+        "focus_plan": [
+          {
+            "targets": [
+              4,
+              "5_75_120"
+            ],
+            "dims": [
+              "pan type",
+              "butter state",
+              "vegetable state",
+              "lid timing"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "order_confidence": 8
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "temporal_index": [
+    "{}",
+    "{\"video1\": [{\"window\": [0, 25], \"event\": \"cornflour slurry prep\", \"key_objects\": [\"cornflour bowl\", \"background pot\"], \"visible_state\": \"slurry being made, pot with reddish contents in background\", \"why_it_matters\": \"establishes cornflour prep timing relative to tomato base\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 28], \"event\": \"soup garnishing\", \"key_objects\": [\"white bowl\", \"coriander\", \"cream\"], \"visible_state\": \"soup garnished with herbs and cream swirl\", \"why_it_matters\": \"final finishing step\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 56], \"event\": \"combining ingredients\", \"key_objects\": [\"main pot\", \"vegetable pan\", \"cornflour bowl\"], \"visible_state\": \"vegetables transferred, water/cornflour/spices added\", \"why_it_matters\": \"combining stage after prep\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 46], \"event\": \"vegetable sautéing\", \"key_objects\": [\"black pan\", \"butter\", \"vegetables\"], \"visible_state\": \"butter melting, vegetables sautéed\", \"why_it_matters\": \"cooking stage\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 75], \"event\": \"tomato base and cornflour prep\", \"key_objects\": [\"steel pot\", \"cornflour bowl\"], \"visible_state\": \"tomatoes boiling, cornflour slurry made\", \"why_it_matters\": \"early prep stage\", \"confidence\": \"high\"}, {\"window\": [75, 150], \"event\": \"vegetable sautéing and straining\", \"key_objects\": [\"black pan\", \"sieve\", \"white bowl\"], \"visible_state\": \"vegetables sautéed, tomatoes strained\", \"why_it_matters\": \"cooking and prep completion\", \"confidence\": \"high\"}]}",
+    "{\"video1\": [{\"window\": [0, 25], \"event\": \"cornflour slurry prep\", \"key_objects\": [\"cornflour bowl\", \"background pot\"], \"visible_state\": \"slurry being made, pot COVERED RED_LIQUID\", \"why_it_matters\": \"overlaps with Video 5 cornflour prep\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [20, 55], \"event\": \"cornflour slurry prep\", \"key_objects\": [\"cornflour bowl\", \"tomato pot\"], \"visible_state\": \"slurry being made, tomatoes boiling\", \"why_it_matters\": \"overlaps with Video 1\", \"confidence\": \"high\"}, {\"window\": [75, 120], \"event\": \"vegetable sautéing\", \"key_objects\": [\"black pan\", \"butter\", \"vegetables\"], \"visible_state\": \"butter melting, vegetables sautéed, pan covered\", \"why_it_matters\": \"overlaps with Video 4\", \"confidence\": \"high\"}]}",
+    "{\"video1\": [{\"window\": [0, 25], \"event\": \"cornflour slurry prep\", \"key_objects\": [\"cornflour bowl\", \"background pot\"], \"visible_state\": \"slurry being made, pot COVERED RED_LIQUID\", \"why_it_matters\": \"embedded within Video 5 cornflour prep\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [20, 55], \"event\": \"cornflour slurry prep\", \"key_objects\": [\"cornflour bowl\", \"tomato pot\"], \"visible_state\": \"slurry being made, tomatoes boiling\", \"why_it_matters\": \"contains Video 1's cornflour prep with broader context\", \"confidence\": \"high\"}, {\"window\": [75, 120], \"event\": \"vegetable sautéing\", \"key_objects\": [\"black pan\", \"butter\", \"vegetables\"], \"visible_state\": \"butter melting, vegetables sautéed, pan covered\", \"why_it_matters\": \"overlaps with Video 4\", \"confidence\": \"high\"}]}"
+  ],
+  "preliminary_order": [
+    "5->1->4->3->2"
+  ],
+  "preliminary_confidence": [
+    "0",
+    "6"
+  ],
+  "confidence_basis": [
+    "video5 contains early prep steps",
+    "video1 shows cornflour with tomato base in background",
+    "video4 shows vegetable sautéing",
+    "video3 shows combining",
+    "video2 shows final garnishing",
+    "Video 5 contains early prep",
+    "Video 1 shows slurry with covered pot",
+    "Video 4 shows vegetable sautéing",
+    "Video 3 shows combining",
+    "Video 2 shows garnishing",
+    "Video 1 embedded in Video 5 cornflour prep",
+    "Video 5 contains multiple steps"
+  ],
+  "blocking_uncertainties": [
+    "awaiting Layer1 results",
+    "overlap between video1 and video5 cornflour prep",
+    "overlap between video4 and video5 vegetable sautéing",
+    "exact position of video1 and video4 relative to video5",
+    "Video 1 vs Video 5 cornflour overlap",
+    "Video 4 vs Video 5 vegetable overlap",
+    "exact order of Video 1 and Video 4 relative to Video 5"
+  ],
+  "irrelevant_windows": [],
+  "candidate_targets": [],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"cornflour_slurry\": {\"1\": \"being made, background pot COVERED\", \"5_25_50s\": \"being made, tomatoes boiling\", \"3\": \"added to pot 31.5-38.5s\"}, \"vegetable_sautéing\": {\"4\": \"butter melting, vegetables sautéed\", \"5_75_120s\": \"butter melting, vegetables sautéed, pan covered\"}, \"main_pot\": {\"1\": \"background COVERED RED_LIQUID\", \"3_start\": \"RED_LIQUID\", \"3_end\": \"CREAMY_ORANGE\", \"5_145_150s\": \"receives tomato juice\"}, \"tomato_base\": {\"5_0_60s\": \"paste→boiling\", \"5_120_150s\": \"strained\"}, \"soup_bowl\": {\"2\": \"EMPTY→SOUP→GARNISHED\"}}"
+  ],
+  "order_confidence": [
+    "6",
+    "8"
+  ],
+  "pruned_targets": [],
+  "focus_plan": [
+    "{\"targets\": [1, \"5_20_55\"], \"dims\": [\"bowl size\", \"background pot state\", \"unique objects\"]}",
+    "{\"targets\": [4, \"5_75_120\"], \"dims\": [\"pan type\", \"butter state\", \"vegetable state\", \"lid timing\"]}"
+  ]
+}

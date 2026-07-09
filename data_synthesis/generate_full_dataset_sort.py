@@ -1,4 +1,4 @@
-import requests
+
 import json
 import random
 import re
@@ -14,18 +14,14 @@ except ImportError:
     pass
 
 # ================= 1. Global Configuration =================
-API_KEY = os.environ.get("GEMINI_API_KEY", "")
-if not API_KEY:
-    raise ValueError("Please set GEMINI_API_KEY in environment or .env before running.")
-MODEL_NAME = "gemini-3-flash-preview"
-ENDPOINT = os.environ.get("GEMINI_ENDPOINT", "https://example.googleapis.com/v1:generateContent")
+from llm_client import request_llm
 
 OUTPUT_DIR = "sort_synthesis"  # Updated output directory
 if not os.path.exists(OUTPUT_DIR):
     os.makedirs(OUTPUT_DIR)
 
 MAX_RETRIES = 5
-MAX_WORKERS = 10  # Number of parallel threads
+MAX_WORKERS = 3  # Number of parallel threads
 
 # ================= 2. Full Coverage Matrix Parameters =================
 
@@ -114,22 +110,6 @@ Inside EACH Phase, list **8-15 Atomic Visual Events** (Micro-Actions).
 
 # ================= 4. Helper Functions =================
 
-def request_gemini(prompt):
-    headers = {"api-key": API_KEY, "Content-Type": "application/json"}
-    payload = {
-        "contents": [{"role": "user", "parts": [{"text": prompt}]}],
-        "generationConfig": {"temperature": 0.85, "maxOutputTokens": 65535}
-    }
-    try:
-        resp = requests.post(ENDPOINT, headers=headers, json=payload, timeout=120)
-        if resp.status_code == 200:
-            return resp.json()["candidates"][0]["content"]["parts"][0]["text"]
-        else:
-            print(f"   ❌ API Error: {resp.status_code}")
-    except Exception as e:
-        print(f"   ❌ Connection Error: {e}")
-    return None
-
 def extract_json(text):
     if not text: return None
     try: return json.loads(text)
@@ -169,15 +149,21 @@ def assign_random_timings(phases_data):
 
 def process_single_task(task_params):
     task_id = task_params['id']
+
+    # Skip if already generated
+    file_path = os.path.join(OUTPUT_DIR, f"task_{task_id}.json")
+    if os.path.exists(file_path):
+        return {"status": "skipped", "id": task_id}
+
     recipe = task_params['recipe']
     steps = task_params['steps']
     diff = task_params['difficulty']
     focus = task_params['focus']
-    
+
     prompt = create_matrix_prompt(recipe, steps, diff, focus)
     
     for attempt in range(MAX_RETRIES):
-        raw_text = request_gemini(prompt)
+        raw_text = request_llm(prompt, temperature=0.85)
         data = extract_json(raw_text)
         
         if data and "phases" in data:
@@ -289,7 +275,9 @@ def main():
     print(f"🔥 Starting parallel generation with {MAX_WORKERS} workers...")
     
     successful_count = 0
+    skipped_count = 0
     failed_tasks = []
+    processed = 0
     
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         # Submit all tasks
@@ -297,12 +285,12 @@ def main():
         
         for future in as_completed(future_to_task):
             result = future.result()
+            processed += 1
             if result["status"] == "success":
                 successful_count += 1
-                if successful_count % 10 == 0:
-                    print(f"✅ Progress: {successful_count}/{total_tasks} completed.")
-            else:
-                print(f"❌ Failed Task ID {result['id']} ({result['recipe']})")
+                print(f"✅ [{processed}/{total_tasks}] Task {result['id']} ({result['recipe']}) OK")
+            elif result["status"] == "failed":
+                print(f"❌ [{processed}/{total_tasks}] Task {result['id']} ({result['recipe']}) FAILED")
                 failed_tasks.append(result)
                 
     print(f"\n✨ Generation Complete.")

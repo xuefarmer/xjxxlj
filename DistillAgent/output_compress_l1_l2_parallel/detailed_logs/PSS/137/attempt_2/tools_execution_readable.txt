@@ -1,0 +1,406 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-07 06:42:19
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-07 06:34:19 -> 2026-07-07 06:36:05
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 75.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: potatoes, action: peeling, state: raw/peeled, window: [3, 5], query_link: null, conf: high, uncertainty: low
+objects: carrots, action: peeling, state: raw/peeled, window: [6, 6], query_link: null, conf: high, uncertainty: low
+objects: carrots, onion, garlic, action: grating, state: raw/grated, window: [7, 8, 11], query_link: null, conf: high, uncertainty: low
+objects: potato (peeled), action: cutting, state: raw/cut, window: [9, 9], query_link: null, conf: high, uncertainty: low (object resembles banana but context implies potato)
+objects: water in pot, action: boiling, state: hot/boiling, window: [12, 12], query_link: null, conf: high, uncertainty: low
+objects: cut potatoes, action: adding to pot, state: raw/cut -> cooking, window: [16, 16], query_link: null, conf: high, uncertainty: low
+objects: ground meat, bowls, liquids, action: present on counter, state: raw/separate/filled, window: [1, 2, 10, 13, 14, 15], query_link: null, conf: high, uncertainty: low
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-07 06:34:19 -> 2026-07-07 06:36:14
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 72.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: piping bag, mashed potatoes, white bowl, glass baking dish, meat filling
+action: chef fills piping bag with mashed potatoes, then pipes it onto the meat filling in the glass dish
+state: potatoes cooked/wet/mashed, meat filling cooked/mixed/present, bag filled then depleted, dish filled with layers
+window: 1-8
+query_link: N/A
+conf: high
+uncertainty: low
+
+objects: glass baking dish, assembled pie
+action: chef displays the assembled dish, then places it in the oven
+state: dish filled, potatoes piped in decorative pattern (layered on meat), separate layers visible, topping unbaked
+window: 9-13
+query_link: N/A
+conf: high
+uncertainty: low
+
+objects: oven, text overlay
+action: baking instruction displayed, dish inside oven
+state: text indicates baking at 350F, dish present in oven, potatoes raw/unbaked topping (cooked mash)
+window: 14-16
+query_link: N/A
+conf: high
+uncertainty: low
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-07 06:34:19 -> 2026-07-07 06:36:17
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 63.5,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 1/2, time 0s–64s)"
+}
+
+[Output]:
+objects: ground lamb, pan | action: browning | state: raw/pink turning brown, separate chunks | window: 0s-4s | query_link: Frame 1 | conf: high | uncertainty: none
+objects: man, stove, pot, meat | action: stirring, adding pepper (text) | state: meat cooked/browned, steaming | window: 4s-15s | query_link: Frames 2-4 | conf: high | uncertainty: none
+objects: meat, grated vegetables (carrots), peas, spoon | action: stirring in vegetables | state: mixed, vegetables fresh/grated, wet | window: 15s-25s | query_link: Frames 5-7 | conf: high | uncertainty: none
+objects: two men, kitchen counter, carrot | action: standing, talking, tasting | state: man eating raw carrot | window: 25s-40s | query_link: Frames 8-11 | conf: high | uncertainty: none
+objects: pot (meat mix), pot (boiling water) | action: simmering, boiling | state: meat mix cooking, water boiling | window: 40s-45s | query_link: Frame 12 | conf: high | uncertainty: none
+objects: flour, bowl, meat mixture | action: adding flour, mixing | state: flour white/dry then incorporated, mixture thickening | window: 45s-60s | query_link: Frames 13-15 | conf: high | uncertainty: none
+objects: pan, mixture | action: cooking/resting | state: mixed, cooked, thick, filled | window: 60s-64s | query_link: Frame 16 | conf: high | uncertainty: none
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-07 06:36:17 -> 2026-07-07 06:37:25
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 63.5,
+      "end_time": 127.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. (part 2/2, time 64s–127s)"
+}
+
+[Output]:
+objects: pan, ground meat/vegetable mixture (carrots, peas), red sauce (tomato paste/ketchup)
+action: red sauce dollop added to cooked mixture, then stirred in
+state: cooked, mixed, wet (sauce)
+window: 1-2
+query_link:
+conf: high
+uncertainty: none
+
+objects: lemon
+action: held by man in black shirt
+state: whole, raw, present (text overlay "NO LEMON" indicates it is not used)
+window: 3-5
+query_link:
+conf: high
+uncertainty: none
+
+objects: pan, mixture, port wine bottle
+action: heavy shot of port wine poured in, stirred/cooked out
+state: wet, cooking, simmering
+window: 6-7
+query_link:
+conf: high
+uncertainty: none
+
+objects: pan, mixture, herb mix
+action: herb mix added, stirred vigorously
+state: mixed, cooked
+window: 8-9
+query_link:
+conf: high
+uncertainty: none
+
+objects: eggs, bowl, hands
+action: eggs cracked, yolks separated from whites
+state: raw, separated (2 egg yolks), wet
+window: 10-14
+query_link:
+conf: high
+uncertainty: none
+
+objects: pan, mixture, chicken stock
+action: 1/2 cup chicken stock added, stirred to thicken
+state: wet, thickening, cooked
+window: 15-16
+query_link:
+conf: high
+uncertainty: none
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_5) ###
+Time: 2026-07-07 06:34:19 -> 2026-07-07 06:35:31
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 12.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: pot (interior grey/silver), stew mixture (lentils/vegetables), wooden spoon, stovetop burner
+action: stirring mixture, lifting pot off burner
+state: cooked, hot, wet/moist mixture; pot full then removed; burner exposed
+window: 1-4
+query_link: null
+conf: 0.95
+uncertainty: low
+
+objects: red pot (exterior), glass rectangular baking dish, wooden spoon, chef, observer
+action: pouring/transferring stew from red pot into glass dish
+state: pot depleting/emptying, dish filling, mixture hot/steaming/cooked
+window: 5-8
+query_link: null
+conf: 0.95
+uncertainty: low
+
+objects: glass baking dish, stew mixture, wooden spoon
+action: spreading mixture evenly in dish
+state: dish filling up, mixture wet/cooked/steaming, ingredients mixed (brown/green/orange)
+window: 9-14
+query_link: null
+conf: 0.95
+uncertainty: low
+
+objects: glass baking dish, wooden spoon, chef
+action: final spreading/leveling of food
+state: dish filled, mixture spread flat, hot
+window: 15-16
+query_link: null
+conf: 0.9
+uncertainty: low
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_6) ###
+Time: 2026-07-07 06:34:19 -> 2026-07-07 06:36:12
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 52.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: red pot, white colander, potatoes
+action: pouring/straining
+state: potatoes cooked/steaming/chunks, pot emptying/depletion, colander filling
+window: 1-2
+query_link: Video 5
+conf: high
+uncertainty: none
+
+objects: chef, man in black, small black pan, white bowl, counter
+action: instructing/preparing
+state: chef holding pan then turning away, man standing at counter with bowl present
+window: 3-7
+query_link: Video 5
+conf: high
+uncertainty: none
+
+objects: white bowl, cooked potatoes, parmesan cheese, salt/pepper, yellow liquid (likely butter)
+action: adding ingredients
+state: potatoes cooked/chunks, cheese grated/dry, liquid wet, ingredients separate then combined/mixed
+window: 8-12
+query_link: Video 5
+conf: high
+uncertainty: yellow liquid identity (visually melted butter, text only mentions salt/pepper/cheese)
+
+objects: white bowl, potato mixture, masher
+action: mashing
+state: mixture hot/steaming, wet, mixed/mashing in progress
+window: 13-16
+query_link: Video 5
+conf: high
+uncertainty: none
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-07 06:38:30 -> 2026-07-07 06:40:11
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 75.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the potatoes: RAW/PEELED/CUT/BOILED/MASHED. Report the state of the meat: RAW/COOKED/ABSENT. Report the state of the pot: EMPTY/BOILING_WATER/CONTAINS_POTATOES. Return compact rows: object/action/state/window/conf/uncertainty."
+}
+
+[Output]:
+potatoes/peeling_cutting_boiling/RAW_PEELED_CUT/1-16/high/low
+meat/static/RAW/1-16/high/low
+pot/boiling_filling/BOILING_WATER_CONTAINS_POTATOES/1-16/high/low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-07 06:38:30 -> 2026-07-07 06:40:14
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 72.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the glass baking dish: EMPTY/CONTAINS_MEAT_ONLY/CONTAINS_MEAT_AND_POTATOES. Report the state of the mashed potatoes: IN_BOWL/IN_PIPING_BAG/PIPED_ON_MEAT. Return compact rows: object/action/state/window/conf/uncertainty."
+}
+
+[Output]:
+glass_baking_dish, filled/topped, CONTAINS_MEAT_AND_POTATOES, frames 4-16, high, low
+mashed_potatoes, piping, PIPED_ON_MEAT, frames 4-16, high, low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-07 06:38:30 -> 2026-07-07 06:39:44
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 63.5,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the meat mixture: RAW/BROWNING/COOKED_WITH_VEG/THICKENED_WITH_SAUCE_AND_STOCK. Report the container: PAN/POT. Return compact rows: object/action/state/window/conf/uncertainty. (part 1/2, time 0s–64s)"
+}
+
+[Output]:
+meat mixture/browning/RAW/1/high/low
+meat mixture/cooking/BROWNING/4/high/low
+meat mixture/stirring/COOKED_WITH_VEG/5-7/high/low
+meat mixture/mixing/THICKENED_WITH_SAUCE_AND_STOCK/13-16/high/low
+container/PAN/PAN/1-16/high/low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_4) ###
+Time: 2026-07-07 06:39:44 -> 2026-07-07 06:41:01
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 63.5,
+      "end_time": 127.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the meat mixture: RAW/BROWNING/COOKED_WITH_VEG/THICKENED_WITH_SAUCE_AND_STOCK. Report the container: PAN/POT. Return compact rows: object/action/state/window/conf/uncertainty. (part 2/2, time 64s–127s)"
+}
+
+[Output]:
+meat_mixture/cooking/THICKENED_WITH_SAUCE_AND_STOCK/PAN/high/low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_5) ###
+Time: 2026-07-07 06:38:30 -> 2026-07-07 06:40:15
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 12.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the glass baking dish: EMPTY/FILLING_WITH_MEAT/FILLED_WITH_MEAT. Report the source container: RED_POT/PAN. Report the state of the mixture: COOKED_MEAT_AND_VEG. Return compact rows: object/action/state/window/conf/uncertainty."
+}
+
+[Output]:
+glass_dish | filling | FILLING_WITH_MEAT | 5-14 | high | low
+glass_dish | filled | FILLED_WITH_MEAT | 15-16 | high | low
+red_pot | pouring | RED_POT | 5-14 | high | low
+mixture | state | COOKED_MEAT_AND_VEG | 1-16 | high | low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_6) ###
+Time: 2026-07-07 06:38:30 -> 2026-07-07 06:40:17
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 52.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the potatoes: BOILED_CHUNKS/STRAINED/MASHED_WITH_CHEESE_AND_BUTTER. Report the container: RED_POT/COLANDER/WHITE_BOWL. Return compact rows: object/action/state/window/conf/uncertainty."
+}
+
+[Output]:
+potatoes/straining/BOILED_CHUNKS/STRAINED (RED_POT/COLANDER)/1-2/high/low
+potatoes/mashing/MASHED_WITH_CHEESE_AND_BUTTER (WHITE_BOWL)/8-16/high/low
+
+------------------------------------------------------------
+

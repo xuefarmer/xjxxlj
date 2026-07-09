@@ -1,0 +1,151 @@
+{
+  "confirmed": [],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "tomatoes": {
+      "3": "on vine, washed",
+      "1": "chopped, added to bowl",
+      "2": "already in bowl, olives added"
+    },
+    "carrots": {
+      "3": "chopped in bowl",
+      "1": "shredded in bowl",
+      "2": "in bowl"
+    },
+    "onions": {
+      "1": "chopped, added to bowl",
+      "2": "in bowl"
+    },
+    "olives": {
+      "2": "chopped, added to bowl"
+    },
+    "cutting_board": {
+      "3": "clean, empty",
+      "1": "dirty, tomato residue",
+      "2": "dirty, olive residue, then scraped clean"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states",
+    "container fill levels",
+    "tool contact",
+    "transfer traces",
+    "cooking maturity"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "full object-state inventory pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states",
+          "container fill levels",
+          "tool contact",
+          "transfer traces",
+          "cooking maturity"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "tomatoes": {
+            "3": "on vine, washed",
+            "1": "chopped, added to bowl",
+            "2": "already in bowl, olives added"
+          },
+          "carrots": {
+            "3": "chopped in bowl",
+            "1": "shredded in bowl",
+            "2": "in bowl"
+          },
+          "onions": {
+            "1": "chopped, added to bowl",
+            "2": "in bowl"
+          },
+          "olives": {
+            "2": "chopped, added to bowl"
+          },
+          "cutting_board": {
+            "3": "clean, empty",
+            "1": "dirty, tomato residue",
+            "2": "dirty, olive residue, then scraped clean"
+          }
+        },
+        "preliminary_order": "3->1->2",
+        "order_confidence": 9,
+        "confidence_basis": [
+          "tomatoes vine->chopped->mixed",
+          "board clean->dirty->clean",
+          "bowl carrots->+tomatoes/onions->+olives"
+        ],
+        "blocking_uncertainties": [],
+        "comparison_table": {
+          "3": "prep: wash tomatoes, chop carrots. board clean.",
+          "1": "chop tomatoes, add to carrots, add onions. board dirty.",
+          "2": "chop olives, add to full mix. board cleaned."
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "uncertain": [],
+        "dimensions_to_compare": [
+          "ingredient states",
+          "container fill levels",
+          "tool contact",
+          "transfer traces",
+          "cooking maturity"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "order_confidence": 9,
+        "comparison_table": {
+          "3": "board clean; tomatoes on vine; bowl has carrots+onions",
+          "1": "board has tomato residue; tomatoes chopped; bowl has carrots+onions+tomatoes",
+          "2": "board has olive residue; olives chopped; bowl has carrots+onions+tomatoes+olives"
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3->1->2"
+  ],
+  "order_confidence": [
+    "9"
+  ],
+  "confidence_basis": [
+    "tomatoes vine->chopped->mixed",
+    "board clean->dirty->clean",
+    "bowl carrots->+tomatoes/onions->+olives"
+  ],
+  "blocking_uncertainties": [],
+  "comparison_table": [
+    "{\"3\": \"prep: wash tomatoes, chop carrots. board clean.\", \"1\": \"chop tomatoes, add to carrots, add onions. board dirty.\", \"2\": \"chop olives, add to full mix. board cleaned.\"}",
+    "{\"3\": \"board clean; tomatoes on vine; bowl has carrots+onions\", \"1\": \"board has tomato residue; tomatoes chopped; bowl has carrots+onions+tomatoes\", \"2\": \"board has olive residue; olives chopped; bowl has carrots+onions+tomatoes+olives\"}"
+  ],
+  "layer2_done": [
+    "True"
+  ]
+}

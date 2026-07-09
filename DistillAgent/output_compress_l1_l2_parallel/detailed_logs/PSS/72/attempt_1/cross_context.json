@@ -1,0 +1,140 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "Verify plate of sushi state across 3,4,5 to ensure no contradiction",
+    "Confirm bowl residue states"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "rice": {
+      "1": "cooked/seasoned in glass bowl",
+      "3": "spread on nori",
+      "4": "on nori being rolled",
+      "5": "on nori with fillings"
+    },
+    "meat/fish": {
+      "2": "raw block minced and sauced in bowl",
+      "4": "red filling arranged on rice",
+      "5": "red minced fish scooped from bowl onto rice"
+    },
+    "veggies": {
+      "5": "green veg placed on rice",
+      "4": "green strips arranged on rice"
+    },
+    "sushi_plate": {
+      "3": "visible foreground frames 13-16",
+      "5": "visible bottom right frames 1-16"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked, whole/cut, empty/filled)",
+    "transfer traces",
+    "residue/depletion",
+    "background cues",
+    "plate of sushi count/position",
+    "glass bowl residue/amount",
+    "nori roll progress"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "Need Layer1 to identify all objects and their states across segments"
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked, whole/cut, empty/filled)",
+          "transfer traces",
+          "residue/depletion",
+          "background cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "rice": {
+            "1": "cooked/seasoned in glass bowl",
+            "3": "spread on nori",
+            "4": "on nori being rolled",
+            "5": "on nori with fillings"
+          },
+          "meat/fish": {
+            "2": "raw block minced and sauced in bowl",
+            "4": "red filling arranged on rice",
+            "5": "red minced fish scooped from bowl onto rice"
+          },
+          "veggies": {
+            "5": "green veg placed on rice",
+            "4": "green strips arranged on rice"
+          },
+          "sushi_plate": {
+            "3": "visible foreground frames 13-16",
+            "5": "visible bottom right frames 1-16"
+          }
+        },
+        "preliminary_order": "1->2->3->5->4",
+        "order_confidence": 8,
+        "confidence_basis": "Clear state progression: rice prep (1) -> meat prep (2) -> rice on nori (3) -> add fillings (5) -> roll (4)",
+        "blocking_uncertainties": [
+          "Verify plate of sushi state across 3,4,5 to ensure no contradiction",
+          "Confirm bowl residue states"
+        ],
+        "dimensions_to_compare": [
+          "plate of sushi count/position",
+          "glass bowl residue/amount",
+          "nori roll progress"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "V1": "glass bowl rice state, white bowl state",
+          "V2": "glass bowl meat/sauce state, board residue",
+          "V3": "nori rice spread, sushi plate count/position",
+          "V4": "nori roll progress, red filling bowl residue",
+          "V5": "red fish bowl amount, sushi plate count/position"
+        },
+        "uncertain": [
+          "Verify plate of sushi state across 3,4,5 to ensure no contradiction",
+          "Confirm bowl residue states"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1->2->3->5->4"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "Clear state progression: rice prep (1) -> meat prep (2) -> rice on nori (3) -> add fillings (5) -> roll (4)"
+  ],
+  "blocking_uncertainties": [
+    "Verify plate of sushi state across 3,4,5 to ensure no contradiction",
+    "Confirm bowl residue states"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V1\": \"glass bowl rice state, white bowl state\", \"V2\": \"glass bowl meat/sauce state, board residue\", \"V3\": \"nori rice spread, sushi plate count/position\", \"V4\": \"nori roll progress, red filling bowl residue\", \"V5\": \"red fish bowl amount, sushi plate count/position\"}"
+  ]
+}

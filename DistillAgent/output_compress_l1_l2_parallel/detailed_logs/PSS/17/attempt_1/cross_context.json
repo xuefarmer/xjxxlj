@@ -1,0 +1,124 @@
+{
+  "confirmed": [
+    "V1->V2: filling state progression confirmed",
+    "V2->V3: wrapped roll continuity confirmed"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"mixing/kneading filling (pork, carrots, onions, shrimp, spices)\", \"2\": \"wrapping filling into spring roll wrappers, sealing, placing in container\", \"3\": \"deep frying raw wrapped spring rolls in oil\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "filling_mixture": {
+      "1": "raw, wet, kneaded uniform mix in large metal bowl",
+      "2": "raw, mixed, wet in large glass bowl"
+    },
+    "spring_rolls": {
+      "2": "raw, tightly rolled cylinders in plastic container",
+      "3": "raw, whole, placed into hot oil for deep frying"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states",
+    "prep vs cooking vs finishing",
+    "container fill/empty",
+    "residue/depletion",
+    "filling mixture continuity V1->V2",
+    "wrapped roll continuity V2->V3"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states",
+          "prep vs cooking vs finishing",
+          "container fill/empty",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "mixing/kneading filling (pork, carrots, onions, shrimp, spices)",
+          "2": "wrapping filling into spring roll wrappers, sealing, placing in container",
+          "3": "deep frying raw wrapped spring rolls in oil"
+        },
+        "object_memory": {
+          "filling_mixture": {
+            "1": "raw, wet, kneaded uniform mix in large metal bowl",
+            "2": "raw, mixed, wet in large glass bowl"
+          },
+          "spring_rolls": {
+            "2": "raw, tightly rolled cylinders in plastic container",
+            "3": "raw, whole, placed into hot oil for deep frying"
+          }
+        },
+        "preliminary_order": [
+          1,
+          2,
+          3
+        ],
+        "order_confidence": 9,
+        "confidence_basis": "V1: raw ingredients mixed into filling. V2: filling wrapped into rolls. V3: wrapped rolls fried. Clear state progression.",
+        "blocking_uncertainties": [],
+        "uncertain": [],
+        "dimensions_to_compare": [
+          "filling mixture continuity V1->V2",
+          "wrapped roll continuity V2->V3"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "filling_mixture": "V1: mixed/kneaded in metal bowl -> V2: used for wrapping in glass bowl",
+          "spring_rolls": "V2: wrapped and stored in container -> V3: raw rolls fried in hot oil"
+        },
+        "confirmed": [
+          "V1->V2: filling state progression confirmed",
+          "V2->V3: wrapped roll continuity confirmed"
+        ],
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "1",
+    "2",
+    "3"
+  ],
+  "order_confidence": [
+    "9"
+  ],
+  "confidence_basis": [
+    "V1: raw ingredients mixed into filling. V2: filling wrapped into rolls. V3: wrapped rolls fried. Clear state progression."
+  ],
+  "blocking_uncertainties": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"filling_mixture\": \"V1: mixed/kneaded in metal bowl -> V2: used for wrapping in glass bowl\", \"spring_rolls\": \"V2: wrapped and stored in container -> V3: raw rolls fried in hot oil\"}"
+  ]
+}

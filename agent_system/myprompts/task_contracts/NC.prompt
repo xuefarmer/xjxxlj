@@ -1,0 +1,22 @@
+## Task Contract: NC
+Task: narrative multiple-choice reasoning over movie/TV clips.
+
+Input semantics:
+- `videos` are candidate narrative clips.
+- `options` are possible answers to the question.
+- The correct option must be supported by visible plot state, captions, or both.
+
+Evidence dimensions:
+- character identity, relationships, setting, emotional state;
+- visible event, object, injury, weapon, document, vehicle, location, or consequence;
+- dialogue/caption clues for names, motives, plans, or revelations;
+- continuity evidence and close distractor rejection.
+
+Workflow notes:
+- Layer1 scans all candidate clips for visible scene and plot clues.
+- Layer2 prunes clips clearly unrelated to the queried event and re-checks plausible candidates.
+- Focus should inspect the precise event/consequence or character reaction that distinguishes options.
+- Captions are useful after Layer2 but should be tied back to visual evidence.
+
+Final answer:
+- `final_answer` is one uppercase option letter.

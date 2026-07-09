@@ -1,0 +1,180 @@
+{
+  "confirmed": [
+    "pepper: V1(whole)->V4(halved)->V3(strips)",
+    "pot: V2(add water)->V1(liquid)->V3(simmering)",
+    "board: V1(retrieve)->V4(unused)->V3(residue)"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"selects whole pepper, retrieves board, washes pepper\", \"2\": \"washes lettuce, adds water to pot with yellow food\", \"3\": \"chops onion, slices pepper into strips, pot simmering\", \"4\": \"slices whole pepper in half, deseed, rinses half\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "red_bell_pepper": {
+      "1": "whole, dry->wet",
+      "2": "ABSENT",
+      "3": "halved->strips",
+      "4": "whole->halved->deseeded->wet"
+    },
+    "lettuce": {
+      "1": "in colander, fresh",
+      "2": "washing->metal bowl",
+      "3": "in green bowl",
+      "4": "in bowl on drainboard"
+    },
+    "pot": {
+      "1": "yellow liquid",
+      "2": "yellow food, water added",
+      "3": "simmering, yellow liquid",
+      "4": "NOT_VISIBLE_IN_THESE_FRAMES"
+    },
+    "cutting_board": {
+      "1": "retrieved, dry",
+      "2": "ABSENT",
+      "3": "used, has residue",
+      "4": "absent, on counter"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states (raw/cooked/cut)",
+    "container fill/empty",
+    "transfer traces",
+    "residue/depletion",
+    "background vessel state",
+    "pepper state progression",
+    "pot contents/action",
+    "cutting board presence/residue",
+    "lettuce container"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "full object-state inventory pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cooked/cut)",
+          "container fill/empty",
+          "transfer traces",
+          "residue/depletion",
+          "background vessel state"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "selects whole pepper, retrieves board, washes pepper",
+          "2": "washes lettuce, adds water to pot with yellow food",
+          "3": "chops onion, slices pepper into strips, pot simmering",
+          "4": "slices whole pepper in half, deseed, rinses half"
+        },
+        "object_memory": {
+          "red_bell_pepper": {
+            "1": "whole, dry->wet",
+            "2": "ABSENT",
+            "3": "halved->strips",
+            "4": "whole->halved->deseeded->wet"
+          },
+          "lettuce": {
+            "1": "in colander, fresh",
+            "2": "washing->metal bowl",
+            "3": "in green bowl",
+            "4": "in bowl on drainboard"
+          },
+          "pot": {
+            "1": "yellow liquid",
+            "2": "yellow food, water added",
+            "3": "simmering, yellow liquid",
+            "4": "NOT_VISIBLE_IN_THESE_FRAMES"
+          },
+          "cutting_board": {
+            "1": "retrieved, dry",
+            "2": "ABSENT",
+            "3": "used, has residue",
+            "4": "absent, on counter"
+          }
+        },
+        "preliminary_order": "2->1->4->3",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "pepper lifecycle: 1(whole wet)->4(halved deseeded)->3(strips)",
+          "pot lifecycle: 2(add water)->1(yellow liquid)->3(simmering)",
+          "cutting board: 1(retrieve)->3(use with residue)"
+        ],
+        "blocking_uncertainties": [
+          "verify pot state in V2 vs V1 to confirm 2 before 1",
+          "verify lettuce container moves do not contradict order"
+        ],
+        "uncertain": [
+          "pot state in V2 vs V1",
+          "lettuce container continuity"
+        ],
+        "dimensions_to_compare": [
+          "pepper state progression",
+          "pot contents/action",
+          "cutting board presence/residue",
+          "lettuce container"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "V1": "pepper whole->wet, board retrieved, pot yellow liquid",
+          "V2": "pepper ABSENT, lettuce washed, pot water added",
+          "V3": "pepper strips, board used with residue, pot simmering",
+          "V4": "pepper halved/deseeded, board unused on counter"
+        },
+        "confirmed": [
+          "pepper: V1(whole)->V4(halved)->V3(strips)",
+          "pot: V2(add water)->V1(liquid)->V3(simmering)",
+          "board: V1(retrieve)->V4(unused)->V3(residue)"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": [],
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "2->1->4->3"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "pepper lifecycle: 1(whole wet)->4(halved deseeded)->3(strips)",
+    "pot lifecycle: 2(add water)->1(yellow liquid)->3(simmering)",
+    "cutting board: 1(retrieve)->3(use with residue)"
+  ],
+  "blocking_uncertainties": [
+    "verify pot state in V2 vs V1 to confirm 2 before 1",
+    "verify lettuce container moves do not contradict order"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V1\": \"pepper whole->wet, board retrieved, pot yellow liquid\", \"V2\": \"pepper ABSENT, lettuce washed, pot water added\", \"V3\": \"pepper strips, board used with residue, pot simmering\", \"V4\": \"pepper halved/deseeded, board unused on counter\"}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": []
+}

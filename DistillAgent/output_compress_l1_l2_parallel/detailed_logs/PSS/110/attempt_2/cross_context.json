@@ -1,0 +1,247 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "V1 used as V3's marinade base?",
+    "V1 exact placement"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "noodles": {
+      "6": "drained wet in colander->pot (pre-boiled)",
+      "4": "cooked mixed with shrimp/veggies in wok"
+    },
+    "shrimp": {
+      "6": "raw->cooked in pan with sauce",
+      "4": "cooked orange in wok with noodles"
+    },
+    "meat": {
+      "3": "raw cubed marinated in bowl",
+      "2": "diced marinated cooked in pan",
+      "4": "diced cooked in lettuce wrap (dark marinade, not curry)"
+    },
+    "vegetables": {
+      "5": "raw->sauteed->curry sauce with meatballs (SEPARATE dish)",
+      "4": "peppers in wok with noodles/shrimp"
+    },
+    "dressing": {
+      "1": "whisked in blue-rimmed bowl with lime/soy/sesame/sugar/chili"
+    },
+    "background_pan": {
+      "5": "brown food/meatballs simmering (concurrent)",
+      "6": "brown food simmering (concurrent), SAME pan as V5"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [],
+  "resolved_uncertain": [
+    "V5 vs V6 background pan interpretation (concurrent, not sequential)",
+    "V6->V5 order confirmed via foreground cooking stages",
+    "V6->V5 order confirmed",
+    "V5 is separate dish from V4"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "order_confidence": 7,
+        "uncertain": [
+          "V6 vs V5 order (system correction indicates V6->V5)"
+        ],
+        "object_memory": {
+          "noodles": {
+            "6": "drained wet in colander->pot (pre-boiled)",
+            "4": "cooked mixed with shrimp/veggies in wok"
+          },
+          "shrimp": {
+            "6": "raw->cooked in pan with sauce",
+            "4": "cooked orange in wok with noodles"
+          },
+          "meat": {
+            "3": "raw cubed marinated in bowl",
+            "2": "diced marinated cooked in pan",
+            "4": "diced cooked in lettuce wrap"
+          },
+          "vegetables": {
+            "5": "raw->sauteed->curry sauce with meatballs (foreground pan)",
+            "4": "peppers in wok with noodles/shrimp"
+          },
+          "dressing": {
+            "1": "whisked in blue-rimmed bowl with lime/soy/sesame/sugar/chili, no transfer observed"
+          },
+          "background_pan": {
+            "5": "brown food/meatballs simmering (concurrent)",
+            "6": "brown food simmering (concurrent), SAME pan as V5"
+          }
+        },
+        "comparison_table": {
+          "V3->V2": "direct_transfer: marinated meat in bowl -> cooked in pan",
+          "V6->V5": "system_correction: V6 drains pre-boiled noodles + cooks shrimp, V5 builds curry from raw aromatics",
+          "V5->V4": "same_object_state_progression: V5's vegetables used in V4's wok",
+          "V6->V4": "direct_transfer: drained noodles + cooked shrimp -> plated with sauce",
+          "V1": "standalone: dressing made but usage uncertain"
+        },
+        "blocking_uncertainties": [
+          "Verify V6->V5 order with foreground cooking stages"
+        ],
+        "candidate_targets": [
+          "V6 foreground stage",
+          "V5 foreground stage",
+          "V6 vs V5 first ingredients"
+        ],
+        "resolved_uncertain": [
+          "V5 vs V6 background pan interpretation (concurrent, not sequential)"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "order_confidence": 7,
+        "uncertain": [
+          "V5's vegetables used in V4?",
+          "V5's meat used in V4's lettuce wrap?"
+        ],
+        "object_memory": {
+          "noodles": {
+            "6": "drained wet in colander->pot (pre-boiled)",
+            "4": "cooked mixed with shrimp/veggies in wok"
+          },
+          "shrimp": {
+            "6": "raw->cooked in pan with sauce",
+            "4": "cooked orange in wok with noodles"
+          },
+          "meat": {
+            "3": "raw cubed marinated in bowl",
+            "2": "diced marinated cooked in pan",
+            "4": "diced cooked in lettuce wrap"
+          },
+          "vegetables": {
+            "5": "raw->sauteed->curry sauce with meatballs (foreground pan)",
+            "4": "peppers in wok with noodles/shrimp"
+          },
+          "dressing": {
+            "1": "whisked in blue-rimmed bowl with lime/soy/sesame/sugar/chili, no transfer observed"
+          },
+          "background_pan": {
+            "5": "brown food/meatballs simmering (concurrent)",
+            "6": "brown food simmering (concurrent), SAME pan as V5"
+          }
+        },
+        "comparison_table": {
+          "V3->V2": "direct_transfer: marinated meat in bowl -> cooked in pan",
+          "V6->V5": "focused_visual_tie_break: V6 starts with pre-boiled noodles, V5 starts with raw aromatics",
+          "V5->V4": "uncertain: need to verify if V5's curry vegetables/meat used in V4",
+          "V6->V4": "direct_transfer: drained noodles + cooked shrimp -> plated with sauce",
+          "V1": "standalone: dressing made but usage uncertain"
+        },
+        "blocking_uncertainties": [
+          "V5's vegetables/meat used in V4?",
+          "V1 placement"
+        ],
+        "candidate_targets": [
+          "V4 lettuce wrap meat appearance",
+          "V4 lettuce wrap vegetables",
+          "V5 vs V4 ingredient match"
+        ],
+        "resolved_uncertain": [
+          "V6->V5 order confirmed via foreground cooking stages"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "order_confidence": 7,
+        "uncertain": [
+          "V1 used as V3's marinade base?",
+          "V1 exact placement"
+        ],
+        "object_memory": {
+          "noodles": {
+            "6": "drained wet in colander->pot (pre-boiled)",
+            "4": "cooked mixed with shrimp/veggies in wok"
+          },
+          "shrimp": {
+            "6": "raw->cooked in pan with sauce",
+            "4": "cooked orange in wok with noodles"
+          },
+          "meat": {
+            "3": "raw cubed marinated in bowl",
+            "2": "diced marinated cooked in pan",
+            "4": "diced cooked in lettuce wrap (dark marinade, not curry)"
+          },
+          "vegetables": {
+            "5": "raw->sauteed->curry sauce with meatballs (SEPARATE dish)",
+            "4": "peppers in wok with noodles/shrimp"
+          },
+          "dressing": {
+            "1": "whisked in blue-rimmed bowl with lime/soy/sesame/sugar/chili"
+          },
+          "background_pan": {
+            "5": "brown food/meatballs simmering (concurrent)",
+            "6": "brown food simmering (concurrent), SAME pan as V5"
+          }
+        },
+        "comparison_table": {
+          "V3->V2": "direct_transfer: marinated meat in bowl -> cooked in pan",
+          "V6->V5": "focused_visual_tie_break: V6 starts with pre-boiled noodles, V5 starts with raw aromatics",
+          "V5": "separate curry dish, not used in V4",
+          "V6->V4": "direct_transfer: drained noodles + cooked shrimp -> plated with sauce",
+          "V1": "dressing made, possibly used as V3's marinade base"
+        },
+        "blocking_uncertainties": [
+          "V1 used as V3's marinade base?",
+          "V1 exact placement"
+        ],
+        "candidate_targets": [
+          "V1 final dressing appearance",
+          "V3 initial sauce appearance",
+          "V1 vs V3 sauce match"
+        ],
+        "resolved_uncertain": [
+          "V6->V5 order confirmed",
+          "V5 is separate dish from V4"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "order_confidence": 8
+      }
+    }
+  ],
+  "order_confidence": [
+    "7",
+    "8"
+  ],
+  "comparison_table": [
+    "{\"V3->V2\": \"direct_transfer: marinated meat in bowl -> cooked in pan\", \"V6->V5\": \"system_correction: V6 drains pre-boiled noodles + cooks shrimp, V5 builds curry from raw aromatics\", \"V5->V4\": \"same_object_state_progression: V5's vegetables used in V4's wok\", \"V6->V4\": \"direct_transfer: drained noodles + cooked shrimp -> plated with sauce\", \"V1\": \"standalone: dressing made but usage uncertain\"}",
+    "{\"V3->V2\": \"direct_transfer: marinated meat in bowl -> cooked in pan\", \"V6->V5\": \"focused_visual_tie_break: V6 starts with pre-boiled noodles, V5 starts with raw aromatics\", \"V5->V4\": \"uncertain: need to verify if V5's curry vegetables/meat used in V4\", \"V6->V4\": \"direct_transfer: drained noodles + cooked shrimp -> plated with sauce\", \"V1\": \"standalone: dressing made but usage uncertain\"}",
+    "{\"V3->V2\": \"direct_transfer: marinated meat in bowl -> cooked in pan\", \"V6->V5\": \"focused_visual_tie_break: V6 starts with pre-boiled noodles, V5 starts with raw aromatics\", \"V5\": \"separate curry dish, not used in V4\", \"V6->V4\": \"direct_transfer: drained noodles + cooked shrimp -> plated with sauce\", \"V1\": \"dressing made, possibly used as V3's marinade base\"}"
+  ],
+  "blocking_uncertainties": [
+    "Verify V6->V5 order with foreground cooking stages",
+    "V5's vegetables/meat used in V4?",
+    "V1 placement",
+    "V1 used as V3's marinade base?",
+    "V1 exact placement"
+  ],
+  "candidate_targets": [
+    "V6 foreground stage",
+    "V5 foreground stage",
+    "V6 vs V5 first ingredients",
+    "V4 lettuce wrap meat appearance",
+    "V4 lettuce wrap vegetables",
+    "V5 vs V4 ingredient match",
+    "V1 final dressing appearance",
+    "V3 initial sauce appearance",
+    "V1 vs V3 sauce match"
+  ]
+}

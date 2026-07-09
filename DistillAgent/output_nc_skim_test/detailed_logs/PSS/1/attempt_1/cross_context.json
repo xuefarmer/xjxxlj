@@ -1,0 +1,233 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "exact container transitions between 5 and 4",
+    "whether 3 is before 5 or during cooking",
+    "state of veg in 4 vs 2"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"plating cooked noodles+veg+greens from pan to plate\", \"2\": \"tossing cooked noodles+peppers in blue pot\", \"3\": \"mixing dark sauce in glass bowl\", \"4\": \"raw mushrooms+onions+peppers+garlic in large pot\", \"5\": \"raw mushrooms+oil in blue/white pan\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "mushrooms": {
+      "5": "raw/sliced in pan with oil",
+      "4": "raw/sliced in large pot with other veg",
+      "2": "cooked/mixed with noodles",
+      "1": "cooked/on plate"
+    },
+    "noodles": {
+      "2": "cooked/in blue pot with peppers",
+      "1": "cooked/on plate with veg"
+    },
+    "sauce": {
+      "3": "dark substance in glass bowl being mixed"
+    },
+    "greens": {
+      "1": "fresh/raw on plate separate from noodles"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states",
+    "container fill levels",
+    "tool usage",
+    "residue/depletion"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "full object state inventory needed"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states",
+          "container fill levels",
+          "tool usage",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "plating cooked noodles+veg+greens from pan to plate",
+          "2": "tossing cooked noodles+peppers in blue pot",
+          "3": "mixing dark sauce in glass bowl",
+          "4": "raw mushrooms+onions+peppers+garlic in large pot",
+          "5": "raw mushrooms+oil in blue/white pan"
+        },
+        "object_memory": {
+          "mushrooms": {
+            "5": "raw/sliced in pan with oil",
+            "4": "raw/sliced in large pot with other veg",
+            "2": "cooked/mixed with noodles",
+            "1": "cooked/on plate"
+          },
+          "noodles": {
+            "2": "cooked/in blue pot with peppers",
+            "1": "cooked/on plate with veg"
+          },
+          "sauce": {
+            "3": "dark substance in glass bowl being mixed"
+          },
+          "greens": {
+            "1": "fresh/raw on plate separate from noodles"
+          }
+        },
+        "preliminary_order": "3->5->4->2->1",
+        "order_confidence": 7,
+        "confidence_basis": "sauce prep -> mushrooms+oil -> add more veg -> add noodles+toss -> plate",
+        "blocking_uncertainties": [
+          "exact container transitions between 5 and 4",
+          "whether 3 is before 5 or during cooking",
+          "state of veg in 4 vs 2"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                65
+              ],
+              "event": "plating",
+              "key_objects": [
+                "plate",
+                "pan",
+                "noodles",
+                "greens"
+              ],
+              "visible_state": "noodles+veg plated, greens fresh, pan emptying",
+              "why_it_matters": "final step",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                37
+              ],
+              "event": "tossing",
+              "key_objects": [
+                "blue pot",
+                "noodles",
+                "peppers"
+              ],
+              "visible_state": "cooked noodles+peppers being tossed",
+              "why_it_matters": "cooking step before plating",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                63
+              ],
+              "event": "sauce prep",
+              "key_objects": [
+                "glass bowl",
+                "dark sauce"
+              ],
+              "visible_state": "mixing dark substance",
+              "why_it_matters": "prep step",
+              "confidence": "medium"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                46
+              ],
+              "event": "raw veg assembly",
+              "key_objects": [
+                "large pot",
+                "mushrooms",
+                "onions",
+                "peppers"
+              ],
+              "visible_state": "raw distinct piles of veg",
+              "why_it_matters": "early cooking step",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                36
+              ],
+              "event": "mushrooms+oil",
+              "key_objects": [
+                "blue/white pan",
+                "mushrooms",
+                "oil"
+              ],
+              "visible_state": "raw mushrooms with oil poured",
+              "why_it_matters": "earliest mushroom state",
+              "confidence": "high"
+            }
+          ]
+        },
+        "candidate_targets": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "exact container transitions between 5 and 4",
+          "whether 3 is before 5 or during cooking",
+          "state of veg in 4 vs 2"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states",
+          "container fill levels",
+          "tool usage",
+          "residue/depletion"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3->5->4->2->1"
+  ],
+  "order_confidence": [
+    "7"
+  ],
+  "confidence_basis": [
+    "sauce prep -> mushrooms+oil -> add more veg -> add noodles+toss -> plate"
+  ],
+  "blocking_uncertainties": [
+    "exact container transitions between 5 and 4",
+    "whether 3 is before 5 or during cooking",
+    "state of veg in 4 vs 2"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 65], \"event\": \"plating\", \"key_objects\": [\"plate\", \"pan\", \"noodles\", \"greens\"], \"visible_state\": \"noodles+veg plated, greens fresh, pan emptying\", \"why_it_matters\": \"final step\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 37], \"event\": \"tossing\", \"key_objects\": [\"blue pot\", \"noodles\", \"peppers\"], \"visible_state\": \"cooked noodles+peppers being tossed\", \"why_it_matters\": \"cooking step before plating\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 63], \"event\": \"sauce prep\", \"key_objects\": [\"glass bowl\", \"dark sauce\"], \"visible_state\": \"mixing dark substance\", \"why_it_matters\": \"prep step\", \"confidence\": \"medium\"}], \"video4\": [{\"window\": [0, 46], \"event\": \"raw veg assembly\", \"key_objects\": [\"large pot\", \"mushrooms\", \"onions\", \"peppers\"], \"visible_state\": \"raw distinct piles of veg\", \"why_it_matters\": \"early cooking step\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 36], \"event\": \"mushrooms+oil\", \"key_objects\": [\"blue/white pan\", \"mushrooms\", \"oil\"], \"visible_state\": \"raw mushrooms with oil poured\", \"why_it_matters\": \"earliest mushroom state\", \"confidence\": \"high\"}]}"
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "low_value_targets": []
+}

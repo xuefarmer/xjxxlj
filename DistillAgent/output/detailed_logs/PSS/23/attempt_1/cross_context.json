@@ -1,0 +1,265 @@
+{
+  "confirmed": [
+    "V2->V1 is a direct pan/meat continuity (raw skewers in pan -> cooking meat in pan).",
+    "V3->V1 is a direct ingredient prep-to-use continuity (grated carrots/chilies -> added to sandwich).",
+    "V3 and V2 are separate scenes with no overlapping background objects."
+  ],
+  "uncertain": [
+    "Order of V2 and V3 pending caption check. If captions fail, V3->V2->1 is most likely as V3 is pure prep without the cooking pan visible."
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Assembles Banh Mi. Cooked glazed meat chunks placed in baguette, topped with shredded carrots, cucumber, red chilies.\", \"2\": \"Preps meat skewers. Raw meat cut, marinated, skewered, placed in black pan with oil.\", \"3\": \"Preps veggies/sauce. Grates raw carrots into green bowl. Chops chilies into grey bowl, squeezes lime.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "meat": {
+      "2": "raw strips, marinated, skewered, placed in pan",
+      "1": "cooked chunks, glazed, charred, placed in bread"
+    },
+    "carrots": {
+      "3": "raw, grated into green bowl",
+      "1": "shredded, added to sandwich"
+    },
+    "chilies": {
+      "3": "raw, chopped into grey bowl with lime",
+      "1": "sliced, sprinkled on sandwich"
+    },
+    "pan": {
+      "2": "black pan, filled with oil, raw skewers added",
+      "1": "black pan, contains cooking meat"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked, empty/filled, separate/mixed)",
+    "tool contact and transfer traces",
+    "residue/depletion",
+    "background cues",
+    "background objects (pan vs prep bowls)",
+    "tool states"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "Need to identify all shared objects and their state transitions across the 3 segments."
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked, empty/filled, separate/mixed)",
+          "tool contact and transfer traces",
+          "residue/depletion",
+          "background cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Assembles Banh Mi. Cooked glazed meat chunks placed in baguette, topped with shredded carrots, cucumber, red chilies.",
+          "2": "Preps meat skewers. Raw meat cut, marinated, skewered, placed in black pan with oil.",
+          "3": "Preps veggies/sauce. Grates raw carrots into green bowl. Chops chilies into grey bowl, squeezes lime."
+        },
+        "object_memory": {
+          "meat": {
+            "2": "raw strips, marinated, skewered, placed in pan",
+            "1": "cooked chunks, glazed, charred, placed in bread"
+          },
+          "carrots": {
+            "3": "raw, grated into green bowl",
+            "1": "shredded, added to sandwich"
+          },
+          "chilies": {
+            "3": "raw, chopped into grey bowl with lime",
+            "1": "sliced, sprinkled on sandwich"
+          },
+          "pan": {
+            "2": "black pan, filled with oil, raw skewers added",
+            "1": "black pan, contains cooking meat"
+          }
+        },
+        "temporal_index": {
+          "video2": [
+            {
+              "window": [
+                15,
+                21
+              ],
+              "event": "raw skewers placed in pan",
+              "key_objects": [
+                "pan",
+                "oil",
+                "skewers"
+              ],
+              "visible_state": "pan filled with oil, raw meat added",
+              "why_it_matters": "directly precedes V1 cooking",
+              "confidence": "high"
+            }
+          ],
+          "video1": [
+            {
+              "window": [
+                0,
+                5
+              ],
+              "event": "meat cooking in pan",
+              "key_objects": [
+                "pan",
+                "meat"
+              ],
+              "visible_state": "meat sizzling, glazed",
+              "why_it_matters": "follows V2 pan state",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                19
+              ],
+              "event": "prep carrots and chilies",
+              "key_objects": [
+                "grater",
+                "green bowl",
+                "grey bowl",
+                "lime"
+              ],
+              "visible_state": "raw ingredients prepped",
+              "why_it_matters": "precedes V1 assembly",
+              "confidence": "high"
+            }
+          ]
+        },
+        "preliminary_order": "3->2->1",
+        "order_confidence": 8,
+        "confidence_basis": "V2->V1 is a direct pan/meat continuity. V3->V1 is a direct ingredient prep-to-use continuity. V3 is pure prep without a cooking pan in background, suggesting it happens before V2 starts cooking.",
+        "blocking_uncertainties": [
+          "Need to confirm V3 doesn't show the pan in background (which would imply V2->V3->V1)."
+        ],
+        "candidate_targets": [
+          1,
+          2,
+          3
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "Exact order of V2 and V3 pending background check."
+        ],
+        "dimensions_to_compare": [
+          "background objects (pan vs prep bowls)",
+          "tool states"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "2": "Meat prep: raw meat cut, marinated, skewered, placed in pan with oil. No prep bowls in background.",
+          "3": "Veggie/sauce prep: carrots grated, chilies chopped, lime squeezed. No pan or meat in background. Baguette visible in background frame 12."
+        },
+        "confirmed": [
+          "V2->V1 is a direct pan/meat continuity (raw skewers in pan -> cooking meat in pan).",
+          "V3->V1 is a direct ingredient prep-to-use continuity (grated carrots/chilies -> added to sandwich).",
+          "V3 and V2 are separate scenes with no overlapping background objects."
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          1,
+          2,
+          3
+        ],
+        "uncertain": [
+          "Order of V2 and V3: which prep happens first?"
+        ],
+        "focus_plan": [
+          "Check captions for V2 and V3 to find spoken temporal cues or step labels."
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "uncertain": [
+          "Order of V2 and V3 pending caption check. If captions fail, V3->V2->1 is most likely as V3 is pure prep without the cooking pan visible."
+        ],
+        "focus_plan": [
+          "If captions fail, assume V3->V2->1 based on V3 being pure prep without cooking pan, and V2->V1 being tight cooking continuity."
+        ]
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "order_confidence": 8
+      }
+    },
+    {
+      "turn": 6,
+      "update": {
+        "layer2_done": [
+          true,
+          true,
+          true
+        ],
+        "comparison_table": {
+          "1": "Pending Layer2 re-observation of pan, baguette, and vegetable states.",
+          "2": "Meat prep: raw meat cut, marinated, skewered, placed in pan with oil. No prep bowls in background.",
+          "3": "Veggie/sauce prep: carrots grated, chilies chopped, lime squeezed. No pan or meat in background. Baguette visible in background frame 12."
+        }
+      }
+    },
+    {
+      "turn": 7,
+      "update": {
+        "order_confidence": 8
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "temporal_index": [
+    "{\"video2\": [{\"window\": [15, 21], \"event\": \"raw skewers placed in pan\", \"key_objects\": [\"pan\", \"oil\", \"skewers\"], \"visible_state\": \"pan filled with oil, raw meat added\", \"why_it_matters\": \"directly precedes V1 cooking\", \"confidence\": \"high\"}], \"video1\": [{\"window\": [0, 5], \"event\": \"meat cooking in pan\", \"key_objects\": [\"pan\", \"meat\"], \"visible_state\": \"meat sizzling, glazed\", \"why_it_matters\": \"follows V2 pan state\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 19], \"event\": \"prep carrots and chilies\", \"key_objects\": [\"grater\", \"green bowl\", \"grey bowl\", \"lime\"], \"visible_state\": \"raw ingredients prepped\", \"why_it_matters\": \"precedes V1 assembly\", \"confidence\": \"high\"}]}"
+  ],
+  "preliminary_order": [
+    "3->2->1"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "V2->V1 is a direct pan/meat continuity. V3->V1 is a direct ingredient prep-to-use continuity. V3 is pure prep without a cooking pan in background, suggesting it happens before V2 starts cooking."
+  ],
+  "blocking_uncertainties": [
+    "Need to confirm V3 doesn't show the pan in background (which would imply V2->V3->V1)."
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"2\": \"Meat prep: raw meat cut, marinated, skewered, placed in pan with oil. No prep bowls in background.\", \"3\": \"Veggie/sauce prep: carrots grated, chilies chopped, lime squeezed. No pan or meat in background. Baguette visible in background frame 12.\"}",
+    "{\"1\": \"Pending Layer2 re-observation of pan, baguette, and vegetable states.\", \"2\": \"Meat prep: raw meat cut, marinated, skewered, placed in pan with oil. No prep bowls in background.\", \"3\": \"Veggie/sauce prep: carrots grated, chilies chopped, lime squeezed. No pan or meat in background. Baguette visible in background frame 12.\"}"
+  ],
+  "pruned_targets": [],
+  "focus_plan": [
+    "Check captions for V2 and V3 to find spoken temporal cues or step labels.",
+    "If captions fail, assume V3->V2->1 based on V3 being pure prep without cooking pan, and V2->V1 being tight cooking continuity."
+  ]
+}

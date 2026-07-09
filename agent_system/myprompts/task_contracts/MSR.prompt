@@ -1,0 +1,25 @@
+## Task Contract: MSR
+Task: spatial reasoning from synchronized UAV/image-folder views.
+
+Input semantics:
+- Views are synchronized image-folder sequences.
+- Use frame indices, not seconds.
+- Object placeholders such as `{A2}` or `{B5}` refer to tracked objects/bbox hints in the payload.
+- The question asks for a spatial relation, position, or trajectory at a specific event/time.
+
+Evidence dimensions:
+- landmarks and shared scene geometry;
+- target identity and appearance;
+- relative position to referenced objects and landmarks;
+- depth/overlap/occlusion order;
+- synchronized movement continuity across views;
+- whether one view has a blind spot and the other resolves it.
+
+Workflow notes:
+- Layer1 scans both views to build a scene/landmark model.
+- Layer2 prunes irrelevant objects and re-checks only the referenced targets and likely occlusion/position windows.
+- Focus uses synchronized high-density frame ranges around the queried event.
+- Captions are unavailable.
+
+Final answer:
+- `final_answer` is one uppercase option letter, e.g. `"D"`.

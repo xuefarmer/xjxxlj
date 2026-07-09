@@ -1,0 +1,137 @@
+{
+  "confirmed": [
+    "chicken plate state: V4 full -> V2 empty",
+    "sandwich layers: V2 builds -> V3 adds carrots -> V1 final",
+    "carrot bowl: V3 source -> V1 side salad"
+  ],
+  "uncertain": [
+    "all object states and transitions across segments"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "chicken_plate": {
+      "4": "full",
+      "2": "transferred to sandwich"
+    },
+    "sandwich": {
+      "2": "assembled with cream, lettuce, onion, chicken, jalapeño",
+      "3": "receives carrots",
+      "1": "fully assembled on counter"
+    },
+    "carrot_bowl": {
+      "1": "carrots + onions",
+      "3": "lettuce + carrots"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states (raw/cooked/cut/mixed)",
+    "container states (empty/filled/residue)",
+    "tool usage",
+    "transfer events",
+    "background cues"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all object states and transitions across segments"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cooked/cut/mixed)",
+          "container states (empty/filled/residue)",
+          "tool usage",
+          "transfer events",
+          "background cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "4->2->3->1",
+        "order_confidence": 7,
+        "confidence_basis": [
+          "V4: chicken on plate, bread brushed",
+          "V2: chicken transferred from plate to sandwich, layers added",
+          "V3: carrots added to sandwich with existing layers",
+          "V1: finished sandwich on counter, making side salad"
+        ],
+        "blocking_uncertainties": [
+          "Confirm V1 sandwich is fully assembled and matches V3 output",
+          "Confirm V2 chicken plate matches V4 chicken plate",
+          "Confirm V3 sandwich layers match V2 output"
+        ],
+        "object_memory": {
+          "chicken_plate": {
+            "4": "full",
+            "2": "transferred to sandwich"
+          },
+          "sandwich": {
+            "2": "assembled with cream, lettuce, onion, chicken, jalapeño",
+            "3": "receives carrots",
+            "1": "fully assembled on counter"
+          },
+          "carrot_bowl": {
+            "1": "carrots + onions",
+            "3": "lettuce + carrots"
+          }
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 9,
+        "comparison_table": {
+          "V4": "chicken plate full, bread brushed",
+          "V2": "chicken transferred, plate empty, sandwich layers built",
+          "V3": "carrots added to sandwich",
+          "V1": "finished sandwich plated, side salad made"
+        },
+        "confirmed": [
+          "chicken plate state: V4 full -> V2 empty",
+          "sandwich layers: V2 builds -> V3 adds carrots -> V1 final",
+          "carrot bowl: V3 source -> V1 side salad"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "4->2->3->1"
+  ],
+  "order_confidence": [
+    "7",
+    "9"
+  ],
+  "confidence_basis": [
+    "V4: chicken on plate, bread brushed",
+    "V2: chicken transferred from plate to sandwich, layers added",
+    "V3: carrots added to sandwich with existing layers",
+    "V1: finished sandwich on counter, making side salad"
+  ],
+  "blocking_uncertainties": [
+    "Confirm V1 sandwich is fully assembled and matches V3 output",
+    "Confirm V2 chicken plate matches V4 chicken plate",
+    "Confirm V3 sandwich layers match V2 output"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V4\": \"chicken plate full, bread brushed\", \"V2\": \"chicken transferred, plate empty, sandwich layers built\", \"V3\": \"carrots added to sandwich\", \"V1\": \"finished sandwich plated, side salad made\"}"
+  ]
+}

@@ -1,0 +1,23 @@
+## Task Contract: PEA
+Task: procedural error analysis in toy assembly videos.
+
+Input semantics:
+- `videos` are assembly clips, often clipped by `begin` and `end`.
+- `options` describe candidate video-specific actions.
+- The question usually asks which action should not have been performed, which user made an error, or which process differs.
+
+Evidence dimensions:
+- part identity, orientation, holes/hinges/slots, connection state;
+- attach/detach/reinstall, failed snap/screw/fit, force, misalignment;
+- missing/extra part, manual checking, correction trace, reversal of earlier step;
+- final state after the action and whether the option-specific action actually occurs.
+
+Workflow notes:
+- Layer1 scans all assembly videos for part states and candidate errors.
+- Layer2 prunes smooth/irrelevant clips and re-checks option-specific suspect actions.
+- Focus should inspect exact part/joint chunks with higher frame density.
+- Do not select a clip for hesitation alone; verify the described action and why it is wrong or diagnostic.
+- Audio/caption should not be needed.
+
+Final answer:
+- `final_answer` is one uppercase option letter.

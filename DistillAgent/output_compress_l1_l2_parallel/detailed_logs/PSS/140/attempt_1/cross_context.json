@@ -1,0 +1,220 @@
+{
+  "confirmed": [
+    "V6 is first prep",
+    "V1 adds butter to bowl",
+    "V3 pours to pan",
+    "V5 is finishing with cream",
+    "V6 first prep",
+    "V4 off-heat pepper then on-heat",
+    "V2 tastes then peppers",
+    "V5 finishes with cream"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"butter added to beaten eggs in bowl\", \"2\": \"tasting eggs, then pepper seasoning on burner\", \"3\": \"pouring eggs from glass measuring cup into pan, cooking starts\", \"4\": \"pepper seasoning off-heat (on board), then pan moved to burner\", \"5\": \"dollop of butter/cream added to finish eggs\", \"6\": \"cracking eggs into bowl, beating them\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "eggs": {
+      "6": "whole -> cracked into bowl -> beaten",
+      "1": "beaten in bowl, butter chunk added",
+      "3": "liquid poured from measuring cup to pan",
+      "4": "semi-cooked creamy off-heat, then on-heat",
+      "2": "semi-cooked soft curds, tasted, peppered",
+      "5": "cooked curdy, finished with dollop"
+    },
+    "pan": {
+      "3": "receives eggs, on burner",
+      "4": "on board (off-heat), then moved to burner",
+      "2": "on burner",
+      "5": "on burner, finishing"
+    },
+    "bread": {
+      "6": "whole loaf",
+      "1": "whole loaf",
+      "3": "whole loaf",
+      "4": "whole loaf",
+      "5": "slice of bread"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states (raw/cooked/cut/mixed)",
+    "container fill/empty/residue",
+    "transfer traces between vessels",
+    "tool contact sequences",
+    "background cues",
+    "pan position (on burner vs on board)",
+    "egg state maturity (liquid vs soft curds vs creamy vs curdy)",
+    "seasoning sequence (taste vs pepper)",
+    "container transitions (bowl vs cup)"
+  ],
+  "resolved_uncertain": [
+    "V2 vs V4 order resolved: V4 starts with liquid eggs on burner, V2 starts with soft curds on board, so V4 precedes V2."
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cooked/cut/mixed)",
+          "container fill/empty/residue",
+          "transfer traces between vessels",
+          "tool contact sequences",
+          "background cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "butter added to beaten eggs in bowl",
+          "2": "tasting eggs, then pepper seasoning on burner",
+          "3": "pouring eggs from glass measuring cup into pan, cooking starts",
+          "4": "pepper seasoning off-heat (on board), then pan moved to burner",
+          "5": "dollop of butter/cream added to finish eggs",
+          "6": "cracking eggs into bowl, beating them"
+        },
+        "object_memory": {
+          "eggs": {
+            "6": "whole -> cracked into bowl -> beaten",
+            "1": "beaten in bowl, butter chunk added",
+            "3": "liquid poured from measuring cup to pan",
+            "4": "semi-cooked creamy off-heat, then on-heat",
+            "2": "semi-cooked soft curds, tasted, peppered",
+            "5": "cooked curdy, finished with dollop"
+          },
+          "pan": {
+            "3": "receives eggs, on burner",
+            "4": "on board (off-heat), then moved to burner",
+            "2": "on burner",
+            "5": "on burner, finishing"
+          },
+          "bread": {
+            "6": "whole loaf",
+            "1": "whole loaf",
+            "3": "whole loaf",
+            "4": "whole loaf",
+            "5": "slice of bread"
+          }
+        },
+        "preliminary_order": "6->1->3->4->2->5",
+        "order_confidence": 7,
+        "confidence_basis": "V6 is earliest prep, V1 adds butter to bowl, V3 pours to pan, V4 off-heat pepper then on-heat, V2 tastes then peppers, V5 finishes with dollop and bread is sliced.",
+        "blocking_uncertainties": [
+          "V2 vs V4 order: does tasting/pepper (V2) happen before or after off-heat pepper/move to burner (V4)?",
+          "V3 container: is it the same bowl from V1 or a different measuring cup?",
+          "V5 dollop identity and pan heat state"
+        ],
+        "dimensions_to_compare": [
+          "pan position (on burner vs on board)",
+          "egg state maturity (liquid vs soft curds vs creamy vs curdy)",
+          "seasoning sequence (taste vs pepper)",
+          "container transitions (bowl vs cup)"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "V6": "crack/beat eggs in bowl",
+          "V1": "add butter chunk to bowl",
+          "V3": "pour egg+butter from cup to pan on burner",
+          "V4": "cook, off-heat pepper on board, move pan to burner",
+          "V2": "taste, then off-heat pepper on board",
+          "V5": "add cream dollop, curdy eggs, finish"
+        },
+        "temporal_index": {
+          "V2": {
+            "window": [
+              0,
+              24
+            ],
+            "event": "taste then pepper off-heat",
+            "confidence": "high"
+          },
+          "V4": {
+            "window": [
+              0,
+              18
+            ],
+            "event": "pepper off-heat then move to burner",
+            "confidence": "high"
+          }
+        },
+        "confirmed": [
+          "V6 is first prep",
+          "V1 adds butter to bowl",
+          "V3 pours to pan",
+          "V5 is finishing with cream"
+        ],
+        "uncertain": [
+          "V2 vs V4 order: which off-heat pepper event comes first?"
+        ],
+        "focus_plan": [
+          "Compare V2 and V4 pan start position and egg state to determine sequence"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "order_confidence": 9,
+        "resolved_uncertain": [
+          "V2 vs V4 order resolved: V4 starts with liquid eggs on burner, V2 starts with soft curds on board, so V4 precedes V2."
+        ],
+        "confirmed": [
+          "V6 first prep",
+          "V1 adds butter to bowl",
+          "V3 pours to pan",
+          "V4 off-heat pepper then on-heat",
+          "V2 tastes then peppers",
+          "V5 finishes with cream"
+        ],
+        "uncertain": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "6->1->3->4->2->5"
+  ],
+  "order_confidence": [
+    "7",
+    "9"
+  ],
+  "confidence_basis": [
+    "V6 is earliest prep, V1 adds butter to bowl, V3 pours to pan, V4 off-heat pepper then on-heat, V2 tastes then peppers, V5 finishes with dollop and bread is sliced."
+  ],
+  "blocking_uncertainties": [
+    "V2 vs V4 order: does tasting/pepper (V2) happen before or after off-heat pepper/move to burner (V4)?",
+    "V3 container: is it the same bowl from V1 or a different measuring cup?",
+    "V5 dollop identity and pan heat state"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V6\": \"crack/beat eggs in bowl\", \"V1\": \"add butter chunk to bowl\", \"V3\": \"pour egg+butter from cup to pan on burner\", \"V4\": \"cook, off-heat pepper on board, move pan to burner\", \"V2\": \"taste, then off-heat pepper on board\", \"V5\": \"add cream dollop, curdy eggs, finish\"}"
+  ],
+  "temporal_index": [
+    "{\"V2\": {\"window\": [0, 24], \"event\": \"taste then pepper off-heat\", \"confidence\": \"high\"}, \"V4\": {\"window\": [0, 18], \"event\": \"pepper off-heat then move to burner\", \"confidence\": \"high\"}}"
+  ],
+  "focus_plan": [
+    "Compare V2 and V4 pan start position and egg state to determine sequence"
+  ]
+}

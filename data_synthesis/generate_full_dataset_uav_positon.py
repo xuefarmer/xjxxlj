@@ -1,4 +1,4 @@
-import requests
+
 import json
 import random
 import re
@@ -14,10 +14,7 @@ except ImportError:
     pass
 
 # ================= 1. Base Configuration (aligned with Assembly script logic) =================
-API_KEY = os.environ.get("GEMINI_API_KEY", "")
-if not API_KEY:
-    raise ValueError("Please set GEMINI_API_KEY in environment or .env before running.")
-ENDPOINT = os.environ.get("GEMINI_ENDPOINT", "https://example.googleapis.com/v1:generateContent")
+from llm_client import request_llm
 
 OUTPUT_DIR = "msr_synthesis"
 if not os.path.exists(OUTPUT_DIR):
@@ -154,53 +151,18 @@ def generate_tasks():
     return tasks
 
 # ================= 5. API Handler =================
-def call_gemini(prompt):
-    headers = {
-        "api-key": API_KEY,
-        "Content-Type": "application/json"
-    }
-    
-    # Strict role: user structure
-    payload = {
-        "contents": [
-            {
-                "role": "user",
-                "parts": [{"text": prompt}]
-            }
-        ],
-        "generationConfig": {
-            "temperature": 0.9,
-            "maxOutputTokens": 8192  # Flash model supports long output
-        }
-    }
-    
-    try:
-        response = requests.post(ENDPOINT, headers=headers, json=payload, timeout=120)
-        if response.status_code != 200:
-            return {"error": f"HTTP {response.status_code}", "details": response.text}
-        return response.json()
-    except Exception as e:
-        return {"error": str(e)}
-
 def worker(task_params):
     prompt = build_prompt(task_params)
     task_id = task_params['id']
-    
+
     for attempt in range(MAX_RETRIES):
-        res = call_gemini(prompt)
-        
-        if "error" in res:
-            # Log retry; with stable network the logic usually succeeds
-            print(f"⚠️ [Task {task_id}] Retry {attempt+1}. Error: {res['error']}")
+        raw = request_llm(prompt, temperature=0.9, max_tokens=8192)
+        if raw is None:
+            print(f"⚠️ [Task {task_id}] Retry {attempt+1}. Request failed.")
             time.sleep(2)
             continue
-            
-        try:
-            if "candidates" not in res:
-                 print(f"❌ [Task {task_id}] No candidates.")
-                 return {"status": "failed"}
 
-            raw = res['candidates'][0]['content']['parts'][0]['text']
+        try:
             # Strip Markdown code fences
             clean = re.sub(r"```json|```", "", raw).strip()
             # Model may prepend non-JSON text; find first { and last }

@@ -1,0 +1,247 @@
+{
+  "confirmed": [
+    "V1 is first (raw pasta)",
+    "V4 precedes V3 (whole eggs in V4 background)",
+    "V3 precedes V5 (sauce base in jug -> combined)",
+    "V4 precedes V5 (bacon cooking -> transferred)",
+    "V5 precedes V2 (mixed -> plated)"
+  ],
+  "uncertain": [
+    "V3 powder/liquid identity",
+    "V4 vs V5 pot continuity",
+    "Exact order of V3, V4, V5"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"boil water, add raw spaghetti\", \"2\": \"final plated creamy pasta with garnish\", \"3\": \"mix egg, liquid, white powder in jug\", \"4\": \"chop garlic/bacon, cook in pot\", \"5\": \"drain pasta, cook bacon in pan, add cream, mix with pasta\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "spaghetti": {
+      "1": "raw/dry -> boiling",
+      "5": "cooked/drained -> mixed with sauce",
+      "2": "plated/coated"
+    },
+    "bacon": {
+      "4": "raw strips -> chopped -> cooking in pot",
+      "5": "cooked in pan -> transferred to pot",
+      "2": "pink pieces on plate"
+    },
+    "egg": {
+      "3": "cracked into jug",
+      "4": "whole raw in background"
+    },
+    "sauce_base": {
+      "3": "liquid + powder mixed in jug",
+      "5": "cream added to bacon in pot"
+    },
+    "garlic": {
+      "4": "whole -> minced -> cooked with bacon"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object state chain",
+    "container fill/empty",
+    "transfer traces",
+    "residue/depletion",
+    "ingredient maturity"
+  ],
+  "resolved_uncertain": [
+    "V3 powder/liquid identity: grated cheese + cream",
+    "V4 vs V5 pot continuity: V4 pot is source for V5 transfer",
+    "Exact sequence: 1->4->3->5->2 confirmed by whole eggs in V4 background"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All object states and event roles pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "object state chain",
+          "container fill/empty",
+          "transfer traces",
+          "residue/depletion",
+          "ingredient maturity"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "boil water, add raw spaghetti",
+          "2": "final plated creamy pasta with garnish",
+          "3": "mix egg, liquid, white powder in jug",
+          "4": "chop garlic/bacon, cook in pot",
+          "5": "drain pasta, cook bacon in pan, add cream, mix with pasta"
+        },
+        "object_memory": {
+          "spaghetti": {
+            "1": "raw/dry -> boiling",
+            "5": "cooked/drained -> mixed with sauce",
+            "2": "plated/coated"
+          },
+          "bacon": {
+            "4": "raw strips -> chopped -> cooking in pot",
+            "5": "cooked in pan -> transferred to pot",
+            "2": "pink pieces on plate"
+          },
+          "egg": {
+            "3": "cracked into jug",
+            "4": "whole raw in background"
+          },
+          "sauce_base": {
+            "3": "liquid + powder mixed in jug",
+            "5": "cream added to bacon in pot"
+          },
+          "garlic": {
+            "4": "whole -> minced -> cooked with bacon"
+          }
+        },
+        "preliminary_order": [
+          1,
+          4,
+          3,
+          5,
+          2
+        ],
+        "order_confidence": 6,
+        "confidence_basis": "V1 is clearly first (boiling raw pasta). V2 is clearly last (plated). V4 must precede V5 because V4 shows raw bacon being chopped and initial cooking, while V5 shows cooked bacon being transferred and mixed with pasta. V3 (sauce base) likely precedes V5 (combining sauce with pasta/bacon).",
+        "blocking_uncertainties": [
+          "V3 powder/liquid identity (cheese/cream vs flour/milk) to confirm if it's the sauce base",
+          "V4 vs V5 pot continuity (are they the same pot or different steps?)",
+          "Exact sequence of V3, V4, V5"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                9
+              ],
+              "event": "pasta boiling",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                1
+              ],
+              "event": "final plating",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                16
+              ],
+              "event": "sauce/batter mixing",
+              "confidence": "medium"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                39
+              ],
+              "event": "bacon/garlic prep and cooking",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                24
+              ],
+              "event": "pasta draining and final mixing",
+              "confidence": "high"
+            }
+          ]
+        },
+        "uncertain": [
+          "V3 powder/liquid identity",
+          "V4 vs V5 pot continuity",
+          "Exact order of V3, V4, V5"
+        ],
+        "dimensions_to_compare": [
+          "object state chain",
+          "container fill/empty",
+          "transfer traces",
+          "residue/depletion",
+          "ingredient maturity"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "V1": "raw pasta -> boiling",
+          "V4": "bacon/garlic cooking, eggs whole in background",
+          "V3": "eggs cracked, cream/cheese mixed in jug",
+          "V5": "bacon transferred, sauce combined, pasta mixed",
+          "V2": "plated with garnish"
+        },
+        "confirmed": [
+          "V1 is first (raw pasta)",
+          "V4 precedes V3 (whole eggs in V4 background)",
+          "V3 precedes V5 (sauce base in jug -> combined)",
+          "V4 precedes V5 (bacon cooking -> transferred)",
+          "V5 precedes V2 (mixed -> plated)"
+        ],
+        "order_confidence": 9,
+        "resolved_uncertain": [
+          "V3 powder/liquid identity: grated cheese + cream",
+          "V4 vs V5 pot continuity: V4 pot is source for V5 transfer",
+          "Exact sequence: 1->4->3->5->2 confirmed by whole eggs in V4 background"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1",
+    "4",
+    "3",
+    "5",
+    "2"
+  ],
+  "order_confidence": [
+    "6",
+    "9"
+  ],
+  "confidence_basis": [
+    "V1 is clearly first (boiling raw pasta). V2 is clearly last (plated). V4 must precede V5 because V4 shows raw bacon being chopped and initial cooking, while V5 shows cooked bacon being transferred and mixed with pasta. V3 (sauce base) likely precedes V5 (combining sauce with pasta/bacon)."
+  ],
+  "blocking_uncertainties": [
+    "V3 powder/liquid identity (cheese/cream vs flour/milk) to confirm if it's the sauce base",
+    "V4 vs V5 pot continuity (are they the same pot or different steps?)",
+    "Exact sequence of V3, V4, V5"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 9], \"event\": \"pasta boiling\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 1], \"event\": \"final plating\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 16], \"event\": \"sauce/batter mixing\", \"confidence\": \"medium\"}], \"video4\": [{\"window\": [0, 39], \"event\": \"bacon/garlic prep and cooking\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 24], \"event\": \"pasta draining and final mixing\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V1\": \"raw pasta -> boiling\", \"V4\": \"bacon/garlic cooking, eggs whole in background\", \"V3\": \"eggs cracked, cream/cheese mixed in jug\", \"V5\": \"bacon transferred, sauce combined, pasta mixed\", \"V2\": \"plated with garnish\"}"
+  ]
+}

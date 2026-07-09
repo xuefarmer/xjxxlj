@@ -1,13 +1,13 @@
 # Agent System
 
-ReAct-style video/image agent: a **master LLM** drives the loop and calls two tools — **active_perception** (VLM over frames) and **get_caption** (on-demand Whisper). Supports standard video inputs and UAV image-folder contexts.
+ReAct-style video/image agent: a **master LLM** drives the loop and calls two tools — **active_perception** (VLM over frames) and **get_caption** (on-demand Whisper). Supports standard video inputs and UAV image-folder contexts. The master text-reasoning model can run locally with HuggingFace Qwen3, while visual perception and diagnosis/error attribution can remain API-based.
 
 ## Structure
 
 | Path | Description |
 |------|-------------|
 | `agent_executor.py` | Orchestrates the loop: master dialogue, tool dispatch, log saving |
-| `qwen_agent.py` | LLM/VLM client: master chat API and active_perception (tool) API; config from env |
+| `qwen_agent.py` | LLM/VLM client: local/API master routing, active_perception (tool) API, optional diagnosis API; config from env |
 | `utils/` | Helpers: config, logging, sanitize, text, answer parsing, `video_processor`, `caption_generator`, `frame_bbox` |
 | `run_tasks/` | Task entry scripts (PSS, FSA, PEA, CC, NC, BU, PI, CCQA, MOC, MSR) |
 | `question/` | **Not included in repo** — create this directory and add task JSON files (see [Question / test data](#question--test-data) below) |
@@ -18,7 +18,8 @@ ReAct-style video/image agent: a **master LLM** drives the loop and calls two to
 
 - Python 3.8+
 - ffmpeg (for caption segment extraction when using `get_caption`)
-- API: OpenAI-compatible chat for master and tool (VLM); optional scoring API for CCQA
+- API: OpenAI-compatible chat for tool (VLM), diagnosis/error attribution, and optional scoring API for CCQA
+- Optional local master text model: HuggingFace checkpoint such as `/media/data6/xuejj/Qwen3-8B`
 
 ## Installation
 
@@ -42,8 +43,20 @@ pip install -r requirements.txt
 1. Copy the env template and set your API keys and paths:
    ```bash
    cp .env.example .env
-   # Edit .env: MASTER_API_*, TOOL_API_*, LOCAL_VIDEO_ROOT, REMOTE_VIDEO_BASE_URL, UAV_DATA_DIR (if needed), SCORING_* (for CCQA)
+   # Edit .env: MASTER_BACKEND/LOCAL_MASTER_*, TOOL_API_*, DIAGNOSIS_*,
+   # LOCAL_VIDEO_ROOT, REMOTE_VIDEO_BASE_URL, UAV_DATA_DIR (if needed), SCORING_* (for CCQA)
    ```
+
+   For local Qwen3 master reasoning, use:
+   ```bash
+   MASTER_BACKEND=local_hf
+   LOCAL_MASTER_MODEL_PATH=/media/data6/xuejj/Qwen3-8B
+   LOCAL_MASTER_DEVICE=cuda:0
+   ```
+
+   `active_perception` still uses `TOOL_API_*`. Future diagnosis/error-attribution calls use `DIAGNOSIS_*` and default to `MASTER_API_*` if `DIAGNOSIS_*` is unset.
+
+   Local Qwen3 master inference is loaded with `transformers.pipeline("text-generation")`. Make sure the Python environment used to run `run_tasks/run_PSS_agent.py` has Python >= 3.9 plus `torch`, `transformers`, `accelerate`, and `safetensors`.
 
 2. Create the `question/` directory and add task JSON files (see [Question / test data](#question--test-data) below). Master prompts are already in `prompts/`.
 

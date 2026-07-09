@@ -1,0 +1,245 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "object states across segments",
+    "transfer chain",
+    "prep vs cooking vs finishing roles"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "egg": {
+      "4": "raw->scrambled curds",
+      "2": "scrambled base",
+      "3": "mixed in wok",
+      "5": "mixed in wok"
+    },
+    "chicken": {
+      "2": "raw pink->cooked opaque",
+      "3": "cooked mixed",
+      "5": "cooked mixed"
+    },
+    "rice": {
+      "2": "added cooked white",
+      "3": "white->brown sauced",
+      "5": "brown sauced"
+    },
+    "veggies": {
+      "3": "raw cut->cooked mixed",
+      "5": "cooked mixed"
+    },
+    "basil": {
+      "5": "fresh whole->wilted mixed"
+    },
+    "chili_garlic_paste": {
+      "1": "raw whole->wet coarse paste"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient state (raw/cooked)",
+    "container fill/empty",
+    "tool contact",
+    "residue/depletion",
+    "plating presence"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "object states across segments",
+          "transfer chain",
+          "prep vs cooking vs finishing roles"
+        ],
+        "dimensions_to_compare": [
+          "ingredient state (raw/cooked)",
+          "container fill/empty",
+          "tool contact",
+          "residue/depletion",
+          "plating presence"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": [
+          1,
+          4,
+          2,
+          3,
+          5
+        ],
+        "order_confidence": 9,
+        "confidence_basis": [
+          "V1: raw whole aromatics -> paste",
+          "V4: raw egg -> scrambled",
+          "V2: raw chicken -> cooked + rice added",
+          "V3: white rice -> brown sauced rice + veggies",
+          "V5: brown rice + fresh basil -> wilted"
+        ],
+        "blocking_uncertainties": [
+          "boundary state of egg at V4 end",
+          "boundary state of rice/chicken at V2 end",
+          "boundary state of rice/sauce at V3 end",
+          "boundary state of basil at V5 end"
+        ],
+        "object_memory": {
+          "egg": {
+            "4": "raw->scrambled curds",
+            "2": "scrambled base",
+            "3": "mixed in wok",
+            "5": "mixed in wok"
+          },
+          "chicken": {
+            "2": "raw pink->cooked opaque",
+            "3": "cooked mixed",
+            "5": "cooked mixed"
+          },
+          "rice": {
+            "2": "added cooked white",
+            "3": "white->brown sauced",
+            "5": "brown sauced"
+          },
+          "veggies": {
+            "3": "raw cut->cooked mixed",
+            "5": "cooked mixed"
+          },
+          "basil": {
+            "5": "fresh whole->wilted mixed"
+          },
+          "chili_garlic_paste": {
+            "1": "raw whole->wet coarse paste"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "paste grinding",
+              "key_objects": [
+                "mortar",
+                "pestle",
+                "chilies",
+                "garlic"
+              ],
+              "visible_state": "raw whole -> wet paste",
+              "why_it_matters": "first prep step",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                16
+              ],
+              "event": "egg scrambling",
+              "key_objects": [
+                "wok",
+                "oil",
+                "egg"
+              ],
+              "visible_state": "raw egg -> scrambled curds",
+              "why_it_matters": "first cooking step, base for chicken",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                36
+              ],
+              "event": "chicken cooking + rice addition",
+              "key_objects": [
+                "wok",
+                "chicken",
+                "rice",
+                "glass bowl"
+              ],
+              "visible_state": "raw chicken -> cooked, rice dumped",
+              "why_it_matters": "builds on egg, introduces rice",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                72
+              ],
+              "event": "veggie + sauce addition",
+              "key_objects": [
+                "wok",
+                "rice",
+                "veggies",
+                "sauce"
+              ],
+              "visible_state": "white rice -> brown sauced",
+              "why_it_matters": "builds on rice base, adds color/flavor",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                12
+              ],
+              "event": "basil finishing",
+              "key_objects": [
+                "wok",
+                "rice",
+                "basil"
+              ],
+              "visible_state": "fresh basil -> wilted",
+              "why_it_matters": "final garnish/mix",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1",
+    "4",
+    "2",
+    "3",
+    "5"
+  ],
+  "order_confidence": [
+    "9"
+  ],
+  "confidence_basis": [
+    "V1: raw whole aromatics -> paste",
+    "V4: raw egg -> scrambled",
+    "V2: raw chicken -> cooked + rice added",
+    "V3: white rice -> brown sauced rice + veggies",
+    "V5: brown rice + fresh basil -> wilted"
+  ],
+  "blocking_uncertainties": [
+    "boundary state of egg at V4 end",
+    "boundary state of rice/chicken at V2 end",
+    "boundary state of rice/sauce at V3 end",
+    "boundary state of basil at V5 end"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 11], \"event\": \"paste grinding\", \"key_objects\": [\"mortar\", \"pestle\", \"chilies\", \"garlic\"], \"visible_state\": \"raw whole -> wet paste\", \"why_it_matters\": \"first prep step\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 16], \"event\": \"egg scrambling\", \"key_objects\": [\"wok\", \"oil\", \"egg\"], \"visible_state\": \"raw egg -> scrambled curds\", \"why_it_matters\": \"first cooking step, base for chicken\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 36], \"event\": \"chicken cooking + rice addition\", \"key_objects\": [\"wok\", \"chicken\", \"rice\", \"glass bowl\"], \"visible_state\": \"raw chicken -> cooked, rice dumped\", \"why_it_matters\": \"builds on egg, introduces rice\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 72], \"event\": \"veggie + sauce addition\", \"key_objects\": [\"wok\", \"rice\", \"veggies\", \"sauce\"], \"visible_state\": \"white rice -> brown sauced\", \"why_it_matters\": \"builds on rice base, adds color/flavor\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 12], \"event\": \"basil finishing\", \"key_objects\": [\"wok\", \"rice\", \"basil\"], \"visible_state\": \"fresh basil -> wilted\", \"why_it_matters\": \"final garnish/mix\", \"confidence\": \"high\"}]}"
+  ]
+}

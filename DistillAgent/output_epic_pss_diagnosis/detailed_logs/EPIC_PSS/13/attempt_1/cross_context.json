@@ -1,0 +1,127 @@
+{
+  "confirmed": [
+    "Packet state progression strictly orders V1 before V2",
+    "Vessel states show continuity from V1 to V2 to V3",
+    "Rinsing in V3 indicates a later/cleaning stage"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "main_pot": {
+      "2": "white liquid poured, then covered",
+      "1": "yellowish foamy mixture with pasta, stirring",
+      "3": "yellowish mixture open, back pot lid adjusting"
+    },
+    "orange_packet": {
+      "2": "opened, adding contents to pan",
+      "1": "sealed/being torn"
+    },
+    "white_bowl": {
+      "1": "empty, metal spoon",
+      "3": "empty, glass lid"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states",
+    "raw/cooked progression",
+    "container fill/empty",
+    "transfer traces"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states",
+          "raw/cooked progression",
+          "container fill/empty",
+          "transfer traces"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "2->1->3",
+        "order_confidence": 7,
+        "confidence_basis": "V2 starts with pouring white water into pot; V1 has yellowish foamy pasta mixture; V3 shows adjusting lid and rinsing tray.",
+        "blocking_uncertainties": [
+          "exact progression of the orange packet state",
+          "whether V1 or V3 is later based on pot lid adjustment"
+        ],
+        "object_memory": {
+          "main_pot": {
+            "2": "white liquid poured, then covered",
+            "1": "yellowish foamy mixture with pasta, stirring",
+            "3": "yellowish mixture open, back pot lid adjusting"
+          },
+          "orange_packet": {
+            "2": "opened, adding contents to pan",
+            "1": "sealed/being torn"
+          },
+          "white_bowl": {
+            "1": "empty, metal spoon",
+            "3": "empty, glass lid"
+          }
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 9,
+        "comparison_table": {
+          "1": "packet sealed->torn (not empty), main pot yellowish foamy pasta",
+          "2": "packet torn->opened/added, pan yellow mixture, pot white liquid covered",
+          "3": "front pot yellowish, back pot lid adjusted, rinsing tray"
+        },
+        "confirmed": [
+          "Packet state progression strictly orders V1 before V2",
+          "Vessel states show continuity from V1 to V2 to V3",
+          "Rinsing in V3 indicates a later/cleaning stage"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "2->1->3"
+  ],
+  "order_confidence": [
+    "7",
+    "9"
+  ],
+  "confidence_basis": [
+    "V2 starts with pouring white water into pot; V1 has yellowish foamy pasta mixture; V3 shows adjusting lid and rinsing tray."
+  ],
+  "blocking_uncertainties": [
+    "exact progression of the orange packet state",
+    "whether V1 or V3 is later based on pot lid adjustment"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"packet sealed->torn (not empty), main pot yellowish foamy pasta\", \"2\": \"packet torn->opened/added, pan yellow mixture, pot white liquid covered\", \"3\": \"front pot yellowish, back pot lid adjusted, rinsing tray\"}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": []
+}

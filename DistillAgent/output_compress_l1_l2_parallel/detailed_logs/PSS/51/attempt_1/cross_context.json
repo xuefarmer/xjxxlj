@@ -1,0 +1,189 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "full object state chains across all 6 segments pending Layer1"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "baking_tray": {
+      "2": "raw veg",
+      "6": "roasting/roasted",
+      "5": "scraped empty"
+    },
+    "pot": {
+      "5": "receives roasted veg + stock",
+      "3": "receives torn bread + basil, simmers",
+      "1": "blended smooth, ladled"
+    },
+    "bread_crostini": {
+      "4": "sliced, placed on grill pan raw",
+      "1": "toasted on grill pan, moved to board"
+    },
+    "bread_soup": {
+      "3": "torn into chunks, added to pot"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked/mixed/plated)",
+    "container fill/empty/residue",
+    "transfer source-destination",
+    "background cues (stove, pan, plate)",
+    "pot contents (liquid vs thick with bread)",
+    "bread state (raw sliced vs toasted vs torn)",
+    "tray state (full raw vs roasted vs empty)"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "full object state chains across all 6 segments pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked/mixed/plated)",
+          "container fill/empty/residue",
+          "transfer source-destination",
+          "background cues (stove, pan, plate)"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": [
+          2,
+          6,
+          5,
+          3,
+          4,
+          1
+        ],
+        "order_confidence": 7,
+        "confidence_basis": "Tray: 2(raw)->6(roast)->5(scraped). Pot: 5(veg+stock)->3(add bread)->1(blend). Grill: 4(raw bread)->1(toasted).",
+        "blocking_uncertainties": [
+          "Exact order of 3 vs 4: does bread tearing (3) happen before or after bread slicing for crostini (4)?",
+          "Pot state in V4 background to anchor 3 vs 4"
+        ],
+        "object_memory": {
+          "baking_tray": {
+            "2": "raw veg",
+            "6": "roasting/roasted",
+            "5": "scraped empty"
+          },
+          "pot": {
+            "5": "receives roasted veg + stock",
+            "3": "receives torn bread + basil, simmers",
+            "1": "blended smooth, ladled"
+          },
+          "bread_crostini": {
+            "4": "sliced, placed on grill pan raw",
+            "1": "toasted on grill pan, moved to board"
+          },
+          "bread_soup": {
+            "3": "torn into chunks, added to pot"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                36
+              ],
+              "event": "blending soup, plating",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                55
+              ],
+              "event": "prep raw veg in tray",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                37
+              ],
+              "event": "tear bread into pot, simmer",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                26
+              ],
+              "event": "slice bread, place on grill pan",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                29
+              ],
+              "event": "scrape tray to pot, add stock",
+              "confidence": "high"
+            }
+          ],
+          "video6": [
+            {
+              "window": [
+                0,
+                12
+              ],
+              "event": "oven roasting tray",
+              "confidence": "high"
+            }
+          ]
+        },
+        "dimensions_to_compare": [
+          "pot contents (liquid vs thick with bread)",
+          "bread state (raw sliced vs toasted vs torn)",
+          "tray state (full raw vs roasted vs empty)"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "2",
+    "6",
+    "5",
+    "3",
+    "4",
+    "1"
+  ],
+  "order_confidence": [
+    "7"
+  ],
+  "confidence_basis": [
+    "Tray: 2(raw)->6(roast)->5(scraped). Pot: 5(veg+stock)->3(add bread)->1(blend). Grill: 4(raw bread)->1(toasted)."
+  ],
+  "blocking_uncertainties": [
+    "Exact order of 3 vs 4: does bread tearing (3) happen before or after bread slicing for crostini (4)?",
+    "Pot state in V4 background to anchor 3 vs 4"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 36], \"event\": \"blending soup, plating\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 55], \"event\": \"prep raw veg in tray\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 37], \"event\": \"tear bread into pot, simmer\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 26], \"event\": \"slice bread, place on grill pan\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 29], \"event\": \"scrape tray to pot, add stock\", \"confidence\": \"high\"}], \"video6\": [{\"window\": [0, 12], \"event\": \"oven roasting tray\", \"confidence\": \"high\"}]}"
+  ]
+}

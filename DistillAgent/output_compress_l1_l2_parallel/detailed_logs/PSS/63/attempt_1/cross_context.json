@@ -1,0 +1,149 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "exact ingredient overlap between vids",
+    "whether vid1 and vid2 are adding the same liquid"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "large_bowl": {
+      "1": "filled with veggies+grains, receiving oil",
+      "2": "filled with veggies, receiving liquid dressing",
+      "3": "receiving grain then veggies",
+      "4": "filled with veggies, receiving seasoning"
+    },
+    "small_bowl_liquid": {
+      "1": "olive oil (yellow)",
+      "2": "liquid dressing",
+      "3": "grain, then celery",
+      "4": "seasoning (salt/herbs)"
+    },
+    "wooden_spoon": {
+      "1": "present, residue",
+      "2": "present, residue",
+      "3": "present",
+      "4": "present, residue"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states",
+    "container fill levels",
+    "tool usage",
+    "residue/depletion",
+    "grain presence",
+    "liquid/seasoning identity",
+    "ingredient accumulation"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "object states across segments",
+          "state transitions",
+          "segment order"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states",
+          "container fill levels",
+          "tool usage",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "large_bowl": {
+            "1": "filled with veggies+grains, receiving oil",
+            "2": "filled with veggies, receiving liquid dressing",
+            "3": "receiving grain then veggies",
+            "4": "filled with veggies, receiving seasoning"
+          },
+          "small_bowl_liquid": {
+            "1": "olive oil (yellow)",
+            "2": "liquid dressing",
+            "3": "grain, then celery",
+            "4": "seasoning (salt/herbs)"
+          },
+          "wooden_spoon": {
+            "1": "present, residue",
+            "2": "present, residue",
+            "3": "present",
+            "4": "present, residue"
+          }
+        },
+        "preliminary_order": "3 -> 4 -> 2 -> 1",
+        "order_confidence": 6,
+        "confidence_basis": "Vid3 adds grain+veggies. Vid4 adds dry seasoning. Vid2 adds liquid dressing. Vid1 adds oil and has grains visible. Need to verify if grains are in Vid2/4 to confirm order.",
+        "blocking_uncertainties": [
+          "Are grains visible in Vid2 and Vid4?",
+          "What exact liquids are in Vid1 and Vid2 small bowls?"
+        ],
+        "uncertain": [
+          "grain presence in Vid2/Vid4",
+          "liquid identity in Vid1/Vid2"
+        ],
+        "dimensions_to_compare": [
+          "grain presence",
+          "liquid/seasoning identity",
+          "ingredient accumulation"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "vid1": "large bowl: grains+tomato+cucumber+carrot+parsley. small bowl: yellow oil. fill: filled.",
+          "vid2": "large bowl: grains+tomato+cucumber+parsley. small cup: yellowish liquid. fill: filled.",
+          "vid3": "large bowl: receives grain, celery, tomato, carrot, parsley sequentially. fill: filling up.",
+          "vid4": "large bowl: grains+cucumber+red pepper+tomato+herbs. small bowl: dry seasoning. fill: filled."
+        },
+        "uncertain": [
+          "exact ingredient overlap between vids",
+          "whether vid1 and vid2 are adding the same liquid"
+        ],
+        "focus_plan": [
+          "compare large bowl ingredients and small bowl contents across all 4 segments"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3 -> 4 -> 2 -> 1"
+  ],
+  "order_confidence": [
+    "6"
+  ],
+  "confidence_basis": [
+    "Vid3 adds grain+veggies. Vid4 adds dry seasoning. Vid2 adds liquid dressing. Vid1 adds oil and has grains visible. Need to verify if grains are in Vid2/4 to confirm order."
+  ],
+  "blocking_uncertainties": [
+    "Are grains visible in Vid2 and Vid4?",
+    "What exact liquids are in Vid1 and Vid2 small bowls?"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"vid1\": \"large bowl: grains+tomato+cucumber+carrot+parsley. small bowl: yellow oil. fill: filled.\", \"vid2\": \"large bowl: grains+tomato+cucumber+parsley. small cup: yellowish liquid. fill: filled.\", \"vid3\": \"large bowl: receives grain, celery, tomato, carrot, parsley sequentially. fill: filling up.\", \"vid4\": \"large bowl: grains+cucumber+red pepper+tomato+herbs. small bowl: dry seasoning. fill: filled.\"}"
+  ],
+  "focus_plan": [
+    "compare large bowl ingredients and small bowl contents across all 4 segments"
+  ]
+}

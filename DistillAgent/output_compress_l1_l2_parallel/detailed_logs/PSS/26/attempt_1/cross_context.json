@@ -1,0 +1,186 @@
+{
+  "confirmed": [
+    "V3 end veggie mix matches V4 later addition",
+    "V4 end curry matches V1 start",
+    "V6 end boiled rice matches V2 start",
+    "V1 end layered dish matches V5 start"
+  ],
+  "uncertain": [
+    "pending Layer1 results"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "veggie_mix": {
+      "3": "raw mixed with cream/spices",
+      "4": "added to tomato sauce base later in clip"
+    },
+    "veg_curry": {
+      "4": "cooked in black pan",
+      "1": "transferred from black pan to glass dish"
+    },
+    "rice": {
+      "6": "raw boiled in stainless pot",
+      "2": "cooked in metal bowl mixed with saffron",
+      "1": "layered in glass dish"
+    },
+    "assembly_dish": {
+      "1": "layered curry/rice in glass baking dish",
+      "5": "garnished with almonds/ghee"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states raw->cooked",
+    "container empty->filled->depleted",
+    "transfer traces",
+    "residue/depletion",
+    "ingredient integration level"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": true,
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states raw->cooked",
+          "container empty->filled->depleted",
+          "transfer traces",
+          "residue/depletion",
+          "ingredient integration level"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "veggie_mix": {
+            "3": "raw mixed with cream/spices in glass bowl",
+            "4": "poured into black pan with tomato sauce"
+          },
+          "veg_curry": {
+            "4": "cooked in black pan",
+            "1": "transferred from black pan to glass dish"
+          },
+          "rice": {
+            "6": "raw boiled in stainless pot",
+            "2": "cooked in metal bowl mixed with saffron",
+            "1": "layered in glass dish"
+          },
+          "assembly_dish": {
+            "1": "layered curry/rice in glass baking dish",
+            "5": "garnished with almonds/ghee in glass bowl"
+          }
+        },
+        "preliminary_order": "3->4->6->2->1->5",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V3 mise en place -> V4 cook veggies",
+          "V6 boil rice -> V2 saffron rice",
+          "V1 layering uses both",
+          "V5 final garnish on assembled dish"
+        ],
+        "blocking_uncertainties": [
+          "verify V3 end state matches V4 start",
+          "verify V4 end state matches V1 start",
+          "verify V6 end state matches V2 start",
+          "verify V1 end state matches V5 start"
+        ],
+        "dimensions_to_compare": [
+          "object states raw->cooked",
+          "container empty->filled->depleted",
+          "transfer traces",
+          "residue/depletion",
+          "ingredient integration level"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "object_memory": {
+          "veggie_mix": {
+            "3": "raw mixed with cream/spices",
+            "4": "added to tomato sauce base later in clip"
+          },
+          "veg_curry": {
+            "4": "cooked in black pan",
+            "1": "transferred from black pan to glass dish"
+          },
+          "rice": {
+            "6": "raw boiled in stainless pot",
+            "2": "cooked in metal bowl mixed with saffron",
+            "1": "layered in glass dish"
+          },
+          "assembly_dish": {
+            "1": "layered curry/rice in glass baking dish",
+            "5": "garnished with almonds/ghee"
+          }
+        },
+        "preliminary_order": "3->4->6->2->1->5",
+        "order_confidence": 9,
+        "confidence_basis": [
+          "V3->V4 veggie prep to cook",
+          "V4->V1 black pan transfer",
+          "V6->V2 boil to saffron mix",
+          "V1->V5 layer to garnish"
+        ],
+        "blocking_uncertainties": [],
+        "confirmed": [
+          "V3 end veggie mix matches V4 later addition",
+          "V4 end curry matches V1 start",
+          "V6 end boiled rice matches V2 start",
+          "V1 end layered dish matches V5 start"
+        ],
+        "dimensions_to_compare": [
+          "object states raw->cooked",
+          "container empty->filled->depleted",
+          "transfer traces",
+          "residue/depletion",
+          "ingredient integration level"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3->4->6->2->1->5"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "V3 mise en place -> V4 cook veggies",
+    "V6 boil rice -> V2 saffron rice",
+    "V1 layering uses both",
+    "V5 final garnish on assembled dish",
+    "V3->V4 veggie prep to cook",
+    "V4->V1 black pan transfer",
+    "V6->V2 boil to saffron mix",
+    "V1->V5 layer to garnish"
+  ],
+  "blocking_uncertainties": [
+    "verify V3 end state matches V4 start",
+    "verify V4 end state matches V1 start",
+    "verify V6 end state matches V2 start",
+    "verify V1 end state matches V5 start"
+  ],
+  "layer2_done": [
+    "True"
+  ]
+}

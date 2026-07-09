@@ -1,0 +1,143 @@
+{
+  "confirmed": [
+    "Video 2 makes green paste used in Video 4",
+    "Video 4 makes green fried rice in wok",
+    "Video 3 plates rice ring and pours white sauce",
+    "Video 1 makes white sauce with curry paste",
+    "Video 1 makes white sauce; intro shows pre-cooked rice ring",
+    "Video 4 precedes Video 1 (rice already cooked when Video 1 starts)"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {},
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [],
+  "resolved_uncertain": [
+    "Order between Video 1 and Video 4: rice ring already plated at start of Video 1 confirms Video 4 precedes Video 1"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "1": "Makes white sauce with curry paste; rice ring visible in frames 8-14 (Layer2)",
+          "2": "Makes green chutney/paste in clear bowl",
+          "3": "Plates green-flecked rice ring, pours white sauce from black pan, garnishes",
+          "4": "Makes green fried rice in wok from plain white rice + green paste"
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                30
+              ],
+              "event": "check if rice ring already plated at start",
+              "key_objects": [
+                "rice ring",
+                "plate"
+              ],
+              "visible_state": "TBD by focus",
+              "why_it_matters": "determines if Video 4 precedes Video 1",
+              "confidence": "TBD"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                90,
+                110
+              ],
+              "event": "final rice state in wok",
+              "key_objects": [
+                "rice",
+                "wok"
+              ],
+              "visible_state": "green-flecked fried rice (Layer2)",
+              "why_it_matters": "confirms Video 4 produces the rice used in Video 1/3",
+              "confidence": "high"
+            }
+          ]
+        },
+        "confirmed": [
+          "Video 2 makes green paste used in Video 4",
+          "Video 4 makes green fried rice in wok",
+          "Video 3 plates rice ring and pours white sauce",
+          "Video 1 makes white sauce with curry paste"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          "1",
+          "4"
+        ],
+        "uncertain": [
+          "Order between Video 1 and Video 4: does rice ring already exist at start of Video 1?"
+        ],
+        "focus_plan": [
+          "Check Video 1 early frames for pre-existing rice ring",
+          "Check Video 4 final rice state"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "order_confidence": 9,
+        "comparison_table": {
+          "1": "Makes white sauce with curry paste; intro shows finished rice ring at start",
+          "2": "Makes green chutney/paste from raw ingredients",
+          "3": "Plates green-flecked rice ring, pours white sauce, garnishes",
+          "4": "Makes green fried rice in wok (white->green-flecked)"
+        },
+        "confirmed": [
+          "Video 2 makes green paste used in Video 4",
+          "Video 4 makes green fried rice in wok",
+          "Video 1 makes white sauce; intro shows pre-cooked rice ring",
+          "Video 3 plates rice ring and pours white sauce",
+          "Video 4 precedes Video 1 (rice already cooked when Video 1 starts)"
+        ],
+        "resolved_uncertain": [
+          "Order between Video 1 and Video 4: rice ring already plated at start of Video 1 confirms Video 4 precedes Video 1"
+        ],
+        "uncertain": [],
+        "EDGE_TABLE": {
+          "2->4": "same_object_state_progression (green paste made in 2 used in 4)",
+          "4->1": "visible_completion_to_next_start (rice cooked in 4, already plated at start of 1)",
+          "1->3": "direct_transfer (white sauce made in 1 poured onto rice in 3)"
+        }
+      }
+    }
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"Makes white sauce with curry paste; rice ring visible in frames 8-14 (Layer2)\", \"2\": \"Makes green chutney/paste in clear bowl\", \"3\": \"Plates green-flecked rice ring, pours white sauce from black pan, garnishes\", \"4\": \"Makes green fried rice in wok from plain white rice + green paste\"}",
+    "{\"1\": \"Makes white sauce with curry paste; intro shows finished rice ring at start\", \"2\": \"Makes green chutney/paste from raw ingredients\", \"3\": \"Plates green-flecked rice ring, pours white sauce, garnishes\", \"4\": \"Makes green fried rice in wok (white->green-flecked)\"}"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 30], \"event\": \"check if rice ring already plated at start\", \"key_objects\": [\"rice ring\", \"plate\"], \"visible_state\": \"TBD by focus\", \"why_it_matters\": \"determines if Video 4 precedes Video 1\", \"confidence\": \"TBD\"}], \"video4\": [{\"window\": [90, 110], \"event\": \"final rice state in wok\", \"key_objects\": [\"rice\", \"wok\"], \"visible_state\": \"green-flecked fried rice (Layer2)\", \"why_it_matters\": \"confirms Video 4 produces the rice used in Video 1/3\", \"confidence\": \"high\"}]}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": [
+    "1",
+    "4"
+  ],
+  "focus_plan": [
+    "Check Video 1 early frames for pre-existing rice ring",
+    "Check Video 4 final rice state"
+  ],
+  "order_confidence": [
+    "9"
+  ],
+  "EDGE_TABLE": [
+    "{\"2->4\": \"same_object_state_progression (green paste made in 2 used in 4)\", \"4->1\": \"visible_completion_to_next_start (rice cooked in 4, already plated at start of 1)\", \"1->3\": \"direct_transfer (white sauce made in 1 poured onto rice in 3)\"}"
+  ]
+}

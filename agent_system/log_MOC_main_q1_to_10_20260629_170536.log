@@ -1,0 +1,822 @@
+2026-06-29 17:05:36,747 - INFO - ▶️  Run Config: Task=MOC_task, Q1-Q10
+2026-06-29 17:05:36,747 - INFO - ⚙️  Runtime: MASTER_BACKEND=api | LOCAL_MASTER_MODEL_PATH=/media/data6/xuejj/Qwen3-8B | MASTER_MODEL_NAME=qwen3.7-plus | TOOL_BACKEND=api | LOCAL_TOOL_MODEL_PATH=/media/data6/xuejj/Qwen | TOOL_MODEL_NAME=qwen3.7-plus | ORACLE_ANSWER_HINT=true | PROMPT=/media/data6/xuejj/CVRAgent/agent_system/myprompts/_unified_crossvid_base.prompt + /media/data6/xuejj/CVRAgent/agent_system/myprompts/task_contracts/MOC.prompt
+2026-06-29 17:05:36,747 - WARNING - 🧪 ORACLE DEBUG MODE enabled: ground-truth answers will be provided to the master for diagnostic runs only.
+2026-06-29 17:05:36,748 - INFO - === Testing Q1 (ID: 0) ===
+2026-06-29 17:05:36,748 - INFO -   Object mapping: {A1}->obj_23
+2026-06-29 17:05:36,836 - INFO - 🚀 Starting Master Agent Loop...
+2026-06-29 17:05:36,837 - WARNING - 🧪 ORACLE DEBUG MODE is enabled for this question. Ground-truth answer is present in master input.
+2026-06-29 17:05:36,837 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-06-29 17:05:54,939 - INFO -   ⏱️  LLM: 18.1s
+2026-06-29 17:05:54,940 - INFO -   🤖 Thought: Layer1: Need to independently scan both synchronized views to identify obj_23's trajectory and all r...
+2026-06-29 17:05:54,940 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 17:05:54,940 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=4, dimensions=4
+2026-06-29 17:05:54,942 - INFO -     [BATCH 1/2] Video 1: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 17:05:54,942 - INFO -     [CHUNK 1/4] Video 1 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 17:05:54,942 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 17:05:54,942 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 17:06:04,022 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 17:09:02,742 - INFO -     [CHUNK 2/4] Video 1 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 17:09:02,743 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 17:09:02,743 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 17:09:03,595 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 17:13:25,543 - INFO -     [BATCH 1/2] Video 1 done in 450.6s (2 frame chunks)
+2026-06-29 17:13:25,543 - INFO -     [BATCH 2/2] Video 2: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 17:13:25,544 - INFO -     [CHUNK 3/4] Video 2 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 17:13:25,544 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 17:13:25,544 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 17:13:29,954 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 17:16:21,533 - INFO -     [CHUNK 4/4] Video 2 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 17:16:21,534 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 17:16:21,534 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 17:16:22,530 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 17:19:08,122 - INFO -     [BATCH 2/2] Video 2 done in 793.2s (2 frame chunks)
+2026-06-29 17:19:08,122 - INFO -   ⏱️  Batch Tool (2 videos): 793.2s, Turn total: 811.3s
+2026-06-29 17:19:08,123 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 811.3s)
+2026-06-29 17:20:05,376 - INFO -   ⏱️  LLM: 57.3s
+2026-06-29 17:20:05,377 - INFO -   🤖 Thought: Layer1 gave conflicting counts between views and chunks. View 2 seems to have a clearer view of the ...
+2026-06-29 17:20:05,377 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 17:20:05,377 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=3, dimensions=7
+2026-06-29 17:20:05,378 - INFO -     [CHUNK 1/3] Video 2 frame window 0-149 (core 0-149), 8 sampled frames
+2026-06-29 17:20:05,378 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 17:20:05,378 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 17:20:05,674 - INFO -     [TOOL] 👁️ Calling VLM with 8 frames...
+2026-06-29 17:24:36,042 - INFO -     [BATCH 1/3] Video 2 done in 270.7s (1 frame chunks)
+2026-06-29 17:24:36,042 - INFO -     [CHUNK 2/3] Video 2 frame window 150-299 (core 150-299), 8 sampled frames
+2026-06-29 17:24:36,042 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 17:24:36,043 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 17:24:36,326 - INFO -     [TOOL] 👁️ Calling VLM with 8 frames...
+2026-06-29 17:27:44,143 - INFO -     [BATCH 2/3] Video 2 done in 458.8s (1 frame chunks)
+2026-06-29 17:27:44,144 - INFO -     [CHUNK 3/3] Video 2 frame window 300-449 (core 300-449), 8 sampled frames
+2026-06-29 17:27:44,144 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 17:27:44,144 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 17:27:44,437 - INFO -     [TOOL] 👁️ Calling VLM with 8 frames...
+2026-06-29 17:30:18,068 - INFO -     [BATCH 3/3] Video 2 done in 612.7s (1 frame chunks)
+2026-06-29 17:30:18,069 - INFO -   ⏱️  Batch Tool (3 videos): 612.7s, Turn total: 669.9s
+2026-06-29 17:30:18,069 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 1481.2s)
+2026-06-29 17:31:29,651 - INFO -   ⏱️  LLM: 71.6s
+2026-06-29 17:31:29,652 - INFO -   🤖 Thought: Layer2 gave 3+2+1=6 pass-by events, but with likely duplicates across chunk boundaries (e.g., bright...
+2026-06-29 17:31:29,652 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 17:31:29,652 - INFO -   🧠 Cross-context updated: confirmed=2, uncertain=3, dimensions=7
+2026-06-29 17:31:29,652 - INFO -     [CHUNK 1/3] Video 2 frame window 0-80 (core 0-80), 5 sampled frames
+2026-06-29 17:31:29,652 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 17:31:29,652 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 17:31:29,803 - INFO -     [TOOL] 👁️ Calling VLM with 5 frames...
+2026-06-29 17:34:17,876 - INFO -     [BATCH 1/3] Video 2 done in 168.2s (1 frame chunks)
+2026-06-29 17:34:17,876 - INFO -     [CHUNK 2/3] Video 2 frame window 120-240 (core 120-240), 7 sampled frames
+2026-06-29 17:34:17,877 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 17:34:17,877 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 17:34:18,129 - INFO -     [TOOL] 👁️ Calling VLM with 7 frames...
+2026-06-29 17:36:34,957 - INFO -     [BATCH 2/3] Video 2 done in 305.3s (1 frame chunks)
+2026-06-29 17:36:34,957 - INFO -     [CHUNK 3/3] Video 2 frame window 280-380 (core 280-380), 6 sampled frames
+2026-06-29 17:36:34,958 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 17:36:34,958 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 17:36:35,181 - INFO -     [TOOL] 👁️ Calling VLM with 6 frames...
+2026-06-29 17:38:15,810 - INFO -     [BATCH 3/3] Video 2 done in 406.2s (1 frame chunks)
+2026-06-29 17:38:15,810 - INFO -   ⏱️  Batch Tool (3 videos): 406.2s, Turn total: 477.7s
+2026-06-29 17:38:15,811 - INFO - 🔄 [TURN 4] Master Thinking... (elapsed since loop start: 1959.0s)
+2026-06-29 17:38:35,692 - INFO -   ⏱️  LLM: 19.9s
+2026-06-29 17:38:35,692 - INFO -   🤖 Thought: Decisive evidence from Layer2 focus calls: (1) The maroon car near the yellow car was already passed...
+2026-06-29 17:38:35,692 - INFO -   🤖 Action:  [ANSWER]
+2026-06-29 17:38:35,693 - INFO - 🎯 Final Answer: A (Turn total: 19.9s)
+2026-06-29 17:38:35,693 - INFO -   Pred: ['A'] | Truth: ['A'] | ✅
+2026-06-29 17:38:35,707 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/agent_system/logs/MOC_task/0_qwenapi_myprompts_oracle (JSON + Readable TXT)
+2026-06-29 17:38:35,707 - INFO - --- End of Q0 ---
+2026-06-29 17:38:35,708 - INFO - === Testing Q2 (ID: 1) ===
+2026-06-29 17:38:35,708 - INFO -   Object mapping: {A2}->obj_23
+2026-06-29 17:38:35,798 - INFO - 🚀 Starting Master Agent Loop...
+2026-06-29 17:38:35,798 - WARNING - 🧪 ORACLE DEBUG MODE is enabled for this question. Ground-truth answer is present in master input.
+2026-06-29 17:38:35,799 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-06-29 17:38:53,843 - INFO -   ⏱️  LLM: 18.0s
+2026-06-29 17:38:53,843 - INFO -   🤖 Thought: Layer1: I need to independently scan both synchronized views to track obj_23 and identify every red ...
+2026-06-29 17:38:53,844 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 17:38:53,844 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=4
+2026-06-29 17:38:53,844 - INFO -     [BATCH 1/2] Video 1: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 17:38:53,844 - INFO -     [CHUNK 1/4] Video 1 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 17:38:53,845 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 17:38:53,845 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 17:38:54,301 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 17:42:32,215 - INFO -     [CHUNK 2/4] Video 1 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 17:42:32,216 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 17:42:32,216 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 17:42:32,710 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 17:47:04,721 - INFO -     [BATCH 1/2] Video 1 done in 490.9s (2 frame chunks)
+2026-06-29 17:47:04,721 - INFO -     [BATCH 2/2] Video 2: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 17:47:04,721 - INFO -     [CHUNK 3/4] Video 2 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 17:47:04,721 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 17:47:04,721 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 17:47:05,171 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 17:50:13,023 - INFO -     [CHUNK 4/4] Video 2 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 17:50:13,024 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 17:50:13,024 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 17:50:13,461 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 17:52:36,646 - INFO -     [BATCH 2/2] Video 2 done in 822.8s (2 frame chunks)
+2026-06-29 17:52:36,647 - INFO -   ⏱️  Batch Tool (2 videos): 822.8s, Turn total: 840.8s
+2026-06-29 17:52:36,647 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 840.8s)
+2026-06-29 17:53:30,672 - INFO -   ⏱️  LLM: 54.0s
+2026-06-29 17:53:30,673 - INFO -   🤖 Thought: Layer1 shows Video 1 counts 3 distinct red cars, while Video 2 counts 5. Since the correct answer is...
+2026-06-29 17:53:30,673 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 17:53:30,673 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=7
+2026-06-29 17:53:30,674 - INFO -     [BATCH 1/2] Video 1: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 17:53:30,674 - INFO -     [CHUNK 1/3] Video 1 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 17:53:30,674 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 17:53:30,675 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 17:53:50,676 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 17:56:44,108 - INFO -     [CHUNK 2/3] Video 1 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 17:56:44,109 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 17:56:44,109 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 17:56:44,660 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 18:01:05,805 - INFO -     [BATCH 1/2] Video 1 done in 455.1s (2 frame chunks)
+2026-06-29 18:01:05,806 - INFO -     [CHUNK 3/3] Video 2 frame window 180-320 (core 180-320), 8 sampled frames
+2026-06-29 18:01:05,807 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:01:05,807 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:01:08,512 - INFO -     [TOOL] 👁️ Calling VLM with 8 frames...
+2026-06-29 18:04:04,705 - INFO -     [BATCH 2/2] Video 2 done in 634.0s (1 frame chunks)
+2026-06-29 18:04:04,705 - INFO -   ⏱️  Batch Tool (2 videos): 634.0s, Turn total: 688.1s
+2026-06-29 18:04:04,706 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 1528.9s)
+2026-06-29 18:04:15,734 - INFO -   ⏱️  LLM: 11.0s
+2026-06-29 18:04:15,735 - INFO -   🤖 Thought: Decisive evidence from Layer2 confirms exactly 3 distinct red cars parked by the roadside that obj_2...
+2026-06-29 18:04:15,735 - INFO -   🤖 Action:  [ANSWER]
+2026-06-29 18:04:15,736 - INFO - 🎯 Final Answer: A (Turn total: 11.0s)
+2026-06-29 18:04:15,736 - INFO -   Pred: ['A'] | Truth: ['A'] | ✅
+2026-06-29 18:04:15,750 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/agent_system/logs/MOC_task/1_qwenapi_myprompts_oracle (JSON + Readable TXT)
+2026-06-29 18:04:15,751 - INFO - --- End of Q1 ---
+2026-06-29 18:04:15,751 - INFO - === Testing Q3 (ID: 2) ===
+2026-06-29 18:04:15,751 - INFO -   Object mapping: {A4}->obj_25
+2026-06-29 18:04:15,907 - INFO - 🚀 Starting Master Agent Loop...
+2026-06-29 18:04:15,907 - WARNING - 🧪 ORACLE DEBUG MODE is enabled for this question. Ground-truth answer is present in master input.
+2026-06-29 18:04:15,907 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-06-29 18:04:33,888 - INFO -   ⏱️  LLM: 18.0s
+2026-06-29 18:04:33,889 - INFO -   🤖 Thought: Layer1: Need to independently scan both synchronized views to track obj_25's trajectory and identify...
+2026-06-29 18:04:33,889 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 18:04:33,889 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=3, dimensions=5
+2026-06-29 18:04:33,889 - INFO -     [BATCH 1/2] Video 1: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 18:04:33,890 - INFO -     [CHUNK 1/4] Video 1 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 18:04:33,890 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:04:33,890 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:04:42,426 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 18:08:31,666 - INFO -     [CHUNK 2/4] Video 1 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 18:08:31,666 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:08:31,667 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:08:38,776 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 18:11:56,392 - INFO -     [BATCH 1/2] Video 1 done in 442.5s (2 frame chunks)
+2026-06-29 18:11:56,392 - INFO -     [BATCH 2/2] Video 2: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 18:11:56,392 - INFO -     [CHUNK 3/4] Video 2 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 18:11:56,392 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:11:56,393 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:11:56,857 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 18:14:36,327 - INFO -     [CHUNK 4/4] Video 2 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 18:14:36,328 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:14:36,328 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:14:36,720 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 18:17:38,830 - INFO -     [BATCH 2/2] Video 2 done in 784.9s (2 frame chunks)
+2026-06-29 18:17:38,831 - INFO -   ⏱️  Batch Tool (2 videos): 784.9s, Turn total: 802.9s
+2026-06-29 18:17:38,832 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 802.9s)
+2026-06-29 18:18:31,216 - INFO -   ⏱️  LLM: 52.4s
+2026-06-29 18:18:31,217 - INFO -   🤖 Thought: Layer1 found 4 red cars in Video 1 and 4 in Video 2, but the correct answer is 3. I need to verify i...
+2026-06-29 18:18:31,217 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 18:18:31,218 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=8
+2026-06-29 18:18:31,218 - INFO -     [CHUNK 1/3] Video 2 frame window 60-240 (core 60-240), 10 sampled frames
+2026-06-29 18:18:31,219 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:18:31,219 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:18:31,597 - INFO -     [TOOL] 👁️ Calling VLM with 10 frames...
+2026-06-29 18:22:35,722 - INFO -     [BATCH 1/3] Video 2 done in 244.5s (1 frame chunks)
+2026-06-29 18:22:35,722 - INFO -     [CHUNK 2/3] Video 2 frame window 240-360 (core 240-360), 7 sampled frames
+2026-06-29 18:22:35,723 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:22:35,723 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:22:35,984 - INFO -     [TOOL] 👁️ Calling VLM with 7 frames...
+2026-06-29 18:25:30,769 - INFO -     [BATCH 2/3] Video 2 done in 419.6s (1 frame chunks)
+2026-06-29 18:25:30,769 - INFO -     [CHUNK 3/3] Video 1 frame window 250-360 (core 250-360), 6 sampled frames
+2026-06-29 18:25:30,770 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:25:30,770 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:25:31,011 - INFO -     [TOOL] 👁️ Calling VLM with 6 frames...
+2026-06-29 18:29:02,661 - INFO -     [BATCH 3/3] Video 1 done in 631.4s (1 frame chunks)
+2026-06-29 18:29:02,662 - INFO -   ⏱️  Batch Tool (3 videos): 631.4s, Turn total: 683.8s
+2026-06-29 18:29:02,662 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 1486.8s)
+2026-06-29 18:29:51,762 - INFO -   ⏱️  LLM: 49.1s
+2026-06-29 18:29:51,762 - INFO -   🤖 Thought: Layer2 confirmed Video 2 has 3 red cars (2 maroon, 1 bright red) and Video 1 Chunk 2 has 2 red cars....
+2026-06-29 18:29:51,763 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 18:29:51,763 - INFO -   🧠 Cross-context updated: confirmed=3, uncertain=1, dimensions=8
+2026-06-29 18:29:51,763 - INFO -     [CHUNK 1/2] Video 1 frame window 0-100 (core 0-100), 6 sampled frames
+2026-06-29 18:29:51,764 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:29:51,764 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:29:52,004 - INFO -     [TOOL] 👁️ Calling VLM with 6 frames...
+2026-06-29 18:33:10,162 - INFO -     [BATCH 1/2] Video 1 done in 198.4s (1 frame chunks)
+2026-06-29 18:33:10,163 - INFO -     [CHUNK 2/2] Video 2 frame window 0-100 (core 0-100), 6 sampled frames
+2026-06-29 18:33:10,163 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:33:10,163 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:33:10,328 - INFO -     [TOOL] 👁️ Calling VLM with 6 frames...
+2026-06-29 18:34:52,663 - INFO -     [BATCH 2/2] Video 2 done in 300.9s (1 frame chunks)
+2026-06-29 18:34:52,663 - INFO -   ⏱️  Batch Tool (2 videos): 300.9s, Turn total: 350.0s
+2026-06-29 18:34:52,664 - INFO - 🔄 [TURN 4] Master Thinking... (elapsed since loop start: 1836.8s)
+2026-06-29 18:35:05,872 - INFO -   ⏱️  LLM: 13.2s
+2026-06-29 18:35:05,873 - INFO -   🤖 Thought: Decisive evidence from cross-view verification:
+
+**Video 1 (ego-vehicle forward view):**
+- Chunk 1 (...
+2026-06-29 18:35:05,873 - INFO -   🤖 Action:  [ANSWER]
+2026-06-29 18:35:05,873 - INFO - 🎯 Final Answer: A (Turn total: 13.2s)
+2026-06-29 18:35:05,874 - INFO -   Pred: ['A'] | Truth: ['A'] | ✅
+2026-06-29 18:35:05,887 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/agent_system/logs/MOC_task/2_qwenapi_myprompts_oracle (JSON + Readable TXT)
+2026-06-29 18:35:05,888 - INFO - --- End of Q2 ---
+2026-06-29 18:35:05,888 - INFO - === Testing Q4 (ID: 3) ===
+2026-06-29 18:35:05,888 - INFO -   Object mapping: {A2}->obj_23
+2026-06-29 18:35:06,041 - INFO - 🚀 Starting Master Agent Loop...
+2026-06-29 18:35:06,041 - WARNING - 🧪 ORACLE DEBUG MODE is enabled for this question. Ground-truth answer is present in master input.
+2026-06-29 18:35:06,041 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-06-29 18:35:21,270 - INFO -   ⏱️  LLM: 15.2s
+2026-06-29 18:35:21,271 - INFO -   🤖 Thought: Layer1: Need to independently scan both synchronized views over the full 450-frame range to identify...
+2026-06-29 18:35:21,271 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 18:35:21,271 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=4, dimensions=5
+2026-06-29 18:35:21,271 - INFO -     [BATCH 1/2] Video 1: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 18:35:21,271 - INFO -     [CHUNK 1/4] Video 1 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 18:35:21,272 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:35:21,272 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:35:21,588 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 18:39:34,918 - INFO -     [CHUNK 2/4] Video 1 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 18:39:34,918 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:39:34,918 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:39:35,372 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 18:42:19,428 - INFO -     [BATCH 1/2] Video 1 done in 418.2s (2 frame chunks)
+2026-06-29 18:42:19,429 - INFO -     [BATCH 2/2] Video 2: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 18:42:19,429 - INFO -     [CHUNK 3/4] Video 2 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 18:42:19,429 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:42:19,429 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:43:06,951 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 18:46:31,117 - INFO -     [CHUNK 4/4] Video 2 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 18:46:31,118 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:46:31,118 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:46:40,205 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 18:49:05,974 - INFO -     [BATCH 2/2] Video 2 done in 824.7s (2 frame chunks)
+2026-06-29 18:49:05,974 - INFO -   ⏱️  Batch Tool (2 videos): 824.7s, Turn total: 839.9s
+2026-06-29 18:49:05,975 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 839.9s)
+2026-06-29 18:49:47,735 - INFO -   ⏱️  LLM: 41.8s
+2026-06-29 18:49:47,736 - INFO -   🤖 Thought: Layer2: Need to verify the exact timing of Cycle A's overtake in Video 1 (frames 0-60) to confirm if...
+2026-06-29 18:49:47,736 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 18:49:47,736 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=7
+2026-06-29 18:49:47,737 - INFO -     [CHUNK 1/2] Video 1 frame window 0-60 (core 0-60), 4 sampled frames
+2026-06-29 18:49:47,737 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:49:47,738 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:49:51,482 - INFO -     [TOOL] 👁️ Calling VLM with 4 frames...
+2026-06-29 18:51:09,360 - INFO -     [BATCH 1/2] Video 1 done in 81.6s (1 frame chunks)
+2026-06-29 18:51:09,361 - INFO -     [CHUNK 2/2] Video 2 frame window 0-60 (core 0-60), 4 sampled frames
+2026-06-29 18:51:09,362 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:51:09,362 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:51:13,345 - INFO -     [TOOL] 👁️ Calling VLM with 4 frames...
+2026-06-29 18:52:36,926 - INFO -     [BATCH 2/2] Video 2 done in 169.2s (1 frame chunks)
+2026-06-29 18:52:36,927 - INFO -   ⏱️  Batch Tool (2 videos): 169.2s, Turn total: 211.0s
+2026-06-29 18:52:36,927 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 1050.9s)
+2026-06-29 18:53:11,542 - INFO -   ⏱️  LLM: 34.6s
+2026-06-29 18:53:11,542 - INFO -   🤖 Thought: Layer2 follow-up: Since Cycle A is already ahead at frame 0 in Video 1, and Cycle B is behind in fra...
+2026-06-29 18:53:11,542 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 18:53:11,542 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=7
+2026-06-29 18:53:11,543 - INFO -     [CHUNK 1/2] Video 1 frame window 60-200 (core 60-200), 8 sampled frames
+2026-06-29 18:53:11,543 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:53:11,543 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:53:12,951 - INFO -     [TOOL] 👁️ Calling VLM with 8 frames...
+2026-06-29 18:54:46,564 - INFO -     [BATCH 1/2] Video 1 done in 95.0s (1 frame chunks)
+2026-06-29 18:54:46,564 - INFO -     [CHUNK 2/2] Video 2 frame window 60-200 (core 60-200), 8 sampled frames
+2026-06-29 18:54:46,565 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:54:46,565 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:54:51,362 - INFO -     [TOOL] 👁️ Calling VLM with 8 frames...
+2026-06-29 18:56:36,798 - INFO -     [BATCH 2/2] Video 2 done in 205.3s (1 frame chunks)
+2026-06-29 18:56:36,798 - INFO -   ⏱️  Batch Tool (2 videos): 205.3s, Turn total: 239.9s
+2026-06-29 18:56:36,799 - INFO - 🔄 [TURN 4] Master Thinking... (elapsed since loop start: 1290.8s)
+2026-06-29 18:57:22,805 - INFO -   ⏱️  LLM: 46.0s
+2026-06-29 18:57:22,806 - INFO -   🤖 Thought: Focus on the very beginning of Video 1 (frames 0-15) to see if Cycle A actually overtakes obj_23 in ...
+2026-06-29 18:57:22,806 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 18:57:22,806 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=8
+2026-06-29 18:57:22,807 - INFO -     [CHUNK 1/2] Video 1 frame window 0-15 (core 0-15), 1 sampled frames
+2026-06-29 18:57:22,807 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:57:22,807 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:57:25,007 - INFO -     [TOOL] 👁️ Calling VLM with 1 frames...
+2026-06-29 18:58:41,470 - INFO -     [BATCH 1/2] Video 1 done in 78.7s (1 frame chunks)
+2026-06-29 18:58:41,471 - INFO -     [CHUNK 2/2] Video 2 frame window 200-449 (core 200-449), 13 sampled frames
+2026-06-29 18:58:41,471 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 18:58:41,471 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 18:58:41,999 - INFO -     [TOOL] 👁️ Calling VLM with 13 frames...
+2026-06-29 19:00:53,823 - INFO -     [BATCH 2/2] Video 2 done in 211.0s (1 frame chunks)
+2026-06-29 19:00:53,824 - INFO -   ⏱️  Batch Tool (2 videos): 211.0s, Turn total: 257.0s
+2026-06-29 19:00:53,825 - INFO - 🔄 [TURN 5] Master Thinking... (elapsed since loop start: 1547.8s)
+2026-06-29 19:01:18,520 - INFO -   ⏱️  LLM: 24.7s
+2026-06-29 19:01:18,521 - INFO -   🤖 Thought: Decisive evidence: Video 1 shows that Cycle A is the only cycle that interacts with obj_23 in an ove...
+2026-06-29 19:01:18,521 - INFO -   🤖 Action:  [ANSWER]
+2026-06-29 19:01:18,521 - INFO - 🎯 Final Answer: B (Turn total: 24.7s)
+2026-06-29 19:01:18,521 - INFO -   Pred: ['B'] | Truth: ['B'] | ✅
+2026-06-29 19:01:18,532 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/agent_system/logs/MOC_task/3_qwenapi_myprompts_oracle (JSON + Readable TXT)
+2026-06-29 19:01:18,533 - INFO - --- End of Q3 ---
+2026-06-29 19:01:18,534 - INFO - === Testing Q5 (ID: 4) ===
+2026-06-29 19:01:18,534 - INFO -   Object mapping: {A2}->obj_51
+2026-06-29 19:01:18,678 - INFO - 🚀 Starting Master Agent Loop...
+2026-06-29 19:01:18,678 - WARNING - 🧪 ORACLE DEBUG MODE is enabled for this question. Ground-truth answer is present in master input.
+2026-06-29 19:01:18,678 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-06-29 19:01:56,246 - INFO -   ⏱️  LLM: 37.6s
+2026-06-29 19:01:56,247 - INFO -   🤖 Thought: Layer1: Need to independently scan both synchronized views to identify obj_51 and count cycles passi...
+2026-06-29 19:01:56,247 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 19:01:56,247 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=3, dimensions=4
+2026-06-29 19:01:56,248 - INFO -     [CHUNK 1/10] Video 1 frame window 0-89 (core 0-89), 5 sampled frames
+2026-06-29 19:01:56,249 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:01:56,249 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:01:56,447 - INFO -     [TOOL] 👁️ Calling VLM with 5 frames...
+2026-06-29 19:05:07,203 - INFO -     [BATCH 1/10] Video 1 done in 191.0s (1 frame chunks)
+2026-06-29 19:05:07,204 - INFO -     [CHUNK 2/10] Video 1 frame window 90-179 (core 90-179), 5 sampled frames
+2026-06-29 19:05:07,204 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:05:07,204 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:05:07,625 - INFO -     [TOOL] 👁️ Calling VLM with 5 frames...
+2026-06-29 19:07:44,902 - INFO -     [BATCH 2/10] Video 1 done in 348.7s (1 frame chunks)
+2026-06-29 19:07:44,903 - INFO -     [CHUNK 3/10] Video 1 frame window 180-269 (core 180-269), 5 sampled frames
+2026-06-29 19:07:44,903 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:07:44,903 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:07:45,091 - INFO -     [TOOL] 👁️ Calling VLM with 5 frames...
+2026-06-29 19:11:04,780 - INFO -     [BATCH 3/10] Video 1 done in 548.5s (1 frame chunks)
+2026-06-29 19:11:04,780 - INFO -     [CHUNK 4/10] Video 1 frame window 270-359 (core 270-359), 5 sampled frames
+2026-06-29 19:11:04,780 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:11:04,781 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:11:05,186 - INFO -     [TOOL] 👁️ Calling VLM with 5 frames...
+2026-06-29 19:14:04,636 - INFO -     [BATCH 4/10] Video 1 done in 728.4s (1 frame chunks)
+2026-06-29 19:14:04,637 - INFO -     [CHUNK 5/10] Video 1 frame window 360-449 (core 360-449), 5 sampled frames
+2026-06-29 19:14:04,637 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:14:04,637 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:14:04,830 - INFO -     [TOOL] 👁️ Calling VLM with 5 frames...
+2026-06-29 19:15:54,174 - INFO -     [BATCH 5/10] Video 1 done in 837.9s (1 frame chunks)
+2026-06-29 19:15:54,174 - INFO -     [CHUNK 6/10] Video 2 frame window 0-89 (core 0-89), 5 sampled frames
+2026-06-29 19:15:54,175 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:15:54,175 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:15:54,426 - INFO -     [TOOL] 👁️ Calling VLM with 5 frames...
+2026-06-29 19:19:03,703 - INFO -     [BATCH 6/10] Video 2 done in 1027.5s (1 frame chunks)
+2026-06-29 19:19:03,703 - INFO -     [CHUNK 7/10] Video 2 frame window 90-179 (core 90-179), 5 sampled frames
+2026-06-29 19:19:03,704 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:19:03,704 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:19:03,957 - INFO -     [TOOL] 👁️ Calling VLM with 5 frames...
+2026-06-29 19:21:33,252 - INFO -     [BATCH 7/10] Video 2 done in 1177.0s (1 frame chunks)
+2026-06-29 19:21:33,253 - INFO -     [CHUNK 8/10] Video 2 frame window 180-269 (core 180-269), 5 sampled frames
+2026-06-29 19:21:33,253 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:21:33,253 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:21:33,438 - INFO -     [TOOL] 👁️ Calling VLM with 5 frames...
+2026-06-29 19:23:29,302 - INFO -     [BATCH 8/10] Video 2 done in 1293.1s (1 frame chunks)
+2026-06-29 19:23:29,303 - INFO -     [CHUNK 9/10] Video 2 frame window 270-359 (core 270-359), 5 sampled frames
+2026-06-29 19:23:29,303 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:23:29,303 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:23:29,553 - INFO -     [TOOL] 👁️ Calling VLM with 5 frames...
+2026-06-29 19:27:01,606 - INFO -     [BATCH 9/10] Video 2 done in 1505.4s (1 frame chunks)
+2026-06-29 19:27:01,607 - INFO -     [CHUNK 10/10] Video 2 frame window 360-449 (core 360-449), 5 sampled frames
+2026-06-29 19:27:01,607 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:27:01,607 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:27:01,777 - INFO -     [TOOL] 👁️ Calling VLM with 5 frames...
+2026-06-29 19:29:48,101 - INFO -     [BATCH 10/10] Video 2 done in 1671.9s (1 frame chunks)
+2026-06-29 19:29:48,101 - INFO -   ⏱️  Batch Tool (10 videos): 1671.9s, Turn total: 1709.4s
+2026-06-29 19:29:48,102 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 1709.4s)
+2026-06-29 19:30:46,029 - INFO -   ⏱️  LLM: 57.9s
+2026-06-29 19:30:46,029 - INFO -   🤖 Thought: Layer1 results show inconsistent identification of obj_51 across chunks, suggesting the VLM may be h...
+2026-06-29 19:30:46,029 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 19:30:46,030 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=3, dimensions=6
+2026-06-29 19:30:46,030 - INFO -     [BATCH 1/5] Video 1: frames 180-269 require 24 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 19:30:46,030 - INFO -     [CHUNK 1/10] Video 1 frame window 180-224 (core 180-224), 3 sampled frames
+2026-06-29 19:30:46,031 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:30:46,031 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:30:57,404 - INFO -     [TOOL] 👁️ Calling VLM with 3 frames...
+2026-06-29 19:33:52,373 - INFO -     [CHUNK 2/10] Video 1 frame window 203-269 (core 225-269), 4 sampled frames
+2026-06-29 19:33:52,374 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:33:52,374 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:33:54,469 - INFO -     [TOOL] 👁️ Calling VLM with 4 frames...
+2026-06-29 19:35:15,358 - INFO -     [BATCH 1/5] Video 1 done in 269.3s (2 frame chunks)
+2026-06-29 19:35:15,359 - INFO -     [BATCH 2/5] Video 1: frames 270-359 require 24 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 19:35:15,359 - INFO -     [CHUNK 3/10] Video 1 frame window 270-314 (core 270-314), 3 sampled frames
+2026-06-29 19:35:15,359 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:35:15,359 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:35:15,748 - INFO -     [TOOL] 👁️ Calling VLM with 3 frames...
+2026-06-29 19:38:34,059 - INFO -     [CHUNK 4/10] Video 1 frame window 293-359 (core 315-359), 4 sampled frames
+2026-06-29 19:38:34,060 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:38:34,060 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:38:39,065 - INFO -     [TOOL] 👁️ Calling VLM with 4 frames...
+2026-06-29 19:41:28,107 - INFO -     [BATCH 2/5] Video 1 done in 642.1s (2 frame chunks)
+2026-06-29 19:41:28,108 - INFO -     [BATCH 3/5] Video 1: frames 360-449 require 24 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 19:41:28,108 - INFO -     [CHUNK 5/10] Video 1 frame window 360-404 (core 360-404), 3 sampled frames
+2026-06-29 19:41:28,108 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:41:28,108 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:41:32,554 - INFO -     [TOOL] 👁️ Calling VLM with 3 frames...
+2026-06-29 19:43:16,811 - INFO -     [CHUNK 6/10] Video 1 frame window 383-449 (core 405-449), 4 sampled frames
+2026-06-29 19:43:16,812 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:43:16,812 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:43:20,011 - INFO -     [TOOL] 👁️ Calling VLM with 4 frames...
+2026-06-29 19:44:41,743 - INFO -     [BATCH 3/5] Video 1 done in 835.7s (2 frame chunks)
+2026-06-29 19:44:41,743 - INFO -     [BATCH 4/5] Video 2: frames 0-89 require 24 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 19:44:41,744 - INFO -     [CHUNK 7/10] Video 2 frame window 0-44 (core 0-44), 3 sampled frames
+2026-06-29 19:44:41,744 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:44:41,744 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:44:44,198 - INFO -     [TOOL] 👁️ Calling VLM with 3 frames...
+2026-06-29 19:47:26,406 - INFO -     [CHUNK 8/10] Video 2 frame window 23-89 (core 45-89), 4 sampled frames
+2026-06-29 19:47:26,407 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:47:26,407 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:47:26,611 - INFO -     [TOOL] 👁️ Calling VLM with 4 frames...
+2026-06-29 19:50:53,493 - INFO -     [BATCH 4/5] Video 2 done in 1207.5s (2 frame chunks)
+2026-06-29 19:50:53,494 - INFO -     [BATCH 5/5] Video 2: frames 90-179 require 24 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 19:50:53,494 - INFO -     [CHUNK 9/10] Video 2 frame window 90-134 (core 90-134), 3 sampled frames
+2026-06-29 19:50:53,494 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:50:53,494 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:50:53,597 - INFO -     [TOOL] 👁️ Calling VLM with 3 frames...
+2026-06-29 19:54:17,127 - INFO -     [CHUNK 10/10] Video 2 frame window 113-179 (core 135-179), 4 sampled frames
+2026-06-29 19:54:17,128 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:54:17,129 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:54:17,500 - INFO -     [TOOL] 👁️ Calling VLM with 4 frames...
+2026-06-29 19:57:05,229 - INFO -     [BATCH 5/5] Video 2 done in 1579.2s (2 frame chunks)
+2026-06-29 19:57:05,230 - INFO -   ⏱️  Batch Tool (5 videos): 1579.2s, Turn total: 1637.1s
+2026-06-29 19:57:05,231 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 3346.6s)
+2026-06-29 19:57:46,006 - INFO -   ⏱️  LLM: 40.8s
+2026-06-29 19:57:46,006 - INFO -   🤖 Thought: Layer2 evidence provides a complete and consistent count of cycles passing obj_51 across both synchr...
+2026-06-29 19:57:46,006 - INFO -   🤖 Action:  [ANSWER]
+2026-06-29 19:57:46,006 - INFO - 🎯 Final Answer: C (Turn total: 40.8s)
+2026-06-29 19:57:46,006 - INFO -   Pred: ['C'] | Truth: ['C'] | ✅
+2026-06-29 19:57:46,019 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/agent_system/logs/MOC_task/4_qwenapi_myprompts_oracle (JSON + Readable TXT)
+2026-06-29 19:57:46,020 - INFO - --- End of Q4 ---
+2026-06-29 19:57:46,021 - INFO - === Testing Q6 (ID: 5) ===
+2026-06-29 19:57:46,021 - INFO -   Object mapping: {A2}->obj_38
+2026-06-29 19:57:46,199 - INFO - 🚀 Starting Master Agent Loop...
+2026-06-29 19:57:46,199 - WARNING - 🧪 ORACLE DEBUG MODE is enabled for this question. Ground-truth answer is present in master input.
+2026-06-29 19:57:46,200 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-06-29 19:58:02,030 - INFO -   ⏱️  LLM: 15.8s
+2026-06-29 19:58:02,031 - INFO -   🤖 Thought: Layer1: Need to independently scan both synchronized UAV/image-folder views to identify obj_38 and c...
+2026-06-29 19:58:02,031 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 19:58:02,031 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=3, dimensions=4
+2026-06-29 19:58:02,031 - INFO -     [BATCH 1/2] Video 1: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 19:58:02,031 - INFO -     [CHUNK 1/4] Video 1 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 19:58:02,031 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 19:58:02,031 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 19:58:02,440 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 20:01:16,850 - INFO -     [CHUNK 2/4] Video 1 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 20:01:16,854 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 20:01:16,854 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 20:01:17,372 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 20:03:56,919 - INFO -     [BATCH 1/2] Video 1 done in 354.9s (2 frame chunks)
+2026-06-29 20:03:56,919 - INFO -     [BATCH 2/2] Video 2: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 20:03:56,920 - INFO -     [CHUNK 3/4] Video 2 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 20:03:56,920 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 20:03:56,920 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 20:03:57,359 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 20:06:55,924 - INFO -     [CHUNK 4/4] Video 2 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 20:06:55,925 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 20:06:55,925 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 20:06:56,422 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 20:10:08,449 - INFO -     [BATCH 2/2] Video 2 done in 726.4s (2 frame chunks)
+2026-06-29 20:10:08,450 - INFO -   ⏱️  Batch Tool (2 videos): 726.4s, Turn total: 742.2s
+2026-06-29 20:10:08,450 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 742.3s)
+2026-06-29 20:11:17,770 - INFO -   ⏱️  LLM: 69.3s
+2026-06-29 20:11:17,770 - INFO -   🤖 Thought: Layer2: Need to resolve the discrepancy between Video 1 (scooter) and Video 2 (white car) regarding ...
+2026-06-29 20:11:17,770 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 20:11:17,771 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=7
+2026-06-29 20:11:17,771 - INFO -     [CHUNK 1/3] Video 1 frame window 0-50 (core 0-50), 3 sampled frames
+2026-06-29 20:11:17,771 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 20:11:17,772 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 20:11:17,880 - INFO -     [TOOL] 👁️ Calling VLM with 3 frames...
+2026-06-29 20:12:46,446 - INFO -     [BATCH 1/3] Video 1 done in 88.7s (1 frame chunks)
+2026-06-29 20:12:46,447 - INFO -     [CHUNK 2/3] Video 2 frame window 0-50 (core 0-50), 3 sampled frames
+2026-06-29 20:12:46,447 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 20:12:46,448 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 20:12:46,534 - INFO -     [TOOL] 👁️ Calling VLM with 3 frames...
+2026-06-29 20:15:16,646 - INFO -     [BATCH 2/3] Video 2 done in 238.9s (1 frame chunks)
+2026-06-29 20:15:16,647 - INFO -     [CHUNK 3/3] Video 2 frame window 185-250 (core 185-250), 4 sampled frames
+2026-06-29 20:15:16,647 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 20:15:16,647 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 20:15:16,791 - INFO -     [TOOL] 👁️ Calling VLM with 4 frames...
+2026-06-29 20:16:57,683 - INFO -     [BATCH 3/3] Video 2 done in 339.9s (1 frame chunks)
+2026-06-29 20:16:57,683 - INFO -   ⏱️  Batch Tool (3 videos): 339.9s, Turn total: 409.2s
+2026-06-29 20:16:57,683 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 1151.5s)
+2026-06-29 20:17:24,557 - INFO -   ⏱️  LLM: 26.9s
+2026-06-29 20:17:24,559 - INFO -   🤖 Thought: Decisive evidence from Layer2 confirms that obj_38 is a white car parked in the roadside row. In Vid...
+2026-06-29 20:17:24,559 - INFO -   🤖 Action:  [ANSWER]
+2026-06-29 20:17:24,560 - INFO - 🎯 Final Answer: B (Turn total: 26.9s)
+2026-06-29 20:17:24,560 - INFO -   Pred: ['B'] | Truth: ['B'] | ✅
+2026-06-29 20:17:24,611 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/agent_system/logs/MOC_task/5_qwenapi_myprompts_oracle (JSON + Readable TXT)
+2026-06-29 20:17:24,620 - INFO - --- End of Q5 ---
+2026-06-29 20:17:24,622 - INFO - === Testing Q7 (ID: 6) ===
+2026-06-29 20:17:24,623 - INFO -   Object mapping: {A2}->obj_24
+2026-06-29 20:17:25,275 - INFO - 🚀 Starting Master Agent Loop...
+2026-06-29 20:17:25,283 - WARNING - 🧪 ORACLE DEBUG MODE is enabled for this question. Ground-truth answer is present in master input.
+2026-06-29 20:17:25,283 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-06-29 20:17:44,758 - INFO -   ⏱️  LLM: 19.5s
+2026-06-29 20:17:44,758 - INFO -   🤖 Thought: Layer1: Need to independently scan both synchronized views across the full 450-frame range to track ...
+2026-06-29 20:17:44,758 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 20:17:44,759 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=3, dimensions=4
+2026-06-29 20:17:44,759 - INFO -     [BATCH 1/2] Video 1: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 20:17:44,759 - INFO -     [CHUNK 1/4] Video 1 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 20:17:44,759 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 20:17:44,759 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 20:17:45,215 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 20:21:31,211 - INFO -     [CHUNK 2/4] Video 1 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 20:21:31,212 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 20:21:31,212 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 20:21:57,119 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 20:26:34,943 - INFO -     [BATCH 1/2] Video 1 done in 530.2s (2 frame chunks)
+2026-06-29 20:26:34,943 - INFO -     [BATCH 2/2] Video 2: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 20:26:34,943 - INFO -     [CHUNK 3/4] Video 2 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 20:26:34,943 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 20:26:34,944 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 20:26:40,051 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 20:29:56,653 - INFO -     [CHUNK 4/4] Video 2 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 20:29:56,654 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 20:29:56,654 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 20:30:03,860 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 20:33:16,823 - INFO -     [BATCH 2/2] Video 2 done in 932.1s (2 frame chunks)
+2026-06-29 20:33:16,823 - INFO -   ⏱️  Batch Tool (2 videos): 932.1s, Turn total: 951.5s
+2026-06-29 20:33:16,824 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 951.5s)
+2026-06-29 20:34:02,433 - INFO -   ⏱️  LLM: 45.6s
+2026-06-29 20:34:02,434 - INFO -   🤖 Thought: Layer2: Both views independently suggest obj_24 passes 3 red sedans. View 1 identifies 3 passed. Vie...
+2026-06-29 20:34:02,434 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 20:34:02,434 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=6
+2026-06-29 20:34:02,435 - INFO -     [CHUNK 1/2] Video 1 frame window 280-449 (core 280-449), 9 sampled frames
+2026-06-29 20:34:02,435 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 20:34:02,435 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 20:34:02,801 - INFO -     [TOOL] 👁️ Calling VLM with 9 frames...
+2026-06-29 20:37:54,764 - INFO -     [BATCH 1/2] Video 1 done in 232.3s (1 frame chunks)
+2026-06-29 20:37:54,765 - INFO -     [CHUNK 2/2] Video 2 frame window 265-449 (core 265-449), 10 sampled frames
+2026-06-29 20:37:54,765 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 20:37:54,765 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 20:37:55,182 - INFO -     [TOOL] 👁️ Calling VLM with 10 frames...
+2026-06-29 20:40:13,710 - INFO -     [BATCH 2/2] Video 2 done in 371.3s (1 frame chunks)
+2026-06-29 20:40:13,711 - INFO -   ⏱️  Batch Tool (2 videos): 371.3s, Turn total: 416.9s
+2026-06-29 20:40:13,711 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 1368.4s)
+2026-06-29 20:40:22,237 - INFO -   ⏱️  LLM: 8.5s
+2026-06-29 20:40:22,237 - INFO -   🤖 Thought: Decisive evidence from Layer2: Both synchronized views independently confirm obj_24 passes exactly 3...
+2026-06-29 20:40:22,237 - INFO -   🤖 Action:  [ANSWER]
+2026-06-29 20:40:22,237 - INFO - 🎯 Final Answer: B (Turn total: 8.5s)
+2026-06-29 20:40:22,238 - INFO -   Pred: ['B'] | Truth: ['B'] | ✅
+2026-06-29 20:40:22,245 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/agent_system/logs/MOC_task/6_qwenapi_myprompts_oracle (JSON + Readable TXT)
+2026-06-29 20:40:22,246 - INFO - --- End of Q6 ---
+2026-06-29 20:40:22,246 - INFO - === Testing Q8 (ID: 7) ===
+2026-06-29 20:40:22,246 - INFO -   Object mapping: {B4}->obj_47
+2026-06-29 20:40:22,392 - INFO - 🚀 Starting Master Agent Loop...
+2026-06-29 20:40:22,392 - WARNING - 🧪 ORACLE DEBUG MODE is enabled for this question. Ground-truth answer is present in master input.
+2026-06-29 20:40:22,392 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-06-29 20:40:39,820 - INFO -   ⏱️  LLM: 17.4s
+2026-06-29 20:40:39,820 - INFO -   🤖 Thought: Layer1: I need to independently scan both synchronized views to identify obj_47 and track all cycles...
+2026-06-29 20:40:39,820 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 20:40:39,820 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=3, dimensions=4
+2026-06-29 20:40:39,820 - INFO -     [BATCH 1/2] Video 1: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 20:40:39,820 - INFO -     [CHUNK 1/4] Video 1 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 20:40:39,820 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 20:40:39,821 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 20:40:40,138 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 20:44:27,438 - INFO -     [CHUNK 2/4] Video 1 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 20:44:27,439 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 20:44:27,439 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 20:44:27,945 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 20:46:57,851 - INFO -     [BATCH 1/2] Video 1 done in 378.0s (2 frame chunks)
+2026-06-29 20:46:57,852 - INFO -     [BATCH 2/2] Video 2: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 20:46:57,852 - INFO -     [CHUNK 3/4] Video 2 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 20:46:57,852 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 20:46:57,852 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 20:46:58,228 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 20:50:35,846 - INFO -     [CHUNK 4/4] Video 2 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 20:50:35,846 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 20:50:35,847 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 20:50:36,346 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 20:54:04,175 - INFO -     [BATCH 2/2] Video 2 done in 804.4s (2 frame chunks)
+2026-06-29 20:54:04,176 - INFO -   ⏱️  Batch Tool (2 videos): 804.4s, Turn total: 821.8s
+2026-06-29 20:54:04,177 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 821.8s)
+2026-06-29 20:54:36,919 - INFO -   ⏱️  LLM: 32.7s
+2026-06-29 20:54:36,919 - INFO -   🤖 Thought: Layer2: There are critical inconsistencies - obj_47 is identified as a parked white car in Video 1 b...
+2026-06-29 20:54:36,919 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 20:54:36,919 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=3, dimensions=7
+2026-06-29 20:54:36,920 - INFO -     [BATCH 1/2] Video 1: frames 140-290 require 24 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 20:54:36,920 - INFO -     [CHUNK 1/4] Video 1 frame window 140-215 (core 140-215), 4 sampled frames
+2026-06-29 20:54:36,920 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 20:54:36,921 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 20:54:37,097 - INFO -     [TOOL] 👁️ Calling VLM with 4 frames...
+2026-06-29 20:57:47,503 - INFO -     [CHUNK 2/4] Video 1 frame window 178-290 (core 216-290), 6 sampled frames
+2026-06-29 20:57:47,504 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 20:57:47,504 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 20:57:47,718 - INFO -     [TOOL] 👁️ Calling VLM with 6 frames...
+2026-06-29 21:01:15,715 - INFO -     [BATCH 1/2] Video 1 done in 398.8s (2 frame chunks)
+2026-06-29 21:01:15,715 - INFO -     [BATCH 2/2] Video 2: frames 170-280 require 24 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 21:01:15,716 - INFO -     [CHUNK 3/4] Video 2 frame window 170-225 (core 170-225), 3 sampled frames
+2026-06-29 21:01:15,716 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:01:15,716 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:01:16,130 - INFO -     [TOOL] 👁️ Calling VLM with 3 frames...
+2026-06-29 21:04:15,518 - INFO -     [CHUNK 4/4] Video 2 frame window 198-280 (core 226-280), 5 sampled frames
+2026-06-29 21:04:15,519 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:04:15,519 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:04:15,701 - INFO -     [TOOL] 👁️ Calling VLM with 5 frames...
+2026-06-29 21:07:56,280 - INFO -     [BATCH 2/2] Video 2 done in 799.4s (2 frame chunks)
+2026-06-29 21:07:56,281 - INFO -   ⏱️  Batch Tool (2 videos): 799.4s, Turn total: 832.1s
+2026-06-29 21:07:56,282 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 1653.9s)
+2026-06-29 21:08:55,639 - INFO -   ⏱️  LLM: 59.4s
+2026-06-29 21:08:55,639 - INFO -   🤖 Thought: Focus: I need to verify the cycle count in Video 1 (which shows 4 cycles overtaking obj_47) and dete...
+2026-06-29 21:08:55,639 - INFO -   🤖 Action:  [OBSERVE]
+2026-06-29 21:08:55,640 - INFO -   🧠 Cross-context updated: confirmed=3, uncertain=2, dimensions=7
+2026-06-29 21:08:55,640 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:08:55,640 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:09:18,526 - INFO -     [TOOL] 👁️ Calling VLM with 32 frames...
+2026-06-29 21:12:38,114 - INFO -   ⏱️  Tool: 222.5s, Turn total: 281.8s
+2026-06-29 21:12:38,115 - INFO - 🔄 [TURN 4] Master Thinking... (elapsed since loop start: 1935.7s)
+2026-06-29 21:13:04,760 - INFO -   ⏱️  LLM: 26.6s
+2026-06-29 21:13:04,760 - INFO -   🤖 Thought: BACKTRACK: The focus on Video 1 frames 140-290 contradicts Layer2's claim of 4 cycles - it only show...
+2026-06-29 21:13:04,760 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 21:13:04,760 - INFO -   🧠 Cross-context updated: confirmed=3, uncertain=3, dimensions=7
+2026-06-29 21:13:04,761 - INFO -     [CHUNK 1/3] Video 1 frame window 0-140 (core 0-140), 8 sampled frames
+2026-06-29 21:13:04,761 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:13:04,761 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:13:08,771 - INFO -     [TOOL] 👁️ Calling VLM with 8 frames...
+2026-06-29 21:15:37,440 - INFO -     [BATCH 1/3] Video 1 done in 152.7s (1 frame chunks)
+2026-06-29 21:15:37,440 - INFO -     [CHUNK 2/3] Video 1 frame window 290-449 (core 290-449), 8 sampled frames
+2026-06-29 21:15:37,441 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:15:37,441 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:15:37,808 - INFO -     [TOOL] 👁️ Calling VLM with 8 frames...
+2026-06-29 21:17:20,217 - INFO -     [BATCH 2/3] Video 1 done in 255.5s (1 frame chunks)
+2026-06-29 21:17:20,217 - INFO -     [CHUNK 3/3] Video 2 frame window 0-220 (core 0-220), 12 sampled frames
+2026-06-29 21:17:20,217 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:17:20,217 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:17:20,638 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 21:19:33,327 - INFO -     [BATCH 3/3] Video 2 done in 388.6s (1 frame chunks)
+2026-06-29 21:19:33,328 - INFO -   ⏱️  Batch Tool (3 videos): 388.6s, Turn total: 415.2s
+2026-06-29 21:19:33,329 - INFO - 🔄 [TURN 5] Master Thinking... (elapsed since loop start: 2350.9s)
+2026-06-29 21:20:03,017 - INFO -   ⏱️  LLM: 29.7s
+2026-06-29 21:20:03,018 - INFO -   🤖 Thought: Decisive evidence: Video 1 shows exactly 2 distinct cycles overtaking obj_47 (a parked white car) in...
+2026-06-29 21:20:03,018 - INFO -   🤖 Action:  [ANSWER]
+2026-06-29 21:20:03,018 - INFO - 🎯 Final Answer: B (Turn total: 29.7s)
+2026-06-29 21:20:03,018 - INFO -   Pred: ['B'] | Truth: ['B'] | ✅
+2026-06-29 21:20:03,034 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/agent_system/logs/MOC_task/7_qwenapi_myprompts_oracle (JSON + Readable TXT)
+2026-06-29 21:20:03,035 - INFO - --- End of Q7 ---
+2026-06-29 21:20:03,035 - INFO - === Testing Q9 (ID: 8) ===
+2026-06-29 21:20:03,035 - INFO -   Object mapping: {B1}->obj_12
+2026-06-29 21:20:03,182 - INFO - 🚀 Starting Master Agent Loop...
+2026-06-29 21:20:03,182 - WARNING - 🧪 ORACLE DEBUG MODE is enabled for this question. Ground-truth answer is present in master input.
+2026-06-29 21:20:03,183 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-06-29 21:20:19,294 - INFO -   ⏱️  LLM: 16.1s
+2026-06-29 21:20:19,295 - INFO -   🤖 Thought: Layer1: Need to independently scan both synchronized views across the full 450-frame range to track ...
+2026-06-29 21:20:19,295 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 21:20:19,295 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=3, dimensions=5
+2026-06-29 21:20:19,296 - INFO -     [BATCH 1/2] Video 1: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 21:20:19,296 - INFO -     [CHUNK 1/4] Video 1 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 21:20:19,296 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:20:19,296 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:20:19,706 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 21:23:58,877 - INFO -     [CHUNK 2/4] Video 1 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 21:23:58,878 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:23:58,878 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:23:59,600 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 21:27:22,284 - INFO -     [BATCH 1/2] Video 1 done in 423.0s (2 frame chunks)
+2026-06-29 21:27:22,285 - INFO -     [BATCH 2/2] Video 2: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 21:27:22,285 - INFO -     [CHUNK 3/4] Video 2 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 21:27:22,285 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:27:22,285 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:27:22,560 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 21:30:25,367 - INFO -     [CHUNK 4/4] Video 2 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 21:30:25,368 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:30:25,368 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:30:25,814 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 21:33:27,662 - INFO -     [BATCH 2/2] Video 2 done in 788.4s (2 frame chunks)
+2026-06-29 21:33:27,663 - INFO -   ⏱️  Batch Tool (2 videos): 788.4s, Turn total: 804.5s
+2026-06-29 21:33:27,663 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 804.5s)
+2026-06-29 21:34:06,727 - INFO -   ⏱️  LLM: 39.1s
+2026-06-29 21:34:06,727 - INFO -   🤖 Thought: Layer1 showed contradictions in Video 2 regarding obj_12's identity and exit time (exits at frame 8 ...
+2026-06-29 21:34:06,727 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 21:34:06,728 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=3, dimensions=9
+2026-06-29 21:34:06,728 - INFO -     [BATCH 1/2] Video 1: frames 0-449 require 24 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 21:34:06,728 - INFO -     [CHUNK 1/4] Video 1 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 21:34:06,728 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:34:06,728 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:34:07,123 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 21:37:07,070 - INFO -     [CHUNK 2/4] Video 1 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 21:37:07,070 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:37:07,070 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:37:07,483 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 21:39:17,773 - INFO -     [BATCH 1/2] Video 1 done in 311.0s (2 frame chunks)
+2026-06-29 21:39:17,774 - INFO -     [BATCH 2/2] Video 2: frames 0-449 require 24 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 21:39:17,774 - INFO -     [CHUNK 3/4] Video 2 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 21:39:17,775 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:39:17,775 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:39:18,195 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 21:43:13,480 - INFO -     [CHUNK 4/4] Video 2 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 21:43:13,480 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:43:13,480 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:43:13,927 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 21:48:05,173 - INFO -     [BATCH 2/2] Video 2 done in 838.4s (2 frame chunks)
+2026-06-29 21:48:05,173 - INFO -   ⏱️  Batch Tool (2 videos): 838.4s, Turn total: 877.5s
+2026-06-29 21:48:05,174 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 1682.0s)
+2026-06-29 21:48:31,825 - INFO -   ⏱️  LLM: 26.7s
+2026-06-29 21:48:31,825 - INFO -   🤖 Thought: Decisive evidence from Layer2: In Video 1, obj_12 (green truck) is explicitly tracked overtaking 4 d...
+2026-06-29 21:48:31,825 - INFO -   🤖 Action:  [ANSWER]
+2026-06-29 21:48:31,826 - INFO - 🎯 Final Answer: C (Turn total: 26.7s)
+2026-06-29 21:48:31,826 - INFO -   Pred: ['C'] | Truth: ['C'] | ✅
+2026-06-29 21:48:31,838 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/agent_system/logs/MOC_task/8_qwenapi_myprompts_oracle (JSON + Readable TXT)
+2026-06-29 21:48:31,839 - INFO - --- End of Q8 ---
+2026-06-29 21:48:31,839 - INFO - === Testing Q10 (ID: 9) ===
+2026-06-29 21:48:31,840 - INFO -   Object mapping: {B5}->obj_48
+2026-06-29 21:48:31,988 - INFO - 🚀 Starting Master Agent Loop...
+2026-06-29 21:48:31,989 - WARNING - 🧪 ORACLE DEBUG MODE is enabled for this question. Ground-truth answer is present in master input.
+2026-06-29 21:48:31,989 - INFO - 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-06-29 21:48:53,366 - INFO -   ⏱️  LLM: 21.4s
+2026-06-29 21:48:53,366 - INFO -   🤖 Thought: Layer1: Need to independently scan both synchronized views across the full 450-frame range to identi...
+2026-06-29 21:48:53,366 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 21:48:53,366 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=4, dimensions=4
+2026-06-29 21:48:53,366 - INFO -     [BATCH 1/2] Video 1: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 21:48:53,366 - INFO -     [CHUNK 1/4] Video 1 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 21:48:53,367 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:48:53,367 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:48:53,670 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 21:51:32,550 - INFO -     [CHUNK 2/4] Video 1 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 21:51:32,550 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:51:32,550 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:51:32,890 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 21:54:09,850 - INFO -     [BATCH 1/2] Video 1 done in 316.5s (2 frame chunks)
+2026-06-29 21:54:09,850 - INFO -     [BATCH 2/2] Video 2: frames 0-449 require 23 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 21:54:09,850 - INFO -     [CHUNK 3/4] Video 2 frame window 0-224 (core 0-224), 12 sampled frames
+2026-06-29 21:54:09,850 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:54:09,851 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:54:10,423 - INFO -     [TOOL] 👁️ Calling VLM with 12 frames...
+2026-06-29 21:56:43,394 - INFO -     [CHUNK 4/4] Video 2 frame window 185-449 (core 225-449), 14 sampled frames
+2026-06-29 21:56:43,395 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:56:43,395 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:56:43,830 - INFO -     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-06-29 21:58:01,667 - INFO -     [BATCH 2/2] Video 2 done in 548.3s (2 frame chunks)
+2026-06-29 21:58:01,668 - INFO -   ⏱️  Batch Tool (2 videos): 548.3s, Turn total: 569.7s
+2026-06-29 21:58:01,669 - INFO - 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 569.7s)
+2026-06-29 21:58:48,582 - INFO -   ⏱️  LLM: 46.9s
+2026-06-29 21:58:48,582 - INFO -   🤖 Thought: Layer1 reported confusion about obj_48's identity. View 2 confirms obj_48 is a black sedan marked wi...
+2026-06-29 21:58:48,582 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 21:58:48,582 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=3, dimensions=8
+2026-06-29 21:58:48,583 - INFO -     [BATCH 1/3] Video 1: frames 0-100 require 20 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 21:58:48,583 - INFO -     [CHUNK 1/6] Video 1 frame window 0-49 (core 0-49), 3 sampled frames
+2026-06-29 21:58:48,583 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 21:58:48,583 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 21:58:48,704 - INFO -     [TOOL] 👁️ Calling VLM with 3 frames...
+2026-06-29 22:02:59,183 - INFO -     [CHUNK 2/6] Video 1 frame window 25-100 (core 50-100), 4 sampled frames
+2026-06-29 22:02:59,184 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 22:02:59,184 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 22:02:59,336 - INFO -     [TOOL] 👁️ Calling VLM with 4 frames...
+2026-06-29 22:06:50,779 - INFO -     [BATCH 1/3] Video 1 done in 482.2s (2 frame chunks)
+2026-06-29 22:06:50,779 - INFO -     [BATCH 2/3] Video 1: frames 200-350 require 20 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 22:06:50,780 - INFO -     [CHUNK 3/6] Video 1 frame window 200-275 (core 200-275), 4 sampled frames
+2026-06-29 22:06:50,780 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 22:06:50,780 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 22:06:50,938 - INFO -     [TOOL] 👁️ Calling VLM with 4 frames...
+2026-06-29 22:10:13,538 - INFO -     [CHUNK 4/6] Video 1 frame window 238-350 (core 276-350), 6 sampled frames
+2026-06-29 22:10:13,539 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 22:10:13,539 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 22:10:13,754 - INFO -     [TOOL] 👁️ Calling VLM with 6 frames...
+2026-06-29 22:14:14,764 - INFO -     [BATCH 2/3] Video 1 done in 926.2s (2 frame chunks)
+2026-06-29 22:14:14,764 - INFO -     [BATCH 3/3] Video 2: frames 200-350 require 20 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 22:14:14,764 - INFO -     [CHUNK 5/6] Video 2 frame window 200-275 (core 200-275), 4 sampled frames
+2026-06-29 22:14:14,764 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 22:14:14,764 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 22:14:14,885 - INFO -     [TOOL] 👁️ Calling VLM with 4 frames...
+2026-06-29 22:16:39,343 - INFO -     [CHUNK 6/6] Video 2 frame window 238-350 (core 276-350), 6 sampled frames
+2026-06-29 22:16:39,344 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 22:16:39,344 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 22:16:39,533 - INFO -     [TOOL] 👁️ Calling VLM with 6 frames...
+2026-06-29 22:19:54,936 - INFO -     [BATCH 3/3] Video 2 done in 1266.4s (2 frame chunks)
+2026-06-29 22:19:54,937 - INFO -   ⏱️  Batch Tool (3 videos): 1266.4s, Turn total: 1313.3s
+2026-06-29 22:19:54,938 - INFO - 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 1882.9s)
+2026-06-29 22:20:45,340 - INFO -   ⏱️  LLM: 50.4s
+2026-06-29 22:20:45,341 - INFO -   🤖 Thought: I missed observing frames 100-200 and 350-450 in View 1, and frames 0-200 and 350-450 in View 2. The...
+2026-06-29 22:20:45,341 - INFO -   🤖 Action:  [BATCH_OBSERVE]
+2026-06-29 22:20:45,341 - INFO -   🧠 Cross-context updated: confirmed=0, uncertain=5, dimensions=10
+2026-06-29 22:20:45,342 - INFO -     [BATCH 1/4] Video 1: frames 100-200 require 20 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 22:20:45,342 - INFO -     [CHUNK 1/8] Video 1 frame window 100-149 (core 100-149), 3 sampled frames
+2026-06-29 22:20:45,342 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 22:20:45,342 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 22:20:45,443 - INFO -     [TOOL] 👁️ Calling VLM with 3 frames...
+2026-06-29 22:22:58,800 - INFO -     [CHUNK 2/8] Video 1 frame window 125-200 (core 150-200), 4 sampled frames
+2026-06-29 22:22:58,801 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 22:22:58,801 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 22:22:58,931 - INFO -     [TOOL] 👁️ Calling VLM with 4 frames...
+2026-06-29 22:26:13,768 - INFO -     [BATCH 1/4] Video 1 done in 328.4s (2 frame chunks)
+2026-06-29 22:26:13,769 - INFO -     [BATCH 2/4] Video 1: frames 350-449 require 20 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 22:26:13,769 - INFO -     [CHUNK 3/8] Video 1 frame window 350-399 (core 350-399), 3 sampled frames
+2026-06-29 22:26:13,770 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 22:26:13,770 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 22:26:13,874 - INFO -     [TOOL] 👁️ Calling VLM with 3 frames...
+2026-06-29 22:28:52,360 - INFO -     [CHUNK 4/8] Video 1 frame window 375-449 (core 400-449), 4 sampled frames
+2026-06-29 22:28:52,361 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 22:28:52,361 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 22:28:52,499 - INFO -     [TOOL] 👁️ Calling VLM with 4 frames...
+2026-06-29 22:30:12,852 - INFO -     [BATCH 2/4] Video 1 done in 567.5s (2 frame chunks)
+2026-06-29 22:30:12,852 - INFO -     [BATCH 3/4] Video 2: frames 0-200 require 20 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 22:30:12,852 - INFO -     [CHUNK 5/8] Video 2 frame window 0-99 (core 0-99), 5 sampled frames
+2026-06-29 22:30:12,853 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 22:30:12,853 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 22:30:13,071 - INFO -     [TOOL] 👁️ Calling VLM with 5 frames...
+2026-06-29 22:33:52,521 - INFO -     [CHUNK 6/8] Video 2 frame window 60-200 (core 100-200), 8 sampled frames
+2026-06-29 22:33:52,522 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 22:33:52,522 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 22:33:52,785 - INFO -     [TOOL] 👁️ Calling VLM with 8 frames...
+2026-06-29 22:37:42,956 - INFO -     [BATCH 3/4] Video 2 done in 1017.6s (2 frame chunks)
+2026-06-29 22:37:42,956 - INFO -     [BATCH 4/4] Video 2: frames 350-449 require 20 samples (~1 per 20 frames) → splitting into 2 chunks with boundary overlap
+2026-06-29 22:37:42,956 - INFO -     [CHUNK 7/8] Video 2 frame window 350-399 (core 350-399), 3 sampled frames
+2026-06-29 22:37:42,957 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 22:37:42,957 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 22:37:43,034 - INFO -     [TOOL] 👁️ Calling VLM with 3 frames...
+2026-06-29 22:40:35,726 - INFO -     [CHUNK 8/8] Video 2 frame window 375-449 (core 400-449), 4 sampled frames
+2026-06-29 22:40:35,726 - INFO -     [EXECUTOR] 🔀 Dispatching to UAV Handler (will use Tool API)
+2026-06-29 22:40:35,726 - INFO -     [TOOL-UAV] 🚁 Processing 1 targets (Frame-based)
+2026-06-29 22:40:35,912 - INFO -     [TOOL] 👁️ Calling VLM with 4 frames...
+2026-06-29 22:43:21,618 - INFO -     [BATCH 4/4] Video 2 done in 1356.3s (2 frame chunks)
+2026-06-29 22:43:21,619 - INFO -   ⏱️  Batch Tool (4 videos): 1356.3s, Turn total: 1406.7s
+2026-06-29 22:43:21,620 - INFO - 🔄 [TURN 4] Master Thinking... (elapsed since loop start: 3289.6s)
+2026-06-29 22:44:06,909 - INFO -   ⏱️  LLM: 45.3s
+2026-06-29 22:44:06,910 - INFO -   🤖 Thought: Decisive evidence: In View 1, the green bounding box for obj_48 tracks a stationary/parked black car...
+2026-06-29 22:44:06,910 - INFO -   🤖 Action:  [ANSWER]
+2026-06-29 22:44:06,910 - INFO - 🎯 Final Answer: C (Turn total: 45.3s)
+2026-06-29 22:44:06,911 - INFO -   Pred: ['C'] | Truth: ['C'] | ✅
+2026-06-29 22:44:06,928 - INFO -     💾 Logs saved to: /media/data6/xuejj/CVRAgent/agent_system/logs/MOC_task/9_qwenapi_myprompts_oracle (JSON + Readable TXT)
+2026-06-29 22:44:06,929 - INFO - --- End of Q9 ---
+2026-06-29 22:44:06,948 - INFO - 🏁 Accuracy: 10/10 (100.00%)

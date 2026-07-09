@@ -6,56 +6,120 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _ROOT not in sys.path:
     sys.path.insert(0, _ROOT)
 
-import json
-import re
-import logging
-from datetime import datetime
-import traceback
-from typing import List, Dict, Any, Optional
-
 from qwen_agent import QwenModel
-from agent_executor import AgentExecutor
-from utils import video_processor
-from utils.config import get_local_video_root, get_remote_video_base_url
-from utils.log_utils import setup_logger
-from utils.answer_parse import parse_agent_output_sort
+from runtime_options import (
+    apply_runtime_overrides,
+    parse_runtime_args,
+    resolve_prompt_config,
+    runtime_summary,
+)
 
 QUESTION_FILE = os.path.join(_ROOT, "question", "PSS.json")
 MAX_FRAME_LENGTH = 360
 MAX_TURNS = 20
-START_FROM_QUESTION_NUM = 1
-END_AT_QUESTION_NUM = None
+START_FROM_QUESTION_NUM = int(os.environ.get("PSS_START", "1"))
+END_AT_QUESTION_NUM = int(os.environ.get("PSS_END", "100"))
 TASK_NAME = "PSS_task"
-PROMPT_CONFIG = {"master": os.path.join(_ROOT, "prompts", "master_PSS.prompt")}
+DEFAULT_PROMPT_CONFIG = {"master": os.path.join(_ROOT, "prompts", "master_PSS.prompt")}
+
+# Checkpoint file for resume support
+CHECKPOINT_FILE = os.path.join(_ROOT, "logs", "PSS_checkpoint.txt")
+
+
+def load_checkpoint():
+    """Return (correct_count, last_completed_abs_num) or (0, 0) if no checkpoint."""
+    if os.path.exists(CHECKPOINT_FILE):
+        try:
+            with open(CHECKPOINT_FILE, 'r') as f:
+                parts = f.read().strip().split(',')
+                return int(parts[0]), int(parts[1])
+        except Exception:
+            pass
+    return 0, 0
+
+
+def save_checkpoint(correct_count, last_abs_num):
+    """Save progress so we can resume after interruption."""
+    os.makedirs(os.path.dirname(CHECKPOINT_FILE), exist_ok=True)
+    with open(CHECKPOINT_FILE, 'w') as f:
+        f.write(f"{correct_count},{last_abs_num}")
+
 
 if __name__ == "__main__":
+    runtime_args = parse_runtime_args("Run PSS agent with selectable master/tool backends.")
+    apply_runtime_overrides(runtime_args)
+    PROMPT_CONFIG = resolve_prompt_config(_ROOT, "PSS", DEFAULT_PROMPT_CONFIG, runtime_args)
+    max_turns = runtime_args.max_turns or MAX_TURNS
+
+    if os.environ.get("PSS_RESET_CHECKPOINT", "").strip().lower() in {"1", "true", "yes", "on"}:
+        if os.path.exists(CHECKPOINT_FILE):
+            os.remove(CHECKPOINT_FILE)
+
+    qwen_agent_instance = QwenModel(prompt_config=PROMPT_CONFIG)
+    if qwen_agent_instance.master_backend in {"local_hf", "local", "hf"}:
+        print("Preloading local MASTER before other task imports...", flush=True)
+        qwen_agent_instance._load_local_master()
+
+    import json
+    import re
+    import traceback
+    from agent_executor import AgentExecutor
+    from utils import video_processor
+    from utils.config import get_local_video_root, get_remote_video_base_url
+    from utils.log_utils import setup_logger
+    from utils.answer_parse import parse_agent_output_sort
+
     if not os.path.exists(QUESTION_FILE):
         print(f"FATAL: Question file not found: {QUESTION_FILE}")
         raise SystemExit(1)
     with open(QUESTION_FILE, 'r', encoding='utf-8') as f:
         all_questions = json.load(f)
 
-    start_question_num = START_FROM_QUESTION_NUM
-    if start_question_num < 1: start_question_num = 1
-    start_index = start_question_num - 1
-    end_question_num = END_AT_QUESTION_NUM
     original_total_questions = len(all_questions)
-    if end_question_num is None: end_index = original_total_questions
-    else: end_index = min(end_question_num, original_total_questions)
+
+    start_question_num = START_FROM_QUESTION_NUM
+    if runtime_args.start is not None:
+        start_question_num = runtime_args.start
+    if start_question_num < 1:
+        start_question_num = 1
+
+    end_question_num = END_AT_QUESTION_NUM
+    if runtime_args.end is not None:
+        end_question_num = runtime_args.end
+    if end_question_num is None:
+        end_index = original_total_questions
+    else:
+        end_index = min(end_question_num, original_total_questions)
+
+    # Resume from checkpoint (skip if PSS_IGNORE_CHECKPOINT is set)
+    saved_correct, last_done = (0, 0) if os.environ.get("PSS_IGNORE_CHECKPOINT", "").strip().lower() in {"1", "true", "yes", "on"} else load_checkpoint()
+    if last_done > 0:
+        resume_from = last_done + 1
+        logger_early = setup_logger(TASK_NAME.replace("_task", ""), resume_from, end_index)
+        logger_early.info(f"🔄 Resuming from checkpoint: completed Q1-Q{last_done}, {saved_correct} correct so far.")
+    else:
+        resume_from = start_question_num
+
+    if resume_from > end_index:
+        print(f"All {end_index} questions already completed. Done.")
+        raise SystemExit(0)
+
+    start_index = resume_from - 1
     questions_to_run = all_questions[start_index:end_index]
     num_questions_to_run = len(questions_to_run)
 
-    logger = setup_logger(TASK_NAME.replace("_task", ""), start_question_num, end_index)
-    logger.info(f"▶️  Run Config: Task={TASK_NAME}, Q{start_question_num}-Q{end_index}")
+    logger = setup_logger(TASK_NAME.replace("_task", ""), resume_from, end_index)
+    logger.info(f"▶️  Run Config: Task={TASK_NAME}, Q{resume_from}-Q{end_index}")
+    logger.info("⚙️  Runtime: %s", runtime_summary(PROMPT_CONFIG))
 
-    qwen_agent_instance = QwenModel(prompt_config=PROMPT_CONFIG)
     executor = AgentExecutor(agent_instance=qwen_agent_instance, prompt_config=PROMPT_CONFIG)
-    correct_answers_count = 0
+    correct_answers_count = saved_correct
 
     for i, question_data in enumerate(questions_to_run):
-        current_question_abs_num = i + start_question_num
+        current_question_abs_num = i + resume_from
         question_id = question_data.get('id', str(current_question_abs_num))
-        log_dir = os.path.join(_ROOT, "logs", TASK_NAME, str(question_id))
+        log_suffix = os.environ.get("PSS_LOG_SUFFIX", "").strip()
+        log_dir = os.path.join(_ROOT, "logs", TASK_NAME, str(question_id) + log_suffix)
         os.makedirs(log_dir, exist_ok=True)
 
         logger.info("==================================")
@@ -71,10 +135,11 @@ if __name__ == "__main__":
         segments_dict = question_data.get("segments")
         if not video_name or not segments_dict:
             logger.error("❌ Missing 'video' or 'segments' data.")
+            save_checkpoint(correct_answers_count, current_question_abs_num)
             continue
 
-        local_path = os.path.join(get_local_video_root(), "CC", f"{video_name}.mp4")
-        remote_url = f"{get_remote_video_base_url().rstrip('/')}/CC/{video_name}.mp4"
+        local_path = os.path.join(get_local_video_root(), video_name)
+        remote_url = f"{get_remote_video_base_url().rstrip('/')}/{video_name}"
         video_path = local_path if os.path.exists(local_path) else remote_url
 
         try:
@@ -110,6 +175,7 @@ if __name__ == "__main__":
 
         if not video_contexts:
             logger.error("❌ Skipping due to video failure.")
+            save_checkpoint(correct_answers_count, current_question_abs_num)
             continue
 
         try:
@@ -118,7 +184,7 @@ if __name__ == "__main__":
                 possible_answers=[],
                 video_contexts=video_contexts
             )
-            final_answer_text, final_history = executor.run_agent_loop(max_turns=MAX_TURNS)
+            final_answer_text, final_history = executor.run_agent_loop(max_turns=max_turns)
             logger.info("📊 Evaluating result...")
             predicted_str = parse_agent_output_sort(final_answer_text)
             logger.info(f"  - Predicted: {predicted_str}")
@@ -134,7 +200,12 @@ if __name__ == "__main__":
             logger.error(f"❌ Loop Error: {e}", exc_info=True)
         finally:
             executor.cleanup_agent_state()
+            save_checkpoint(correct_answers_count, current_question_abs_num)
             logger.info(f"--- End of Q{question_id} ---")
+
+    # Clean up checkpoint on full completion
+    if os.path.exists(CHECKPOINT_FILE):
+        os.remove(CHECKPOINT_FILE)
 
     logger.info("*******************")
     logger.info("   Final Summary   ")

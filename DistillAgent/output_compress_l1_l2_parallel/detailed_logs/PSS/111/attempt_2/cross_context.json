@@ -1,0 +1,147 @@
+{
+  "confirmed": [],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {},
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [],
+  "resolved_uncertain": [
+    "Visual link between video 1 and video 4: VLM identified yellow strips in V1 as shredded egg/omelet, directly linking to V4 where liquid egg is cooked into a sheet."
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer2_done": true,
+        "preliminary_order": "4->1->3->6->5->2",
+        "order_confidence": 6,
+        "confidence_basis": "Videos 3->6->5->2 wok chain well-supported. Videos 1 and 4 relation unresolved by visual evidence; previous 1->4 was recipe logic. Now checking 4->1.",
+        "blocking_uncertainties": [
+          "Direct visual link between video 1 and video 4",
+          "Whether yellow strips in video 1 appear in video 4 background or vice versa",
+          "Completion-to-start transition between 4 and 1"
+        ],
+        "comparison_table": {
+          "video1": "cutting board HAS_RESIDUE, yellow strips ~20-30, cleaver yellow residue",
+          "video4": "frying pan oily, white bowl egg filled->depleted, egg in pan liquid at end",
+          "video3": "wok contains meat/slices then oily residue, meat on plate",
+          "video6": "wok contains veggies steaming/cooking",
+          "video5": "wok contains veggies+egg+noodles mixed, bowl egg depleted, plate noodles depleted",
+          "video2": "wok contains noodles+shrimp+veggies+sauce mixed, bowls depleted"
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                10
+              ],
+              "event": "prep yellow strips",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                45
+              ],
+              "event": "final combination",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                40
+              ],
+              "event": "cook meat, remove, wok oily",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                20
+              ],
+              "event": "cook eggs in pan",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                30
+              ],
+              "event": "add egg and noodles to veggies",
+              "confidence": "high"
+            }
+          ],
+          "video6": [
+            {
+              "window": [
+                0,
+                20
+              ],
+              "event": "stir-fry veggies",
+              "confidence": "high"
+            }
+          ]
+        },
+        "focus_plan": [
+          "Check video 1 and 4 for shared objects, background cues, completion-to-start transition"
+        ],
+        "uncertain": [
+          "Visual link between video 1 and video 4",
+          "Whether 4->1 or 1->4 based on direct evidence"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "order_confidence": 9,
+        "resolved_uncertain": [
+          "Visual link between video 1 and video 4: VLM identified yellow strips in V1 as shredded egg/omelet, directly linking to V4 where liquid egg is cooked into a sheet."
+        ],
+        "uncertain": []
+      }
+    }
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "4->1->3->6->5->2"
+  ],
+  "order_confidence": [
+    "6",
+    "9"
+  ],
+  "confidence_basis": [
+    "Videos 3->6->5->2 wok chain well-supported. Videos 1 and 4 relation unresolved by visual evidence; previous 1->4 was recipe logic. Now checking 4->1."
+  ],
+  "blocking_uncertainties": [
+    "Direct visual link between video 1 and video 4",
+    "Whether yellow strips in video 1 appear in video 4 background or vice versa",
+    "Completion-to-start transition between 4 and 1"
+  ],
+  "comparison_table": [
+    "{\"video1\": \"cutting board HAS_RESIDUE, yellow strips ~20-30, cleaver yellow residue\", \"video4\": \"frying pan oily, white bowl egg filled->depleted, egg in pan liquid at end\", \"video3\": \"wok contains meat/slices then oily residue, meat on plate\", \"video6\": \"wok contains veggies steaming/cooking\", \"video5\": \"wok contains veggies+egg+noodles mixed, bowl egg depleted, plate noodles depleted\", \"video2\": \"wok contains noodles+shrimp+veggies+sauce mixed, bowls depleted\"}"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 10], \"event\": \"prep yellow strips\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 45], \"event\": \"final combination\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 40], \"event\": \"cook meat, remove, wok oily\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 20], \"event\": \"cook eggs in pan\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 30], \"event\": \"add egg and noodles to veggies\", \"confidence\": \"high\"}], \"video6\": [{\"window\": [0, 20], \"event\": \"stir-fry veggies\", \"confidence\": \"high\"}]}"
+  ],
+  "focus_plan": [
+    "Check video 1 and 4 for shared objects, background cues, completion-to-start transition"
+  ]
+}

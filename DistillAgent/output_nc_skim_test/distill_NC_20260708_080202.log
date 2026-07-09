@@ -1,0 +1,146 @@
+2026-07-08 08:02:02,797 | INFO     | DistillAgent | DistillAgent starting | tasks=['NC'] | output=output_nc_skim_test
+2026-07-08 08:02:02,797 | INFO     | DistillAgent | Master backend: api | model: qwen3.7-plus | url: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/compl
+2026-07-08 08:02:13,952 | INFO     | DistillAgent | ✅ Master API OK (200, 11.2s)
+2026-07-08 08:02:13,953 | INFO     | DistillAgent | Tool backend: api | model: qwen3.7-plus | url: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/compl
+2026-07-08 08:02:29,117 | ERROR    | DistillAgent | ❌ Tool API unreachable: HTTPSConnectionPool(host='dashscope.aliyuncs.com', port=443): Read timed out. (read timeout=15)
+2026-07-08 08:02:29,118 | INFO     | DistillAgent | Prompt config: base=/media/data6/xuejj/CVRAgent/agent_system/myprompts/_unified_crossvid_base_compress.prompt
+2026-07-08 08:02:29,118 | INFO     | DistillAgent | 
+████████████████████████████████████████████████████████████
+2026-07-08 08:02:29,118 | INFO     | DistillAgent |   Starting Task: NC
+2026-07-08 08:02:29,118 | INFO     | DistillAgent | ████████████████████████████████████████████████████████████
+2026-07-08 08:02:29,131 | INFO     | DistillAgent | Task NC: 7 questions (Q4-Q10 of 814 total)
+2026-07-08 08:02:29,131 | INFO     | DistillAgent.Diagnosis | DiagnosisAgent initialized: model=qwen3.7-plus
+2026-07-08 08:02:29,131 | INFO     | DistillAgent.Core | ════════════════════════════════════════════════════════════
+  [NC] Q4/10 (ID: 7)
+════════════════════════════════════════════════════════════
+2026-07-08 08:02:29,131 | INFO     | DistillAgent.Core |   🎯 Ground Truth: C: C. Video 3
+2026-07-08 08:02:29,131 | INFO     | DistillAgent.Core |   ▶️  Attempt 1/4: Standard run
+2026-07-08 08:02:31,611 | INFO     | AgentWorkflowLogger | 🚀 Starting Master Agent Loop...
+2026-07-08 08:02:31,612 | INFO     | AgentWorkflowLogger | 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 08:02:31,612 | INFO     | qwen_agent |   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 08:03:20,573 | INFO     | AgentWorkflowLogger |   ⏱️  LLM: 49.0s
+2026-07-08 08:03:20,573 | INFO     | AgentWorkflowLogger |   🤖 Thought: Need to scan all 4 videos to identify which one has a central narrative goal of protecting a child....
+2026-07-08 08:03:20,573 | INFO     | AgentWorkflowLogger |   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 08:03:20,573 | INFO     | AgentWorkflowLogger |   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=3
+2026-07-08 08:03:20,575 | INFO     | AgentWorkflowLogger |   ⚡ Batch observe parallel enabled: 4 items, 4 workers (tool_backend=api, layer1=True)
+2026-07-08 08:03:20,575 | INFO     | AgentWorkflowLogger |     [BATCH 1/4] Video 1: 450s → splitting into 5 chunks (90s per chunk, 16 frames each)
+2026-07-08 08:03:20,576 | INFO     | AgentWorkflowLogger |     [BATCH 2/4] Video 2: 450s → splitting into 5 chunks (90s per chunk, 16 frames each)
+2026-07-08 08:03:20,576 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 1: merging 5 chunks into one skim call (sample 16 frames/chunk -> up to 2 representatives/chunk)
+2026-07-08 08:03:20,577 | INFO     | AgentWorkflowLogger |     [BATCH 3/4] Video 3: 450s → splitting into 5 chunks (90s per chunk, 16 frames each)
+2026-07-08 08:03:20,577 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 2: merging 5 chunks into one skim call (sample 16 frames/chunk -> up to 2 representatives/chunk)
+2026-07-08 08:03:20,577 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 1/20] Video 1 chunk 1/5: 0-90s, sample 16 frames
+2026-07-08 08:03:20,577 | INFO     | AgentWorkflowLogger |     [BATCH 4/4] Video 4: 450s → splitting into 5 chunks (90s per chunk, 16 frames each)
+2026-07-08 08:03:20,578 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 3: merging 5 chunks into one skim call (sample 16 frames/chunk -> up to 2 representatives/chunk)
+2026-07-08 08:03:20,578 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 6/20] Video 2 chunk 1/5: 0-90s, sample 16 frames
+2026-07-08 08:03:20,578 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 2/20] Video 1 chunk 2/5: 90-180s, sample 16 frames
+2026-07-08 08:03:20,578 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 4: merging 5 chunks into one skim call (sample 16 frames/chunk -> up to 2 representatives/chunk)
+2026-07-08 08:03:20,579 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 11/20] Video 3 chunk 1/5: 0-90s, sample 16 frames
+2026-07-08 08:03:20,579 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 7/20] Video 2 chunk 2/5: 90-180s, sample 16 frames
+2026-07-08 08:03:20,579 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 3/20] Video 1 chunk 3/5: 180-270s, sample 16 frames
+2026-07-08 08:03:20,579 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 16/20] Video 4 chunk 1/5: 0-90s, sample 16 frames
+2026-07-08 08:03:20,579 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 12/20] Video 3 chunk 2/5: 90-180s, sample 16 frames
+2026-07-08 08:03:20,580 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 8/20] Video 2 chunk 3/5: 180-270s, sample 16 frames
+2026-07-08 08:03:20,580 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 4/20] Video 1 chunk 4/5: 270-360s, sample 16 frames
+2026-07-08 08:03:20,580 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 17/20] Video 4 chunk 2/5: 90-180s, sample 16 frames
+2026-07-08 08:03:20,580 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 13/20] Video 3 chunk 3/5: 180-270s, sample 16 frames
+2026-07-08 08:03:20,580 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 9/20] Video 2 chunk 4/5: 270-360s, sample 16 frames
+2026-07-08 08:03:20,580 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 5/20] Video 1 chunk 5/5: 360-450s, sample 16 frames
+2026-07-08 08:03:20,580 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 18/20] Video 4 chunk 3/5: 180-270s, sample 16 frames
+2026-07-08 08:03:20,581 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 14/20] Video 3 chunk 4/5: 270-360s, sample 16 frames
+2026-07-08 08:03:20,581 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 10/20] Video 2 chunk 5/5: 360-450s, sample 16 frames
+2026-07-08 08:03:20,581 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 08:03:20,581 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 19/20] Video 4 chunk 4/5: 270-360s, sample 16 frames
+2026-07-08 08:03:20,581 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 15/20] Video 3 chunk 5/5: 360-450s, sample 16 frames
+2026-07-08 08:03:20,582 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 08:03:20,582 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 5 targets (Time-based)
+2026-07-08 08:03:20,582 | INFO     | AgentWorkflowLogger |     [SKIM-CHUNK 20/20] Video 4 chunk 5/5: 360-450s, sample 16 frames
+2026-07-08 08:03:20,582 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 08:03:20,583 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 5 targets (Time-based)
+2026-07-08 08:03:20,583 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 08:03:20,584 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 5 targets (Time-based)
+2026-07-08 08:03:20,584 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 5 targets (Time-based)
+2026-07-08 08:03:21,172 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 3 0.0-90.0s: selected 2/16 representative frames (centroid+anomaly), positions=[7, 12]
+2026-07-08 08:03:21,181 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 2 0.0-90.0s: selected 2/16 representative frames (centroid+anomaly), positions=[11, 14]
+2026-07-08 08:03:21,600 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 2 90.0-180.0s: selected 2/16 representative frames (centroid+anomaly), positions=[8, 13]
+2026-07-08 08:03:21,685 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 1 0.0-90.0s: selected 2/16 representative frames (centroid+anomaly), positions=[2, 3]
+2026-07-08 08:03:21,690 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 3 90.0-180.0s: selected 2/16 representative frames (centroid+anomaly), positions=[14, 16]
+2026-07-08 08:03:21,801 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 4 0.0-90.0s: selected 2/16 representative frames (centroid+anomaly), positions=[6, 14]
+2026-07-08 08:03:22,073 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 2 180.0-270.0s: selected 2/16 representative frames (centroid+anomaly), positions=[8, 16]
+2026-07-08 08:03:22,082 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 3 180.0-270.0s: selected 2/16 representative frames (centroid+anomaly), positions=[2, 11]
+2026-07-08 08:03:22,536 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 2 270.0-360.0s: selected 2/16 representative frames (centroid+anomaly), positions=[9, 15]
+2026-07-08 08:03:22,596 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 3 270.0-360.1s: selected 2/16 representative frames (centroid+anomaly), positions=[3, 6]
+2026-07-08 08:03:22,660 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 1 90.0-180.0s: selected 2/16 representative frames (centroid+anomaly), positions=[2, 13]
+2026-07-08 08:03:22,825 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 4 90.0-180.0s: selected 2/16 representative frames (centroid+anomaly), positions=[10, 15]
+2026-07-08 08:03:22,911 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 2 360.0-450.0s: selected 2/16 representative frames (centroid+anomaly), positions=[3, 4]
+2026-07-08 08:03:22,911 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 10 frames...
+2026-07-08 08:03:22,912 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 08:03:23,075 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 3 360.1-450.1s: selected 2/16 representative frames (centroid+anomaly), positions=[2, 15]
+2026-07-08 08:03:23,075 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 10 frames...
+2026-07-08 08:03:23,076 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 08:03:23,552 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 1 180.0-270.0s: selected 2/16 representative frames (centroid+anomaly), positions=[2, 13]
+2026-07-08 08:03:23,885 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 4 180.0-270.0s: selected 2/16 representative frames (centroid+anomaly), positions=[8, 11]
+2026-07-08 08:03:24,566 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 1 270.0-360.1s: selected 2/16 representative frames (centroid+anomaly), positions=[3, 14]
+2026-07-08 08:03:24,755 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 4 270.0-360.1s: selected 2/16 representative frames (centroid+anomaly), positions=[4, 8]
+2026-07-08 08:03:25,480 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 1 360.1-450.1s: selected 2/16 representative frames (centroid+anomaly), positions=[9, 11]
+2026-07-08 08:03:25,480 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 10 frames...
+2026-07-08 08:03:25,480 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 08:03:25,669 | INFO     | AgentWorkflowLogger |     [LAYER1-SKIM] Video 4 360.1-450.1s: selected 2/16 representative frames (centroid+anomaly), positions=[5, 6]
+2026-07-08 08:03:25,669 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 10 frames...
+2026-07-08 08:03:25,669 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 08:04:28,529 | INFO     | AgentWorkflowLogger |     [BATCH 3/4] Video 3 done in 68.0s (5 chunks skimmed in one call)
+2026-07-08 08:04:47,081 | INFO     | AgentWorkflowLogger |     [BATCH 1/4] Video 1 done in 86.5s (5 chunks skimmed in one call)
+2026-07-08 08:05:48,052 | INFO     | AgentWorkflowLogger |     [BATCH 4/4] Video 4 done in 147.5s (5 chunks skimmed in one call)
+2026-07-08 08:05:53,712 | INFO     | AgentWorkflowLogger |     [BATCH 2/4] Video 2 done in 153.1s (5 chunks skimmed in one call)
+2026-07-08 08:05:53,715 | INFO     | AgentWorkflowLogger |   ⏱️  Batch Tool (4 videos): 153.1s, Turn total: 202.1s
+2026-07-08 08:05:53,716 | INFO     | AgentWorkflowLogger | 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 202.1s)
+2026-07-08 08:05:53,716 | INFO     | qwen_agent |   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 08:07:17,444 | INFO     | AgentWorkflowLogger |   ⏱️  LLM: 83.7s
+2026-07-08 08:07:17,445 | INFO     | AgentWorkflowLogger |   🤖 Thought: Both Video 1 and Video 3 show a child and protective actions. Need to verify which one has protectin...
+2026-07-08 08:07:17,445 | INFO     | AgentWorkflowLogger |   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 08:07:17,445 | INFO     | AgentWorkflowLogger |   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=6
+2026-07-08 08:07:17,446 | INFO     | AgentWorkflowLogger |   ⚡ Batch observe parallel enabled: 2 items, 2 workers (tool_backend=api, layer1=False)
+2026-07-08 08:07:17,446 | INFO     | AgentWorkflowLogger |     [CHUNK 1/3] Video 1 chunk 1/1: 360-450s, 16 frames
+2026-07-08 08:07:17,447 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 08:07:17,447 | INFO     | AgentWorkflowLogger |     [BATCH 2/2] Video 3: 180s → splitting into 2 chunks (90s per chunk, 16 frames each)
+2026-07-08 08:07:17,448 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 08:07:17,448 | INFO     | AgentWorkflowLogger |     [CHUNK 2/3] Video 3 chunk 1/2: 90-180s, 16 frames
+2026-07-08 08:07:17,448 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 08:07:17,449 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 08:07:17,924 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 08:07:17,924 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 08:07:18,270 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 08:07:18,270 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 08:08:59,709 | INFO     | AgentWorkflowLogger |     [BATCH 1/2] Video 1 done in 102.3s (1 chunks)
+2026-07-08 08:09:04,532 | INFO     | AgentWorkflowLogger |     [CHUNK 3/3] Video 3 chunk 2/2: 180-270s, 16 frames
+2026-07-08 08:09:04,533 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 08:09:04,533 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 08:09:04,844 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 08:09:04,845 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 08:10:57,336 | INFO     | AgentWorkflowLogger |     [BATCH 2/2] Video 3 done in 219.9s (2 chunks)
+2026-07-08 08:10:57,338 | INFO     | AgentWorkflowLogger |   ⏱️  Batch Tool (2 videos): 219.9s, Turn total: 303.6s
+2026-07-08 08:10:57,338 | INFO     | AgentWorkflowLogger | 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 505.7s)
+2026-07-08 08:10:57,339 | INFO     | qwen_agent |   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 08:11:06,707 | INFO     | AgentWorkflowLogger |   ⏱️  LLM: 9.4s
+2026-07-08 08:11:06,708 | INFO     | AgentWorkflowLogger |   🤖 Thought: Layer2 confirmed Video 1's central narrative goal is protecting the young girl from pursuers (high c...
+2026-07-08 08:11:06,708 | INFO     | AgentWorkflowLogger |   🤖 Action:  [ANSWER]
+2026-07-08 08:11:06,708 | INFO     | AgentWorkflowLogger | 🎯 Final Answer: A (Turn total: 9.4s)
+2026-07-08 08:11:06,720 | INFO     | AgentWorkflowLogger |     💾 Logs saved to: output_nc_skim_test/detailed_logs/NC/7/attempt_1 (JSON + Readable TXT)
+2026-07-08 08:11:06,720 | INFO     | DistillAgent.Core |   ⏱️  517.6s → ❌ WRONG
+2026-07-08 08:11:06,720 | INFO     | DistillAgent.Core |   🩺 Diagnosis attempt 1/3...
+2026-07-08 08:11:31,128 | INFO     | DistillAgent.Diagnosis | Diagnosis: turn=5 type=wrong_observation strategy= confidence=0.82
+2026-07-08 08:11:31,129 | INFO     | DistillAgent.Core |   💉 Correction: scope=layer2_reobserve | turn=5 | type=wrong_observation | confidence=0.82
+2026-07-08 08:11:31,585 | INFO     | AgentWorkflowLogger | 🚀 Starting Master Agent Loop...
+2026-07-08 08:11:31,586 | INFO     | AgentWorkflowLogger | 📋 Resuming from pre-loaded history (7 messages)
+2026-07-08 08:11:31,586 | INFO     | AgentWorkflowLogger | 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 08:11:31,586 | INFO     | qwen_agent |   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 08:11:45,357 | INFO     | AgentWorkflowLogger |   ⏱️  LLM: 13.8s
+2026-07-08 08:11:45,358 | INFO     | AgentWorkflowLogger |   🤖 Thought: System correction indicates Video 3's Layer2 analysis missed the overarching narrative arc. Need to ...
+2026-07-08 08:11:45,358 | INFO     | AgentWorkflowLogger |   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 08:11:45,358 | INFO     | AgentWorkflowLogger |   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=3
+2026-07-08 08:11:45,358 | INFO     | AgentWorkflowLogger |     [BATCH 1/1] Video 3: 450s → splitting into 5 chunks (90s per chunk, 16 frames each)
+2026-07-08 08:11:45,358 | INFO     | AgentWorkflowLogger |     [CHUNK 1/5] Video 3 chunk 1/5: 0-90s, 16 frames
+2026-07-08 08:11:45,358 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 08:11:45,358 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 08:11:45,861 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 08:11:45,861 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 08:13:36,079 | INFO     | AgentWorkflowLogger |     💾 Logs saved to: output_nc_skim_test/detailed_logs/NC/7/attempt_2 (JSON + Readable TXT)

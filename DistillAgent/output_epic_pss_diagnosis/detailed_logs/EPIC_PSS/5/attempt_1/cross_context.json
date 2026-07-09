@@ -1,0 +1,135 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "pan contents exact progression",
+    "cutting board clearance timing"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "red_onion": {
+      "1": "raw, partially peeled/trimmed",
+      "3": "raw, washed chunk, chopped",
+      "5": "raw, minced with mezzaluna",
+      "4": "raw chopped -> cooking in oil"
+    },
+    "zucchini": {
+      "2": "raw, washed, sliced, added to pan",
+      "6": "raw, peeled/sliced into rounds"
+    },
+    "pan": {
+      "4": "empty -> oil -> oil+onions",
+      "2": "bubbling yellow liquid (oil) + zucchini added",
+      "6": "yellow/green mixture (oil+onions+zucchini)"
+    },
+    "cutting_board": {
+      "1": "onion skins residue",
+      "3": "chopped onion pile, juice",
+      "5": "onion residue, mincing",
+      "4": "holds onions -> becomes empty",
+      "2": "slicing zucchini",
+      "6": "slicing zucchini, wet residue"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked/mixed/plated)",
+    "container fill/empty",
+    "transfer traces",
+    "residue/depletion",
+    "tool contact",
+    "pan contents (empty, oil, oil+onions, oil+onions+zucchini, yellow/green)",
+    "cutting board state (onion residue, empty, zucchini residue)"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all segment roles and object states pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked/mixed/plated)",
+          "container fill/empty",
+          "transfer traces",
+          "residue/depletion",
+          "tool contact"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "red_onion": {
+            "1": "raw, partially peeled/trimmed",
+            "3": "raw, washed chunk, chopped",
+            "5": "raw, minced with mezzaluna",
+            "4": "raw chopped -> cooking in oil"
+          },
+          "zucchini": {
+            "2": "raw, washed, sliced, added to pan",
+            "6": "raw, peeled/sliced into rounds"
+          },
+          "pan": {
+            "4": "empty -> oil -> oil+onions",
+            "2": "bubbling yellow liquid (oil) + zucchini added",
+            "6": "yellow/green mixture (oil+onions+zucchini)"
+          },
+          "cutting_board": {
+            "1": "onion skins residue",
+            "3": "chopped onion pile, juice",
+            "5": "onion residue, mincing",
+            "4": "holds onions -> becomes empty",
+            "2": "slicing zucchini",
+            "6": "slicing zucchini, wet residue"
+          }
+        },
+        "preliminary_order": "1->3->5->4->2->6",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "onion prep chain: peel(1)->wash/chop(3)->mince(5)->transfer to pan(4)",
+          "pan state progression: oil+onions(4) -> add zucchini(2) -> yellow/green mix(6)",
+          "board cleared of onions in 4 before zucchini prep in 2/6"
+        ],
+        "blocking_uncertainties": [
+          "verify pan contents in 2 vs 4 to ensure 4 is first",
+          "verify board state in 4 is empty before 2/6"
+        ],
+        "uncertain": [
+          "pan contents exact progression",
+          "cutting board clearance timing"
+        ],
+        "dimensions_to_compare": [
+          "pan contents (empty, oil, oil+onions, oil+onions+zucchini, yellow/green)",
+          "cutting board state (onion residue, empty, zucchini residue)"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1->3->5->4->2->6"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "onion prep chain: peel(1)->wash/chop(3)->mince(5)->transfer to pan(4)",
+    "pan state progression: oil+onions(4) -> add zucchini(2) -> yellow/green mix(6)",
+    "board cleared of onions in 4 before zucchini prep in 2/6"
+  ],
+  "blocking_uncertainties": [
+    "verify pan contents in 2 vs 4 to ensure 4 is first",
+    "verify board state in 4 is empty before 2/6"
+  ]
+}

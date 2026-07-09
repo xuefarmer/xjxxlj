@@ -1,0 +1,296 @@
+{
+  "confirmed": [],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{}",
+    "{\"1\": \"cutting round dough sheet into strips; flatbread cooking on pan; pot boiling\", \"2\": \"trimming irregular dough to circular pizza base; cooked pizza in background; pot with white sauce\", \"3\": \"topping 2 raw pizza bases with sauce/cheese/onions/green topping; pot with white solids\", \"4\": \"rolling dough ball into large thin circular sheet; pot with liquid/onions; woven mat present\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "dough": {
+      "4": "ball -> large thin circular sheet",
+      "2": "irregular sheet -> circular base",
+      "1": "round sheet -> cut into long strips",
+      "3": "2 circular bases -> topped with sauce/cheese/onions/green"
+    },
+    "pot": {
+      "4": "liquid with onions",
+      "2": "yellowish/white sauce",
+      "3": "boiling with white solids (pasta/rice)",
+      "1": "boiling (lid on)"
+    },
+    "cooked_items": {
+      "1": "flatbread on tawa",
+      "2": "cooked pizza in background",
+      "3": "none (raw pizzas)",
+      "4": "none"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states across segments",
+    "transfer traces",
+    "container fill/empty",
+    "residue/depletion",
+    "raw-to-cooked progression",
+    "dough shape before/after",
+    "pot contents",
+    "cooked items presence",
+    "pizza cooked state",
+    "dough shape"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {},
+        "object_memory": {},
+        "temporal_index": {},
+        "preliminary_order": null,
+        "preliminary_confidence": 0,
+        "confidence_basis": [],
+        "blocking_uncertainties": [
+          "awaiting Layer1 results"
+        ],
+        "irrelevant_windows": [],
+        "candidate_targets": [],
+        "low_value_targets": [],
+        "uncertain": [
+          "all object states pending"
+        ],
+        "dimensions_to_compare": [
+          "object states across segments",
+          "transfer traces",
+          "container fill/empty",
+          "residue/depletion",
+          "raw-to-cooked progression"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "cutting round dough sheet into strips; flatbread cooking on pan; pot boiling",
+          "2": "trimming irregular dough to circular pizza base; cooked pizza in background; pot with white sauce",
+          "3": "topping 2 raw pizza bases with sauce/cheese/onions/green topping; pot with white solids",
+          "4": "rolling dough ball into large thin circular sheet; pot with liquid/onions; woven mat present"
+        },
+        "object_memory": {
+          "dough": {
+            "4": "ball -> large thin circular sheet",
+            "2": "irregular sheet -> circular base",
+            "1": "round sheet -> cut into long strips",
+            "3": "2 circular bases -> topped with sauce/cheese/onions/green"
+          },
+          "pot": {
+            "4": "liquid with onions",
+            "2": "yellowish/white sauce",
+            "3": "boiling with white solids (pasta/rice)",
+            "1": "boiling (lid on)"
+          },
+          "cooked_items": {
+            "1": "flatbread on tawa",
+            "2": "cooked pizza in background",
+            "3": "none (raw pizzas)",
+            "4": "none"
+          }
+        },
+        "temporal_index": {
+          "dough_progression": [
+            {
+              "window": "all",
+              "event": "dough shape transition",
+              "key_objects": [
+                "dough"
+              ],
+              "visible_state": "ball->sheet->circle->topped",
+              "why_it_matters": "main ordering chain",
+              "confidence": "medium"
+            }
+          ],
+          "pot_progression": [
+            {
+              "window": "all",
+              "event": "pot contents change",
+              "key_objects": [
+                "pot"
+              ],
+              "visible_state": "liquid->sauce->solids",
+              "why_it_matters": "secondary ordering chain",
+              "confidence": "medium"
+            }
+          ]
+        },
+        "preliminary_order": "4->1->2->3",
+        "preliminary_confidence": 6,
+        "confidence_basis": [
+          "dough progression: ball(V4)->sheet(V4)->strips(V1) or circle(V2)->topped(V3)",
+          "pot progression: liquid(V4)->sauce(V2)->solids(V3)"
+        ],
+        "blocking_uncertainties": [
+          "exact dough shape in V1 vs V2 vs V4",
+          "whether V1 strips come from V4 sheet or V2 circle",
+          "pot contents sequence"
+        ],
+        "irrelevant_windows": [],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "dough shape transitions between V1, V2, V4",
+          "pot contents sequence"
+        ],
+        "dimensions_to_compare": [
+          "dough shape before/after",
+          "pot contents",
+          "cooked items presence"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "V4": "dough: ball->sheet; pot: liquid/onions; mat present",
+          "V1": "dough: sheet->strips; pot: liquid/onions/pasta; flatbread cooking",
+          "V3": "pizza: raw bases topped; pot: liquid/pasta/rice; NO cooked items",
+          "V2": "dough: irregular->circle; pot: sauce; cooked pizza in background"
+        },
+        "temporal_index": {
+          "dough_progression": [
+            {
+              "window": "all",
+              "event": "dough shape transition",
+              "key_objects": [
+                "dough"
+              ],
+              "visible_state": "V4(ball->sheet)->V1(sheet->strips); V3(topped circles)->V2(trim new circles)",
+              "why_it_matters": "main ordering chain",
+              "confidence": "high"
+            }
+          ],
+          "pot_progression": [
+            {
+              "window": "all",
+              "event": "pot contents change",
+              "key_objects": [
+                "pot"
+              ],
+              "visible_state": "V4(onions)->V1(onions/pasta)->V3(pasta/rice)->V2(sauce)",
+              "why_it_matters": "secondary ordering chain",
+              "confidence": "high"
+            }
+          ],
+          "pizza_progression": [
+            {
+              "window": "all",
+              "event": "pizza cooking state",
+              "key_objects": [
+                "pizza"
+              ],
+              "visible_state": "V3(raw topped, no cooked)->V2(trim new dough, cooked pizza in background)",
+              "why_it_matters": "confirms V3 before V2",
+              "confidence": "high"
+            }
+          ]
+        },
+        "preliminary_order": "4->1->3->2",
+        "preliminary_confidence": 8,
+        "confidence_basis": [
+          "dough: V4(ball->sheet)->V1(sheet->strips)",
+          "pizza: V3(raw topped, no cooked)->V2(trim new, cooked in bg)",
+          "pot: V4(onions)->V1(onions/pasta)->V3(pasta/rice)->V2(sauce)"
+        ],
+        "blocking_uncertainties": [
+          "verify V2/V3 pot and pizza states to confirm 3->2"
+        ],
+        "irrelevant_windows": [],
+        "candidate_targets": [
+          2,
+          3
+        ],
+        "low_value_targets": [
+          1,
+          4
+        ],
+        "uncertain": [],
+        "dimensions_to_compare": [
+          "pizza cooked state",
+          "pot contents",
+          "dough shape"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "order_confidence": 8
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "temporal_index": [
+    "{}",
+    "{\"dough_progression\": [{\"window\": \"all\", \"event\": \"dough shape transition\", \"key_objects\": [\"dough\"], \"visible_state\": \"ball->sheet->circle->topped\", \"why_it_matters\": \"main ordering chain\", \"confidence\": \"medium\"}], \"pot_progression\": [{\"window\": \"all\", \"event\": \"pot contents change\", \"key_objects\": [\"pot\"], \"visible_state\": \"liquid->sauce->solids\", \"why_it_matters\": \"secondary ordering chain\", \"confidence\": \"medium\"}]}",
+    "{\"dough_progression\": [{\"window\": \"all\", \"event\": \"dough shape transition\", \"key_objects\": [\"dough\"], \"visible_state\": \"V4(ball->sheet)->V1(sheet->strips); V3(topped circles)->V2(trim new circles)\", \"why_it_matters\": \"main ordering chain\", \"confidence\": \"high\"}], \"pot_progression\": [{\"window\": \"all\", \"event\": \"pot contents change\", \"key_objects\": [\"pot\"], \"visible_state\": \"V4(onions)->V1(onions/pasta)->V3(pasta/rice)->V2(sauce)\", \"why_it_matters\": \"secondary ordering chain\", \"confidence\": \"high\"}], \"pizza_progression\": [{\"window\": \"all\", \"event\": \"pizza cooking state\", \"key_objects\": [\"pizza\"], \"visible_state\": \"V3(raw topped, no cooked)->V2(trim new dough, cooked pizza in background)\", \"why_it_matters\": \"confirms V3 before V2\", \"confidence\": \"high\"}]}"
+  ],
+  "preliminary_order": [
+    "4->1->2->3",
+    "4->1->3->2"
+  ],
+  "preliminary_confidence": [
+    "0",
+    "6",
+    "8"
+  ],
+  "confidence_basis": [
+    "dough progression: ball(V4)->sheet(V4)->strips(V1) or circle(V2)->topped(V3)",
+    "pot progression: liquid(V4)->sauce(V2)->solids(V3)",
+    "dough: V4(ball->sheet)->V1(sheet->strips)",
+    "pizza: V3(raw topped, no cooked)->V2(trim new, cooked in bg)",
+    "pot: V4(onions)->V1(onions/pasta)->V3(pasta/rice)->V2(sauce)"
+  ],
+  "blocking_uncertainties": [
+    "awaiting Layer1 results",
+    "exact dough shape in V1 vs V2 vs V4",
+    "whether V1 strips come from V4 sheet or V2 circle",
+    "pot contents sequence",
+    "verify V2/V3 pot and pizza states to confirm 3->2"
+  ],
+  "irrelevant_windows": [],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "low_value_targets": [
+    "1",
+    "4"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V4\": \"dough: ball->sheet; pot: liquid/onions; mat present\", \"V1\": \"dough: sheet->strips; pot: liquid/onions/pasta; flatbread cooking\", \"V3\": \"pizza: raw bases topped; pot: liquid/pasta/rice; NO cooked items\", \"V2\": \"dough: irregular->circle; pot: sauce; cooked pizza in background\"}"
+  ],
+  "order_confidence": [
+    "8"
+  ]
+}

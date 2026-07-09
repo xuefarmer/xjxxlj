@@ -1,0 +1,364 @@
+2026-07-08 06:14:16,397 | INFO     | DistillAgent | DistillAgent starting | tasks=['NC'] | output=output_compress_test
+2026-07-08 06:14:16,397 | INFO     | DistillAgent | Master backend: api | model: qwen3.7-plus | url: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/compl
+2026-07-08 06:14:20,795 | INFO     | DistillAgent | ✅ Master API OK (200, 4.4s)
+2026-07-08 06:14:20,796 | INFO     | DistillAgent | Tool backend: api | model: qwen3.7-plus | url: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/compl
+2026-07-08 06:14:29,749 | INFO     | DistillAgent | ✅ Tool API OK (200, 8.9s)
+2026-07-08 06:14:29,751 | INFO     | DistillAgent | Prompt config: base=/media/data6/xuejj/CVRAgent/agent_system/myprompts/_unified_crossvid_base_compress.prompt
+2026-07-08 06:14:29,751 | INFO     | DistillAgent | 
+████████████████████████████████████████████████████████████
+2026-07-08 06:14:29,751 | INFO     | DistillAgent |   Starting Task: NC
+2026-07-08 06:14:29,751 | INFO     | DistillAgent | ████████████████████████████████████████████████████████████
+2026-07-08 06:14:29,761 | INFO     | DistillAgent | Task NC: 3 questions (Q1-Q3 of 814 total)
+2026-07-08 06:14:29,761 | INFO     | DistillAgent.Diagnosis | DiagnosisAgent initialized: model=qwen3.7-plus
+2026-07-08 06:14:29,761 | INFO     | DistillAgent.Core | ════════════════════════════════════════════════════════════
+  [NC] Q1/3 (ID: 0)
+════════════════════════════════════════════════════════════
+2026-07-08 06:14:29,761 | INFO     | DistillAgent.Core |   🎯 Ground Truth: C: C. Video3 and Video4
+2026-07-08 06:14:29,762 | INFO     | DistillAgent.Core |   ▶️  Attempt 1/4: Standard run
+2026-07-08 06:14:33,106 | INFO     | AgentWorkflowLogger | 🚀 Starting Master Agent Loop...
+2026-07-08 06:14:33,106 | INFO     | AgentWorkflowLogger | 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 06:14:33,106 | INFO     | qwen_agent |   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 06:15:03,287 | INFO     | AgentWorkflowLogger |   ⏱️  LLM: 30.2s
+2026-07-08 06:15:03,287 | INFO     | AgentWorkflowLogger |   🤖 Thought: Need to scan all 4 videos for evidence of home invasions as key plot points to identify the correct ...
+2026-07-08 06:15:03,287 | INFO     | AgentWorkflowLogger |   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 06:15:03,287 | INFO     | AgentWorkflowLogger |   🧠 Cross-context updated: confirmed=0, uncertain=1, dimensions=4
+2026-07-08 06:15:03,289 | INFO     | AgentWorkflowLogger |   ⚡ Batch observe parallel enabled: 4 items, 4 workers (tool_backend=api, layer1=True)
+2026-07-08 06:15:03,289 | INFO     | AgentWorkflowLogger |     [BATCH 1/4] Video 1: 450s → splitting into 5 chunks (90s per chunk, 16 frames each)
+2026-07-08 06:15:03,290 | INFO     | AgentWorkflowLogger |     [BATCH 2/4] Video 2: 450s → splitting into 5 chunks (90s per chunk, 16 frames each)
+2026-07-08 06:15:03,290 | INFO     | AgentWorkflowLogger |     [CHUNK 1/20] Video 1 chunk 1/5: 0-90s, 16 frames
+2026-07-08 06:15:03,291 | INFO     | AgentWorkflowLogger |     [BATCH 3/4] Video 3: 450s → splitting into 5 chunks (90s per chunk, 16 frames each)
+2026-07-08 06:15:03,291 | INFO     | AgentWorkflowLogger |     [CHUNK 6/20] Video 2 chunk 1/5: 0-90s, 16 frames
+2026-07-08 06:15:03,291 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:15:03,292 | INFO     | AgentWorkflowLogger |     [BATCH 4/4] Video 4: 450s → splitting into 5 chunks (90s per chunk, 16 frames each)
+2026-07-08 06:15:03,292 | INFO     | AgentWorkflowLogger |     [CHUNK 11/20] Video 3 chunk 1/5: 0-90s, 16 frames
+2026-07-08 06:15:03,292 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:15:03,293 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:15:03,293 | INFO     | AgentWorkflowLogger |     [CHUNK 16/20] Video 4 chunk 1/5: 0-90s, 16 frames
+2026-07-08 06:15:03,293 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:15:03,293 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:15:03,294 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:15:03,294 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:15:03,295 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:15:03,960 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 4 0.0-90.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:15:03,960 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:15:03,960 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:15:04,390 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 3 0.0-90.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:15:04,391 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:15:04,391 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:15:04,434 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 2 0.0-90.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:15:04,434 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:15:04,434 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:15:04,530 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 1 0.0-90.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:15:04,531 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:15:04,531 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:16:22,490 | INFO     | AgentWorkflowLogger |     [CHUNK 12/20] Video 3 chunk 2/5: 90-180s, 16 frames
+2026-07-08 06:16:22,491 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:16:22,491 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:16:22,987 | INFO     | AgentWorkflowLogger |     [CHUNK 17/20] Video 4 chunk 2/5: 90-180s, 16 frames
+2026-07-08 06:16:22,987 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:16:22,987 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:16:23,361 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 3 90.0-180.0s adjacent similar: 3/15 pairs (pHash<=8: 3, pixel cos>=0.985 & mae<=0.050: 1), suggested 16->14 frames (applied)
+2026-07-08 06:16:23,361 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-07-08 06:16:23,361 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:16:23,462 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 4 90.0-180.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:16:23,462 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:16:23,462 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:16:35,489 | INFO     | AgentWorkflowLogger |     [CHUNK 2/20] Video 1 chunk 2/5: 90-180s, 16 frames
+2026-07-08 06:16:35,490 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:16:35,490 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:16:36,353 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 1 90.0-180.0s adjacent similar: 1/15 pairs (pHash<=8: 1, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->15 frames (applied)
+2026-07-08 06:16:36,353 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 15 frames...
+2026-07-08 06:16:36,353 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:17:23,442 | INFO     | AgentWorkflowLogger |     [CHUNK 18/20] Video 4 chunk 3/5: 180-270s, 16 frames
+2026-07-08 06:17:23,443 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:17:23,443 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:17:23,797 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 4 180.0-270.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:17:23,797 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:17:23,797 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:17:25,926 | INFO     | AgentWorkflowLogger |     [CHUNK 3/20] Video 1 chunk 3/5: 180-270s, 16 frames
+2026-07-08 06:17:25,927 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:17:25,927 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:17:27,313 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 1 180.0-270.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:17:27,314 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:17:27,314 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:17:53,034 | INFO     | AgentWorkflowLogger |     [CHUNK 7/20] Video 2 chunk 2/5: 90-180s, 16 frames
+2026-07-08 06:17:53,034 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:17:53,034 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:17:54,522 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 2 90.0-180.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:17:54,522 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:17:54,522 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:18:00,907 | INFO     | AgentWorkflowLogger |     [CHUNK 13/20] Video 3 chunk 3/5: 180-270s, 16 frames
+2026-07-08 06:18:00,907 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:18:00,908 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:18:01,732 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 3 180.0-270.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:18:01,732 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:18:01,732 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:18:28,639 | INFO     | AgentWorkflowLogger |     [CHUNK 19/20] Video 4 chunk 4/5: 270-360s, 16 frames
+2026-07-08 06:18:28,639 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:18:28,639 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:18:29,118 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 4 270.0-360.1s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:18:29,118 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:18:29,118 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:19:15,010 | INFO     | AgentWorkflowLogger |     [CHUNK 14/20] Video 3 chunk 4/5: 270-360s, 16 frames
+2026-07-08 06:19:15,011 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:19:15,011 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:19:15,985 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 3 270.0-360.1s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:19:15,985 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:19:15,985 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:19:30,801 | INFO     | AgentWorkflowLogger |     [CHUNK 8/20] Video 2 chunk 3/5: 180-270s, 16 frames
+2026-07-08 06:19:30,802 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:19:30,802 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:19:31,906 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 2 180.0-270.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:19:31,907 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:19:31,907 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:20:48,892 | INFO     | AgentWorkflowLogger |     [CHUNK 4/20] Video 1 chunk 4/5: 270-360s, 16 frames
+2026-07-08 06:20:48,893 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:20:48,893 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:20:49,916 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 1 270.0-360.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:20:49,917 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:20:49,917 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:20:57,015 | INFO     | AgentWorkflowLogger |     [CHUNK 20/20] Video 4 chunk 5/5: 360-450s, 16 frames
+2026-07-08 06:20:57,015 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:20:57,015 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:20:57,568 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 4 360.1-450.1s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:20:57,568 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:20:57,568 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:21:06,202 | INFO     | AgentWorkflowLogger |     [CHUNK 15/20] Video 3 chunk 5/5: 360-450s, 16 frames
+2026-07-08 06:21:06,202 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:21:06,202 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:21:07,070 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 3 360.1-450.1s adjacent similar: 3/15 pairs (pHash<=8: 3, pixel cos>=0.985 & mae<=0.050: 2), suggested 16->13 frames (applied)
+2026-07-08 06:21:07,070 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 13 frames...
+2026-07-08 06:21:07,070 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:21:28,322 | INFO     | AgentWorkflowLogger |     [CHUNK 9/20] Video 2 chunk 4/5: 270-360s, 16 frames
+2026-07-08 06:21:28,323 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:21:28,323 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:21:29,267 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 2 270.0-360.1s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:21:29,268 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:21:29,268 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:22:36,301 | INFO     | AgentWorkflowLogger |     [BATCH 3/4] Video 3 done in 453.0s (5 chunks)
+2026-07-08 06:22:39,903 | INFO     | AgentWorkflowLogger |     [BATCH 4/4] Video 4 done in 456.6s (5 chunks)
+2026-07-08 06:23:16,891 | INFO     | AgentWorkflowLogger |     [CHUNK 10/20] Video 2 chunk 5/5: 360-450s, 16 frames
+2026-07-08 06:23:16,892 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:23:16,892 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:23:17,751 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 2 360.1-450.1s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:23:17,751 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:23:17,751 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:23:43,510 | INFO     | AgentWorkflowLogger |     [CHUNK 5/20] Video 1 chunk 5/5: 360-450s, 16 frames
+2026-07-08 06:23:43,510 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:23:43,510 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:23:44,399 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 1 360.0-450.0s adjacent similar: 1/15 pairs (pHash<=8: 1, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->15 frames (applied)
+2026-07-08 06:23:44,399 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 15 frames...
+2026-07-08 06:23:44,399 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:24:12,655 | INFO     | AgentWorkflowLogger |     [BATCH 1/4] Video 1 done in 549.4s (5 chunks)
+2026-07-08 06:24:39,795 | INFO     | AgentWorkflowLogger |     [BATCH 2/4] Video 2 done in 576.5s (5 chunks)
+2026-07-08 06:24:39,798 | INFO     | AgentWorkflowLogger |   ⏱️  Batch Tool (4 videos): 576.5s, Turn total: 606.7s
+2026-07-08 06:24:39,800 | INFO     | AgentWorkflowLogger | 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 606.7s)
+2026-07-08 06:24:39,800 | INFO     | qwen_agent |   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 06:25:06,265 | INFO     | AgentWorkflowLogger |   ⏱️  LLM: 26.5s
+2026-07-08 06:25:06,265 | INFO     | AgentWorkflowLogger |   🤖 Thought: Layer1 evidence clearly identifies home invasions in Video 3 (armed men clearing a dark residence wi...
+2026-07-08 06:25:06,265 | INFO     | AgentWorkflowLogger |   🤖 Action:  [ANSWER]
+2026-07-08 06:25:06,268 | WARNING  | AgentWorkflowLogger |   ⚠️ Rejected premature final answer: Do not answer yet. A direct answer after Layer1 requires explicit `confidence_score >= 8/10` plus decisive evidence and rejected close alternatives. Current confidence: missing. Next, first analyze the Layer1 chunk evidence, then call `batch_observe` or `observe` with `MODE=layer2` only on the plausible candidates, close negatives, or decisive windows. Do not repeat the Layer1 full scan for convenience; if every video/chunk truly remains answer-relevant, state a per-video/chunk reason in `thought` and use a specific checklist. Carry forward `preliminary_answer`, `preliminary_confidence`, and `blocking_uncertainties` in `context_update`.
+2026-07-08 06:25:06,268 | INFO     | AgentWorkflowLogger | 🔄 [TURN 3] Master Thinking... (elapsed since loop start: 633.2s)
+2026-07-08 06:25:06,269 | INFO     | qwen_agent |   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 06:25:50,937 | INFO     | AgentWorkflowLogger |   ⏱️  LLM: 44.7s
+2026-07-08 06:25:50,938 | INFO     | AgentWorkflowLogger |   🤖 Thought: Layer1 strongly suggests Video 3 and Video 4 feature home invasions, while Video 2 is a close negati...
+2026-07-08 06:25:50,938 | INFO     | AgentWorkflowLogger |   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 06:25:50,938 | INFO     | AgentWorkflowLogger |   🧠 Cross-context updated: confirmed=0, uncertain=2, dimensions=5
+2026-07-08 06:25:50,939 | INFO     | AgentWorkflowLogger |   ⚡ Batch observe parallel enabled: 3 items, 3 workers (tool_backend=api, layer1=False)
+2026-07-08 06:25:50,939 | INFO     | AgentWorkflowLogger |     [CHUNK 1/5] Video 2 chunk 1/1: 270-360s, 16 frames
+2026-07-08 06:25:50,940 | INFO     | AgentWorkflowLogger |     [BATCH 2/3] Video 3: 180s → splitting into 2 chunks (90s per chunk, 16 frames each)
+2026-07-08 06:25:50,940 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:25:50,941 | INFO     | AgentWorkflowLogger |     [BATCH 3/3] Video 4: 180s → splitting into 2 chunks (90s per chunk, 16 frames each)
+2026-07-08 06:25:50,941 | INFO     | AgentWorkflowLogger |     [CHUNK 2/5] Video 3 chunk 1/2: 180-270s, 16 frames
+2026-07-08 06:25:50,941 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:25:50,941 | INFO     | AgentWorkflowLogger |     [CHUNK 4/5] Video 4 chunk 1/2: 90-180s, 16 frames
+2026-07-08 06:25:50,942 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:25:50,942 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:25:50,943 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:25:50,943 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:25:51,461 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:25:51,461 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:25:51,992 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:25:51,992 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:25:52,045 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:25:52,045 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:27:01,428 | INFO     | AgentWorkflowLogger |     [CHUNK 5/5] Video 4 chunk 2/2: 180-270s, 16 frames
+2026-07-08 06:27:01,428 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:27:01,428 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:27:01,742 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:27:01,742 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:27:07,592 | INFO     | AgentWorkflowLogger |     [CHUNK 3/5] Video 3 chunk 2/2: 270-360s, 16 frames
+2026-07-08 06:27:07,592 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:27:07,592 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:27:08,439 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:27:08,440 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:27:53,874 | INFO     | AgentWorkflowLogger |     [BATCH 3/3] Video 4 done in 122.9s (2 chunks)
+2026-07-08 06:28:00,755 | INFO     | AgentWorkflowLogger |     [BATCH 1/3] Video 2 done in 129.8s (1 chunks)
+2026-07-08 06:29:27,791 | INFO     | AgentWorkflowLogger |     [BATCH 2/3] Video 3 done in 216.9s (2 chunks)
+2026-07-08 06:29:27,791 | INFO     | AgentWorkflowLogger |   ⏱️  Batch Tool (3 videos): 216.9s, Turn total: 261.5s
+2026-07-08 06:29:27,792 | INFO     | AgentWorkflowLogger | 🔄 [TURN 4] Master Thinking... (elapsed since loop start: 894.7s)
+2026-07-08 06:29:27,792 | INFO     | qwen_agent |   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 06:29:39,721 | INFO     | AgentWorkflowLogger |   ⏱️  LLM: 11.9s
+2026-07-08 06:29:39,721 | INFO     | AgentWorkflowLogger |   🤖 Thought: Layer2 definitively resolved all blocking uncertainties. Video 3 shows armed intruders clearing a pr...
+2026-07-08 06:29:39,721 | INFO     | AgentWorkflowLogger |   🤖 Action:  [ANSWER]
+2026-07-08 06:29:39,722 | INFO     | AgentWorkflowLogger | 🎯 Final Answer: C (Turn total: 11.9s)
+2026-07-08 06:29:39,737 | INFO     | AgentWorkflowLogger |     💾 Logs saved to: output_compress_test/detailed_logs/NC/0/attempt_1 (JSON + Readable TXT)
+2026-07-08 06:29:39,737 | INFO     | DistillAgent.Core |   ⏱️  910.0s → ✅ CORRECT
+2026-07-08 06:29:39,737 | INFO     | DistillAgent.Core | ════════════════════════════════════════════════════════════
+  [NC] Q2/3 (ID: 4)
+════════════════════════════════════════════════════════════
+2026-07-08 06:29:39,737 | INFO     | DistillAgent.Core |   🎯 Ground Truth: C: C. Video 3
+2026-07-08 06:29:39,738 | INFO     | DistillAgent.Core |   ▶️  Attempt 1/4: Standard run
+2026-07-08 06:29:42,036 | INFO     | AgentWorkflowLogger | 🚀 Starting Master Agent Loop...
+2026-07-08 06:29:42,036 | INFO     | AgentWorkflowLogger | 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 06:29:42,036 | INFO     | qwen_agent |   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 06:30:07,142 | INFO     | AgentWorkflowLogger |   ⏱️  LLM: 25.1s
+2026-07-08 06:30:07,142 | INFO     | AgentWorkflowLogger |   🤖 Thought: Need to scan all 4 videos to identify protagonists, their main conflicts, and how those conflicts ar...
+2026-07-08 06:30:07,143 | INFO     | AgentWorkflowLogger |   🤖 Action:  [BATCH_OBSERVE]
+2026-07-08 06:30:07,143 | INFO     | AgentWorkflowLogger |   🧠 Cross-context updated: confirmed=0, uncertain=3, dimensions=5
+2026-07-08 06:30:07,143 | INFO     | AgentWorkflowLogger |   ⚡ Batch observe parallel enabled: 4 items, 4 workers (tool_backend=api, layer1=True)
+2026-07-08 06:30:07,143 | INFO     | AgentWorkflowLogger |     [BATCH 1/4] Video 1: 450s → splitting into 5 chunks (90s per chunk, 16 frames each)
+2026-07-08 06:30:07,144 | INFO     | AgentWorkflowLogger |     [BATCH 2/4] Video 2: 450s → splitting into 5 chunks (90s per chunk, 16 frames each)
+2026-07-08 06:30:07,144 | INFO     | AgentWorkflowLogger |     [CHUNK 1/20] Video 1 chunk 1/5: 0-90s, 16 frames
+2026-07-08 06:30:07,145 | INFO     | AgentWorkflowLogger |     [CHUNK 6/20] Video 2 chunk 1/5: 0-90s, 16 frames
+2026-07-08 06:30:07,145 | INFO     | AgentWorkflowLogger |     [BATCH 3/4] Video 3: 450s → splitting into 5 chunks (90s per chunk, 16 frames each)
+2026-07-08 06:30:07,145 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:30:07,145 | INFO     | AgentWorkflowLogger |     [BATCH 4/4] Video 4: 450s → splitting into 5 chunks (90s per chunk, 16 frames each)
+2026-07-08 06:30:07,146 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:30:07,146 | INFO     | AgentWorkflowLogger |     [CHUNK 11/20] Video 3 chunk 1/5: 0-90s, 16 frames
+2026-07-08 06:30:07,146 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:30:07,147 | INFO     | AgentWorkflowLogger |     [CHUNK 16/20] Video 4 chunk 1/5: 0-90s, 16 frames
+2026-07-08 06:30:07,147 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:30:07,147 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:30:07,148 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:30:07,149 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:30:07,149 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:30:07,805 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 2 0.0-90.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:30:07,806 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:30:07,806 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:30:08,315 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 3 0.0-90.0s adjacent similar: 3/15 pairs (pHash<=8: 3, pixel cos>=0.985 & mae<=0.050: 1), suggested 16->14 frames (applied)
+2026-07-08 06:30:08,315 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 14 frames...
+2026-07-08 06:30:08,315 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:30:08,387 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 4 0.0-90.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:30:08,387 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:30:08,387 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:30:08,499 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 1 0.0-90.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:30:08,499 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:30:08,500 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:31:11,045 | INFO     | AgentWorkflowLogger |     [CHUNK 7/20] Video 2 chunk 2/5: 90-180s, 16 frames
+2026-07-08 06:31:11,046 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:31:11,046 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:31:11,541 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 2 90.0-180.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:31:11,541 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:31:11,541 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:31:41,027 | INFO     | AgentWorkflowLogger |     [CHUNK 12/20] Video 3 chunk 2/5: 90-180s, 16 frames
+2026-07-08 06:31:41,028 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:31:41,028 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:31:42,009 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 3 90.0-180.0s adjacent similar: 1/15 pairs (pHash<=8: 1, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->15 frames (applied)
+2026-07-08 06:31:42,010 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 15 frames...
+2026-07-08 06:31:42,010 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:32:20,660 | INFO     | AgentWorkflowLogger |     [CHUNK 17/20] Video 4 chunk 2/5: 90-180s, 16 frames
+2026-07-08 06:32:20,661 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:32:20,661 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:32:21,852 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 4 90.0-180.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:32:21,852 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:32:21,852 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:32:56,459 | INFO     | AgentWorkflowLogger |     [CHUNK 2/20] Video 1 chunk 2/5: 90-180s, 16 frames
+2026-07-08 06:32:56,460 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:32:56,460 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:32:57,351 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 1 90.0-180.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:32:57,351 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:32:57,351 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:33:26,615 | INFO     | AgentWorkflowLogger |     [CHUNK 8/20] Video 2 chunk 3/5: 180-270s, 16 frames
+2026-07-08 06:33:26,615 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:33:26,615 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:33:26,998 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 2 180.0-270.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:33:26,999 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:33:26,999 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:33:35,258 | INFO     | AgentWorkflowLogger |     [CHUNK 18/20] Video 4 chunk 3/5: 180-270s, 16 frames
+2026-07-08 06:33:35,259 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:33:35,259 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:33:36,153 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 4 180.0-270.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:33:36,153 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:33:36,153 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:34:42,518 | INFO     | AgentWorkflowLogger |     [CHUNK 13/20] Video 3 chunk 3/5: 180-270s, 16 frames
+2026-07-08 06:34:42,519 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:34:42,519 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:34:43,524 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 3 180.0-270.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:34:43,525 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:34:43,525 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:35:03,095 | INFO     | AgentWorkflowLogger |     [CHUNK 3/20] Video 1 chunk 3/5: 180-270s, 16 frames
+2026-07-08 06:35:03,096 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:35:03,096 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:35:04,057 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 1 180.0-270.0s adjacent similar: 1/15 pairs (pHash<=8: 1, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->15 frames (applied)
+2026-07-08 06:35:04,057 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 15 frames...
+2026-07-08 06:35:04,057 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:35:36,446 | INFO     | AgentWorkflowLogger |     [CHUNK 19/20] Video 4 chunk 4/5: 270-360s, 16 frames
+2026-07-08 06:35:36,447 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:35:36,447 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:35:37,457 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 4 270.0-360.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:35:37,457 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:35:37,457 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:36:07,640 | INFO     | AgentWorkflowLogger |     [CHUNK 9/20] Video 2 chunk 4/5: 270-360s, 16 frames
+2026-07-08 06:36:07,640 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:36:07,640 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:36:08,147 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 2 270.0-360.1s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:36:08,147 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:36:08,147 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:36:37,606 | INFO     | AgentWorkflowLogger |     [CHUNK 14/20] Video 3 chunk 4/5: 270-360s, 16 frames
+2026-07-08 06:36:37,606 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:36:37,606 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:36:38,581 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 3 270.0-360.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:36:38,581 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:36:38,581 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:37:57,328 | INFO     | AgentWorkflowLogger |     [CHUNK 4/20] Video 1 chunk 4/5: 270-360s, 16 frames
+2026-07-08 06:37:57,329 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:37:57,329 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:37:57,534 | INFO     | AgentWorkflowLogger |     [CHUNK 20/20] Video 4 chunk 5/5: 360-450s, 16 frames
+2026-07-08 06:37:57,534 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:37:57,534 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:37:58,312 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 1 270.0-360.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:37:58,313 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:37:58,313 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:37:58,512 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 4 360.0-450.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:37:58,512 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:37:58,512 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:39:17,049 | INFO     | AgentWorkflowLogger |     [CHUNK 15/20] Video 3 chunk 5/5: 360-450s, 16 frames
+2026-07-08 06:39:17,050 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:39:17,050 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:39:18,106 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 3 360.0-450.0s adjacent similar: 1/15 pairs (pHash<=8: 1, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->15 frames (applied)
+2026-07-08 06:39:18,106 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 15 frames...
+2026-07-08 06:39:18,106 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:39:37,138 | INFO     | AgentWorkflowLogger |     [CHUNK 10/20] Video 2 chunk 5/5: 360-450s, 16 frames
+2026-07-08 06:39:37,139 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:39:37,139 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:39:37,560 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 2 360.1-450.1s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:39:37,560 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:39:37,560 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:39:52,503 | INFO     | AgentWorkflowLogger |     [BATCH 4/4] Video 4 done in 585.4s (5 chunks)
+2026-07-08 06:39:59,966 | INFO     | AgentWorkflowLogger |     [CHUNK 5/20] Video 1 chunk 5/5: 360-450s, 16 frames
+2026-07-08 06:39:59,966 | INFO     | AgentWorkflowLogger |     [EXECUTOR] 🔀 Dispatching to Standard Handler (will use Tool API)
+2026-07-08 06:39:59,966 | INFO     | AgentWorkflowLogger |     [TOOL-STD] 🎬 Processing 1 targets (Time-based)
+2026-07-08 06:40:00,992 | INFO     | AgentWorkflowLogger |     [FRAME-SIM] Layer1 Video 1 360.0-450.0s adjacent similar: 0/15 pairs (pHash<=8: 0, pixel cos>=0.985 & mae<=0.050: 0), suggested 16->16 frames (report-only)
+2026-07-08 06:40:00,992 | INFO     | AgentWorkflowLogger |     [TOOL] 👁️ Calling VLM with 16 frames...
+2026-07-08 06:40:00,992 | INFO     | qwen_agent |   [QwenModel] 👁️ Routing to TOOL Agent API (Active Perception)
+2026-07-08 06:41:55,395 | INFO     | AgentWorkflowLogger |     [BATCH 2/4] Video 2 done in 708.3s (5 chunks)
+2026-07-08 06:42:09,593 | INFO     | AgentWorkflowLogger |     [BATCH 3/4] Video 3 done in 722.4s (5 chunks)
+2026-07-08 06:42:20,756 | INFO     | AgentWorkflowLogger |     [BATCH 1/4] Video 1 done in 733.6s (5 chunks)
+2026-07-08 06:42:20,758 | INFO     | AgentWorkflowLogger |   ⏱️  Batch Tool (4 videos): 733.6s, Turn total: 758.7s
+2026-07-08 06:42:20,762 | INFO     | AgentWorkflowLogger | 🔄 [TURN 2] Master Thinking... (elapsed since loop start: 758.7s)
+2026-07-08 06:42:20,762 | INFO     | qwen_agent |   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 06:45:27,989 | INFO     | AgentWorkflowLogger |   ⏱️  LLM: 187.2s
+2026-07-08 06:45:27,990 | INFO     | AgentWorkflowLogger |   🤖 Thought: Video 1 (The Lincoln Lawyer) shows the protagonist having a 'moment of intense realization or insigh...
+2026-07-08 06:45:27,990 | INFO     | AgentWorkflowLogger |   🤖 Action:  [ANSWER]
+2026-07-08 06:45:27,990 | INFO     | AgentWorkflowLogger | 🎯 Final Answer: A (Turn total: 187.2s)
+2026-07-08 06:45:28,009 | INFO     | AgentWorkflowLogger |     💾 Logs saved to: output_compress_test/detailed_logs/NC/4/attempt_1 (JSON + Readable TXT)
+2026-07-08 06:45:28,009 | INFO     | DistillAgent.Core |   ⏱️  948.3s → ❌ WRONG
+2026-07-08 06:45:28,009 | INFO     | DistillAgent.Core |   🩺 Diagnosis attempt 1/3...
+2026-07-08 06:47:09,893 | INFO     | DistillAgent.Diagnosis | Diagnosis: turn=4 type=premature_answer strategy= confidence=0.85
+2026-07-08 06:47:09,893 | INFO     | DistillAgent.Core |   💉 Correction: scope=layer2_reobserve | turn=4 | type=premature_answer | confidence=0.85
+2026-07-08 06:47:10,366 | INFO     | AgentWorkflowLogger | 🚀 Starting Master Agent Loop...
+2026-07-08 06:47:10,366 | INFO     | AgentWorkflowLogger | 📋 Resuming from pre-loaded history (5 messages)
+2026-07-08 06:47:10,366 | INFO     | AgentWorkflowLogger | 🔄 [TURN 1] Master Thinking... (elapsed since loop start: 0.0s)
+2026-07-08 06:47:10,366 | INFO     | qwen_agent |   [QwenModel] 🧠 Routing to MASTER Agent API
+2026-07-08 06:47:33,916 | INFO     | AgentWorkflowLogger |     💾 Logs saved to: output_compress_test/detailed_logs/NC/4/attempt_2 (JSON + Readable TXT)

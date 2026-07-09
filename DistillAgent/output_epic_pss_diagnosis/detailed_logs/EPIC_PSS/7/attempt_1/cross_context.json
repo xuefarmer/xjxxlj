@@ -1,0 +1,298 @@
+{
+  "confirmed": [
+    "3_before_2: raw_onions_to_cooking_onions",
+    "2_before_4: tomato_paste_box_closed_to_red_sauce_in_pan",
+    "4_before_1: mushrooms_in_bag_to_mushroom_scraps",
+    "left_pan_progression_3_to_2_to_4_to_1",
+    "right_pan_progression_3_to_2_to_4_to_1"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"both pans active cooking, board has residue, rice cooker empty\", \"2\": \"onions scraped to left pan, right pan has browned meat, tomato paste box examined\", \"3\": \"raw onions in left pan, right pan seasoned, garlic/ginger on board\", \"4\": \"chili chopped and added to onion+pepper pan, red sauce in background pan, pot with lid, fridge opened\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "right_pan": {
+      "3": "cooked/browning, wet, seasoning added",
+      "2": "browned meat/onions, dry",
+      "4": "red sauce simmering (background)",
+      "1": "tomato sauce simmering, wet, mixed"
+    },
+    "left_pan": {
+      "3": "raw/lightly cooked sliced onions, separate",
+      "2": "onions sautéing, white/translucent",
+      "4": "onions+red peppers cooked, chili transferred in",
+      "1": "onion+red pepper mixture cooked/sautéed, mixed"
+    },
+    "cutting_board": {
+      "3": "chopped garlic/ginger, raw",
+      "2": "wet residue, chopped onions",
+      "4": "wet/residue, chopped chili",
+      "1": "residue/food scraps"
+    },
+    "rice_cooker_pot": {
+      "1": "empty, present",
+      "4": "pot with lid on (possibly same)"
+    },
+    "tomato_paste_box": {
+      "2": "closed, examining label"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object_state_chain",
+    "source_destination_transfer",
+    "residue_depletion",
+    "cooking_stage",
+    "right_pan_sauce_evolution",
+    "left_pan_ingredient_integration",
+    "cutting_board_residue_chain",
+    "pot_rice_cooker_continuity"
+  ],
+  "resolved_uncertain": [
+    "pot_identity_V4_vs_V1",
+    "sauce_pan_identity_V4_vs_V1",
+    "V3_to_V2_right_pan_transition"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object_state_chain",
+          "source_destination_transfer",
+          "residue_depletion",
+          "cooking_stage"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "both pans active cooking, board has residue, rice cooker empty",
+          "2": "onions scraped to left pan, right pan has browned meat, tomato paste box examined",
+          "3": "raw onions in left pan, right pan seasoned, garlic/ginger on board",
+          "4": "chili chopped and added to onion+pepper pan, red sauce in background pan, pot with lid, fridge opened"
+        },
+        "object_memory": {
+          "right_pan": {
+            "3": "cooked/browning, wet, seasoning added",
+            "2": "browned meat/onions, dry",
+            "4": "red sauce simmering (background)",
+            "1": "tomato sauce simmering, wet, mixed"
+          },
+          "left_pan": {
+            "3": "raw/lightly cooked sliced onions, separate",
+            "2": "onions sautéing, white/translucent",
+            "4": "onions+red peppers cooked, chili transferred in",
+            "1": "onion+red pepper mixture cooked/sautéed, mixed"
+          },
+          "cutting_board": {
+            "3": "chopped garlic/ginger, raw",
+            "2": "wet residue, chopped onions",
+            "4": "wet/residue, chopped chili",
+            "1": "residue/food scraps"
+          },
+          "rice_cooker_pot": {
+            "1": "empty, present",
+            "4": "pot with lid on (possibly same)"
+          },
+          "tomato_paste_box": {
+            "2": "closed, examining label"
+          }
+        },
+        "preliminary_order": "3->2->4->1",
+        "order_confidence": 7,
+        "confidence_basis": [
+          "cutting_board_residue_progression",
+          "right_pan_sauce_development",
+          "left_pan_onion_pepper_chili_integration",
+          "rice_cooker_pot_state"
+        ],
+        "blocking_uncertainties": [
+          "is_pot_in_V4_same_as_rice_cooker_in_V1",
+          "is_background_sauce_pan_in_V4_same_as_right_pan_in_V1",
+          "does_V3_right_pan_state_correctly_precede_V2"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                10.2
+              ],
+              "event": "both pans final cooking stage",
+              "key_objects": [
+                "right_pan_tomato_sauce",
+                "left_pan_onion_pepper",
+                "rice_cooker_empty"
+              ],
+              "visible_state": "simmering, cooked, mixed, empty_pot",
+              "why_it_matters": "late stage",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                21.6
+              ],
+              "event": "onion prep and right pan browning",
+              "key_objects": [
+                "left_pan_onions",
+                "right_pan_browned_meat",
+                "tomato_paste_box"
+              ],
+              "visible_state": "sautéing, browned/dry, box_closed",
+              "why_it_matters": "mid stage",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                23.9
+              ],
+              "event": "initial onion heating and right pan seasoning",
+              "key_objects": [
+                "left_pan_raw_onions",
+                "right_pan_seasoning",
+                "cutting_board_garlic_ginger"
+              ],
+              "visible_state": "raw/lightly_cooked, browning/wet, raw_separate",
+              "why_it_matters": "early stage",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                16.6
+              ],
+              "event": "chili prep and transfer, background sauce",
+              "key_objects": [
+                "main_pan_onion_pepper_chili",
+                "background_pan_red_sauce",
+                "pot_with_lid"
+              ],
+              "visible_state": "cooked_mixed, simmering, lid_closed",
+              "why_it_matters": "late-mid stage",
+              "confidence": "high"
+            }
+          ]
+        },
+        "preliminary_confidence": 7,
+        "candidate_targets": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "irrelevant_windows": [],
+        "low_value_targets": [],
+        "uncertain": [
+          "pot_identity_V4_vs_V1",
+          "sauce_pan_identity_V4_vs_V1",
+          "V3_to_V2_right_pan_transition"
+        ],
+        "dimensions_to_compare": [
+          "right_pan_sauce_evolution",
+          "left_pan_ingredient_integration",
+          "cutting_board_residue_chain",
+          "pot_rice_cooker_continuity"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "left_pan": "V3: raw onions -> V2: cooking pale yellow -> V4: onions+peppers+chili -> V1: fully integrated golden-brown/red",
+          "right_pan": "V3: early browning/seasoning -> V2: dark brown/dry -> V4: red tomato sauce -> V1: red chunky sauce wet",
+          "cutting_board": "V3: garlic/ginger -> V2: garlic/ginger residue -> V4: chili/onion-pepper residue -> V1: mushroom/onion scraps",
+          "tomato_paste_box": "V2: closed/examined -> V4: already added as red sauce",
+          "mushrooms": "V4: in bag unused -> V1: on board as scraps"
+        },
+        "confirmed": [
+          "3_before_2: raw_onions_to_cooking_onions",
+          "2_before_4: tomato_paste_box_closed_to_red_sauce_in_pan",
+          "4_before_1: mushrooms_in_bag_to_mushroom_scraps",
+          "left_pan_progression_3_to_2_to_4_to_1",
+          "right_pan_progression_3_to_2_to_4_to_1"
+        ],
+        "resolved_uncertain": [
+          "pot_identity_V4_vs_V1",
+          "sauce_pan_identity_V4_vs_V1",
+          "V3_to_V2_right_pan_transition"
+        ],
+        "order_confidence": 9,
+        "pruned_targets": [],
+        "candidate_targets": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "uncertain": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "3->2->4->1"
+  ],
+  "order_confidence": [
+    "7",
+    "9"
+  ],
+  "confidence_basis": [
+    "cutting_board_residue_progression",
+    "right_pan_sauce_development",
+    "left_pan_onion_pepper_chili_integration",
+    "rice_cooker_pot_state"
+  ],
+  "blocking_uncertainties": [
+    "is_pot_in_V4_same_as_rice_cooker_in_V1",
+    "is_background_sauce_pan_in_V4_same_as_right_pan_in_V1",
+    "does_V3_right_pan_state_correctly_precede_V2"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 10.2], \"event\": \"both pans final cooking stage\", \"key_objects\": [\"right_pan_tomato_sauce\", \"left_pan_onion_pepper\", \"rice_cooker_empty\"], \"visible_state\": \"simmering, cooked, mixed, empty_pot\", \"why_it_matters\": \"late stage\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 21.6], \"event\": \"onion prep and right pan browning\", \"key_objects\": [\"left_pan_onions\", \"right_pan_browned_meat\", \"tomato_paste_box\"], \"visible_state\": \"sautéing, browned/dry, box_closed\", \"why_it_matters\": \"mid stage\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 23.9], \"event\": \"initial onion heating and right pan seasoning\", \"key_objects\": [\"left_pan_raw_onions\", \"right_pan_seasoning\", \"cutting_board_garlic_ginger\"], \"visible_state\": \"raw/lightly_cooked, browning/wet, raw_separate\", \"why_it_matters\": \"early stage\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 16.6], \"event\": \"chili prep and transfer, background sauce\", \"key_objects\": [\"main_pan_onion_pepper_chili\", \"background_pan_red_sauce\", \"pot_with_lid\"], \"visible_state\": \"cooked_mixed, simmering, lid_closed\", \"why_it_matters\": \"late-mid stage\", \"confidence\": \"high\"}]}"
+  ],
+  "preliminary_confidence": [
+    "7"
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "irrelevant_windows": [],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"left_pan\": \"V3: raw onions -> V2: cooking pale yellow -> V4: onions+peppers+chili -> V1: fully integrated golden-brown/red\", \"right_pan\": \"V3: early browning/seasoning -> V2: dark brown/dry -> V4: red tomato sauce -> V1: red chunky sauce wet\", \"cutting_board\": \"V3: garlic/ginger -> V2: garlic/ginger residue -> V4: chili/onion-pepper residue -> V1: mushroom/onion scraps\", \"tomato_paste_box\": \"V2: closed/examined -> V4: already added as red sauce\", \"mushrooms\": \"V4: in bag unused -> V1: on board as scraps\"}"
+  ],
+  "pruned_targets": []
+}

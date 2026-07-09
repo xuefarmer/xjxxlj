@@ -1,0 +1,160 @@
+{
+  "confirmed": [
+    "Cucumber: V3 (raw/sliced) -> V4 (added to roll) -> V1 (inside roll)",
+    "Rice paper: V2 (dry/softening) -> V4 (wet/filled) -> V1 (filled/rolled)",
+    "Assembly: V4 (filling) -> V1 (rolling)",
+    "Rice paper: V3 (DRY_STIFF) -> V2 (WET_PLIABLE) -> V4 (WET to FILLED) -> V1 (FILLED to ROLLED)",
+    "Cucumber: V3 (WHOLE_RAW) -> V4 (SLICED_RAW) -> V1 (INCORPORATED)",
+    "Work surface: V3 (CLEAN) -> V2 (CLEAN) -> V4 (RESIDUE) -> V1 (RESIDUE)"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {},
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states across segments",
+    "transfer chains",
+    "container fill/empty states",
+    "residue/depletion cues",
+    "rice paper wrapper state",
+    "cucumber/green vegetable state",
+    "shrimp/protein state",
+    "noodles state",
+    "herbs state",
+    "work surface residue"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": true,
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states across segments",
+          "transfer chains",
+          "container fill/empty states",
+          "residue/depletion cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 8,
+        "comparison_table": {
+          "video3": "Raw cucumber being sliced with mandoline. Clean counter. Prep stage.",
+          "video2": "Dry rice paper sheet being softened with water on a square plate. Wrapper prep stage.",
+          "video4": "Wet rice paper on black surface. Sliced cucumber, shrimp, noodles, and herbs being added. Assembly stage.",
+          "video1": "Filled wet rice paper being folded/rolled into a spring roll. Final rolling stage."
+        },
+        "confirmed": [
+          "Cucumber: V3 (raw/sliced) -> V4 (added to roll) -> V1 (inside roll)",
+          "Rice paper: V2 (dry/softening) -> V4 (wet/filled) -> V1 (filled/rolled)",
+          "Assembly: V4 (filling) -> V1 (rolling)"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "uncertain": [],
+        "focus_plan": []
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer1_done": true,
+        "layer2_done": true,
+        "order_confidence": 8,
+        "preliminary_order": "3->2->4->1",
+        "confidence_basis": "Object state transitions for rice paper and cucumber provide a complete chronological chain.",
+        "blocking_uncertainties": [],
+        "comparison_table": {
+          "video1": "pending Layer2",
+          "video2": "pending Layer2",
+          "video3": "pending Layer2",
+          "video4": "pending Layer2"
+        },
+        "uncertain": [],
+        "dimensions_to_compare": [
+          "rice paper wrapper state",
+          "cucumber/green vegetable state",
+          "shrimp/protein state",
+          "noodles state",
+          "herbs state",
+          "container fill/empty states",
+          "work surface residue"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 8,
+        "comparison_table": {
+          "video3": "Rice paper: DRY_STIFF. Cucumber: WHOLE_RAW. Work surface: CLEAN.",
+          "video2": "Rice paper: WET_PLIABLE. Cucumber: ABSENT. Work surface: CLEAN.",
+          "video4": "Rice paper: WET_PLIABLE -> FILLED_WITH_INGREDIENTS. Cucumber: SLICED_RAW. Work surface: WET_RESIDUE/FOOD_RESIDUE.",
+          "video1": "Rice paper: FILLED_WITH_INGREDIENTS -> FOLDED/ROLLED. Cucumber: SLICED_RAW -> INCORPORATED_IN_ROLL. Work surface: WET_RESIDUE/FOOD_RESIDUE."
+        },
+        "confirmed": [
+          "Rice paper: V3 (DRY_STIFF) -> V2 (WET_PLIABLE) -> V4 (WET to FILLED) -> V1 (FILLED to ROLLED)",
+          "Cucumber: V3 (WHOLE_RAW) -> V4 (SLICED_RAW) -> V1 (INCORPORATED)",
+          "Work surface: V3 (CLEAN) -> V2 (CLEAN) -> V4 (RESIDUE) -> V1 (RESIDUE)"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "uncertain": [],
+        "focus_plan": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "comparison_table": [
+    "{\"video3\": \"Raw cucumber being sliced with mandoline. Clean counter. Prep stage.\", \"video2\": \"Dry rice paper sheet being softened with water on a square plate. Wrapper prep stage.\", \"video4\": \"Wet rice paper on black surface. Sliced cucumber, shrimp, noodles, and herbs being added. Assembly stage.\", \"video1\": \"Filled wet rice paper being folded/rolled into a spring roll. Final rolling stage.\"}",
+    "{\"video1\": \"pending Layer2\", \"video2\": \"pending Layer2\", \"video3\": \"pending Layer2\", \"video4\": \"pending Layer2\"}",
+    "{\"video3\": \"Rice paper: DRY_STIFF. Cucumber: WHOLE_RAW. Work surface: CLEAN.\", \"video2\": \"Rice paper: WET_PLIABLE. Cucumber: ABSENT. Work surface: CLEAN.\", \"video4\": \"Rice paper: WET_PLIABLE -> FILLED_WITH_INGREDIENTS. Cucumber: SLICED_RAW. Work surface: WET_RESIDUE/FOOD_RESIDUE.\", \"video1\": \"Rice paper: FILLED_WITH_INGREDIENTS -> FOLDED/ROLLED. Cucumber: SLICED_RAW -> INCORPORATED_IN_ROLL. Work surface: WET_RESIDUE/FOOD_RESIDUE.\"}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "focus_plan": [],
+  "preliminary_order": [
+    "3->2->4->1"
+  ],
+  "confidence_basis": [
+    "Object state transitions for rice paper and cucumber provide a complete chronological chain."
+  ],
+  "blocking_uncertainties": []
+}

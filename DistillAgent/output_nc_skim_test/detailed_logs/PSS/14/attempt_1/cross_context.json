@@ -1,0 +1,220 @@
+{
+  "confirmed": [
+    "V2 before V1 (board clean->onion residue)",
+    "V4 is final (rolling)",
+    "V5 is mixing all ingredients"
+  ],
+  "uncertain": [
+    "V3 exact noodle state sequence",
+    "V5 board state at frame 0"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {},
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states raw->cooked",
+    "container fill/empty",
+    "transfer traces",
+    "residue/depletion",
+    "background cues"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states raw->cooked",
+          "container fill/empty",
+          "transfer traces",
+          "residue/depletion",
+          "background cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "5->1->2->3->4",
+        "order_confidence": 7,
+        "confidence_basis": [
+          "V2 soak -> V3 rinse noodles",
+          "V4 assembly is final",
+          "V5 text overlay suggests early prep",
+          "V1 chop onions is prep"
+        ],
+        "blocking_uncertainties": [
+          "V1 vs V5 order",
+          "V4 bowl identity vs V5",
+          "cutting board residue continuity"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                27
+              ],
+              "event": "chopping onions",
+              "key_objects": [
+                "cutting board",
+                "white bowl",
+                "knife"
+              ],
+              "visible_state": "chopped onions transferred to bowl",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                3
+              ],
+              "event": "soaking noodles",
+              "key_objects": [
+                "two white bowls",
+                "white noodles",
+                "dark seaweed"
+              ],
+              "visible_state": "pouring water to soak",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                5
+              ],
+              "event": "rinsing noodles",
+              "key_objects": [
+                "blue strainer",
+                "white noodles"
+              ],
+              "visible_state": "rinsing soaked noodles",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                21
+              ],
+              "event": "rolling spring rolls",
+              "key_objects": [
+                "translucent wrapper",
+                "glass bowl",
+                "pink meat"
+              ],
+              "visible_state": "folding wrapper with filling",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                30
+              ],
+              "event": "mixing shredded veg",
+              "key_objects": [
+                "glass bowl",
+                "shredded carrots",
+                "mushrooms"
+              ],
+              "visible_state": "mixing raw shredded veg",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "video1": "chop onions, board HAS_RESIDUE (onion), white bowl filled with chopped onion/garlic",
+          "video2": "soak white noodles, board CLEAN, fish-pattern bowls",
+          "video3": "rinse white noodles, then brown sauced noodles from fish-pattern bowl",
+          "video4": "roll spring rolls, board HAS_RESIDUE (meat), text overlay folding instructions",
+          "video5": "mix all ingredients (meat, onions, carrots, mushrooms, noodles, egg), board CLEAN"
+        },
+        "preliminary_order": "2->1->3->5->4",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V2 board clean -> V1 board onion residue",
+          "V2 soak -> V3 rinse/cook noodles",
+          "V3 cooked noodles -> V5 mix all",
+          "V5 board clean -> V4 board meat residue",
+          "V5 mix all -> V4 roll"
+        ],
+        "blocking_uncertainties": [
+          "V3 noodle color transition",
+          "V5 cutting board state at start"
+        ],
+        "confirmed": [
+          "V2 before V1 (board clean->onion residue)",
+          "V4 is final (rolling)",
+          "V5 is mixing all ingredients"
+        ],
+        "uncertain": [
+          "V3 exact noodle state sequence",
+          "V5 board state at frame 0"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "5->1->2->3->4",
+    "2->1->3->5->4"
+  ],
+  "order_confidence": [
+    "7",
+    "8"
+  ],
+  "confidence_basis": [
+    "V2 soak -> V3 rinse noodles",
+    "V4 assembly is final",
+    "V5 text overlay suggests early prep",
+    "V1 chop onions is prep",
+    "V2 board clean -> V1 board onion residue",
+    "V2 soak -> V3 rinse/cook noodles",
+    "V3 cooked noodles -> V5 mix all",
+    "V5 board clean -> V4 board meat residue",
+    "V5 mix all -> V4 roll"
+  ],
+  "blocking_uncertainties": [
+    "V1 vs V5 order",
+    "V4 bowl identity vs V5",
+    "cutting board residue continuity",
+    "V3 noodle color transition",
+    "V5 cutting board state at start"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 27], \"event\": \"chopping onions\", \"key_objects\": [\"cutting board\", \"white bowl\", \"knife\"], \"visible_state\": \"chopped onions transferred to bowl\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 3], \"event\": \"soaking noodles\", \"key_objects\": [\"two white bowls\", \"white noodles\", \"dark seaweed\"], \"visible_state\": \"pouring water to soak\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 5], \"event\": \"rinsing noodles\", \"key_objects\": [\"blue strainer\", \"white noodles\"], \"visible_state\": \"rinsing soaked noodles\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 21], \"event\": \"rolling spring rolls\", \"key_objects\": [\"translucent wrapper\", \"glass bowl\", \"pink meat\"], \"visible_state\": \"folding wrapper with filling\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 30], \"event\": \"mixing shredded veg\", \"key_objects\": [\"glass bowl\", \"shredded carrots\", \"mushrooms\"], \"visible_state\": \"mixing raw shredded veg\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"video1\": \"chop onions, board HAS_RESIDUE (onion), white bowl filled with chopped onion/garlic\", \"video2\": \"soak white noodles, board CLEAN, fish-pattern bowls\", \"video3\": \"rinse white noodles, then brown sauced noodles from fish-pattern bowl\", \"video4\": \"roll spring rolls, board HAS_RESIDUE (meat), text overlay folding instructions\", \"video5\": \"mix all ingredients (meat, onions, carrots, mushrooms, noodles, egg), board CLEAN\"}"
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "object states across all segments",
+    "event sequence",
+    "shared objects and their state transitions"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "dressing": {
+      "3": "made in white bowl (onions, sazon, vinegar, oil) -> yellowish-green wet",
+      "2": "present in large white bowl, used to marinate veggies, excess poured to small bowl"
+    },
+    "chicken": {
+      "2": "raw pieces added to small bowl with dressing -> wet/marinated",
+      "1": "raw chunks in small white bowl"
+    },
+    "veggies": {
+      "2": "zucchini, onion, tomato, mushrooms mixed in large bowl with dressing",
+      "1": "peppers, squash, zucchini in large white bowl"
+    },
+    "glass_container": {
+      "1": "clear glass baking dish filled with assembled raw skewers",
+      "4": "glass tray with raw skewers placed on grill -> cooked/glazed"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states (raw/cut/cooked)",
+    "container states (empty/filled/residue)",
+    "tool usage",
+    "transfer events",
+    "bowl contents (dry vs wet/marinated)",
+    "glass container continuity",
+    "dressing state progression"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "object states across all segments",
+          "event sequence",
+          "shared objects and their state transitions"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cut/cooked)",
+          "container states (empty/filled/residue)",
+          "tool usage",
+          "transfer events"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "dressing": {
+            "3": "made in white bowl (onions, sazon, vinegar, oil) -> yellowish-green wet",
+            "2": "present in large white bowl, used to marinate veggies, excess poured to small bowl"
+          },
+          "chicken": {
+            "2": "raw pieces added to small bowl with dressing -> wet/marinated",
+            "1": "raw chunks in small white bowl"
+          },
+          "veggies": {
+            "2": "zucchini, onion, tomato, mushrooms mixed in large bowl with dressing",
+            "1": "peppers, squash, zucchini in large white bowl"
+          },
+          "glass_container": {
+            "1": "clear glass baking dish filled with assembled raw skewers",
+            "4": "glass tray with raw skewers placed on grill -> cooked/glazed"
+          }
+        },
+        "preliminary_order": "3->2->1->4",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V3 makes dressing -> V2 uses dressing to marinate",
+          "V2 ends with marinated chicken/veggies in bowls -> V1 threads from bowls",
+          "V1 ends with skewers in glass dish -> V4 grills skewers from glass tray"
+        ],
+        "blocking_uncertainties": [
+          "Verify V1 chicken/veggie bowl states match V2 end states",
+          "Verify V1 glass dish matches V4 glass tray"
+        ],
+        "dimensions_to_compare": [
+          "bowl contents (dry vs wet/marinated)",
+          "glass container continuity",
+          "dressing state progression"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "3->2->1->4"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "V3 makes dressing -> V2 uses dressing to marinate",
+    "V2 ends with marinated chicken/veggies in bowls -> V1 threads from bowls",
+    "V1 ends with skewers in glass dish -> V4 grills skewers from glass tray"
+  ],
+  "blocking_uncertainties": [
+    "Verify V1 chicken/veggie bowl states match V2 end states",
+    "Verify V1 glass dish matches V4 glass tray"
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "verify exact visible states of shared objects across all segments"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "pasta": {
+      "1": "dry/raw in boiling water",
+      "3": "drained/wet/oiled",
+      "5": "coated with egg mixture",
+      "2": "mixed with meat bits and cheese"
+    },
+    "aromatics": {
+      "4": "raw chopped -> sautéed/deglazed",
+      "5": "in pan base",
+      "2": "white residue on rim"
+    },
+    "meat": {
+      "6": "raw sliced -> fried/browned/rendered fat",
+      "2": "cooked bits added to pasta",
+      "4": "fond/fat residue used",
+      "5": "fried bits in pan"
+    },
+    "pan_state": {
+      "6": "empty -> rendered fat/fond",
+      "4": "uses fond -> deglazed",
+      "5": "contains aromatics/pasta/egg",
+      "2": "final creamy emulsification"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object state chain",
+    "container fill/empty",
+    "residue/depletion",
+    "transfer traces",
+    "background vessel state"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all segment roles and object states pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "object state chain",
+          "container fill/empty",
+          "residue/depletion",
+          "transfer traces",
+          "background vessel state"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "layer2_done": true,
+        "object_memory": {
+          "pasta": {
+            "1": "dry/raw",
+            "3": "drained/wet/oiled",
+            "5": "mixed with aromatics/egg",
+            "2": "coated with meat/cheese"
+          },
+          "aromatics": {
+            "4": "chopped/sautéed/deglazed",
+            "5": "in pan base",
+            "2": "residue on rim"
+          },
+          "meat": {
+            "6": "raw->fried/browned",
+            "2": "cooked bits added"
+          },
+          "pan_state": {
+            "6": "rendered fat/fond",
+            "4": "uses fond/fat",
+            "5": "contains aromatics/egg",
+            "2": "final emulsification"
+          }
+        },
+        "preliminary_order": "1->6->4->3->5->2",
+        "order_confidence": 9,
+        "confidence_basis": [
+          "pasta state chain",
+          "pan residue continuity",
+          "meat cooking to addition",
+          "aromatics prep to assembly"
+        ],
+        "blocking_uncertainties": [],
+        "comparison_table": {
+          "1": "dry pasta to boiling water",
+          "6": "raw meat sliced and fried, leaves fond/fat",
+          "4": "uses fond/fat to sauté onions/garlic, deglazes",
+          "3": "drains pasta, tosses with oil",
+          "5": "adds oiled pasta to aromatics pan, adds egg",
+          "2": "adds cooked meat and cheese, final emulsification"
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "uncertain": [
+          "verify exact visible states of shared objects across all segments"
+        ],
+        "dimensions_to_compare": [
+          "object state chain",
+          "container fill/empty",
+          "residue/depletion",
+          "transfer traces",
+          "background vessel state"
+        ],
+        "layer1_done": true,
+        "preliminary_order": "1->6->4->3->5->2",
+        "order_confidence": 9,
+        "confidence_basis": [
+          "pasta state chain",
+          "pan residue continuity",
+          "meat cooking to addition",
+          "aromatics prep to assembly"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "layer1_done": true,
+        "layer2_done": true,
+        "object_memory": {
+          "pasta": {
+            "1": "dry/raw in boiling water",
+            "3": "drained/wet/oiled",
+            "5": "coated with egg mixture",
+            "2": "mixed with meat bits and cheese"
+          },
+          "meat": {
+            "6": "raw sliced -> fried/browned/rendered fat",
+            "4": "fond/fat residue used",
+            "5": "fried bits in pan",
+            "2": "cooked bits added to pasta"
+          },
+          "aromatics": {
+            "4": "raw chopped -> sautéed/deglazed",
+            "5": "in pan base",
+            "2": "white residue on rim"
+          },
+          "pan_state": {
+            "6": "empty -> rendered fat/fond",
+            "4": "uses fond -> deglazed",
+            "5": "contains aromatics/pasta/egg",
+            "2": "final creamy emulsification"
+          }
+        },
+        "preliminary_order": "1->6->4->3->5->2",
+        "order_confidence": 9,
+        "confidence_basis": [
+          "pasta state chain",
+          "pan residue continuity",
+          "meat cooking to addition",
+          "aromatics prep to assembly"
+        ],
+        "blocking_uncertainties": [],
+        "comparison_table": {
+          "1": "dry pasta to boiling water",
+          "6": "raw meat sliced and fried, leaves fond/fat",
+          "4": "uses fond/fat to sauté onions/garlic, deglazes",
+          "3": "drains pasta, tosses with oil",
+          "5": "adds oiled pasta to aromatics pan, adds egg",
+          "2": "adds cooked meat bits and cheese, final emulsification"
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1->6->4->3->5->2"
+  ],
+  "order_confidence": [
+    "9"
+  ],
+  "confidence_basis": [
+    "pasta state chain",
+    "pan residue continuity",
+    "meat cooking to addition",
+    "aromatics prep to assembly"
+  ],
+  "blocking_uncertainties": [],
+  "comparison_table": [
+    "{\"1\": \"dry pasta to boiling water\", \"6\": \"raw meat sliced and fried, leaves fond/fat\", \"4\": \"uses fond/fat to sauté onions/garlic, deglazes\", \"3\": \"drains pasta, tosses with oil\", \"5\": \"adds oiled pasta to aromatics pan, adds egg\", \"2\": \"adds cooked meat and cheese, final emulsification\"}",
+    "{\"1\": \"dry pasta to boiling water\", \"6\": \"raw meat sliced and fried, leaves fond/fat\", \"4\": \"uses fond/fat to sauté onions/garlic, deglazes\", \"3\": \"drains pasta, tosses with oil\", \"5\": \"adds oiled pasta to aromatics pan, adds egg\", \"2\": \"adds cooked meat bits and cheese, final emulsification\"}"
+  ]
+}

@@ -1,0 +1,102 @@
+[
+  {
+    "turn": 1,
+    "call_id": "batch_1_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 65.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time/frame locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-08 05:59:10",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 65.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time/frame locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"full object state chains across all 5 segments\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient states (raw/cooked/cut)\",\n    \"container states (empty/filled/residue)\",\n    \"tool usage\",\n    \"transfer events\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: Chef, knife, bowl of leafy greens (lettuce/watercress), cutting board | action: Cutting/trimming fresh greens | state: Greens fresh, whole in bowl, being cut; bowl filled | window: Frames 1-2, 13-15 | query_link: [Frame 1], [Frame 14] | conf: High | uncertainty: Specific variety of greens (watercress vs lettuce)\n\nobjects: Pan, white rectangular plate, noodle stir-fry (meat, red peppers) | action: Pouring/transferring cooked food from pan to plate | state: Noodles cooked, wet/saucy; Pan emptying (residue); Plate filling over bed of fresh greens | window: Frames 6-9 | query_link: [Frame 7], [Frame 8] | conf: High | uncertainty: None\n\nobjects: Plated noodles, shredded carrots, green onions (scallions) | action: Garnishing (visible in close-up progression) | state: Carrots shredded (fresh/raw appearance), green onions cut; Dish mixed and saucy | window: Frames 10-12 | query_link: [Frame 11], [Frame 12] | conf: High | uncertainty: Exact timing of carrot addition relative to wide shots\n\nobjects: Chef, guests, fully assembled plate | action: Serving/arranging final dish | state: Plate filled, mixed ingredients (noodles, carrots, greens), complete | window: Frame 16 | query_link: [Frame 16] | conf: High | uncertainty: None",
+    "timestamp_end": "2026-07-08 06:00:35"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 37.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time/frame locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-08 05:59:10",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 37.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time/frame locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"full object state chains across all 5 segments\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient states (raw/cooked/cut)\",\n    \"container states (empty/filled/residue)\",\n    \"tool usage\",\n    \"transfer events\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: dark sauce, sliced mushrooms, red peppers, green onions, pan | action: pouring sauce over vegetables | state: sauce liquid/dark brown, vegetables cooked/sliced/wilted, pan filled with mixture | window: Frames 3-4 | query_link: null | conf: high | uncertainty: none\nobjects: cooked noodles, glass bowl, blue pan | action: pouring noodles into pan | state: noodles white/cooked/long strands, bowl emptying, pan filled with noodle pile | window: Frames 5-6, 8 | query_link: null | conf: high | uncertainty: none\nobjects: noodles, vegetables, sauce, wooden spoons | action: tossing/mixing | state: noodles coating with sauce (turning brown), ingredients mixed together | window: Frames 9-13, 15-16 | query_link: null | conf: high | uncertainty: none\nobjects: chef, whisk, bowl | action: whisking | state: sauce being prepared/mixed in bowl | window: Frame 1 | query_link: null | conf: high | uncertainty: none",
+    "timestamp_end": "2026-07-08 05:59:51"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 63.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time/frame locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-08 05:59:10",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 63.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time/frame locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"full object state chains across all 5 segments\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient states (raw/cooked/cut)\",\n    \"container states (empty/filled/residue)\",\n    \"tool usage\",\n    \"transfer events\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "- objects: glass bowl, bottle, dark liquid (soy sauce base), spoon; action: pouring liquid into bowl; state: bowl filling with dark wet liquid, bottle active; window: 1-2; query_link: N/A; conf: high; uncertainty: none\n- objects: small blue can (anchovies/tin), hand; action: holding/showing can; state: can present, label visible; window: 3-4; query_link: N/A; conf: high; uncertainty: low (exact contents unclear)\n- objects: glass bowl, spoon, dark mixture, bottles (soy sauce, sambal jar), blue bottle, bowl of rice; action: stirring mixture; state: mixture dark/wet/blended, rice separate/white/filled in adjacent bowl; window: 5-8, 12-13, 16; query_link: N/A; conf: high; uncertainty: none\n- objects: small bottle, bowl, spoon; action: pouring additional ingredient while stirring; state: bottle emptying into mixture, mixture becoming more complex; window: 10-11; query_link: N/A; conf: high; uncertainty: none\n- objects: audience members, chef; action: watching/listening; state: audience present/seated; window: 14-15; query_link: N/A; conf: high; uncertainty: none",
+    "timestamp_end": "2026-07-08 06:00:04"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 46.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time/frame locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-08 05:59:10",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 46.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time/frame locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"full object state chains across all 5 segments\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient states (raw/cooked/cut)\",\n    \"container states (empty/filled/residue)\",\n    \"tool usage\",\n    \"transfer events\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: pan, sliced mushrooms, sliced red onions, sliced red peppers | action: stirring/sautéing with wooden spoon | state: cut, mixed, cooking (raw to cooked transition) | window: 4, 5, 7, 9 | query_link: video 4 | conf: high | uncertainty: exact doneness level\nobjects: minced garlic/ginger, chopped green onions | action: added to pan on top of vegetables | state: fresh, cut/minced, present | window: 10, 11 | query_link: video 4 | conf: high | uncertainty: none\nobjects: green onions (scallions), knife, cutting board | action: chopping | state: fresh, being cut into rings | window: 12, 13, 14, 15, 16 | query_link: video 4 | conf: high | uncertainty: none\nobjects: glass bowl, brown liquid | action: resting on counter | state: filled | window: 1, 2, 8, 12 | query_link: video 4 | conf: high | uncertainty: specific liquid identity (sauce/marinade)",
+    "timestamp_end": "2026-07-08 05:59:54"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_5",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 5,
+          "start_time": 0.0,
+          "end_time": 36.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time/frame locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-08 05:59:10",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 5 (0.0s to 36.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report approximate time/frame locations for decisive events. Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"full object state chains across all 5 segments\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient states (raw/cooked/cut)\",\n    \"container states (empty/filled/residue)\",\n    \"tool usage\",\n    \"transfer events\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: Chef, oil bottle, pan | action: pouring oil into pan | state: oil bottle (filled, pouring), pan (on stove, receiving liquid) | window: Frames 1-3 | query_link: N/A | conf: HIGH | uncertainty: none\nobjects: Chef, wooden cutting board, sliced mushrooms | action: transferring mushrooms to pan | state: mushrooms (sliced, raw, piled), board (tilted, emptying) | window: Frames 6, 8 | query_link: N/A | conf: HIGH | uncertainty: none\nobjects: Pan, sliced mushrooms | action: cooking | state: mushrooms (sliced, raw/fresh, filling pan), pan (blue/white enameled, filled) | window: Frames 9-10 | query_link: N/A | conf: HIGH | uncertainty: none\nobjects: Oil bottle, mushrooms | action: drizzling oil | state: mushrooms (glistening, wet with oil) | window: Frame 14 | query_link: N/A | conf: HIGH | uncertainty: UNCERTAIN if it's oil or another liquid, likely oil\nobjects: Chef, utensil, pan | action: stirring | state: mushrooms (cooking, mixed in pan) | window: Frames 11-12, 15 | query_link: N/A | conf: HIGH | uncertainty: none\nobjects: Female guests | action: talking/watching | state: present, seated | window: Frames 4-5, 7 | query_link: N/A | conf: HIGH | uncertainty: none",
+    "timestamp_end": "2026-07-08 06:00:15"
+  }
+]

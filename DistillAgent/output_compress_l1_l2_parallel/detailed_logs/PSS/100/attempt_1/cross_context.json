@@ -1,0 +1,185 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "All segment roles and object states pending Layer1"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "broth_base": {
+      "1": "water/broth in silver pot",
+      "3": "dark sauce added to pot",
+      "4": "dark liquid/soup in large pot",
+      "6": "simmering soup/stew"
+    },
+    "veggies": {
+      "5": "raw in pan, sauce added",
+      "2": "cooked in pan, transferred to pot",
+      "3": "in pot with sauce"
+    },
+    "chicken_white_food": {
+      "1": "raw in black pan",
+      "4": "cooked in black pan, added to pot",
+      "2": "raw white ingredients added to pot (possibly tofu)"
+    },
+    "egg": {
+      "6": "beaten in mug, poured into pot"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object state progression",
+    "container fill/empty",
+    "transfer traces",
+    "residue/depletion",
+    "ingredient maturity"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All segment roles and object states pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "object state progression",
+          "container fill/empty",
+          "transfer traces",
+          "residue/depletion",
+          "ingredient maturity"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "1->5->2->3->4->6",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V5->V2: raw veggies in pan -> cooked veggies to pot",
+          "V2->V3: veggies in pot -> dark sauce added to pot",
+          "V3->V4: dark liquid base in pot -> cooked chicken added to pot",
+          "V4->V6: chicken in pot -> egg drop into soup",
+          "V1->V4: raw chicken in pan -> cooked chicken in pan"
+        ],
+        "blocking_uncertainties": [
+          "Confirm V4 pot already has dark liquid before chicken pour",
+          "Confirm V2 white ingredients are raw vs V4 cooked chicken"
+        ],
+        "object_memory": {
+          "broth_base": {
+            "1": "water/broth in silver pot",
+            "3": "dark sauce added to pot",
+            "4": "dark liquid/soup in large pot",
+            "6": "simmering soup/stew"
+          },
+          "veggies": {
+            "5": "raw in pan, sauce added",
+            "2": "cooked in pan, transferred to pot",
+            "3": "in pot with sauce"
+          },
+          "chicken_white_food": {
+            "1": "raw in black pan",
+            "4": "cooked in black pan, added to pot",
+            "2": "raw white ingredients added to pot (possibly tofu)"
+          },
+          "egg": {
+            "6": "beaten in mug, poured into pot"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                25
+              ],
+              "event": "broth prep, raw chicken cooking",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                19
+              ],
+              "event": "veggie transfer to pot, white ingredient add",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                52
+              ],
+              "event": "soup box, sauce pour into pot",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                6
+              ],
+              "event": "cooked chicken pour into dark pot",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                47
+              ],
+              "event": "aromatics, raw veggies in pan",
+              "confidence": "high"
+            }
+          ],
+          "video6": [
+            {
+              "window": [
+                0,
+                19
+              ],
+              "event": "egg drop into soup",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1->5->2->3->4->6"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "V5->V2: raw veggies in pan -> cooked veggies to pot",
+    "V2->V3: veggies in pot -> dark sauce added to pot",
+    "V3->V4: dark liquid base in pot -> cooked chicken added to pot",
+    "V4->V6: chicken in pot -> egg drop into soup",
+    "V1->V4: raw chicken in pan -> cooked chicken in pan"
+  ],
+  "blocking_uncertainties": [
+    "Confirm V4 pot already has dark liquid before chicken pour",
+    "Confirm V2 white ingredients are raw vs V4 cooked chicken"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 25], \"event\": \"broth prep, raw chicken cooking\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 19], \"event\": \"veggie transfer to pot, white ingredient add\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 52], \"event\": \"soup box, sauce pour into pot\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 6], \"event\": \"cooked chicken pour into dark pot\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 47], \"event\": \"aromatics, raw veggies in pan\", \"confidence\": \"high\"}], \"video6\": [{\"window\": [0, 19], \"event\": \"egg drop into soup\", \"confidence\": \"high\"}]}"
+  ]
+}

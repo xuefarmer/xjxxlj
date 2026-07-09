@@ -1,0 +1,221 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "full object-state inventory pending Layer1 results"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "grains": {
+      "2": "dry->wet in dark bowl",
+      "1": "cooked in sieve->transferred to salad bowl"
+    },
+    "glass_bowl": {
+      "3": "filled with chopped herbs",
+      "5": "adds cucumber/tomato/onion to herb base",
+      "6": "salad seasoned and mixed",
+      "1": "cooked grains added and mixed"
+    },
+    "cutting_board": {
+      "3": "clean->green residue",
+      "5": "has green residue",
+      "6": "has green residue"
+    },
+    "salad_plate": {
+      "4": "salad plated, lemon/oil added"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states raw->cooked",
+    "container empty->filled",
+    "transfer traces",
+    "residue/depletion",
+    "background cues"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "full object-state inventory pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states raw->cooked",
+          "container empty->filled",
+          "transfer traces",
+          "residue/depletion",
+          "background cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "2->3->5->6->1->4",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V2: dry->wet grains",
+          "V3: herbs chopped, board clean->residue",
+          "V5: board has residue, bowl adds cucumber/tomato to herb base",
+          "V6: bowl seasoned, board has residue",
+          "V1: cooked grains added to salad bowl",
+          "V4: salad plated and dressed"
+        ],
+        "blocking_uncertainties": [
+          "Verify exact bowl contents progression across V3, V5, V6, V1",
+          "Verify board residue continuity"
+        ],
+        "object_memory": {
+          "grains": {
+            "2": "dry->wet in dark bowl",
+            "1": "cooked in sieve->transferred to salad bowl"
+          },
+          "glass_bowl": {
+            "3": "filled with chopped herbs",
+            "5": "adds cucumber/tomato/onion to herb base",
+            "6": "salad seasoned and mixed",
+            "1": "cooked grains added and mixed"
+          },
+          "cutting_board": {
+            "3": "clean->green residue",
+            "5": "has green residue",
+            "6": "has green residue"
+          },
+          "salad_plate": {
+            "4": "salad plated, lemon/oil added"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                14
+              ],
+              "event": "grain transfer and mixing",
+              "key_objects": [
+                "sieve",
+                "glass bowl",
+                "fork"
+              ],
+              "visible_state": "grains added to salad",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                7
+              ],
+              "event": "grain soaking",
+              "key_objects": [
+                "dark bowl",
+                "kettle"
+              ],
+              "visible_state": "dry grains wetted",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                22
+              ],
+              "event": "herb chopping",
+              "key_objects": [
+                "board",
+                "glass bowl",
+                "herbs"
+              ],
+              "visible_state": "herbs chopped into bowl",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                8
+              ],
+              "event": "dressing salad",
+              "key_objects": [
+                "plate",
+                "lemon bowl",
+                "oil spoon"
+              ],
+              "visible_state": "salad on plate dressed",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                40
+              ],
+              "event": "veg prep",
+              "key_objects": [
+                "board",
+                "glass bowl",
+                "cucumber",
+                "tomato"
+              ],
+              "visible_state": "veg chopped and added to bowl",
+              "confidence": "high"
+            }
+          ],
+          "video6": [
+            {
+              "window": [
+                0,
+                15
+              ],
+              "event": "seasoning salad",
+              "key_objects": [
+                "board",
+                "glass bowl",
+                "spices"
+              ],
+              "visible_state": "salad seasoned and mixed",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "2->3->5->6->1->4"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "V2: dry->wet grains",
+    "V3: herbs chopped, board clean->residue",
+    "V5: board has residue, bowl adds cucumber/tomato to herb base",
+    "V6: bowl seasoned, board has residue",
+    "V1: cooked grains added to salad bowl",
+    "V4: salad plated and dressed"
+  ],
+  "blocking_uncertainties": [
+    "Verify exact bowl contents progression across V3, V5, V6, V1",
+    "Verify board residue continuity"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 14], \"event\": \"grain transfer and mixing\", \"key_objects\": [\"sieve\", \"glass bowl\", \"fork\"], \"visible_state\": \"grains added to salad\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 7], \"event\": \"grain soaking\", \"key_objects\": [\"dark bowl\", \"kettle\"], \"visible_state\": \"dry grains wetted\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 22], \"event\": \"herb chopping\", \"key_objects\": [\"board\", \"glass bowl\", \"herbs\"], \"visible_state\": \"herbs chopped into bowl\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 8], \"event\": \"dressing salad\", \"key_objects\": [\"plate\", \"lemon bowl\", \"oil spoon\"], \"visible_state\": \"salad on plate dressed\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 40], \"event\": \"veg prep\", \"key_objects\": [\"board\", \"glass bowl\", \"cucumber\", \"tomato\"], \"visible_state\": \"veg chopped and added to bowl\", \"confidence\": \"high\"}], \"video6\": [{\"window\": [0, 15], \"event\": \"seasoning salad\", \"key_objects\": [\"board\", \"glass bowl\", \"spices\"], \"visible_state\": \"salad seasoned and mixed\", \"confidence\": \"high\"}]}"
+  ]
+}

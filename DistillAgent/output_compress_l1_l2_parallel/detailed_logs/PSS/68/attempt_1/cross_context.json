@@ -1,0 +1,268 @@
+{
+  "confirmed": [
+    "V2: rice ball spread on nori",
+    "V1: flipped, fillings added",
+    "V4: rectangular rice block prepared with orange topping",
+    "V3: rolled, coated with rice and orange",
+    "V6: shaped with mat",
+    "V5: sliced, rice bowl absent"
+  ],
+  "uncertain": [
+    "V4's exact role in the state chain",
+    "V3 to V6 transition continuity"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "rice": {
+      "2": "ball -> flat layer on nori",
+      "1": "cooked, wet, topped with orange roe, flipped",
+      "4": "rectangular block, plain white -> orange topping sprinkled",
+      "3": "pressed onto outside of roll, coated in orange",
+      "5": "rice bowl not mentioned (possibly empty/removed)",
+      "6": "rice bowl filled"
+    },
+    "nori": {
+      "2": "whole, flat, rice spread on it",
+      "1": "facing up after flip",
+      "3": "rolled into cylinder"
+    },
+    "sushi_roll": {
+      "3": "rolled cylinder, coated in orange",
+      "6": "formed cylinder, brown/orange exterior, being shaped",
+      "5": "long roll, golden/fried exterior, being sliced"
+    },
+    "cucumber_bowl": {
+      "1": "present, filled",
+      "2": "filled",
+      "3": "filled, unused",
+      "4": "filled",
+      "5": "filled",
+      "6": "filled"
+    },
+    "scissors": {
+      "2": "present, closed",
+      "6": "present"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states: raw/cooked, whole/cut, separate/mixed",
+    "container states: empty/filled, residue/depletion",
+    "transfer traces between containers",
+    "background cues showing before/after",
+    "rice state: flat on nori -> block with topping -> pressed on outside",
+    "roll state: flat -> rolled -> coated -> shaped -> sliced",
+    "container depletion: rice bowl filled -> empty/removed"
+  ],
+  "resolved_uncertain": [
+    "V4's exact role: prepares the orange-topped rice block used for outside coating in V3",
+    "V3 to V6 transition: V3 ends with fully coated roll, V6 shapes it"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "pending Layer1 results for all 6 segments"
+        ],
+        "dimensions_to_compare": [
+          "object states: raw/cooked, whole/cut, separate/mixed",
+          "container states: empty/filled, residue/depletion",
+          "transfer traces between containers",
+          "background cues showing before/after"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "2->1->4->3->6->5",
+        "order_confidence": 7,
+        "confidence_basis": [
+          "V2: rice spread on nori (earliest prep)",
+          "V1: flipped, fillings added",
+          "V4: rice block prepared with orange topping (likely for outside coating)",
+          "V3: rolled, coated with rice and orange",
+          "V6: shaped with mat (after coating)",
+          "V5: sliced (final step)"
+        ],
+        "blocking_uncertainties": [
+          "Exact role of V4's rice block (is it for the outside coating in V3?)",
+          "Continuity between V3 (coating) and V6 (shaping) - is V6 immediately after V3?",
+          "State of rice bowl across segments to confirm depletion by V5"
+        ],
+        "object_memory": {
+          "rice": {
+            "2": "ball -> flat layer on nori",
+            "1": "cooked, wet, topped with orange roe, flipped",
+            "4": "rectangular block, plain white -> orange topping sprinkled",
+            "3": "pressed onto outside of roll, coated in orange",
+            "5": "rice bowl not mentioned (possibly empty/removed)",
+            "6": "rice bowl filled"
+          },
+          "nori": {
+            "2": "whole, flat, rice spread on it",
+            "1": "facing up after flip",
+            "3": "rolled into cylinder"
+          },
+          "sushi_roll": {
+            "3": "rolled cylinder, coated in orange",
+            "6": "formed cylinder, brown/orange exterior, being shaped",
+            "5": "long roll, golden/fried exterior, being sliced"
+          },
+          "cucumber_bowl": {
+            "1": "present, filled",
+            "2": "filled",
+            "3": "filled, unused",
+            "4": "filled",
+            "5": "filled",
+            "6": "filled"
+          },
+          "scissors": {
+            "2": "present, closed",
+            "6": "present"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                39
+              ],
+              "event": "flip and fill",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                50
+              ],
+              "event": "spread rice on nori",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                52
+              ],
+              "event": "roll and coat",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                13
+              ],
+              "event": "prepare rice block",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                51
+              ],
+              "event": "slice roll",
+              "confidence": "high"
+            }
+          ],
+          "video6": [
+            {
+              "window": [
+                0,
+                20
+              ],
+              "event": "shape roll",
+              "confidence": "high"
+            }
+          ]
+        },
+        "uncertain": [
+          "V4's exact role in the state chain",
+          "V3 to V6 transition continuity"
+        ],
+        "dimensions_to_compare": [
+          "rice state: flat on nori -> block with topping -> pressed on outside",
+          "roll state: flat -> rolled -> coated -> shaped -> sliced",
+          "container depletion: rice bowl filled -> empty/removed"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 9,
+        "confirmed": [
+          "V2: rice ball spread on nori",
+          "V1: flipped, fillings added",
+          "V4: rectangular rice block prepared with orange topping",
+          "V3: rolled, coated with rice and orange",
+          "V6: shaped with mat",
+          "V5: sliced, rice bowl absent"
+        ],
+        "resolved_uncertain": [
+          "V4's exact role: prepares the orange-topped rice block used for outside coating in V3",
+          "V3 to V6 transition: V3 ends with fully coated roll, V6 shapes it"
+        ],
+        "comparison_table": {
+          "V2": "rice ball -> flat on nori",
+          "V1": "flipped, fillings added",
+          "V4": "rectangular rice block -> orange topping",
+          "V3": "rolled, coated with rice and orange",
+          "V6": "shaped with mat",
+          "V5": "sliced, rice bowl absent"
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "2->1->4->3->6->5"
+  ],
+  "order_confidence": [
+    "7",
+    "9"
+  ],
+  "confidence_basis": [
+    "V2: rice spread on nori (earliest prep)",
+    "V1: flipped, fillings added",
+    "V4: rice block prepared with orange topping (likely for outside coating)",
+    "V3: rolled, coated with rice and orange",
+    "V6: shaped with mat (after coating)",
+    "V5: sliced (final step)"
+  ],
+  "blocking_uncertainties": [
+    "Exact role of V4's rice block (is it for the outside coating in V3?)",
+    "Continuity between V3 (coating) and V6 (shaping) - is V6 immediately after V3?",
+    "State of rice bowl across segments to confirm depletion by V5"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 39], \"event\": \"flip and fill\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 50], \"event\": \"spread rice on nori\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 52], \"event\": \"roll and coat\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 13], \"event\": \"prepare rice block\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 51], \"event\": \"slice roll\", \"confidence\": \"high\"}], \"video6\": [{\"window\": [0, 20], \"event\": \"shape roll\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V2\": \"rice ball -> flat on nori\", \"V1\": \"flipped, fillings added\", \"V4\": \"rectangular rice block -> orange topping\", \"V3\": \"rolled, coated with rice and orange\", \"V6\": \"shaped with mat\", \"V5\": \"sliced, rice bowl absent\"}"
+  ]
+}

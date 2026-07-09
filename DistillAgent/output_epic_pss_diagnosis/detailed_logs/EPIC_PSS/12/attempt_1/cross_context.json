@@ -1,0 +1,184 @@
+{
+  "confirmed": [
+    "Left pan chain: V3->V6->V2->V4->V1",
+    "V5 placed before V3 due to missing left pan",
+    "Right pan (far right) simmers red sauce from V3 to V1",
+    "Middle pan shows sautéed veggies in V5 and V2"
+  ],
+  "uncertain": [
+    "order of V6 vs V4",
+    "placement of V2 and V5"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "left_pan": {
+      "3": "onions/peppers",
+      "6": "onions + yellow powder + liquid",
+      "2": "onions/peppers/mushrooms",
+      "4": "onions + red paste -> red sauce",
+      "1": "red sauce only"
+    },
+    "right_pan": {
+      "3": "tomato sauce",
+      "6": "red sauce",
+      "2": "red sauce (far right)",
+      "4": "red stew",
+      "1": "red stew + peas"
+    },
+    "cutting_board": {
+      "3": "residue, red bits",
+      "2": "white crumbs/flour, crumbling white block",
+      "4": "flour/dough residue",
+      "6": "flour"
+    },
+    "mushrooms": {
+      "3": "on paper towel",
+      "2": "in left pan"
+    },
+    "peas_bag": {
+      "1": "poured into right pan, then stored"
+    },
+    "red_paste_jar": {
+      "4": "emptied and rinsed"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states across segments",
+    "ingredient maturity",
+    "container fill/empty",
+    "transfer traces",
+    "residue/depletion",
+    "left pan color/contents",
+    "right pan color/contents",
+    "cutting board state",
+    "background object presence"
+  ],
+  "resolved_uncertain": [
+    "order of V6 vs V4: V6 adds yellow powder/liquid, V4 adds red paste",
+    "placement of V5: before V3 because left pan is absent"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": true,
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states across segments",
+          "ingredient maturity",
+          "container fill/empty",
+          "transfer traces",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "layer2_done": false,
+        "preliminary_order": "3 -> 6 -> 2 -> 5 -> 4 -> 1",
+        "order_confidence": 5,
+        "confidence_basis": "Layer1 suggests V3 is early (onions/tomato sauce), V1 is late (peas added, both pans red sauce). V2 has mushrooms in pan (after V3 where they are on paper towel). V4 adds red paste to left pan. V6 adds liquid/yellow powder. V2/V5 are dumpling prep.",
+        "blocking_uncertainties": [
+          "Exact order of V6 and V4 (which addition to left pan comes first?)",
+          "Where do V2 and V5 fit relative to the red sauce track?",
+          "Is the left pan in V2 before or after V6/V4?"
+        ],
+        "object_memory": {
+          "left_pan": {
+            "3": "onions/peppers",
+            "6": "onions + yellow powder + liquid",
+            "2": "onions/peppers/mushrooms",
+            "4": "onions + red paste -> red sauce",
+            "1": "red sauce only"
+          },
+          "right_pan": {
+            "3": "tomato sauce",
+            "6": "red sauce",
+            "2": "red sauce (far right)",
+            "4": "red stew",
+            "1": "red stew + peas"
+          },
+          "cutting_board": {
+            "3": "residue, red bits",
+            "2": "white crumbs/flour, crumbling white block",
+            "4": "flour/dough residue",
+            "6": "flour"
+          },
+          "mushrooms": {
+            "3": "on paper towel",
+            "2": "in left pan"
+          },
+          "peas_bag": {
+            "1": "poured into right pan, then stored"
+          },
+          "red_paste_jar": {
+            "4": "emptied and rinsed"
+          }
+        },
+        "uncertain": [
+          "order of V6 vs V4",
+          "placement of V2 and V5"
+        ],
+        "dimensions_to_compare": [
+          "left pan color/contents",
+          "right pan color/contents",
+          "cutting board state",
+          "background object presence"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer1_done": true,
+        "layer2_done": true,
+        "order_confidence": 9,
+        "preliminary_order": "5->3->6->2->4->1",
+        "confirmed": [
+          "Left pan chain: V3->V6->V2->V4->V1",
+          "V5 placed before V3 due to missing left pan",
+          "Right pan (far right) simmers red sauce from V3 to V1",
+          "Middle pan shows sautéed veggies in V5 and V2"
+        ],
+        "resolved_uncertain": [
+          "order of V6 vs V4: V6 adds yellow powder/liquid, V4 adds red paste",
+          "placement of V5: before V3 because left pan is absent"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "layer2_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "3 -> 6 -> 2 -> 5 -> 4 -> 1",
+    "5->3->6->2->4->1"
+  ],
+  "order_confidence": [
+    "5",
+    "9"
+  ],
+  "confidence_basis": [
+    "Layer1 suggests V3 is early (onions/tomato sauce), V1 is late (peas added, both pans red sauce). V2 has mushrooms in pan (after V3 where they are on paper towel). V4 adds red paste to left pan. V6 adds liquid/yellow powder. V2/V5 are dumpling prep."
+  ],
+  "blocking_uncertainties": [
+    "Exact order of V6 and V4 (which addition to left pan comes first?)",
+    "Where do V2 and V5 fit relative to the red sauce track?",
+    "Is the left pan in V2 before or after V6/V4?"
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "V2 pot position",
+    "V3 skillet presence",
+    "V2 vs V3 exact order"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "chicken_meat": {
+      "4": "raw on black plate counter",
+      "5": "browning in skillet back burner",
+      "6": "cooked transferred to black plate",
+      "2": "cooked on black plate background"
+    },
+    "pot_position": {
+      "5": "front burner",
+      "3": "front burner",
+      "2": "gas burner unspecified",
+      "6": "back-left burner",
+      "1": "back right burner"
+    },
+    "skillet_eggs": {
+      "5": "back burner browning food",
+      "6": "front-right eggs stirred after meat",
+      "1": "front-right eggs plated"
+    },
+    "shredded_white_veg": {
+      "4": "raw on black plate counter",
+      "2": "transferred from white plate to pot"
+    },
+    "pot_additions": {
+      "5": "bouillon + chopped yellow/white cubes",
+      "3": "chopped green veg",
+      "2": "shredded white veg"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states raw->cooked",
+    "container fill/empty transitions",
+    "tool usage sequence",
+    "transfer events",
+    "residue/depletion cues",
+    "pot burner front/back",
+    "skillet contents raw/browning/cooked",
+    "black plate meat filling state"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "full object inventory pending",
+          "segment roles pending",
+          "state transitions pending"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states raw->cooked",
+          "container fill/empty transitions",
+          "tool usage sequence",
+          "transfer events",
+          "residue/depletion cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "chicken_meat": {
+            "4": "raw on black plate counter",
+            "5": "browning in skillet back burner",
+            "6": "cooked transferred to black plate",
+            "2": "cooked on black plate background"
+          },
+          "pot_position": {
+            "5": "front burner",
+            "3": "front burner",
+            "2": "gas burner unspecified",
+            "6": "back-left burner",
+            "1": "back right burner"
+          },
+          "skillet_eggs": {
+            "5": "back burner browning food",
+            "6": "front-right eggs stirred after meat",
+            "1": "front-right eggs plated"
+          },
+          "shredded_white_veg": {
+            "4": "raw on black plate counter",
+            "2": "transferred from white plate to pot"
+          },
+          "pot_additions": {
+            "5": "bouillon + chopped yellow/white cubes",
+            "3": "chopped green veg",
+            "2": "shredded white veg"
+          }
+        },
+        "preliminary_order": "4->5->3->6->2->1",
+        "order_confidence": 7,
+        "confidence_basis": [
+          "V4 raw chicken -> V5 browning -> V6 cooked meat plated",
+          "V5/V3 pot front -> V6/V1 pot back",
+          "V2 has cooked meat already plated so after V6"
+        ],
+        "blocking_uncertainties": [
+          "V2 pot burner position (front or back?)",
+          "V3 skillet state (absent or present?)",
+          "V2 vs V3 order (both add to pot, need to confirm V2 is after V6)"
+        ],
+        "candidate_targets": [
+          "2",
+          "3",
+          "5",
+          "6"
+        ],
+        "low_value_targets": [
+          "4"
+        ],
+        "uncertain": [
+          "V2 pot position",
+          "V3 skillet presence",
+          "V2 vs V3 exact order"
+        ],
+        "dimensions_to_compare": [
+          "pot burner front/back",
+          "skillet contents raw/browning/cooked",
+          "black plate meat filling state"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "V1": "pending",
+          "V4": "pending"
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "4->5->3->6->2->1"
+  ],
+  "order_confidence": [
+    "7"
+  ],
+  "confidence_basis": [
+    "V4 raw chicken -> V5 browning -> V6 cooked meat plated",
+    "V5/V3 pot front -> V6/V1 pot back",
+    "V2 has cooked meat already plated so after V6"
+  ],
+  "blocking_uncertainties": [
+    "V2 pot burner position (front or back?)",
+    "V3 skillet state (absent or present?)",
+    "V2 vs V3 order (both add to pot, need to confirm V2 is after V6)"
+  ],
+  "candidate_targets": [
+    "2",
+    "3",
+    "5",
+    "6"
+  ],
+  "low_value_targets": [
+    "4"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V1\": \"pending\", \"V4\": \"pending\"}"
+  ]
+}

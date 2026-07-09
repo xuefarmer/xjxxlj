@@ -1,0 +1,157 @@
+{
+  "confirmed": [
+    "V2->V3: starch residue link",
+    "V3->V4: chicken cooked/removed",
+    "V4->V1: cooked eggs/chicken added"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "chicken": {
+      "2": "raw/marinated/pink",
+      "3": "cooked/white/in bowl",
+      "1": "cooked pieces added to rice"
+    },
+    "eggs": {
+      "2": "raw in background bowl",
+      "4": "raw -> cooked/scrambled/in bowl",
+      "1": "egg chunks added to rice"
+    },
+    "rice": {
+      "2": "raw/prepped in background bowl",
+      "1": "cooked grains added to pan"
+    },
+    "veggies": {
+      "2": "prepped in background bowl",
+      "1": "added to rice"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object state progression",
+    "container fill/empty",
+    "transfer traces",
+    "residue/depletion",
+    "ingredient maturity",
+    "egg state in V1 vs V4",
+    "chicken state chain",
+    "pan residue at V1 start"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object state progression",
+          "container fill/empty",
+          "transfer traces",
+          "residue/depletion",
+          "ingredient maturity"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "chicken": {
+            "2": "raw/marinated/pink",
+            "3": "cooked/white/in bowl",
+            "1": "cooked pieces added to rice"
+          },
+          "eggs": {
+            "2": "raw in background bowl",
+            "4": "raw -> cooked/scrambled/in bowl",
+            "1": "egg chunks added to rice"
+          },
+          "rice": {
+            "2": "raw/prepped in background bowl",
+            "1": "cooked grains added to pan"
+          },
+          "veggies": {
+            "2": "prepped in background bowl",
+            "1": "added to rice"
+          }
+        },
+        "preliminary_order": "2->3->4->1",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "V2 is prep/marination with all raw ingredients",
+          "V3 cooks chicken and removes to bowl",
+          "V4 cooks eggs and removes to bowl",
+          "V1 adds cooked chicken and egg chunks to rice"
+        ],
+        "blocking_uncertainties": [
+          "Are eggs in V1 added as cooked chunks or raw liquid?",
+          "Is there a visual dependency between V3 and V4 order?"
+        ],
+        "dimensions_to_compare": [
+          "egg state in V1 vs V4",
+          "chicken state chain",
+          "pan residue at V1 start"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 8,
+        "comparison_table": {
+          "V2": "raw chicken marinated with starch",
+          "V3": "wok has starch residue, cooks chicken, transfers to bowl",
+          "V4": "pan empty, cooks eggs, transfers to bowl",
+          "V1": "adds cooked chicken and egg chunks to rice"
+        },
+        "confirmed": [
+          "V2->V3: starch residue link",
+          "V3->V4: chicken cooked/removed",
+          "V4->V1: cooked eggs/chicken added"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": [],
+        "focus_plan": null
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "2->3->4->1"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "V2 is prep/marination with all raw ingredients",
+    "V3 cooks chicken and removes to bowl",
+    "V4 cooks eggs and removes to bowl",
+    "V1 adds cooked chicken and egg chunks to rice"
+  ],
+  "blocking_uncertainties": [
+    "Are eggs in V1 added as cooked chunks or raw liquid?",
+    "Is there a visual dependency between V3 and V4 order?"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V2\": \"raw chicken marinated with starch\", \"V3\": \"wok has starch residue, cooks chicken, transfers to bowl\", \"V4\": \"pan empty, cooks eggs, transfers to bowl\", \"V1\": \"adds cooked chicken and egg chunks to rice\"}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": [],
+  "focus_plan": []
+}

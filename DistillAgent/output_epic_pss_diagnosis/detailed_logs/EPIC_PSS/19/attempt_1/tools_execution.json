@@ -1,0 +1,128 @@
+[
+  {
+    "turn": 1,
+    "call_id": "batch_1_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 27.83333333333337,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows. No final answer."
+    },
+    "timestamp_start": "2026-07-08 19:21:01",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 27.8s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"Need to determine the chronological order of the 3 segments based on object state transitions.\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, separate/mixed)\",\n    \"container states (empty/filled)\",\n    \"operation role (prep, cooking, plating)\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence from the frames, here is the description of the operations, objects, and states:\n\n**Operation & Object States:**\n\n*   **Salad Pan (Center-Top):**\n    *   **Operation:** A hand uses a wooden utensil to stir the contents (Frames 1-10).\n    *   **Objects:** Pan, green leaves (spinach), red chunks (tomatoes/peppers), white cubes (cheese/feta).\n    *   **State:** Fresh (leaves appear vibrant), mixed, cut (ingredients are chopped), filled.\n\n*   **Curry/Sauce Pan (Right):**\n    *   **Operation:** Idle/Simmering (no active manipulation seen, but contents look hot/cooked).\n    *   **Objects:** Pan, orange/red stew (likely chickpea or bean curry).\n    *   **State:** Cooked, mixed, wet (sauce consistency), filled.\n\n*   **Flatbread Pan (Center-Bottom):**\n    *   **Operation:** Cooking and Flipping. Initially idle while salad is stirred (Frames 1-10), then hands press and flip the breads using a spatula (Frames 11-16).\n    *   **Objects:** Pan, two round flatbreads (rotis/tortillas), spatula.\n    *   **State:** Cooking (transitioning from raw pale dough to slightly browned), separate (two distinct items), present.\n\n*   **Prep Area (Bottom-Left):**\n    *   **Operation:** Idle (tools and dough present).\n    *   **Objects:** Rolling pin, sheet of dough, knife, peeler, cutting board.\n    *   **State:** Raw (dough), present.\n\n*   **Large Pot (Left):**\n    *   **Operation:** Idle.\n    *   **Objects:** Metal pot (looks like a rice cooker inner pot).\n    *   **State:** Filled (liquid/water visible at bottom), present.\n\n*   **Plate (Bottom-Left, appearing in Frames 15-16):**\n    *   **Operation:** Idle/Waiting.\n    *   **Objects:** White plate with black rim.\n    *   **State:** Empty, present.\n\n**Chronological Inference:**\nThe sequence shows multitasking. First, the cook stirs the fresh salad mixture while the flatbreads cook passively (Frames 1-10). Then, the cook attends to the flatbreads, pressing and flipping them (Frames 11-16), likely preparing to plate them as the plate appears in the final frames. The curry remains cooking throughout.",
+    "timestamp_end": "2026-07-08 19:22:09"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 10.866666666666674,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows. No final answer."
+    },
+    "timestamp_start": "2026-07-08 19:21:01",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 10.9s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"Need to determine the chronological order of the 3 segments based on object state transitions.\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, separate/mixed)\",\n    \"container states (empty/filled)\",\n    \"operation role (prep, cooking, plating)\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "[Video 2] Frames 1-16:\n- **Operation:** Cooking process involving garnishing a curry and cooking flatbreads.\n- **Objects/Tools:** Large pot (rice cooker/steamer), cutting board, rolling pin, peeler, three frying pans.\n- **Large Pot:** Filled with clear water (liquid visible at bottom).\n- **Cutting Board:** Surface has flour residue (dry, white powder); rolling pin and peeler present and separate.\n- **Pan (Top Middle):** Filled with cooked vegetable curry (mixed, wet, orange/red sauce with chunks). Fresh green leaves (spinach/cilantro) are being added by hand (fresh, whole leaves transitioning to wilting on hot food).\n- **Pan (Top Right):** Filled with cooked vegetable curry (mixed, wet, reddish sauce).\n- **Pan (Bottom Center):** Contains flatbreads/dough. One item appears cooked with brown spots (cooked, dry/wet surface), another item is a pale dough circle (raw, separate). Hands are seen pressing/shaping the raw dough in the pan.\n- **States:** Curry is cooked and mixed. Greens are fresh. Dough is raw and separate. Cooked flatbread shows browning. Pot is filled with water. Board has residue.",
+    "timestamp_end": "2026-07-08 19:22:13"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 49.96666666666667,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows. No final answer."
+    },
+    "timestamp_start": "2026-07-08 19:21:01",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 50.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report compact evidence rows. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"Need to determine the chronological order of the 3 segments based on object state transitions.\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, separate/mixed)\",\n    \"container states (empty/filled)\",\n    \"operation role (prep, cooking, plating)\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence from the frames (Video 3):\n\n**Operation:** Rolling out dough on a wooden cutting board; incidental scene of items on the floor.\n\n**Evidence Rows:**\n*   **Rolling pin:** Wooden, cylindrical, dry, present, held by hands to flatten dough.\n*   **Dough:** Raw, white, flat/being rolled (flattening), present on board.\n*   **Cutting board:** Wooden, rectangular, flour residue (white powder) present.\n*   **Knife:** Metal blade, black handle, separate, present on board.\n*   **Pan (black):** Round, empty, dry, present on stove/counter.\n*   **Bowl of greens:** Metal bowl/pan, fresh green leaves (spinach), mixed (orange spoon visible).\n*   **Bottle:** White plastic, red cap, upright, present.\n*   **Small bowl:** White, filled with white liquid (cream/milk).\n*   **Plastic container:** Divided into 4 sections, contains powders (white, brown, blue), present on floor (dropped state).\n*   **Bag:** White/Red packaging, present on floor.\n*   **Cabinet/Drawer:** Hand reaching towards lower cabinet (Frame 5, 6).",
+    "timestamp_end": "2026-07-08 19:22:30"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 27.83333333333337,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: flatbread pan (count of flatbreads, raw vs cooked state, action), salad pan (contents, action), plate (presence, state). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer."
+    },
+    "timestamp_start": "2026-07-08 19:23:23",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 27.8s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: flatbread pan (count of flatbreads, raw vs cooked state, action), salad pan (contents, action), plate (presence, state). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"flatbread_dough\": {\n      \"3\": \"raw, being rolled on board, pan empty\",\n      \"2\": \"raw dough pressed in pan, 1 flatbread cooked\",\n      \"1\": \"2 flatbreads in pan, being flipped/cooked\"\n    },\n    \"curry_salad\": {\n      \"3\": \"bowl of fresh greens with orange spoon\",\n      \"2\": \"curry pan, fresh greens being added\",\n      \"1\": \"salad pan with spinach/tomatoes/cheese stirred, curry pan simmering\"\n    },\n    \"plate\": {\n      \"3\": \"ABSENT\",\n      \"2\": \"ABSENT\",\n      \"1\": \"empty, appears at end\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, separate/mixed)\",\n    \"container states (empty/filled)\",\n    \"operation role (prep, cooking, plating)\"\n  ],\n  \"uncertain\": [\n    \"Need to determine the chronological order of the 3 segments based on object state transitions.\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "flatbread pan / 2 flatbreads, raw dough state, being pressed and flipped with spatula / 1-16 / flatbread_dough / High / -\nsalad pan / spinach, tomatoes, cheese cubes, being stirred with spoon / 1-10 / curry_salad / High / -\nplate / empty, white with black rim, appears in bottom-left corner / 15-16 / plate / High / -",
+    "timestamp_end": "2026-07-08 19:24:24"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 10.866666666666674,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: flatbread pan (count of flatbreads/dough, raw vs cooked state, action), curry pan (contents, garnish action). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer."
+    },
+    "timestamp_start": "2026-07-08 19:23:23",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 10.9s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: flatbread pan (count of flatbreads/dough, raw vs cooked state, action), curry pan (contents, garnish action). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"flatbread_dough\": {\n      \"3\": \"raw, being rolled on board, pan empty\",\n      \"2\": \"raw dough pressed in pan, 1 flatbread cooked\",\n      \"1\": \"2 flatbreads in pan, being flipped/cooked\"\n    },\n    \"curry_salad\": {\n      \"3\": \"bowl of fresh greens with orange spoon\",\n      \"2\": \"curry pan, fresh greens being added\",\n      \"1\": \"salad pan with spinach/tomatoes/cheese stirred, curry pan simmering\"\n    },\n    \"plate\": {\n      \"3\": \"ABSENT\",\n      \"2\": \"ABSENT\",\n      \"1\": \"empty, appears at end\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, separate/mixed)\",\n    \"container states (empty/filled)\",\n    \"operation role (prep, cooking, plating)\"\n  ],\n  \"uncertain\": [\n    \"Need to determine the chronological order of the 3 segments based on object state transitions.\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "flatbread pan / pressing raw dough, cooking / 2 items (1 cooked flatbread with brown spots, 1 raw pale dough being pressed) / Video 2 (Frames 1-16) / - / High / UNCERTAIN (count transitions from 1 to 2 during clip)\ncurry pan / adding green garnish (spinach/basil) / Curry with chunks and green leaves on top / Video 2 (Frames 1-16) / - / High / -",
+    "timestamp_end": "2026-07-08 19:24:30"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 49.96666666666667,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: cutting board (dough state, residue), black pan (empty/filled, state), bowl of greens (contents, state). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer."
+    },
+    "timestamp_start": "2026-07-08 19:23:23",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 50.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Re-check only these cells: cutting board (dough state, residue), black pan (empty/filled, state), bowl of greens (contents, state). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"flatbread_dough\": {\n      \"3\": \"raw, being rolled on board, pan empty\",\n      \"2\": \"raw dough pressed in pan, 1 flatbread cooked\",\n      \"1\": \"2 flatbreads in pan, being flipped/cooked\"\n    },\n    \"curry_salad\": {\n      \"3\": \"bowl of fresh greens with orange spoon\",\n      \"2\": \"curry pan, fresh greens being added\",\n      \"1\": \"salad pan with spinach/tomatoes/cheese stirred, curry pan simmering\"\n    },\n    \"plate\": {\n      \"3\": \"ABSENT\",\n      \"2\": \"ABSENT\",\n      \"1\": \"empty, appears at end\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, separate/mixed)\",\n    \"container states (empty/filled)\",\n    \"operation role (prep, cooking, plating)\"\n  ],\n  \"uncertain\": [\n    \"Need to determine the chronological order of the 3 segments based on object state transitions.\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "cutting_board | rolling dough | raw dough, flour residue | 1-2, 6-16 | - | high | NOT_VISIBLE_IN_THESE_FRAMES (3-5)\nblack_pan | resting | empty | 1-2, 6-16 | - | high | NOT_VISIBLE_IN_THESE_FRAMES (3-5)\nbowl_of_greens | resting | fresh greens, orange spoon | 1-2, 6-16 | - | high | NOT_VISIBLE_IN_THESE_FRAMES (3-5)",
+    "timestamp_end": "2026-07-08 19:24:56"
+  }
+]

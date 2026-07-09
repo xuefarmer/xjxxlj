@@ -1,0 +1,355 @@
+{
+  "confirmed": [
+    "V1 is raw prep (fish slicing)",
+    "V4 is noodle cooking with liquid from large pot",
+    "V2 adds white solid mass to wok",
+    "V3 adds to large pot and has cut white food in wok",
+    "V5 adds to large pot and stirs front right pan",
+    "V1 is raw fish prep",
+    "V3 adds liquid to large pot",
+    "V5 adds fish to large pot",
+    "V2 adds noodles to wok",
+    "V4 adds broth from pot to wok and tosses"
+  ],
+  "uncertain": [
+    "exact identity of cut white food in V3 vs white solid mass in V2",
+    "whether V2 and V4 are in the same wok and their exact sequence",
+    "whether V3 and V5 are correctly ordered relative to each other"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"raw fish sliced into chunks, transferred to metal bowl\", \"2\": \"liquid poured from white bowl to wok, white solid mass dumped from plate to wok\", \"3\": \"ingredient added from white bowl to large pot, front wok has cut white food\", \"4\": \"noodles/rice tossed in wok, liquid added from large pot\", \"5\": \"ingredient added from metal bowl to large pot, front right pan stirred with ladle\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "raw_fish": {
+      "1": "sliced into chunks, in metal bowl"
+    },
+    "large_pot": {
+      "3": "receiving from white bowl",
+      "5": "receiving from metal bowl",
+      "4": "source of liquid for wok"
+    },
+    "front_wok": {
+      "3": "contains cut white food",
+      "2": "receives liquid then white solid mass",
+      "4": "contains clumped noodles, receives liquid"
+    },
+    "front_right_pan": {
+      "5": "contains cooking food/liquid, stirred with ladle"
+    },
+    "small_white_bowl": {
+      "2": "pours liquid to wok",
+      "3": "pours to large pot"
+    },
+    "small_metal_bowl": {
+      "5": "pours to large pot"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient state (raw/cooked/mixed)",
+    "container fill/empty",
+    "tool contact",
+    "transfer traces",
+    "residue/depletion",
+    "wok/pan contents identity and state",
+    "large pot receiving vs dispensing",
+    "small bowl material and action"
+  ],
+  "resolved_uncertain": [
+    "large pot progression: V3 (liquid) -> V5 (fish) -> V4 (dispense)",
+    "wok progression: V2 (noodles added) -> V4 (broth added, tossed)"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "full object-state inventory pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "ingredient state (raw/cooked/mixed)",
+          "container fill/empty",
+          "tool contact",
+          "transfer traces",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "raw fish sliced into chunks, transferred to metal bowl",
+          "2": "liquid poured from white bowl to wok, white solid mass dumped from plate to wok",
+          "3": "ingredient added from white bowl to large pot, front wok has cut white food",
+          "4": "noodles/rice tossed in wok, liquid added from large pot",
+          "5": "ingredient added from metal bowl to large pot, front right pan stirred with ladle"
+        },
+        "object_memory": {
+          "raw_fish": {
+            "1": "sliced into chunks, in metal bowl"
+          },
+          "large_pot": {
+            "3": "receiving from white bowl",
+            "5": "receiving from metal bowl",
+            "4": "source of liquid for wok"
+          },
+          "front_wok": {
+            "3": "contains cut white food",
+            "2": "receives liquid then white solid mass",
+            "4": "contains clumped noodles, receives liquid"
+          },
+          "front_right_pan": {
+            "5": "contains cooking food/liquid, stirred with ladle"
+          },
+          "small_white_bowl": {
+            "2": "pours liquid to wok",
+            "3": "pours to large pot"
+          },
+          "small_metal_bowl": {
+            "5": "pours to large pot"
+          }
+        },
+        "preliminary_order": "1->3->5->2->4",
+        "order_confidence": 7,
+        "confidence_basis": [
+          "V1 is raw prep",
+          "V3/V5 build broth in large pot before V4 uses it",
+          "V3 front wok has cut food, V5 pan has cooking food",
+          "V2 adds protein mass before V4 adds noodles"
+        ],
+        "blocking_uncertainties": [
+          "exact identity of cut white food in V3 vs white solid mass in V2",
+          "whether V2 and V4 are in the same wok and their exact sequence",
+          "whether V3 and V5 are correctly ordered relative to each other"
+        ],
+        "candidate_targets": [
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "low_value_targets": [
+          "1"
+        ],
+        "uncertain": [
+          "wok content progression across V2, V3, V4, V5"
+        ],
+        "dimensions_to_compare": [
+          "wok/pan contents identity and state",
+          "large pot receiving vs dispensing",
+          "small bowl material and action"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "1": "raw fish whole->sliced->diced; board clean->wet/residue; metal bowl empty->filled",
+          "2": "wok receives liquid then white solid mass; white bowl depleted; white plate depleted",
+          "3": "front wok has cut white food; large pot receives from white bowl; white bowl depleted",
+          "4": "wok has clumped noodles; large pot dispenses liquid; ladle stirring/tossing",
+          "5": "front right pan has cooking food/liquid; large pot receives from metal bowl; metal bowl depleted"
+        },
+        "temporal_index": {
+          "1": [
+            {
+              "window": [
+                0,
+                48
+              ],
+              "event": "fish slicing and transfer",
+              "key_objects": [
+                "fish",
+                "board",
+                "bowl"
+              ],
+              "visible_state": "whole->diced, empty->filled",
+              "why_it_matters": "establishes raw prep start",
+              "confidence": "high"
+            }
+          ],
+          "2": [
+            {
+              "window": [
+                0,
+                17
+              ],
+              "event": "wok cooking additions",
+              "key_objects": [
+                "wok",
+                "white bowl",
+                "plate"
+              ],
+              "visible_state": "liquid then mass added",
+              "why_it_matters": "identifies wok content progression",
+              "confidence": "high"
+            }
+          ],
+          "3": [
+            {
+              "window": [
+                0,
+                5
+              ],
+              "event": "pot and wok activity",
+              "key_objects": [
+                "wok",
+                "pot",
+                "white bowl"
+              ],
+              "visible_state": "cut food in wok, pot receives",
+              "why_it_matters": "links to broth building",
+              "confidence": "high"
+            }
+          ],
+          "4": [
+            {
+              "window": [
+                0,
+                66
+              ],
+              "event": "noodle cooking",
+              "key_objects": [
+                "wok",
+                "pot",
+                "ladle"
+              ],
+              "visible_state": "noodles clumped, pot dispenses",
+              "why_it_matters": "main cooking phase",
+              "confidence": "high"
+            }
+          ],
+          "5": [
+            {
+              "window": [
+                0,
+                7
+              ],
+              "event": "pot addition and pan stir",
+              "key_objects": [
+                "pan",
+                "pot",
+                "metal bowl"
+              ],
+              "visible_state": "pan cooking, pot receives",
+              "why_it_matters": "parallel cooking or broth building",
+              "confidence": "high"
+            }
+          ]
+        },
+        "confirmed": [
+          "V1 is raw prep (fish slicing)",
+          "V4 is noodle cooking with liquid from large pot",
+          "V2 adds white solid mass to wok",
+          "V3 adds to large pot and has cut white food in wok",
+          "V5 adds to large pot and stirs front right pan"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "uncertain": [
+          "exact identity of cut white food in V3 vs white solid mass in V2",
+          "whether V2 and V4 are in the same wok and their exact sequence",
+          "whether V3 and V5 are correctly ordered relative to each other"
+        ],
+        "focus_plan": [
+          "focus on V2 and V4 wok contents to check if they are the same wok and sequence",
+          "focus on V3 and V5 to check if they are parallel or sequential"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "focus_plan": [
+          "resolve V2/V4 wok progression",
+          "resolve V3/V5 large pot progression"
+        ],
+        "uncertain": [
+          "exact identity of cut white food in V3 vs white solid mass in V2",
+          "whether V2 and V4 are in the same wok and their exact sequence",
+          "whether V3 and V5 are correctly ordered relative to each other"
+        ]
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "order_confidence": 9,
+        "confirmed": [
+          "V1 is raw fish prep",
+          "V3 adds liquid to large pot",
+          "V5 adds fish to large pot",
+          "V2 adds noodles to wok",
+          "V4 adds broth from pot to wok and tosses"
+        ],
+        "resolved_uncertain": [
+          "large pot progression: V3 (liquid) -> V5 (fish) -> V4 (dispense)",
+          "wok progression: V2 (noodles added) -> V4 (broth added, tossed)"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1->3->5->2->4"
+  ],
+  "order_confidence": [
+    "7",
+    "9"
+  ],
+  "confidence_basis": [
+    "V1 is raw prep",
+    "V3/V5 build broth in large pot before V4 uses it",
+    "V3 front wok has cut food, V5 pan has cooking food",
+    "V2 adds protein mass before V4 adds noodles"
+  ],
+  "blocking_uncertainties": [
+    "exact identity of cut white food in V3 vs white solid mass in V2",
+    "whether V2 and V4 are in the same wok and their exact sequence",
+    "whether V3 and V5 are correctly ordered relative to each other"
+  ],
+  "candidate_targets": [
+    "2",
+    "3",
+    "4",
+    "5",
+    "1"
+  ],
+  "low_value_targets": [
+    "1"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"raw fish whole->sliced->diced; board clean->wet/residue; metal bowl empty->filled\", \"2\": \"wok receives liquid then white solid mass; white bowl depleted; white plate depleted\", \"3\": \"front wok has cut white food; large pot receives from white bowl; white bowl depleted\", \"4\": \"wok has clumped noodles; large pot dispenses liquid; ladle stirring/tossing\", \"5\": \"front right pan has cooking food/liquid; large pot receives from metal bowl; metal bowl depleted\"}"
+  ],
+  "temporal_index": [
+    "{\"1\": [{\"window\": [0, 48], \"event\": \"fish slicing and transfer\", \"key_objects\": [\"fish\", \"board\", \"bowl\"], \"visible_state\": \"whole->diced, empty->filled\", \"why_it_matters\": \"establishes raw prep start\", \"confidence\": \"high\"}], \"2\": [{\"window\": [0, 17], \"event\": \"wok cooking additions\", \"key_objects\": [\"wok\", \"white bowl\", \"plate\"], \"visible_state\": \"liquid then mass added\", \"why_it_matters\": \"identifies wok content progression\", \"confidence\": \"high\"}], \"3\": [{\"window\": [0, 5], \"event\": \"pot and wok activity\", \"key_objects\": [\"wok\", \"pot\", \"white bowl\"], \"visible_state\": \"cut food in wok, pot receives\", \"why_it_matters\": \"links to broth building\", \"confidence\": \"high\"}], \"4\": [{\"window\": [0, 66], \"event\": \"noodle cooking\", \"key_objects\": [\"wok\", \"pot\", \"ladle\"], \"visible_state\": \"noodles clumped, pot dispenses\", \"why_it_matters\": \"main cooking phase\", \"confidence\": \"high\"}], \"5\": [{\"window\": [0, 7], \"event\": \"pot addition and pan stir\", \"key_objects\": [\"pan\", \"pot\", \"metal bowl\"], \"visible_state\": \"pan cooking, pot receives\", \"why_it_matters\": \"parallel cooking or broth building\", \"confidence\": \"high\"}]}"
+  ],
+  "pruned_targets": [],
+  "focus_plan": [
+    "focus on V2 and V4 wok contents to check if they are the same wok and sequence",
+    "focus on V3 and V5 to check if they are parallel or sequential",
+    "resolve V2/V4 wok progression",
+    "resolve V3/V5 large pot progression"
+  ]
+}

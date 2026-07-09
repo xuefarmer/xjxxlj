@@ -1,0 +1,278 @@
+{
+  "confirmed": [
+    "5->1: raw prep to oven presentation",
+    "1->4: raw to roasted state transition",
+    "4->2: blended puree to simmering sauce",
+    "2->3: sauce completion to sandwich assembly"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Present pan with red items, move to oven\", \"2\": \"Blend puree to pot, simmer orange sauce\", \"3\": \"Butter bread, add pesto/cheese, grill sandwich\", \"4\": \"Cooked veg to blender, puree to orange liquid\", \"5\": \"Prep raw tomatoes/garlic/shallots, fill roasting pan\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "tomatoes_red_items": {
+      "5": "raw, whole/halved, fresh, in pot/pan",
+      "1": "red, shiny/wet, in baking pan (VLM said strawberries but likely tomatoes)",
+      "4": "cooked, chunky, wet, poured to blender"
+    },
+    "blender": {
+      "5": "not visible",
+      "4": "receives cooked veg, purees to orange liquid",
+      "2": "pours orange puree to pot, rinsed with red liquid"
+    },
+    "pot_saucepan": {
+      "1": "red pot on stove, lid on, filled",
+      "2": "grey saucepan, receives orange puree, simmered",
+      "4": "not visible"
+    },
+    "cutting_board": {
+      "3": "wooden board, used for bread/butter",
+      "5": "wooden board, used for tomatoes/garlic/shallots"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object_state_chain",
+    "container_fill_level",
+    "tool_contact",
+    "residue_depletion",
+    "ingredient_maturity",
+    "tomato_maturity_raw_vs_roasted",
+    "cutting_board_residue",
+    "blender_puree_continuity",
+    "pan_fill_level"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "All object states and event roles pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object_state_chain",
+          "container_fill_level",
+          "tool_contact",
+          "residue_depletion",
+          "ingredient_maturity"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Present pan with red items, move to oven",
+          "2": "Blend puree to pot, simmer orange sauce",
+          "3": "Butter bread, add pesto/cheese, grill sandwich",
+          "4": "Cooked veg to blender, puree to orange liquid",
+          "5": "Prep raw tomatoes/garlic/shallots, fill roasting pan"
+        },
+        "object_memory": {
+          "tomatoes_red_items": {
+            "5": "raw, whole/halved, fresh, in pot/pan",
+            "1": "red, shiny/wet, in baking pan (VLM said strawberries but likely tomatoes)",
+            "4": "cooked, chunky, wet, poured to blender"
+          },
+          "blender": {
+            "5": "not visible",
+            "4": "receives cooked veg, purees to orange liquid",
+            "2": "pours orange puree to pot, rinsed with red liquid"
+          },
+          "pot_saucepan": {
+            "1": "red pot on stove, lid on, filled",
+            "2": "grey saucepan, receives orange puree, simmered",
+            "4": "not visible"
+          },
+          "cutting_board": {
+            "3": "wooden board, used for bread/butter",
+            "5": "wooden board, used for tomatoes/garlic/shallots"
+          }
+        },
+        "preliminary_order": "3->5->1->4->2 or 5->1->4->2->3",
+        "order_confidence": 6,
+        "confidence_basis": "Sauce chain 5->1->4->2 is plausible but needs roast state verification. Segment 3 placement unknown.",
+        "blocking_uncertainties": [
+          "Are items in Video 1 raw or roasted?",
+          "Are items in Video 4 roasted?",
+          "Is cutting board in 3 clean or dirty compared to 5?",
+          "Where does sandwich segment 3 fit in the overall timeline?"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                5
+              ],
+              "event": "pan presentation",
+              "key_objects": [
+                "baking pan",
+                "red items"
+              ],
+              "visible_state": "pan filled, moving to oven",
+              "why_it_matters": "determines if pre or post roast",
+              "confidence": "medium"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                41
+              ],
+              "event": "sauce simmering",
+              "key_objects": [
+                "blender",
+                "grey saucepan"
+              ],
+              "visible_state": "orange puree to pot",
+              "why_it_matters": "follows blending",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                46
+              ],
+              "event": "sandwich assembly",
+              "key_objects": [
+                "cutting board",
+                "bread",
+                "pesto"
+              ],
+              "visible_state": "raw bread, grilled",
+              "why_it_matters": "needs placement relative to sauce",
+              "confidence": "medium"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                20
+              ],
+              "event": "blending cooked veg",
+              "key_objects": [
+                "cooked veg",
+                "blender"
+              ],
+              "visible_state": "chunky to puree",
+              "why_it_matters": "follows roasting",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                162
+              ],
+              "event": "raw prep",
+              "key_objects": [
+                "tomatoes",
+                "cutting board",
+                "roasting pan"
+              ],
+              "visible_state": "raw veg to pan",
+              "why_it_matters": "start of sauce chain",
+              "confidence": "high"
+            }
+          ]
+        },
+        "candidate_targets": [
+          "1",
+          "3",
+          "4",
+          "5"
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "Roast state of items in Video 1",
+          "Roast state of items in Video 4",
+          "Cutting board residue in 3 vs 5",
+          "Placement of Video 3"
+        ],
+        "dimensions_to_compare": [
+          "tomato_maturity_raw_vs_roasted",
+          "cutting_board_residue",
+          "blender_puree_continuity",
+          "pan_fill_level"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 8,
+        "comparison_table": {
+          "5": "raw tomatoes/garlic/shallots/basil/oil/seasoning in pan; board has tomato juice/garlic residue",
+          "1": "raw tomatoes in pan moving to oven",
+          "4": "roasted tomatoes (blistered/charred) poured to blender",
+          "2": "orange puree from blender to grey saucepan, simmering",
+          "3": "bread buttered, pesto/cheese added, grilled; board has crumbs/butter residue"
+        },
+        "confirmed": [
+          "5->1: raw prep to oven presentation",
+          "1->4: raw to roasted state transition",
+          "4->2: blended puree to simmering sauce",
+          "2->3: sauce completion to sandwich assembly"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": [],
+        "focus_plan": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "3->5->1->4->2 or 5->1->4->2->3"
+  ],
+  "order_confidence": [
+    "6",
+    "8"
+  ],
+  "confidence_basis": [
+    "Sauce chain 5->1->4->2 is plausible but needs roast state verification. Segment 3 placement unknown."
+  ],
+  "blocking_uncertainties": [
+    "Are items in Video 1 raw or roasted?",
+    "Are items in Video 4 roasted?",
+    "Is cutting board in 3 clean or dirty compared to 5?",
+    "Where does sandwich segment 3 fit in the overall timeline?"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 5], \"event\": \"pan presentation\", \"key_objects\": [\"baking pan\", \"red items\"], \"visible_state\": \"pan filled, moving to oven\", \"why_it_matters\": \"determines if pre or post roast\", \"confidence\": \"medium\"}], \"video2\": [{\"window\": [0, 41], \"event\": \"sauce simmering\", \"key_objects\": [\"blender\", \"grey saucepan\"], \"visible_state\": \"orange puree to pot\", \"why_it_matters\": \"follows blending\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 46], \"event\": \"sandwich assembly\", \"key_objects\": [\"cutting board\", \"bread\", \"pesto\"], \"visible_state\": \"raw bread, grilled\", \"why_it_matters\": \"needs placement relative to sauce\", \"confidence\": \"medium\"}], \"video4\": [{\"window\": [0, 20], \"event\": \"blending cooked veg\", \"key_objects\": [\"cooked veg\", \"blender\"], \"visible_state\": \"chunky to puree\", \"why_it_matters\": \"follows roasting\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 162], \"event\": \"raw prep\", \"key_objects\": [\"tomatoes\", \"cutting board\", \"roasting pan\"], \"visible_state\": \"raw veg to pan\", \"why_it_matters\": \"start of sauce chain\", \"confidence\": \"high\"}]}"
+  ],
+  "candidate_targets": [
+    "1",
+    "3",
+    "4",
+    "5"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"5\": \"raw tomatoes/garlic/shallots/basil/oil/seasoning in pan; board has tomato juice/garlic residue\", \"1\": \"raw tomatoes in pan moving to oven\", \"4\": \"roasted tomatoes (blistered/charred) poured to blender\", \"2\": \"orange puree from blender to grey saucepan, simmering\", \"3\": \"bread buttered, pesto/cheese added, grilled; board has crumbs/butter residue\"}"
+  ],
+  "pruned_targets": [],
+  "focus_plan": []
+}

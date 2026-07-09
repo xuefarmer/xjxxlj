@@ -1,0 +1,128 @@
+[
+  {
+    "turn": 1,
+    "call_id": "batch_1_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 31.26666666666665,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-08 18:42:51",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 31.3s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"raw/cooked progression\",\n    \"container fill/empty\",\n    \"transfer traces\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "| objects | action | state | window | query_link | conf | uncertainty |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| pot, liquid mixture (yellowish, foamy), black slotted spatula | stirring, simmering | liquid is hot/bubbling/wet/mixed (grains/pasta visible), pot is filled, spatula is wet | 1-12 | [1, 12] | 0.95 | UNCERTAIN: exact content of liquid (pasta vs sauce) |\n| orange packet (food packaging) | holding, opening | present, dry, sealed/being torn | 13-16 | [13, 16] | 0.9 | UNCERTAIN: specific contents of packet |\n| white bowl, metal spoon | resting on counter | bowl is empty, spoon is present/dry | 1-13 | [1, 13] | 0.95 | NONE |\n| second pot (silver/black), lid | resting on stove | pot is covered/lidded, present | 1-16 | [1, 16] | 0.9 | UNCERTAIN: contents of second pot |\n| kettle, cutting board, knives | resting | present, dry | 13-16 | [13, 16] | 0.9 | NONE |",
+    "timestamp_end": "2026-07-08 18:43:39"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 15.066666666666666,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-08 18:42:51",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 15.1s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"raw/cooked progression\",\n    \"container fill/empty\",\n    \"transfer traces\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "- objects: pot, kettle, white liquid | action: pouring liquid from kettle into pot | state: pot filled with white liquid, liquid hot/bubbling, kettle wet/residue | window: 1-7 | query_link: | conf: high | uncertainty: none\n- objects: pot, lid | action: placing lid on pot | state: pot covered, filled | window: 6-8 | query_link: | conf: high | uncertainty: none\n- objects: pan, spatula, yellow mixture | action: stirring mixture in pan | state: mixture cooking, wet, mixed | window: 9-10 | query_link: | conf: high | uncertainty: none\n- objects: orange packet (cheese/ingredient), pan | action: opening packet, holding over pan to add contents | state: packet opened, contents raw/present, transfer impending | window: 11-16 | query_link: | conf: high | uncertainty: exact identity of packet contents (likely cheese)",
+    "timestamp_end": "2026-07-08 18:43:42"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 12.166666666666657,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-08 18:42:51",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 12.2s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"raw/cooked progression\",\n    \"container fill/empty\",\n    \"transfer traces\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "| objects | action | state | window | query_link | conf | uncertainty |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| tap, white tray, sink | adjusting tap, rinsing | tap running (wet), tray present in basin | 1-3 | N/A | 0.9 | low |\n| pot (front), yellowish mixture, spatula | stirring | mixture liquid/cooking (wet), pot filled/open | 5-16 | N/A | 0.95 | mixture type (soup/porridge) |\n| pot (back), lid | covered, adjusting lid | lid on pot, cooking | 5-16 | N/A | 0.9 | low |\n| white bowl, glass lid | resting on counter | bowl empty, lid separate | 5-16 | N/A | 0.9 | low |",
+    "timestamp_end": "2026-07-08 18:43:49"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 31.26666666666665,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the main pot: is the liquid WHITE/CLEAR or YELLOWISH/FOAMY? Are grains/pasta visible? Also report the state of the orange packet: SEALED, BEING_TORN, or OPENED/EMPTY? Report exactly what you see."
+    },
+    "timestamp_start": "2026-07-08 18:45:10",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 31.3s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the main pot: is the liquid WHITE/CLEAR or YELLOWISH/FOAMY? Are grains/pasta visible? Also report the state of the orange packet: SEALED, BEING_TORN, or OPENED/EMPTY? Report exactly what you see.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"main_pot\": {\n      \"2\": \"white liquid poured, then covered\",\n      \"1\": \"yellowish foamy mixture with pasta, stirring\",\n      \"3\": \"yellowish mixture open, back pot lid adjusting\"\n    },\n    \"orange_packet\": {\n      \"2\": \"opened, adding contents to pan\",\n      \"1\": \"sealed/being torn\"\n    },\n    \"white_bowl\": {\n      \"1\": \"empty, metal spoon\",\n      \"3\": \"empty, glass lid\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"raw/cooked progression\",\n    \"container fill/empty\",\n    \"transfer traces\"\n  ],\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in the frames:\n\n**Main Pot State:**\nThe liquid in the main pot is **YELLOWISH/FOAMY**. It appears to be a creamy, bubbling mixture. **Grains/pasta are visible** (small pasta shapes, likely macaroni, can be seen in the boiling liquid, particularly in frames 6-8).\n\n**Orange Packet State:**\nThe orange packet is initially seen lying **SEALED** on the counter (frames 8-10). In the final frames (13-16), the person picks it up and holds it with both hands, appearing to be in the process of opening it, so it is **BEING_TORN**. It is not yet empty.",
+    "timestamp_end": "2026-07-08 18:46:04"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 15.066666666666666,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the pot where liquid is poured: is it WHITE/CLEAR liquid? Report the state of the orange packet: SEALED, BEING_TORN, or OPENED/ADDING_CONTENTS? Report exactly what you see."
+    },
+    "timestamp_start": "2026-07-08 18:45:10",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 15.1s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the pot where liquid is poured: is it WHITE/CLEAR liquid? Report the state of the orange packet: SEALED, BEING_TORN, or OPENED/ADDING_CONTENTS? Report exactly what you see.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"main_pot\": {\n      \"2\": \"white liquid poured, then covered\",\n      \"1\": \"yellowish foamy mixture with pasta, stirring\",\n      \"3\": \"yellowish mixture open, back pot lid adjusting\"\n    },\n    \"orange_packet\": {\n      \"2\": \"opened, adding contents to pan\",\n      \"1\": \"sealed/being torn\"\n    },\n    \"white_bowl\": {\n      \"1\": \"empty, metal spoon\",\n      \"3\": \"empty, glass lid\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"raw/cooked progression\",\n    \"container fill/empty\",\n    \"transfer traces\"\n  ],\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in the frames (which correspond to Video 2):\n\n*   **Pot where liquid is poured:** The liquid in the small pot (frames 2-7) appears **WHITE**. In frames 3-6, hot water is poured from a kettle into the pot, creating a white, frothy appearance (likely boiling water or milk, described in context as \"white liquid\").\n*   **Orange packet:** The packet is shown in a progression of states. In frames 11-12 it appears **SEALED**. In frame 13 it is **BEING_TORN**. In frames 14-16, it is **OPENED/ADDING_CONTENTS** (being poured into the pan with the yellowish mixture). The final and most active state shown is **OPENED/ADDING_CONTENTS**.",
+    "timestamp_end": "2026-07-08 18:46:28"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 12.166666666666657,
+          "num_frames": 16,
+          "_executor_chunk": true
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the front pot: is the liquid YELLOWISH/FOAMY? Is the back pot lid being ADJUSTED/OPENED or just RESTING? Report exactly what you see."
+    },
+    "timestamp_start": "2026-07-08 18:45:10",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 12.2s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the front pot: is the liquid YELLOWISH/FOAMY? Is the back pot lid being ADJUSTED/OPENED or just RESTING? Report exactly what you see.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"main_pot\": {\n      \"2\": \"white liquid poured, then covered\",\n      \"1\": \"yellowish foamy mixture with pasta, stirring\",\n      \"3\": \"yellowish mixture open, back pot lid adjusting\"\n    },\n    \"orange_packet\": {\n      \"2\": \"opened, adding contents to pan\",\n      \"1\": \"sealed/being torn\"\n    },\n    \"white_bowl\": {\n      \"1\": \"empty, metal spoon\",\n      \"3\": \"empty, glass lid\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"raw/cooked progression\",\n    \"container fill/empty\",\n    \"transfer traces\"\n  ],\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in the frames (specifically frames 5-16 which show the stovetop):\n\n*   **Front Pot State:** The front pot is open and contains a **yellowish, foamy liquid** mixture. In frames 6-8, pasta shapes are visible within the liquid, and it is being stirred with a black utensil.\n*   **Back Pot Lid State:** The back pot lid is primarily **resting** on the pot. However, in frames 9 and 10, a hand reaches out and touches/holds the lid knob, indicating it is being **adjusted** or checked briefly before the person returns to stirring the front pot.\n\n**Summary:** The front pot liquid is **YELLOWISH/FOAMY** (pasta mixture). The back pot lid is **RESTING** for most of the sequence but is briefly **ADJUSTED** (touched/handled) in frames 9-10.",
+    "timestamp_end": "2026-07-08 18:46:01"
+  }
+]

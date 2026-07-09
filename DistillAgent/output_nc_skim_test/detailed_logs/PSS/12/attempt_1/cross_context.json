@@ -1,0 +1,334 @@
+{
+  "confirmed": [
+    "V2->V4: grapes prep to roasting",
+    "V2/V4->V1: grapes to salad assembly",
+    "V1 is final assembly (receives multiple ingredients)",
+    "V4->V1: roasted grapes to salad",
+    "V3 apples match V1 clump appearance",
+    "V1 clump is grapes NOT apples (backtrack from obs_4)"
+  ],
+  "uncertain": [
+    "Where do V3 apples go?",
+    "Are V3 apples the yellow chunks in V5?",
+    "Order of V3, V5, V6",
+    "Does V5 bowl feed into V1 or is separate dish?"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "grapes": {
+      "2": "raw green/purple on tray, sprinkled",
+      "4": "raw green on tray, entering oven"
+    },
+    "apples": {
+      "3": "raw, sliced into wedges, transferred to white bowl"
+    },
+    "tarragon": {
+      "1": "fresh sprigs chopped to minced, then added to salad"
+    },
+    "salad_bowl": {
+      "1": "large ceramic bowl, contains lettuce, red cabbage, receives yellowish-green clump"
+    },
+    "dressing_bowl": {
+      "5": "small white bowl, receives lemon juice, oil, white powder, dark strip"
+    },
+    "potato_bowl": {
+      "5": "large bowl with yellow chunks, celery"
+    },
+    "cabbage_bowl": {
+      "6": "patterned ceramic bowl, receives pale strips and green leaves"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object state chains",
+    "source/destination containers",
+    "transfer traces",
+    "residue/depletion",
+    "raw vs cooked",
+    "bowl identity and contents progression",
+    "ingredient state transitions (raw/cut/mixed)",
+    "transfer actions between containers"
+  ],
+  "resolved_uncertain": [
+    "V1 clump identity: grapes on stem being picked"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object state chains",
+          "source/destination containers",
+          "transfer traces",
+          "residue/depletion",
+          "raw vs cooked"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "2->4 (grapes prep to roasting). V3 (apples), V5 (dressing/potatoes), V6 (cabbage/leek), V1 (tarragon/salad assembly) need bridging.",
+        "order_confidence": 4,
+        "confidence_basis": "V2->V4 linked by grapes on tray. V1, V3, V5, V6 are prep/assembly but exact sequence unclear.",
+        "blocking_uncertainties": [
+          "Where do the sliced apples (V3) go?",
+          "What is the yellowish-green clump in V1 and where does it come from?",
+          "Are V5's yellow chunks the same as V1's clump?",
+          "Does V6's patterned bowl feed into V1's salad bowl?"
+        ],
+        "object_memory": {
+          "grapes": {
+            "2": "raw green/purple on tray, sprinkled",
+            "4": "raw green on tray, entering oven"
+          },
+          "apples": {
+            "3": "raw, sliced into wedges, transferred to white bowl"
+          },
+          "tarragon": {
+            "1": "fresh sprigs chopped to minced, then added to salad"
+          },
+          "salad_bowl": {
+            "1": "large ceramic bowl, contains lettuce, red cabbage, receives yellowish-green clump"
+          },
+          "dressing_bowl": {
+            "5": "small white bowl, receives lemon juice, oil, white powder, dark strip"
+          },
+          "potato_bowl": {
+            "5": "large bowl with yellow chunks, celery"
+          },
+          "cabbage_bowl": {
+            "6": "patterned ceramic bowl, receives pale strips and green leaves"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                5
+              ],
+              "event": "tarragon chopping",
+              "confidence": "high"
+            },
+            {
+              "window": [
+                25,
+                59
+              ],
+              "event": "salad assembly",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "grapes seasoning",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                8
+              ],
+              "event": "apple slicing",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                6
+              ],
+              "event": "grapes roasting start",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                18
+              ],
+              "event": "dressing and potato prep",
+              "confidence": "high"
+            }
+          ],
+          "video6": [
+            {
+              "window": [
+                0,
+                52
+              ],
+              "event": "cabbage/leek slicing and bowl assembly",
+              "confidence": "high"
+            }
+          ]
+        },
+        "uncertain": [
+          "Connection between V3 apples and other segments",
+          "Identity and origin of V1 yellowish-green clump",
+          "Sequence of V5, V6, V1 salad assembly"
+        ],
+        "dimensions_to_compare": [
+          "bowl identity and contents progression",
+          "ingredient state transitions (raw/cut/mixed)",
+          "transfer actions between containers"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 6,
+        "comparison_table": {
+          "V2->V4": "direct_transfer: grapes on tray, raw/seasoned to roasting",
+          "V2/V4->V1": "direct_transfer: roasted yellow grapes and raw red grapes to salad",
+          "V3->V1": "uncertain: yellowish-green clump in V1 may be apples from V3, but bowl mismatch (V3 white bowl vs V1 small white bowl)",
+          "V5->V1": "uncertain: dressing in V5 small white bowl, but V1 clump is solid not liquid",
+          "V6->V1": "uncertain: cabbage/leek in V6 patterned bowl, V1 has lettuce base but bowl mismatch"
+        },
+        "confirmed": [
+          "V2->V4: grapes prep to roasting",
+          "V2/V4->V1: grapes to salad assembly",
+          "V1 is final assembly (receives multiple ingredients)"
+        ],
+        "uncertain": [
+          "Identity of V1 yellowish-green clump (apples vs cabbage)",
+          "Bowl matching: V3 white bowl vs V1 small white bowl",
+          "Order of V3, V5, V6 prep steps"
+        ],
+        "focus_plan": [
+          "Compare V1 clump appearance with V3 apples",
+          "Verify bowl identity in V1 transfer"
+        ]
+      }
+    },
+    {
+      "turn": 6,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 7,
+        "comparison_table": {
+          "V2->V4": "direct_transfer: grapes on tray, raw/seasoned to roasting",
+          "V4->V1": "direct_transfer: roasted yellow grapes to salad",
+          "V3->V1": "uncertain: apple shreds match V1 clump, but bowl source unclear (hand vs bowl)",
+          "V5->V1": "uncertain: dressing in small white bowl, but V1 clump is solid; need to verify if dressing is mixed with apples",
+          "V6->V1": "uncertain: cabbage/leek in patterned bowl, need to verify if this bowl feeds into V1 or is separate",
+          "V5<->V6": "uncertain: both have bowls with green leaves; need to verify if same bowl (potato salad)"
+        },
+        "confirmed": [
+          "V2->V4: grapes prep to roasting",
+          "V4->V1: roasted grapes to salad",
+          "V3 apples match V1 clump appearance"
+        ],
+        "uncertain": [
+          "V1 clump source: hand vs bowl (and which bowl)",
+          "V5 and V6 bowl identity: same bowl or different?",
+          "Order of V3, V5, V6 prep steps"
+        ],
+        "focus_plan": [
+          "Verify V1 clump source bowl",
+          "Verify V5 and V6 bowl identity to determine if they are sequential"
+        ]
+      }
+    },
+    {
+      "turn": 7,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 5,
+        "comparison_table": {
+          "V2->V4": "direct_transfer: grapes on tray, raw/seasoned to roasting",
+          "V4->V1": "direct_transfer: roasted yellow grapes to salad (picked from stem)",
+          "V3->V1": "REJECTED: V1 clump is grapes not apples; need to find where V3 apples go",
+          "V3->V5": "uncertain: V3 apples sliced into white bowl; V5 has yellow chunks in patterned bowl; need to verify if same",
+          "V6->V5": "likely: V6 patterned bowl has leek/leaves no yellow chunks; V5 same bowl has yellow chunks added",
+          "V5->V1": "uncertain: V5 bowl contents may feed into V1 salad or be separate dish"
+        },
+        "confirmed": [
+          "V2->V4: grapes prep to roasting",
+          "V4->V1: roasted grapes to salad",
+          "V1 clump is grapes NOT apples (backtrack from obs_4)"
+        ],
+        "resolved_uncertain": [
+          "V1 clump identity: grapes on stem being picked"
+        ],
+        "uncertain": [
+          "Where do V3 apples go?",
+          "Are V3 apples the yellow chunks in V5?",
+          "Order of V3, V5, V6",
+          "Does V5 bowl feed into V1 or is separate dish?"
+        ],
+        "focus_plan": [
+          "Check V1 (35-59s) for apple slices",
+          "Check V5 (0-7s) for apple transfer into bowl"
+        ]
+      }
+    },
+    {
+      "turn": 8,
+      "update": {
+        "order_confidence": 8
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "2->4 (grapes prep to roasting). V3 (apples), V5 (dressing/potatoes), V6 (cabbage/leek), V1 (tarragon/salad assembly) need bridging."
+  ],
+  "order_confidence": [
+    "4",
+    "6",
+    "7",
+    "5",
+    "8"
+  ],
+  "confidence_basis": [
+    "V2->V4 linked by grapes on tray. V1, V3, V5, V6 are prep/assembly but exact sequence unclear."
+  ],
+  "blocking_uncertainties": [
+    "Where do the sliced apples (V3) go?",
+    "What is the yellowish-green clump in V1 and where does it come from?",
+    "Are V5's yellow chunks the same as V1's clump?",
+    "Does V6's patterned bowl feed into V1's salad bowl?"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 5], \"event\": \"tarragon chopping\", \"confidence\": \"high\"}, {\"window\": [25, 59], \"event\": \"salad assembly\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 11], \"event\": \"grapes seasoning\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 8], \"event\": \"apple slicing\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 6], \"event\": \"grapes roasting start\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 18], \"event\": \"dressing and potato prep\", \"confidence\": \"high\"}], \"video6\": [{\"window\": [0, 52], \"event\": \"cabbage/leek slicing and bowl assembly\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V2->V4\": \"direct_transfer: grapes on tray, raw/seasoned to roasting\", \"V2/V4->V1\": \"direct_transfer: roasted yellow grapes and raw red grapes to salad\", \"V3->V1\": \"uncertain: yellowish-green clump in V1 may be apples from V3, but bowl mismatch (V3 white bowl vs V1 small white bowl)\", \"V5->V1\": \"uncertain: dressing in V5 small white bowl, but V1 clump is solid not liquid\", \"V6->V1\": \"uncertain: cabbage/leek in V6 patterned bowl, V1 has lettuce base but bowl mismatch\"}",
+    "{\"V2->V4\": \"direct_transfer: grapes on tray, raw/seasoned to roasting\", \"V4->V1\": \"direct_transfer: roasted yellow grapes to salad\", \"V3->V1\": \"uncertain: apple shreds match V1 clump, but bowl source unclear (hand vs bowl)\", \"V5->V1\": \"uncertain: dressing in small white bowl, but V1 clump is solid; need to verify if dressing is mixed with apples\", \"V6->V1\": \"uncertain: cabbage/leek in patterned bowl, need to verify if this bowl feeds into V1 or is separate\", \"V5<->V6\": \"uncertain: both have bowls with green leaves; need to verify if same bowl (potato salad)\"}",
+    "{\"V2->V4\": \"direct_transfer: grapes on tray, raw/seasoned to roasting\", \"V4->V1\": \"direct_transfer: roasted yellow grapes to salad (picked from stem)\", \"V3->V1\": \"REJECTED: V1 clump is grapes not apples; need to find where V3 apples go\", \"V3->V5\": \"uncertain: V3 apples sliced into white bowl; V5 has yellow chunks in patterned bowl; need to verify if same\", \"V6->V5\": \"likely: V6 patterned bowl has leek/leaves no yellow chunks; V5 same bowl has yellow chunks added\", \"V5->V1\": \"uncertain: V5 bowl contents may feed into V1 salad or be separate dish\"}"
+  ],
+  "focus_plan": [
+    "Compare V1 clump appearance with V3 apples",
+    "Verify bowl identity in V1 transfer",
+    "Verify V1 clump source bowl",
+    "Verify V5 and V6 bowl identity to determine if they are sequential",
+    "Check V1 (35-59s) for apple slices",
+    "Check V5 (0-7s) for apple transfer into bowl"
+  ]
+}

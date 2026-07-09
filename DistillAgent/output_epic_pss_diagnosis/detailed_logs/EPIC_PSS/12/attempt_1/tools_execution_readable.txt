@@ -1,0 +1,562 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-08 18:28:00
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-08 18:18:59 -> 2026-07-08 18:19:56
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 45.066666666666606,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment in detail. Report: (1) all visible objects/tools/containers/ingredients; (2) each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) the main action/operation; (4) any background cues showing before/after state. Return compact evidence rows with labels VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from Frames 1-16, here is the detailed description of the cooking segment:
+
+**1. Visible Objects/Tools/Containers/Ingredients:**
+*   **Bag of Frozen Peas:** Green and white packaging with a pink label reading "family size" (visible in Frame 15).
+*   **Frying Pans (2):** Black pans on a stovetop. Left pan and Right pan.
+*   **Red Stew/Sauce:** Thick red sauce with chunks (vegetables/meat) in both pans.
+*   **Wooden Spoon:** Used for stirring.
+*   **Silver Kettle:** Electric kettle in the background.
+*   **Oil Bottle:** Large bottle with yellow liquid.
+*   **Spice Jars:** Small jars with orange lids.
+*   **Knife & Cutting Board:** Visible on the left counter.
+*   **Large Pot:** Metal pot on the far left.
+
+**2. Object States:**
+*   **Peas:** Frozen (implied by bag), green, small, round. State changes from inside bag to mixed in pan.
+*   **Stew/Sauce:** Cooked, red, chunky, hot (simmering).
+*   **Right Pan:** Initially filled with red sauce; becomes filled with red sauce mixed with green peas.
+*   **Left Pan:** Filled with red sauce only (no peas added in this segment).
+*   **Bag:** Opened, depleted as peas are poured, then handled for storage.
+
+**3. Main Action/Operation:**
+*   **Pouring:** The person pours a significant amount of frozen green peas from the "family size" bag into the right-hand frying pan containing the red stew (Frames 1-8, 12-14).
+*   **Stirring:** The person uses a wooden spoon to mix the peas into the stew in the right pan (Frames 9-11).
+*   **Storage:** The person takes the bag of peas and places it into a lower cabinet or freezer (Frame 16).
+
+**4. Background Cues:**
+*   **Before/After:** The right pan transitions from a uniform red stew to a mixture with distinct green peas. The left pan remains unchanged, suggesting a separate dish or a stage not yet reached for that pan.
+*   **Residue:** The cutting board on the left has food residue, indicating prior preparation.
+
+**Compact Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Bag of frozen peas ("family size"), Right frying pan, Red stew | Pouring peas into pan | Peas: frozen/green; Stew: cooked/red; Pan: filled | 1-8, 12-14 | [Link] | High | None |
+| Wooden spoon, Right frying pan (with peas and stew) | Stirring mixture | Mixture: peas integrated into red sauce | 9-11 | [Link] | High | None |
+| Left frying pan, Red stew | Simmering (passive) | Stew: red/chunky, no peas added yet | 1-16 | [Link] | High | None |
+| Bag of frozen peas, Lower cabinet/freezer | Putting bag away | Bag: handled, label visible | 15-16 | [Link] | High | None |
+| Silver kettle, Oil bottle, Spice jars | Static background | Present on counter | 1-16 | [Link] | High | None |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-08 18:18:59 -> 2026-07-08 18:20:06
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 8.199999999999818,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment in detail. Report: (1) all visible objects/tools/containers/ingredients; (2) each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) the main action/operation; (4) any background cues showing before/after state. Return compact evidence rows with labels VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from frames 1-16, here is the detailed description and evidence rows for the cooking segment.
+
+**Detailed Description:**
+The segment captures a food preparation scene, primarily focused on a wooden cutting board in the center. A person is processing a white, rectangular block of food (likely firm tofu, supported by the rectangular package visible near the stove in later frames).
+1.  **Main Action:** The person uses a large kitchen knife to slice the white block. Subsequently, they use both hands to crumble, mash, and break the block into small, irregular pieces directly on the cutting board, which is already dusted with white crumbs or flour.
+2.  **Background Cooking:** To the right, a frying pan contains a mixture of sautéed vegetables (appearing to be onions, peppers, and possibly mushrooms) which look cooked and wilted. In frames 13-15, the camera angle shifts slightly to reveal a second frying pan on the far right containing a red, tomato-based sauce that is simmering/cooking.
+3.  **Surrounding Items:** A large metal pot filled with water sits at the top center. To the left, there is a white bottle with a red cap (likely milk or cream), a small can, a plastic bag containing bread rolls, and a sink with a sponge. A small white bowl containing a white liquid/substance is near the stove.
+
+**Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| cutting board, knife, white block (likely tofu), hands | cutting, crumbling, mashing | block: cut then crumbled; board: covered in white residue/crumbs; hands: active | 1-16 | VISIBLE | High | Uncertain if block is tofu or cheese, but texture suggests tofu. |
+| frying pan (right), mixed vegetables (onions, peppers) | sautéing, cooking | vegetables: cooked, wilted, mixed colors (red, white, yellow) | 1-16 | VISIBLE | High | None. |
+| frying pan (far right), red sauce, wooden spoon | simmering, stirring | sauce: liquid, red, cooking; spoon: present in pan | 13-16 | VISIBLE | High | Pan only appears clearly in later frames. |
+| large metal pot, water | standing, heating | pot: filled with water/liquid; lid absent | 1-16 | VISIBLE | High | None. |
+| white bottle (red cap), small can, small white bowl, bread bag | absent/present (static) | bottle: closed; bowl: filled with white substance; bag: contains bread rolls | 1-16 | VISIBLE | High | Contents of bottle/bowl uncertain. |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-08 18:18:59 -> 2026-07-08 18:19:48
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 28.666666666666742,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment in detail. Report: (1) all visible objects/tools/containers/ingredients; (2) each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) the main action/operation; (4) any background cues showing before/after state. Return compact evidence rows with labels VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the provided frames (Video 3, 0.0s to 28.7s), here is the detailed description of the cooking segment:
+
+**1. Visible Objects/Tools/Containers/Ingredients:**
+*   **Drawer:** Open drawer containing cutlery (knives, spoons, utensils).
+*   **Stove:** Black induction/electric cooktop.
+*   **Frying Pan (Left):** Contains sautéed onions and red peppers.
+*   **Saucepan/Pan (Right):** Contains a red tomato-based sauce.
+*   **Wooden Spoon:** Used for stirring.
+*   **Cutting Board:** Wooden board with residue and a large chef's knife.
+*   **Mushrooms:** Chopped mushrooms resting on a paper towel near the sink.
+*   **Large Pot:** Metal pot (likely a rice cooker or stock pot) sitting on the counter.
+*   **White Plate:** Empty plate near the sink.
+*   **Sink:** Stainless steel sink with a sponge.
+*   **Ingredients:** Onions, red peppers (in pan), tomato sauce (in pan), chopped mushrooms (on paper towel), small red bits (on cutting board, likely chili or spice residue).
+
+**2. Object States:**
+*   **Onions/Peppers (Left Pan):** Cooked/Sautéed (translucent and browned), mixed.
+*   **Tomato Sauce (Right Pan):** Cooked/Simmering (thick, red), filled.
+*   **Mushrooms:** Chopped/Sliced, present on paper towel (appears cooked or prepped).
+*   **Cutting Board:** Used/Dirty (has residue of chopped ingredients), separate.
+*   **Knife:** Present on board, blade has residue.
+*   **Drawer:** Open, filled with utensils.
+*   **White Plate:** Empty, clean.
+
+**3. Main Action/Operation:**
+*   **Initial:** The video starts with a view of an open cutlery drawer, then pans to the stove.
+*   **Cooking/Stirring:** A person is actively cooking. They stir the sautéed vegetables (onions/peppers) in the left pan with a spoon (Frames 5-7, 9). They also stir the tomato sauce in the right pan (Frame 8).
+*   **Prep/Cleaning:** The person moves attention to the cutting board. They appear to be gathering small remnants of ingredients (small red bits, possibly chili or spice) from the board with their fingers (Frames 13-16), likely to add to the dish or clear the board. The knife is handled and set down.
+
+**4. Background Cues (Before/After State):**
+*   **Before:** The drawer is opened (Frame 1), suggesting retrieval of a tool. The pans are already on the heat with food cooking.
+*   **After/Progress:** The food in the pans appears well-cooked. The cutting board is being cleared of small scraps. The mushrooms on the paper towel are waiting to be used or have just been prepped.
+
+**Compact Evidence Rows:**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Drawer, Cutlery | Opened/Viewed | Open, Filled | 1-1 | N/A | High | None |
+| Stove, Pans (x2) | Cooking/Simmering | Hot, Filled | 2-9 | N/A | High | None |
+| Onions, Peppers (Left Pan) | Stirring | Cooked, Sautéed, Mixed | 4-9 | N/A | High | None |
+| Tomato Sauce (Right Pan) | Stirring | Cooked, Simmering, Filled | 4-9 | N/A | High | None |
+| Wooden Spoon | Stirring | In use, Wet (sauce) | 4-9 | N/A | High | None |
+| Cutting Board, Knife | Handling/Clearing | Used, Residue present | 5-16 | N/A | High | None |
+| Mushrooms (on paper towel) | Resting | Chopped, Present | 5, 10-16 | N/A | High | None |
+| Small red bits (on board) | Picking up/Gathering | Chopped/Residue, Being collected | 13-16 | N/A | Medium | Exact ingredient uncertain (chili? spice?) |
+| Large Pot, Plate, Sink | Static | Empty/Idle | 2-16 | N/A | High | None |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-08 18:18:59 -> 2026-07-08 18:19:56
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 44.80000000000018,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment in detail. Report: (1) all visible objects/tools/containers/ingredients; (2) each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) the main action/operation; (4) any background cues showing before/after state. Return compact evidence rows with labels VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the frames, here is the detailed description of the cooking segment.
+
+**Layer 1 Caption:**
+
+*   **Visible Objects/Tools/Containers/Ingredients:**
+    *   **Frying Pan (Left):** Contains sautéed onions/vegetables (yellow/brown strands). Later contains red sauce mixture.
+    *   **Frying Pan (Right):** Contains a simmering red stew/sauce with chunks (tomato-based).
+    *   **Small Glass Jar:** Contains a thick red paste (likely tomato paste).
+    *   **Small White Container/Bowl:** Contains white powder (likely salt or sugar).
+    *   **White Shaker/Container:** Used for seasoning.
+    *   **Wooden Spoon:** Used for stirring.
+    *   **Cutting Board:** Wooden board with flour and dough residue.
+    *   **Knife:** Large kitchen knife on the cutting board.
+    *   **Pot:** Large metal pot with water (visible in background).
+    *   **Spice Jars:** Several small jars with orange lids on the counter.
+    *   **Sink:** Stainless steel sink with dishes.
+    *   **Person's Hands:** Manipulating jars and spoons.
+
+*   **Object States:**
+    *   **Sautéed Onions (Left Pan):** Cooked, yellow/brown, oily/wet. State changes to mixed with red sauce (wet, red).
+    *   **Red Stew (Right Pan):** Cooked, simmering, thick liquid with solids.
+    *   **Red Paste Jar:** Initially filled with red paste. State changes to empty/depleted after pouring.
+    *   **Cutting Board:** Dusty with flour, dough present.
+    *   **Sink:** Wet, contains dirty dishes.
+
+*   **Main Action/Operation:**
+    *   The person opens a jar of red paste (tomato paste).
+    *   They stir the sautéed onions in the left pan.
+    *   They add the red paste from the jar into the left pan with the onions.
+    *   They add a white powder/seasoning from a small container/shaker into the left pan.
+    *   They stir the mixture to combine the red sauce with the onions.
+    *   They rinse the empty jar in the sink.
+
+*   **Background Cues:**
+    *   The right pan shows a completed or nearly completed red stew, indicating a parallel cooking process.
+    *   The cutting board with flour suggests dough preparation (maybe for dumplings or pasta) is happening or has happened nearby.
+    *   The jar is rinsed immediately after use, showing a cleaning step.
+
+**Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Frying pan (left), onions | Stirring, adding sauce | Onions cooked/yellow -> mixed with red sauce | Frames 1-14 | N/A | High | None |
+| Frying pan (right), stew | Simmering (passive) | Cooked, red, chunky | Frames 1-14 | N/A | High | None |
+| Glass jar, red paste | Opening, pouring, rinsing | Full -> Empty -> Rinsed | Frames 1-16 | N/A | High | None |
+| Small white container, powder | Holding, adding | Present, white powder | Frames 7, 11, 14 | N/A | Medium | Exact ingredient (salt/sugar) uncertain |
+| Cutting board, flour, dough | Static | Flour/dough present | Frames 3-14 | N/A | High | None |
+| Sink, jar | Rinsing | Wet, cleaning | Frames 15-16 | N/A | High | None |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_5) ###
+Time: 2026-07-08 18:18:59 -> 2026-07-08 18:20:52
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 35.16666666666674,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment in detail. Report: (1) all visible objects/tools/containers/ingredients; (2) each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) the main action/operation; (4) any background cues showing before/after state. Return compact evidence rows with labels VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from Frames 1-16, here is the detailed description of the cooking segment.
+
+**1. Visible Objects/Tools/Containers/Ingredients**
+*   **Kitchen Counter/Setup:** Granite countertop, stainless steel sink (left), yellow/green sponge.
+*   **Ingredients/Containers:**
+    *   **White Bottle:** Tall white bottle with red cap (likely milk, cream, or sauce). State: Closed, present.
+    *   **Red Measuring Cup:** Pink/Red plastic cup. State: Empty, present.
+    *   **Plastic Bag:** Contains bread or buns. State: Present.
+    *   **Can:** Small metal can. State: Present.
+    *   **Glass Bowl (Center):** Contains a white/greenish mixture (filling). State: Filled, mixed.
+    *   **Small White Bowl:** Contains white liquid (water or batter). State: Filled.
+    *   **Frying Pan (Right):** Black pan containing cooked vegetables (carrots, onions, cabbage/meat). State: Filled, cooked/wilted.
+    *   **Large Pot:** Silver/Black pot with lid. State: Closed, present.
+*   **Tools:**
+    *   **Wooden Cutting Board:** Under the glass bowl. State: Present.
+    *   **Knife:** Silver knife on the cutting board. State: Present.
+    *   **Digital Scale:** Seen in Frames 2-3 (blue screen). State: Active then stored.
+    *   **Blender/Container (Frame 1):** Glass container with white grains (rice) on a base with blue light. State: Filled.
+*   **Product:**
+    *   **White Plate (Bottom Left):** Contains formed dumplings. State: Filled, raw/uncooked.
+
+**2. Object States**
+*   **Filling (in Glass Bowl):** Mixture of white grains (rice) and green/vegetable bits. State: Mixed, moist, raw (but ingredients likely pre-cooked).
+*   **Dumplings (on Plate):** Formed, pleated/folded. State: Raw, assembled.
+*   **Vegetables (in Pan):** Stir-fried mixture. State: Cooked, wilted, separate (not yet mixed into the main bowl in this view, or this is the source).
+*   **Wrappers/Dough:** Being manipulated by hands. State: Raw, soft, pliable.
+*   **Scale:** Blue digital display visible. State: Active (Frame 2), then put away in drawer (Frame 3).
+
+**3. Main Action/Operation**
+*   **Primary Action (Frames 4-16):** **Assembling Dumplings.** The person is taking filling from the central glass bowl, placing it into a wrapper (held in the left hand), and using the right hand to shape, pleat, or seal the dumpling. The motion is repetitive pinching and shaping.
+*   **Secondary Action (Frames 1-3):** **Preparation/Weighing.** Frame 1 shows handling a container with rice (possibly weighing or blending). Frames 2-3 show handling a digital scale (blue screen) and placing it into a drawer/cabinet, clearing the workspace.
+
+**4. Background Cues (Before/After State)**
+*   **Progress:** The plate on the bottom left accumulates finished dumplings, indicating the assembly is ongoing.
+*   **Ingredient Prep:** The frying pan on the right contains cooked vegetables, suggesting the filling ingredients were sautéed beforehand.
+*   **Workspace:** The scale is removed (Frames 2-3) to make room for the assembly process on the cutting board (Frame 4 onwards).
+
+**Compact Evidence Rows**
+
+| Objects | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Glass bowl (filling), Plate (dumplings), Pan (cooked veg), Wrappers | Assembling/Filling dumplings | Filling: Mixed/Moist; Dumplings: Raw/Formed; Veg: Cooked | 4-16 | [Link] | High | Exact dumpling type (Shumai vs Gyoza) |
+| Digital Scale, Drawer | Storing scale | Scale: Active then Stored | 2-3 | [Link] | High | None |
+| Container with rice (Frame 1) | Holding/Weighing rice | Rice: White/Grainy | 1 | [Link] | Medium | Is it a blender or scale container? |
+| Pot, Bottle, Red Cup | Idle | Closed/Present | 1-16 | [Link] | High | Content of white bottle |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_6) ###
+Time: 2026-07-08 18:18:59 -> 2026-07-08 18:20:10
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 6,
+      "start_time": 0.0,
+      "end_time": 10.100000000000136,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe this cooking segment in detail. Report: (1) all visible objects/tools/containers/ingredients; (2) each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) the main action/operation; (4) any background cues showing before/after state. Return compact evidence rows with labels VISIBLE/ABSENT/NOT_VISIBLE_IN_THESE_FRAMES/UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the detailed description of the cooking segment.
+
+**1. Visible Objects/Tools/Containers/Ingredients:**
+*   **Left Frying Pan:** Contains sautéed onions/vegetables (translucent/brown) with yellow powder (likely turmeric or curry powder) and some green bits.
+*   **Right Frying Pan:** Contains a red, chunky sauce (tomato-based, possibly with meat or vegetables).
+*   **Large Pot (Silver/Grey):** Located on the left counter, appears to contain water or a white liquid.
+*   **Cutting Board:** Wooden board with white residue (flour).
+*   **Chef's Knife:** Resting on the cutting board.
+*   **Small White Bowl:** Contains a white substance (cream, yogurt, or batter).
+*   **Small Glass Jar/Container:** Held by the cook in frames 6-10.
+*   **Spice Grinder/Shaker:** Held by the cook in frame 11.
+*   **Wooden Spoon:** Used for stirring.
+*   **Metal Spoon/Ladle:** Seen briefly in the left pan in early frames.
+*   **Stovetop:** Black gas hob with two active burners.
+
+**2. Object States:**
+*   **Left Pan Ingredients:** **Cooked/Sautéed** (onions are browned), **Mixed** (spices incorporated), **Wet** (liquid added).
+*   **Right Pan Ingredients:** **Cooked/Simmering** (red sauce is bubbling/thick), **Mixed**.
+*   **Cutting Board:** **Residue present** (flour dusting), **Used**.
+*   **Large Pot:** **Filled** (liquid visible).
+*   **Small White Bowl:** **Filled** (white substance present), **Separate** (not used yet in this clip).
+*   **Small Glass Jar:** **Depleting** (contents poured into pan).
+*   **Wooden Spoon:** **In use**, **Wet** (coated with food).
+
+**3. Main Action/Operation:**
+The cook is actively managing two pans. The primary focus is on the **left pan**.
+*   **Stirring:** The cook stirs the sautéed onion and spice mixture in the left pan (initially with a metal spoon, then switching to a wooden spoon).
+*   **Adding Ingredient:** The cook pours a liquid or semi-solid ingredient from a small glass jar into the left pan (Frames 6-10).
+*   **Seasoning:** The cook uses a grinder/shaker to add seasoning (salt or pepper) to the left pan (Frame 11).
+*   **Mixing:** The cook vigorously stirs the left pan to incorporate the new ingredients (Frames 12-16).
+*   **Simmering:** The right pan with red sauce simmers passively on the adjacent burner.
+
+**4. Background Cues (Before/After State):**
+*   **Before:** The left pan has distinct piles of yellow spice on top of the onions (Frame 1).
+*   **After:** The left pan contents are well-mixed, darker, and more cohesive after stirring (Frame 16). The flour on the cutting board remains undisturbed, suggesting the dough preparation phase is paused or finished.
+
+**Compact Evidence Rows:**
+
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Left Pan (onions, spices) | Stirring, Adding ingredients | Sautéed, Mixed, Wet | 1-16 | [Link] | High | Exact spice identity uncertain |
+| Right Pan (red sauce) | Simmering (passive) | Cooked, Simmering | 1-16 | [Link] | High | None |
+| Small Glass Jar | Pouring/Adding | Depleting, Present | 6-10 | [Link] | Medium | Contents unclear (oil vs liquid spice) |
+| Spice Grinder | Grinding/Shaking | Used, Present | 11 | [Link] | High | Salt vs Pepper uncertain |
+| Cutting Board & Knife | Resting | Residue (flour), Separate | 1-16 | [Link] | High | None |
+| Large Pot | Resting | Filled (liquid) | 1-16 | [Link] | High | Liquid type uncertain |
+| Small White Bowl | Resting | Filled (white substance) | 1-16 | [Link] | High | Contents uncertain |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-08 18:23:15 -> 2026-07-08 18:24:19
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 45.066666666666606,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the exact visible state of: (1) LEFT pan contents (color, ingredients, wet/dry); (2) RIGHT pan contents (color, ingredients, wet/dry); (3) Cutting board state (clean, flour, residue, specific items); (4) Any background items like peas bag, red paste jar, mushrooms. Return compact rows: object, state, window, conf."
+}
+
+[Output]:
+left_pan, red sauce/stew (wet), 1-16, high
+right_pan, red stew with green peas added (wet), 1-16, high
+cutting_board, flour/dough residue with knife, 1-16, high
+peas_bag, poured into right pan then stored in freezer drawer, 1-16, high
+spice_jars, small jars with orange lids on counter, 1-16, high
+mushrooms, not clearly distinct (likely cooked into sauce), 1-16, low
+red_paste_jar, not clearly distinct (small spice jars visible), 1-16, low
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-08 18:23:15 -> 2026-07-08 18:24:40
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 8.199999999999818,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the exact visible state of: (1) LEFT pan contents (color, ingredients, wet/dry); (2) RIGHT pan contents (color, ingredients, wet/dry); (3) Cutting board state (clean, flour, residue, specific items like white block); (4) Any background items like red sauce pan, mushrooms. Return compact rows: object, state, window, conf."
+}
+
+[Output]:
+Based on the visual evidence in Frames 1-16 (Video 2):
+
+*   **Left Pan (Veggie Pan):** Contains a sautéed mixture of vegetables (appears to be onions, peppers, and possibly mushrooms/cabbage). Colors are yellow, white, and red. The state is oily/glistening (cooked/fried). Visible throughout, but clearly positioned as the left burner pan in frames 13-15.
+*   **Right Pan (Red Sauce Pan):** Contains a red sauce or stew. Color is red/orange. State is wet/saucy. Clearly visible in frames 13-16 (partially visible on edge in others).
+*   **Cutting Board:** Wooden board covered in white flour/powder and white crumbs. A white block (likely tofu or cheese) is being cut and crumbled by hands. A knife is present.
+*   **Background Items:** Large silver pot (appears to contain water or is empty), white bottle with red cap (milk?), a can, and a small bowl with white powder.
+
+**Compact Report:**
+
+| Object | State | Window | Conf |
+| :--- | :--- | :--- | :--- |
+| **Left Pan** | Sautéed veggies (onions/peppers), yellow/red/white, oily/glistening | 1-16 | High |
+| **Right Pan** | Red sauce/stew, red/orange, wet | 13-16 | High |
+| **Cutting Board** | Flour residue, white crumbs, white block being crumbled | 1-16 | High |
+| **Background** | Silver pot, milk bottle (red cap), can, small white bowl | 1-16 | High |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-08 18:23:15 -> 2026-07-08 18:24:48
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 28.666666666666742,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the exact visible state of: (1) LEFT pan contents (color, ingredients, wet/dry); (2) RIGHT pan contents (color, ingredients, wet/dry); (3) Cutting board state (clean, flour, residue, specific items); (4) Any background items like mushrooms on paper towel, red sauce pan. Return compact rows: object, state, window, conf."
+}
+
+[Output]:
+Based on the visual evidence in Frames 1-16 (mapped to Video 3) and the provided context keys for "3":
+
+*   **Left pan contents:** Sautéed onions and peppers (white, yellow, and red strips), appearing wet/oily. (Note: In some frames like 5-7, red ingredients are being stirred/added, but the base state is onions/peppers).
+*   **Right pan contents:** Red tomato sauce/stew with visible chunks, wet.
+*   **Cutting board state:** Wooden board with red residue/bits (pepper/tomato skins), knife present in later frames.
+*   **Background items:** Sliced mushrooms on a paper towel (visible to the left of the stove/cutting board area).
+
+**Compact State Report:**
+
+| Object | State | Window | Conf |
+| :--- | :--- | :--- | :--- |
+| Left pan contents | Sautéed onions and peppers (white/yellow/red), wet/oily | Video 3 (Frames 1-16) | 0.95 |
+| Right pan contents | Red tomato sauce/stew, wet | Video 3 (Frames 1-16) | 0.95 |
+| Cutting board | Wooden board with red residue/bits, knife present | Video 3 (Frames 1-16) | 0.95 |
+| Mushrooms | Sliced mushrooms on paper towel | Video 3 (Frames 5-16) | 0.90 |
+| Red sauce pan | Pan containing red sauce on right burner | Video 3 (Frames 2-12) | 0.95 |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_4) ###
+Time: 2026-07-08 18:23:15 -> 2026-07-08 18:24:17
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 44.80000000000018,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the exact visible state of: (1) LEFT pan contents (color, ingredients, wet/dry, any additions like red paste); (2) RIGHT pan contents (color, ingredients, wet/dry); (3) Cutting board state (clean, flour, residue, specific items); (4) Any background items like red paste jar, sink. Return compact rows: object, state, window, conf."
+}
+
+[Output]:
+Based on the visual evidence from Frames 1-16 (Video 4), here is the state extraction:
+
+| Object | State | Window | Conf |
+| :--- | :--- | :--- | :--- |
+| **Left Pan** | Sautéed yellow/brown onions and peppers (wet, cooked). | 1-2, 4-9 | High |
+| **Left Pan** | Red paste added and stirred in, turning contents into a red sauce mixture; white powder (salt/sugar) shaken in at end. | 10-14 | High |
+| **Right Pan** | Thick red chunky stew/sauce (wet, simmering). | 1-2, 4-14 | High |
+| **Cutting Board** | Wooden board with flour residue, a lump of white dough, and a large knife resting on it. | 3-14 | High |
+| **Red Paste Jar** | Small glass jar, opened to reveal red paste; being scooped from. | 4-13 | High |
+| **Red Paste Jar** | Jar with red residue being rinsed under running water. | 15-16 | High |
+| **Sink** | Stainless steel sink with running water, used for rinsing the jar. | 15-16 | High |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_5) ###
+Time: 2026-07-08 18:23:15 -> 2026-07-08 18:24:57
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 35.16666666666674,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the exact visible state of: (1) LEFT pan/counter area (any pans visible?); (2) RIGHT pan contents (color, ingredients, wet/dry); (3) Cutting board state (clean, flour, residue, specific items); (4) Any background items like glass bowl with filling, plate with dumplings, digital scale. Return compact rows: object, state, window, conf."
+}
+
+[Output]:
+Based on the visual evidence from the provided frames (Video 5), here is the state scan:
+
+| Object | State | Window | Conf |
+| :--- | :--- | :--- | :--- |
+| **Left pan/counter area** | No pan visible on left stove (black surface). Counter area contains a sink, a white plate with chopped ingredients (green/white chunks, likely mushrooms or filling), a red measuring cup, and a white bottle with a red cap. | 1, 4-16 | High |
+| **Right pan contents** | Frying pan contains a sautéed mixture of red, yellow, and white strips (appears to be peppers, onions, cabbage, or similar vegetables). Texture is wet/oily and cooked. | 1, 4-16 | High |
+| **Cutting board state** | Wooden cutting board in center. Holds a glass bowl. A knife is lying on the board in later frames. Surface is partially obscured by the bowl. | 1, 4-16 | High |
+| **Glass bowl (center)** | Contains a white, dough-like substance. Hands are actively kneading and mixing the contents. | 4-16 | High |
+| **Plate (bottom left)** | White plate containing chopped ingredients (white/green/yellowish chunks), possibly dumpling filling or chopped vegetables. | 1, 4-16 | High |
+| **Digital scale** | A white square digital scale is visible in the top right corner (Frame 1). A black handheld digital scale with a blue illuminated display is held in hands (Frame 2). | 1-2 | High |
+| **Blender jar (Frame 1)** | A glass jar/blender cup containing white grainy contents is being held/placed over the board area in Frame 1. | 1 | Medium |
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_6) ###
+Time: 2026-07-08 18:23:15 -> 2026-07-08 18:23:47
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 6,
+      "start_time": 0.0,
+      "end_time": 10.100000000000136,
+      "num_frames": 16,
+      "_executor_chunk": true
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report the exact visible state of: (1) LEFT pan contents (color, ingredients, wet/dry, any additions like yellow powder or liquid); (2) RIGHT pan contents (color, ingredients, wet/dry); (3) Cutting board state (clean, flour, residue, specific items); (4) Any background items like glass jar, spice grinder. Return compact rows: object, state, window, conf."
+}
+
+[Output]:
+Based on the visual evidence in Frames 1-16 (Video 6):
+
+*   **Left Pan:** Contains sautéed onions and peppers with a distinct pile of yellow powder (likely spice/curry) on top. Around frame 6-10, a clear liquid is poured from a glass jar into the pan, and the contents are stirred, becoming a wet, dark yellow-brown mixture. (Window: 1-16, Conf: High)
+*   **Right Pan:** Contains a simmering red sauce or stew with visible chunks (tomatoes/peppers). It appears wet and thick. (Window: 1-16, Conf: High)
+*   **Cutting Board:** Located on the left, covered in white flour residue. A large chef's knife rests on it. There are some white crumbs or dough bits. (Window: 1-16, Conf: High)
+*   **Background Items:** A large metal pot (pressure cooker) with water is on the far left. A glass jar is used to pour liquid. Small spice jars with orange lids are visible on the far right counter. A kettle is also visible. (Window: 1-16, Conf: High)
+
+------------------------------------------------------------
+

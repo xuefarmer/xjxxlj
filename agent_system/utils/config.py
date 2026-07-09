@@ -2,6 +2,12 @@
 
 import os
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 
 def get_local_video_root() -> str:
     """Local video cache root; subdirs include CC, NC, BU, PEA, etc. (task codes)."""

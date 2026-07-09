@@ -1,0 +1,270 @@
+[
+  {
+    "turn": 1,
+    "call_id": "batch_1_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 4.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. Report: (1) all visible objects/tools/containers/ingredients; (2) each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) what action/operation is occurring; (4) any background cues showing before/after state. Return compact rows: object/action/state/window/query_link/conf/uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-07 06:46:51",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 4.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe this cooking segment. Report: (1) all visible objects/tools/containers/ingredients; (2) each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) what action/operation is occurring; (4) any background cues showing before/after state. Return compact rows: object/action/state/window/query_link/conf/uncertainty. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"all object states and transitions pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut/mixed)\",\n    \"container fill/empty/residue\",\n    \"tool contact and transfer traces\",\n    \"background vessel state\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "object/action/state/window/query_link/conf/uncertainty\nWoman/adjusting stove knob/standing, reaching for control, plaid shirt, red apron/1-4/layer1_caption/high/none\nFrying pan (red handle)/heating on burner/empty, black, round, sitting on grate/1-10/layer1_caption/high/none\nGas burner/igniting/blue and orange flame visible under pan/5-10/layer1_caption/high/none\nSalt cellar/resting on counter/small, black oval dish, filled with white salt/1-4, 11-15/layer1_caption/high/none\nBread slices/held by woman then placed/raw, sliced, white interior with brown crust, loaf visible on counter/11-16/layer1_caption/high/none\nGrill pan (ridged)/receiving bread/black, ridged surface, positioned on right burner/1, 15-16/layer1_caption/high/none\nHands/pressing bread/placing two slices flat onto the hot grill pan/16/layer1_caption/high/none",
+    "timestamp_end": "2026-07-07 06:48:49"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 3.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. Report: (1) all visible objects/tools/containers/ingredients; (2) each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) what action/operation is occurring; (4) any background cues showing before/after state. Return compact rows: object/action/state/window/query_link/conf/uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-07 06:46:51",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 3.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe this cooking segment. Report: (1) all visible objects/tools/containers/ingredients; (2) each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) what action/operation is occurring; (4) any background cues showing before/after state. Return compact rows: object/action/state/window/query_link/conf/uncertainty. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"all object states and transitions pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut/mixed)\",\n    \"container fill/empty/residue\",\n    \"tool contact and transfer traces\",\n    \"background vessel state\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "object/action/state/window/query_link/conf/uncertainty\nWoman/Cook | Standing at stove, holding knife over pan | Present, active | 1-3 | N/A | High | None\nFrying Pan | Black, non-stick, on gas stove | Present, heating | 1-16 | N/A | High | None\nButter | Rectangular pat, yellow | Solid -> Melting -> Liquid/Bubbling (wet) | 1-16 | N/A | High | None\nKnife | Silver blade, grey handle | Tool in use, spreading butter | 1-12 | N/A | High | None\nGlass Bowl | Clear, round | Filled with yellow liquid (beaten eggs, raw) | 1-3 | N/A | High | None\nBread | Sliced loaf (baguette style) | Present, sliced, separate | 1-3 | N/A | High | None\nSmall Black Bowl | Round, small | Filled with white powder (salt/sugar) | 1-3 | N/A | High | None\nCooling Rack | Wire rack | Holding cooked round items (pancakes/toast) | 1-3 | N/A | High | None\nAction: Spreading Butter | Knife moves butter across pan surface | Melting, coating pan bottom | 4-12 | N/A | High | None\nPan Surface | Bottom of pan | Coated with bubbling melted butter (wet, hot) | 12-16 | N/A | High | None\nBackground Cues | Cooked food on rack, eggs/bread on counter | Suggests breakfast preparation (French toast or omelet) | 1-3 | N/A | High | None",
+    "timestamp_end": "2026-07-07 06:48:53"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 19.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. Report: (1) all visible objects/tools/containers/ingredients; (2) each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) what action/operation is occurring; (4) any background cues showing before/after state. Return compact rows: object/action/state/window/query_link/conf/uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-07 06:46:51",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 19.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe this cooking segment. Report: (1) all visible objects/tools/containers/ingredients; (2) each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) what action/operation is occurring; (4) any background cues showing before/after state. Return compact rows: object/action/state/window/query_link/conf/uncertainty. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"all object states and transitions pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut/mixed)\",\n    \"container fill/empty/residue\",\n    \"tool contact and transfer traces\",\n    \"background vessel state\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "object/action/state/window/query_link/conf/uncertainty\nCook (Woman)/Plating and presenting/Standing, wearing plaid shirt and red apron/1-16/-/High/-\nFrying Pan/Tilting and scraping/Black, non-stick, contains cooked eggs then residue/1-7/-/High/-\nScrambled Eggs/Transferring from pan to plate/Cooked, fluffy, yellow/white mixture, steaming/1-6/-/High/-\nPlate/Receiving food/White with blue rim, initially holds toast, then filled with eggs/3-16/-/High/-\nToast/Plated/Two slices, browned/toasted, appears buttered or spread/3-16/-/High/-\nUtensil (Wooden Spoon & Red-handled Spatula)/Scraping eggs/Wooden spoon and red-handled tool used to move eggs/1-6/-/Medium/Exact tool used in close-up (frame 4) is dark, likely the red-handled spatula head\nBread Loaf/Resting on counter/Sliced, on wooden board/3-16/-/High/-\nBowl of Eggs/Resting on counter/White bowl containing raw brown eggs/7-16/-/High/-\nStove (Gas Hob)/Background/Black grates, pan placed back on it after use/7-16/-/High/-\nKitchen Background/Static/Shelves with jars, white fridge, sink with oil bottle/1-16/-/High/-",
+    "timestamp_end": "2026-07-07 06:49:05"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 43.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. Report: (1) all visible objects/tools/containers/ingredients; (2) each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) what action/operation is occurring; (4) any background cues showing before/after state. Return compact rows: object/action/state/window/query_link/conf/uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-07 06:46:51",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 43.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe this cooking segment. Report: (1) all visible objects/tools/containers/ingredients; (2) each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) what action/operation is occurring; (4) any background cues showing before/after state. Return compact rows: object/action/state/window/query_link/conf/uncertainty. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"all object states and transitions pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut/mixed)\",\n    \"container fill/empty/residue\",\n    \"tool contact and transfer traces\",\n    \"background vessel state\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "object/action/state/window/query_link/conf/uncertainty\nGlass measuring jug/Pouring/Filled with yellow liquid (beaten eggs) then emptying; residue visible/1-3/N/A/High/Low\nFork/Scraping/Metal tines wet with egg residue; held in hand/1-3/N/A/High/Low\nFrying pan (black, red handle)/Heating & Receiving/Empty then filled with yellow liquid; on gas stove/1-16/N/A/High/Low\nBeaten eggs/Cooking & Stirring/State transition: Raw liquid yellow mixture -> semi-solid wet curds (scrambling)/1-16/N/A/High/Low\nWooden spoon/Stirring/Wooden, brown; contact with cooking eggs/5-16/N/A/High/Low\nLoaf of bread/Resting/Whole rustic loaf, brown crust, sliced end visible/2-4, 7-10/N/A/High/Low\nSmall black bowl (heart-shaped)/Resting/Filled with white granular substance (salt)/2-10/N/A/High/Low\nWhite plate/Resting/Holds two round cooked food items (brownish, possibly cooked egg rounds or toast)/4-5/N/A/Medium/Identity of cooked food on plate\nWoman/Cooking/Wearing plaid shirt and red apron; holding jug then spoon/1-16/N/A/High/Low\nKitchen background/Static/Shelves with bowls, white fridge, window, wooden counter/1-16/N/A/High/Low",
+    "timestamp_end": "2026-07-07 06:48:59"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_5",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 5,
+          "start_time": 0.0,
+          "end_time": 20.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. Report: (1) all visible objects/tools/containers/ingredients; (2) each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) what action/operation is occurring; (4) any background cues showing before/after state. Return compact rows: object/action/state/window/query_link/conf/uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-07 06:46:51",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 5 (0.0s to 20.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe this cooking segment. Report: (1) all visible objects/tools/containers/ingredients; (2) each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) what action/operation is occurring; (4) any background cues showing before/after state. Return compact rows: object/action/state/window/query_link/conf/uncertainty. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"all object states and transitions pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut/mixed)\",\n    \"container fill/empty/residue\",\n    \"tool contact and transfer traces\",\n    \"background vessel state\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Glass measuring jug (Pyrex) / holding ingredients / filled with raw cracked eggs (yolks distinct initially) / 1-16 / N/A / high / none\nSeasoning (salt/pepper) / sprinkling / granules and black specks added to eggs / 1-6 / N/A / high / exact identity (salt vs sugar) uncertain but likely salt/pepper\nFork / whisking / metal utensil retrieved from drawer, used to beat eggs / 7-16 / N/A / high / none\nEggs / mixing / raw, separate yolks/whites transitioning to uniform pale yellow liquid / 1-16 / N/A / high / none\nPlate / holding food / contains 2 slices of cooked browned food (likely French toast) / 1-10 / N/A / high / specific food type uncertain\nFrying pan / resting on stove / contains dark residue/oil, red spatula resting inside / 1-16 / N/A / high / none\nDrawer / opening / opened by cook to retrieve utensil / 7-8 / N/A / high / none\nSmall black bowl / holding ingredient / contains white granules (salt/sugar) / 1-16 / N/A / high / content identity uncertain\nCook (woman) / preparing food / wearing apron, seasoning and whisking eggs / 1-16 / N/A / high / none",
+    "timestamp_end": "2026-07-07 06:48:47"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_6",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 6,
+          "start_time": 0.0,
+          "end_time": 28.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe this cooking segment. Report: (1) all visible objects/tools/containers/ingredients; (2) each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) what action/operation is occurring; (4) any background cues showing before/after state. Return compact rows: object/action/state/window/query_link/conf/uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-07 06:46:51",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 6 (0.0s to 28.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe this cooking segment. Report: (1) all visible objects/tools/containers/ingredients; (2) each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion; (3) what action/operation is occurring; (4) any background cues showing before/after state. Return compact rows: object/action/state/window/query_link/conf/uncertainty. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"all object states and transitions pending Layer1\"\n  ],\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut/mixed)\",\n    \"container fill/empty/residue\",\n    \"tool contact and transfer traces\",\n    \"background vessel state\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "object/action/state/window/query_link/conf/uncertainty\nEggs/Butter/Plate/Spoon | Raw eggs (brown, whole/cracked), Butter block (yellow, solid), Plate (white, holding items), Spoon (metal) | Raw, solid, separate | 2 | - | High | None\nWoman/Glass Jug (Pyrex) | Cracking eggs into jug | Eggs raw, yolks/whites separating into jug, Jug filling (yellow/clear contents) | 3-9 | - | High | None\nMilk Jug (Blue/Green) | Pouring milk | Milk (white liquid), Jug filled then depleting | 11-12 | - | High | None\nGlass Jug (Pyrex) | Contains egg and milk mixture | Yolks distinct (unmixed), milk added, liquid level rising | 13 | - | High | None\nWoman/Stove/Pan/Basket | Gesturing/Talking (Intro/Outro) | Pan (black, empty/ready on stove), Basket (black wire, filled with brown toast/bread), Apron (red) | 1, 14-16 | - | High | None",
+    "timestamp_end": "2026-07-07 06:49:04"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 4.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report exactly: (1) Where is the bread/toast? (raw on grill, cooked on rack, cooked on plate, in basket, ABSENT). (2) What is the state of the frying pan and grill pan? (empty, heating, has residue, has food). (3) Are there any beaten eggs visible? If yes, in what container (jug, bowl, pan) and what state (raw liquid, whisked, cooking)? Return compact rows only."
+    },
+    "timestamp_start": "2026-07-07 06:51:18",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 4.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report exactly: (1) Where is the bread/toast? (raw on grill, cooked on rack, cooked on plate, in basket, ABSENT). (2) What is the state of the frying pan and grill pan? (empty, heating, has residue, has food). (3) Are there any beaten eggs visible? If yes, in what container (jug, bowl, pan) and what state (raw liquid, whisked, cooking)? Return compact rows only.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"eggs\": {\n      \"6\": \"raw whole -> cracked into jug + milk\",\n      \"5\": \"whisking in jug -> uniform yellow liquid\",\n      \"2\": \"beaten in glass bowl\",\n      \"4\": \"poured from jug into pan -> cooking\",\n      \"3\": \"cooked in pan -> plated\"\n    },\n    \"toast\": {\n      \"6\": \"in basket\",\n      \"1\": \"raw on grill pan\",\n      \"2\": \"cooked on wire rack\",\n      \"5\": \"cooked on plate\",\n      \"4\": \"cooked on plate\",\n      \"3\": \"cooked on plate, receives eggs\"\n    },\n    \"pan\": {\n      \"6\": \"empty\",\n      \"1\": \"grill pan heating\",\n      \"2\": \"butter melting\",\n      \"5\": \"residue/oil\",\n      \"4\": \"receiving eggs -> cooking\",\n      \"3\": \"residue after plating\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut/mixed)\",\n    \"container fill/empty/residue\",\n    \"tool contact and transfer traces\",\n    \"background vessel state\",\n    \"egg container identity (jug with spout vs round bowl)\",\n    \"toast location (basket, grill, wire rack, white plate)\",\n    \"pan contents (empty, butter, oil/residue, raw eggs, cooking eggs)\"\n  ],\n  \"uncertain\": [\n    \"exact container for eggs in V2 (jug vs bowl)\",\n    \"toast location transition between V2 (rack) and V5 (plate)\",\n    \"pan state sequence between V2 (butter) and V5 (residue)\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "(1) raw on grill (slices being pressed in frame 16; loaf on counter)\n(2) Frying pan: heating/empty (flame visible in close-ups 5-10); Grill pan: has food (bread slices in frame 16)\n(3) Yes, in glass jug (bottom left corner, frames 11-13), whisked/raw liquid (yellow uniform liquid)",
+    "timestamp_end": "2026-07-07 06:52:50"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 3.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report exactly: (1) Where is the bread/toast? (raw on grill, cooked on wire rack, cooked on plate, in basket, ABSENT). (2) What is the state of the frying pan? (empty, has melting butter, has cooking eggs, has residue). (3) Are there beaten eggs visible? If yes, in what exact container (glass measuring jug with spout, clear round bowl, etc.) and what state? Return compact rows only."
+    },
+    "timestamp_start": "2026-07-07 06:51:18",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 3.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report exactly: (1) Where is the bread/toast? (raw on grill, cooked on wire rack, cooked on plate, in basket, ABSENT). (2) What is the state of the frying pan? (empty, has melting butter, has cooking eggs, has residue). (3) Are there beaten eggs visible? If yes, in what exact container (glass measuring jug with spout, clear round bowl, etc.) and what state? Return compact rows only.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"eggs\": {\n      \"6\": \"raw whole -> cracked into jug + milk\",\n      \"5\": \"whisking in jug -> uniform yellow liquid\",\n      \"2\": \"beaten in glass bowl\",\n      \"4\": \"poured from jug into pan -> cooking\",\n      \"3\": \"cooked in pan -> plated\"\n    },\n    \"toast\": {\n      \"6\": \"in basket\",\n      \"1\": \"raw on grill pan\",\n      \"2\": \"cooked on wire rack\",\n      \"5\": \"cooked on plate\",\n      \"4\": \"cooked on plate\",\n      \"3\": \"cooked on plate, receives eggs\"\n    },\n    \"pan\": {\n      \"6\": \"empty\",\n      \"1\": \"grill pan heating\",\n      \"2\": \"butter melting\",\n      \"5\": \"residue/oil\",\n      \"4\": \"receiving eggs -> cooking\",\n      \"3\": \"residue after plating\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut/mixed)\",\n    \"container fill/empty/residue\",\n    \"tool contact and transfer traces\",\n    \"background vessel state\",\n    \"egg container identity (jug with spout vs round bowl)\",\n    \"toast location (basket, grill, wire rack, white plate)\",\n    \"pan contents (empty, butter, oil/residue, raw eggs, cooking eggs)\"\n  ],\n  \"uncertain\": [\n    \"exact container for eggs in V2 (jug vs bowl)\",\n    \"toast location transition between V2 (rack) and V5 (plate)\",\n    \"pan state sequence between V2 (butter) and V5 (residue)\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "(1) cooked on wire rack, in basket\n(2) has melting butter\n(3) Yes, in glass measuring jug with spout, beaten yellow liquid",
+    "timestamp_end": "2026-07-07 06:52:22"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 19.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report exactly: (1) Where is the bread/toast? (on plate, ABSENT). (2) What is the state of the frying pan? (has cooking eggs, has residue, empty). (3) Are there raw or beaten eggs visible in any bowl/jug on the counter? If yes, what container and state? Return compact rows only."
+    },
+    "timestamp_start": "2026-07-07 06:51:18",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 19.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report exactly: (1) Where is the bread/toast? (on plate, ABSENT). (2) What is the state of the frying pan? (has cooking eggs, has residue, empty). (3) Are there raw or beaten eggs visible in any bowl/jug on the counter? If yes, what container and state? Return compact rows only.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"eggs\": {\n      \"6\": \"raw whole -> cracked into jug + milk\",\n      \"5\": \"whisking in jug -> uniform yellow liquid\",\n      \"2\": \"beaten in glass bowl\",\n      \"4\": \"poured from jug into pan -> cooking\",\n      \"3\": \"cooked in pan -> plated\"\n    },\n    \"toast\": {\n      \"6\": \"in basket\",\n      \"1\": \"raw on grill pan\",\n      \"2\": \"cooked on wire rack\",\n      \"5\": \"cooked on plate\",\n      \"4\": \"cooked on plate\",\n      \"3\": \"cooked on plate, receives eggs\"\n    },\n    \"pan\": {\n      \"6\": \"empty\",\n      \"1\": \"grill pan heating\",\n      \"2\": \"butter melting\",\n      \"5\": \"residue/oil\",\n      \"4\": \"receiving eggs -> cooking\",\n      \"3\": \"residue after plating\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut/mixed)\",\n    \"container fill/empty/residue\",\n    \"tool contact and transfer traces\",\n    \"background vessel state\",\n    \"egg container identity (jug with spout vs round bowl)\",\n    \"toast location (basket, grill, wire rack, white plate)\",\n    \"pan contents (empty, butter, oil/residue, raw eggs, cooking eggs)\"\n  ],\n  \"uncertain\": [\n    \"exact container for eggs in V2 (jug vs bowl)\",\n    \"toast location transition between V2 (rack) and V5 (plate)\",\n    \"pan state sequence between V2 (butter) and V5 (residue)\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "(1) **Bread/toast location:** on plate (two slices of toast are on a white plate with a blue rim, receiving the eggs).\n(2) **Frying pan state:** has cooking eggs (scrambled eggs are being poured/scraped out in frames 1-6), then has residue (pan sits on the stove with residue in frames 7-16).\n(3) **Eggs in bowl/jug:** Yes, raw whole eggs (brown shells) are visible in a white bowl on a tray in the bottom-left corner (frames 3, 7-16).",
+    "timestamp_end": "2026-07-07 06:52:53"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 43.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report exactly: (1) Where is the bread/toast? (on plate, ABSENT). (2) What is the state of the frying pan? (empty, receiving liquid, has cooking eggs, has residue). (3) From what exact container are the eggs being poured (glass measuring jug with spout, clear round bowl)? What is the state of the eggs in the pan (raw liquid, semi-solid curds, fully cooked)? Return compact rows only."
+    },
+    "timestamp_start": "2026-07-07 06:51:18",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 43.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report exactly: (1) Where is the bread/toast? (on plate, ABSENT). (2) What is the state of the frying pan? (empty, receiving liquid, has cooking eggs, has residue). (3) From what exact container are the eggs being poured (glass measuring jug with spout, clear round bowl)? What is the state of the eggs in the pan (raw liquid, semi-solid curds, fully cooked)? Return compact rows only.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"eggs\": {\n      \"6\": \"raw whole -> cracked into jug + milk\",\n      \"5\": \"whisking in jug -> uniform yellow liquid\",\n      \"2\": \"beaten in glass bowl\",\n      \"4\": \"poured from jug into pan -> cooking\",\n      \"3\": \"cooked in pan -> plated\"\n    },\n    \"toast\": {\n      \"6\": \"in basket\",\n      \"1\": \"raw on grill pan\",\n      \"2\": \"cooked on wire rack\",\n      \"5\": \"cooked on plate\",\n      \"4\": \"cooked on plate\",\n      \"3\": \"cooked on plate, receives eggs\"\n    },\n    \"pan\": {\n      \"6\": \"empty\",\n      \"1\": \"grill pan heating\",\n      \"2\": \"butter melting\",\n      \"5\": \"residue/oil\",\n      \"4\": \"receiving eggs -> cooking\",\n      \"3\": \"residue after plating\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut/mixed)\",\n    \"container fill/empty/residue\",\n    \"tool contact and transfer traces\",\n    \"background vessel state\",\n    \"egg container identity (jug with spout vs round bowl)\",\n    \"toast location (basket, grill, wire rack, white plate)\",\n    \"pan contents (empty, butter, oil/residue, raw eggs, cooking eggs)\"\n  ],\n  \"uncertain\": [\n    \"exact container for eggs in V2 (jug vs bowl)\",\n    \"toast location transition between V2 (rack) and V5 (plate)\",\n    \"pan state sequence between V2 (butter) and V5 (residue)\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Bread/toast: on plate\nFrying pan state: receiving liquid, has cooking eggs\nContainer: glass measuring jug with spout; Eggs state: raw liquid, semi-solid curds",
+    "timestamp_end": "2026-07-07 06:52:51"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_5",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 5,
+          "start_time": 0.0,
+          "end_time": 20.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report exactly: (1) Where is the bread/toast? (on plate, on rack, in basket, ABSENT). (2) What is the state of the frying pan? (empty, has oil/residue, has butter, has cooking eggs). (3) In what exact container are the eggs being whisked (glass measuring jug with spout, clear round bowl)? What is the state of the eggs (raw yolks distinct, uniform yellow liquid)? Return compact rows only."
+    },
+    "timestamp_start": "2026-07-07 06:51:18",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 5 (0.0s to 20.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report exactly: (1) Where is the bread/toast? (on plate, on rack, in basket, ABSENT). (2) What is the state of the frying pan? (empty, has oil/residue, has butter, has cooking eggs). (3) In what exact container are the eggs being whisked (glass measuring jug with spout, clear round bowl)? What is the state of the eggs (raw yolks distinct, uniform yellow liquid)? Return compact rows only.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"eggs\": {\n      \"6\": \"raw whole -> cracked into jug + milk\",\n      \"5\": \"whisking in jug -> uniform yellow liquid\",\n      \"2\": \"beaten in glass bowl\",\n      \"4\": \"poured from jug into pan -> cooking\",\n      \"3\": \"cooked in pan -> plated\"\n    },\n    \"toast\": {\n      \"6\": \"in basket\",\n      \"1\": \"raw on grill pan\",\n      \"2\": \"cooked on wire rack\",\n      \"5\": \"cooked on plate\",\n      \"4\": \"cooked on plate\",\n      \"3\": \"cooked on plate, receives eggs\"\n    },\n    \"pan\": {\n      \"6\": \"empty\",\n      \"1\": \"grill pan heating\",\n      \"2\": \"butter melting\",\n      \"5\": \"residue/oil\",\n      \"4\": \"receiving eggs -> cooking\",\n      \"3\": \"residue after plating\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut/mixed)\",\n    \"container fill/empty/residue\",\n    \"tool contact and transfer traces\",\n    \"background vessel state\",\n    \"egg container identity (jug with spout vs round bowl)\",\n    \"toast location (basket, grill, wire rack, white plate)\",\n    \"pan contents (empty, butter, oil/residue, raw eggs, cooking eggs)\"\n  ],\n  \"uncertain\": [\n    \"exact container for eggs in V2 (jug vs bowl)\",\n    \"toast location transition between V2 (rack) and V5 (plate)\",\n    \"pan state sequence between V2 (butter) and V5 (residue)\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "(1) on plate\n(2) has oil/residue\n(3) glass measuring jug with spout; uniform yellow liquid",
+    "timestamp_end": "2026-07-07 06:52:26"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_6",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 6,
+          "start_time": 0.0,
+          "end_time": 28.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report exactly: (1) Where is the bread/toast? (in basket, on grill, on plate, ABSENT). (2) What is the state of the frying pan? (empty, has butter, has eggs). (3) In what exact container are the eggs being cracked/mixed (glass measuring jug with spout, clear round bowl)? What is the state of the eggs (whole raw, cracked with milk, whisked)? Return compact rows only."
+    },
+    "timestamp_start": "2026-07-07 06:51:18",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 6 (0.0s to 28.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report exactly: (1) Where is the bread/toast? (in basket, on grill, on plate, ABSENT). (2) What is the state of the frying pan? (empty, has butter, has eggs). (3) In what exact container are the eggs being cracked/mixed (glass measuring jug with spout, clear round bowl)? What is the state of the eggs (whole raw, cracked with milk, whisked)? Return compact rows only.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"eggs\": {\n      \"6\": \"raw whole -> cracked into jug + milk\",\n      \"5\": \"whisking in jug -> uniform yellow liquid\",\n      \"2\": \"beaten in glass bowl\",\n      \"4\": \"poured from jug into pan -> cooking\",\n      \"3\": \"cooked in pan -> plated\"\n    },\n    \"toast\": {\n      \"6\": \"in basket\",\n      \"1\": \"raw on grill pan\",\n      \"2\": \"cooked on wire rack\",\n      \"5\": \"cooked on plate\",\n      \"4\": \"cooked on plate\",\n      \"3\": \"cooked on plate, receives eggs\"\n    },\n    \"pan\": {\n      \"6\": \"empty\",\n      \"1\": \"grill pan heating\",\n      \"2\": \"butter melting\",\n      \"5\": \"residue/oil\",\n      \"4\": \"receiving eggs -> cooking\",\n      \"3\": \"residue after plating\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut/mixed)\",\n    \"container fill/empty/residue\",\n    \"tool contact and transfer traces\",\n    \"background vessel state\",\n    \"egg container identity (jug with spout vs round bowl)\",\n    \"toast location (basket, grill, wire rack, white plate)\",\n    \"pan contents (empty, butter, oil/residue, raw eggs, cooking eggs)\"\n  ],\n  \"uncertain\": [\n    \"exact container for eggs in V2 (jug vs bowl)\",\n    \"toast location transition between V2 (rack) and V5 (plate)\",\n    \"pan state sequence between V2 (butter) and V5 (residue)\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "(1) in basket\n(2) empty\n(3) glass measuring jug with spout; cracked with milk",
+    "timestamp_end": "2026-07-07 06:52:12"
+  },
+  {
+    "turn": 3,
+    "call_id": "obs_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0,
+          "end_time": 3.0,
+          "num_frames": 16,
+          "focus_prompt": "MODE=focus. For Video 2: Report exact location of cooked toast (wire rack, basket, plate, ABSENT). Report pan contents (melting butter, oil, ABSENT). For Video 5: Report exact location of cooked toast (wire rack, plate, ABSENT). Report pan contents (melted butter/residue, oil, ABSENT). Return compact rows only: video, toast_location, pan_contents, conf."
+        },
+        {
+          "video_index": 5,
+          "start_time": 0,
+          "end_time": 20.0,
+          "num_frames": 16,
+          "focus_prompt": "MODE=focus. For Video 2: Report exact location of cooked toast (wire rack, basket, plate, ABSENT). Report pan contents (melting butter, oil, ABSENT). For Video 5: Report exact location of cooked toast (wire rack, plate, ABSENT). Report pan contents (melted butter/residue, oil, ABSENT). Return compact rows only: video, toast_location, pan_contents, conf."
+        }
+      ],
+      "focus_prompt": "MODE=focus. For Video 2: Report exact location of cooked toast (wire rack, basket, plate, ABSENT). Report pan contents (melting butter, oil, ABSENT). For Video 5: Report exact location of cooked toast (wire rack, plate, ABSENT). Report pan contents (melted butter/residue, oil, ABSENT). Return compact rows only: video, toast_location, pan_contents, conf."
+    },
+    "timestamp_start": "2026-07-07 06:55:05",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 3.0s)\nFrames 17-32 are from Video 5 (0.0s to 20.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=focus. For Video 2: Report exact location of cooked toast (wire rack, basket, plate, ABSENT). Report pan contents (melting butter, oil, ABSENT). For Video 5: Report exact location of cooked toast (wire rack, plate, ABSENT). Report pan contents (melted butter/residue, oil, ABSENT). Return compact rows only: video, toast_location, pan_contents, conf.\n\n[PSS Neutral Focus Notice]\nEven if the prompt or accumulated context mentions a leading edge/order, do not decide which segment is earlier and do not choose between hypotheses. Report only per-target visible object-state cells: object state, container fill/empty state, source/destination, residue/depletion, background object state, confidence, and uncertainty. The master will compare these cells after the tool returns.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"eggs\": {\n      \"6\": \"raw whole -> cracked into jug + milk\",\n      \"5\": \"whisking in jug -> uniform yellow liquid\",\n      \"2\": \"beaten in glass bowl\",\n      \"4\": \"poured from jug into pan -> cooking\",\n      \"3\": \"cooked in pan -> plated\"\n    },\n    \"toast\": {\n      \"6\": \"in basket\",\n      \"1\": \"raw on grill pan\",\n      \"2\": \"cooked on wire rack\",\n      \"5\": \"cooked on plate\",\n      \"4\": \"cooked on plate\",\n      \"3\": \"cooked on plate, receives eggs\"\n    },\n    \"pan\": {\n      \"6\": \"empty\",\n      \"1\": \"grill pan heating\",\n      \"2\": \"butter melting\",\n      \"5\": \"residue/oil\",\n      \"4\": \"receiving eggs -> cooking\",\n      \"3\": \"residue after plating\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"ingredient state (raw/cooked/cut/mixed)\",\n    \"container fill/empty/residue\",\n    \"tool contact and transfer traces\",\n    \"background vessel state\",\n    \"egg container identity (jug with spout vs round bowl)\",\n    \"toast location (basket, grill, wire rack, white plate)\",\n    \"pan contents (empty, butter, oil/residue, raw eggs, cooking eggs)\"\n  ],\n  \"uncertain\": [\n    \"exact container for eggs in V2 (jug vs bowl)\",\n    \"toast location transition between V2 (rack) and V5 (plate)\",\n    \"pan state sequence between V2 (butter) and V5 (residue)\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Video 2, wire rack, melting butter, high\nVideo 5, plate, melted butter/residue, high",
+    "timestamp_end": "2026-07-07 06:56:54"
+  }
+]

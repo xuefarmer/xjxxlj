@@ -1,0 +1,227 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "object states across all 4 segments",
+    "event roles",
+    "state transitions"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"finishing: egg ribbons + slurry thickening in wok\", \"2\": \"prep: shredding cooked white meat onto white plate\", \"3\": \"prep: raw mise en place (ginger, chili, mushrooms, tofu)\", \"4\": \"cooking: adding shredded meat + sauces to wok, boiling\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "tofu": {
+      "3": "block -> strips",
+      "4": "strips on board",
+      "1": "strips in wok"
+    },
+    "wood_ear": {
+      "3": "clumps -> chopped",
+      "4": "chopped pile on board",
+      "1": "brown strips in wok"
+    },
+    "meat": {
+      "2": "cooked chunk -> shredded pile on white plate",
+      "4": "shredded pile on white plate -> wok"
+    },
+    "wok": {
+      "3": "empty/on stove",
+      "4": "liquid + sauces + meat, boiling",
+      "1": "dark base + strips + egg ribbons + thickened"
+    },
+    "white_plate": {
+      "2": "filled with shredded meat pile",
+      "4": "shredded meat transferred to wok"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient maturity (raw/cooked)",
+    "container fill/empty",
+    "transfer traces",
+    "residue/depletion",
+    "tool contact",
+    "white plate meat state",
+    "cutting board prep piles",
+    "wok liquid/darkness/contents"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "object states across all 4 segments",
+          "event roles",
+          "state transitions"
+        ],
+        "dimensions_to_compare": [
+          "ingredient maturity (raw/cooked)",
+          "container fill/empty",
+          "transfer traces",
+          "residue/depletion",
+          "tool contact"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "finishing: egg ribbons + slurry thickening in wok",
+          "2": "prep: shredding cooked white meat onto white plate",
+          "3": "prep: raw mise en place (ginger, chili, mushrooms, tofu)",
+          "4": "cooking: adding shredded meat + sauces to wok, boiling"
+        },
+        "object_memory": {
+          "tofu": {
+            "3": "block -> strips",
+            "4": "strips on board",
+            "1": "strips in wok"
+          },
+          "wood_ear": {
+            "3": "clumps -> chopped",
+            "4": "chopped pile on board",
+            "1": "brown strips in wok"
+          },
+          "meat": {
+            "2": "cooked chunk -> shredded pile on white plate",
+            "4": "shredded pile on white plate -> wok"
+          },
+          "wok": {
+            "3": "empty/on stove",
+            "4": "liquid + sauces + meat, boiling",
+            "1": "dark base + strips + egg ribbons + thickened"
+          },
+          "white_plate": {
+            "2": "filled with shredded meat pile",
+            "4": "shredded meat transferred to wok"
+          }
+        },
+        "temporal_index": {
+          "video3": [
+            {
+              "window": [
+                0,
+                52
+              ],
+              "event": "raw prep",
+              "key_objects": [
+                "ginger",
+                "chili",
+                "mushrooms",
+                "tofu",
+                "board"
+              ],
+              "visible_state": "raw -> chopped/sliced piles",
+              "why_it_matters": "earliest stage, feeds V4 board",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                2
+              ],
+              "event": "shredding meat",
+              "key_objects": [
+                "white plate",
+                "cooked meat"
+              ],
+              "visible_state": "chunk -> shredded pile",
+              "why_it_matters": "feeds V4 white plate",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                30
+              ],
+              "event": "building soup base",
+              "key_objects": [
+                "white plate",
+                "wok",
+                "sauces"
+              ],
+              "visible_state": "meat + sauces added to wok, boiling",
+              "why_it_matters": "intermediate, between V3 prep and V1 finishing",
+              "confidence": "high"
+            }
+          ],
+          "video1": [
+            {
+              "window": [
+                0,
+                41
+              ],
+              "event": "finishing soup",
+              "key_objects": [
+                "wok",
+                "egg",
+                "slurry",
+                "blue bowl"
+              ],
+              "visible_state": "egg ribbons + thickening",
+              "why_it_matters": "final stage",
+              "confidence": "high"
+            }
+          ]
+        },
+        "preliminary_order": [
+          3,
+          2,
+          4,
+          1
+        ],
+        "order_confidence": 9,
+        "confidence_basis": [
+          "V3 raw prep -> V4 board state",
+          "V2 shredded meat plate -> V4 plate transfer",
+          "V4 wok base -> V1 egg/thickening"
+        ],
+        "blocking_uncertainties": [
+          "verify white plate continuity V2->V4",
+          "verify board continuity V3->V4"
+        ],
+        "dimensions_to_compare": [
+          "white plate meat state",
+          "cutting board prep piles",
+          "wok liquid/darkness/contents"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "temporal_index": [
+    "{\"video3\": [{\"window\": [0, 52], \"event\": \"raw prep\", \"key_objects\": [\"ginger\", \"chili\", \"mushrooms\", \"tofu\", \"board\"], \"visible_state\": \"raw -> chopped/sliced piles\", \"why_it_matters\": \"earliest stage, feeds V4 board\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 2], \"event\": \"shredding meat\", \"key_objects\": [\"white plate\", \"cooked meat\"], \"visible_state\": \"chunk -> shredded pile\", \"why_it_matters\": \"feeds V4 white plate\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 30], \"event\": \"building soup base\", \"key_objects\": [\"white plate\", \"wok\", \"sauces\"], \"visible_state\": \"meat + sauces added to wok, boiling\", \"why_it_matters\": \"intermediate, between V3 prep and V1 finishing\", \"confidence\": \"high\"}], \"video1\": [{\"window\": [0, 41], \"event\": \"finishing soup\", \"key_objects\": [\"wok\", \"egg\", \"slurry\", \"blue bowl\"], \"visible_state\": \"egg ribbons + thickening\", \"why_it_matters\": \"final stage\", \"confidence\": \"high\"}]}"
+  ],
+  "preliminary_order": [
+    "3",
+    "2",
+    "4",
+    "1"
+  ],
+  "order_confidence": [
+    "9"
+  ],
+  "confidence_basis": [
+    "V3 raw prep -> V4 board state",
+    "V2 shredded meat plate -> V4 plate transfer",
+    "V4 wok base -> V1 egg/thickening"
+  ],
+  "blocking_uncertainties": [
+    "verify white plate continuity V2->V4",
+    "verify board continuity V3->V4"
+  ]
+}

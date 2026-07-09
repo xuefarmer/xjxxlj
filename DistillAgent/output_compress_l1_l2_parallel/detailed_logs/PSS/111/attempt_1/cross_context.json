@@ -1,0 +1,268 @@
+{
+  "confirmed": [
+    "Wok progression: 3 (empty/oily) -> 6 (veggies) -> 5 (veggies+egg+noodles) -> 2 (noodles+shrimp+sauce)",
+    "Video 1 is initial prep",
+    "Video 4 is egg prep in separate pan"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "ginger": {
+      "1": "cut/yellow strips on board"
+    },
+    "eggs": {
+      "4": "beaten liquid poured into pan, cooked solid",
+      "5": "liquid poured over veggies in wok"
+    },
+    "meat": {
+      "3": "sliced, stir-fried, removed to plate"
+    },
+    "veggies": {
+      "3": "carrots/green beans in bowl",
+      "6": "red peppers/green onions stir-fried in wok",
+      "5": "julienned carrots/peppers/onions in wok with egg"
+    },
+    "noodles": {
+      "5": "white bundle transferred from plate to wok",
+      "2": "in wok with shrimp/sauce"
+    },
+    "shrimp": {
+      "2": "poured from bowl into wok"
+    },
+    "sauce": {
+      "2": "dark liquid poured from bowl into wok"
+    },
+    "wok": {
+      "3": "oily residue after meat removed",
+      "6": "contains stir-fried veggies",
+      "5": "contains veggies, egg, noodles",
+      "2": "contains noodles, shrimp, sauce, fully mixed"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states (raw/cooked, whole/cut, empty/filled)",
+    "tool contact",
+    "transfer traces",
+    "residue/depletion",
+    "background vessel state",
+    "wok contents progression",
+    "bowl depletion",
+    "egg state (liquid vs cooked)",
+    "noodle state (raw bundle vs mixed)"
+  ],
+  "resolved_uncertain": [
+    "Wok content continuity 3->6->5 verified by visible state progression"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All object states and transitions across 6 segments pending Layer1 results."
+        ],
+        "dimensions_to_compare": [
+          "object states (raw/cooked, whole/cut, empty/filled)",
+          "tool contact",
+          "transfer traces",
+          "residue/depletion",
+          "background vessel state"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "1->4->3->6->5->2",
+        "order_confidence": 7,
+        "confidence_basis": "Video 1: prep ginger. Video 4: cook eggs in pan. Video 3: cook meat, remove, wok oily. Video 6: stir-fry veggies. Video 5: add egg & noodles to veggies. Video 2: add shrimp & sauce to noodles.",
+        "blocking_uncertainties": [
+          "Exact wok content continuity between 3, 6, and 5.",
+          "Whether Video 4 eggs are the same as Video 5 egg mixture or separate.",
+          "Final combination sequence in Video 2."
+        ],
+        "object_memory": {
+          "ginger": {
+            "1": "cut/yellow strips on board"
+          },
+          "eggs": {
+            "4": "beaten liquid poured into pan, cooked solid",
+            "5": "liquid poured over veggies in wok"
+          },
+          "meat": {
+            "3": "sliced, stir-fried, removed to plate"
+          },
+          "veggies": {
+            "3": "carrots/green beans in bowl",
+            "6": "red peppers/green onions stir-fried in wok",
+            "5": "julienned carrots/peppers/onions in wok with egg"
+          },
+          "noodles": {
+            "5": "white bundle transferred from plate to wok",
+            "2": "in wok with shrimp/sauce"
+          },
+          "shrimp": {
+            "2": "poured from bowl into wok"
+          },
+          "sauce": {
+            "2": "dark liquid poured from bowl into wok"
+          },
+          "wok": {
+            "3": "oily residue after meat removed",
+            "6": "contains stir-fried veggies",
+            "5": "contains veggies, egg, noodles",
+            "2": "contains noodles, shrimp, sauce, fully mixed"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                10
+              ],
+              "event": "prep ginger",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                45
+              ],
+              "event": "final combination shrimp/sauce",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                40
+              ],
+              "event": "cook meat, remove, wok oily",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                20
+              ],
+              "event": "cook eggs in pan",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                30
+              ],
+              "event": "add egg and noodles to veggies",
+              "confidence": "high"
+            }
+          ],
+          "video6": [
+            {
+              "window": [
+                0,
+                20
+              ],
+              "event": "stir-fry veggies",
+              "confidence": "high"
+            }
+          ]
+        },
+        "candidate_targets": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "Wok content continuity 3->6->5",
+          "Egg identity 4 vs 5"
+        ],
+        "dimensions_to_compare": [
+          "wok contents progression",
+          "bowl depletion",
+          "egg state (liquid vs cooked)",
+          "noodle state (raw bundle vs mixed)"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 8,
+        "comparison_table": {
+          "1": "prep ginger, cutting board with residue",
+          "4": "cook eggs in frying pan, bowl with liquid egg",
+          "3": "cook meat in wok, remove to plate, wok left with oily residue",
+          "6": "stir-fry veggies in wok, steaming",
+          "5": "add raw egg and noodle bundle to wok with veggies",
+          "2": "add shrimp and dark sauce to wok, final mix"
+        },
+        "confirmed": [
+          "Wok progression: 3 (empty/oily) -> 6 (veggies) -> 5 (veggies+egg+noodles) -> 2 (noodles+shrimp+sauce)",
+          "Video 1 is initial prep",
+          "Video 4 is egg prep in separate pan"
+        ],
+        "resolved_uncertain": [
+          "Wok content continuity 3->6->5 verified by visible state progression"
+        ],
+        "uncertain": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1->4->3->6->5->2"
+  ],
+  "order_confidence": [
+    "7",
+    "8"
+  ],
+  "confidence_basis": [
+    "Video 1: prep ginger. Video 4: cook eggs in pan. Video 3: cook meat, remove, wok oily. Video 6: stir-fry veggies. Video 5: add egg & noodles to veggies. Video 2: add shrimp & sauce to noodles."
+  ],
+  "blocking_uncertainties": [
+    "Exact wok content continuity between 3, 6, and 5.",
+    "Whether Video 4 eggs are the same as Video 5 egg mixture or separate.",
+    "Final combination sequence in Video 2."
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 10], \"event\": \"prep ginger\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 45], \"event\": \"final combination shrimp/sauce\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 40], \"event\": \"cook meat, remove, wok oily\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 20], \"event\": \"cook eggs in pan\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 30], \"event\": \"add egg and noodles to veggies\", \"confidence\": \"high\"}], \"video6\": [{\"window\": [0, 20], \"event\": \"stir-fry veggies\", \"confidence\": \"high\"}]}"
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"prep ginger, cutting board with residue\", \"4\": \"cook eggs in frying pan, bowl with liquid egg\", \"3\": \"cook meat in wok, remove to plate, wok left with oily residue\", \"6\": \"stir-fry veggies in wok, steaming\", \"5\": \"add raw egg and noodle bundle to wok with veggies\", \"2\": \"add shrimp and dark sauce to wok, final mix\"}"
+  ]
+}

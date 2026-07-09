@@ -1,0 +1,146 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "all segment roles pending Layer1"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "small_pot_right_burner": {
+      "1": "filled, simmering",
+      "2": "filled, simmering",
+      "3": "filled, simmering, poured at 132s",
+      "4": "filled, simmering",
+      "5": "filled, boiling"
+    },
+    "cutting_board": {
+      "1": "holds knife/cheese, residue later",
+      "2": "holds mushrooms, herbs depleted",
+      "3": "dirty meat/mushroom residue -> wiped clean at 120s",
+      "4": "holds chopped herbs",
+      "5": "holds onions, herbs"
+    },
+    "main_vessel": {
+      "1": "stainless frying pan, pasta/sauce transferred out",
+      "2": "wok, eggs cooking",
+      "3": "frying pan, pasta/sauce/peas cooking",
+      "4": "wok, chicken searing",
+      "5": "wok empty, pot boiling",
+      "6": "large pot, mashed potatoes"
+    },
+    "foreground_white_plate": {
+      "1": "empty, clean",
+      "2": "raw ground meat",
+      "4": "raw chicken slices",
+      "5": "raw bacon/ham"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states across segments",
+    "transfer traces",
+    "container fill/empty",
+    "residue/depletion",
+    "raw-to-cooked progression",
+    "small pot fill/activity state",
+    "cutting board residue type and cleanliness",
+    "main vessel contents and identity",
+    "foreground plate contents",
+    "ingredient maturity (raw vs cooked vs mixed)"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "all segment roles pending Layer1"
+        ],
+        "dimensions_to_compare": [
+          "object states across segments",
+          "transfer traces",
+          "container fill/empty",
+          "residue/depletion",
+          "raw-to-cooked progression"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "5->3->1 for pasta chain; 2,4,6 unplaced",
+        "order_confidence": 6,
+        "confidence_basis": "Video 5 salts boiling water (pasta prep). Video 3 cooks pasta with sauce/meat/peas and uses small pot at 132s. Video 1 transfers cooked pasta to bowl with cream/cheese. Small pot on right burner is a persistent background marker.",
+        "blocking_uncertainties": [
+          "Exact state of small pot on right burner across all segments (fill level, lid, activity)",
+          "Cutting board residue chain (onions/herbs vs meat/mushrooms vs wiped clean)",
+          "Foreground white plate contents (raw meat vs empty)",
+          "Main vessel identity and contents to separate pasta chain from other dishes (eggs, chicken, mashed potatoes)",
+          "Placement of segments 2, 4, 6 relative to the pasta chain"
+        ],
+        "object_memory": {
+          "small_pot_right_burner": {
+            "1": "filled, simmering",
+            "2": "filled, simmering",
+            "3": "filled, simmering, poured at 132s",
+            "4": "filled, simmering",
+            "5": "filled, boiling"
+          },
+          "cutting_board": {
+            "1": "holds knife/cheese, residue later",
+            "2": "holds mushrooms, herbs depleted",
+            "3": "dirty meat/mushroom residue -> wiped clean at 120s",
+            "4": "holds chopped herbs",
+            "5": "holds onions, herbs"
+          },
+          "main_vessel": {
+            "1": "stainless frying pan, pasta/sauce transferred out",
+            "2": "wok, eggs cooking",
+            "3": "frying pan, pasta/sauce/peas cooking",
+            "4": "wok, chicken searing",
+            "5": "wok empty, pot boiling",
+            "6": "large pot, mashed potatoes"
+          },
+          "foreground_white_plate": {
+            "1": "empty, clean",
+            "2": "raw ground meat",
+            "4": "raw chicken slices",
+            "5": "raw bacon/ham"
+          }
+        },
+        "dimensions_to_compare": [
+          "small pot fill/activity state",
+          "cutting board residue type and cleanliness",
+          "main vessel contents and identity",
+          "foreground plate contents",
+          "ingredient maturity (raw vs cooked vs mixed)"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "5->3->1 for pasta chain; 2,4,6 unplaced"
+  ],
+  "order_confidence": [
+    "6"
+  ],
+  "confidence_basis": [
+    "Video 5 salts boiling water (pasta prep). Video 3 cooks pasta with sauce/meat/peas and uses small pot at 132s. Video 1 transfers cooked pasta to bowl with cream/cheese. Small pot on right burner is a persistent background marker."
+  ],
+  "blocking_uncertainties": [
+    "Exact state of small pot on right burner across all segments (fill level, lid, activity)",
+    "Cutting board residue chain (onions/herbs vs meat/mushrooms vs wiped clean)",
+    "Foreground white plate contents (raw meat vs empty)",
+    "Main vessel identity and contents to separate pasta chain from other dishes (eggs, chicken, mashed potatoes)",
+    "Placement of segments 2, 4, 6 relative to the pasta chain"
+  ]
+}

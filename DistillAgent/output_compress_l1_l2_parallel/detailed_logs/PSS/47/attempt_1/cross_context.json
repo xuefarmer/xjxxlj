@@ -1,0 +1,286 @@
+{
+  "confirmed": [
+    "V5->V4: whole potatoes precede cut potatoes",
+    "V4->V3: cut potatoes in pot, tomatoes added",
+    "V3->V2: tomatoes crushed, then red sauce with broth",
+    "V2->V6: red chunky sauce, basil added, then blended",
+    "V6->V1: blended orange soup poured to bowl"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "potatoes": {
+      "5": "raw whole on plate",
+      "4": "raw peeled cut, added to pot",
+      "3": "raw cubed in pot",
+      "2": "cooked yellow chunks in sauce",
+      "6": "blended into smooth soup",
+      "1": "smooth orange soup in bowl"
+    },
+    "onions": {
+      "5": "raw chopped in pot with oil",
+      "4": "raw in pot with potatoes",
+      "3": "raw with green onions added",
+      "2": "cooked in red sauce",
+      "6": "cooked in sauce",
+      "1": "blended"
+    },
+    "tomatoes_sauce": {
+      "3": "whole crushed by hand, added to pot",
+      "2": "red chunky sauce, broth added",
+      "6": "red sauce, basil/seasoning added, blended",
+      "1": "smooth orange soup plated"
+    },
+    "blender": {
+      "6": "filled with red chunks, blended to orange liquid, poured to bowl",
+      "1": "pitcher pouring orange soup to large bowl"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object state progression",
+    "source/destination containers",
+    "transfer traces",
+    "residue/depletion",
+    "raw-to-cooked transitions",
+    "potato state progression",
+    "sauce liquid level",
+    "blender contents"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "pending Layer1 results for all 6 segments"
+        ],
+        "dimensions_to_compare": [
+          "object state progression",
+          "source/destination containers",
+          "transfer traces",
+          "residue/depletion",
+          "raw-to-cooked transitions"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "5->4->3->2->6->1",
+        "order_confidence": 9,
+        "confidence_basis": [
+          "V5: onions in pot, oil, whole potatoes",
+          "V4: cut potatoes added to pot with onions",
+          "V3: green onions and crushed tomatoes added to pot",
+          "V2: broth added to red sauce with potato chunks",
+          "V6: basil/seasoning added, sauce blended into bowl",
+          "V1: blended soup poured from blender, garnished"
+        ],
+        "blocking_uncertainties": [
+          "Verify V5->V4 boundary: potatoes whole vs cut",
+          "Verify V2->V6 boundary: sauce chunky vs blended"
+        ],
+        "object_memory": {
+          "potatoes": {
+            "5": "raw whole on plate",
+            "4": "raw peeled cut, added to pot",
+            "3": "raw cubed in pot",
+            "2": "cooked yellow chunks in sauce",
+            "6": "blended into smooth soup",
+            "1": "smooth orange soup in bowl"
+          },
+          "onions": {
+            "5": "raw chopped in pot with oil",
+            "4": "raw in pot with potatoes",
+            "3": "raw with green onions added",
+            "2": "cooked in red sauce",
+            "6": "cooked in sauce",
+            "1": "blended"
+          },
+          "tomatoes_sauce": {
+            "3": "whole crushed by hand, added to pot",
+            "2": "red chunky sauce, broth added",
+            "6": "red sauce, basil/seasoning added, blended",
+            "1": "smooth orange soup plated"
+          },
+          "blender": {
+            "6": "filled with red chunks, blended to orange liquid, poured to bowl",
+            "1": "pitcher pouring orange soup to large bowl"
+          }
+        },
+        "temporal_index": {
+          "video5": [
+            {
+              "window": [
+                30,
+                47
+              ],
+              "event": "end state",
+              "key_objects": [
+                "yellow pot",
+                "onions",
+                "oil",
+                "whole potatoes"
+              ],
+              "visible_state": "onions/oil in pot on stove, potatoes whole",
+              "why_it_matters": "must precede V4 where potatoes are cut",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                30,
+                63
+              ],
+              "event": "potatoes added",
+              "key_objects": [
+                "pot",
+                "cut potatoes",
+                "onions"
+              ],
+              "visible_state": "cut potatoes added to pot with onions",
+              "why_it_matters": "follows V5 whole potatoes",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                15
+              ],
+              "event": "tomatoes added",
+              "key_objects": [
+                "pot",
+                "potatoes",
+                "onions",
+                "tomatoes"
+              ],
+              "visible_state": "raw potatoes/onions in pot, tomatoes crushed",
+              "why_it_matters": "follows V4, precedes V2 red sauce",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                120,
+                160
+              ],
+              "event": "broth added",
+              "key_objects": [
+                "yellow pot",
+                "red sauce",
+                "broth"
+              ],
+              "visible_state": "broth poured into red chunky sauce",
+              "why_it_matters": "follows V3, precedes V6 blending",
+              "confidence": "high"
+            }
+          ],
+          "video6": [
+            {
+              "window": [
+                0,
+                20
+              ],
+              "event": "finishing sauce",
+              "key_objects": [
+                "yellow pot",
+                "red sauce",
+                "basil"
+              ],
+              "visible_state": "basil added to red chunky sauce",
+              "why_it_matters": "follows V2, precedes blending",
+              "confidence": "high"
+            }
+          ],
+          "video1": [
+            {
+              "window": [
+                0,
+                10
+              ],
+              "event": "plating start",
+              "key_objects": [
+                "blender pitcher",
+                "large bowl",
+                "orange soup"
+              ],
+              "visible_state": "orange soup poured from blender",
+              "why_it_matters": "follows V6 blending",
+              "confidence": "high"
+            }
+          ]
+        },
+        "uncertain": [],
+        "dimensions_to_compare": [
+          "potato state progression",
+          "sauce liquid level",
+          "blender contents"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "order_confidence": 9,
+        "layer2_done": true,
+        "comparison_table": {
+          "V5": "whole potatoes, onions/oil in pot",
+          "V4": "cut potatoes added to onions",
+          "V3": "potatoes/onions, green onions, crushed tomatoes added",
+          "V2": "broth poured into red chunky sauce with potato chunks",
+          "V6": "basil/seasoning added to red sauce, then blended",
+          "V1": "blended orange soup poured, garnished"
+        },
+        "confirmed": [
+          "V5->V4: whole potatoes precede cut potatoes",
+          "V4->V3: cut potatoes in pot, tomatoes added",
+          "V3->V2: tomatoes crushed, then red sauce with broth",
+          "V2->V6: red chunky sauce, basil added, then blended",
+          "V6->V1: blended orange soup poured to bowl"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "5->4->3->2->6->1"
+  ],
+  "order_confidence": [
+    "9"
+  ],
+  "confidence_basis": [
+    "V5: onions in pot, oil, whole potatoes",
+    "V4: cut potatoes added to pot with onions",
+    "V3: green onions and crushed tomatoes added to pot",
+    "V2: broth added to red sauce with potato chunks",
+    "V6: basil/seasoning added, sauce blended into bowl",
+    "V1: blended soup poured from blender, garnished"
+  ],
+  "blocking_uncertainties": [
+    "Verify V5->V4 boundary: potatoes whole vs cut",
+    "Verify V2->V6 boundary: sauce chunky vs blended"
+  ],
+  "temporal_index": [
+    "{\"video5\": [{\"window\": [30, 47], \"event\": \"end state\", \"key_objects\": [\"yellow pot\", \"onions\", \"oil\", \"whole potatoes\"], \"visible_state\": \"onions/oil in pot on stove, potatoes whole\", \"why_it_matters\": \"must precede V4 where potatoes are cut\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [30, 63], \"event\": \"potatoes added\", \"key_objects\": [\"pot\", \"cut potatoes\", \"onions\"], \"visible_state\": \"cut potatoes added to pot with onions\", \"why_it_matters\": \"follows V5 whole potatoes\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 15], \"event\": \"tomatoes added\", \"key_objects\": [\"pot\", \"potatoes\", \"onions\", \"tomatoes\"], \"visible_state\": \"raw potatoes/onions in pot, tomatoes crushed\", \"why_it_matters\": \"follows V4, precedes V2 red sauce\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [120, 160], \"event\": \"broth added\", \"key_objects\": [\"yellow pot\", \"red sauce\", \"broth\"], \"visible_state\": \"broth poured into red chunky sauce\", \"why_it_matters\": \"follows V3, precedes V6 blending\", \"confidence\": \"high\"}], \"video6\": [{\"window\": [0, 20], \"event\": \"finishing sauce\", \"key_objects\": [\"yellow pot\", \"red sauce\", \"basil\"], \"visible_state\": \"basil added to red chunky sauce\", \"why_it_matters\": \"follows V2, precedes blending\", \"confidence\": \"high\"}], \"video1\": [{\"window\": [0, 10], \"event\": \"plating start\", \"key_objects\": [\"blender pitcher\", \"large bowl\", \"orange soup\"], \"visible_state\": \"orange soup poured from blender\", \"why_it_matters\": \"follows V6 blending\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"V5\": \"whole potatoes, onions/oil in pot\", \"V4\": \"cut potatoes added to onions\", \"V3\": \"potatoes/onions, green onions, crushed tomatoes added\", \"V2\": \"broth poured into red chunky sauce with potato chunks\", \"V6\": \"basil/seasoning added to red sauce, then blended\", \"V1\": \"blended orange soup poured, garnished\"}"
+  ]
+}

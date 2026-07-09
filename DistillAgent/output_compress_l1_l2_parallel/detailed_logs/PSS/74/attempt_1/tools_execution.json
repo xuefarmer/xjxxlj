@@ -1,0 +1,202 @@
+[
+  {
+    "turn": 1,
+    "call_id": "batch_1_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 30.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-06 22:10:52",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 30.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"tool contact\"\n  ],\n  \"layer1_done\": [\n    \"False\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: nori sheet, whole avocado, water cup, herb container, spoon, orange roe plate | action: static arrangement | state: nori separate/dry, avocado whole/raw, cup filled, herbs fresh | window: 1 | query_link: null | conf: high | uncertainty: none\nobjects: cooked rice ball, nori sheet | action: placing and spreading rice | state: rice cooked/wet/sticky, nori becoming covered | window: 2-6 | query_link: null | conf: high | uncertainty: none\nobjects: rice-covered nori, green avocado mound, tongs | action: pressing rice, flipping sheet (rice side down), interacting with mound | state: rice spread flat, sheet flipped (nori dark side up), avocado mashed/cut | window: 7-12 | query_link: null | conf: high | uncertainty: flipping action inferred between frames 10-12\nobjects: green strips (avocado/scallion), nori sheet (rice side down) | action: placing strips on nori | state: strips cut/fresh, nori has rice residue on reverse side | window: 13-16 | query_link: null | conf: high | uncertainty: exact identity of green strips (avocado vs scallion)",
+    "timestamp_end": "2026-07-06 22:11:51"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 16.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-06 22:10:52",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 16.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"tool contact\"\n  ],\n  \"layer1_done\": [\n    \"False\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: sushi roll (avocado topped), plastic wrap, knife, cutting board\naction: slicing\nstate: roll is raw, whole then cut, wrapped in plastic; knife contacts roll through plastic\nwindow: 1-11\nquery_link: \nconf: high\nuncertainty: none\n\nobjects: plate, cut sushi pieces, orange garnish (roe), remaining roll piece\naction: plating, sprinkling garnish\nstate: sushi is cut, plated (filled); remaining roll piece is separate on board; orange garnish is added on top of plated sushi\nwindow: 12-16\nquery_link: \nconf: high\nuncertainty: none",
+    "timestamp_end": "2026-07-06 22:11:50"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 26.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-06 22:10:52",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 26.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"tool contact\"\n  ],\n  \"layer1_done\": [\n    \"False\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: sushi roll (rice outside, seaweed inside), avocado slices, knife, water bowl, greens container | action: arranging avocado slices on top of roll | state: roll is whole/cylindrical/cooked(rice); avocado is fresh/cut(sliced)/green; knife is present/resting; bowl is filled | window: 1-6 | query_link: null | conf: 0.95 | uncertainty: low\n\nobjects: bamboo rolling mat (makisu) | action: pressing/shaping avocado onto roll | state: mat is dry/woven/present; roll is being compressed | window: 7-10 | query_link: null | conf: 0.95 | uncertainty: low\n\nobjects: plastic wrap (cling film) | action: covering the roll | state: plastic is present/clear/wrinkled; roll is covered | window: 12-14 | query_link: null | conf: 0.90 | uncertainty: medium (motion blur in frame 12)\n\nobjects: bamboo rolling mat, plastic-wrapped roll | action: pressing/shaping roll through plastic | state: mat is present/dry; roll is firmed/covered | window: 15-16 | query_link: null | conf: 0.95 | uncertainty: low",
+    "timestamp_end": "2026-07-06 22:11:52"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 13.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-06 22:10:52",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 13.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"tool contact\"\n  ],\n  \"layer1_done\": [\n    \"False\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: nori sheet, rice bed, green strips (scallions/cucumber), diced tuna, avocado mound, water bowl\naction: assembling sushi; hands place diced tuna onto nori sheet next to green strips; hand reaches for avocado at end\nstate: rice cooked/white/spread underneath nori; nori dry/black/rectangular; green strips fresh/cut/present; tuna raw/red/diced/wet/present; avocado raw/green/mashed/present; water bowl filled/clear\nwindow: 1-16\nquery_link: [Video 4]\nconf: high\nuncertainty: exact type of green strips (scallion vs cucumber) and green mound (avocado vs wasabi, likely avocado due to size/texture)",
+    "timestamp_end": "2026-07-06 22:11:48"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_5",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 5,
+          "start_time": 0.0,
+          "end_time": 14.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-06 22:10:52",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 5 (0.0s to 14.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty. No final answer.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"tool contact\"\n  ],\n  \"layer1_done\": [\n    \"False\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "objects: hands, sushi roll (rice, nori, filling), avocado mound | action: shaping, pressing | state: rice is white/cooked/wet/sticky, nori is dark/black, roll is being formed into cylinder, avocado is green/mashed | window: 1-10 | query_link: null | conf: high | uncertainty: low\nobjects: sushi roll, avocado mound | action: resting | state: roll is cylindrical/formed (rice on outside, filling visible at end), avocado is green mound | window: 11-12 | query_link: null | conf: high | uncertainty: low\nobjects: bamboo mat (likely plastic-wrapped), hands, sushi roll | action: rolling, shaping, compressing | state: mat is brown/woven, roll is being firmed up | window: 13-16 | query_link: null | conf: high | uncertainty: low",
+    "timestamp_end": "2026-07-06 22:11:32"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 15.0,
+          "end_time": 30.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the sushi assembly. For each target, report: nori state (dry/rice-covered/filled/rolled), filling ingredients present (strips/tuna/avocado), avocado form (mound/slices), plastic wrap (absent/present), bamboo mat (absent/present/used). Return compact rows: object/state/window/conf/uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-06 22:13:02",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (15.0s to 30.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the sushi assembly. For each target, report: nori state (dry/rice-covered/filled/rolled), filling ingredients present (strips/tuna/avocado), avocado form (mound/slices), plastic wrap (absent/present), bamboo mat (absent/present/used). Return compact rows: object/state/window/conf/uncertainty. No final answer.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"nori\": {\n      \"1\": \"rice spread, flipped, strips added\",\n      \"4\": \"rice bed with strips, tuna/avocado added\",\n      \"5\": \"rolled into cylinder\",\n      \"3\": \"rolled, topped with avocado slices\",\n      \"2\": \"sliced through plastic\"\n    },\n    \"avocado\": {\n      \"1\": \"whole then mashed mound\",\n      \"4\": \"mound added to nori\",\n      \"5\": \"inside rolled cylinder\",\n      \"3\": \"sliced on top of roll\",\n      \"2\": \"plated on cut sushi\"\n    },\n    \"plastic_wrap\": {\n      \"1\": \"absent\",\n      \"4\": \"absent\",\n      \"5\": \"absent then used with mat\",\n      \"3\": \"applied to roll\",\n      \"2\": \"used during slicing\"\n    },\n    \"orange_roe\": {\n      \"1\": \"on separate plate\",\n      \"2\": \"sprinkled as garnish on plated sushi\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"tool contact\"\n  ],\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "nori/rice-covered flipped with strips/1-16/high/low\nfilling/strips/11-16/high/low\navocado/mound/2-16/high/low\nplastic_wrap/absent/1-16/high/low\nbamboo_mat/absent/1-16/high/low",
+    "timestamp_end": "2026-07-06 22:14:12"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 13.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the sushi assembly. For each target, report: nori state (dry/rice-covered/filled/rolled), filling ingredients present (strips/tuna/avocado), avocado form (mound/slices), plastic wrap (absent/present), bamboo mat (absent/present/used). Return compact rows: object/state/window/conf/uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-06 22:13:02",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 13.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the sushi assembly. For each target, report: nori state (dry/rice-covered/filled/rolled), filling ingredients present (strips/tuna/avocado), avocado form (mound/slices), plastic wrap (absent/present), bamboo mat (absent/present/used). Return compact rows: object/state/window/conf/uncertainty. No final answer.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"nori\": {\n      \"1\": \"rice spread, flipped, strips added\",\n      \"4\": \"rice bed with strips, tuna/avocado added\",\n      \"5\": \"rolled into cylinder\",\n      \"3\": \"rolled, topped with avocado slices\",\n      \"2\": \"sliced through plastic\"\n    },\n    \"avocado\": {\n      \"1\": \"whole then mashed mound\",\n      \"4\": \"mound added to nori\",\n      \"5\": \"inside rolled cylinder\",\n      \"3\": \"sliced on top of roll\",\n      \"2\": \"plated on cut sushi\"\n    },\n    \"plastic_wrap\": {\n      \"1\": \"absent\",\n      \"4\": \"absent\",\n      \"5\": \"absent then used with mat\",\n      \"3\": \"applied to roll\",\n      \"2\": \"used during slicing\"\n    },\n    \"orange_roe\": {\n      \"1\": \"on separate plate\",\n      \"2\": \"sprinkled as garnish on plated sushi\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"tool contact\"\n  ],\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "nori/rice-covered, filled/1-16/high/low\nfilling/strips, tuna/1-16/high/low\navocado/mound/1-16/high/low\nplastic_wrap/absent/1-16/high/low\nbamboo_mat/absent/1-16/high/low",
+    "timestamp_end": "2026-07-06 22:14:03"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 5,
+          "start_time": 0.0,
+          "end_time": 14.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the sushi assembly. For each target, report: nori state (dry/rice-covered/filled/rolled), filling ingredients present (strips/tuna/avocado), avocado form (mound/slices), plastic wrap (absent/present), bamboo mat (absent/present/used). Return compact rows: object/state/window/conf/uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-06 22:13:02",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 5 (0.0s to 14.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the sushi assembly. For each target, report: nori state (dry/rice-covered/filled/rolled), filling ingredients present (strips/tuna/avocado), avocado form (mound/slices), plastic wrap (absent/present), bamboo mat (absent/present/used). Return compact rows: object/state/window/conf/uncertainty. No final answer.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"nori\": {\n      \"1\": \"rice spread, flipped, strips added\",\n      \"4\": \"rice bed with strips, tuna/avocado added\",\n      \"5\": \"rolled into cylinder\",\n      \"3\": \"rolled, topped with avocado slices\",\n      \"2\": \"sliced through plastic\"\n    },\n    \"avocado\": {\n      \"1\": \"whole then mashed mound\",\n      \"4\": \"mound added to nori\",\n      \"5\": \"inside rolled cylinder\",\n      \"3\": \"sliced on top of roll\",\n      \"2\": \"plated on cut sushi\"\n    },\n    \"plastic_wrap\": {\n      \"1\": \"absent\",\n      \"4\": \"absent\",\n      \"5\": \"absent then used with mat\",\n      \"3\": \"applied to roll\",\n      \"2\": \"used during slicing\"\n    },\n    \"orange_roe\": {\n      \"1\": \"on separate plate\",\n      \"2\": \"sprinkled as garnish on plated sushi\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"tool contact\"\n  ],\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "nori/rolled (cylinder formed, rice on outside)/1-16/0.95/low\nfilling/present (dark mass visible at ends)/1-16/0.8/medium (specific ingredients like tuna/strips indistinct)\navocado/mound (visible in background)/1-16/0.9/low\nplastic_wrap/absent/1-16/0.7/medium (not clearly visible during mat usage)\nbamboo_mat/absent (frames 1-12) then used (frames 13-16)/1-16/0.95/low",
+    "timestamp_end": "2026-07-06 22:14:25"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 26.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the sushi assembly. For each target, report: nori state (dry/rice-covered/filled/rolled), filling ingredients present (strips/tuna/avocado), avocado form (mound/slices), plastic wrap (absent/present), bamboo mat (absent/present/used). Return compact rows: object/state/window/conf/uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-06 22:13:02",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 26.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the sushi assembly. For each target, report: nori state (dry/rice-covered/filled/rolled), filling ingredients present (strips/tuna/avocado), avocado form (mound/slices), plastic wrap (absent/present), bamboo mat (absent/present/used). Return compact rows: object/state/window/conf/uncertainty. No final answer.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"nori\": {\n      \"1\": \"rice spread, flipped, strips added\",\n      \"4\": \"rice bed with strips, tuna/avocado added\",\n      \"5\": \"rolled into cylinder\",\n      \"3\": \"rolled, topped with avocado slices\",\n      \"2\": \"sliced through plastic\"\n    },\n    \"avocado\": {\n      \"1\": \"whole then mashed mound\",\n      \"4\": \"mound added to nori\",\n      \"5\": \"inside rolled cylinder\",\n      \"3\": \"sliced on top of roll\",\n      \"2\": \"plated on cut sushi\"\n    },\n    \"plastic_wrap\": {\n      \"1\": \"absent\",\n      \"4\": \"absent\",\n      \"5\": \"absent then used with mat\",\n      \"3\": \"applied to roll\",\n      \"2\": \"used during slicing\"\n    },\n    \"orange_roe\": {\n      \"1\": \"on separate plate\",\n      \"2\": \"sprinkled as garnish on plated sushi\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"tool contact\"\n  ],\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "nori/rolled, rice-covered (inside-out)/1-16/high/low\nfilling/avocado (topping), dark interior (likely tuna/strips)/1-16/medium/uncertain interior content\navocado/slices/2-16/high/low\nplastic_wrap/absent then present/1-16/high/low\nbamboo_mat/absent then used/1-16/high/low",
+    "timestamp_end": "2026-07-06 22:14:19"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_5",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 16.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the sushi assembly. For each target, report: nori state (dry/rice-covered/filled/rolled), filling ingredients present (strips/tuna/avocado), avocado form (mound/slices), plastic wrap (absent/present), bamboo mat (absent/present/used). Return compact rows: object/state/window/conf/uncertainty. No final answer."
+    },
+    "timestamp_start": "2026-07-06 22:13:02",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 16.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the sushi assembly. For each target, report: nori state (dry/rice-covered/filled/rolled), filling ingredients present (strips/tuna/avocado), avocado form (mound/slices), plastic wrap (absent/present), bamboo mat (absent/present/used). Return compact rows: object/state/window/conf/uncertainty. No final answer.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"object_memory\": {\n    \"nori\": {\n      \"1\": \"rice spread, flipped, strips added\",\n      \"4\": \"rice bed with strips, tuna/avocado added\",\n      \"5\": \"rolled into cylinder\",\n      \"3\": \"rolled, topped with avocado slices\",\n      \"2\": \"sliced through plastic\"\n    },\n    \"avocado\": {\n      \"1\": \"whole then mashed mound\",\n      \"4\": \"mound added to nori\",\n      \"5\": \"inside rolled cylinder\",\n      \"3\": \"sliced on top of roll\",\n      \"2\": \"plated on cut sushi\"\n    },\n    \"plastic_wrap\": {\n      \"1\": \"absent\",\n      \"4\": \"absent\",\n      \"5\": \"absent then used with mat\",\n      \"3\": \"applied to roll\",\n      \"2\": \"used during slicing\"\n    },\n    \"orange_roe\": {\n      \"1\": \"on separate plate\",\n      \"2\": \"sprinkled as garnish on plated sushi\"\n    }\n  },\n  \"dimensions_to_compare\": [\n    \"object states (raw/cooked, whole/cut, empty/filled)\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"tool contact\"\n  ],\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "nori/rolled (rice-covered, avocado-topped)/1-11/high/low\nnori/rolled (cut segments, rice/avocado visible)/12-16/high/low\nfilling/tuna, avocado/1-16/high/low\navocado/slices/1-16/high/low\nplastic_wrap/present/1-11/high/low\nplastic_wrap/absent/12-16/high/low\nbamboo_mat/absent/1-12/high/low\nbamboo_mat/present (background)/13-16/medium/low",
+    "timestamp_end": "2026-07-06 22:14:29"
+  }
+]

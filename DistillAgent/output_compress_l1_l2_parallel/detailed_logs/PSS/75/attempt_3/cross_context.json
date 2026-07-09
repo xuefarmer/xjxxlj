@@ -1,0 +1,156 @@
+{
+  "confirmed": [
+    "1 before 5: avocado whole->sliced precedes sliced on plate",
+    "5 before 2: sauce/tuna mixing precedes nori/rice base prep",
+    "2 before 4: flipped nori-up base precedes filling placement",
+    "4 before 3: fillings on nori precede rolling+slicing"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "avocado": {
+      "1": "whole -> sliced",
+      "5": "sliced on plate",
+      "4": "sliced on nori",
+      "3": "inside rolled sushi"
+    },
+    "tuna": {
+      "5": "chopped -> mixed with orange sauce",
+      "4": "mixed pink in bowl -> on nori",
+      "3": "pink mixture inside roll"
+    },
+    "nori_rice_base": {
+      "2": "bare nori -> rice spread -> flipped nori-up",
+      "4": "nori on top of rice",
+      "3": "rolled and sliced"
+    },
+    "cucumber": {
+      "1": "raw sticks on plate",
+      "5": "sliced on plate",
+      "3": "green strips inside roll"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states across segments",
+    "action roles",
+    "container fill/empty",
+    "ingredient maturity",
+    "transfer traces",
+    "avocado whole/sliced",
+    "tuna chopped/mixed",
+    "nori/rice orientation",
+    "filling placement"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "pending Layer1 results for all 5 segments"
+        ],
+        "dimensions_to_compare": [
+          "object states across segments",
+          "action roles",
+          "container fill/empty",
+          "ingredient maturity",
+          "transfer traces"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "object_memory": {
+          "avocado": {
+            "1": "whole -> sliced",
+            "5": "sliced on plate",
+            "4": "sliced on nori",
+            "3": "inside rolled sushi"
+          },
+          "tuna": {
+            "5": "chopped -> mixed with orange sauce",
+            "4": "mixed pink in bowl -> on nori",
+            "3": "pink mixture inside roll"
+          },
+          "nori_rice_base": {
+            "2": "bare nori -> rice spread -> flipped nori-up",
+            "4": "nori on top of rice",
+            "3": "rolled and sliced"
+          },
+          "cucumber": {
+            "1": "raw sticks on plate",
+            "5": "sliced on plate",
+            "3": "green strips inside roll"
+          }
+        },
+        "preliminary_order": "1->5->2->4->3",
+        "order_confidence": 10,
+        "confidence_basis": "Three independent object state chains (avocado, tuna, nori/rice) show unbroken progression across segments with no contradictions.",
+        "blocking_uncertainties": [],
+        "candidate_targets": [],
+        "low_value_targets": [],
+        "uncertain": [],
+        "dimensions_to_compare": [
+          "avocado whole/sliced",
+          "tuna chopped/mixed",
+          "nori/rice orientation",
+          "filling placement"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 10,
+        "comparison_table": {
+          "avocado": "V1:whole->sliced, V5:sliced on plate, V4:sliced on nori, V3:inside roll",
+          "tuna": "V5:chopped->mixed orange, V4:mixed pink on nori, V3:pink inside roll",
+          "nori_rice": "V2:bare->rice spread->flipped nori-up, V4:nori on rice with fillings, V3:rolled+sliced"
+        },
+        "confirmed": [
+          "1 before 5: avocado whole->sliced precedes sliced on plate",
+          "5 before 2: sauce/tuna mixing precedes nori/rice base prep",
+          "2 before 4: flipped nori-up base precedes filling placement",
+          "4 before 3: fillings on nori precede rolling+slicing"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [],
+        "uncertain": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "1->5->2->4->3"
+  ],
+  "order_confidence": [
+    "10"
+  ],
+  "confidence_basis": [
+    "Three independent object state chains (avocado, tuna, nori/rice) show unbroken progression across segments with no contradictions."
+  ],
+  "blocking_uncertainties": [],
+  "candidate_targets": [],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"avocado\": \"V1:whole->sliced, V5:sliced on plate, V4:sliced on nori, V3:inside roll\", \"tuna\": \"V5:chopped->mixed orange, V4:mixed pink on nori, V3:pink inside roll\", \"nori_rice\": \"V2:bare->rice spread->flipped nori-up, V4:nori on rice with fillings, V3:rolled+sliced\"}"
+  ],
+  "pruned_targets": []
+}

@@ -1,0 +1,230 @@
+{
+  "confirmed": [
+    "V4->V3->V1->V2->V5->6 state progression"
+  ],
+  "uncertain": [
+    "verify V3->V1 transition",
+    "verify V1->V2 transition"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"4\": \"raw veg to empty pot + salt/vinegar\", \"3\": \"sautéed veg + noodles + broth\", \"1\": \"brown mince + ginger/garlic + sauces + sesame oil + lid\", \"2\": \"dark reddish-brown stew + tofu + lid\", \"5\": \"brown liquid stew + starch dissolving\", \"6\": \"ladle stew to bowl + green onion garnish\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "pot": {
+      "4": "empty->raw veg",
+      "3": "sautéed veg+noodles+broth",
+      "1": "mince+sauces",
+      "2": "dark reddish stew+tofu",
+      "5": "brown liquid+starch",
+      "6": "dark stew->ladled"
+    },
+    "noodles": {
+      "3": "dry->wet"
+    },
+    "tofu": {
+      "2": "cubes->mixed"
+    },
+    "starch": {
+      "5": "dry->dissolving"
+    },
+    "garnish": {
+      "6": "fresh->sprinkled"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states",
+    "container fill/empty",
+    "raw vs cooked",
+    "transfer traces",
+    "residue/depletion",
+    "pot contents progression",
+    "ingredient addition sequence",
+    "liquid consistency",
+    "garnish state"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states",
+          "container fill/empty",
+          "raw vs cooked",
+          "transfer traces",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "4": "raw veg to empty pot + salt/vinegar",
+          "3": "sautéed veg + noodles + broth",
+          "1": "brown mince + ginger/garlic + sauces + sesame oil + lid",
+          "2": "dark reddish-brown stew + tofu + lid",
+          "5": "brown liquid stew + starch dissolving",
+          "6": "ladle stew to bowl + green onion garnish"
+        },
+        "object_memory": {
+          "pot": {
+            "4": "empty->raw veg",
+            "3": "sautéed veg+noodles+broth",
+            "1": "mince+sauces",
+            "2": "dark reddish stew+tofu",
+            "5": "brown liquid+starch",
+            "6": "dark stew->ladled"
+          },
+          "noodles": {
+            "3": "dry->wet"
+          },
+          "tofu": {
+            "2": "cubes->mixed"
+          },
+          "starch": {
+            "5": "dry->dissolving"
+          },
+          "garnish": {
+            "6": "fresh->sprinkled"
+          }
+        },
+        "preliminary_order": "4->3->1->2->5->6",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "pot empty->raw->sautéed->noodles/broth->mince/sauces->dark stew->tofu->starch->serve"
+        ],
+        "blocking_uncertainties": [
+          "verify V3->V1 transition (noodles/broth then mince/sauces)",
+          "verify V1->V2 transition (sauces create dark reddish stew)"
+        ],
+        "temporal_index": {
+          "video4": [
+            {
+              "window": [
+                0,
+                35
+              ],
+              "event": "raw veg + seasoning",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                15
+              ],
+              "event": "noodles + broth",
+              "confidence": "high"
+            }
+          ],
+          "video1": [
+            {
+              "window": [
+                0,
+                58
+              ],
+              "event": "mince + sauces",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                17
+              ],
+              "event": "tofu to dark stew",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                28
+              ],
+              "event": "starch thickening",
+              "confidence": "high"
+            }
+          ],
+          "video6": [
+            {
+              "window": [
+                0,
+                17
+              ],
+              "event": "plating + garnish",
+              "confidence": "high"
+            }
+          ]
+        },
+        "uncertain": [
+          "verify V3->V1 transition",
+          "verify V1->V2 transition"
+        ],
+        "dimensions_to_compare": [
+          "pot contents progression",
+          "ingredient addition sequence",
+          "liquid consistency",
+          "garnish state"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "4": "empty pot -> raw veg + salt/vinegar",
+          "3": "sautéed veg -> noodles + broth -> wet/mixed",
+          "1": "mince + ginger/garlic + sauces -> dark mixture + lid",
+          "2": "dark reddish stew + tofu + lid",
+          "5": "brown liquid stew + starch dissolving",
+          "6": "ladle to bowl + garnish sprinkled"
+        },
+        "confirmed": [
+          "V4->V3->V1->V2->V5->6 state progression"
+        ],
+        "order_confidence": 8
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "4->3->1->2->5->6"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "pot empty->raw->sautéed->noodles/broth->mince/sauces->dark stew->tofu->starch->serve"
+  ],
+  "blocking_uncertainties": [
+    "verify V3->V1 transition (noodles/broth then mince/sauces)",
+    "verify V1->V2 transition (sauces create dark reddish stew)"
+  ],
+  "temporal_index": [
+    "{\"video4\": [{\"window\": [0, 35], \"event\": \"raw veg + seasoning\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 15], \"event\": \"noodles + broth\", \"confidence\": \"high\"}], \"video1\": [{\"window\": [0, 58], \"event\": \"mince + sauces\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 17], \"event\": \"tofu to dark stew\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 28], \"event\": \"starch thickening\", \"confidence\": \"high\"}], \"video6\": [{\"window\": [0, 17], \"event\": \"plating + garnish\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"4\": \"empty pot -> raw veg + salt/vinegar\", \"3\": \"sautéed veg -> noodles + broth -> wet/mixed\", \"1\": \"mince + ginger/garlic + sauces -> dark mixture + lid\", \"2\": \"dark reddish stew + tofu + lid\", \"5\": \"brown liquid stew + starch dissolving\", \"6\": \"ladle to bowl + garnish sprinkled\"}"
+  ]
+}

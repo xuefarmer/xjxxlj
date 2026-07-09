@@ -1,0 +1,185 @@
+{
+  "confirmed": [
+    "V4 is raw meat prep",
+    "V2 is breading station setup",
+    "V1 is breading station in use",
+    "V3 is frying breaded meat"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Breading station demonstration. Meat goes flour->egg->crumbs.\", \"2\": \"Egg poured into middle tray to set up breading station. Cooked egg rolled earlier.\", \"3\": \"Frying breaded cutlet in foaming butter. Meat turns golden brown.\", \"4\": \"Pounding and salting raw meat cutlets on yellow cutting board.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "breading_station_trays": {
+      "1": "Fully assembled and in use (flour, egg, crumbs all present).",
+      "2": "Being set up (egg being poured into middle tray).",
+      "3": "NOT_VISIBLE",
+      "4": "NOT_VISIBLE"
+    },
+    "meat_cutlet": {
+      "1": "Raw/pink -> floured -> egged -> fully breaded.",
+      "2": "NOT_VISIBLE_IN_THESE_FRAMES (only egg prep shown).",
+      "3": "Breaded (implied) -> frying -> golden-brown cooked.",
+      "4": "Raw, pounded flat, salted. No breading."
+    },
+    "butter_pan": {
+      "1": "NOT_VISIBLE",
+      "2": "NOT_VISIBLE",
+      "3": "Solid chunks -> melting -> foaming -> contains cooking meat.",
+      "4": "NOT_VISIBLE"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states across segments",
+    "transfer traces",
+    "residue/depletion",
+    "container fill levels",
+    "ingredient maturity (raw vs cooked)",
+    "tray fill levels (setup vs in-use)",
+    "meat coating state (raw vs breaded vs cooked)"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All ordering relations - Layer1 pending"
+        ],
+        "dimensions_to_compare": [
+          "object states across segments",
+          "transfer traces",
+          "residue/depletion",
+          "container fill levels",
+          "ingredient maturity (raw vs cooked)"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Breading station demonstration. Meat goes flour->egg->crumbs.",
+          "2": "Egg poured into middle tray to set up breading station. Cooked egg rolled earlier.",
+          "3": "Frying breaded cutlet in foaming butter. Meat turns golden brown.",
+          "4": "Pounding and salting raw meat cutlets on yellow cutting board."
+        },
+        "object_memory": {
+          "breading_station_trays": {
+            "1": "Fully assembled and in use (flour, egg, crumbs all present).",
+            "2": "Being set up (egg being poured into middle tray).",
+            "3": "NOT_VISIBLE",
+            "4": "NOT_VISIBLE"
+          },
+          "meat_cutlet": {
+            "1": "Raw/pink -> floured -> egged -> fully breaded.",
+            "2": "NOT_VISIBLE_IN_THESE_FRAMES (only egg prep shown).",
+            "3": "Breaded (implied) -> frying -> golden-brown cooked.",
+            "4": "Raw, pounded flat, salted. No breading."
+          },
+          "butter_pan": {
+            "1": "NOT_VISIBLE",
+            "2": "NOT_VISIBLE",
+            "3": "Solid chunks -> melting -> foaming -> contains cooking meat.",
+            "4": "NOT_VISIBLE"
+          }
+        },
+        "preliminary_order": [
+          4,
+          2,
+          1,
+          3
+        ],
+        "order_confidence": 8,
+        "confidence_basis": "Clear state transitions: V4 (raw meat prep) -> V2 (breading station setup) -> V1 (breading station in use) -> V3 (frying the breaded meat).",
+        "blocking_uncertainties": [
+          "Verify V2 is indeed initial setup and not a mid-process refill.",
+          "Verify no breading is present in V4."
+        ],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "Exact timing of V2 relative to V1 (setup vs refill)."
+        ],
+        "dimensions_to_compare": [
+          "tray fill levels (setup vs in-use)",
+          "meat coating state (raw vs breaded vs cooked)"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "1": "Breading station fully assembled and in use. Meat coated in flour, egg, crumbs.",
+          "2": "Breading station being set up. Egg poured into tray.",
+          "3": "Breaded meat fried in foaming butter. Turns golden brown.",
+          "4": "Raw meat pounded and salted. No breading station."
+        },
+        "confirmed": [
+          "V4 is raw meat prep",
+          "V2 is breading station setup",
+          "V1 is breading station in use",
+          "V3 is frying breaded meat"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "uncertain": [],
+        "order_confidence": 9
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "4",
+    "2",
+    "1",
+    "3"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "Clear state transitions: V4 (raw meat prep) -> V2 (breading station setup) -> V1 (breading station in use) -> V3 (frying the breaded meat)."
+  ],
+  "blocking_uncertainties": [
+    "Verify V2 is indeed initial setup and not a mid-process refill.",
+    "Verify no breading is present in V4."
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"Breading station fully assembled and in use. Meat coated in flour, egg, crumbs.\", \"2\": \"Breading station being set up. Egg poured into tray.\", \"3\": \"Breaded meat fried in foaming butter. Turns golden brown.\", \"4\": \"Raw meat pounded and salted. No breading station.\"}"
+  ],
+  "pruned_targets": []
+}

@@ -1,0 +1,131 @@
+{
+  "confirmed": [
+    "V2->V3: Skillet contents progress from garlic to full vegetable sauté. Measuring cup changes from yellow to brown.",
+    "V3->V4: Brown liquid in measuring cup is poured into the pot.",
+    "V4->V1: Pot progresses from receiving broth to containing the full soup served into bowls."
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {},
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states across segments",
+    "container states",
+    "prep vs cooking vs plating roles",
+    "residue/depletion cues",
+    "measuring cup fill level",
+    "garlic state",
+    "vessel contents",
+    "greens state",
+    "noodles presence"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": true,
+        "uncertain": [
+          "What is the cooking process? What objects recur across segments? What are the state transitions?"
+        ],
+        "dimensions_to_compare": [
+          "object states across segments",
+          "container states",
+          "prep vs cooking vs plating roles",
+          "residue/depletion cues"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "2->3->4->1",
+        "order_confidence": 8,
+        "confidence_basis": "Direct state transitions: V2 ends with garlic in oil, V3 starts with garlic in oil. V3 has filled measuring cup in background, V4 pours from filled measuring cup. V4 adds stock to pot, V1 serves broth/noodles from pot. Greens from V3 appear wilted in V1 bowls.",
+        "blocking_uncertainties": [
+          "Verify measuring cup fill level in V3 vs V4 to ensure V3 precedes V4.",
+          "Verify garlic state transition from V2 to V3.",
+          "Confirm pot contents progression from V4 to V1."
+        ],
+        "uncertain": [],
+        "dimensions_to_compare": [
+          "measuring cup fill level",
+          "garlic state",
+          "vessel contents",
+          "greens state",
+          "noodles presence"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "preliminary_order": "2->3->4->1",
+        "order_confidence": 9,
+        "confidence_basis": "Layer2 confirmed skillet progression (V2->V3), measuring cup state transition and pour (V3->V4), and pot contents progression (V4->V1).",
+        "blocking_uncertainties": [],
+        "comparison_table": {
+          "1": "Final serving stage. Pot contains broth and noodles. Greens mixed in serving bowls.",
+          "2": "Early stage. Skillet has oil and garlic. Measuring cup has yellow liquid.",
+          "3": "Middle stage. Skillet has oil, garlic, peppers, wilting greens. Measuring cup has brown liquid.",
+          "4": "Late-middle stage. Pot receives brown liquid from measuring cup."
+        },
+        "confirmed": [
+          "V2->V3: Skillet contents progress from garlic to full vegetable sauté. Measuring cup changes from yellow to brown.",
+          "V3->V4: Brown liquid in measuring cup is poured into the pot.",
+          "V4->V1: Pot progresses from receiving broth to containing the full soup served into bowls."
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "uncertain": [],
+        "focus_plan": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "2->3->4->1"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "Direct state transitions: V2 ends with garlic in oil, V3 starts with garlic in oil. V3 has filled measuring cup in background, V4 pours from filled measuring cup. V4 adds stock to pot, V1 serves broth/noodles from pot. Greens from V3 appear wilted in V1 bowls.",
+    "Layer2 confirmed skillet progression (V2->V3), measuring cup state transition and pour (V3->V4), and pot contents progression (V4->V1)."
+  ],
+  "blocking_uncertainties": [
+    "Verify measuring cup fill level in V3 vs V4 to ensure V3 precedes V4.",
+    "Verify garlic state transition from V2 to V3.",
+    "Confirm pot contents progression from V4 to V1."
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"Final serving stage. Pot contains broth and noodles. Greens mixed in serving bowls.\", \"2\": \"Early stage. Skillet has oil and garlic. Measuring cup has yellow liquid.\", \"3\": \"Middle stage. Skillet has oil, garlic, peppers, wilting greens. Measuring cup has brown liquid.\", \"4\": \"Late-middle stage. Pot receives brown liquid from measuring cup.\"}"
+  ],
+  "pruned_targets": [],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "focus_plan": []
+}

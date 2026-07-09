@@ -1,0 +1,357 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-07 03:14:58
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-07 03:08:59 -> 2026-07-07 03:10:12
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 4.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: bowl, white liquid, wok, ladle, yellow food mixture
+action: pouring white liquid from bowl into wok over cooking food
+state: bowl filled then emptying, liquid wet/fluid, yellow food cooking/present, ladle held separately
+window: 1-3
+query_link: null
+conf: high
+uncertainty: liquid identity (coconut milk vs batter)
+
+objects: wok, ladle, oil/liquid
+action: scooping and pouring liquid (oil) in wok
+state: wok empty then containing hot oil, ladle wet, liquid dripping
+window: 4-9
+query_link: null
+conf: medium
+uncertainty: specific liquid type (oil vs thin batter)
+
+objects: handheld grater, solid ingredient (potato/cassava), yellow food mixture (omelet), wok
+action: grating solid ingredient onto the cooking mixture
+state: ingredient raw/whole becoming grated/cut, mixture cooked/present, grater present, residue accumulating on food
+window: 10-16
+query_link: null
+conf: high
+uncertainty: exact ingredient type being grated
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-07 03:08:59 -> 2026-07-07 03:10:10
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 8.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+```json
+[
+  {
+    "objects": "hand, yellow noodles, grey bowl",
+    "action": "placing noodles into bowl",
+    "state": "noodles: wet/cooked, bowl: partially filled",
+    "window": "1-3",
+    "query_link": null,
+    "conf": 0.95,
+    "uncertainty": "none"
+  },
+  {
+    "objects": "knife, green herbs, cutting board",
+    "action": "chopping herbs",
+    "state": "herbs: cut/fresh",
+    "window": "4",
+    "query_link": null,
+    "conf": 0.9,
+    "uncertainty": "none"
+  },
+  {
+    "objects": "person, white noodles (vermicelli), glass bowl, pan, yellow soup",
+    "action": "lifting/separating noodles, boiling soup",
+    "state": "noodles: wet/clumped/soaked, soup: hot/liquid",
+    "window": "5-10",
+    "query_link": null,
+    "conf": 0.9,
+    "uncertainty": "none"
+  },
+  {
+    "objects": "plate, yellow noodles, white noodles",
+    "action": "displayed",
+    "state": "noodles: cooked/wet, separate piles",
+    "window": "11-15",
+    "query_link": null,
+    "conf": 0.95,
+    "uncertainty": "none"
+  },
+  {
+    "objects": "grey bowl, yellow noodles, white noodles",
+    "action": "combined in bowl",
+    "state": "noodles: wet/cooked, present together (yellow base, white top)",
+    "window": "16",
+    "query_link": null,
+    "conf": 0.95,
+    "uncertainty": "none"
+  }
+]
+```
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-07 03:08:59 -> 2026-07-07 03:10:19
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 24.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+| objects | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| dried red chilies, water, glass bowl | soaking | wet, whole, dried, submerged | 1-1 | - | high | - |
+| fresh red chilies, glass bowl | held/displayed | fresh, whole, raw, present | 2-2 | - | high | - |
+| blender jar, dried chilies, ginger/garlic chunks | loaded/filled | filled, separate chunks, raw | 3-3 | - | high | - |
+| ginger root, garlic bulbs, sliced carrots, glass bowls | staged/prepped | raw, whole/cut, present | 4-4 | - | high | - |
+| chopped white onions, glass bowl | piled/handled | raw, cut, piled, fresh | 5-5 | - | high | - |
+| sliced carrots, blender jar | pouring/adding | raw, cut, transferring, mixed with existing | 6-6 | - | high | - |
+| dark brown paste block (shrimp paste?), water, glass bowl | held/dipped | solid, raw, partially wet | 7-8 | - | medium | exact identity of paste (likely belacan/shrimp paste) |
+| blender jar, orange-red mixture | blending/pureeing | liquid, pureed, mixed, smooth, orange | 15-16 | - | high | - |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-07 03:08:59 -> 2026-07-07 03:10:08
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 2.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: ladle, yellow broth, bowl, noodles, fried tofu, bean sprouts, wok
+action: pouring broth into bowl
+state: ladle filled with yellow broth pours over cooked yellow noodles, golden fried tofu, and white sprouts in a bowl; ladle becomes depleted/empty; bowl contents transition from separate/dry to wet/mixed with soup; background wok is filled with broth.
+window: 1-14
+query_link: [Video 4]
+conf: 0.95
+uncertainty: low
+
+objects: people, stone table, lake, park
+action: sitting
+state: wide shot of outdoor scene with people sitting at a table near water; food preparation context ends.
+window: 15-16
+query_link: [Video 4]
+conf: 0.90
+uncertainty: low (scene change)
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_5) ###
+Time: 2026-07-07 03:08:59 -> 2026-07-07 03:10:04
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 36.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return only compact evidence rows. Fields: objects, action, state, window, query_link, conf, uncertainty."
+}
+
+[Output]:
+objects: wok, oil, portable stove
+action: heating
+state: oil is present, liquid/wet, hot (bubbling/shimmering); wok is present, filled with oil.
+window: 3-4
+query_link: N/A
+conf: high
+uncertainty: none
+
+objects: blender jar, orange paste, spoon
+action: scooping and transferring
+state: paste is raw, wet, thick/pasty; jar is filled; spoon is present.
+window: 7-8
+query_link: N/A
+conf: high
+uncertainty: none
+
+objects: wok, oil, orange paste
+action: adding and frying
+state: paste is raw, wet; added to hot oil; initially separate then mixing.
+window: 8
+query_link: N/A
+conf: high
+uncertainty: none
+
+objects: wok, oil, paste mixture, spoon/ladle
+action: stirring
+state: paste is mixed with oil, cooking (sizzling), wet; mixture is becoming uniform.
+window: 12, 16
+query_link: N/A
+conf: high
+uncertainty: none
+
+objects: man, woman
+action: standing, observing/talking
+state: present, separate.
+window: 1-2, 5-6, 9-11, 13-15
+query_link: N/A
+conf: high
+uncertainty: none
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_1) ###
+Time: 2026-07-07 03:12:39 -> 2026-07-07 03:14:26
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 4.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report actual visible state of: 1) wok contents (empty/oil/fried paste/broth/liquid), 2) any bowl pouring into wok (liquid type/color), 3) any grating action. Return compact rows: object/state/window/conf. No prose."
+}
+
+[Output]:
+wok/empty/frames 4-5/high
+wok/oil/frames 6-9/high
+wok/fried paste (yellow)/frames 1-3/high
+wok/yellow liquid (broth)/frames 10-16/high
+bowl/pouring white liquid/frames 1-3/high
+grater/grating action/frames 10-16/high
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_2) ###
+Time: 2026-07-07 03:12:39 -> 2026-07-07 03:14:37
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 8.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report actual visible state of: 1) serving bowl (empty/contains dry noodles/contains mixed noodles), 2) noodle state (raw/dry/boiled/wet), 3) any soup/broth visible in bowl or pan. Return compact rows: object/state/window/conf. No prose."
+}
+
+[Output]:
+serving_bowl/contains mixed noodles/1-16/high
+noodle_state/boiled(wet)/1-16/high
+soup_broth/visible in pan/7-10/high
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_3) ###
+Time: 2026-07-07 03:12:39 -> 2026-07-07 03:13:35
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 24.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report actual visible state of: 1) blender jar (empty/contains raw chunks/contains blended orange paste), 2) final state of blender contents at end of clip. Return compact rows: object/state/window/conf. No prose."
+}
+
+[Output]:
+blender_jar/contains raw chunks/frames 3, 6/high
+blender_jar/contains blended orange paste/frames 15, 16/high
+blender_contents_final/blended orange paste/frames 15-16/high
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_4) ###
+Time: 2026-07-07 03:12:39 -> 2026-07-07 03:13:11
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 2.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report actual visible state of: 1) serving bowl (contains dry noodles/contains noodles with broth), 2) background wok (visible/contains broth), 3) final scene (eating outdoors). Return compact rows: object/state/window/conf. No prose."
+}
+
+[Output]:
+serving bowl | contains noodles with broth (broth being poured) | 1-14 | high
+background wok | visible/contains broth | 1-14 | high
+final scene | eating outdoors | 15-16 | high
+
+------------------------------------------------------------
+
+### [Turn 2] Tool: active_perception (ID: batch_2_5) ###
+Time: 2026-07-07 03:12:39 -> 2026-07-07 03:13:06
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 36.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Report actual visible state of: 1) blender jar (contains orange paste), 2) wok contents (empty/oil/fried paste), 3) spoon/ladle transferring paste. Return compact rows: object/state/window/conf. No prose."
+}
+
+[Output]:
+blender_jar/contains orange paste, being scooped out/5/high
+wok/contains heated oil, receives orange paste, paste is frying/5/high
+spoon_ladle/transferring orange paste from jar to wok, stirring mixture/5/high
+
+------------------------------------------------------------
+

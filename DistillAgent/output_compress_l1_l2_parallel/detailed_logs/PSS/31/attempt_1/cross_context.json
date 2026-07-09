@@ -1,0 +1,189 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "full object inventory across all segments",
+    "state transitions within each segment",
+    "shared objects linking segments"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "skillet": {
+      "2": "oil+garlic",
+      "3": "oil+garlic+peppers+wilted_greens"
+    },
+    "measuring_cup": {
+      "3": "filled_with_liquid_unused",
+      "4": "filled_then_poured_into_pot"
+    },
+    "pot": {
+      "4": "receiving_broth",
+      "1": "filled_with_noodles_and_broth_served"
+    },
+    "greens": {
+      "3": "fresh_in_colander_then_wilted_in_skillet",
+      "1": "wilted_in_serving_bowl"
+    },
+    "ramekin": {
+      "2": "filled_with_garlic_then_empty"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states (raw/cooked/cut/mixed)",
+    "container states (empty/filled/residue)",
+    "tool usage",
+    "operation role (prep/cooking/finishing)"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "full object inventory across all segments",
+          "state transitions within each segment",
+          "shared objects linking segments"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cooked/cut/mixed)",
+          "container states (empty/filled/residue)",
+          "tool usage",
+          "operation role (prep/cooking/finishing)"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "2->3->4->1",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "Seg2: garlic to skillet, ramekin empties",
+          "Seg3: peppers/greens to skillet, greens wilt, measuring cup full",
+          "Seg4: measuring cup poured into pot, pot fills",
+          "Seg1: pot served into bowls, greens in bowls"
+        ],
+        "blocking_uncertainties": [
+          "Confirm measuring cup state in Seg3 vs Seg4 (full vs pouring)",
+          "Confirm pot state in Seg4 vs Seg1 (filling vs serving)",
+          "Confirm greens transition from skillet (Seg3) to bowl (Seg1)"
+        ],
+        "object_memory": {
+          "skillet": {
+            "2": "oil+garlic",
+            "3": "oil+garlic+peppers+wilted_greens"
+          },
+          "measuring_cup": {
+            "3": "filled_with_liquid_unused",
+            "4": "filled_then_poured_into_pot"
+          },
+          "pot": {
+            "4": "receiving_broth",
+            "1": "filled_with_noodles_and_broth_served"
+          },
+          "greens": {
+            "3": "fresh_in_colander_then_wilted_in_skillet",
+            "1": "wilted_in_serving_bowl"
+          },
+          "ramekin": {
+            "2": "filled_with_garlic_then_empty"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                10
+              ],
+              "event": "serving_soup",
+              "key_objects": [
+                "pot",
+                "bowls",
+                "greens"
+              ],
+              "visible_state": "pot_depletes, bowls_fill",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                6
+              ],
+              "event": "garlic_to_skillet",
+              "key_objects": [
+                "skillet",
+                "ramekin"
+              ],
+              "visible_state": "ramekin_empties",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                24
+              ],
+              "event": "peppers_and_greens_to_skillet",
+              "key_objects": [
+                "skillet",
+                "colander",
+                "measuring_cup"
+              ],
+              "visible_state": "greens_wilt, cup_full",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                12
+              ],
+              "event": "broth_to_pot",
+              "key_objects": [
+                "measuring_cup",
+                "pot"
+              ],
+              "visible_state": "cup_pours, pot_fills",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "2->3->4->1"
+  ],
+  "order_confidence": [
+    "8"
+  ],
+  "confidence_basis": [
+    "Seg2: garlic to skillet, ramekin empties",
+    "Seg3: peppers/greens to skillet, greens wilt, measuring cup full",
+    "Seg4: measuring cup poured into pot, pot fills",
+    "Seg1: pot served into bowls, greens in bowls"
+  ],
+  "blocking_uncertainties": [
+    "Confirm measuring cup state in Seg3 vs Seg4 (full vs pouring)",
+    "Confirm pot state in Seg4 vs Seg1 (filling vs serving)",
+    "Confirm greens transition from skillet (Seg3) to bowl (Seg1)"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 10], \"event\": \"serving_soup\", \"key_objects\": [\"pot\", \"bowls\", \"greens\"], \"visible_state\": \"pot_depletes, bowls_fill\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 6], \"event\": \"garlic_to_skillet\", \"key_objects\": [\"skillet\", \"ramekin\"], \"visible_state\": \"ramekin_empties\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 24], \"event\": \"peppers_and_greens_to_skillet\", \"key_objects\": [\"skillet\", \"colander\", \"measuring_cup\"], \"visible_state\": \"greens_wilt, cup_full\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 12], \"event\": \"broth_to_pot\", \"key_objects\": [\"measuring_cup\", \"pot\"], \"visible_state\": \"cup_pours, pot_fills\", \"confidence\": \"high\"}]}"
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "pending Layer1 results"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "grinder": {
+      "1": "beans added -> ground -> poured into filter",
+      "2": "pressed -> opened -> hand reaches for coffee maker"
+    },
+    "coffee_maker": {
+      "1": "filter basket filled at end",
+      "2": "lid closed, hand reaches to open at end"
+    },
+    "illy_can": {
+      "3": "wet, empty, being washed"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "object states",
+    "ingredient maturity",
+    "container fill levels",
+    "tool usage",
+    "transfer traces"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": true,
+        "uncertain": [
+          "pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "object states",
+          "ingredient maturity",
+          "container fill levels",
+          "tool usage",
+          "transfer traces"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer2_done": true,
+        "preliminary_order": "2 -> 1 -> 3",
+        "order_confidence": 6,
+        "confidence_basis": [
+          "V2 reaches for coffee maker lid before V1 pours grounds",
+          "V3 washes empty can after use"
+        ],
+        "blocking_uncertainties": [
+          "Exact sequence of V1 and V2: does V2 happen before V1 adds beans, or is V2 a close-up during V1?",
+          "Does V3 happen before or after coffee making?"
+        ],
+        "object_memory": {
+          "grinder": {
+            "1": "beans added -> ground -> poured into filter",
+            "2": "pressed -> opened -> hand reaches for coffee maker"
+          },
+          "coffee_maker": {
+            "1": "filter basket filled at end",
+            "2": "lid closed, hand reaches to open at end"
+          },
+          "illy_can": {
+            "3": "wet, empty, being washed"
+          }
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "2 -> 1 -> 3"
+  ],
+  "order_confidence": [
+    "6"
+  ],
+  "confidence_basis": [
+    "V2 reaches for coffee maker lid before V1 pours grounds",
+    "V3 washes empty can after use"
+  ],
+  "blocking_uncertainties": [
+    "Exact sequence of V1 and V2: does V2 happen before V1 adds beans, or is V2 a close-up during V1?",
+    "Does V3 happen before or after coffee making?"
+  ]
+}

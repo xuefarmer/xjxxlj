@@ -1,0 +1,480 @@
+=== Tools Execution Log (Readable) ===
+Generated: 2026-07-06 20:24:29
+
+### [Turn 1] Tool: active_perception (ID: batch_1_1) ###
+Time: 2026-07-06 20:10:35 -> 2026-07-06 20:15:28
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 48.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report key events with approximate time windows. Return compact evidence rows: object/action/state/window/query_link/conf/uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames, here is the Layer 1 caption and analysis:
+
+**Operation Description:**
+A chef is preparing raw fish fillets in a commercial kitchen. The operation involves slicing whole raw fish fillets into smaller chunks or cubes using a large cleaver on a red cutting board. The cut fish is then transferred into a stainless steel mixing bowl.
+
+**Visible Objects/Tools and States:**
+*   **Raw Fish Fillets:** Initially present as two long, whole strips (raw, fresh, pinkish-white). State changes to cut chunks/cubes (raw, cut, separate).
+*   **Red Cutting Board:** Present throughout. State changes from dry/clean to wet with fish residue and juices.
+*   **Cleaver/Knife:** Large rectangular blade. Used for slicing.
+*   **Stainless Steel Bowl:** Initially empty and placed to the right of the board. Later (Frame 16), it is filled with the cut fish and placed centrally on the cutting board.
+*   **Background Bowls:** Contain prepped ingredients (white chopped items, brown sauce, green onions). State: Filled, separate.
+*   **Chef:** Wearing a blue apron. Has a blue bandage on the left index finger.
+
+**Key Events & Time Windows:**
+*   **0.0s - 3.0s (Frames 1-3):** Setup phase. Two whole raw fish fillets are on the red board. The chef adjusts the empty metal bowl to the right.
+*   **4.0s - 8.0s (Frames 4-8):** Slicing action. The chef uses the cleaver to slice one of the fillets into smaller pieces.
+*   **9.0s - 10.0s (Frames 9-10):** Transfer/Continuation. The chef appears to move cut fish or adjust the remaining fillet. By Frame 10, a large chunk of fish is visible inside the metal bowl to the right, while the chef continues cutting smaller pieces on the board.
+*   **10.0s - 15.0s (Frames 10-15):** Dicing action. The chef continues to slice the remaining fish into small cubes/chunks. The pile of cut fish grows on the board.
+*   **45.0s - 48.0s (Frame 16):** Final state. The metal bowl, now filled with the diced raw fish, has been moved onto the center of the red cutting board. The board shows residue/depletion of the fish.
+
+**Compact Evidence Rows:**
+
+| Object/Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Fish fillets | Raw, whole (2 strips), fresh | 0-3s | Frame 1 | High | None |
+| Metal bowl | Empty, separate | 0-8s | Frame 1 | High | None |
+| Fish fillets | Being cut, raw, sliced | 4-8s | Frame 4 | High | None |
+| Fish chunk | Transferred to bowl, raw | 9-10s | Frame 10 | Medium | Exact transfer motion blurred, but bowl content appears |
+| Fish pieces | Being diced, raw, cut | 10-15s | Frame 12 | High | None |
+| Metal bowl | Filled with cut fish, moved to board | 16s | Frame 16 | High | None |
+| Cutting board | Wet, residue present | 11-16s | Frame 16 | High | None |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_2) ###
+Time: 2026-07-06 20:10:35 -> 2026-07-06 20:15:10
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 17.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report key events with approximate time windows. Return compact evidence rows: object/action/state/window/query_link/conf/uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from Video 2 (Frames 1-16, 0.0s - 17.0s), here is the layer 1 caption and evidence rows.
+
+**Operation Description:**
+A chef is cooking in a commercial kitchen. The sequence begins with the chef pouring a liquid from a small white bowl into a hot, steaming wok. The chef then stirs the contents with a ladle. Subsequently, the chef takes a white plate containing a large mass of white solid ingredient (resembling egg whites, tofu, or a large dumpling wrapper) and dumps it into the wok. The chef then proceeds to stir-fry or toss this white ingredient in the wok.
+
+**Visible Objects/Tools & States:**
+*   **Chef:** Wearing a grey shirt and blue apron.
+*   **Wok:** Hot, steaming (wet/active), contains oil/liquid and later the white ingredient.
+*   **Small White Bowl:** Initially filled with liquid, then empty (depleted).
+*   **White Plate:** Initially filled with white solid mass, then empty (depleted).
+*   **Ladle/Spatula:** Used for stirring.
+*   **Large Pot:** Present in background, filled (likely water/stock), steaming.
+*   **Deep Fryer:** Present on the left, baskets visible.
+*   **White Solid Ingredient:** Raw/cooking, solid, large mass/whole piece.
+
+**Key Events:**
+*   **0.0s - 4.0s:** Chef pours liquid from small bowl into the wok.
+*   **4.0s - 9.0s:** Chef stirs the wok contents with a ladle; steam rises.
+*   **9.0s - 14.0s:** Chef dumps a large white solid ingredient from a plate into the wok.
+*   **14.0s - 17.0s:** Chef stirs/tosses the white ingredient in the wok.
+
+**Compact Evidence Rows:**
+
+| object | action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Small white bowl | Pouring liquid | Filled -> Empty (depleted) | 0.0s-4.0s | N/A | High | Liquid type unknown (water/oil/sauce) |
+| Wok | Stirring with ladle | Hot, steaming, wet | 4.0s-9.0s | N/A | High | - |
+| White plate | Dumping solid ingredient | Filled -> Empty (depleted) | 9.0s-14.0s | N/A | High | Ingredient identity uncertain (looks like egg whites or tofu mass) |
+| White solid ingredient | Stir-frying/Tossing | Raw -> Cooking, Solid, Large mass | 14.0s-17.0s | N/A | Medium | Exact food item unclear (tofu/egg/noodle mass) |
+| Large pot | Simmering/Boiling | Filled, Steaming | 0.0s-17.0s | N/A | High | Contents unknown |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_3) ###
+Time: 2026-07-06 20:10:35 -> 2026-07-06 20:14:28
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 5.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report key events with approximate time windows. Return compact evidence rows: object/action/state/window/query_link/conf/uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from Video 3 (Frames 1-16, 0.0s to 5.0s):
+
+**Visual Analysis:**
+The scene is a commercial kitchen. A chef in a grey shirt and blue apron stands at a stove range.
+- **Left:** A deep fryer with baskets is visible (inactive in this clip).
+- **Center-Front:** A wok sits on a burner. It contains a pile of light-colored, cut ingredients (likely onions, garlic, or meat). Steam rises from it.
+- **Center-Back:** A large aluminum stockpot sits on a back burner. It is filled with liquid/food and is steaming heavily, indicating it is hot/cooking.
+- **Right:** Another wok/pan is visible, also steaming.
+
+**Action Sequence:**
+1.  **0.0s - 1.5s (Frames 1-4):** The chef stands near the stove, observing. The pots are steaming.
+2.  **1.5s - 2.1s (Frames 5-6):** The chef brings a small white bowl/cup into the frame with his right hand.
+3.  **2.1s - 3.3s (Frames 7-11):** The chef reaches over the large stockpot. He appears to dump the contents of the small bowl into the pot or stir it briefly. By Frame 11, he is holding the now-empty small bowl/cup and moving away.
+4.  **3.3s - 4.5s (Frames 12-14):** The chef stands back. Steam continues to rise from the cookware.
+5.  **4.5s - 5.0s (Frames 15-16):** The chef reaches out with his right hand and grasps the long wooden handle of the front wok, preparing to manipulate it.
+
+**Object States:**
+-   **Front Wok Contents:** Cut (chunks), separate (piled), wet/cooking (steaming), present.
+-   **Large Pot:** Filled, wet/liquid, hot (heavy steam), cooking.
+-   **Small Bowl:** Initially present/filled (implied), then empty/depleted after transfer.
+-   **Deep Fryer:** Present, empty of active frying action.
+
+**Compact Evidence Rows:**
+
+| Object/Action | State/Description | Window (s) | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Chef | Present, standing, observing | 0.0-1.5 | Video 3 | High | None |
+| Large Pot | Filled, steaming (hot/cooking) | 0.0-5.0 | Video 3 | High | Content type unknown |
+| Front Wok | Contains cut white food, steaming | 0.0-5.0 | Video 3 | High | Specific ingredient unknown |
+| Small Bowl | Present, held by chef | 1.5-2.1 | Video 3 | High | Content type unclear |
+| Chef Action | Adds ingredient from small bowl to Large Pot | 2.1-3.3 | Video 3 | Med | Exact motion (dump vs stir) slightly blurry |
+| Small Bowl | Empty/Depleted after transfer | 3.3-4.2 | Video 3 | High | None |
+| Chef Action | Grabs handle of Front Wok | 4.5-5.0 | Video 3 | High | None |
+| Front Wok Food | Cut, separate, raw/cooking | 0.0-5.0 | Video 3 | Med | Doneness unclear |
+| Large Pot | Filled, residue/steam rising | 0.0-5.0 | Video 3 | High | None |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_4) ###
+Time: 2026-07-06 20:10:35 -> 2026-07-06 20:15:38
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 66.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report key events with approximate time windows. Return compact evidence rows: object/action/state/window/query_link/conf/uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from the 16 frames of Video 4, here is the description of the operation and object states.
+
+**Operation Description:**
+A chef is actively stir-frying food (likely noodles or rice) in a commercial kitchen wok station. The chef repeatedly uses a ladle to transfer liquid (stock or water) from a large aluminum pot situated behind the wok into the wok itself. The chef alternates between stirring the contents with the ladle and vigorously tossing the food in the wok to mix and cook it. To the left, a deep fryer is visible but idle. Shelves with metal bowls are in the background.
+
+**Key Events & Time Windows (approximate based on frame sequence 0-66s):**
+*   **0-10s (Frames 1-3):** Chef adds liquid from the large pot and begins tossing the white food ingredients in the wok.
+*   **15-35s (Frames 5-9):** Chef repeatedly dips the ladle into the large pot to add more liquid and stirs the mixture in the wok.
+*   **35-50s (Frames 10-13):** Vigorous tossing and stirring of the food, which appears clumped (suggesting noodles).
+*   **50-66s (Frames 14-16):** A brief pause where the chef turns (Frame 15), followed by a final high toss of the food mixture (Frame 16).
+
+**Compact Evidence Rows:**
+
+| Object | Action | State | Window | Query Link | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Chef** | Stir-frying, tossing | Active, wearing apron/camo pants | 0-66s | N/A | High | Low |
+| **Wok** | Cooking vessel | Hot, contains food/liquid, residue of oil | 0-66s | N/A | High | Low |
+| **Large Pot** | Source of liquid | Filled with stock/water, aluminum | 0-66s | N/A | High | Low |
+| **Ladle** | Transferring, stirring | Wet, metal, contact with pot and wok | 0-66s | N/A | High | Low |
+| **Food (Noodles/Rice)** | Being cooked/mixed | White/yellow, clumped, raw->cooked, tossed | 0-66s | N/A | Med | Med (exact type: noodles vs rice) |
+| **Deep Fryer** | Idle | Present, metal baskets, empty/standing oil | 0-66s | N/A | High | Low |
+| **Shelves/Bowls** | Storage | Static, metal bowls, present | 0-66s | N/A | High | Low |
+
+------------------------------------------------------------
+
+### [Turn 1] Tool: active_perception (ID: batch_1_5) ###
+Time: 2026-07-06 20:10:35 -> 2026-07-06 20:16:17
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 7.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report key events with approximate time windows. Return compact evidence rows: object/action/state/window/query_link/conf/uncertainty."
+}
+
+[Output]:
+Based on the visual evidence from Video 5 (Frames 1-16), here is the layer 1 caption and object state analysis:
+
+**Operation Description:**
+A chef in a commercial kitchen is adding an ingredient from a small metal prep bowl into a large steaming stockpot on the back burner. After emptying the bowl, the chef turns attention to a pan on the front right burner, using a ladle to stir its steaming contents.
+
+**Visible Objects/Tools & States:**
+*   **Large Stockpot (Back Burner):** Present, filled with hot liquid (heavy steam visible), metal.
+*   **Small Metal Bowl (Prep Bowl):** Present. Initially held by chef (likely containing ingredient), then **depleted/empty** after pouring action.
+*   **Pan/Wok (Front Right Burner):** Present, hot/steaming, contains cooking food/liquid.
+*   **Wok (Front Left Burner):** Present, appears idle/empty of active cooking (no steam).
+*   **Ladle:** Present, metal. Initially resting in the front right pan, then used for stirring.
+*   **Deep Fryer (Left):** Present, baskets visible, idle.
+
+**Key Events & Time Windows:**
+*   **0.0s - 11.0s:** The chef holds a small metal bowl. Around 2.0s-3.0s, he positions the bowl over the large stockpot and pours its contents (ingredient/liquid) into the pot. The bowl transitions from filled (implied) to **empty/depleted**.
+*   **12.0s - 16.0s:** The chef holds the now-empty bowl in his left hand. With his right hand, he grasps the ladle resting in the front right pan and stirs the steaming contents.
+
+**Compact Evidence Rows:**
+
+| object/action | state | window | query_link | conf | uncertainty |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Large Stockpot** | filled, hot/steaming, liquid | 0.0-7.0s | Video 5 | High | Content type unknown (stock/water) |
+| **Small Bowl** | present -> depleted/empty | 0.0-7.0s | Video 5 | High | Initial content type (liquid vs powder) |
+| **Chef Action (Pour)** | pouring ingredient into stockpot | 2.0-11.0s | Video 5 | High | Exact moment of depletion |
+| **Pan (Right)** | hot/steaming, being stirred | 12.0-16.0s | Video 5 | High | Food content obscured by steam |
+| **Ladle** | tool contact (stirring right pan) | 12.0-16.0s | Video 5 | High | - |
+| **Wok (Left)** | present, idle/separate | 0.0-7.0s | Video 5 | High | - |
+
+**Accumulated Context Update:**
+*   **ingredient state:** Ingredient transferred from small bowl (depleted) to large pot (mixed). Right pan contents are being mixed/stirred.
+*   **container fill/empty:** Small bowl is depleted/empty. Large pot and right pan remain filled.
+*   **tool contact:** Ladle contacts right pan (stirring).
+*   **transfer traces:** Pouring action from bowl to large pot visible (steam/tilt).
+*   **residue/depletion:** Small bowl shows depletion (shiny/empty appearance in later frames).
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_1) ###
+Time: 2026-07-06 20:18:39 -> 2026-07-06 20:19:32
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 1,
+      "start_time": 0.0,
+      "end_time": 48.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: raw fish fillets (state: whole/sliced/diced), red cutting board (state: clean/wet/residue), metal bowl (state: empty/filled with fish). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose."
+}
+
+[Output]:
+raw fish fillets / cutting & transferring / sliced/diced / 1-16 / - / high / -
+red cutting board / cutting surface / wet/residue / 1-16 / - / high / -
+metal bowl / receiving fish / empty -> filled with fish / 1-16 / - / high / -
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_2) ###
+Time: 2026-07-06 20:18:39 -> 2026-07-06 20:19:41
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 17.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: wok contents (identity, state: raw/cut/cooked/clumped/mass), small white bowl (action, depletion), white plate (action, depletion). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose."
+}
+
+[Output]:
+wok contents/contains liquid then white clumped mass (likely noodles)/liquid -> clumped/mass/1-16/query_link/high/uncertain exact identity of white mass
+small white bowl/pouring liquid/depleted/1-4/query_link/high/
+white plate/scraping white mass into wok/depleted/10-14/query_link/high/
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_3) ###
+Time: 2026-07-06 20:18:39 -> 2026-07-06 20:19:50
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 5.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: front wok contents (identity, state: raw/cut/cooked/steaming), large pot (receiving/adding, fill level), small white bowl/cup (action, depletion). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose."
+}
+
+[Output]:
+front_wok | contains cut white food (chunks), steaming in later frames | cut, steaming | 1-16 | front_wok_contents | HIGH | UNCERTAIN exact identity (fish vs onion)
+large_pot | receiving contents from small white bowl | high fill / contains liquid | 7-10 | large_pot_state | HIGH | -
+small_white_bowl | pours liquid/contents into large pot | depleting / emptying | 6-10 | small_bowl_action | HIGH | -
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_4) ###
+Time: 2026-07-06 20:18:39 -> 2026-07-06 20:19:32
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 66.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: wok contents (identity, state: raw/cut/cooked/clumped/noodles), large pot (source of liquid, fill level), ladle (action). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose."
+}
+
+[Output]:
+wok contents | clumped noodles/cooked | 1-16 | - | high | -
+large pot | source of liquid/full | 1-16 | - | high | -
+ladle | scooping from pot/stirring wok | 1-16 | - | high | -
+
+------------------------------------------------------------
+
+### [Turn 3] Tool: active_perception (ID: batch_3_5) ###
+Time: 2026-07-06 20:18:39 -> 2026-07-06 20:19:31
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 7.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=layer2_state_scan. Re-check only these cells: front right pan contents (identity, state: raw/cut/cooked/liquid), large pot (receiving/adding, fill level), small metal bowl (action, depletion). Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. No final answer or prose."
+}
+
+[Output]:
+front_right_pan/contains cooking food and liquid/liquid, cooked/1-16/Q1/High/None
+large_pot/receiving from small metal bowl/high fill level/1-16/Q2/High/None
+small_metal_bowl/pours into large pot, then held empty/depleted, empty/1-16/Q3/High/None
+
+------------------------------------------------------------
+
+### [Turn 4] Tool: active_perception (ID: batch_4_1) ###
+Time: 2026-07-06 20:20:54 -> 2026-07-06 20:23:25
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 2,
+      "start_time": 0.0,
+      "end_time": 17.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=focus. Inspect only the wok contents and the small white bowl. Report: 1) Are the white clumped masses in the wok raw noodles or cooked noodles? 2) Is there any liquid from the large pot in the wok? 3) What exactly is poured from the small white bowl? Return compact rows: object/state/window/conf/uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the frames (Video 2, 0.0s-17.0s):
+
+1.  **White clumped masses:** The white masses added to the wok (Frames 11-16) appear to be **cooked noodles** (likely blanched or boiled rice noodles/udon). They are soft, wet, and clumped together, characteristic of noodles that have been pre-cooked (possibly in the large pot) and drained before being added to the wok for the final cooking step (stir-frying or soup making). They do not look like dry, stiff raw noodles.
+2.  **Liquid from large pot:** **Yes**. In Frames 5-9, there is significant steaming and bubbling liquid in the wok. Given the large silver stock pot nearby (which is also steaming) and the PSS context indicating the large pot is a "source of liquid for wok", it is highly likely that hot water or stock from the large pot is in the wok.
+3.  **Small white bowl content:** The small white bowl (Frames 1-4) contains a **liquid** (likely clear liquid such as water, cooking wine, or oil). The chef pours a small amount into the wok (Frame 2) and potentially the large pot (Frame 3).
+
+**Compact Report:**
+
+| Object | State/Action | Window/Frame | Confidence | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| White clumped masses (wok) | Cooked noodles (blanched/soft clumps, added from plate) | Frames 11-16 | Medium | Could be raw fresh noodle block, but texture suggests cooked/blanched. |
+| Wok contents (liquid) | Boiling/steaming liquid present (likely stock/water from large pot) | Frames 5-9 | High | Exact identity of liquid (water vs stock) unclear. |
+| Small white bowl | Pours clear liquid (seasoning/oil/water) | Frames 1-4 | High | Exact chemical identity of liquid unknown. |
+| Large pot | Source of steam/liquid; receiving pour from small bowl | Frames 1-5 | Medium | Interaction between pot and wok liquid transfer inferred from steam/context. |
+
+------------------------------------------------------------
+
+### [Turn 4] Tool: active_perception (ID: batch_4_2) ###
+Time: 2026-07-06 20:20:54 -> 2026-07-06 20:22:03
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 3,
+      "start_time": 0.0,
+      "end_time": 5.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=focus. Inspect only the large pot and the front wok. Report: 1) What is being added to the large pot from the small white bowl? 2) What is the exact identity and state of the cut white food in the front wok (raw chunks, cooking, etc.)? Return compact rows: object/state/window/conf/uncertainty."
+}
+
+[Output]:
+Based on the visual evidence in the provided frames (Video 3):
+
+1) **Large Pot Addition:** In frames 6-10, the chef holds a small white bowl and pours a **liquid** (likely water, broth, or oil) into the large silver pot.
+2) **Front Wok Food:** The front wok contains **cut white food** (identified in context as raw fish chunks/slices). The state appears to be **cooking** or **raw chunks** sitting in the wok (steam is visible rising from the area).
+
+**Compact Rows:**
+
+| Object | State | Window | Conf | Uncertainty |
+| :--- | :--- | :--- | :--- | :--- |
+| Liquid (from small white bowl) | Being poured into large pot | Frames 6-10 | High | Exact liquid type (water/stock/oil) |
+| Cut white food (likely fish chunks) | Cooking / Raw chunks in front wok | Frames 1-16 | Medium | Exact identity (fish vs. other white ingredient) |
+
+------------------------------------------------------------
+
+### [Turn 4] Tool: active_perception (ID: batch_4_3) ###
+Time: 2026-07-06 20:20:54 -> 2026-07-06 20:21:41
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 4,
+      "start_time": 0.0,
+      "end_time": 66.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=focus. Inspect only the wok contents and the large pot. Report: 1) Are the noodles in the wok fully cooked and clumped? 2) Is liquid being actively scooped from the large pot into the wok? 3) Is the large pot full of broth/liquid? Return compact rows: object/state/window/conf/uncertainty."
+}
+
+[Output]:
+noodles_in_wok/cooked and clumped mass/frames 10, 11, 16/high/low
+liquid_transfer/actively scooped from large pot to wok/frames 1, 5/high/low
+large_pot/full of broth/liquid/frames 1-16/high/low
+
+------------------------------------------------------------
+
+### [Turn 4] Tool: active_perception (ID: batch_4_4) ###
+Time: 2026-07-06 20:20:54 -> 2026-07-06 20:21:54
+
+[Inputs]:
+{
+  "observation_targets": [
+    {
+      "video_index": 5,
+      "start_time": 0.0,
+      "end_time": 7.0,
+      "num_frames": 16
+    }
+  ],
+  "focus_prompt": "MODE=focus. Inspect only the large pot and the front right pan. Report: 1) What is being added to the large pot from the small metal bowl? 2) What is the state of the food in the front right pan (raw, cooking, liquid amount)? Return compact rows: object/state/window/conf/uncertainty."
+}
+
+[Output]:
+large_pot/receiving raw fish chunks (white slices) from small metal bowl/1-16/high/ingredient identity (visual shows white chunks, context says raw fish)
+front_right_pan/cooking, contains liquid (soup/broth) and solids, being stirred with ladle/1-16/high/liquid amount (substantial, soup-like consistency)
+
+------------------------------------------------------------
+

@@ -1,0 +1,182 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "Verify exact state of chicken and pepper in V4 to ensure it bridges V1 and V3"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Cut chicken, grate ginger, add dry spices to glass bowl. Pepper whole.\", \"2\": \"Stir-fry noodles: cooked chicken, pepper strips, snow peas, sauce, noodles added and tossed.\", \"3\": \"Ignite stove, cook marinated chicken in wok, add dark sauce. Chopped pepper on board.\", \"4\": \"Mix marinated meat by hand, slice/chop red pepper. Wok empty.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "chicken": {
+      "1": "raw, cut into strips, dry spices added",
+      "2": "cooked, yellow chunks, in wok",
+      "3": "marinated (yellow coating), cooking in wok",
+      "4": "raw, wet/marinated, mixed by hand"
+    },
+    "red_bell_pepper": {
+      "1": "whole, raw, on board",
+      "2": "cut into strips, added to wok",
+      "3": "chopped, on cutting board",
+      "4": "whole -> sliced -> chopped pile"
+    },
+    "wok": {
+      "1": "not mentioned/empty",
+      "2": "heating, contains food (noodles/veg/chicken)",
+      "3": "heating, contains cooking chicken",
+      "4": "empty, clean"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient state (raw/cooked/cut/mixed)",
+    "container fill/empty/residue",
+    "tool contact and transfer traces",
+    "background vessel states",
+    "completion marks",
+    "chicken state progression: raw/cut -> marinated -> cooking -> cooked",
+    "pepper state progression: whole -> chopped -> in wok",
+    "wok state: empty -> heating with chicken -> full stir fry"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "All object states and ordering pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "ingredient state (raw/cooked/cut/mixed)",
+          "container fill/empty/residue",
+          "tool contact and transfer traces",
+          "background vessel states",
+          "completion marks"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Cut chicken, grate ginger, add dry spices to glass bowl. Pepper whole.",
+          "2": "Stir-fry noodles: cooked chicken, pepper strips, snow peas, sauce, noodles added and tossed.",
+          "3": "Ignite stove, cook marinated chicken in wok, add dark sauce. Chopped pepper on board.",
+          "4": "Mix marinated meat by hand, slice/chop red pepper. Wok empty."
+        },
+        "object_memory": {
+          "chicken": {
+            "1": "raw, cut into strips, dry spices added",
+            "2": "cooked, yellow chunks, in wok",
+            "3": "marinated (yellow coating), cooking in wok",
+            "4": "raw, wet/marinated, mixed by hand"
+          },
+          "red_bell_pepper": {
+            "1": "whole, raw, on board",
+            "2": "cut into strips, added to wok",
+            "3": "chopped, on cutting board",
+            "4": "whole -> sliced -> chopped pile"
+          },
+          "wok": {
+            "1": "not mentioned/empty",
+            "2": "heating, contains food (noodles/veg/chicken)",
+            "3": "heating, contains cooking chicken",
+            "4": "empty, clean"
+          }
+        },
+        "preliminary_order": "1->4->3->2",
+        "order_confidence": 9,
+        "confidence_basis": [
+          "V1: whole pepper, raw chicken spiced",
+          "V4: marinated chicken mixed, pepper chopped",
+          "V3: marinated chicken cooking, chopped pepper on board",
+          "V2: cooked chicken, pepper strips in wok with noodles"
+        ],
+        "blocking_uncertainties": [
+          "Verify exact state of chicken and pepper in V4 to ensure it bridges V1 and V3"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                9
+              ],
+              "event": "prep chicken and spices",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                17
+              ],
+              "event": "stir fry noodles",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                9
+              ],
+              "event": "cook marinated chicken",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                2
+              ],
+              "event": "mix marinade, chop pepper",
+              "confidence": "high"
+            }
+          ]
+        },
+        "candidate_targets": [],
+        "low_value_targets": [],
+        "uncertain": [
+          "Verify exact state of chicken and pepper in V4 to ensure it bridges V1 and V3"
+        ],
+        "dimensions_to_compare": [
+          "chicken state progression: raw/cut -> marinated -> cooking -> cooked",
+          "pepper state progression: whole -> chopped -> in wok",
+          "wok state: empty -> heating with chicken -> full stir fry"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "1->4->3->2"
+  ],
+  "order_confidence": [
+    "9"
+  ],
+  "confidence_basis": [
+    "V1: whole pepper, raw chicken spiced",
+    "V4: marinated chicken mixed, pepper chopped",
+    "V3: marinated chicken cooking, chopped pepper on board",
+    "V2: cooked chicken, pepper strips in wok with noodles"
+  ],
+  "blocking_uncertainties": [
+    "Verify exact state of chicken and pepper in V4 to ensure it bridges V1 and V3"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 9], \"event\": \"prep chicken and spices\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 17], \"event\": \"stir fry noodles\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 9], \"event\": \"cook marinated chicken\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 2], \"event\": \"mix marinade, chop pepper\", \"confidence\": \"high\"}]}"
+  ],
+  "candidate_targets": [],
+  "low_value_targets": []
+}

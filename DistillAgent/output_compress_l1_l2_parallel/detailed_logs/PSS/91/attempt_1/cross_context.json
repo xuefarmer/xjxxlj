@@ -1,0 +1,276 @@
+{
+  "confirmed": [
+    "3 -> 4: raw mix to fried meatballs",
+    "4 -> 2: fried meatballs to meatballs in sauce",
+    "1 -> 2: sauce in pot to sauce with meatballs and pasta",
+    "1 -> 4: sauce jar opened in V1, sitting on counter in V4; sauce pot active in V1, occupied in V4"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"make sauce: onions, herbs, jar sauce, green leaves in pot\", \"2\": \"assemble: cooked meatballs in sauce, drain pasta, mix, plate\", \"3\": \"prep meat mix: raw meat, onions, herbs, soaked bread, egg\", \"4\": \"form & fry: raw mix -> formed balls -> fried in oil\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "meatball_mixture": {
+      "3": "raw, mixed in bowl",
+      "4": "formed, fried, cooked"
+    },
+    "sauce": {
+      "1": "onions, herbs, jar sauce, green leaves cooking in pot",
+      "2": "meatballs covered in red sauce, mixed with pasta"
+    },
+    "pasta": {
+      "2": "drained from colander, mixed with sauce"
+    },
+    "green_leaves": {
+      "1": "added to sauce, wilting",
+      "2": "check if present in final dish"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states (raw/cut/cooked)",
+    "container states (empty/filled/residue)",
+    "tool usage",
+    "transfer events",
+    "green leaves presence"
+  ],
+  "resolved_uncertain": [
+    "order of 1 vs 4 resolved by jar and pot state in focus"
+  ],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "full object state inventory across all 4 segments"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cut/cooked)",
+          "container states (empty/filled/residue)",
+          "tool usage",
+          "transfer events"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "make sauce: onions, herbs, jar sauce, green leaves in pot",
+          "2": "assemble: cooked meatballs in sauce, drain pasta, mix, plate",
+          "3": "prep meat mix: raw meat, onions, herbs, soaked bread, egg",
+          "4": "form & fry: raw mix -> formed balls -> fried in oil"
+        },
+        "object_memory": {
+          "meatball_mixture": {
+            "3": "raw, mixed in bowl",
+            "4": "formed, fried, cooked"
+          },
+          "sauce": {
+            "1": "onions, herbs, jar sauce, green leaves cooking in pot",
+            "2": "meatballs covered in red sauce, mixed with pasta"
+          },
+          "pasta": {
+            "2": "drained from colander, mixed with sauce"
+          },
+          "green_leaves": {
+            "1": "added to sauce, wilting",
+            "2": "check if present in final dish"
+          }
+        },
+        "preliminary_order": "3->4->1->2",
+        "order_confidence": 7,
+        "confidence_basis": "3 is raw mix, 4 is frying raw mix, 1 is making sauce, 2 is final assembly with cooked meatballs and sauce. Order between 1 and 4 needs verification.",
+        "blocking_uncertainties": [
+          "Does sauce from Video 1 transfer to Video 2?",
+          "Are green leaves from Video 1 visible in Video 2?",
+          "Is there any direct link ordering Video 1 and Video 4?"
+        ],
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                22
+              ],
+              "event": "sauce making",
+              "key_objects": [
+                "pot",
+                "onions",
+                "red sauce",
+                "green leaves"
+              ],
+              "visible_state": "sauce filling pot, leaves wilting",
+              "why_it_matters": "source of sauce for Video 2",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                34
+              ],
+              "event": "final assembly",
+              "key_objects": [
+                "meatballs",
+                "pasta",
+                "sauce",
+                "colander",
+                "bowl"
+              ],
+              "visible_state": "meatballs in sauce, pasta drained and mixed",
+              "why_it_matters": "consumes sauce and meatballs",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                63
+              ],
+              "event": "meatball prep",
+              "key_objects": [
+                "raw meat",
+                "onions",
+                "bread",
+                "egg",
+                "bowl"
+              ],
+              "visible_state": "raw ingredients mixed",
+              "why_it_matters": "first step for meatballs",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                59
+              ],
+              "event": "meatball frying",
+              "key_objects": [
+                "raw mixture",
+                "pan",
+                "oil",
+                "meatballs"
+              ],
+              "visible_state": "meatballs formed and fried",
+              "why_it_matters": "produces cooked meatballs for Video 2",
+              "confidence": "high"
+            }
+          ]
+        },
+        "candidate_targets": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "sauce transfer 1->2",
+          "green leaves presence in 2",
+          "order of 1 vs 4"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cut/cooked)",
+          "container states (empty/filled/residue)",
+          "tool usage",
+          "transfer events",
+          "green leaves presence"
+        ]
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "comparison_table": {
+          "1": "sauce made in pot, green leaves wilting, no meatballs/pasta",
+          "2": "meatballs already in sauce, pasta drained and mixed, green leaves visible in sauce",
+          "3": "raw meat mixture prepared in bowl",
+          "4": "meatballs formed and fried in pan, transferred to striped bowl"
+        },
+        "confirmed": [
+          "3 -> 4: raw mix to fried meatballs",
+          "4 -> 2: fried meatballs to meatballs in sauce",
+          "1 -> 2: sauce in pot to sauce with meatballs and pasta"
+        ],
+        "pruned_targets": [],
+        "candidate_targets": [
+          "1",
+          "4"
+        ],
+        "uncertain": [
+          "order of 1 vs 4 (parallel processes)"
+        ],
+        "focus_plan": [
+          "compare V1 and V4 for background cues and cross-segment object presence"
+        ]
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "order_confidence": 8,
+        "confirmed": [
+          "3 -> 4: raw mix to fried meatballs",
+          "4 -> 2: fried meatballs to meatballs in sauce",
+          "1 -> 4: sauce jar opened in V1, sitting on counter in V4; sauce pot active in V1, occupied in V4",
+          "1 -> 2: sauce in pot to sauce with meatballs and pasta"
+        ],
+        "resolved_uncertain": [
+          "order of 1 vs 4 resolved by jar and pot state in focus"
+        ],
+        "uncertain": []
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "3->4->1->2"
+  ],
+  "order_confidence": [
+    "7",
+    "8"
+  ],
+  "confidence_basis": [
+    "3 is raw mix, 4 is frying raw mix, 1 is making sauce, 2 is final assembly with cooked meatballs and sauce. Order between 1 and 4 needs verification."
+  ],
+  "blocking_uncertainties": [
+    "Does sauce from Video 1 transfer to Video 2?",
+    "Are green leaves from Video 1 visible in Video 2?",
+    "Is there any direct link ordering Video 1 and Video 4?"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 22], \"event\": \"sauce making\", \"key_objects\": [\"pot\", \"onions\", \"red sauce\", \"green leaves\"], \"visible_state\": \"sauce filling pot, leaves wilting\", \"why_it_matters\": \"source of sauce for Video 2\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 34], \"event\": \"final assembly\", \"key_objects\": [\"meatballs\", \"pasta\", \"sauce\", \"colander\", \"bowl\"], \"visible_state\": \"meatballs in sauce, pasta drained and mixed\", \"why_it_matters\": \"consumes sauce and meatballs\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 63], \"event\": \"meatball prep\", \"key_objects\": [\"raw meat\", \"onions\", \"bread\", \"egg\", \"bowl\"], \"visible_state\": \"raw ingredients mixed\", \"why_it_matters\": \"first step for meatballs\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 59], \"event\": \"meatball frying\", \"key_objects\": [\"raw mixture\", \"pan\", \"oil\", \"meatballs\"], \"visible_state\": \"meatballs formed and fried\", \"why_it_matters\": \"produces cooked meatballs for Video 2\", \"confidence\": \"high\"}]}"
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "low_value_targets": [],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"1\": \"sauce made in pot, green leaves wilting, no meatballs/pasta\", \"2\": \"meatballs already in sauce, pasta drained and mixed, green leaves visible in sauce\", \"3\": \"raw meat mixture prepared in bowl\", \"4\": \"meatballs formed and fried in pan, transferred to striped bowl\"}"
+  ],
+  "pruned_targets": [],
+  "focus_plan": [
+    "compare V1 and V4 for background cues and cross-segment object presence"
+  ]
+}

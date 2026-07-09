@@ -1,0 +1,242 @@
+[
+  {
+    "turn": 1,
+    "call_id": "batch_1_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 4.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report visible containers, ingredients, utensils, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 12:23:52",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 4.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report visible containers, ingredients, utensils, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill/empty\",\n    \"raw vs cooked\",\n    \"transfer traces\",\n    \"residue/depletion\"\n  ],\n  \"layer1_done\": [\n    \"True\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence from the frames, here is the description of the operation and object states:\n\n**Operation:** A chef is slicing a prepared fresh spring roll (summer roll) in half on a wooden cutting board. The scene shows the preparation and plating area with various fresh ingredients.\n\n**Compact Evidence Rows:**\n\n| Objects | Action | State | Window | Query Link | Conf | Uncertainty |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| **Spring roll** | Slicing/Cutting | Fresh, wrapped (rice paper), whole $\\rightarrow$ cut in half. Visible shrimp/greens inside. | 1-16 | N/A | High | None |\n| **Shrimp** | Present (in bowl & on board) | Cooked (pink/white), peeled, wet. | 1-16 | N/A | High | None |\n| **Glass bowl** | Holding shrimp | Filled with shrimp. | 1-16 | N/A | High | None |\n| **Mango slices** | Present | Cut (strips), fresh, yellow. | 1-16 | N/A | High | None |\n| **Red peppers** | Present | Cut (strips), fresh, red. | 1-16 | N/A | High | None |\n| **Green herbs** | Present | Fresh, whole leaves (mint/cilantro/basil). | 1-16 | N/A | High | None |\n| **Knife** | Cutting | In use, metal blade. | 2-13 | N/A | High | None |\n| **Chef** | Cutting/Preparing | Standing, wearing black coat. | 2-16 | N/A | High | None |\n| **Cutting board** | Surface | Wooden, holds ingredients. | 1-16 | N/A | High | None |\n| **Pot** | Sitting on stove | Stainless steel, appears empty or with clear liquid. | 2-16 | N/A | Medium | Liquid content unclear |\n| **Rice noodles** | Present | Packaged (bag visible on left). | 2-10 | N/A | High | None |\n\n**Summary of States:**\n*   **Raw vs. Cooked:** Shrimp are cooked. Vegetables (mango, peppers, herbs) are raw/fresh. The spring roll is assembled (fresh, not fried).\n*   **Whole vs. Cut:** The spring roll starts whole and is cut in half. Mango and peppers are already sliced into strips.\n*   **Empty vs. Filled:** The glass bowl is filled with shrimp. Small white bowls are present (some appear empty or contain small amounts of sauce/ingredients).\n*   **Residue/Depletion:** No significant depletion observed; ingredients are laid out for assembly or serving.",
+    "timestamp_end": "2026-07-06 12:24:44"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 14.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report visible containers, ingredients, utensils, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 12:23:52",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 14.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report visible containers, ingredients, utensils, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill/empty\",\n    \"raw vs cooked\",\n    \"transfer traces\",\n    \"residue/depletion\"\n  ],\n  \"layer1_done\": [\n    \"True\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence from the frames, here is the description of the operation and object states:\n\n**Operation:** A chef is assembling fresh spring rolls (summer rolls). The process involves placing ingredients onto a wet rice paper wrapper and rolling it up.\n\n**Visible Objects/Tools & States:**\n*   **Shrimp:** Visible in a glass bowl and on the wooden board. They appear pink and white, suggesting they are cooked and peeled (or raw but turning pink). They are separate on the board and mixed/piled in the bowl.\n*   **Rice Paper Wrapper:** Translucent and wet, indicating it has been soaked. It is being manipulated by hand.\n*   **Spring Roll:** In various stages of assembly. One roll (Frame 4) appears mostly formed with green herbs and white noodles visible inside.\n*   **Vermicelli Noodles:** White, thin strands. They appear cooked and are tangled inside the roll and on the board.\n*   **Green Herbs/Leaf:** Fresh green leaves (likely mint, basil, or cilantro) are being placed onto the wrapper (Frames 15-16).\n*   **Yellow Strips:** Likely mango or yellow bell pepper. They are cut into strips and piled on the board.\n*   **Red Slices:** Likely red bell pepper or strawberries. They are cut and piled on the board.\n*   **Glass Bowl:** Contains shrimp. It is filled.\n*   **Chef:** Wearing a black chef's coat, standing at a kitchen island with a mise en place setup.\n\n**Compact Evidence Rows:**\n\n| Objects | Action | State | Window | Query Link | Conf | Uncertainty |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| Shrimp | Resting in bowl/on board | Pink/white, peeled, cooked (likely), present | 1-5, 15-16 | - | High | Raw vs cooked (color suggests cooked) |\n| Rice Paper Wrapper | Being folded/rolled | Wet, translucent, filled | 1-5, 15-16 | - | High | None |\n| Spring Roll | Being assembled | Filled with noodles/herbs, partially rolled | 1-5 | - | High | None |\n| Vermicelli Noodles | Inside roll/on board | White, cooked, tangled | 4, 15-16 | - | High | None |\n| Green Herbs/Leaf | Being placed into roll | Fresh, green, whole leaves | 15-16 | - | High | Specific herb type unknown |\n| Yellow Strips | Resting on board | Cut, piled, fresh | 1-5, 15-16 | - | High | Mango vs Pepper |\n| Red Slices | Resting on board | Cut, piled, fresh | 5, 15-16 | - | High | Pepper vs Strawberry |\n| Glass Bowl | Holding shrimp | Filled, transparent | 1-5, 15-16 | - | High | None |\n| Chef | Assembling rolls at counter | Standing, working with hands | 6-14 | - | High | None |",
+    "timestamp_end": "2026-07-06 12:25:01"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 7.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report visible containers, ingredients, utensils, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 12:23:52",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 7.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report visible containers, ingredients, utensils, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill/empty\",\n    \"raw vs cooked\",\n    \"transfer traces\",\n    \"residue/depletion\"\n  ],\n  \"layer1_done\": [\n    \"True\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "[Layer 1 Caption]\n- **objects**: glass bowl, raw shrimp, wooden cutting board, cut shrimp, green herbs (mint/cilantro), yellow strips (mango/pepper), rice paper wrapper, vermicelli noodles, red/yellow/green vegetable strips, hands.\n- **action**: arranging filling, pressing down, rolling wrapper.\n- **state**: bowl filled with raw/pink shrimp; cut shrimp separate on board; herbs/strips fresh/cut; wrapper wet/translucent/pliable; noodles white/cooked piled on wrapper; veggies cut/mixed on noodles.\n- **window**: 1-16\n- **query_link**: N/A\n- **conf**: high\n- **uncertainty**: low\n\n**Detailed Evidence Rows:**\n1. **Glass bowl**: present, filled with raw pink shrimp, wet state. (Window 1-16)\n2. **Cut shrimp**: present on board, raw, separate from bowl. (Window 1-16)\n3. **Herbs & Yellow strips**: present on left, fresh, cut, separate. (Window 1-16)\n4. **Rice paper wrapper**: present on right, wet/translucent (residue visible on board), flat initially. (Window 1-6)\n5. **Filling (noodles + veggies)**: present on wrapper, mixed pile (white noodles, red/yellow/green strips), cooked/cut. (Window 1-9)\n6. **Hands**: action changes from arranging/adjusting filling (Window 1-6) to pressing/compacting (Window 7-9) to folding/rolling the wrapper edge over the filling (Window 10-16).\n7. **Rolling process**: Wrapper is being rolled tightly around the filling; noodles and veggies are being encased. (Window 10-16)\n8. **Board surface**: wet residue visible where rice paper was/is, indicating wet wrapper. (Window 1-16)",
+    "timestamp_end": "2026-07-06 12:24:44"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_4",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 10.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report visible containers, ingredients, utensils, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 12:23:52",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 10.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report visible containers, ingredients, utensils, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill/empty\",\n    \"raw vs cooked\",\n    \"transfer traces\",\n    \"residue/depletion\"\n  ],\n  \"layer1_done\": [\n    \"True\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence from the frames, here is the description of the operation and object states.\n\n**Operation Description:**\nA chef is rehydrating or soaking a large, rectangular, textured food sheet (likely a rice paper wrapper, bean curd sheet, or noodle sheet) in a pan of water. The chef submerges the stiff, dry sheet into the water, presses it down to ensure it is fully wet, and then lifts it out once it has become pliable. Surrounding the stove are prepared ingredients including a bowl of raw shrimp and a cutting board with chopped vegetables and meat, suggesting preparation for a meal (possibly spring rolls or a stir-fry).\n\n**Compact Evidence Rows:**\n\n| Objects | Action | State | Window | Query Link | Conf | Uncertainty |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| **Stainless steel pan** | Sitting on burner | Filled with clear water; wet | 1-16 | - | High | None |\n| **Textured sheet (wrapper/noodle sheet)** | Being held, submerged, pressed, lifted | Initially dry/stiff/rigid; becomes wet/pliable/flexible; grid/honeycomb pattern visible | 1-14 | - | High | Exact material (rice paper vs bean curd) |\n| **Glass bowl** | Sitting on counter | Filled with raw shrimp (pink/white, peeled); separate | 1-16 | - | High | None |\n| **Chef's hands** | Manipulating sheet | Wet (after touching water); active | 6-14 | - | High | None |\n| **Package of sheets** | Sitting on counter (left) | Present; contains dry sheets | 1-16 | - | High | None |\n| **Cutting board ingredients** | Prepared on counter | Cut (carrots, peppers, meat); raw; separate piles/bowls | 15-16 | - | High | None |\n| **Stove/Kitchen** | Background | Clean; gas burners visible | 1-16 | - | High | None |\n\n**Detailed State Analysis:**\n*   **Raw vs. Cooked:** The shrimp in the bowl appear raw (translucent/pinkish white). The meat on the cutting board (visible in frames 15-16) appears raw and chopped. The sheet is being rehydrated, not cooked yet (though the water might be hot, no steam is vigorously rising, suggesting warm or hot water for soaking).\n*   **Dry vs. Wet:** The sheet starts dry and stiff (Frame 1-3). It becomes wet and submerged (Frame 4-11). It is lifted out wet and pliable (Frame 12-16). The chef's hands become wet.\n*   **Empty vs. Filled:** The large pan is filled with water. The small glass bowl is filled with shrimp.\n*   **Separate vs. Mixed:** The sheet is initially separate, then mixed (submerged) in the water, then separated (lifted out) again. The ingredients on the counter are kept in separate piles/bowls.\n*   **Whole vs. Cut:** The sheet is a whole large rectangle. The vegetables and meat on the counter are cut/chopped. The shrimp appear whole (peeled).",
+    "timestamp_end": "2026-07-06 12:25:04"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_5",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 5,
+          "start_time": 0.0,
+          "end_time": 29.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report visible containers, ingredients, utensils, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 12:23:52",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 5 (0.0s to 29.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report visible containers, ingredients, utensils, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill/empty\",\n    \"raw vs cooked\",\n    \"transfer traces\",\n    \"residue/depletion\"\n  ],\n  \"layer1_done\": [\n    \"True\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence from the frames, here is the description of the operation and object states:\n\n**Operation:** A chef is assembling fresh spring rolls (or similar rolls). He retrieves cooked rice vermicelli noodles from a water bath, drains them, places them on a wrapper/leaf, and begins adding sliced vegetables.\n\n**Evidence Rows:**\n\n| Objects | Action | State | Window | Conf | Uncertainty |\n| :--- | :--- | :--- | :--- | :--- | :--- |\n| **Glass Bowl & Noodles** | Chef reaches in and lifts noodles | Bowl filled with water and white noodles; Noodles are wet, cooked, soft strands | 1-8 | High | None |\n| **Noodles (on board)** | Placed onto surface (lettuce leaf/wet rice paper) | Wet, clumped pile, white; separated from water | 9-11 | High | Exact wrapper type (lettuce vs rice paper) slightly ambiguous but looks like assembly base |\n| **Red Peppers & Cucumber** | Picked from small glass bowl and placed on noodles | Sliced/julienned, fresh, raw, red and green; mixed in small bowl | 12-14 | High | None |\n| **Shrimp & Mango** | Present on board, hands working nearby | Shrimp: Peeled, pink/white (likely cooked), in glass bowl. Mango: Sliced yellow strips, fresh | 15-16 | High | Shrimp raw vs cooked (likely cooked given color) |\n| **Pot & Plate** | Stationary on stove/counter | Pot: Stainless steel, empty/standing. Plate: White, rectangular, holds one finished roll with residue/filling visible | 1-16 | High | None |\n| **Sauce Bottles/Jars** | Stationary on board | Filled containers (fish sauce, olive bacon jar), labels visible | 4-16 | High | None |\n\n**Summary of States:**\n*   **Noodles:** Wet, cooked, transferred from filled bowl to board.\n*   **Vegetables (Peppers, Cucumber, Mango):** Fresh, cut/sliced, raw.\n*   **Shrimp:** Peeled, present in bowl.\n*   **Containers:** Glass bowl (filled with water/noodles), small glass bowl (filled with veggies), pot (empty/on stove).",
+    "timestamp_end": "2026-07-06 12:24:58"
+  },
+  {
+    "turn": 1,
+    "call_id": "batch_1_6",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 6,
+          "start_time": 0.0,
+          "end_time": 7.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report visible containers, ingredients, utensils, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    "timestamp_start": "2026-07-06 12:23:52",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 6 (0.0s to 7.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Report visible containers, ingredients, utensils, and any background cues. Return compact evidence rows: objects, action, state, window, query_link, conf, uncertainty.\n\n[Accumulated Cross-Video Context]\nCarry these findings into the observation. Focus especially on unresolved uncertainty and the dimensions that must be compared.\n{\n  \"uncertain\": [\n    \"pending Layer1 results\"\n  ],\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill/empty\",\n    \"raw vs cooked\",\n    \"transfer traces\",\n    \"residue/depletion\"\n  ],\n  \"layer1_done\": [\n    \"True\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence from frames 1-16 (Video 6), here is the layer 1 captioning:\n\n**Operation:** A person is assembling and rolling a fresh spring roll (summer roll) on a wooden cutting board. They fold the sides of a wet rice paper wrapper over the filling and then roll it tightly into a cylinder.\n\n**Visible Objects & States:**\n*   **Hands:** Active, manipulating the wrapper.\n*   **Rice Paper Wrapper:** Wet, translucent, pliable. It starts flat and is folded/rolled into a cylinder.\n*   **Shrimp (in roll):** Cooked (pink/white), split/butterflied (cut), being enclosed.\n*   **Green Leaf (Mint/Basil):** Fresh, green, placed on top of the shrimp.\n*   **Vermicelli Noodles:** Cooked, white, wet, placed at the end of the wrapper.\n*   **Glass Bowl (top left):** Filled with cooked shrimp.\n*   **Shrimp (on board, left):** Cooked, split, separate from the roll.\n*   **Yellow Strips (bottom left):** Cut (julienned), raw (likely mango or bell pepper), separate.\n*   **Red Slices (bottom center):** Cut, raw (likely peppers or tomatoes), separate.\n*   **Green Herbs (bottom right):** Fresh, separate.\n\n**Compact Evidence Rows:**\n\n| Objects | Action | State | Window | Query Link | Conf | Uncertainty |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| Hands, Rice Paper Wrapper | Folding, Rolling | Wrapper is wet/translucent; filling is being enclosed | 1-16 | [Video 6] | High | None |\n| Shrimp (in roll & bowl) | Being rolled / Static | Cooked, pink/white, split (cut) | 1-16 | [Video 6] | High | None |\n| Green Leaf (Mint) | Being rolled | Fresh, green, whole leaf | 1-16 | [Video 6] | High | Specific herb type (mint vs basil) |\n| Vermicelli Noodles | Being rolled | Cooked, white, wet | 1-16 | [Video 6] | High | None |\n| Glass Bowl | Static | Filled with shrimp | 1-16 | [Video 6] | High | None |\n| Yellow Strips (Mango/Pepper) | Static | Cut (julienned), raw, separate | 1-16 | [Video 6] | High | Exact ingredient (mango vs pepper) |\n| Red Slices (Pepper/Tomato) | Static | Cut, raw, separate | 1-16 | [Video 6] | High | Exact ingredient |",
+    "timestamp_end": "2026-07-06 12:24:44"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 2,
+          "start_time": 0.0,
+          "end_time": 14.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the rice paper wrapper: FLAT / PARTIALLY_FOLDED / ROLLED. What ingredients are visibly ON the wrapper: NOODLES, VEGGIES, HERBS, SHRIMP? Is the shrimp IN the roll or SEPARATE on the board/bowl? Report exactly what you see."
+    },
+    "timestamp_start": "2026-07-06 12:26:40",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 2 (0.0s to 14.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the rice paper wrapper: FLAT / PARTIALLY_FOLDED / ROLLED. What ingredients are visibly ON the wrapper: NOODLES, VEGGIES, HERBS, SHRIMP? Is the shrimp IN the roll or SEPARATE on the board/bowl? Report exactly what you see.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill/empty\",\n    \"raw vs cooked\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"wrapper fold state\",\n    \"ingredients on wrapper\",\n    \"shrimp in roll vs separate\"\n  ],\n  \"uncertain\": [\n    \"exact order of 2,3,6\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in the frames:\n\n*   **Wrapper State:** There are two states visible. A completed **ROLLED** spring roll is sitting on the cutting board (visible clearly in Frames 1 and 4). The chef is actively working on a **FLAT** (wet/translucent) rice paper wrapper to assemble a new one (visible in Frames 2, 15, 16), which transitions to **PARTIALLY_FOLDED** as he rolls it (Frame 3).\n*   **Ingredients on Wrapper:** **NOODLES** (white vermicelli strands) and **HERBS** (green leaves, likely mint or basil) are visibly placed on the flat wrapper.\n*   **Shrimp Location:** The shrimp are **SEPARATE**. They are visible in a glass bowl and lying directly on the cutting board next to the rolled spring roll (Frame 4), not inside the active wrapper being assembled in the close-ups.\n\n**Summary Report:**\n*   **Wrapper State:** **FLAT** (being assembled) and **ROLLED** (finished item on board).\n*   **Ingredients on Wrapper:** **NOODLES**, **HERBS**.\n*   **Shrimp:** **SEPARATE** on the board/bowl.",
+    "timestamp_end": "2026-07-06 12:28:11"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 3,
+          "start_time": 0.0,
+          "end_time": 7.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the rice paper wrapper: FLAT / PARTIALLY_FOLDED / ROLLED. What ingredients are visibly ON the wrapper: NOODLES, VEGGIES, HERBS, SHRIMP? Is the shrimp IN the roll or SEPARATE on the board/bowl? Report exactly what you see."
+    },
+    "timestamp_start": "2026-07-06 12:26:40",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 3 (0.0s to 7.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the rice paper wrapper: FLAT / PARTIALLY_FOLDED / ROLLED. What ingredients are visibly ON the wrapper: NOODLES, VEGGIES, HERBS, SHRIMP? Is the shrimp IN the roll or SEPARATE on the board/bowl? Report exactly what you see.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill/empty\",\n    \"raw vs cooked\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"wrapper fold state\",\n    \"ingredients on wrapper\",\n    \"shrimp in roll vs separate\"\n  ],\n  \"uncertain\": [\n    \"exact order of 2,3,6\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in the frames:\n\n*   **Rice Paper Wrapper State:** The wrapper transitions through states. It starts **FLAT** (Frames 1-6) with ingredients arranged on it. Hands then begin to fold the bottom edge over, making it **PARTIALLY_FOLDED** (Frames 7-12). Finally, the hands roll it up tightly, making it **ROLLED** (Frames 13-16).\n*   **Ingredients on the wrapper:** **NOODLES** (white vermicelli strands), **VEGGIES** (red and yellow strips, likely peppers or mango, and green strips), and **HERBS** (green leaves/cilantro).\n*   **Shrimp Location:** The shrimp are **SEPARATE on the board/bowl**. They are visible in the glass bowl (top left) and lying on the wooden board (center left). They are not currently on the wrapper or inside the roll being formed in these frames.",
+    "timestamp_end": "2026-07-06 12:27:36"
+  },
+  {
+    "turn": 2,
+    "call_id": "batch_2_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 6,
+          "start_time": 0.0,
+          "end_time": 7.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the rice paper wrapper: FLAT / PARTIALLY_FOLDED / ROLLED. What ingredients are visibly ON the wrapper: NOODLES, VEGGIES, HERBS, SHRIMP? Is the shrimp IN the roll or SEPARATE on the board/bowl? Report exactly what you see."
+    },
+    "timestamp_start": "2026-07-06 12:26:40",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 6 (0.0s to 7.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the rice paper wrapper: FLAT / PARTIALLY_FOLDED / ROLLED. What ingredients are visibly ON the wrapper: NOODLES, VEGGIES, HERBS, SHRIMP? Is the shrimp IN the roll or SEPARATE on the board/bowl? Report exactly what you see.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill/empty\",\n    \"raw vs cooked\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"wrapper fold state\",\n    \"ingredients on wrapper\",\n    \"shrimp in roll vs separate\"\n  ],\n  \"uncertain\": [\n    \"exact order of 2,3,6\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in the frames:\n\n*   **Rice Paper Wrapper State:** The wrapper transitions from **PARTIALLY_FOLDED** (frames 1-7, where hands are folding it over ingredients) to **ROLLED** (frames 8-16, where it forms a tight cylinder). It is not flat.\n*   **Ingredients on the wrapper:**\n    *   **NOODLES:** Yes, a bundle of white vermicelli noodles is visible on the right side of the wrapper assembly.\n    *   **HERBS:** Yes, a large green leaf (likely mint or basil) is prominent in the center being folded over.\n    *   **SHRIMP:** Yes, a pinkish/white shrimp (or shrimp slice) is visible under the green leaf and inside the forming roll.\n    *   **VEGGIES:** Yellow strips (likely mango or peppers) are visible on the cutting board to the left, but do not appear clearly placed *on* the wrapper in these specific frames (though they may be underneath). The green leaf is classified as herbs.\n*   **Shrimp Location:** Shrimp are visible **SEPARATE** in a glass bowl (top left) and on the cutting board (left), and a shrimp is also visible **IN the roll** (being wrapped inside the rice paper).",
+    "timestamp_end": "2026-07-06 12:28:19"
+  },
+  {
+    "turn": 4,
+    "call_id": "batch_4_1",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 1,
+          "start_time": 0.0,
+          "end_time": 4.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the spring roll: WHOLE / CUT_IN_HALF / SLICED. What ingredients are visible INSIDE the cut roll: NOODLES, VEGGIES, HERBS, SHRIMP? Is the roll on a plate or cutting board? Report exactly what you see."
+    },
+    "timestamp_start": "2026-07-06 12:30:07",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 1 (0.0s to 4.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the spring roll: WHOLE / CUT_IN_HALF / SLICED. What ingredients are visible INSIDE the cut roll: NOODLES, VEGGIES, HERBS, SHRIMP? Is the roll on a plate or cutting board? Report exactly what you see.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill/empty\",\n    \"raw vs cooked\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"wrapper fold state\",\n    \"ingredients on wrapper\",\n    \"shrimp in roll vs separate\"\n  ],\n  \"uncertain\": [\n    \"exact order of 2,3,6\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in the frames:\n\n*   **State of the spring roll:** The roll is **CUT_IN_HALF**. The video sequence shows the chef slicing the roll down the middle, resulting in two distinct halves in the final frames (14-16).\n*   **Ingredients visible inside:** Through the translucent wrapper and the cut end, **SHRIMP** (pink), **NOODLES** (white strands), **HERBS** (green leaves), and **VEGGIES** (green/white filling) are visible.\n*   **Surface:** The roll is resting on a wooden **cutting board**.",
+    "timestamp_end": "2026-07-06 12:30:52"
+  },
+  {
+    "turn": 4,
+    "call_id": "batch_4_2",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 4,
+          "start_time": 0.0,
+          "end_time": 10.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the wrapper sheet: DRY_STIFF / WET_PLIABLE / SUBMERGED. What is in the pan: WATER / EMPTY? Are there raw or cooked shrimp visible in the background? Report exactly what you see."
+    },
+    "timestamp_start": "2026-07-06 12:30:07",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 4 (0.0s to 10.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the wrapper sheet: DRY_STIFF / WET_PLIABLE / SUBMERGED. What is in the pan: WATER / EMPTY? Are there raw or cooked shrimp visible in the background? Report exactly what you see.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill/empty\",\n    \"raw vs cooked\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"wrapper fold state\",\n    \"ingredients on wrapper\",\n    \"shrimp in roll vs separate\"\n  ],\n  \"uncertain\": [\n    \"exact order of 2,3,6\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in the frames:\n\n*   **Wrapper Sheet State:** The video shows a progression of states. In frame 3, the wrapper is **DRY_STIFF** (rigid with a visible grid pattern). From frames 4 to 14, the wrapper is **SUBMERGED** in the pan of water as the chef presses it down. In frames 15-16, the chef holds the wrapper up, and it is **WET_PLIABLE** (limp, translucent, and flexible).\n*   **Pan Content:** The pan contains **WATER**.\n*   **Shrimp:** There are shrimp visible. In the close-up frames (1-14), a glass bowl contains shrimp that appear pink and white, suggesting they are **cooked** (raw shrimp are typically grey/translucent). In the wide shot (frames 15-16), orange/pink shrimp are visible on the cutting board, which also indicates **cooked** shrimp.\n\n**Summary:**\n*   Wrapper: Transitions from DRY_STIFF to SUBMERGED to WET_PLIABLE.\n*   Pan: WATER.\n*   Shrimp: Cooked shrimp are visible.",
+    "timestamp_end": "2026-07-06 12:31:35"
+  },
+  {
+    "turn": 4,
+    "call_id": "batch_4_3",
+    "tool_name": "active_perception",
+    "inputs": {
+      "observation_targets": [
+        {
+          "video_index": 5,
+          "start_time": 0.0,
+          "end_time": 29.0,
+          "num_frames": 16
+        }
+      ],
+      "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the noodles: DRY / COOKED_WET_IN_WATER / DRAINED_ON_BOARD. What ingredients are being added: VEGGIES / HERBS / SHRIMP? Is there a finished roll visible on a plate? Report exactly what you see."
+    },
+    "timestamp_start": "2026-07-06 12:30:07",
+    "actual_prompt_sent": "[Frame Mapping Information]\nFrames 1-16 are from Video 5 (0.0s to 29.0s)\n\nImportant: frame numbers in this message are artificial positions in the combined input sent to you. When frames come from different video_index values, their order here does NOT imply chronological order between those videos. Use the mapping only to identify which frames belong to which video and local window. Cross-video ordering must be inferred only from visible object states, actions, transfers, residues, and other visual evidence inside each mapped video.\n\n[Visual Question]\nMODE=layer2_state_scan. Report the actual visible state of the noodles: DRY / COOKED_WET_IN_WATER / DRAINED_ON_BOARD. What ingredients are being added: VEGGIES / HERBS / SHRIMP? Is there a finished roll visible on a plate? Report exactly what you see.\n\n[PSS Evidence Notice]\nThis is a local visual state extraction call. Do not decide chronology, do not confirm first/last, and do not say that any video happens before/after another video. Report only visible object-state cells for the current frames.\n\n[PSS Local-State Context]\nUse this only to know which objects/states to inspect. Ignore any implied chronological order. Return compact local evidence and uncertainty, not a final sequence.\n{\n  \"dimensions_to_compare\": [\n    \"object states\",\n    \"container fill/empty\",\n    \"raw vs cooked\",\n    \"transfer traces\",\n    \"residue/depletion\",\n    \"wrapper fold state\",\n    \"ingredients on wrapper\",\n    \"shrimp in roll vs separate\"\n  ],\n  \"uncertain\": [\n    \"exact order of 2,3,6\"\n  ]\n}\n\nPlease carefully observe the frames and answer the question.\n<frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame><frame>",
+    "output_raw": "Based on the visual evidence in the frames:\n\n*   **Noodles State:** The noodles are initially seen as **COOKED_WET_IN_WATER** inside a glass bowl (Frames 4-6), where the chef lifts a clump out. They are then placed onto the cutting board/wrapper, becoming **DRAINED_ON_BOARD** (Frames 9-11, 13-16).\n*   **Ingredients Being Added:** The chef is adding **VEGGIES**. Specifically, in Frames 13-14, the chef places strips of red pepper and cucumber onto the bed of noodles.\n*   **Finished Roll:** **Yes**, there is a finished roll (cut in half to show filling) visible on the long white rectangular plate in the foreground (Frames 1, 2, 9, 10, 11).",
+    "timestamp_end": "2026-07-06 12:31:09"
+  }
+]

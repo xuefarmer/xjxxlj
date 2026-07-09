@@ -1,0 +1,659 @@
+=== Master Dialogue Log (Readable) ===
+Generated: 2026-07-06 13:37:23
+
+--- [Step 0] SYSTEM ---
+You are a cross-video reasoning controller. Use one unified mechanism for all CrossVid tasks. Task-specific notes only change how you interpret the input schema, what visual evidence you ask the VLM to inspect, and the final answer format. They do not change the overall workflow.
+
+## Hard Rules
+1. Output exactly one valid JSON object per turn. No text outside JSON.
+2. Use visual tools before answering. Never answer from task priors, recipe/movie common sense, or option wording alone.
+3. Preserve every provided video/view/segment index. Do not drop, duplicate, or invent indices.
+4. Use `context_update` to maintain compact memory. Prefer short structured evidence over prose.
+   - `context_update` memory must be grounded in prior tool results or explicit uncertainty/planning derived from them. Do not store invented observations, guessed final answers, placeholder object states, or speculative candidate orders as if they were evidence.
+   - Compress evidence into short cells. Do not copy full VLM prose into memory.
+5. If evidence is insufficient, focus or backtrack instead of guessing.
+6. Final answers must obey the task contract exactly.
+
+## Output Budget
+- Every assistant turn must be compact JSON only. No markdown, no prose outside JSON.
+- `thought`: 1-2 short sentences. Say why this action is needed; do not narrate the full reasoning chain or restate prior context.
+- For `answer`, `thought` may be slightly longer but must include only decisive evidence, key rejected counterexample(s), and `confidence_score: N/10`.
+- `context_update`: keep existing field names, but values must be short phrases, compact arrays, or small JSON tables. Do not duplicate the same evidence across multiple fields.
+- Keep `context_update` when the action schema expects it; omit only empty/no-change subfields inside it. Prefer IDs and labels over sentences.
+
+## Tools
+- `batch_observe`: plan multiple independent single-video observations.
+  - Use this for Layer1 and broad Layer2 scans on standard video tasks.
+  - Each batch item uses `video_index`, `start_time`, `end_time`, `num_frames`, and `focus_prompt`.
+  - For UAV/image-folder tasks, batch items may use `start_frame` and `end_frame` instead of `start_time` and `end_time`.
+  - The executor will automatically split long windows into chunks to maintain frame density. This is important; do not replace broad long-video scans with one sparse multi-video `observe`.
+- `observe`: visual observation tool.
+  - Standard videos use `video_index`, `start_time`, `end_time`, `num_frames`.
+  - UAV/image-folder tasks use `video_index`, `start_frame`, `end_frame`, `num_frames`.
+  - `focus_prompt` must begin with one of: `MODE=layer1`, `MODE=layer2`, `MODE=focus`, `MODE=focus BACKTRACK`.
+  - PSS may use compatibility names: `MODE=layer1_caption` and `MODE=layer2_state_scan`; these are visual modes, not `get_caption` calls.
+- `get_caption`: disabled. Never call it.
+- `answer`: submit final answer.
+
+## Required JSON Action Schema
+Every assistant turn must be a tool/action command object, not a direct memory dump.
+
+Valid top-level actions:
+- `batch_observe`
+- `observe`
+- `answer`
+
+For `batch_observe`, use exactly this top-level shape:
+```json
+{
+  "action": "batch_observe",
+  "thought": "Short reason for this action.",
+  "batch": [
+    {
+      "video_index": 1,
+      "start_time": 0,
+      "end_time": 60,
+      "num_frames": 12,
+      "focus_prompt": "MODE=layer1. ..."
+    }
+  ],
+  "context_update": {
+    "uncertain": ["..."],
+    "dimensions_to_compare": ["..."]
+  }
+}
+```
+For UAV/image-folder tasks, replace `start_time`/`end_time` in batch items with `start_frame`/`end_frame`.
+
+For `observe`, use exactly this top-level shape:
+```json
+{
+  "action": "observe",
+  "thought": "Short reason for this action.",
+  "params": {
+    "observation_targets": [
+      {"video_index": 1, "start_time": 0, "end_time": 60, "num_frames": 10}
+    ],
+    "focus_prompt": "MODE=layer1. ..."
+  },
+  "context_update": {
+    "uncertain": ["..."],
+    "dimensions_to_compare": ["..."]
+  }
+}
+```
+
+For `answer`, use:
+```json
+{
+  "action": "answer",
+  "thought": "Decisive evidence; key rejection; confidence_score: N/10.",
+  "final_answer": "..."
+}
+```
+
+Never put `layer1_done`, `event_memory`, `object_memory`, `temporal_index`, `candidate_targets`, or similar memory fields at the top level. Put them only inside `context_update`.
+Do not invent visual observations before a visual tool result. On the first turn, standard multi-video tasks usually need a `batch_observe` Layer1 call; UAV/image-folder and direct pair-comparison tasks may use `observe`.
+
+## Unified Workflow
+Always solve through four stages:
+
+### Layer1: broad independent perception
+Goal: build an unbiased inventory for every relevant video/view/segment.
+- First visual call for standard video tasks should usually be `batch_observe` covering all inputs independently. This preserves long-video chunking and broad coverage.
+- For standard multi-video tasks, Layer1 should use `batch_observe` unless the task contract explicitly says a side-by-side `observe` is required. Do not replace a full-video chunked scan with one sparse `observe`.
+- Use `observe` for Layer1 only when targets must be viewed side-by-side, when the task uses UAV/image-folder frame indices, or when clips are already short enough that one call has adequate coverage.
+- For broad standard-video Layer1 scans, set `num_frames = max(16, round(duration_seconds / 5))` unless the task contract says otherwise. The executor will split long windows into chunks to maintain frame density, so full-video Layer1 chunks should normally run at 16 frames each.
+- Ask the VLM to describe each target independently; do not ask it to decide the final answer yet.
+- The Layer1 `focus_prompt` must be task-aware: name the query, relevant option semantics, and the evidence dimensions from the task contract.
+- Output memory should be compact:
+  - `layer1_done`: true
+  - `event_memory`: only decisive events; one short cell per target
+  - `object_memory`: key objects and states only; avoid background inventory
+  - `temporal_index`: only useful windows; keep field names `window`, `event`, `key_objects`, `visible_state`, `why_it_matters`, `confidence`, but keep each value short
+  - `preliminary_answer`: the best current answer/order/table if one can be inferred from Layer1, otherwise null
+  - `preliminary_confidence`: integer 1-10 for that preliminary answer, where 8+ means the evidence is already strong enough to consider a direct answer
+  - `confidence_basis`: short evidence labels, not a paragraph
+  - `blocking_uncertainties`: exact missing facts only
+  - `irrelevant_windows`: id + one short reason
+  - `candidate_targets`: id + short reason
+  - `low_value_targets`: id + one short reason
+  - `uncertain`: unresolved facts only
+  - `dimensions_to_compare`: exact visual dimensions, max short phrases
+
+### Layer2: selective cross-analysis and targeted re-observation
+Goal: use Layer1 to avoid wasting VLM calls and build a comparison table.
+- Layer2 is normally expected before `answer`, but it is a supplemental verifier rather than a replacement for Layer1 evidence.
+- If Layer1 already contains high-confidence, directly visible, decisive evidence for a complete final answer and the close alternatives/relations are explicitly rejected, the controller may answer after Layer1 only when `preliminary_confidence >= 8`. Explain the decisive target/window/table/order evidence and include `confidence_score: N/10` in `thought`.
+- Otherwise, run one Layer2 re-check on the plausible candidate(s), close negative(s), or decisive window(s) to verify the conclusion.
+- First analyze Layer1 results yourself. Do not blindly send every chunk/video back to the VLM.
+- Layer2 may re-check all videos/chunks only when Layer1 leaves every one of them genuinely answer-relevant; then the thought must give a per-video/chunk reason. Otherwise select only the Layer1 chunks whose evidence is missing, conflicting, ambiguous, or capable of changing the answer.
+- Carry Layer1's `preliminary_answer`, `preliminary_confidence`, `confidence_basis`, and `blocking_uncertainties` into Layer2. Layer2 should verify or repair the current best hypothesis rather than inventing an unrelated or opposite hypothesis.
+- When forming a Layer2/focus hypothesis, start from the current leading answer/edge and the closest explicitly named alternative. Do not choose the reverse relation as the main hypothesis unless Layer1 evidence made that reverse relation plausible.
+- Prune targets that are both high-confidence and irrelevant. Keep them in `low_value_targets` with the reason, but do not re-observe them unless a later contradiction appears.
+- Re-observe only:
+  - plausible candidates;
+  - targets with missing decisive state;
+  - targets needed as a comparison anchor;
+  - edge cases that could change the answer.
+- Layer2 must not simply increase frame count. Prefer changing the attention/checklist over adding frames.
+- Layer2 must cite the Layer1 evidence or chunk label that caused each target/window to be selected. A Layer2 call that merely repeats the Layer1 full scan without this selection rationale is invalid.
+- For standard-video retained targets, use `batch_observe` when re-checking independent videos or long windows. Use `observe` only for side-by-side comparison or short retained windows where direct comparison is needed.
+- When Layer2 prunes a few irrelevant chunks from a long video, keep the remaining chunk windows and re-check only those. Do not collapse a long retained video into one sparse 8-12 frame `observe`.
+- Use similar or slightly lower frame density than Layer1 for broad retained scans, but preserve chunked coverage. The point is to drop unnecessary chunks, not to stop chunking altogether.
+- The Layer2 prompt must include a concrete checklist derived from Layer1, not generic "look carefully" instructions.
+- Use Layer1's `temporal_index` to choose retained windows. If Layer1 did not localize a needed event, Layer2 should ask the VLM to produce or refine that index before broad high-frame focus.
+- When re-checking a Layer1 chunk, copy the exact seconds from that chunk label. For example, if Layer1 says `[Chunk 2/7 (85s-171s)]`, the Layer2 target must use that same `[85, 171]` window, not the next chunk. If a Layer2 result contradicts Layer1, first verify that the same video and same time window were inspected before overturning Layer1 evidence.
+- Do not overturn a high-confidence Layer1 finding using a Layer2 result from a different window, lower-coverage sample, or generic absence statement. Use Layer2 contradictions to refine or request focused verification unless they inspect the same evidence window with stronger direct evidence.
+- Required memory update:
+  - `layer2_done`: true
+  - `comparison_table`: target -> decisive state/evidence/uncertainty as short cells
+  - `temporal_index`: refined useful windows only
+  - `irrelevant_windows`: id + reason
+  - `confirmed`: max short findings; avoid repeating `comparison_table`
+  - `pruned_targets`: id + reason
+  - `candidate_targets`: id + reason
+  - `uncertain`: exact unresolved facts/relations
+  - `focus_plan`: only if needed; max 2-3 short calls
+
+### Focus Compare: predict -> observe -> reply
+Goal: resolve one concrete uncertainty with denser evidence.
+- Before each focus call, state a hypothesis and a competing alternative in `thought`.
+- Predict what visual evidence should appear for each interpretation.
+- Focus only the minimal necessary targets/chunks: usually 1-2 targets, never broad full scans.
+- Focus normally uses `observe`, because it compares specific windows side-by-side or inspects one narrow window densely.
+- Increase frame density over Layer2 for the same time/window because this is detailed verification:
+  - standard video focus: usually 16-32 frames per target;
+  - short clips or PSS pair focus: 12-16 can be enough;
+  - UAV focus: 24-32 frames per synchronized view when tracking/occlusion matters.
+- Narrow the time/frame window. Prefer exact candidate chunks found in Layer1/Layer2 over whole-video focus.
+- Every focus call should cite the `temporal_index` window it is using. If no indexed window exists, first use Layer2 to locate one unless the full clip is already very short.
+- Focus prompts must be symmetric: define evidence for hypothesis A and evidence for hypothesis B, then ask for contradiction checks.
+- Do not infer cross-target chronology from display order. The executor concatenates frames only for display; preserve local time/window evidence and use visible state transitions for temporal reasoning.
+- If focus contradicts earlier memory, use `MODE=focus BACKTRACK` and update `resolved_uncertain`.
+- After focus, update:
+  - `confirmed` or `resolved_uncertain`;
+  - remaining `uncertain`;
+  - `object_memory` / `comparison_table`;
+  - whether another focus is needed before answering.
+
+### Answer
+Answer only when the decisive evidence is explicit enough for the task.
+- A direct answer after Layer1 requires `preliminary_confidence >= 8`, complete directly visible evidence, and no unresolved close candidate/relation.
+- If answering after Layer1, cite the decisive target/window, option table, interval, or order graph and write final `confidence_score: N/10` in `thought`.
+- If confidence is 7/10 or lower, or if no numeric confidence is available, do not answer from Layer1; run Layer2/focus.
+- Otherwise, run Layer2/focus before answering.
+- `thought` must summarize only decisive evidence and close rejections.
+- `final_answer` must contain only the required answer format from the task contract.
+- For multiple-select and ordering tasks, count/check all required indices or letters before answering.
+
+## General VLM Prompt Style
+Every visual `focus_prompt` should be short but specific:
+- start with mode;
+- name the task-specific query;
+- name the targets/options being checked;
+- list 4-8 decisive visual dimensions;
+- ask for uncertainty explicitly;
+- avoid asking the VLM for the final answer unless the task is a direct VLM comparison.
+- ask the VLM to report approximate time/frame locations for decisive events when it can infer them from frame mapping, so the controller can update `temporal_index`.
+- ask for concise key evidence only: task-relevant visible objects/actions/states, approximate time/window, relation to query/options, confidence, and uncertainty. Avoid long recipe narration, background details, scene atmosphere, unrelated objects, or speculative cross-video conclusions.
+- For a single-video `batch_observe` item, never ask the VLM to decide whether something appears in other videos. Ask only for evidence inside that one video/chunk; the controller compares across videos after all per-video evidence returns.
+- Require compact VLM output: "Return only compact evidence rows. For each target/window, return at most 3-5 evidence rows unless the task requires more. No markdown sections, no full reasoning, no final answer unless the task explicitly requires direct visual comparison. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+
+Good Layer2 wording:
+`MODE=layer2. Re-check only these cells: [specific object/state dimensions]. Return compact rows: object/action/state/window/query_link/conf/uncertain. Mark ABSENT / NOT_VISIBLE_IN_THESE_FRAMES / UNCERTAIN. Do not infer cross-target chronology from display order; preserve local time/window evidence. No final answer or prose.`
+
+Good Focus wording:
+`MODE=focus. Inspect only [objects/actions/landmarks] and [task-specific dims]. Return compact rows: object/action/state/window/query_link/conf/uncertainty. Do not infer cross-target chronology from display order; preserve local time/window evidence.`
+
+## Temporal Retrieval Index
+Maintain a lightweight retrieval index so later stages focus on specific chunks instead of full videos.
+- For standard videos, use seconds: `[start_time, end_time]`.
+- For UAV/image-folder tasks, use frame indices: `[start_frame, end_frame]`.
+- For PSS, each clipped segment's local time starts at 0; record the local window inside that segment.
+- For PSS and other shuffled-video tasks, `temporal_index` windows are local retrieval pointers only. They are not global timestamps and must never be compared across different `video_index` values to infer order.
+- Index only useful windows:
+  - `candidate_windows`: likely answer-relevant moments;
+  - `decisive_moments`: narrow events that could prove/reject an option or ordering edge;
+  - `irrelevant_windows`: windows already checked and unlikely to matter.
+- Each indexed item should keep the original field names: target/video/view/segment id, `window`, `event`, `key_objects`, `visible_state`, `why_it_matters`, and `confidence` (`high`, `medium`, or `low`). Compress field values, not field names.
+- When a VLM result is chunked by executor as "part 2/5, time 88s-176s", preserve that chunk range in `temporal_index` even if the exact event time is approximate.
+
+Example:
+```json
+"temporal_index": {
+  "video2": [
+    {
+      "window": [72, 96],
+      "event": "possible detach/reinstall",
+      "key_objects": ["base", "chassis"],
+      "visible_state": "part removed then reattached",
+      "why_it_matters": "could decide option A",
+      "confidence": "medium"
+    }
+  ]
+}
+```
+
+## Negative Evidence Rules
+Be precise about absence.
+- Use `ABSENT` only when the sampled window covers the relevant stage/location and the object/action should be visible if present.
+- Use `NOT_VISIBLE_IN_THESE_FRAMES` when the current frames do not show it, but the sampled window may not cover the relevant moment or camera view.
+- Use `UNCERTAIN` when the detail would affect the answer and the frames are ambiguous, occluded, blurred, too sparse, or outside the relevant window.
+- Do not convert `NOT_VISIBLE_IN_THESE_FRAMES` into a global negative conclusion. If it matters, add a `temporal_index` gap and focus plan.
+- If earlier context reported an object/action but current frames do not show it, write `NOT_VISIBLE_IN_THESE_FRAMES - possibly in another indexed window` rather than directly contradicting prior evidence.
+
+## Captions [DISABLED]
+- `get_caption` is disabled. Never call it.
+- Visual state evidence remains primary. If evidence is ambiguous, use focus/backtrack visually.
+
+## Common Failure Modes To Avoid
+- Re-observing every target in Layer2 after Layer1 already ruled some out.
+- Using higher frame count in Layer2 instead of a better checklist.
+- Using broad focus windows instead of the specific uncertain chunk.
+- Selecting an option because it sounds plausible but the option-specific action/state is not visible.
+- Treating absent in sampled frames as globally absent without noting possible frame coverage limits.
+- Reversing a visible state chain.
+- Letting non-visual assumptions replace visual confirmation.
+
+## Task Contract: PSS
+Task: restore shuffled segments from one cooking video to chronological order.
+
+Input semantics:
+- Each provided `video_index` is a clipped segment from the same original video.
+- The answer must order all segment indices exactly once.
+- Segment labels are arbitrary shuffled indices; do not assume numeric order is chronological.
+
+Evidence dimensions:
+- event role: prep, transformation, transfer, cooking, finishing, inspection;
+- operated object state chain: raw/cut/mixed/cooked/plated, wet/dry, full/empty, residue/depletion;
+- source and destination containers, tool contact, transfer traces;
+- quiet background cues that show before/after state;
+- state-transition graph built by the master from local visible rows.
+
+Workflow notes:
+- Layer1 scans every segment independently and must not infer final ordering yet. For executor compatibility, PSS Layer1 prompts must begin with `MODE=layer1_caption`.
+- Layer1 prompts must ask for object states explicitly, not only event roles. Use wording like: "Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion."
+- After Layer1 tool results, PSS must restore the cross-video memory mechanism before Layer2. Use `context_update` to store only evidence grounded in prior tool results. The primary PSS memory schema is object-centric:
+  `object_memory: {object_key: {video_index: visible_state}}`.
+  Example: `{"noodles": {"3": "raw/dry on plate", "2": "boiled soft strands in pan", "1": "mixed with sauce"}, "spinach": {"4": "fresh whole leaves", "2": "wilting with noodles", "1": "mixed into finished dish"}}`.
+- After Layer1, also store `preliminary_order`, `order_confidence` (integer 1-10), `confidence_basis`, and `blocking_uncertainties`. This is not a final answer; it is the current best state-transition graph that Layer2 must verify or repair.
+- For PSS, `order_confidence >= 8` means Layer2 should mostly verify the current graph and close alternatives. `order_confidence <= 7` means Layer2 should actively search for missing object bridges or contradictions.
+- Use `event_memory` only as secondary per-video notes. Do not make `object_memory` primarily video-centric, such as `{"video4": {"object": "spinach", "state_chain": [...]}}`; that structure overweights local clip-internal actions and causes wrong ordering.
+- After Layer1, identify recurring or decisive objects before choosing Layer2 targets: noodles/pasta, spinach/vegetables, sauce/red pot, oil, pan/pot/strainer, plate/bowl, cutting board, tongs, residue, empty/full containers. Track shared objects even when they appear only as background cues.
+- **Layer2 = Discriminative Evidence Reinspection.** Layer1 discovers shared objects/regions/events that recur across segments and may determine the order. Layer2 re-observes these linked evidence items at finer granularity to clarify their actual visible state in each segment. For executor compatibility, Layer2 prompts must begin with `MODE=layer2_state_scan`.
+- Layer2 is NOT hypothesis confirmation. Do NOT pass the Master's preliminary_order or expected states to the VLM. Ask the VLM to report what is actually visible for each linked evidence item: identity, presence/absence, count, position, state (raw/cooked, empty/filled, clean/dirty), source/destination, residue/depletion, and any difference from what was seen in Layer1.
+- Layer1 and Layer2 are mandatory before `answer`. Do not answer directly after Layer1; Layer2 clarifies the shared evidence that bridges segments.
+- Layer2 must inherit `preliminary_order`, `order_confidence`, `confidence_basis`, and `blocking_uncertainties` from Layer1 — these guide which evidence to prioritize, but remain internal to the Master and are not shown to the VLM.
+- After receiving Layer2 results, perform a contradiction check in `thought`: compare each segment's VLM-reported evidence against the hypothesized state-transition graph. If any evidence contradicts the hypothesized ordering, downgrade `order_confidence` and resolve via focus or caption before answering.
+- Layer2 may raise `order_confidence` only when new observations directly resolve a named item from `blocking_uncertainties` or reveal a missing object bridge. Repeated descriptions of already-known states are not sufficient.
+- **When answering, `order_confidence` (integer 1-10) must be a key in `context_update`**, not only in `thought`. The executor checks `context_update` for this value. Without it, the answer will be rejected regardless of reasoning quality.
+- In Layer2 focus_prompt: do not ask the VLM for ordering, do not use words like "confirm", "verify", "should", or "expected". Ask for local visible evidence only. Example: "Look at this segment. Report the actual visible state of the white bowl: EMPTY / CONTAINS_SEPARATE_INGREDIENTS / MIXED / PLATED / NOT_VISIBLE. Also: is the cutting board present? If yes: CLEAN or HAS_RESIDUE? Report exactly what you see."
+- Layer2 frame count should stay equal to Layer1. Narrow the observation window to the informative chunk(s) where the evidence appears.
+- If two segments have the same coarse role, such as both showing combined cooking, do not order them arbitrarily. Use local visible cues such as ingredient amount, mixture integration, pan fullness, steam/browning, residue/depletion, utensil action, and whether a transfer has just occurred; if still tied after Layer2, run focus on that adjacent relation.
+- Do not assign a segment to early/middle/late order from a recipe label alone. Place it by visible state continuity: what objects are already present, what changes during the clip, what residue/depletion remains, and which later visible state can consume that result.
+- Focus is optional, not mandatory. If Layer2 gives a complete high-confidence state-transition graph with all necessary relations supported by visible object states, answer directly after Layer2.
+- Focus resolves one adjacent relation or state-chain conflict at a time with higher frame density than Layer2, usually 12-16 frames per compared segment.
+- Focus targets must come from `uncertain_visual_states`, `next_object_focus`, object-memory gaps, or contradictions in object states. Do not choose a focus pair merely because it appears adjacent in a guessed answer or because the executor might prefer a focus call.
+- Focus prompts must not ask the VLM to decide which segment is earlier, which hypothesis is supported, or whether Video A happens before Video B. Ask for per-target cells only: named object state, container fill/empty state, source/destination, residue/depletion, background object state, and uncertainty. The master compares the cells after the tool returns.
+- Do not write expected focus evidence that assumes one proposed order is true, such as "if A is before B, B should already contain X", unless that expectation is explicitly grounded in earlier tool output. Prefer neutral wording: "For each target, report whether object X is ABSENT, EMPTY/CLEAR, PARTLY_FILLED, FILLED_DARK, or NOT_VISIBLE."
+- When a focus call is needed, include the current leading relation and current overall order confidence in `thought`, but keep the VLM prompt neutral. Example: thought may say `leading_relation=5 before 3, alternative=3 before 5, order_confidence=7/10`; the VLM prompt should ask only for local object-state cells in Video 5 and Video 3.
+- If focus contradicts a high-confidence Layer2 edge, do not immediately reverse the order. Use `MODE=focus BACKTRACK` or another neutral focus/caption call to verify the contradiction, then update `resolved_uncertain` and downgrade the old edge only if the new direct evidence is stronger.
+- After Layer2, do not answer if any adjacent relation in the proposed order is supported only by recipe common sense, "cooking logic", coarse role labels, or a generic idea of what usually happens first/last. Standalone components such as sauce, flame, garnish, dressing, chopping, mixing, and plating may appear in non-obvious positions in the source video.
+- If local rows do not give direct visible continuity for a complete total order, run `observe` focus on the smallest tied set, normally 2 segments, and ask only for visible differences in local state maturity, transfer completion, ingredient amount, residue/depletion, or background object state. If the focus still cannot prove the edge, mark the tie in `thought`; do not pretend it is proven by recipe logic.
+- In focus and Layer2, never use the concatenated frame order or frame numbers from different video_index values as chronological evidence. `Frames 1-16 from Video A` appearing before `Frames 17-32 from Video B` only means the executor packed Video A before Video B in the prompt.
+- Compare only visible object-lifecycle evidence: raw/cooked, empty/filled, separated/mixed, source/destination transfer, residue/depletion, object presence/absence, completion marks, background vessel state, and contradictions.
+- Do not ask the VLM to decide ordering from "frame-level timestamps" across videos, hypothesized cross-segment orders, or recipe logic. The VLM reports local object states only; cross-segment dependency reasoning is master-only.
+- Before answering, form an explicit state-transition graph from `object_memory`, with relations like `A before B: object_key state in A visibly precedes/feeds/contradicts state in B`. List unresolved ties, and run caption/focus for any tie that changes the final order. Then check every segment is placed exactly once.
+- The final `thought` must include one overall `confidence_score: N/10`. This is the confidence that the complete final order is correct, not confidence in a single easy relation.
+- Calibrate `confidence_score` conservatively: it may be `>=8` only when the complete order is visually supported and no critical relation, object-chain conflict, or close same-role tie remains unresolved. If any necessary relation is based on recipe common sense, a coarse role label, a conflicting object chain, or an unresolved tie, set `confidence_score <= 7` and do not answer; call caption/focus instead.
+- Before any final `answer`, include an `ORDER_AUDIT` in `thought` with four fields: `supporting_chains`, `conflicting_chains`, `unresolved_relations`, and `confidence_change`. `confidence_change` must explain why the final score is higher, lower, or unchanged compared with Layer1 `order_confidence`.
+- If `conflicting_chains` or `unresolved_relations` is non-empty, the final `confidence_score` must be `<=7` unless a later caption/focus result directly resolves each listed item.
+- The final `thought` must also include an `EDGE_TABLE` for evidence audit, but do not assign per-edge confidence scores. Each relation may use one of these evidence types: `direct_transfer`, `same_object_state_progression`, `visible_completion_to_next_start`, `caption_temporal_cue`, or `focused_visual_tie_break`. Do not use evidence types like `recipe_logic`, `common_sense`, `typical_order`, `coarse_role_only`, or `sounds_later`.
+
+Final answer:
+- `final_answer` is a string like `"3->5->4->2->1"` containing every segment index exactly once.
+
+
+============================================================
+
+--- [Step 1] USER ---
+[
+  {
+    "type": "text",
+    "text": "{\"query\": \"Review these video clips. They are shuffled segments from a single cooking video. Please determine their correct chronological order.\", \"videos\": [{\"video_index\": 1, \"duration_seconds\": 18.0}, {\"video_index\": 2, \"duration_seconds\": 21.0}, {\"video_index\": 3, \"duration_seconds\": 19.0}], \"hard_rule\": \"For any full-video observation, set start_time=0 and end_time to the video's duration_seconds value (provided above). Do NOT copy end_time from prompt examples — use the actual duration of each video.\"}"
+  }
+]
+
+============================================================
+
+--- [Step 2] ASSISTANT ---
+```json
+{
+  "action": "batch_observe",
+  "thought": "Starting Layer1 to independently scan all 3 segments and build an object-state inventory for each.",
+  "batch": [
+    {
+      "video_index": 1,
+      "start_time": 0,
+      "end_time": 18.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    {
+      "video_index": 2,
+      "start_time": 0,
+      "end_time": 21.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    },
+    {
+      "video_index": 3,
+      "start_time": 0,
+      "end_time": 19.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer1_caption. Describe the operation, visible objects/tools, and each object's state: raw/cooked, fresh/wilted, whole/cut, dry/wet, absent/present, separate/mixed, empty/filled, residue/depletion. Return compact evidence rows. For each target/window, return at most 3-5 evidence rows. No markdown sections, no full reasoning, no final answer. Use labels: VISIBLE, ABSENT, NOT_VISIBLE_IN_THESE_FRAMES, UNCERTAIN. Fields: objects, action, state, window, query_link, conf, uncertainty."
+    }
+  ],
+  "context_update": {
+    "layer1_done": false,
+    "uncertain": ["object states across segments", "state transitions"],
+    "dimensions_to_compare": ["ingredient state (raw/cooked)", "container fill/empty", "mixture integration", "residue/depletion"]
+  }
+}
+```
+
+============================================================
+
+--- [Step 3] TOOL ---
+[
+  {
+    "type": "text",
+    "text": "{\"call_id\": \"batch_1\", \"tool_name\": \"active_perception\", \"result\": \"{\\\"1\\\": \\\"objects: baguette, action: held split open then filled, state: split, dry crust, soft interior, empty then filled, window: 1-3, 7-16, query_link: null, conf: high, uncertainty: none\\\\nobjects: meat chunks, action: cooking in pan then placed in bread, state: cooked, browned, glazed/wet, separate then mixed, window: 2, 4-5, 7-9, query_link: null, conf: high, uncertainty: none\\\\nobjects: shredded carrots, action: added on top of meat, state: cut (shredded), orange, fresh/crisp, present, window: 9-10, 12-16, query_link: null, conf: high, uncertainty: none\\\\nobjects: cucumber strips, action: added on top, state: cut (strips), green/white, fresh, present, window: 11-16, query_link: null, conf: high, uncertainty: none\\\\nobjects: red peppers/chili, action: added as topping, state: cut (sliced), red, fresh, present, window: 13-16, query_link: null, conf: high, uncertainty: none\\\", \\\"2\\\": \\\"objects: knife, raw meat; action: slicing/cutting; state: raw, red, cut into strips/pieces; window: 1-4; query_link: N/A; conf: high; uncertainty: none\\\\nobjects: glass bottle/jar, liquid (dark and amber), meat; action: pouring; state: wet, glistening, marinated, mixed; window: 5-11; query_link: N/A; conf: high; uncertainty: specific liquid type (sauce vs oil/wine)\\\\nobjects: hands, wooden skewer, round meat objects/sausages; action: skewering/assembling; state: assembled on stick, raw; window: 12-14; query_link: N/A; conf: medium; uncertainty: exact identity of round objects (blurry)\\\\nobjects: frying pan, oil, meat skewer; action: placing into pan; state: raw meat, oil filled pan, cooking start; window: 15-16; query_link: N/A; conf: high; uncertainty: none\\\", \\\"3\\\": \\\"objects: Grater, Carrot, Green Bowl | action: Grating, transferring | state: Carrot is raw, shredded/cut; shreds accumulating on surface and falling into bowl; bowl is being filled | window: Frames 1-4, 7 | query_link: N/A | conf: High | uncertainty: None\\\\n\\\\nobjects: Bottle (Squid brand), Greens, Flatbread edge | action: Present (static) | state: Bottles present (likely condiments); greens appear fresh/whole; separate from main action | window: Frames 5, 12 | query_link: N/A | conf: Medium | uncertainty: Exact label on bottle blurry; specific type of greens unclear.\\\\n\\\\nobjects: Red Chili, Surface | action: Chopped (implied), falling | state: Chili is raw, diced/chopped; pieces falling into container | window: Frames 9-11 | query_link: N/A | conf: High | uncertainty: None\\\\n\\\\nobjects: Lime, Hand | action: Squeezing | state: Lime is raw, wet; juice dripping visibly | window: Frames 13-14 | query_link: N/A | conf: High | uncertainty: None\\\\n\\\\nobjects: Bowl, Liquid, Chili pieces | action: Mixed/Combined | state: Liquid (likely lime juice) present with red chili pieces floating/mixed; bowl is wet/filled | window: Frame 15 | query_link: N/A | conf: High | uncertainty: None\\\"}\"}"
+  }
+]
+
+============================================================
+
+--- [Step 4] ASSISTANT ---
+```json
+{
+  "action": "batch_observe",
+  "thought": "Layer1 shows V1 is the final assembly (cooked meat, shredded carrots, chili topping). V2 is meat prep/cooking start. V3 is veggie/chili prep. Need to determine if V2 or V3 comes first by checking background/counter state and any shared objects.",
+  "batch": [
+    {
+      "video_index": 2,
+      "start_time": 0,
+      "end_time": 21.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer2_state_scan. Re-check background and counter state. Is the cutting board/counter clean or does it have residue from previous tasks? Are there any bowls, grated carrots, or chopped chilies visible in the background? Report exact visible states of background objects and counter cleanliness. Return compact rows: object/state/window/conf/uncertainty."
+    },
+    {
+      "video_index": 3,
+      "start_time": 0,
+      "end_time": 19.0,
+      "num_frames": 16,
+      "focus_prompt": "MODE=layer2_state_scan. Re-check background and counter state. Is the cutting board/counter clean or does it have residue from previous tasks (e.g., meat juice, marinade)? Are there any raw meat pieces, skewers, or frying pans visible in the background? Report exact visible states of background objects and counter cleanliness. Return compact rows: object/state/window/conf/uncertainty."
+    }
+  ],
+  "context_update": {
+    "layer1_done": true,
+    "event_memory": {
+      "1": "assembly: split baguette filled with cooked meat, shredded carrots, cucumber, chili",
+      "2": "meat prep: slice raw meat, marinate, skewer, place in oiled pan",
+      "3": "veggie prep: grate carrots, chop chili, squeeze lime into bowl"
+    },
+    "object_memory": {
+      "carrots": {"3": "raw, being grated into green bowl", "1": "shredded, added as topping"},
+      "chili": {"3": "raw, chopped and mixed with lime", "1": "sliced, added as topping"},
+      "meat": {"2": "raw, sliced, marinated, skewered, placed in pan", "1": "cooked, browned chunks in bread"},
+      "bread": {"1": "baguette split and filled"}
+    },
+    "preliminary_order": "2->3->1 or 3->2->1",
+    "order_confidence": 6,
+    "confidence_basis": "V1 is clearly last (assembly of cooked/prepped items). V2 and V3 are parallel prep steps; order between them is uncertain.",
+    "blocking_uncertainties": ["order between V2 and V3"],
+    "candidate_targets": [
+      {"id": "2", "reason": "meat prep, need to check if it happens before or after veggie prep"},
+      {"id": "3", "reason": "veggie prep, need to check background for meat residue or tools"}
+    ],
+    "low_value_targets": [
+      {"id": "1", "reason": "clearly final assembly"}
+    ],
+    "uncertain": ["relative order of V2 and V3"],
+    "dimensions_to_compare": ["counter cleanliness/residue", "background objects (meat vs veggie tools)"]
+  }
+}
+```
+
+============================================================
+
+--- [Step 5] TOOL ---
+[
+  {
+    "type": "text",
+    "text": "{\"call_id\": \"batch_2\", \"tool_name\": \"active_perception\", \"result\": \"{\\\"2\\\": \\\"cutting_board_surface | covered in raw meat slices and juices (current task residue) | 1-4 | high | low\\\\nmeat_container_surface | filled with marinated meat chunks and liquid | 6-11 | high | low\\\\nglass_containers | visible (blurred), containing liquids (marinade ingredients) | 5, 8 | high | low\\\\nfrying_pan | visible, contains oil | 15-16 | high | low\\\\ngrated_carrots | not visible | 1-16 | high | low\\\\nchopped_chilies | not visible | 1-16 | high | low\\\\ncounter_cleanliness | surfaces are wet with meat/marinade (current task), no foreign/vegetable residue visible | 1-16 | medium | medium (tight framing limits full counter view)\\\", \\\"3\\\": \\\"Counter/Board | Vegetable residue present (shredded carrots in frames 1-2, chopped chili in frame 10); no meat juice or marinade visible | 1-16 | High | Low\\\\nRaw meat | Not visible | 1-16 | High | Low\\\\nSkewers | Not visible | 1-16 | High | Low\\\\nFrying pan | Not visible (bowls are present for mixing) | 1-16 | Medium | Medium\\\\nBackground objects | Metal grater, green bowl, fish sauce bottle (Squid brand), lime, baguette edge, green herbs | 1-16 | High | Low\\\"}\"}"
+  }
+]
+
+============================================================
+
+--- [Step 6] ASSISTANT ---
+```json
+{
+  "action": "answer",
+  "thought": "ORDER_AUDIT: supporting_chains: V3 (veggie prep, counter has veggie residue, no meat) -> V2 (meat prep, counter wet with meat, tight framing explains absence of veggie residue) -> V1 (final assembly of cooked meat and prepped veggies). conflicting_chains: none. unresolved_relations: none. confidence_change: increased from 6 to 8 because Layer2 resolved the V2/V3 tie using counter residue states and framing constraints (V2 tight framing explains why veggie residue isn't seen, while V3 explicitly has no meat juice, indicating V3 precedes V2). EDGE_TABLE: 3->2: same_object_state_progression (counter state: clean of meat in V3, meat-wet in V2); 2->1: direct_transfer (raw marinated meat in V2 becomes cooked browned chunks in V1; prepped veggies from V3 appear as toppings in V1). confidence_score: 8/10.",
+  "final_answer": "3->2->1"
+}
+```
+
+============================================================
+
+--- [Step 7] USER ---
+Do not answer yet. Layer2 must cover every segment. Missing Layer2 for segment(s): [1]. For each missing segment, re-observe the linked evidence items discovered in Layer1. Ask the VLM to report actual visible states — do NOT ask it to confirm or verify your hypothesis.
+
+============================================================
+
+--- [Step 8] ASSISTANT ---
+```json
+{
+  "action": "observe",
+  "thought": "Layer2 missed segment 1. Need to re-observe linked evidence items in segment 1 to check background depletion states and confirm its position in the state-transition graph.",
+  "params": {
+    "observation_targets": [
+      {"video_index": 1, "start_time": 0, "end_time": 18.0, "num_frames": 16}
+    ],
+    "focus_prompt": "MODE=layer2_state_scan. Report the actual visible state of the following objects in this segment: baguette (EMPTY / SPLIT / FILLED), meat (RAW / COOKED_IN_PAN / COOKED_IN_BREAD), carrots (WHOLE / SHREDDED_IN_BOWL / SHREDDED_ON_BREAD), chili (WHOLE / CHOPPED_IN_BOWL / CHOPPED_ON_BREAD), frying pan (EMPTY / CONTAINS_MEAT / NOT_VISIBLE), prep bowls (FILLED / EMPTY / NOT_VISIBLE). Report exactly what you see. Return compact rows: object/state/window/conf/uncertainty."
+  },
+  "context_update": {
+    "layer2_done": true,
+    "comparison_table": {
+      "1": "pending Layer2 re-observation for background depletion and assembly state",
+      "2": "counter wet with meat/marinade, no veggie residue, tight framing",
+      "3": "counter has veggie residue, no meat juice, no skewers/pan"
+    },
+    "uncertain": ["relative order of V2 and V3", "V1 background depletion state to confirm finality"]
+  }
+}
+```
+
+============================================================
+
+--- [Step 9] TOOL ---
+[
+  {
+    "type": "text",
+    "text": "{\"call_id\": \"obs_4\", \"tool_name\": \"active_perception\", \"result\": \"baguette/FILLED/1-16/high/low\\nmeat/COOKED_IN_BREAD/1-16/high/low\\ncarrots/SHREDDED_ON_BREAD/1-16/high/low\\nchili/CHOPPED_ON_BREAD/1-16/high/low\\nfrying pan/CONTAINS_MEAT/1-16/medium/medium\\nprep bowls/FILLED/1-16/medium/medium\"}"
+  }
+]
+
+============================================================
+
+--- [Step 10] USER ---
+
+
+[SYSTEM CORRECTION — Attempt 1/3]
+Your previous answer was wrong. Diagnosis: reasoning_error at turn 6.
+The agent concluded V3 precedes V2 based on counter-residue evidence (V3 has veggie residue only, V2 has meat residue only), but this reasoning contains a critical logical gap: it assumes no cleaning occurred between tasks. If V2 came first and the counter was cleaned before V3, V3 would also show no meat residue—making the observations equally consistent with order 2->3->1. The agent treated ambiguous evidence as definitive without ruling out the cleaning hypothesis.
+
+[REUSE POLICY: FOCUS_REOBSERVE]
+ALL prior Layer1 and Layer2 observations are VALID. Keep them.
+Only add a FOCUS observe on the specific conflicting pair mentioned below.
+Narrow the window and use higher frame density (e.g., num_frames=24-32).
+Do NOT re-scan segments that are already clearly placed.
+
+[CORRECTION GUIDANCE]
+KEEP LAYER1+LAYER2 - ADD FOCUS ON V2 and V3. The counter-residue argument is logically insufficient: absence of meat residue in V3 does not prove V3 preceded V2, because cleaning between tasks would produce the same observation. Re-observe V2 (especially frames 15-21) and V3 (especially frames 1-5) looking for: (1) any visible cleaning/wiping actions between tasks, (2) whether the counter/board in V3's early frames shows a freshly-cleaned appearance vs. never-used appearance, (3) any shared objects or background elements that indicate which task happened first (e.g., does V3 show the baguette already split from V1's prep, or does V2 show veggies already grated?). The current evidence cannot distinguish 2->3->1 from 3->2->1 without addressing the cleaning hypothesis.
+
+============================================================
+
+--- [Step 11] ASSISTANT ---
+```json
+{
+  "action": "observe",
+  "thought": "Need to resolve V2/V3 order by checking for cleaning actions and counter appearance. Leading relation: 3->2->1, alternative: 2->3->1. Current order_confidence: 6/10. Must check if counter in V3 looks freshly-cleaned (supports 2->3) vs never-used (supports 3->2), and if V2 shows any cleaning at end.",
+  "params": {
+    "observation_targets": [
+      {"video_index": 2, "start_time": 15, "end_time": 21, "num_frames": 24},
+      {"video_index": 3, "start_time": 0, "end_time": 5, "num_frames": 24}
+    ],
+    "focus_prompt": "MODE=focus. Inspect only counter/board surface state and any cleaning actions. For Video 2 (frames 15-21): is there any visible wiping/cleaning action? Does the counter/board look like it was just used for meat (wet/juice present) or was it cleaned? For Video 3 (frames 1-5): does the counter/board look freshly-cleaned (wiped clean but previously used) or never-used (completely clean/dry with no signs of prior work)? Report exact visible states. Return compact rows: object/state/window/conf/uncertainty. Do not infer cross-video chronology."
+  },
+  "context_update": {
+    "uncertain": ["relative order of V2 and V3 - cleaning hypothesis unresolved"],
+    "focus_plan": ["check V2 end frames for cleaning action", "check V3 start frames for freshly-cleaned vs never-used counter"]
+  }
+}
+```
+
+============================================================
+
+--- [Step 12] TOOL ---
+[
+  {
+    "type": "text",
+    "text": "{\"call_id\": \"obs_1\", \"tool_name\": \"active_perception\", \"result\": \"Based on the visual evidence in the specified frame ranges:\\n\\n**Video 2 (Frames 15-21)**\\n*   **Visible Content:** These frames show a gas stove burner with a blue/pink flame and a frying pan being heated. Oil is visible in the pan (Frame 19-21), and a meat skewer is placed into the pan (Frame 20-21).\\n*   **Counter/Board State:** No counter or cutting board is visible in this specific window (frames 15-21). The scene is focused on the stove and pan.\\n*   **Cleaning Action:** No wiping or cleaning action is visible. The action is cooking (placing skewer in oil).\\n*   **Inference:** The surface shown (pan) contains oil and meat, so it is \\\"in use\\\" for cooking, not cleaned. However, the specific \\\"counter/board\\\" requested is not in view.\\n\\n**Video 3 (Frames 1-5 / Combined 25-29)**\\n*   **Visible Content:** These frames show a close-up of a metal grater. Frame 25 is blurry (possibly hand movement). Frames 26-29 show the grater surface.\\n*   **Counter/Board State:** The board surface is not clearly fully visible in these initial close-ups, but the grater is placed on a surface. In the immediately preceding frame (Frame 24, end of Video 2), a cucumber rests on a scratched metal surface that appears clean of meat residue. In the subsequent frames of Video 3 (e.g., Frame 31), carrot shreds appear on the surface.\\n*   **State Assessment:** In the initial frames (25-29), the grater and immediate surface appear free of carrot shreds (which appear later). The metal surface (seen in Frame 24 and implied in 31) has scratches, indicating it is \\\"previously used\\\". Since there is no meat juice or carrot residue in the initial setup, it appears \\\"freshly cleaned\\\" or ready for the next task.\\n*   **Cleaning Action:** Frame 25 is very blurry and could represent a hand movement/wiping, but it is indistinct. No clear wiping is confirmed, but the state is clean.\\n\\n**Compact Report:**\\n\\n| Object/State | Window | Conf | Uncertainty |\\n| :--- | :--- | :--- | :--- |\\n| **Video 2 (15-21):** Pan surface with oil; meat skewer added. No counter/board visible. No cleaning action. | V2: 15-21 | High | Counter not in frame; cleaning hypothesis N/A for this window. |\\n| **Video 3 (1-5):** Grater present. Surface underneath appears clean/empty of residue (shreds appear later). Surface shows scratches (previously used). Looks freshly cleaned/prepared. | V3: 1-5 (Comb. 25-29) | Medium | Surface visibility low in close-up; Frame 25 blur makes \\\"wiping\\\" action uncertain but state is clean. |\"}"
+  }
+]
+
+============================================================
+
+--- [Step 13] ASSISTANT ---
+```json
+{
+  "action": "observe",
+  "thought": "Focus didn't resolve cleaning hypothesis. Need to check background cross-contamination: does V2 show veggie tools (grater, green bowl) in background? Does V3 show meat tools (skewers, meat container, frying pan) in background? This could indicate which prep happened first.",
+  "params": {
+    "observation_targets": [
+      {"video_index": 2, "start_time": 0, "end_time": 21, "num_frames": 24},
+      {"video_index": 3, "start_time": 0, "end_time": 19, "num_frames": 24}
+    ],
+    "focus_prompt": "MODE=focus BACKTRACK. Inspect only background objects and cross-contamination evidence. For Video 2: are any veggie prep tools visible in background (metal grater, green bowl, shredded carrots, chopped chili, lime)? For Video 3: are any meat prep tools visible in background (wooden skewers, raw meat pieces, meat container, frying pan, marinade bottles)? Report exact visible states. Return compact rows: object/state/window/conf/uncertainty. Do not infer cross-video chronology."
+  },
+  "context_update": {
+    "uncertain": ["relative order of V2 and V3 - need background cross-contamination check"],
+    "focus_plan": ["check V2 background for veggie tools", "check V3 background for meat tools"]
+  }
+}
+```
+
+============================================================
+
+--- [Step 14] TOOL ---
+[
+  {
+    "type": "text",
+    "text": "{\"call_id\": \"obs_2\", \"tool_name\": \"active_perception\", \"result\": \"Video 2 (Frames 1-24):\\n- Green bowl: Blurry green shape visible in background/17/Medium/High uncertainty (likely the bowl from Video 3)\\n- Metal grater: Not visible/N/A/N/A/N/A\\n- Shredded carrots: Not visible/N/A/N/A/N/A\\n- Chopped chili: Not visible/N/A/N/A/N/A\\n- Lime: Not visible/N/A/N/A/N/A\\n\\nVideo 3 (Frames 25-48):\\n- Wooden skewers: Not visible/N/A/N/A/N/A\\n- Raw meat pieces: Not visible/N/A/N/A/N/A\\n- Meat container: Not visible/N/A/N/A/N/A\\n- Frying pan: Not visible/N/A/N/A/N/A\\n- Marinade bottles: Fish sauce bottle (\\\"Squid Brand\\\") clearly visible; other bottles in background/31, 42-43, 29/High/Low uncertainty\"}"
+  }
+]
+
+============================================================
+
+--- [Step 15] ASSISTANT ---
+```json
+{
+  "action": "observe",
+  "thought": "Need to resolve V2/V3 order by checking the state of the green bowl in V2. If the green bowl already contains shredded carrots in V2, then V3 (grating) must precede V2. If it is empty, V2 may precede V3. Leading relation: 3->2->1, alternative: 2->3->1. Current order_confidence: 5/10.",
+  "params": {
+    "observation_targets": [
+      {"video_index": 2, "start_time": 8, "end_time": 21, "num_frames": 32},
+      {"video_index": 3, "start_time": 0, "end_time": 8, "num_frames": 32}
+    ],
+    "focus_prompt": "MODE=focus. Inspect only the green bowl and any carrot shreds. For Video 2 (frames 8-21): is the green bowl visible in the background? If yes, is it EMPTY or does it CONTAIN_SHREDDED_CARROTS? Are there any carrot shreds visible on the counter or in any bowl? For Video 3 (frames 0-8): is the green bowl present? Is it EMPTY at the start, and do carrot shreds accumulate in it during these frames? Report exact visible states. Return compact rows: object/state/window/conf/uncertainty. Do not infer cross-video chronology."
+  },
+  "context_update": {
+    "uncertain": ["relative order of V2 and V3 - checking green bowl state in V2"],
+    "focus_plan": ["check green bowl state in V2 frames 8-21", "check green bowl filling in V3 frames 0-8"]
+  }
+}
+```
+
+============================================================
+
+--- [Step 16] TOOL ---
+[
+  {
+    "type": "text",
+    "text": "{\"call_id\": \"obs_3\", \"tool_name\": \"active_perception\", \"result\": \"Green Bowl/Not Visible/Video 2 (Frames 1-32)/High/Low\\nCarrot Shreds/Not Visible/Video 2 (Frames 1-32)/High/Low\\nGreen Bowl/Present (Empty at start of appearance, then filling)/Video 3 (Frames 33-64)/High/Low\\nCarrot Shreds/Visible (on counter, then accumulating in bowl)/Video 3 (Frames 33-64)/High/Low\"}"
+  }
+]
+
+============================================================
+
+--- [Step 17] ASSISTANT ---
+{
+  "action": "observe",
+  "thought": "Need to resolve V2/V3 order by checking if V3 shows the meat cooking in the background. In V2, meat skewers are placed in a frying pan with oil at the end. If V3 (veggie prep) happens while the meat is cooking, the frying pan with cooking meat should be visible in the background of V3. Leading relation: 2->3->1, alternative: 3->2->1. Current order_confidence: 5/10.",
+  "params": {
+    "observation_targets": [
+      {"video_index": 3, "start_time": 0, "end_time": 19, "num_frames": 32}
+    ],
+    "focus_prompt": "MODE=focus. Inspect only the background of Video 3. Is a frying pan visible in the background? If yes, does it contain oil and meat skewers cooking? Are there any signs of meat being cooked (steam, sizzling, browned meat on skewers) in the background during the veggie prep? Report exact visible states. Return compact rows: object/state/window/conf/uncertainty. Do not infer cross-video chronology."
+  },
+  "context_update": {
+    "uncertain": ["relative order of V2 and V3 - checking if V3 background shows meat cooking in pan from V2"],
+    "focus_plan": ["check V3 background for frying pan with cooking meat skewers"]
+  }
+}
+
+============================================================
+
+--- [Step 18] TOOL ---
+[
+  {
+    "type": "text",
+    "text": "{\"call_id\": \"obs_4\", \"tool_name\": \"active_perception\", \"result\": \"object/state/window/conf/uncertainty\\nbackground environment/blurry kitchen setting with bottles (fish sauce, oil), no clear frying pan/1-32/high/low\\nfrying pan with meat skewers/not visible in background/1-32/high/low\\nsigns of cooking (steam, sizzling, browned meat)/not visible in background/1-32/high/low\\nforeground container (bowl/pan)/contains chopped red peppers, salt, and liquid being added (prep phase)/21-31/high/low\"}"
+  }
+]
+
+============================================================
+
+--- [Step 19] ASSISTANT ---
+{
+  "action": "observe",
+  "thought": "Need to verify if V2 directly precedes V1 by checking the meat-in-pan transition. V2 ends with raw skewered meat placed in oiled pan. V1 Layer1 says meat is cooking in pan at window 2, 4-5. If the pan and meat match, V2->V1 is a direct_transfer, meaning V3 must precede V2 as the earlier prep step. Leading relation: 3->2->1. Current order_confidence: 6/10.",
+  "params": {
+    "observation_targets": [
+      {"video_index": 2, "start_time": 15, "end_time": 21, "num_frames": 24},
+      {"video_index": 1, "start_time": 0, "end_time": 6, "num_frames": 24}
+    ],
+    "focus_prompt": "MODE=focus. Inspect only the frying pan and the meat inside it. For Video 2 (end): describe the pan, the oil, and the raw meat skewers being placed. How many skewers? What is the state of the meat (raw, red, marinated)? For Video 1 (start): describe the pan and the meat inside it. Is it the same pan? How many skewers are in the pan? Is the meat now cooking/browning? Report exact visible states to see if V2's end matches V1's start. Return compact rows: object/state/window/conf/uncertainty. Do not infer cross-video chronology."
+  },
+  "context_update": {
+    "uncertain": ["relative order of V2 and V3 - checking if V2 directly precedes V1 via meat-in-pan transition"],
+    "focus_plan": ["check V2 end and V1 start for meat-in-pan continuity"]
+  }
+}
+
+============================================================
+
+--- [Step 20] TOOL ---
+[
+  {
+    "type": "text",
+    "text": "{\"call_id\": \"obs_5\", \"tool_name\": \"active_perception\", \"result\": \"Based on the visual evidence in the mapped frames:\\n\\n**Video 2 (end) [Frames 20-24]:**\\n*   **Object/State:** Black frying pan containing a pool of shimmering oil.\\n*   **Action:** A hand is placing a wooden skewer into the oil.\\n*   **Meat State:** The meat on the skewer is raw, red, and appears to be chunks (possibly sausage or marinated meat).\\n*   **Count:** 1 skewer is visible being placed.\\n*   **Confidence:** High.\\n\\n**Video 1 (start) [Frames 25-31, with context from 37-48]:**\\n*   **Object/State:** A black frying pan is visible in the background (out of focus). It appears to be the same pan.\\n*   **Meat State:** The pan is filled with meat. In the background (Frame 25), the meat looks reddish-brown. In the close-up shots later in this video segment (Frames 37-48), the meat is clearly cooking, sizzling, and showing significant browning and charring.\\n*   **Count:** The pan is full; multiple skewers/pieces of meat are visible (far more than the single skewer in Video 2).\\n*   **Confidence:** High.\\n\\n**Comparison/Transition:**\\n*   Video 2 ends with the *start* of the cooking process (first raw skewer placed in oil).\\n*   Video 1 starts with the cooking process well underway (pan is full, meat is browning).\\n*   There is a temporal gap; Video 1 does not immediately follow Video 2 frame-by-frame, as the pan goes from having 1 skewer to being full.\\n\\n**Compact Rows:**\\n\\n| Object/State | Window | Conf | Uncertainty |\\n| :--- | :--- | :--- | :--- |\\n| **V2 End:** Pan (black, oil), 1 raw red skewer being placed. | Frames 20-24 | High | None |\\n| **V1 Start:** Pan (black, background), full of meat, cooking/browning (charred in later frames). | Frames 25-31 (bg), 37-48 (close-up) | High | Time gap between V2 end (1 skewer) and V1 start (full pan). |\"}"
+  }
+]
+
+============================================================
+

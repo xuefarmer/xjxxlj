@@ -1,0 +1,145 @@
+{
+  "confirmed": [],
+  "uncertain": [
+    "Order between Video 1 and Video 4",
+    "Paste container continuity between Video 2 and Video 4"
+  ],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [
+    "{\"1\": \"Makes white coconut curry sauce with spring onions, chilies, coconut milk, 1/4 tsp green curry paste in black pan.\", \"2\": \"Makes green chutney/paste from coriander, onion, garlic, chilies, ginger, spices in large clear bowl; blended to smooth liquid paste.\", \"3\": \"Plates green-flecked rice ring, pours white sauce from small black pan into center, garnishes with spring onion greens.\", \"4\": \"Makes green fried rice in black wok using sautéed veggies, green curry paste from glass bowl, cooked rice, soya sauce.\"}"
+  ],
+  "event_state_links": [],
+  "object_memory": {
+    "green_paste": {
+      "2": "smooth liquid green paste in large clear bowl",
+      "4": "thick green wet paste in glass bowl",
+      "1": "1/4 tsp added via text overlay"
+    },
+    "rice": {
+      "4": "white cooked rice -> greenish-grey mixed fried rice in wok",
+      "3": "green-flecked rice molded into ring on plate"
+    },
+    "white_sauce": {
+      "1": "white soupy sauce with green flecks in black pan",
+      "3": "white sauce poured from small black pan into rice ring"
+    },
+    "spring_onion_greens": {
+      "1": "chopped, added to sauce",
+      "4": "finely chopped, sautéed in wok",
+      "3": "finely chopped, used as garnish"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient states (raw/cooked/cut/mixed)",
+    "container states (empty/filled/residue)",
+    "transfer traces between containers",
+    "tool contact and operation type",
+    "completion/plating marks",
+    "green paste container and state",
+    "rice state progression",
+    "white sauce source pan",
+    "spring onion greens usage"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "uncertain": [
+          "Full object-state inventory for all 4 segments pending Layer1 results"
+        ],
+        "dimensions_to_compare": [
+          "ingredient states (raw/cooked/cut/mixed)",
+          "container states (empty/filled/residue)",
+          "transfer traces between containers",
+          "tool contact and operation type",
+          "completion/plating marks"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "event_memory": {
+          "1": "Makes white coconut curry sauce with spring onions, chilies, coconut milk, 1/4 tsp green curry paste in black pan.",
+          "2": "Makes green chutney/paste from coriander, onion, garlic, chilies, ginger, spices in large clear bowl; blended to smooth liquid paste.",
+          "3": "Plates green-flecked rice ring, pours white sauce from small black pan into center, garnishes with spring onion greens.",
+          "4": "Makes green fried rice in black wok using sautéed veggies, green curry paste from glass bowl, cooked rice, soya sauce."
+        },
+        "object_memory": {
+          "green_paste": {
+            "2": "smooth liquid green paste in large clear bowl",
+            "4": "thick green wet paste in glass bowl",
+            "1": "1/4 tsp added via text overlay"
+          },
+          "rice": {
+            "4": "white cooked rice -> greenish-grey mixed fried rice in wok",
+            "3": "green-flecked rice molded into ring on plate"
+          },
+          "white_sauce": {
+            "1": "white soupy sauce with green flecks in black pan",
+            "3": "white sauce poured from small black pan into rice ring"
+          },
+          "spring_onion_greens": {
+            "1": "chopped, added to sauce",
+            "4": "finely chopped, sautéed in wok",
+            "3": "finely chopped, used as garnish"
+          }
+        },
+        "preliminary_order": "2->1->4->3",
+        "order_confidence": 7,
+        "confidence_basis": "2 makes paste used in 4; 4 makes green fried rice molded in 3; 1 makes white sauce poured in 3. Order between 1 and 4 needs verification.",
+        "blocking_uncertainties": [
+          "Whether Video 1 or Video 4 occurs first",
+          "Whether the green paste in Video 4 is the same batch as Video 2"
+        ],
+        "candidate_targets": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "low_value_targets": [],
+        "uncertain": [
+          "Order between Video 1 and Video 4",
+          "Paste container continuity between Video 2 and Video 4"
+        ],
+        "dimensions_to_compare": [
+          "green paste container and state",
+          "rice state progression",
+          "white sauce source pan",
+          "spring onion greens usage"
+        ]
+      }
+    }
+  ],
+  "layer1_done": [
+    "True"
+  ],
+  "preliminary_order": [
+    "2->1->4->3"
+  ],
+  "order_confidence": [
+    "7"
+  ],
+  "confidence_basis": [
+    "2 makes paste used in 4; 4 makes green fried rice molded in 3; 1 makes white sauce poured in 3. Order between 1 and 4 needs verification."
+  ],
+  "blocking_uncertainties": [
+    "Whether Video 1 or Video 4 occurs first",
+    "Whether the green paste in Video 4 is the same batch as Video 2"
+  ],
+  "candidate_targets": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "low_value_targets": []
+}

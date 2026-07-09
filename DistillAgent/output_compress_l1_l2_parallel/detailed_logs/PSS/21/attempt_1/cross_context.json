@@ -1,0 +1,219 @@
+{
+  "confirmed": [
+    "4: whole->spiralized",
+    "3: dry->wet dressed",
+    "1: dressed mixed + baguette cut",
+    "5: cut baguette + mayo + meat",
+    "2: meat baguette + dressed veggies + cilantro",
+    "4: whole->spiralized, tray empty->full"
+  ],
+  "uncertain": [],
+  "uncertain_visual_states": [],
+  "next_vlm_attention": [],
+  "next_object_focus": [],
+  "event_memory": [],
+  "event_state_links": [],
+  "object_memory": {
+    "veggies": {
+      "4": "whole->spiralized",
+      "3": "spiralized+liquids",
+      "1": "shredded/mixed in bowl",
+      "2": "wet/dressed added to sandwich"
+    },
+    "baguette": {
+      "1": "whole->cut lengthwise",
+      "5": "cut+mayo+meat",
+      "2": "cut+meat+mayo+veggies"
+    }
+  },
+  "object_state_memory": [],
+  "object_state_chains": [],
+  "dimensions_to_compare": [
+    "ingredient state progression",
+    "container fill/empty",
+    "tool contact",
+    "heat/steam/browning",
+    "transfer traces",
+    "residue/depletion"
+  ],
+  "resolved_uncertain": [],
+  "notes": [],
+  "updates": [
+    {
+      "turn": 1,
+      "update": {
+        "layer1_done": false,
+        "uncertain": [
+          "all object states and event roles pending"
+        ],
+        "dimensions_to_compare": [
+          "ingredient state progression",
+          "container fill/empty",
+          "tool contact",
+          "heat/steam/browning",
+          "transfer traces",
+          "residue/depletion"
+        ]
+      }
+    },
+    {
+      "turn": 2,
+      "update": {
+        "layer1_done": true,
+        "preliminary_order": "4->3->1->5->2",
+        "order_confidence": 8,
+        "confidence_basis": [
+          "4: whole->spiralized",
+          "3: spiralized+liquids",
+          "1: mixed veggies+cut baguette",
+          "5: cut baguette+mayo+meat",
+          "2: meat baguette+veggies"
+        ],
+        "blocking_uncertainties": [
+          "are veggies in 1 already wet/dressed or dry?",
+          "is baguette in 1 the same as in 5?"
+        ],
+        "object_memory": {
+          "veggies": {
+            "4": "whole->spiralized",
+            "3": "spiralized+liquids",
+            "1": "shredded/mixed in bowl",
+            "2": "wet/dressed added to sandwich"
+          },
+          "baguette": {
+            "1": "whole->cut lengthwise",
+            "5": "cut+mayo+meat",
+            "2": "cut+meat+mayo+veggies"
+          }
+        },
+        "temporal_index": {
+          "video1": [
+            {
+              "window": [
+                0,
+                3
+              ],
+              "event": "mixing veggies then cutting baguette",
+              "confidence": "high"
+            }
+          ],
+          "video3": [
+            {
+              "window": [
+                0,
+                5
+              ],
+              "event": "adding dressing to spiralized veggies",
+              "confidence": "high"
+            }
+          ],
+          "video4": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "spiralizing whole veggies",
+              "confidence": "high"
+            }
+          ],
+          "video5": [
+            {
+              "window": [
+                0,
+                9
+              ],
+              "event": "mayo+meat on cut baguette",
+              "confidence": "high"
+            }
+          ],
+          "video2": [
+            {
+              "window": [
+                0,
+                11
+              ],
+              "event": "adding veggies+cilantro to meat baguette",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 9,
+        "confirmed": [
+          "4: whole->spiralized",
+          "3: dry->wet dressed",
+          "1: dressed mixed + baguette cut",
+          "5: cut baguette + mayo + meat",
+          "2: meat baguette + dressed veggies + cilantro"
+        ],
+        "comparison_table": {
+          "veggies": "4:whole -> 3:dry->wet -> 1:wet mixed -> 2:wet added",
+          "baguette": "1:cut -> 5:cut+mayo+meat -> 2:cut+mayo+meat+veggies"
+        }
+      }
+    },
+    {
+      "turn": 4,
+      "update": {
+        "layer2_done": true,
+        "uncertain": []
+      }
+    },
+    {
+      "turn": 5,
+      "update": {
+        "layer2_done": true,
+        "order_confidence": 9,
+        "confirmed": [
+          "4: whole->spiralized, tray empty->full",
+          "3: dry->wet dressed",
+          "1: dressed mixed + baguette cut",
+          "5: cut baguette + mayo + meat",
+          "2: meat baguette + dressed veggies + cilantro"
+        ],
+        "comparison_table": {
+          "veggies": "4:whole->spiralized -> 3:dry->wet -> 1:wet mixed -> 2:wet added",
+          "baguette": "1:cut -> 5:cut+mayo+meat -> 2:cut+mayo+meat+veggies"
+        }
+      }
+    }
+  ],
+  "layer1_done": [
+    "False",
+    "True"
+  ],
+  "preliminary_order": [
+    "4->3->1->5->2"
+  ],
+  "order_confidence": [
+    "8",
+    "9"
+  ],
+  "confidence_basis": [
+    "4: whole->spiralized",
+    "3: spiralized+liquids",
+    "1: mixed veggies+cut baguette",
+    "5: cut baguette+mayo+meat",
+    "2: meat baguette+veggies"
+  ],
+  "blocking_uncertainties": [
+    "are veggies in 1 already wet/dressed or dry?",
+    "is baguette in 1 the same as in 5?"
+  ],
+  "temporal_index": [
+    "{\"video1\": [{\"window\": [0, 3], \"event\": \"mixing veggies then cutting baguette\", \"confidence\": \"high\"}], \"video3\": [{\"window\": [0, 5], \"event\": \"adding dressing to spiralized veggies\", \"confidence\": \"high\"}], \"video4\": [{\"window\": [0, 11], \"event\": \"spiralizing whole veggies\", \"confidence\": \"high\"}], \"video5\": [{\"window\": [0, 9], \"event\": \"mayo+meat on cut baguette\", \"confidence\": \"high\"}], \"video2\": [{\"window\": [0, 11], \"event\": \"adding veggies+cilantro to meat baguette\", \"confidence\": \"high\"}]}"
+  ],
+  "layer2_done": [
+    "True"
+  ],
+  "comparison_table": [
+    "{\"veggies\": \"4:whole -> 3:dry->wet -> 1:wet mixed -> 2:wet added\", \"baguette\": \"1:cut -> 5:cut+mayo+meat -> 2:cut+mayo+meat+veggies\"}",
+    "{\"veggies\": \"4:whole->spiralized -> 3:dry->wet -> 1:wet mixed -> 2:wet added\", \"baguette\": \"1:cut -> 5:cut+mayo+meat -> 2:cut+mayo+meat+veggies\"}"
+  ]
+}
