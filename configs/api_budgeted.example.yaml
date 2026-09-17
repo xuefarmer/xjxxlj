@@ -1,0 +1,46 @@
+llm:
+  backend: openai_compatible
+  base_url: ${LLM_BASE_URL}
+  api_key_env: LLM_API_KEY
+  model: ${LLM_MODEL}
+
+vlm:
+  backend: openai_compatible
+  base_url: ${VLM_BASE_URL}
+  api_key_env: VLM_API_KEY
+  model: ${VLM_MODEL}
+
+generation:
+  temperature: 0.0
+  max_output_tokens: 1200
+  timeout_seconds: 90
+  max_retries: 2
+  repair_retries: 1
+
+budget:
+  max_frames: 32
+  max_estimated_visual_tokens: 12288
+  max_visual_calls: 7
+  min_warm_frames_per_video: 3
+  scan_frames_per_video: 4
+  default_focus_frames: 5
+  max_comparisons_per_round: 4
+  max_comparison_rounds: 3
+  estimated_tokens_per_frame: 256
+
+video:
+  cache_dir: .unicvr_cache/frames
+  resize_long_edge: 640
+  jpeg_quality: 85
+  candidate_multiplier: 3
+  coverage_weight: 1.0
+  change_weight: 0.3
+  question_weight: 0.1
+  redundancy_weight: 0.3
+  pre_context_ratio: 0.25
+  post_context_ratio: 0.25
+
+trace:
+  output_dir: outputs
+  record_raw_responses: true
+  max_raw_response_chars: 8000

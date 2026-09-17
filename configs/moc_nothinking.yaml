@@ -1,0 +1,61 @@
+llm:
+  backend: openai_compatible
+  base_url: ${LLM_BASE_URL}
+  api_key_env: LLM_API_KEY
+  model: ${LLM_MODEL}
+
+vlm:
+  backend: openai_compatible
+  base_url: ${VLM_BASE_URL}
+  api_key_env: VLM_API_KEY
+  model: ${VLM_MODEL}
+
+generation:
+  temperature: 0.0
+  # MOC observer 结构化实例清单较长；仅 MOC 采集用此配置，PSS/FSA 不受影响
+  max_output_tokens: 4096
+  timeout_seconds: 120
+  max_retries: 2
+  repair_retries: 2
+  enable_thinking: false
+
+budget:
+  max_frames: 640
+  max_estimated_visual_tokens: 204800
+  max_visual_calls: 40
+  min_warm_frames_per_video: 12
+  scan_frames_per_video: 160
+  # 取证（FOCUS）加密：12 → 16 帧，跨视角去重更可靠。
+  # 仅 MOC 用此配置，PSS/FSA 的 pss_nothinking.yaml 不受影响。
+  default_focus_frames: 16
+  max_comparisons_per_round: 32
+  max_comparison_rounds: 3
+  estimated_tokens_per_frame: 320
+
+video:
+  cache_dir: .unicvr_cache/frames
+  resize_long_edge: 768
+  jpeg_quality: 88
+  candidate_multiplier: 3
+  # MOC 数数适配：12s UAV proxy 每 0.5s 采样，约 25-26 帧/视频。
+  # 单次 Observer 覆盖一个完整视频，避免并发分块的完成顺序扰动时间证据。
+  scan_seconds_per_frame: 0.5
+  scan_frames_per_call: 32
+  scan_overlap_frames: 0
+  coverage_weight: 1.0
+  change_weight: 0.35
+  question_weight: 0.15
+  redundancy_weight: 0.25
+  pre_context_ratio: 0.3
+  post_context_ratio: 0.3
+
+trace:
+  output_dir: outputs
+  record_raw_responses: true
+  max_raw_response_chars: 10000
+
+timing_guard:
+  enabled: true
+  extreme_overlong_seconds: 45.0
+  extreme_undershort_seconds: 6.0
+  max_feedback_rounds: 2

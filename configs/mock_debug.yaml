@@ -1,0 +1,45 @@
+llm:
+  backend: mock
+  model: deterministic-mock-llm
+
+vlm:
+  backend: mock
+  model: deterministic-mock-vlm
+
+generation:
+  temperature: 0.0
+  max_output_tokens: 1200
+  timeout_seconds: 30
+  max_retries: 0
+  repair_retries: 0
+
+budget:
+  max_frames: 80
+  max_estimated_visual_tokens: 25600
+  max_visual_calls: 16
+  min_warm_frames_per_video: 8
+  scan_frames_per_video: 24
+  default_focus_frames: 12
+  max_comparisons_per_round: 6
+  max_comparison_rounds: 3
+  estimated_tokens_per_frame: 256
+
+video:
+  cache_dir: .unicvr_cache/frames
+  resize_long_edge: 384
+  jpeg_quality: 85
+  candidate_multiplier: 3
+  scan_seconds_per_frame: null
+  scan_frames_per_call: 8
+  scan_overlap_frames: 1
+  coverage_weight: 1.0
+  change_weight: 0.35
+  question_weight: 0.15
+  redundancy_weight: 0.25
+  pre_context_ratio: 0.25
+  post_context_ratio: 0.25
+
+trace:
+  output_dir: outputs
+  record_raw_responses: true
+  max_raw_response_chars: 8000
